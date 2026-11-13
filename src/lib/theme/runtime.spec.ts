@@ -16,16 +16,19 @@ function setupDom(stored: string | null, prefersDark: boolean, storageThrows = f
 		},
 		matchMedia: () => ({ matches: prefersDark })
 	});
+	const style: { colorScheme?: string } = {};
 	vi.stubGlobal('document', {
 		documentElement: {
 			classList: {
 				toggle: (name: string, on: boolean) => (on ? classes.add(name) : classes.delete(name))
-			}
+			},
+			style
 		},
 		createElement: () => ({}),
+		getElementById: (id: string) => head.find((el) => el.id === id) ?? null,
 		head: { appendChild: (el: FakeElement) => head.push(el) }
 	});
-	return { classes, head };
+	return { classes, head, style };
 }
 
 const run = () => new Function(themeInitScript)();
@@ -55,6 +58,21 @@ describe('inline theme init script', () => {
 		expect(dom.head[0]?.id).toBe(OVERRIDES_STYLE_ID);
 		expect(dom.head[0]?.textContent).toContain('html:not(.dark) { --primary: #123456; }');
 		expect(dom.head[0]?.textContent).toContain('--radius: 1rem;');
+	});
+
+	it('sets color-scheme and stays idempotent when included twice', () => {
+		const dom = setupDom(
+			JSON.stringify({
+				version: 1,
+				mode: 'dark',
+				overrides: { light: {}, dark: { primary: '#123456' }, shared: {} }
+			}),
+			false
+		);
+		run();
+		run();
+		expect(dom.style.colorScheme).toBe('dark');
+		expect(dom.head).toHaveLength(1);
 	});
 
 	it('ignores other versions and survives blocked or corrupt storage', () => {

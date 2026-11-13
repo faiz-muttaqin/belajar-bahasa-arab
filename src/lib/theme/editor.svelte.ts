@@ -8,22 +8,20 @@ import {
 	type ThemeOverrides
 } from './css.js';
 import { History } from './history.js';
-import { applyMode, applyOverrides, resolveMode, systemPrefersDark } from './runtime.js';
+import { themeMode } from './mode.svelte.js';
+import { applyOverrides } from './runtime.js';
 import { getBrowserStorage, readStoredTheme, writeStoredTheme } from './storage.js';
 import {
 	DEFAULT_THEME,
 	cloneTheme,
 	type ColorToken,
 	type Mode,
-	type ModePreference,
 	type SharedTokens,
 	type Theme
 } from './tokens.js';
 
 export class ThemeEditor {
 	theme = $state<Theme>(cloneTheme(DEFAULT_THEME));
-	mode = $state<ModePreference>('system');
-	systemDark = $state(false);
 	/** False until saved preferences are loaded on the client. */
 	ready = $state(false);
 	/** Set when saving fails (for example storage is full or blocked). */
@@ -32,7 +30,8 @@ export class ThemeEditor {
 	#history = new History<Theme>();
 	#historyVersion = $state(0);
 
-	resolvedMode: Mode = $derived(resolveMode(this.mode, this.systemDark));
+	/** The mode being shown and edited; shared with the rest of the app via `themeMode`. */
+	resolvedMode: Mode = $derived(themeMode.resolved);
 	overrides: ThemeOverrides = $derived(diffTheme(this.theme));
 	isCustomised = $derived(hasOverrides(this.overrides));
 	canUndo = $derived(this.#historyVersion >= 0 && this.#history.canUndo);
@@ -44,8 +43,6 @@ export class ThemeEditor {
 		this.storageAvailable = storage !== null;
 		const stored = readStoredTheme(storage);
 		this.theme = layerOverrides(stored.overrides);
-		this.mode = stored.mode;
-		this.systemDark = systemPrefersDark();
 		this.ready = true;
 	}
 
@@ -56,16 +53,16 @@ export class ThemeEditor {
 		this.#historyVersion++;
 	}
 
-	/** Applies the current state to the document and saves it. */
+	/** Applies the current colours to the document and saves them (mode is kept as saved). */
 	sync() {
 		// Before `load()` the state is still the SSR default; touching the document
 		// now would undo the inline init script and cause the flash it prevents.
 		if (!this.ready) return;
-		applyMode(this.mode);
 		applyOverrides(this.overrides);
-		const saved = writeStoredTheme(getBrowserStorage(), {
+		const storage = getBrowserStorage();
+		const saved = writeStoredTheme(storage, {
 			version: 1,
-			mode: this.mode,
+			mode: readStoredTheme(storage).mode,
 			overrides: $state.snapshot(this.overrides) as ThemeOverrides
 		});
 		this.storageAvailable = saved;

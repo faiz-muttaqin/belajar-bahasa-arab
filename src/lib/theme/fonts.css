@@ -1,0 +1,10 @@
+/*
+ * Arabic font faces the theme editor offers. @font-face rules only: a file downloads
+ * only when text uses that family. Import this once site-wide (root layout) so a
+ * saved Arabic font choice works on every page, not just in the editor.
+ */
+@import '@fontsource-variable/noto-naskh-arabic';
+@import '@fontsource/amiri/arabic-400.css';
+@import '@fontsource/amiri/arabic-700.css';
+@import '@fontsource/scheherazade-new/arabic-400.css';
+@import '@fontsource/scheherazade-new/arabic-700.css';

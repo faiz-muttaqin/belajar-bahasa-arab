@@ -64,7 +64,7 @@ describe('themeToCss and parseThemeCss', () => {
 	});
 
 	it('matches Arabic fonts by family name', () => {
-		const parsed = parseThemeCss(":root { --arabic-font: 'Scheherazade New', serif; }");
+		const parsed = parseThemeCss(":root { --font-arabic: 'Scheherazade New', serif; }");
 		expect(parsed.shared.arabicFont).toBe('scheherazade-new');
 	});
 });
@@ -97,7 +97,7 @@ describe('overridesToCss', () => {
 			},
 			FONT_STACKS
 		);
-		expect(css).toContain("html:root { --radius: 1rem; --arabic-font: 'Amiri', serif; }");
+		expect(css).toContain("html:root { --radius: 1rem; --font-arabic: 'Amiri', serif; }");
 		expect(css).toContain('html:not(.dark) { --primary: #123456; }');
 		expect(css).toContain('html.dark { --primary: #abcdef; }');
 	});
@@ -122,13 +122,14 @@ describe('overridesToCss', () => {
 });
 
 describe('layout.css', () => {
-	it('declares the same default tokens as DEFAULT_THEME', async () => {
+	it('declares the same default colour tokens and radius as DEFAULT_THEME', async () => {
 		const css = await readFile('src/routes/layout.css', 'utf8');
 		const parsed = parseThemeCss(css);
 		for (const token of COLOR_TOKENS) {
 			expect(parsed.light[token], `light ${token}`).toBe(DEFAULT_THEME.light[token]);
 			expect(parsed.dark[token], `dark ${token}`).toBe(DEFAULT_THEME.dark[token]);
 		}
-		expect(parsed.shared).toEqual(DEFAULT_THEME.shared);
+		// Fonts are owned by the app shell's typography; layout.css only carries colours and radius.
+		expect(parsed.shared).toEqual({ radius: DEFAULT_THEME.shared.radius });
 	});
 });

@@ -3,7 +3,7 @@
 	The Arabic line is a neutral font specimen, not lesson content.
 -->
 <script lang="ts">
-	import ArabicText from '#lib/components/learning/ArabicText.svelte';
+	import ArabicSpecimen from './ArabicSpecimen.svelte';
 	import { Badge } from '#lib/components/ui/badge/index.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Card from '#lib/components/ui/card/index.js';
@@ -26,12 +26,8 @@
 		</Card.Header>
 		<Card.Content class="space-y-4">
 			<figure class="rounded-lg bg-muted px-4 py-3">
-				<p class="text-right text-4xl leading-loose">
-					<ArabicText>بِسْمِ اللَّهِ</ArabicText>
-				</p>
-				<p class="text-right text-2xl leading-loose">
-					<ArabicText>بِسْمِ اللَّهِ</ArabicText>
-				</p>
+				<p class="text-right text-4xl"><ArabicSpecimen /></p>
+				<p class="text-right text-2xl"><ArabicSpecimen /></p>
 				<figcaption class="text-sm text-muted-foreground">
 					Contoh huruf Arab dengan harakat, bukan materi pelajaran.
 				</figcaption>

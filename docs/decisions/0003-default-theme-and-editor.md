@@ -16,10 +16,10 @@ A calm, content-first palette for long reading sessions and Arabic script:
 - **Dark mode on a green-tinted near-black** (`#111715`) with off-white text (`#e8ece9`), not pure white, to limit halation around thin strokes and harakat.
 - **Chart colours** are muted and distinct in hue (green, blue, ochre, violet, terracotta), each at least 3:1 against the background.
 - **Input borders** reach 3:1 against the page (WCAG 1.4.11). Decorative `border` lines do not need to.
-- **Fonts.** The Indonesian UI uses Plus Jakarta Sans (AGENTS.md). The default Arabic face is Noto Naskh Arabic, the first candidate in the stack guide (section 7). Amiri and Scheherazade New are available in the editor for the side-by-side comparison that section 7 asks for. Arabic text uses `--arabic-font` via `:lang(ar)`, with a line height of 1.9 for stacked harakat.
+- **Fonts.** The Indonesian UI uses Plus Jakarta Sans (AGENTS.md). The default Arabic face is Noto Naskh Arabic, the first candidate in the stack guide (section 7). Amiri and Scheherazade New are available in the editor for the side-by-side comparison that section 7 asks for. Font choices are written to the standard Tailwind theme variables `--font-sans` and `--font-arabic`. Base typography and the site's `ArabicText` component belong to the app shell (see "Integration with the app shell").
 - **Hex values.** Colours are written as hex because hex is readable, auditable and what native colour inputs use. The editor also accepts `rgb()`, `hsl()` and `oklch()`.
 
-`DEFAULT_THEME` in `src/lib/theme/tokens.ts` is the single TypeScript source. A unit test parses `layout.css` and fails if the two differ.
+`DEFAULT_THEME` in `src/lib/theme/tokens.ts` is the single TypeScript source. This branch changes only the `:root` and `.dark` colour tokens in `layout.css`; `--radius` keeps its value. A unit test parses `layout.css` and fails if the colours or radius differ from `DEFAULT_THEME`.
 
 ### Palette
 
@@ -103,7 +103,7 @@ The focus halo is only a supplement. On focus, shadcn controls also get a solid 
   - Data is validated on read: unknown keys, invalid colours and out-of-range values are dropped.
   - The entry is removed once everything is back to default.
   - Every access is wrapped in `try/catch`, and the editor tells the user when storage is unavailable.
-- **No flash on load.** An inline script in `<head>` (from `src/lib/theme/runtime.ts`) reads storage and sets `.dark` before first paint. It also adds a `<style id="theme-overrides">`.
+- **No flash on load.** An inline script in `<head>` (`themeInitScriptTag` from `src/lib/theme/runtime.ts`) reads storage before first paint. It sets `.dark` and `color-scheme`, and adds a `<style id="theme-overrides">`. The script is idempotent. For now only the editor page includes it; see the next section for adding it to the root layout.
   - The early script and the live editor share one CSS builder: `overridesToCss` is self-contained and is embedded with `toString()`.
   - The override selectors (`html:root`, `html:not(.dark)`, `html.dark`) win over the defaults whatever the element order in `<head>`, and light overrides never leak into dark mode.
 - **Responsive navigation,** following the Material 3 window size classes and Apple HIG patterns:
@@ -124,6 +124,25 @@ The focus halo is only a supplement. On focus, shadcn controls also get a solid 
   - presets, AI generation, and server save and share;
   - HSL bulk adjustment;
   - shadows, spacing and letter spacing. Our components do not use these tokens, and a live spacing change would also resize the editor itself.
+
+## Integration with the app shell
+
+The app shell (header, navigation, footer, typography and `ArabicText`) is being built separately on `main`. To keep the merge clean, this branch leaves `src/routes/+layout.svelte` and `src/routes/+page.svelte` unchanged. In `layout.css` it changes only the colour tokens. Everything theme-related lives in `src/lib/theme/`, and `src/lib/theme/index.ts` is the public API.
+
+| Export                                       | Use                                                                                                                                                                                           |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `themeInitScriptTag`                         | `{@html themeInitScriptTag}` in the root layout's `<svelte:head>`. Applies the saved mode and colours before first paint. It is idempotent, so the copy in the editor page can stay.          |
+| `themeMode.start()`                          | `onMount(() => themeMode.start())` in the root layout. Reads the saved preference, follows OS colour scheme changes and picks up other tabs. It is reference counted and returns its cleanup. |
+| `themeMode.preference`, `themeMode.resolved` | Reactive state: `'light' \| 'dark' \| 'system'`, and the mode actually shown.                                                                                                                 |
+| `themeMode.set(mode)`                        | Applies and saves a mode, keeping any saved colours. Use it for a header toggle.                                                                                                              |
+| `MODE_LABELS`, `MODE_PREFERENCES`            | Indonesian labels (Terang, Gelap, Ikuti sistem). `ModeSwitcher.svelte` in `#lib/components/theme-editor/` is a ready, accessible radio group.                                                 |
+
+The app shell still needs to do the following, otherwise the corresponding editor choices only show inside the editor:
+
+1. **Site-wide no-flash and OS sync.** Add the script tag and `themeMode.start()` to the root layout.
+2. **Selectable Arabic fonts on every page.** Import `src/lib/theme/fonts.css` once. It holds the `@font-face` rules for Noto Naskh Arabic, Amiri and Scheherazade New.
+3. **Font choices that actually apply.** Read fonts through `var(--font-sans)` and `var(--font-arabic)`. The editor writes these variables on `html:root`. Tailwind's `@theme inline` copies a value into the utilities instead of referencing the variable, so either declare the two fonts in a plain `@theme` block, or have the utilities and base styles reference the variables.
+4. **Nav entry.** Link to `/editor/theme/` (for example "Atur tampilan") from the shell's navigation.
 
 ## Decision: theme presets and saved themes
 

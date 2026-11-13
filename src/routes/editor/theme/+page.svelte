@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import '#lib/theme/fonts.css';
 	import { resolve } from '$app/paths';
 	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import Code from '@lucide/svelte/icons/code';
@@ -10,7 +11,7 @@
 	import RotateCcw from '@lucide/svelte/icons/rotate-ccw';
 	import Type from '@lucide/svelte/icons/type';
 	import Undo2 from '@lucide/svelte/icons/undo-2';
-	import ArabicText from '#lib/components/learning/ArabicText.svelte';
+	import ArabicSpecimen from '#lib/components/theme-editor/ArabicSpecimen.svelte';
 	import ColorField from '#lib/components/theme-editor/ColorField.svelte';
 	import ContrastReport from '#lib/components/theme-editor/ContrastReport.svelte';
 	import CssExport from '#lib/components/theme-editor/CssExport.svelte';
@@ -23,7 +24,7 @@
 	import { Input } from '#lib/components/ui/input/index.js';
 	import { themeToCss, type ThemeOverrides } from '#lib/theme/css.js';
 	import { ThemeEditor } from '#lib/theme/editor.svelte.js';
-	import { THEME_STORAGE_KEY } from '#lib/theme/storage.js';
+	import { themeInitScriptTag, themeMode } from '#lib/theme/index.js';
 	import {
 		ARABIC_FONTS,
 		COLOR_GROUPS,
@@ -64,15 +65,8 @@
 	});
 
 	onMount(() => {
+		const stopMode = themeMode.start();
 		editor.load();
-
-		const media = window.matchMedia('(prefers-color-scheme: dark)');
-		const onSystem = () => (editor.systemDark = media.matches);
-		const onStorage = (event: StorageEvent) => {
-			if (event.key === null || event.key === THEME_STORAGE_KEY) editor.reload();
-		};
-		media.addEventListener('change', onSystem);
-		window.addEventListener('storage', onStorage);
 
 		// Highlight the navigation item for the section currently in view.
 		const sections = navItems
@@ -98,16 +92,23 @@
 		window.addEventListener('scroll', onScroll, { passive: true });
 
 		return () => {
-			media.removeEventListener('change', onSystem);
-			window.removeEventListener('storage', onStorage);
+			stopMode();
 			window.removeEventListener('scroll', onScroll);
 			observer.disconnect();
 		};
 	});
 
+	// Saved theme changed in another tab: show it and start a fresh history.
+	let seenRevision = 0;
+	$effect(() => {
+		if (themeMode.externalRevision !== seenRevision) {
+			seenRevision = themeMode.externalRevision;
+			editor.reload();
+		}
+	});
+
 	function setMode(value: ModePreference) {
-		editor.mode = value;
-		editor.systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		themeMode.set(value);
 		status = `Mode tampilan: ${MODE_LABELS[value].toLowerCase()}.`;
 	}
 
@@ -149,6 +150,9 @@
 </script>
 
 <svelte:head>
+	<!-- Saved theme before first paint. Idempotent, so it can stay once the root layout includes it too. -->
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- static script built from our own source, no user input -->
+	{@html themeInitScriptTag}
 	<title>Editor tema · Belajar Bahasa Arab</title>
 	<meta
 		name="description"
@@ -194,7 +198,7 @@
 		class="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85"
 	>
 		<div class="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-4 py-2 md:px-6">
-			<ModeSwitcher value={editor.mode} onchange={setMode} hideLegend />
+			<ModeSwitcher value={themeMode.preference} onchange={setMode} hideLegend />
 			<div class="ml-auto flex items-center gap-0.5 sm:gap-1">
 				<Button variant="ghost" onclick={undo} disabled={!editor.canUndo} aria-label="Urungkan">
 					<Undo2 aria-hidden="true" /><span class="hidden sm:inline">Urungkan</span>
@@ -378,9 +382,7 @@
 										/>
 										{font.label}
 									</span>
-									<span class="text-right text-3xl leading-loose" style:font-family={font.stack}>
-										<ArabicText>بِسْمِ اللَّهِ</ArabicText>
-									</span>
+									<span class="text-right text-3xl"><ArabicSpecimen family={font.stack} /></span>
 								</label>
 							{/each}
 						</div>

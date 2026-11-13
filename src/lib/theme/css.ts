@@ -100,10 +100,10 @@ export function overridesToCss(overrides: unknown, fonts: FontStacks): string {
 		sharedVars.radius = shared.radius + 'rem';
 	}
 	if (typeof shared.uiFont === 'string' && Object.hasOwn(fonts.ui, shared.uiFont)) {
-		sharedVars['ui-font'] = String(fonts.ui[shared.uiFont]);
+		sharedVars['font-sans'] = String(fonts.ui[shared.uiFont]);
 	}
 	if (typeof shared.arabicFont === 'string' && Object.hasOwn(fonts.arabic, shared.arabicFont)) {
-		sharedVars['arabic-font'] = String(fonts.arabic[shared.arabicFont]);
+		sharedVars['font-arabic'] = String(fonts.arabic[shared.arabicFont]);
 	}
 
 	return (
@@ -123,8 +123,8 @@ export function themeToCss(theme: Theme): string {
 		COLOR_TOKENS.map((token) => `\t--${token}: ${theme[mode][token]};`).join('\n');
 	const shared = [
 		`\t--radius: ${formatRadius(theme.shared.radius)};`,
-		`\t--ui-font: ${UI_FONTS[theme.shared.uiFont].stack};`,
-		`\t--arabic-font: ${ARABIC_FONTS[theme.shared.arabicFont].stack};`
+		`\t--font-sans: ${UI_FONTS[theme.shared.uiFont].stack};`,
+		`\t--font-arabic: ${ARABIC_FONTS[theme.shared.arabicFont].stack};`
 	].join('\n');
 	return `:root {\n${colorLines('light')}\n${shared}\n}\n\n.dark {\n${colorLines('dark')}\n}\n`;
 }
@@ -226,7 +226,7 @@ export function parseThemeCss(input: string): ParsedThemeCss {
 				else result.ignored.push(name);
 				continue;
 			}
-			if (mode === 'light' && key === 'arabic-font') {
+			if (mode === 'light' && (key === 'font-arabic' || key === 'arabic-font')) {
 				const id = matchFont<ArabicFontId>(value, ARABIC_FONTS);
 				if (id && isArabicFontId(id)) result.shared.arabicFont = id;
 				else result.ignored.push(name);
