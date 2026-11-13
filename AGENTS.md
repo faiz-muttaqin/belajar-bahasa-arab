@@ -36,6 +36,11 @@ Read [`docs/arabic-learning-stack-guide-sveltekit.md`](./docs/arabic-learning-st
 - `bun run check` (svelte-check), `bun run lint` (Prettier + ESLint), `bun run test:unit` (Vitest), `bun run test:e2e` (build + Playwright), `bun run build`.
 - `bun run verify` runs the whole gate. Playwright and Vitest browser tests need `bun run browsers:install` once.
 
+## Content work
+
+- Track every content item in [`docs/content/tracker.md`](./docs/content/tracker.md) (pipeline stages, owners, blockers). Update the row when an item moves stage.
+- Research basis: [`docs/arabic-learning-pedagogy-ux-research-reissued.md`](./docs/arabic-learning-pedagogy-ux-research-reissued.md). Design rules: [`docs/design/taste.md`](./docs/design/taste.md).
+
 ## Quality checks before every PR
 
 1. Summarize impact and every new dependency; link the relevant official API/adapter version docs.

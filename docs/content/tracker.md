@@ -1,0 +1,133 @@
+# Content tracker
+
+Single place to see what content exists, what blocks it, and what to do next. Update the row (and the "Updated" date) whenever an item moves stage. Agents: read [AGENTS.md](../../AGENTS.md) and the [research doc](../arabic-learning-pedagogy-ux-research-reissued.md) first; never move an item past **Draft** without a named human reviewer.
+
+**Updated:** 14 November 2026
+
+## Pipeline
+
+Every publishable item (lesson, vocabulary list, reference table, audio clip) moves through these stages. An item may only be shown on the public site at **Published**.
+
+| Stage             | Meaning                                                                            | Exit criterion                                                                         |
+| ----------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| 0 Idea            | Proposed, not researched.                                                          | Has a one-line can-do goal.                                                            |
+| 1 Research        | Sources being collected; pedagogy questions open.                                  | At least one primary source per claim; open questions listed.                          |
+| 2 Sourced         | Scope and sources agreed; licence of every source checked.                         | Licence noted; scope (register, level, prerequisites) written down.                    |
+| 3 Draft           | Content written in the typed format (`src/lib/content/`), `reviewStatus: 'draft'`. | Passes the content validator (structure, `lang`/`dir`, sources).                       |
+| 4 Linguist review | A competent Arabic teacher checks Arabic, harakat, meanings, grammar notes.        | Reviewer name and date recorded; changes applied; `reviewStatus: 'linguist_reviewed'`. |
+| 5 Audio           | Offline Voicebox (or human recording) generated for reviewed text.                 | Audio manifest entry with `reviewStatus` and checksum; human listening check passed.   |
+| 6 QA              | UI check on mobile and desktop, light and dark, no JS, screen reader spot check.   | `bun run verify` passes; checklist in the PR.                                          |
+| 7 Published       | `reviewStatus: 'approved'`; rendered on the public site.                           | Content changelog entry.                                                               |
+
+Status markers used below: ⬜ not started · 🟡 in progress · 🔵 waiting on someone · ✅ done · ⛔ blocked.
+
+## Foundations (needed before any lesson ships)
+
+| ID   | Item                                                             | Stage / status | Owner        | Blocker / next action                                                                                                                                             |
+| ---- | ---------------------------------------------------------------- | -------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| F-01 | App shell, typography, navigation, theme                         | ✅             | main session | Done (`63fe308`).                                                                                                                                                 |
+| F-02 | Reference table component + hafalan mode                         | ✅             | main session | Done; content contract in `src/lib/domain/reference/table.ts`.                                                                                                    |
+| F-03 | Vocabulary card, collections, icon registry                      | ✅             | main session | Done; content goes in `src/lib/content/vocabulary.ts`.                                                                                                            |
+| F-04 | Lesson content schema (lesson, example, concept, can-do)         | ⬜             | —            | Derive from research doc §9; add validator and fixtures.                                                                                                          |
+| F-05 | Lesson page template (one reference lesson, focus mode)          | ⬜             | —            | After F-04 and one reviewed lesson draft (§7 lesson flow).                                                                                                        |
+| F-06 | Build-time content validator (sources, review status, audio IDs) | ⬜             | —            | Extend `validateReferenceTable` / `isPublishableVocab` into one gate.                                                                                             |
+| F-07 | Progress, bookmarks, review queue in IndexedDB + export/import   | ⬜             | —            | Guide §5; schema version and migration from the start.                                                                                                            |
+| F-08 | Audio player component (click-to-play, replay, speed, errors)    | ⬜             | —            | Needs one reviewed clip from A-01.                                                                                                                                |
+| F-09 | Spaced-repetition scheduler (client-side)                        | ⬜             | —            | Use ts-fsrs (MIT), desired retention 0.90, default params; rating map wrong=Again, correct=Good, fast=Easy. Spike: browser bundle despite node>=24 engines field. |
+
+## Audio
+
+| ID   | Item                                                        | Stage / status | Owner            | Blocker / next action                                                               |
+| ---- | ----------------------------------------------------------- | -------------- | ---------------- | ----------------------------------------------------------------------------------- |
+| A-01 | Voicebox Arabic setup, smoke test, batch pipeline, manifest | 🟡             | voicebox session | Running; result in `docs/audio/voicebox-arabic.md` (branch `docs/voicebox-arabic`). |
+| A-02 | Human listener / reviewer for audio                         | 🔵             | product owner    | Find a teacher or fluent reader to review takes.                                    |
+| A-03 | Decide encoding (MP3 vs Opus) and static path layout        | ⬜             | —                | From A-01 measurements.                                                             |
+
+## Main path (Jalur B, post-Iqra) — draft unit list from research doc §5.2
+
+Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
+
+| ID  | Unit (proposed)     | Can-do goal (draft)                                       | Stage | Sources             | Reviewer | Next action                                                    |
+| --- | ------------------- | --------------------------------------------------------- | ----- | ------------------- | -------- | -------------------------------------------------------------- |
+| B0  | Kesiapan & bunyi    | Distinguish sounds/writing; find meaning of simple words  | 1 🟡  | §5.2                | —        | Pick sound contrasts hard for Indonesian speakers.             |
+| B1  | Benda di sekitar    | Point to and name things simply                           | 1 🟡  | §5.2, Fase F themes | —        | Blocked on D-4 (unit order) and RS-01 (MSA vocabulary source). |
+| B2  | Menunjukkan sesuatu | Understand "ini ..." vs "ini [benda tertentu]"            | 0 ⬜  | §5.3                | —        | Needs expert check of the هَذَا examples.                        |
+| B3  | Deskripsi           | Understand simple descriptions                            | 0 ⬜  | §5.2                | —        |                                                                |
+| B4  | Orang dan milik     | Understand person/thing relations                         | 0 ⬜  | §5.2                | —        |                                                                |
+| B5  | Lokasi              | Understand "di/atas/dekat" with pictures                  | 0 ⬜  | §5.2                | —        |                                                                |
+| B6  | Tindakan            | Tell the action from the doer                             | 0 ⬜  | §5.2                | —        |                                                                |
+| B7  | Waktu dan bentuk    | Tell past from non-past                                   | 0 ⬜  | §5.2                | —        |                                                                |
+| B8  | Bertanya            | Understand simple questions in context                    | 0 ⬜  | §5.2                | —        |                                                                |
+| B9  | Gender/number       | Recognise gender and number effects                       | 0 ⬜  | §5.2                | —        |                                                                |
+| B10 | Pola akar kata      | Recognise word families                                   | 0 ⬜  | §5.3                | —        | Link to R-02 tashrif table.                                    |
+| B11 | Gabungan kalimat    | Understand a short everyday paragraph                     | 0 ⬜  | §5.2                | —        |                                                                |
+| B12 | Integrasi           | Listen, read, choose a response; transfer to new examples | 0 ⬜  | §5.2                | —        |                                                                |
+
+## Foundation path (Jalur A, optional "Iqra" track)
+
+| ID  | Stage (proposed)            | Can-do goal (draft)                              | Stage | Next action                                     |
+| --- | --------------------------- | ------------------------------------------------ | ----- | ----------------------------------------------- |
+| A0  | Sound contrasts             | Hear and pick the audio that matches the writing | 0 ⬜  | Needs reviewed audio (A-01, A-02).              |
+| A1  | Letters and forms           | Recognise letters in initial/medial/final forms  | 0 ⬜  | Original exercises only (no Iqra reproduction). |
+| A2  | Harakat, long vowels, sukun | Decode unseen words accurately                   | 0 ⬜  | Harakat chart on tatweel base (see taste.md).   |
+| A3  | Tasydid, tanwin             | Read short vocalised words                       | 0 ⬜  |                                                 |
+| A4  | Phrases and sentences       | Read simple vocalised sentences; join Jalur B    | 0 ⬜  |                                                 |
+
+## Vocabulary collections (research doc §6.1b)
+
+| ID   | Collection / list                         | Stage | Sources                      | Reviewer | Next action                                                                                                                                                                                                                      |
+| ---- | ----------------------------------------- | ----- | ---------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| V-01 | Kosakata harian: first 8 to 12 nouns (B1) | 1 ⛔  | §5.2                         | —        | Blocked: no sourced MSA core-vocabulary list yet (RS-01). Icons only for concrete nouns (D-6).                                                                                                                                   |
+| V-02 | Kosakata harian: everyday verbs (B6)      | 0 ⬜  | —                            | —        |                                                                                                                                                                                                                                  |
+| V-03 | Al-Qur'an: high-frequency words           | 2 🟡  | QAC lemmas/verbs, R35 to R37 | —        | Write offline coverage script (RS-03) after D-1; candidate list of ~300 lemmas tagged by POS; function words get usage lessons. UI copy: "muncul N kali". See [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md) §2. |
+| V-04 | Bacaan shalat: words in the daily prayers | 1 🟡  | NU Online, Muhammadiyah HPT  | —        | First unit: uncontested core words only; build lemma inventory (RS-04); variant labels after D-5. See [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md) §3.                                                         |
+| V-05 | Short surahs (juz 'amma) word by word     | 0 ⛔  | R34, Tanzil                  | —        | Blocked on D-2, D-3 and the tashih question (PMA 44/2016). Do not show whole surahs yet.                                                                                                                                         |
+
+## Reference tables (research doc §6.1a)
+
+| ID   | Table                              | Stage | Sources                         | Reviewer | Next action                                                                                                                                       |
+| ---- | ---------------------------------- | ----- | ------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R-01 | Jenis ḥarf (jarr, 'aṭf, nafy, ...) | 0 ⬜  | —                               | —        | Decide MSA vs classical scope; source list.                                                                                                       |
+| R-02 | Tashrif istilahi                   | 0 ⛔  | Amtsilah Tashrifiyyah tradition | —        | Blocked: bab order and column order unverified (sources contradict). Check a physical copy with an ustadz (RS-06) before any data, even fixtures. |
+| R-03 | Harakat chart (foundation path)    | 0 ⬜  | —                               | —        | Mechanical display; still needs reviewer for labels.                                                                                              |
+
+## Decisions needed (from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md), §7)
+
+| ID  | Decision                                                                                      | Status | Notes                                                                                                                             |
+| --- | --------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| D-1 | Content licence for this site (e.g. CC BY-SA 4.0)                                             | 🔵     | Decides which sources may be imported (SA, NC, GPL, verbatim-only). Needs an IP adviser.                                          |
+| D-2 | Arabic script per surface (Tanzil Uthmani vs Mushaf Standar Indonesia vs plain vocalised MSA) | 🔵     | Uthmani aligns with QAC and has a clear licence; MSI is familiar but all rights reserved.                                         |
+| D-3 | Qur'an translation source                                                                     | 🔵     | Link to quran.kemenag.go.id, QuranEnc (no changes, attribution, version, notify on notes) or LPMQ permission.                     |
+| D-4 | First post-Iqra unit order                                                                    | 🔵     | Reconcile Jalur B (B1 to B8) with the Madinah order (question and pointing words first) and frequent verbs (qāla, kāna).          |
+| D-5 | Default variants for shalat readings                                                          | 🔵     | Iftitah, tasyahud, sayyidina, "wa bihamdih"; needs a religious reviewer.                                                          |
+| D-6 | Icon policy                                                                                   | 🔵     | Research: Indonesian meaning always; icons only for concrete nouns; review with image hidden. Differs from "icon for every word". |
+| D-7 | Reviewers and review record format                                                            | 🔵     | At least one Arabic teacher and one ustadz; record reviewer, date, source, decision per item.                                     |
+
+## Research tasks
+
+| ID    | Task                                                                                                                | Status | Notes                                                                  |
+| ----- | ------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------- |
+| RS-01 | Find an openly licensed MSA core-vocabulary / frequency source for "Kosakata harian"                                | ⬜     | Critic gap; none researched yet.                                       |
+| RS-02 | Read the KMA 1503/2025 official download (JDIH) and find the official Kepdirjen 9941/2025 Lampiran (CP Bahasa Arab) | ⬜     | Human step; unofficial copy must not drive content.                    |
+| RS-03 | Offline Qur'an lemma coverage script with documented counting rules                                                 | ⬜     | After D-1; QAC or MASAQ (CC BY 4.0) as data.                           |
+| RS-04 | Lemma inventory of core shalat readings with hadith references and variant flags                                    | ⬜     | For ustadz review before any gloss is written.                         |
+| RS-05 | Audio licensing: Chatterbox model and output terms; murattal / recitation sources                                   | ⬜     | Coordinate with A-01.                                                  |
+| RS-06 | Verify Al-Amtsilah at-Tashrifiyyah bab order and tashrif istilahi column order from a physical copy                 | ⬜     | With an ustadz.                                                        |
+| RS-07 | Transliteration standard (SKB Menag–Mendikbud) and Arabic loanwords in KBBI as a bridge                             | ⬜     | Needed before the transliteration setting ships.                       |
+| RS-08 | Placement pilot: what adult Iqra graduates can decode and already understand                                        | ⬜     | Small survey; data aggregated or kept local.                           |
+| RS-09 | Ask LPMQ (lajnah@kemenag.go.id) about displaying the 2019 translation and whether tashih applies                    | ⬜     | Draft for the product owner to send; legal questions go to an adviser. |
+| RS-10 | Read LPMQ "Pedoman Pentashihan Mushaf Al-Qur'an Digital" (2022)                                                     | ⬜     | Blocks V-05.                                                           |
+
+## People and decisions needed
+
+| Need                                                                                      | Who           | Status |
+| ----------------------------------------------------------------------------------------- | ------------- | ------ |
+| Arabic teacher / linguist reviewer                                                        | product owner | 🔵     |
+| Audio listener (makharij, harakat)                                                        | product owner | 🔵     |
+| Target focus: Fusha general vs Qur'anic understanding vs conversation (research doc §12F) | product owner | 🔵     |
+| 5 to 10 test learners (3 profiles, §10.2)                                                 | product owner | ⬜     |
+
+## Changelog
+
+- 14 November 2026: added decisions D-1 to D-7 and research tasks RS-01 to RS-10 from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md); updated F-09, B1, V-01, V-03 to V-05 and R-02.
+- 13 November 2026: tracker created from research doc §5, §6.1a, §6.1b and the current build.
