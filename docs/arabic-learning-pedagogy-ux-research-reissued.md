@@ -275,6 +275,15 @@ Tampilkan **kesamaan konsonan akar** dan perubahan pola hanya setelah pembelajar
 - **Yang perlu diriset:** urutan wazan yang dipakai (mis. pola tsulatsi mujarrad/mazid), apakah tabel tashrif istilahi atau lughawi lebih dulu, daftar ḥarf yang relevan untuk MSA vs teks klasik, sumber rujukan yang lisensinya aman, dan efek hafalan tabel terhadap pemahaman (uji dengan butir baru).
 - **Aturan konten:** isi tabel tidak boleh dikarang AI; wajib bersumber dan ditinjau guru/linguis sebelum terbit. Sebelum itu UI hanya memakai data fixture berlabel.
 
+### 6.1b Koleksi kosakata harian dan kosakata Al-Qur'an (usulan pemilik produk, 13 November 2026)
+
+**Status: Design hypothesis / To verify.** Pemilik produk mengusulkan dua koleksi kosakata yang bisa dihafal: **kosakata harian** dan **kosakata Al-Qur'an**, termasuk kata yang sudah ditemui pelajar Indonesia dalam **bacaan shalat dan hafalan surat pendek**. Kosakata diberi ikon/ilustrasi vektor yang mengasosiasikan benda atau konsep.
+
+- **Alasan:** pelajar Indonesia sudah sering mendengar dan membaca bacaan shalat; mengaitkan kata yang sudah akrab dengan maknanya memberi motivasi dan "first success" cepat (§4.2). Pendekatan berbasis **frekuensi kata Al-Qur'an** memungkinkan cakupan teks yang besar dari daftar kata yang relatif kecil.
+- **Rujukan awal dari pemilik produk (belum ditinjau):** tiga playlist YouTube bertahap: "Read & Understand Quranic Arabic from 0% - 50% (Stage ONE)" [R35], "Read & Understand Quranic Arabic from 50% - 65% (Stage TWO)" [R36], dan "STAGE III: Understand 85% of Quranic Vocabulary" [R37]. Judul diambil dari halaman playlist; nama kanal, isi video dan metodenya belum diperiksa.
+- **Yang perlu diriset:** (1) apa arti klaim "% kosakata Al-Qur'an" (cakupan token vs lema) dan apakah angka itu dapat direproduksi dari data korpus, misalnya Quranic Arabic Corpus [R30, R34]; (2) lisensi data korpus dan terjemahan Indonesia yang boleh dipakai; (3) daftar kata dalam bacaan shalat beserta sumber teks yang disepakati; (4) pemisahan register: kosakata Al-Qur'an/klasik vs MSA harian harus diberi label (§3.3), dan bentuk kata dalam ayat (dengan i'rab/waqaf) tidak selalu sama dengan bentuk kamus; (5) adab dan aturan penanganan teks Al-Qur'an (ayat utuh, rasm, tanda waqaf) bila menampilkan kutipan; (6) kapan ikon membantu dan kapan menyesatkan (konsep abstrak, kata tugas).
+- **Aturan konten:** daftar kata, makna, bentuk dan audio wajib bersumber dan ditinjau guru; ikon tidak boleh menjadi satu-satunya kanal makna (§7, warna/ikon pedagogis).
+
 ### 6.2 Model graf prasyarat (concept DAG), bukan satu pohon pelajaran
 
 ```text
@@ -526,6 +535,12 @@ type UserMastery = {
 - **[R32]** [WCAG 2.2](https://www.w3.org/TR/WCAG22/) — UI target dan aksesibilitas.
 - **[R33]** [Duolingo Arabic course](https://en.duolingo.com/course/ar/en) — inspirasi microlearning; jangan klaim gamifikasi lebih baik tanpa tes khusus.
 - **[R34]** [The Quranic Arabic Corpus — word-by-word](https://corpus.quran.com/wordbyword.jsp) — contoh representasi per kata; beda register dan hak penggunaan harus dicek.
+
+### E2. Rujukan dari pemilik produk (belum diperiksa isinya)
+
+- **[R35]** [YouTube playlist — Read & Understand Quranic Arabic from 0% - 50% (Stage ONE)](https://www.youtube.com/watch?v=IuiTV5SEeGw&list=PL6TlMIZ5ylgrYBl5c2LGoc1iwTPyYMMYH) — kosakata Al-Qur'an berbasis frekuensi; klaim persentase perlu diverifikasi.
+- **[R36]** [YouTube playlist — Read & Understand Quranic Arabic from 50% - 65% (Stage TWO)](https://www.youtube.com/watch?v=4SEHQFpofu0&list=PL6TlMIZ5ylgrtqN60yWKuS6xvPDUx6cNZ) — lanjutan tahap 2.
+- **[R37]** [YouTube playlist — STAGE III: Understand 85% of Quranic Vocabulary](https://www.youtube.com/watch?v=rI4q5GAkqO0&list=PL6TlMIZ5ylgr0FQHVC3yzL6TM9lOXHXc7) — lanjutan tahap 3.
 
 ### F. Riset yang masih perlu didalami
 
