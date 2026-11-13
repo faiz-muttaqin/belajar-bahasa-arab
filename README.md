@@ -43,3 +43,9 @@ tests/e2e/         Playwright tests against the static build
 static/            files copied as-is into the build
 docs/              architecture guide and decisions
 ```
+
+## Licence
+
+- Text written for this site (explanations, glosses, exercises) is licensed **CC BY-SA 4.0** ([ADR-004](./docs/decisions/0004-content-decisions.md)).
+- Third-party material keeps its own terms and is labelled where shown: Qur'an text from Tanzil (CC BY 3.0, verbatim), the Indonesian translation via QuranEnc (its terms), Quranic Arabic Corpus data (GNU GPL), fonts (SIL OFL 1.1), icons (Lucide, ISC).
+- The code licence has not been chosen yet.

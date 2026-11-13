@@ -4,6 +4,8 @@
  * (docs/arabic-learning-pedagogy-ux-research-reissued.md §6.1a); never author rows here.
  */
 
+import { hasApprovingReview, type ReviewRecord } from '#lib/domain/review.js';
+
 export type ReviewStatus = 'fixture' | 'draft' | 'linguist_reviewed' | 'approved';
 
 export type ReferenceColumn = {
@@ -30,6 +32,8 @@ export type ReferenceTableData = {
 	rows: ReferenceRow[];
 	reviewStatus: ReviewStatus;
 	sources: string[];
+	/** ADR-004 D-7: approving review by an Arabic teacher required before publishing. */
+	reviews?: ReviewRecord[];
 };
 
 export type ValidationIssue = { rowId?: string; message: string };
@@ -56,7 +60,11 @@ export function validateReferenceTable(table: ReferenceTableData): ValidationIss
 	return issues;
 }
 
-/** Only approved tables may be rendered on public (prerendered) pages. */
+/** Only approved, valid tables with an approving teacher review may be rendered publicly. */
 export function isPublishable(table: ReferenceTableData): boolean {
-	return table.reviewStatus === 'approved' && validateReferenceTable(table).length === 0;
+	return (
+		table.reviewStatus === 'approved' &&
+		validateReferenceTable(table).length === 0 &&
+		hasApprovingReview(table.reviews, 'arabic_teacher')
+	);
 }

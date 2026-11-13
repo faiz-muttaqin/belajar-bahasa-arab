@@ -37,11 +37,11 @@ Status markers used below: ⬜ not started · 🟡 in progress · 🔵 waiting o
 
 ## Audio
 
-| ID   | Item                                                        | Stage / status | Owner            | Blocker / next action                                                               |
-| ---- | ----------------------------------------------------------- | -------------- | ---------------- | ----------------------------------------------------------------------------------- |
-| A-01 | Voicebox Arabic setup, smoke test, batch pipeline, manifest | 🟡             | voicebox session | Running; result in `docs/audio/voicebox-arabic.md` (branch `docs/voicebox-arabic`). |
-| A-02 | Human listener / reviewer for audio                         | 🔵             | product owner    | Find a teacher or fluent reader to review takes.                                    |
-| A-03 | Decide encoding (MP3 vs Opus) and static path layout        | ⬜             | —                | From A-01 measurements.                                                             |
+| ID   | Item                                                        | Stage / status | Owner            | Blocker / next action                                                                                                                                   |
+| ---- | ----------------------------------------------------------- | -------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A-01 | Voicebox Arabic setup, smoke test, batch pipeline, manifest | 🔵             | voicebox session | Done on branch `docs/voicebox-arabic` (87522ba): setup + Arabic guide + batch script; 12 smoke-test takes need a human listener (A-02). Not merged yet. |
+| A-02 | Human listener / reviewer for audio                         | 🔵             | product owner    | Find a teacher or fluent reader to review takes.                                                                                                        |
+| A-03 | Decide encoding (MP3 vs Opus) and static path layout        | ⬜             | —                | From A-01 measurements.                                                                                                                                 |
 
 ## Main path (Jalur B, post-Iqra) — draft unit list from research doc §5.2
 
@@ -80,8 +80,8 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 | V-01 | Kosakata harian: first 8 to 12 nouns (B1) | 1 ⛔  | §5.2                         | —        | Blocked: no sourced MSA core-vocabulary list yet (RS-01). Icons only for concrete nouns (D-6).                                                                                                                                   |
 | V-02 | Kosakata harian: everyday verbs (B6)      | 0 ⬜  | —                            | —        |                                                                                                                                                                                                                                  |
 | V-03 | Al-Qur'an: high-frequency words           | 2 🟡  | QAC lemmas/verbs, R35 to R37 | —        | Write offline coverage script (RS-03) after D-1; candidate list of ~300 lemmas tagged by POS; function words get usage lessons. UI copy: "muncul N kali". See [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md) §2. |
-| V-04 | Bacaan shalat: words in the daily prayers | 1 🟡  | NU Online, Muhammadiyah HPT  | —        | First unit: uncontested core words only; build lemma inventory (RS-04); variant labels after D-5. See [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md) §3.                                                         |
-| V-05 | Short surahs (juz 'amma) word by word     | 0 ⛔  | R34, Tanzil                  | —        | Blocked on D-2, D-3 and the tashih question (PMA 44/2016). Do not show whole surahs yet.                                                                                                                                         |
+| V-04 | Bacaan shalat: words in the daily prayers | 1 🟡  | NU Online, Muhammadiyah HPT  | —        | Unit 1 per D-4. Next: lemma inventory RS-04, then ustadz review (D-7). Variants side by side per D-5.                                                                                                                            |
+| V-05 | Short surahs (juz 'amma) word by word     | 0 ⛔  | Tanzil Uthmani, QuranEnc     | —        | Blocked on tashih question: send LPMQ letter (RS-09) and read RS-10.                                                                                                                                                             |
 
 ## Reference tables (research doc §6.1a)
 
@@ -93,30 +93,30 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 
 ## Decisions needed (from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md), §7)
 
-| ID  | Decision                                                                                      | Status | Notes                                                                                                                             |
-| --- | --------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| D-1 | Content licence for this site (e.g. CC BY-SA 4.0)                                             | 🔵     | Decides which sources may be imported (SA, NC, GPL, verbatim-only). Needs an IP adviser.                                          |
-| D-2 | Arabic script per surface (Tanzil Uthmani vs Mushaf Standar Indonesia vs plain vocalised MSA) | 🔵     | Uthmani aligns with QAC and has a clear licence; MSI is familiar but all rights reserved.                                         |
-| D-3 | Qur'an translation source                                                                     | 🔵     | Link to quran.kemenag.go.id, QuranEnc (no changes, attribution, version, notify on notes) or LPMQ permission.                     |
-| D-4 | First post-Iqra unit order                                                                    | 🔵     | Reconcile Jalur B (B1 to B8) with the Madinah order (question and pointing words first) and frequent verbs (qāla, kāna).          |
-| D-5 | Default variants for shalat readings                                                          | 🔵     | Iftitah, tasyahud, sayyidina, "wa bihamdih"; needs a religious reviewer.                                                          |
-| D-6 | Icon policy                                                                                   | 🔵     | Research: Indonesian meaning always; icons only for concrete nouns; review with image hidden. Differs from "icon for every word". |
-| D-7 | Reviewers and review record format                                                            | 🔵     | At least one Arabic teacher and one ustadz; record reviewer, date, source, decision per item.                                     |
+| ID  | Decision                    | Status | Notes                                                                                                                                                                |
+| --- | --------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| D-1 | Content licence             | ✅     | CC BY-SA 4.0 for our text; third-party texts keep their own terms ([ADR-004](../decisions/0004-content-decisions.md)). Code licence not decided.                     |
+| D-2 | Arabic script per surface   | ✅     | Tanzil Uthmani (verbatim) for Qur'anic words/quotes; vocalised Naskh for MSA ([ADR-004](../decisions/0004-content-decisions.md)).                                    |
+| D-3 | Qur'an translation source   | ✅     | QuranEnc `indonesian_affairs` with its conditions; our glosses separate; LPMQ courtesy letter drafted ([ADR-004](../decisions/0004-content-decisions.md)).           |
+| D-4 | First post-Iqra unit order  | ✅     | Unit 1: core shalat words; then Madinah-like order (hādhā/mā/man, al-, huruf jarr, iḍāfah, …, frequent verbs) ([ADR-004](../decisions/0004-content-decisions.md)).   |
+| D-5 | Shalat reading variants     | ✅     | Core words first; variants side by side with neutral labels (NU/Syafi'i, HPT Muhammadiyah, riwayat) ([ADR-004](../decisions/0004-content-decisions.md)).             |
+| D-6 | Icon policy                 | ✅     | Icons only for concrete nouns; meaning always shown; next exercise hides the image. Enforced by `validateVocab` ([ADR-004](../decisions/0004-content-decisions.md)). |
+| D-7 | Reviewers and review record | 🟡     | Rule enforced in code (`reviews`, `hasApprovingReview`). Invitation pack ready: [reviewer-pack.md](./reviewer-pack.md); reviewers still to be found.                 |
 
 ## Research tasks
 
-| ID    | Task                                                                                                                | Status | Notes                                                                  |
-| ----- | ------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------- |
-| RS-01 | Find an openly licensed MSA core-vocabulary / frequency source for "Kosakata harian"                                | ⬜     | Critic gap; none researched yet.                                       |
-| RS-02 | Read the KMA 1503/2025 official download (JDIH) and find the official Kepdirjen 9941/2025 Lampiran (CP Bahasa Arab) | ⬜     | Human step; unofficial copy must not drive content.                    |
-| RS-03 | Offline Qur'an lemma coverage script with documented counting rules                                                 | ⬜     | After D-1; QAC or MASAQ (CC BY 4.0) as data.                           |
-| RS-04 | Lemma inventory of core shalat readings with hadith references and variant flags                                    | ⬜     | For ustadz review before any gloss is written.                         |
-| RS-05 | Audio licensing: Chatterbox model and output terms; murattal / recitation sources                                   | ⬜     | Coordinate with A-01.                                                  |
-| RS-06 | Verify Al-Amtsilah at-Tashrifiyyah bab order and tashrif istilahi column order from a physical copy                 | ⬜     | With an ustadz.                                                        |
-| RS-07 | Transliteration standard (SKB Menag–Mendikbud) and Arabic loanwords in KBBI as a bridge                             | ⬜     | Needed before the transliteration setting ships.                       |
-| RS-08 | Placement pilot: what adult Iqra graduates can decode and already understand                                        | ⬜     | Small survey; data aggregated or kept local.                           |
-| RS-09 | Ask LPMQ (lajnah@kemenag.go.id) about displaying the 2019 translation and whether tashih applies                    | ⬜     | Draft for the product owner to send; legal questions go to an adviser. |
-| RS-10 | Read LPMQ "Pedoman Pentashihan Mushaf Al-Qur'an Digital" (2022)                                                     | ⬜     | Blocks V-05.                                                           |
+| ID    | Task                                                                                                                | Status | Notes                                                                                           |
+| ----- | ------------------------------------------------------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
+| RS-01 | Find an openly licensed MSA core-vocabulary / frequency source for "Kosakata harian"                                | ⬜     | Critic gap; none researched yet.                                                                |
+| RS-02 | Read the KMA 1503/2025 official download (JDIH) and find the official Kepdirjen 9941/2025 Lampiran (CP Bahasa Arab) | ⬜     | Human step; unofficial copy must not drive content.                                             |
+| RS-03 | Offline Qur'an lemma coverage script with documented counting rules                                                 | ⬜     | After D-1; QAC or MASAQ (CC BY 4.0) as data.                                                    |
+| RS-04 | Lemma inventory of core shalat readings with hadith references and variant flags                                    | ⬜     | For ustadz review before any gloss is written.                                                  |
+| RS-05 | Audio licensing: Chatterbox model and output terms; murattal / recitation sources                                   | ⬜     | Coordinate with A-01.                                                                           |
+| RS-06 | Verify Al-Amtsilah at-Tashrifiyyah bab order and tashrif istilahi column order from a physical copy                 | ⬜     | With an ustadz.                                                                                 |
+| RS-07 | Transliteration standard (SKB Menag–Mendikbud) and Arabic loanwords in KBBI as a bridge                             | ⬜     | Needed before the transliteration setting ships.                                                |
+| RS-08 | Placement pilot: what adult Iqra graduates can decode and already understand                                        | ⬜     | Small survey; data aggregated or kept local.                                                    |
+| RS-09 | Ask LPMQ about the 2019 translation and tashih                                                                      | 🔵     | Draft ready: [permission-request-lpmq.md](./permission-request-lpmq.md); product owner to send. |
+| RS-10 | Read LPMQ "Pedoman Pentashihan Mushaf Al-Qur'an Digital" (2022)                                                     | ⬜     | Blocks V-05.                                                                                    |
 
 ## People and decisions needed
 
@@ -129,5 +129,6 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 
 ## Changelog
 
+- 14 November 2026: decisions D-1 to D-6 accepted, D-7 in progress ([ADR-004](../decisions/0004-content-decisions.md)); review and icon rules enforced in code; reviewer pack and LPMQ letter drafted; A-01 delivered on a branch.
 - 14 November 2026: added decisions D-1 to D-7 and research tasks RS-01 to RS-10 from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md); updated F-09, B1, V-01, V-03 to V-05 and R-02.
 - 13 November 2026: tracker created from research doc §5, §6.1a, §6.1b and the current build.

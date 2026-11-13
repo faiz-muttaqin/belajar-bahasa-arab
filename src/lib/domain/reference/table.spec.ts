@@ -47,8 +47,17 @@ describe('isPublishable', () => {
 		expect(isPublishable(base)).toBe(false);
 	});
 
-	it('publishes approved, sourced, valid tables', () => {
-		expect(isPublishable({ ...base, reviewStatus: 'approved', sources: ['src'] })).toBe(true);
+	it('publishes approved, sourced, valid tables reviewed by a teacher', () => {
+		const approved: ReferenceTableData = { ...base, reviewStatus: 'approved', sources: ['src'] };
+		expect(isPublishable(approved)).toBe(false);
+		expect(
+			isPublishable({
+				...approved,
+				reviews: [
+					{ reviewer: 'Guru A', role: 'arabic_teacher', date: '2026-11-20', decision: 'approved' }
+				]
+			})
+		).toBe(true);
 	});
 
 	it('keeps the UI preview fixture structurally valid', () => {

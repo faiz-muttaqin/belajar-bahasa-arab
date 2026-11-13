@@ -5,6 +5,8 @@
 > **Proyek:** `belajar-bahasa-arab` · `arab.faizmuttaqin.com` (nama usulan)  
 > **Teknologi yang diasumsikan:** SvelteKit static-first, audio terpragenerasi, penyimpanan progres browser; keputusan teknologi detail ada di `ARABIC_LEARNING_STACK_GUIDE.md`.
 
+> **Keputusan konten D-1 sampai D-7 (14 November 2026):** [ADR-004](./decisions/0004-content-decisions.md) — lisensi CC BY-SA 4.0, naskah Uthmani untuk Al-Qur'an, terjemahan via QuranEnc, unit pertama kata inti bacaan shalat, varian berdampingan, ikon hanya benda konkret, wajib tinjauan manusia.
+>
 > **Riset ulang 14 November 2026:** koreksi rujukan, temuan baru dan keputusan yang dibutuhkan ada di [`docs/research/2026-11-14-riset-ulang-kurikulum.md`](./research/2026-11-14-riset-ulang-kurikulum.md). Rujukan R02, R04, R06, R08, R11, R12, R16–R18, R20, R24, R30, R34–R37 sudah dikoreksi di sini.
 
 ## 0. Cara membaca dokumen ini — instruksi bagi developer dan AI agent

@@ -52,6 +52,7 @@ export const previewVocabulary: VocabularyItem[] = [
 		register: 'msa',
 		arabic: 'كِتَابٌ',
 		meaning: 'buku',
+		concreteness: 'concrete',
 		icon: 'book',
 		reviewStatus: 'fixture',
 		sources: ['docs/arabic-learning-pedagogy-ux-research-reissued.md §5.2 (B1, needs review)']
@@ -62,6 +63,7 @@ export const previewVocabulary: VocabularyItem[] = [
 		register: 'msa',
 		arabic: 'قَلَمٌ',
 		meaning: 'pena',
+		concreteness: 'concrete',
 		icon: 'pen',
 		reviewStatus: 'fixture',
 		sources: ['docs/arabic-learning-pedagogy-ux-research-reissued.md §5.2 (B1, needs review)']
