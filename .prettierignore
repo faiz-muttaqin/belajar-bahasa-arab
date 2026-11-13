@@ -13,3 +13,4 @@ bun.lockb
 
 # Claude Code agent worktrees
 /.claude/
+/content-local/

@@ -32,3 +32,6 @@ __screenshots__
 
 # Claude Code agent worktrees and local launch config
 /.claude/
+
+# Personal-use copies of third-party curriculum (never committed; see content-local.md)
+/content-local/
