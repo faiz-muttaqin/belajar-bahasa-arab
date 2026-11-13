@@ -17,6 +17,7 @@ Read [`docs/arabic-learning-stack-guide-sveltekit.md`](./docs/arabic-learning-st
 - No `svelte.config.js` / old Kit 2 configuration. No assuming `$lib` is built in; prefer `#lib` mappings in `package.json` (`imports`) and explicit `.js` extensions as described in current official docs.
 - New Svelte components use Svelte 5 conventions and runes; use `$app/state` rather than removed `$app/stores`.
 - **Check current shadcn-svelte CLI against SvelteKit 3 before using it beyond a proof-of-compatibility Button.** Existing shadcn-svelte docs show legacy `$lib`/`svelte.config.js` snippets. Inspect `components.json`, aliases and generated imports before using more components.
+- shadcn-svelte CLI 1.8.0 is verified with `#lib` aliases (see [ADR-002](./docs/decisions/0002-shadcn-svelte-on-sveltekit-3.md)). Run it with Node 22 (`nvm exec 22 bunx shadcn-svelte@1.8.0 add <name>`); it fails under Node 26.
 - Keep only needed shadcn-svelte source components (it uses Bits UI/Tailwind). Do not install a full catalog, CMS, heavy motion library, or extra state manager by default.
 - Pin checked versions, commit one Bun lockfile and justify each new dependency.
 

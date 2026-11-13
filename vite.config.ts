@@ -18,8 +18,6 @@ export default defineConfig({
 	],
 	test: {
 		expect: { requireAssertions: true },
-		// No domain code exists yet; drop this once the first unit/component tests land.
-		passWithNoTests: true,
 		projects: [
 			{
 				extends: './vite.config.ts',
