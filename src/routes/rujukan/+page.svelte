@@ -6,22 +6,17 @@
 
 <PageIntro
 	title="Tabel rujukan"
+	section="rujukan"
 	description="Tabel rujukan bahasa Arab yang ringkas untuk diulang dan dihafal, seperti tashrif istilahi dan jenis huruf, dengan penjelasan per baris."
 >
 	{#snippet lead()}
-		<p>
-			Tabel ringkas untuk diulang dan dihafal, misalnya tashrif istilahi dan jenis-jenis huruf.
-			Setiap baris punya penjelasan dan contoh dalam konteks.
-		</p>
+		<p>Tabel ringkas untuk dihafal, seperti tashrif istilahi dan jenis-jenis huruf.</p>
 	{/snippet}
 </PageIntro>
 
 <div class="mt-12">
 	<EmptyState title="Tabel sedang disiapkan">
-		<p>
-			Isi tabel disusun dari riset kurikulum dan ditinjau guru bahasa Arab sebelum terbit. Tabel
-			bersifat rujukan: Anda tetap bisa belajar tanpa menghafalnya lebih dulu.
-		</p>
+		<p>Isi tabel disusun dari riset dan ditinjau guru. Tabel bersifat rujukan, bukan syarat.</p>
 		{#snippet actions()}
 			<a
 				href={resolve('tentang/')}

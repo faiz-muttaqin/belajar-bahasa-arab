@@ -7,6 +7,7 @@
 
 <PageIntro
 	title="Progres"
+	section="progres"
 	description="Ringkasan progres belajar bahasa Arab yang tersimpan di perangkat ini: pelajaran, kosakata dan latihan yang perlu diulang."
 >
 	{#snippet lead()}
@@ -16,14 +17,7 @@
 
 <div class="mt-12">
 	<EmptyState title="Belum ada progres di perangkat ini">
-		<p>
-			Progres tersimpan otomatis di browser setelah Anda menyelesaikan pelajaran pertama. Tidak ada
-			akun dan tidak ada yang dikirim ke server.
-		</p>
-		<p>
-			Data di browser bisa terhapus jika Anda membersihkan data situs. Nantinya Anda bisa mengekspor
-			dan mengimpor progres sebagai file.
-		</p>
+		<p>Progres tersimpan otomatis di browser ini setelah pelajaran pertama. Tidak ada akun.</p>
 		{#snippet actions()}
 			<Button href={resolve('belajar/')}>Mulai belajar</Button>
 		{/snippet}

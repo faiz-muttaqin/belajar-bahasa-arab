@@ -1,0 +1,52 @@
+<script lang="ts">
+	import Eye from '@lucide/svelte/icons/eye';
+	import type { VocabularyItem } from '#lib/domain/vocabulary/types.js';
+	import { vocabIcons } from './vocab-icons.js';
+
+	/**
+	 * One vocabulary item: association icon, the Arabic word large, and its meaning.
+	 * In hafalan mode the meaning starts hidden and is revealed with a real button.
+	 */
+	let { item, hafalan = false }: { item: VocabularyItem; hafalan?: boolean } = $props();
+
+	let shown = $state(false);
+	let meaningVisible = $derived(!hafalan || shown);
+	let Icon = $derived(item.icon ? vocabIcons[item.icon] : undefined);
+</script>
+
+<article class="flex h-full flex-col rounded-2xl border bg-card p-5">
+	<div class="flex items-start justify-between gap-3">
+		{#if Icon}
+			<span
+				class="inline-flex size-12 items-center justify-center rounded-xl bg-secondary text-primary"
+			>
+				<Icon class="size-6" aria-hidden="true" />
+			</span>
+		{/if}
+		<span
+			class="ms-auto rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
+		>
+			{item.register === 'classical' ? "Al-Qur'an / klasik" : 'Fusha'}
+		</span>
+	</div>
+
+	<p lang="ar" dir="rtl" class="mt-4 arabic-word">{item.arabic}</p>
+
+	<div class="mt-auto min-h-11 pt-3" aria-live="polite">
+		{#if meaningVisible}
+			<p class="text-lg font-medium">{item.meaning}</p>
+			{#if item.context}
+				<p class="mt-1 text-sm text-pretty text-muted-foreground">{item.context}</p>
+			{/if}
+		{:else}
+			<button
+				type="button"
+				onclick={() => (shown = true)}
+				class="inline-flex min-h-11 items-center gap-2 rounded-md border border-dashed px-3 text-sm font-medium text-muted-foreground hover:text-foreground"
+			>
+				<Eye class="size-4" aria-hidden="true" />
+				Lihat arti
+			</button>
+		{/if}
+	</div>
+</article>

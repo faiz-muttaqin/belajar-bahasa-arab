@@ -15,6 +15,7 @@ export type SectionId =
 	| 'rujukan'
 	| 'progres'
 	| 'bookmark'
+	| 'tema'
 	| 'tentang';
 
 export type Section = {
@@ -95,6 +96,14 @@ export const sections: readonly Section[] = [
 		inTabBar: false
 	},
 	{
+		id: 'tema',
+		label: 'Tema',
+		path: 'editor/theme/',
+		summary: 'Atur warna, huruf dan mode terang atau gelap sesuai kenyamanan Anda.',
+		inHeader: false,
+		inTabBar: false
+	},
+	{
 		id: 'tentang',
 		label: 'Tentang',
 		path: 'tentang/',
@@ -120,5 +129,5 @@ export function activeSectionId(routeId: string | null | undefined): SectionId |
 	if (routeId == null) return undefined;
 	const first = routeId.split('/').filter(Boolean)[0];
 	if (first === undefined) return 'beranda';
-	return sections.find((s) => s.path === `${first}/`)?.id;
+	return sections.find((s) => s.path !== '/' && s.path.split('/')[0] === first)?.id;
 }

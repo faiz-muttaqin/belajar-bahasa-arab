@@ -6,6 +6,7 @@
 
 <PageIntro
 	title="Bookmark"
+	section="bookmark"
 	description="Pelajaran dan kosakata bahasa Arab yang Anda tandai untuk dibuka lagi, tersimpan di perangkat ini."
 >
 	{#snippet lead()}

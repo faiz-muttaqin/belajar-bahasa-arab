@@ -1,0 +1,14 @@
+/*
+ * Arabic font faces the theme editor offers. @font-face rules only: a file downloads
+ * only when text uses that family. Imported once in the root layout so a saved Arabic
+ * font choice works on every page, not just in the editor.
+ *
+ * Noto Naskh Arabic (the default) is declared in src/routes/layout.css with the Arabic
+ * subset only. Do not import '@fontsource-variable/noto-naskh-arabic' here: its index.css
+ * excludes U+0020 from the Arabic face, so every space in Arabic text would also download
+ * the Naskh Latin file (see docs/design/taste.md, "Arabic typography").
+ */
+@import '@fontsource/amiri/arabic-400.css';
+@import '@fontsource/amiri/arabic-700.css';
+@import '@fontsource/scheherazade-new/arabic-400.css';
+@import '@fontsource/scheherazade-new/arabic-700.css';

@@ -4,6 +4,7 @@
 
 <PageIntro
 	title="Tentang"
+	section="tentang"
 	description="Metode belajar, status materi, sumber dan cara data disimpan di situs belajar bahasa Arab untuk penutur Indonesia."
 >
 	{#snippet lead()}

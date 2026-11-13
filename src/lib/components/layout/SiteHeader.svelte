@@ -4,7 +4,11 @@
 	import MenuIcon from '@lucide/svelte/icons/menu';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Sheet from '#lib/components/ui/sheet/index.js';
+	import ModeSwitcher from '#lib/components/theme-editor/ModeSwitcher.svelte';
 	import { activeSectionId, sections } from '#lib/navigation.js';
+	import { themeMode } from '#lib/theme/index.js';
+	import { sectionIcons } from './section-icons.js';
+	import ThemeToggle from './ThemeToggle.svelte';
 
 	const headerSections = sections.filter((s) => s.inHeader);
 
@@ -38,6 +42,8 @@
 			</ul>
 		</nav>
 
+		<div class="hidden lg:block"><ThemeToggle /></div>
+
 		<Sheet.Root bind:open={menuOpen}>
 			<Sheet.Trigger>
 				{#snippet child({ props })}
@@ -55,22 +61,33 @@
 				<nav aria-label="Semua bagian" class="px-4 pb-6">
 					<ul class="divide-y">
 						{#each sections as section (section.id)}
+							{@const Icon = sectionIcons[section.id]}
 							<li>
 								<a
 									href={resolve(section.path)}
 									aria-current={active === section.id ? 'page' : undefined}
 									onclick={() => (menuOpen = false)}
-									class="block rounded-md py-3 aria-[current=page]:text-primary"
+									class="flex gap-3 rounded-md py-3 aria-[current=page]:text-primary"
 								>
-									<span class="block text-base font-semibold">{section.label}</span>
-									<span class="block text-sm text-pretty text-muted-foreground">
-										{section.summary}
+									<span
+										class="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary"
+									>
+										<Icon class="size-5" aria-hidden="true" />
+									</span>
+									<span>
+										<span class="block text-base font-semibold">{section.label}</span>
+										<span class="block text-sm text-pretty text-muted-foreground">
+											{section.summary}
+										</span>
 									</span>
 								</a>
 							</li>
 						{/each}
 					</ul>
 				</nav>
+				<div class="border-t px-4 py-5">
+					<ModeSwitcher value={themeMode.preference} onchange={(v) => themeMode.set(v)} />
+				</div>
 			</Sheet.Content>
 		</Sheet.Root>
 	</div>

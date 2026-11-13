@@ -7,23 +7,17 @@
 
 <PageIntro
 	title="Belajar"
+	section="belajar"
 	description="Jalur utama belajar bahasa Arab untuk yang sudah bisa membaca tulisan Arab berharakat: dari suara dan makna ke pola kalimat."
 >
 	{#snippet lead()}
-		<p>
-			Jalur utama untuk Anda yang sudah bisa membaca tulisan Arab berharakat. Setiap pelajaran
-			dimulai dari suara dan makna, lalu polanya.
-		</p>
+		<p>Untuk Anda yang sudah bisa membaca tulisan Arab berharakat.</p>
 	{/snippet}
 </PageIntro>
 
 <div class="mt-12">
 	<EmptyState title="Pelajaran pertama sedang disiapkan">
-		<p>
-			Daftar unit akan tampil di sini. Setiap unit punya tujuan yang jelas, misalnya “memahami
-			kalimat sederhana tentang benda di sekitar”, dan setiap pelajaran punya alamat sendiri.
-		</p>
-		<p>Belum bisa membaca tulisan Arab? Mulai dari jalur fondasi.</p>
+		<p>Unit-unit pelajaran akan tampil di sini, masing-masing dengan tujuan yang jelas.</p>
 		{#snippet actions()}
 			<Button href={resolve('iqra/')}>Ke jalur fondasi</Button>
 			<a

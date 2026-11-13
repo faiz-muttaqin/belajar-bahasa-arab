@@ -20,7 +20,8 @@ describe('activeSectionId', () => {
 		['/belajar', 'belajar'],
 		['/belajar/[slug]', 'belajar'],
 		['/rujukan', 'rujukan'],
-		['/kosakata', 'kosakata']
+		['/kosakata', 'kosakata'],
+		['/editor/theme', 'tema']
 	])('maps route %s to %s', (routeId, expected) => {
 		expect(activeSectionId(routeId)).toBe(expected);
 	});
@@ -30,7 +31,8 @@ describe('activeSectionId', () => {
 	});
 
 	it('returns undefined for other routes and unmatched pages', () => {
-		expect(activeSectionId('/editor/theme')).toBeUndefined();
+		expect(activeSectionId('/editor/other')).toBe('tema');
+		expect(activeSectionId('/unknown')).toBeUndefined();
 		expect(activeSectionId(null)).toBeUndefined();
 	});
 });

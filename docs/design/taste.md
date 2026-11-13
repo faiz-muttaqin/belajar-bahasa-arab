@@ -1,6 +1,6 @@
 # Design direction: calm Arabic reader
 
-**Status:** accepted for the app shell, 13 November 2026. Colour tokens are owned by the theme work (`/editor/theme/`); everything else here applies to all UI.
+**Status:** accepted for the app shell, 13 November 2026; revised the same day after product-owner review ("too much text": more space and focus, use colour, icon markers and panels). Colour tokens live in `src/lib/theme/tokens.ts` and `layout.css` (see ADR-003, `/editor/theme/`); everything else here applies to all UI.
 
 Sources: research digest of the local UI/UX skills (`frontend-design-direction`, `make-interfaces-feel-better`, `design-system`, `accessibility`, `seo`, `ui-refine-loop` rubric), Anthropic `frontend-design` and Vercel web interface guidelines, NN/g (navigation, onboarding, empty states), WCAG 2.2 Understanding pages, W3C alreq, Fontsource packages measured with HarfBuzz, and `docs/arabic-learning-pedagogy-ux-research-reissued.md` §4 and §7.
 
@@ -18,7 +18,10 @@ Sources: research digest of the local UI/UX skills (`frontend-design-direction`,
 
 - Reading column: prose capped at `65ch`; page container `max-w-5xl`; gutters 16 px mobile, 24 px from `md`.
 - Spacing ladder (Tailwind steps): 1, 2, 3, 4, 6, 8, 12, 16, 24. Sections are separated by space and at most one hairline rule, not boxes.
-- No card grids and no cards in cards. Lists are full-width link rows with dividers.
+- Panels are allowed for grouping, but quietly: `rounded-2xl`, `bg-card` with a 1 px border or a soft `bg-secondary` fill, no shadows, never a card inside a card. Use them for step tiles, start-point choices, collections, vocabulary cards and empty states.
+- Keep copy short: one-sentence leads, one or two sentences per empty state, about six words per tile line. Space separates sections (`mt-16` to `mt-24`).
+- Icon markers: one icon per section (`section-icons.ts`) shown in the tab bar, menu and above each H1; icons in tinted rounded squares (`bg-secondary text-primary`). Icons never carry meaning alone; a text label is always present.
+- Colour: one accent (`primary`, teal) for actions, active states and markers. Secondary panels use `secondary`. A chart colour may tint an icon (e.g. amber `chart-3` for "harian") but never text.
 - Desktop (`lg` and up): sticky 64 px header with visible text links; Beranda is the wordmark. Active link: `aria-current="page"` plus underline.
 - Mobile: header with wordmark and a "Menu" button (Sheet listing every section with a one-line summary), plus a bottom tab bar with exactly five labelled destinations: Beranda, Belajar, Latihan, Kosakata, Progres. Lesson and exercise pages will hide the tab bar (focus mode).
 - Footer repeats every section and states the data and content-status facts in plain text.
@@ -53,11 +56,12 @@ Sources: research digest of the local UI/UX skills (`frontend-design-direction`,
 
 ## Avoid
 
-Gradients, glass, blobs, gradient text, emoji icons, icon-in-a-tile headers, pastel badge washes, marketing sections before learning content, streaks/XP/hearts/confetti, autoplaying audio, tutorial carousels, centring everything, pure black dark surfaces, semi-transparent focus rings.
+Gradients, glass, blobs, gradient text, emoji icons, shadows on panels, more than one accent hue for text, pastel badge washes, marketing sections before learning content, streaks/XP/hearts/confetti, autoplaying audio, tutorial carousels, centring everything, pure black dark surfaces, semi-transparent focus rings.
 
 ## Open questions
 
 - Accent palette and its contrast audit (theme work).
 - Kosakata or Iqra as the fifth tab: depends on the curriculum decision.
+- Vocabulary association icons come from a curated registry (`vocab-icons.ts`, Lucide). Abstract words and function words may need no icon; decide per item during content review.
 - 65ch for Indonesian prose comes from general typography sources; validate with users.
 - Exact dark-mode weight for Arabic needs device testing (Naskh has no weight below 400).

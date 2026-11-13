@@ -7,19 +7,17 @@
 
 <PageIntro
 	title="Latihan"
+	section="latihan"
 	description="Latihan mengingat dan memahami bahasa Arab tanpa jawaban terlihat, dengan umpan balik yang menjelaskan alasannya."
 >
 	{#snippet lead()}
-		<p>Latihan mengingat tanpa melihat jawaban, dengan umpan balik yang menjelaskan alasannya.</p>
+		<p>Ingat kembali tanpa melihat jawaban, lalu lihat alasannya.</p>
 	{/snippet}
 </PageIntro>
 
 <div class="mt-12">
 	<EmptyState title="Belum ada latihan">
-		<p>
-			Latihan muncul setelah Anda menyelesaikan pelajaran. Yang perlu diulang akan tampil di sini
-			sesuai jadwal, tanpa batas waktu dan tanpa skor harian.
-		</p>
+		<p>Latihan muncul setelah pelajaran pertama. Tanpa batas waktu, tanpa skor harian.</p>
 		{#snippet actions()}
 			<Button href={resolve('belajar/')}>Mulai belajar</Button>
 		{/snippet}

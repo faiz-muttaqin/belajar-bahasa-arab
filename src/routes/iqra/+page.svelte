@@ -7,23 +7,18 @@
 
 <PageIntro
 	title="Iqra (opsional)"
+	section="iqra"
 	heading="Mulai dari huruf"
 	description="Jalur fondasi opsional untuk pemula: mengenal huruf, bunyi, sambungan huruf dan harakat sampai bisa membaca kata berharakat."
 >
 	{#snippet lead()}
-		<p>
-			Jalur fondasi opsional: huruf dan bunyinya, sambungan huruf, lalu harakat, sampai Anda bisa
-			membaca kata dan kalimat pendek berharakat.
-		</p>
+		<p>Huruf, bunyi dan harakat, sampai bisa membaca kalimat pendek.</p>
 	{/snippet}
 </PageIntro>
 
 <div class="mt-12">
 	<EmptyState title="Jalur fondasi sedang disiapkan">
-		<p>
-			Latihan di jalur ini dirancang sendiri dan tidak menyalin buku Iqra. Setelah bisa membaca
-			kalimat pendek berharakat, Anda bisa langsung bergabung ke jalur utama.
-		</p>
+		<p>Setelah bisa membaca kalimat pendek berharakat, Anda bisa lanjut ke jalur utama.</p>
 		{#snippet actions()}
 			<Button href={resolve('belajar/')} variant="outline">Lihat jalur utama</Button>
 		{/snippet}
