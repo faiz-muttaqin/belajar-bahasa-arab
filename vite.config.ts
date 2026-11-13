@@ -13,7 +13,9 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter()
+			// 404.html: error shell for static hosts (GitHub Pages, Vercel). Not an SPA fallback
+			// for real pages: every public route is still prerendered and strict mode stays on.
+			adapter: adapter({ fallback: '404.html' })
 		})
 	],
 	test: {

@@ -10,3 +10,6 @@ bun.lockb
 
 # Tool-managed instructions (Aikido)
 /.github/instructions/
+
+# Claude Code agent worktrees
+/.claude/

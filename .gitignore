@@ -29,3 +29,6 @@ blob-report
 # Vitest
 coverage
 __screenshots__
+
+# Claude Code agent worktrees and local launch config
+/.claude/
