@@ -2,80 +2,103 @@
 @import 'tw-animate-css';
 @import 'shadcn-svelte/tailwind.css';
 @import '@fontsource-variable/plus-jakarta-sans';
+/* Arabic fonts. @font-face rules only: a file downloads only when text uses that family. */
+@import '@fontsource-variable/noto-naskh-arabic';
+@import '@fontsource/amiri/arabic-400.css';
+@import '@fontsource/amiri/arabic-700.css';
+@import '@fontsource/scheherazade-new/arabic-400.css';
+@import '@fontsource/scheherazade-new/arabic-700.css';
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Default theme: calm, content-first, for reading and learning Arabic.
+ * Palette, sources and contrast audit: docs/decisions/0003-default-theme-and-editor.md.
+ * Keep in sync with DEFAULT_THEME in src/lib/theme/tokens.ts (a unit test checks this).
+ * Users can override these values at /editor/theme/ (saved in localStorage).
+ */
 :root {
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.145 0 0);
-	--card: oklch(1 0 0);
-	--card-foreground: oklch(0.145 0 0);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.145 0 0);
-	--primary: oklch(0.205 0 0);
-	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.97 0 0);
-	--secondary-foreground: oklch(0.205 0 0);
-	--muted: oklch(0.97 0 0);
-	--muted-foreground: oklch(0.556 0 0);
-	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.205 0 0);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.922 0 0);
-	--input: oklch(0.922 0 0);
-	--ring: oklch(0.708 0 0);
-	--chart-1: oklch(0.87 0 0);
-	--chart-2: oklch(0.556 0 0);
-	--chart-3: oklch(0.439 0 0);
-	--chart-4: oklch(0.371 0 0);
-	--chart-5: oklch(0.269 0 0);
+	--background: #fbfaf7;
+	--foreground: #17212d;
+	--card: #ffffff;
+	--card-foreground: #17212d;
+	--popover: #ffffff;
+	--popover-foreground: #17212d;
+	--primary: #145f4c;
+	--primary-foreground: #ffffff;
+	--secondary: #eaf1ee;
+	--secondary-foreground: #17302a;
+	--muted: #f1f1ec;
+	--muted-foreground: #56616b;
+	--accent: #ddefe7;
+	--accent-foreground: #0f4a3b;
+	--destructive: #a61e14;
+	--border: #e1e4de;
+	--input: #8a938e;
+	--ring: #145f4c;
+	--chart-1: #145f4c;
+	--chart-2: #2f7fa3;
+	--chart-3: #b7791f;
+	--chart-4: #7a5ba6;
+	--chart-5: #c2554a;
+	--sidebar: #f4f5f0;
+	--sidebar-foreground: #17212d;
+	--sidebar-primary: #145f4c;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #e6eee9;
+	--sidebar-accent-foreground: #17302a;
+	--sidebar-border: #e1e4de;
+	--sidebar-ring: #145f4c;
 	--radius: 0.625rem;
-	--sidebar: oklch(0.985 0 0);
-	--sidebar-foreground: oklch(0.145 0 0);
-	--sidebar-primary: oklch(0.205 0 0);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.97 0 0);
-	--sidebar-accent-foreground: oklch(0.205 0 0);
-	--sidebar-border: oklch(0.922 0 0);
-	--sidebar-ring: oklch(0.708 0 0);
+	--ui-font: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+	--arabic-font: 'Noto Naskh Arabic Variable', 'Noto Naskh Arabic', serif;
 }
 
 .dark {
-	--background: oklch(0.145 0 0);
-	--foreground: oklch(0.985 0 0);
-	--card: oklch(0.205 0 0);
-	--card-foreground: oklch(0.985 0 0);
-	--popover: oklch(0.205 0 0);
-	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.922 0 0);
-	--primary-foreground: oklch(0.205 0 0);
-	--secondary: oklch(0.269 0 0);
-	--secondary-foreground: oklch(0.985 0 0);
-	--muted: oklch(0.269 0 0);
-	--muted-foreground: oklch(0.708 0 0);
-	--accent: oklch(0.269 0 0);
-	--accent-foreground: oklch(0.985 0 0);
-	--destructive: oklch(0.704 0.191 22.216);
-	--border: oklch(1 0 0 / 10%);
-	--input: oklch(1 0 0 / 15%);
-	--ring: oklch(0.556 0 0);
-	--chart-1: oklch(0.87 0 0);
-	--chart-2: oklch(0.556 0 0);
-	--chart-3: oklch(0.439 0 0);
-	--chart-4: oklch(0.371 0 0);
-	--chart-5: oklch(0.269 0 0);
-	--sidebar: oklch(0.205 0 0);
-	--sidebar-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.488 0.243 264.376);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.269 0 0);
-	--sidebar-accent-foreground: oklch(0.985 0 0);
-	--sidebar-border: oklch(1 0 0 / 10%);
-	--sidebar-ring: oklch(0.556 0 0);
+	--background: #111715;
+	--foreground: #e8ece9;
+	--card: #18201d;
+	--card-foreground: #e8ece9;
+	--popover: #1c2522;
+	--popover-foreground: #e8ece9;
+	--primary: #7ad4b0;
+	--primary-foreground: #0b2a20;
+	--secondary: #22302b;
+	--secondary-foreground: #e8ece9;
+	--muted: #1e2825;
+	--muted-foreground: #a2ada8;
+	--accent: #1f3b32;
+	--accent-foreground: #cdefe2;
+	--destructive: #f59d93;
+	--border: #2b3732;
+	--input: #6b7873;
+	--ring: #7ad4b0;
+	--chart-1: #7ad4b0;
+	--chart-2: #7cc0e0;
+	--chart-3: #e8b661;
+	--chart-4: #b9a2de;
+	--chart-5: #ee9a8f;
+	--sidebar: #151c19;
+	--sidebar-foreground: #e8ece9;
+	--sidebar-primary: #7ad4b0;
+	--sidebar-primary-foreground: #0b2a20;
+	--sidebar-accent: #22302b;
+	--sidebar-accent-foreground: #e8ece9;
+	--sidebar-border: #2b3732;
+	--sidebar-ring: #7ad4b0;
+}
+
+:root {
+	color-scheme: light;
+}
+
+.dark {
+	color-scheme: dark;
 }
 
 @theme inline {
-	--font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: var(--ui-font);
+	--font-arabic: var(--arabic-font);
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -125,5 +148,17 @@
 	}
 	html {
 		@apply font-sans;
+	}
+	/* Arabic text gets its own family and generous leading for stacked harakat. */
+	:lang(ar) {
+		font-family: var(--arabic-font);
+		line-height: 1.9;
+	}
+}
+
+/* Smooth in-page jumps (editor navigation) only for people who have not asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
 	}
 }

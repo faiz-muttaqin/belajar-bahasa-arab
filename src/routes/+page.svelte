@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { Button } from '#lib/components/ui/button/index.js';
 </script>
 
@@ -19,4 +20,11 @@
 		<Button size="lg" disabled aria-describedby="status-materi">Mulai belajar</Button>
 		<p id="status-materi" class="text-sm text-muted-foreground">Materi sedang disiapkan.</p>
 	</div>
+	<p class="mt-10 text-sm">
+		<a
+			href={resolve('editor/theme/')}
+			class="text-primary underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+			>Atur tampilan dan warna</a
+		>
+	</p>
 </main>

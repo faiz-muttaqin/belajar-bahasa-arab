@@ -41,6 +41,6 @@ After every `add`: run `bun run format`, pin any new dependency to an exact vers
 
 ## Follow-ups
 
-- Replace the neutral preset tokens with the project tokens in the stack guide, section 8, after a contrast audit.
-- Light/dark/system switching (the theme uses a `.dark` class variant).
+- Done in ADR-003: project tokens replace the neutral preset after a contrast audit.
+- Done in ADR-003: light, dark and system switching with no flash on load.
 - Re-test the CLI under Node 26 on its next release.
