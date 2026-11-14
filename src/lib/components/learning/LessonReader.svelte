@@ -9,6 +9,8 @@
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { LESSON_LICENSE, type Lesson } from '#lib/content/lessons/types.js';
 	import ArabicText from './ArabicText.svelte';
+	import AudioPlayButton from './AudioPlayButton.svelte';
+	import SpeechSettings from './SpeechSettings.svelte';
 	import MixedText from './MixedText.svelte';
 	import SentenceBreakdown from './SentenceBreakdown.svelte';
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
@@ -49,6 +51,8 @@
 		{lesson.level} · {register[lesson.register]} · ± {lesson.minutes} menit
 	</p>
 
+	<SpeechSettings />
+
 	{#if lesson.analysis?.length || lesson.passage?.analysis}
 		<a
 			href="#bedah-kalimat"
@@ -71,7 +75,10 @@
 				<ul class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,22rem),1fr))] gap-4">
 					{#each lesson.examples as example, i (i)}
 						<li class="space-y-2 rounded-2xl border bg-card p-4 sm:p-6">
-							<ArabicText text={example.arabic} size="block" class="wrap-break-word" />
+							<div class="flex items-start justify-between gap-3">
+								<ArabicText text={example.arabic} size="block" class="min-w-0 wrap-break-word" />
+								<AudioPlayButton text={example.arabic} label="Dengarkan contoh Arab" compact />
+							</div>
 							<p class="font-semibold"><MixedText text={example.meaning} /></p>
 							{#if example.note}
 								<p class="text-pretty text-muted-foreground"><MixedText text={example.note} /></p>
@@ -117,11 +124,14 @@
 								{#each sentences as sentence, j (j)}
 									{@const text = analyzedText(sentence)}
 									<div class="space-y-1 border-b pb-2 last:border-b-0">
-										<ArabicText
-											text={showHarakat ? text : stripHarakat(text)}
-											size="block"
-											class="ms-auto max-w-[42ch] wrap-break-word"
-										/>
+										<div class="flex flex-wrap items-start justify-end gap-2">
+											<AudioPlayButton text={text} label="Dengarkan kalimat Arab" compact />
+											<ArabicText
+												text={showHarakat ? text : stripHarakat(text)}
+												size="block"
+												class="ms-auto max-w-[42ch] wrap-break-word"
+											/>
+										</div>
 										<details open={i === 0 && j === 0}>
 											<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">
 												Bedah per kata <span class="sr-only">kalimat {j + 1}</span>
@@ -131,11 +141,14 @@
 									</div>
 								{/each}
 							{:else}
-								<ArabicText
-									text={showHarakat ? paragraph.arabic : stripHarakat(paragraph.arabic)}
-									size="block"
-									class="ms-auto max-w-[42ch] wrap-break-word"
-								/>
+								<div class="flex flex-wrap items-start justify-end gap-2">
+									<AudioPlayButton text={paragraph.arabic} label="Dengarkan paragraf Arab" compact />
+									<ArabicText
+										text={showHarakat ? paragraph.arabic : stripHarakat(paragraph.arabic)}
+										size="block"
+										class="ms-auto max-w-[42ch] wrap-break-word"
+									/>
+								</div>
 							{/if}
 						</section>
 					{/each}
@@ -187,7 +200,10 @@
 						class="scroll-mt-24 space-y-2 rounded-xl border bg-card px-4 py-3"
 					>
 						{#if exercise.arabic}
-							<ArabicText text={exercise.arabic} size="block" />
+							<div class="flex items-start justify-between gap-2">
+								<ArabicText text={exercise.arabic} size="block" />
+								<AudioPlayButton text={exercise.arabic} label="Dengarkan soal Arab" compact />
+							</div>
 						{/if}
 						<p class="font-medium"><MixedText text={exercise.prompt} /></p>
 						<details class="border-t">
