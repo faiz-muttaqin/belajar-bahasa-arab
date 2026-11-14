@@ -138,8 +138,8 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.md). Pelajaran existing tetap sumber isi; halaman baru merangkum hubungan antaraturan dan memberi penanda peran.
 
 - **G-01 — ✅ Implemented (#14):** tiga kaidah awal, glos di bawah token, warna + label, latihan statis, QA CI; materi tetap berstatus draft untuk audit kebahasaan.
-- **G-02 — 🟡 Implementasi awal:** /kaidah/sharaf/ memuat akar ك ت ب, pola Form I, enam ṣīghah istilahi dan sembilan bentuk lughawi dengan dhamir, glos per bentuk, rujukan dan latihan; kondisi mu‘tal serta perluasan 22 wazan masih tahap lanjutan.
-- **G-03 — ⬜:** nahwu frasa dan tanda i‘rab.
+- **G-02 — ✅ Pilot merged (#20):** /kaidah/sharaf/ memuat akar ك ت ب, pola Form I, enam ṣīghah istilahi dan sembilan bentuk lughawi dengan dhamir, glos per bentuk, rujukan dan latihan; verba mu‘tal dan perluasan 22 wazan tetap pekerjaan lanjutan.
+- **G-03 — 🟡 Implementasi pilot:** /kaidah/frasa/ memuat lima kaidah (ma‘rifah/nakirah, kesesuaian sifat, iḍāfah/jar–majrūr, tiga kasus i‘rab dan tanda kasus mutsanna/jamak mudzakkar salim), 16 contoh dengan glos dan label i‘rab; audit sumber dan QA mengikuti PR.
 - **G-04 — ⬜:** kalimat nominal/verbal lengkap, pasif, negasi dan nawāsikh.
 - **G-05 — ⬜:** klausa, penghubung, syarat, sebab-akibat dan kalimat majemuk.
 - **G-06 — ⬜:** peta prasyarat, latihan susun kalimat, indeks kaidah dan bacaan panjang.

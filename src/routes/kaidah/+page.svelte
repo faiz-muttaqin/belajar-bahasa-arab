@@ -51,6 +51,20 @@
 	</a>
 </aside>
 
+<aside class="mt-6 max-w-4xl rounded-xl border bg-card p-5">
+	<h2 class="text-lg font-semibold">Lanjut: frasa dan perubahan harakat akhir</h2>
+	<p class="mt-2 text-muted-foreground">
+		Kenali ma‘rifah dan nakirah, kesesuaian sifat, idafah, serta perubahan rafa‘–naṣb–jarr. Setiap
+		kata Arab mempunyai glos Indonesia tepat di bawahnya.
+	</p>
+	<a
+		href={resolve('kaidah/frasa/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
+		Pelajari frasa dan i‘rab
+	</a>
+</aside>
+
 <div class="mt-12 max-w-5xl space-y-16">
 	{#each grammarRules as rule, i (rule.id)}
 		<section id={rule.id} class="scroll-mt-24 space-y-5" aria-labelledby="{rule.id}-title">

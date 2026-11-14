@@ -1,0 +1,27 @@
+name: Verify nahwu phrase and i'rab
+on:
+  pull_request:
+    paths:
+      - 'src/lib/content/phrase-rules*'
+      - 'src/lib/components/learning/PhraseGloss.svelte'
+      - 'src/routes/kaidah/**'
+      - 'src/routes/rujukan/isim/+page.svelte'
+      - 'tests/e2e/phrase-rules.e2e.ts'
+      - 'docs/data/nahwu-phrase-irab-audit.md'
+      - '.github/workflows/nahwu-phrase-pr.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - run: bun run browsers:install
+      - run: bun run verify
