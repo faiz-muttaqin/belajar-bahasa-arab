@@ -7,7 +7,7 @@ import type { ReviewStatus } from '#lib/domain/reference/table.js';
 import { hasApprovingReview, type ReviewRecord, type ReviewerRole } from '#lib/domain/review.js';
 
 /** Collections shown on /kosakata/. Qur'anic/classical words are labelled separately (§3.3). */
-export type VocabularyCollectionId = 'harian' | 'quran' | 'shalat';
+export type VocabularyCollectionId = 'harian' | 'quran' | 'shalat' | 'msa';
 
 export const QURAN_GROUPS = {
 	harf: 'Harf dan kata penghubung',
@@ -58,6 +58,42 @@ export type VocabIconKey =
 /** D-6: only concrete words may have an icon; abstract words use a context sentence. */
 export type Concreteness = 'concrete' | 'abstract' | 'function';
 
+/** MSA is a curated thematic lexicon, not a frequency ranking or a fourth Arabic word class. */
+export const MSA_TOPICS = {
+	people: 'Orang dan keluarga',
+	places: 'Tempat',
+	objects: 'Benda sehari-hari',
+	food: 'Makanan dan minuman',
+	nature: 'Alam',
+	time: 'Waktu',
+	qualities: 'Sifat dan keadaan',
+	technology: 'Teknologi modern',
+	social: 'Sapaan dan ungkapan'
+} as const;
+export type MsaTopic = keyof typeof MSA_TOPICS;
+export const MSA_CLASSES = {
+	noun: 'Isim · kata benda',
+	adjective: 'Isim · kata sifat',
+	expression: 'Ungkapan',
+	particle: 'Harf · kata tugas'
+} as const;
+export type MsaClass = keyof typeof MSA_CLASSES;
+
+export type MsaLexicalInfo = {
+	wordClass: MsaClass;
+	topic: MsaTopic;
+	/** Only record morphological information explicitly selected for review, never infer it from a root. */
+	root?: string;
+	plural?: { value: string; kind: 'broken' | 'sound' | 'lexical' };
+	feminine?: string;
+	/** Original illustration for teaching phrase composition; not a corpus quotation. */
+	example?: { arabic: string; meaning: string };
+	/** These are candidates, not entries individually checked against an external dictionary. */
+	attestation: 'curated-draft';
+	/** Modern innovations: loanword, compound or regular Arabic formation. Otherwise omit. */
+	formation?: 'loanword' | 'compound' | 'derived';
+};
+
 export type VocabularyItem = {
 	id: string;
 	collection: VocabularyCollectionId;
@@ -77,19 +113,22 @@ export type VocabularyItem = {
 	quranOccurrence?: QuranOccurrence;
 	quranFrequency?: QuranFrequency;
 	verbReference?: VerbReference;
+	msa?: MsaLexicalInfo;
 };
 
 export const COLLECTION_LABELS: Record<VocabularyCollectionId, string> = {
 	harian: 'Kosakata harian',
 	quran: 'Kosakata Al-Qur’an',
-	shalat: 'Kosakata bacaan shalat'
+	shalat: 'Kosakata bacaan shalat',
+	msa: 'Kosakata umum MSA'
 };
 
 /** D-7: who must approve items in each collection. */
 export const REQUIRED_REVIEWER: Record<VocabularyCollectionId, ReviewerRole> = {
 	harian: 'arabic_teacher',
 	quran: 'ustadz',
-	shalat: 'ustadz'
+	shalat: 'ustadz',
+	msa: 'arabic_teacher'
 };
 
 export type VocabIssue = { id: string; message: string };
@@ -100,7 +139,7 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 	if (item.arabic.trim() === '') add('Empty Arabic text');
 	if (item.meaning.trim() === '') add('Empty meaning');
 	if (item.icon && item.concreteness !== 'concrete') add('Icon on a non-concrete word (D-6)');
-	if (item.collection !== 'harian' && item.register !== 'classical') {
+	if ((item.collection === 'quran' || item.collection === 'shalat') && item.register !== 'classical') {
 		add('Classical collections must use the classical register label');
 	}
 	if (
@@ -109,6 +148,19 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 	) {
 		add('Qur’anic items require a group, a transliteration and an ayah witness');
 	}
+	if (item.collection === 'msa') {
+		if (item.register !== 'msa') add('MSA collection must use msa register');
+		if (!item.msa) add('MSA lexical metadata is required');
+		else {
+			if (!Object.hasOwn(MSA_TOPICS, item.msa.topic)) add('Unknown MSA topic');
+			if (!Object.hasOwn(MSA_CLASSES, item.msa.wordClass)) add('Unknown MSA word class');
+			if (item.msa.plural && item.msa.wordClass !== 'noun') add('Only noun entries can have a nominal plural');
+			if (item.msa.feminine && item.msa.wordClass !== 'adjective') {
+				add('Feminine adjective belongs to an adjective entry');
+			}
+			if (item.msa.attestation !== 'curated-draft') add('Unexpected MSA attestation status');
+		}
+	} else if (item.msa) add('MSA metadata outside the MSA collection');
 	if (item.quranFrequency) {
 		const freq = item.quranFrequency;
 		if (item.collection !== 'quran') add('Only Qur’anic entries can carry Quran frequency');
