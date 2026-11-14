@@ -17,8 +17,9 @@ test('static catalogs contain the traced staging preview without fabricated conj
 	expect(preview.meaning).toBe('Arti Indonesia belum tersedia');
 	expect(preview.reviewStatus).toBe('draft');
 	expect(separate.entries.some((entry: { id: string }) => entry.id === preview.id)).toBe(true);
-	expect(complete.sharaf.filter((entry: { id: string }) => entry.id.startsWith('ar-function-')))
-		.toHaveLength(3);
+	expect(
+		complete.sharaf.filter((entry: { id: string }) => entry.id.startsWith('ar-function-'))
+	).toHaveLength(3);
 });
 
 test('background manifest refresh saves the enriched glossary to IndexedDB', async ({ page }) => {
@@ -38,7 +39,10 @@ test('background manifest refresh saves the enriched glossary to IndexedDB', asy
 									resolve(false);
 									return;
 								}
-								const lookup = db.transaction('packages', 'readonly').objectStore('packages').get('active');
+								const lookup = db
+									.transaction('packages', 'readonly')
+									.objectStore('packages')
+									.get('active');
 								lookup.onerror = () => {
 									db.close();
 									resolve(false);
@@ -46,9 +50,13 @@ test('background manifest refresh saves the enriched glossary to IndexedDB', asy
 								lookup.onsuccess = () => {
 									const data = lookup.result;
 									db.close();
-									resolve(Boolean(data?.sharaf?.some(
-										(entry: { id: string }) => entry.id === 'ar-verb-992502ac2973cfa7dd'
-									)));
+									resolve(
+										Boolean(
+											data?.sharaf?.some(
+												(entry: { id: string }) => entry.id === 'ar-verb-992502ac2973cfa7dd'
+											)
+										)
+									);
 								};
 							};
 						})

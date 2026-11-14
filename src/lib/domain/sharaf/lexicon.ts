@@ -111,7 +111,9 @@ type IndexedSharafEntry = {
 const searchIndexCache = new WeakMap<readonly SharafEntry[], readonly IndexedSharafEntry[]>();
 
 /** Safe to warm after a cached or downloaded catalog becomes available. */
-export function prepareSharafSearchIndex(entries: readonly SharafEntry[]): readonly IndexedSharafEntry[] {
+export function prepareSharafSearchIndex(
+	entries: readonly SharafEntry[]
+): readonly IndexedSharafEntry[] {
 	const previous = searchIndexCache.get(entries);
 	if (previous) return previous;
 	const indexed = entries.map((entry, index) => ({
@@ -120,7 +122,8 @@ export function prepareSharafSearchIndex(entries: readonly SharafEntry[]): reado
 		forms: [entry.lemma, ...entry.forms.map((form) => form.value)].map(normalizeArabicSearch),
 		root: entry.root ? normalizeArabicSearch(entry.root) : undefined,
 		// Unknown Indonesian gloss is a display placeholder, not a search synonym.
-		gloss: entry.meaning === 'Arti Indonesia belum tersedia' ? '' : normalizeArabicSearch(entry.meaning)
+		gloss:
+			entry.meaning === 'Arti Indonesia belum tersedia' ? '' : normalizeArabicSearch(entry.meaning)
 	}));
 	searchIndexCache.set(entries, indexed);
 	return indexed;

@@ -22,10 +22,10 @@ impor penuh dataset dan belum merupakan kamus Arab yang lengkap.
 
 ## Jejak sumber / snapshot yang dipertahankan
 
-| Dataset | Commit | File sumber | Lisensi |
-| --- | --- | --- | --- |
-| Qutrub | `52e1412ccbaaf429136412183318fcbf0cf9bcd7` | `data/ar_verb_normalized.dict` | GPL (COPYING upstream) |
-| Arramooz | `b055c5dea51b8a9152e7e66a7ca3b6f713fb187d` | `data/verbs/verb_triliteral.csv` | GPL-2.0 |
+| Dataset          | Commit                                     | File sumber                                    | Lisensi                |
+| ---------------- | ------------------------------------------ | ---------------------------------------------- | ---------------------- |
+| Qutrub           | `52e1412ccbaaf429136412183318fcbf0cf9bcd7` | `data/ar_verb_normalized.dict`                 | GPL (COPYING upstream) |
+| Arramooz         | `b055c5dea51b8a9152e7e66a7ca3b6f713fb187d` | `data/verbs/verb_triliteral.csv`               | GPL-2.0                |
 | Arabic Stopwords | `f6018e22e02067022231d4dbda0e46b4b1b7e1e7` | `releases/latest/csv/stopwords_classified.csv` | GPL (LICENSE upstream) |
 
 Setiap entri tambahan menyertakan tautan ke file pada commit upstream
@@ -37,13 +37,13 @@ review data tetap diwajibkan. Semua entri baru berstatus `draft`.
 ### Pemetaan bab
 
 | Qutrub/Arramooz | Bab internal |
-| --- | --- |
-| 1 | 1 |
-| 2 | 2 |
-| 3 | 3 |
-| 4 | 4 |
-| 5 | 6 |
-| 6 | 5 |
+| --------------- | ------------ |
+| 1               | 1            |
+| 2               | 2            |
+| 3               | 3            |
+| 4               | 4            |
+| 5               | 6            |
+| 6               | 5            |
 
 Pemetaan diterapkan pada preview sebelum impor; perbedaan ini **tidak**
 boleh diabaikan pada saat dataset lengkap tersedia.
@@ -69,12 +69,14 @@ boleh diabaikan pada saat dataset lengkap tersedia.
 ## QA
 
 Tes unit:
+
 - record yang diimpor dan deduplikasi;
 - pemisahan bab untuk ejaan yang sama;
 - bentuk yang tidak tersedia tidak dikarang;
 - cache indeks pencarian dipakai ulang.
 
 Tes E2E:
+
 - isi katalog hasil build dan endpoint sharaf;
 - pembaruan katalog di IndexedDB dari background manifest;
 - fallback localStorage ketika akses IndexedDB diblokir.
