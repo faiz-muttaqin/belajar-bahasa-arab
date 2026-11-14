@@ -1,0 +1,47 @@
+name: Format footer and Iqra once
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/format-footer-iqra-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/minimal-footer-iqra-harakat-20261114'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Format changed files
+        run: |
+          bunx prettier --write \
+            docs/content/public-lessons.md \
+            docs/content/tracker.md \
+            docs/design/taste.md \
+            src/lib/components/layout/SiteFooter.svelte \
+            src/lib/content/harakat-reference.ts \
+            src/lib/content/harakat-reference.spec.ts \
+            src/lib/content/lessons/foundation.ts \
+            src/lib/navigation.ts \
+            src/routes/iqra/+page.svelte \
+            tests/e2e/footer-iqra-harakat.e2e.ts
+      - name: Push formatter output to feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add docs/content/public-lessons.md docs/content/tracker.md docs/design/taste.md src/lib/components/layout/SiteFooter.svelte src/lib/content/harakat-reference.ts src/lib/content/harakat-reference.spec.ts src/lib/content/lessons/foundation.ts src/lib/navigation.ts src/routes/iqra/+page.svelte tests/e2e/footer-iqra-harakat.e2e.ts
+            git commit -m "style(iqra): apply project Prettier formatting"
+            git push origin HEAD:feat/minimal-footer-iqra-harakat-20261114
+          fi
