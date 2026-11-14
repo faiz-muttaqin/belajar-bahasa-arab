@@ -223,7 +223,9 @@ export const particlesReference: ReferenceTableData = {
 	]
 };
 
-for (const table of [tashrifIstilahi, particlesReference, connectorsReference]) {
+export const referenceTables = [tashrifIstilahi, connectorsReference, particlesReference] as const;
+
+for (const table of referenceTables) {
 	const issues = validateReferenceTable(table);
 	if (issues.length || !table.sources.length) {
 		throw new Error(

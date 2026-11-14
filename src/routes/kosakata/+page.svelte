@@ -49,6 +49,11 @@
 </PageIntro>
 
 <div class="mt-10">
+	<a
+		href={resolve('cari/?jenis=word')}
+		class="me-4 inline-flex min-h-11 items-center font-medium text-primary underline"
+		>Cari di kamus</a
+	>
 	<button
 		type="button"
 		aria-pressed={hafalan}
@@ -78,7 +83,7 @@
 
 		<ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{#each items as item (item.id)}
-				<li>
+				<li id={`kata-${item.id}`} class="scroll-mt-24">
 					{#key hafalan}<VocabCard {item} {hafalan} />{/key}
 				</li>
 			{/each}

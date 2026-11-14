@@ -180,7 +180,10 @@
 			</p>
 			<ol class="list-decimal space-y-5 ps-6">
 				{#each lesson.exercises as exercise, i (i)}
-					<li class="space-y-2 rounded-xl border bg-card px-4 py-3">
+					<li
+						id={`soal-${i + 1}`}
+						class="scroll-mt-24 space-y-2 rounded-xl border bg-card px-4 py-3"
+					>
 						{#if exercise.arabic}
 							<ArabicText text={exercise.arabic} size="block" />
 						{/if}
