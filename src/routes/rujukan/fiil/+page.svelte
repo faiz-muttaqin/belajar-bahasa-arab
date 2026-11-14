@@ -20,14 +20,6 @@
 
 <div class="mt-8 space-y-10">
 	<ReferenceSubnav current="fiil" />
-	<nav aria-label="Isi halaman" class="flex flex-wrap gap-x-5 text-primary">
-		<a class="inline-flex min-h-11 items-center underline" href={resolve('sharaf/')}
-			>Cari akar dan wazan</a
-		>
-		<a class="inline-flex min-h-11 items-center underline" href="#tashrif-istilahi"
-			>Tabel 22 wazan</a
-		>
-	</nav>
 
 	<section
 		id="tashrif-istilahi"

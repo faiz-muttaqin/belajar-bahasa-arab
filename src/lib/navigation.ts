@@ -67,9 +67,9 @@ export const sections: readonly Section[] = [
 	},
 	{
 		id: 'rujukan',
-		label: 'Tabel rujukan',
+		label: 'Jenis kata',
 		path: 'rujukan/',
-		summary: 'Tabel ringkas yang bisa diulang dan dihafal, dengan penjelasan per baris.',
+		summary: 'Kata kerja, kata benda, kata hubung, dan kata tanya, ringkas dan bisa dihafal.',
 		inTabBar: false
 	},
 	{

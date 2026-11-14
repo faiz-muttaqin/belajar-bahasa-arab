@@ -6,7 +6,7 @@ export const searchKinds = {
 	word: 'Kamus',
 	lesson: 'Pelajaran',
 	exercise: 'Latihan',
-	reference: 'Tabel rujukan'
+	reference: 'Jenis kata'
 } as const;
 
 export type SearchKind = keyof typeof searchKinds;

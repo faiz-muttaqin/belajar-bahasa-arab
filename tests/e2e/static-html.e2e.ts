@@ -15,7 +15,7 @@ const routes = [
 	{ path: '/iqra/', file: 'iqra/index.html', h1: 'Mulai dari huruf' },
 	{ path: '/latihan/', file: 'latihan/index.html', h1: 'Latihan' },
 	{ path: '/kosakata/', file: 'kosakata/index.html', h1: 'Kosakata' },
-	{ path: '/rujukan/', file: 'rujukan/index.html', h1: 'Tabel rujukan' },
+	{ path: '/rujukan/', file: 'rujukan/index.html', h1: 'Jenis kata' },
 	{ path: '/rujukan/fiil/', file: 'rujukan/fiil/index.html', h1: 'Rujukan kata kerja' },
 	{ path: '/rujukan/isim/', file: 'rujukan/isim/index.html', h1: 'Rujukan kata benda dan sifat' },
 	{

@@ -119,6 +119,48 @@ const examples = [
 		example: 'إِذَا وَصَلَتْ لِينَا جَلَسَتْ.',
 		explanation:
 			'Apabila Lina tiba, ia duduk. وَصَلَتْ menyatakan syarat; جَلَسَتْ menyatakan apa yang terjadi sesudahnya.'
+	},
+	{
+		id: 'am',
+		arabic: 'أَمْ',
+		meaning: 'atau (dalam pertanyaan pilihan)',
+		relation: 'Pilihan dalam pertanyaan',
+		effect:
+			'Dipakai setelah hamzah tanya untuk memilih. Kata sesudah أَمْ sejajar dengan kata sebelumnya, pada contoh ini keduanya objek manshub.',
+		example: 'أَقَرَأْتَ الْكِتَابَ أَمِ الرِّسَالَةَ؟',
+		explanation:
+			'Apakah kamu membaca buku atau surat? Mim diberi kasrah karena bertemu الْـ. Untuk pilihan dalam pernyataan dipakai أَوْ.'
+	},
+	{
+		id: 'bal',
+		arabic: 'بَلْ',
+		meaning: 'melainkan, bahkan',
+		relation: 'Koreksi atau peningkatan',
+		effect:
+			'Menolak yang disebut sebelumnya lalu menegaskan yang sesudahnya. Kata yang dihubungkan sejajar, pada contoh ini keduanya objek manshub.',
+		example: 'مَا قَرَأْتُ الْكِتَابَ بَلِ الرِّسَالَةَ.',
+		explanation: 'Saya tidak membaca buku, melainkan surat. Lam diberi kasrah karena bertemu الْـ.'
+	},
+	{
+		id: 'la',
+		arabic: 'لَا',
+		meaning: 'bukan (menolak yang kedua)',
+		relation: 'Pengecualian dalam pernyataan',
+		effect:
+			'Sebagai penghubung, لَا menafikan kata sesudahnya setelah pernyataan positif. Kata sesudahnya mengikuti status kata sebelumnya.',
+		example: 'قَرَأْتُ الْكِتَابَ لَا الرِّسَالَةَ.',
+		explanation:
+			'Saya membaca buku, bukan surat. لَا ini berbeda dari لَا larangan atau لَا yang menafikan kalimat.'
+	},
+	{
+		id: 'hatta',
+		arabic: 'حَتَّى',
+		meaning: 'sampai, bahkan',
+		relation: 'Batas atau puncak',
+		effect:
+			'Sebagai penghubung, kata sesudahnya mengikuti status kata sebelumnya dan biasanya bagian dari yang disebut. حَتَّى juga dipakai sebagai huruf jarr, misalnya حَتَّى الصَّبَاحِ, “sampai pagi”.',
+		example: 'أَكَلْتُ السَّمَكَةَ حَتَّى رَأْسَهَا.',
+		explanation: 'Saya makan ikan itu, sampai kepalanya pun. رَأْسَهَا manshub mengikuti السَّمَكَةَ.'
 	}
 ] as const;
 
@@ -142,3 +184,13 @@ export const connectorsReference: ReferenceTableData = {
 	],
 	rows: examples.map(({ id, explanation, ...cells }) => ({ id, explanation, cells }))
 };
+
+/** Connectors grouped by what they do, so learners meet "and / then / but / because" together. */
+export const connectorGroups = [
+	{ title: 'Menambah dan berurutan', ids: ['wa', 'fa', 'thumma'] },
+	{ title: 'Memilih', ids: ['aw', 'am'] },
+	{ title: 'Menolak dan melawan', ids: ['bal', 'la', 'lakin'] },
+	{ title: 'Batas dan kesamaan', ids: ['hatta', 'kama'] },
+	{ title: 'Alasan dan akibat', ids: ['lianna', 'lidhalika'] },
+	{ title: 'Isi, syarat, dan waktu', ids: ['an', 'anna', 'idha', 'qabla'] }
+] as const;

@@ -1,9 +1,22 @@
 <script lang="ts">
+	import type { ComponentProps } from 'svelte';
 	import ReferenceTable from './ReferenceTable.svelte';
+	import WordGlossary from './WordGlossary.svelte';
 	import type { ReferenceTableData } from '#lib/domain/reference/table.js';
 
 	/** One reference table in a titled section, with its tip and sources. */
-	let { table, tip, intro }: { table: ReferenceTableData; tip?: string; intro?: string } = $props();
+	let {
+		table,
+		tip,
+		intro,
+		glossary
+	}: {
+		table: ReferenceTableData;
+		tip?: string;
+		intro?: string;
+		/** Show the simple word grid with a detail modal instead of a table. */
+		glossary?: Omit<ComponentProps<typeof WordGlossary>, 'table'>;
+	} = $props();
 </script>
 
 <section id={table.id} aria-labelledby="{table.id}-h" class="min-w-0 scroll-mt-24 space-y-4">
@@ -15,7 +28,11 @@
 			{tip}
 		</p>
 	{/if}
-	<ReferenceTable {table} />
+	{#if glossary}
+		<WordGlossary {table} {...glossary} />
+	{:else}
+		<ReferenceTable {table} />
+	{/if}
 	<details>
 		<summary class="min-h-11 cursor-pointer py-3 font-medium text-primary">Sumber</summary>
 		<ul class="list-disc space-y-2 ps-5">

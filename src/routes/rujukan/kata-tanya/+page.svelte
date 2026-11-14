@@ -21,6 +21,7 @@
 	<ReferenceSubnav current="tanya" />
 	<ReferenceSection
 		table={questionWords}
+		glossary={{}}
 		tip="Letakkan kata tanya di awal kalimat. Untuk pertanyaan ya atau tidak, pakai هَلْ."
 	/>
 </div>

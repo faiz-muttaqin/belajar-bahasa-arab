@@ -7,7 +7,7 @@
 	let { current }: { current?: ReferenceGroupId } = $props();
 </script>
 
-<nav aria-label="Jenis kata" class="-mx-4 overflow-x-auto px-4 pb-1">
+<nav aria-label="Pilih jenis kata" class="-mx-4 overflow-x-auto px-4 pb-1">
 	<ul class="flex min-w-max gap-2">
 		{#each referenceGroups as group (group.id)}
 			{@const Icon = groupStyle[group.id].icon}

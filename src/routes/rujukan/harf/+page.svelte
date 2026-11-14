@@ -2,8 +2,9 @@
 	import { resolve } from '$app/paths';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ReferenceSection from '#lib/components/learning/ReferenceSection.svelte';
+	import SectionTabs from '#lib/components/learning/SectionTabs.svelte';
 	import ReferenceSubnav from '#lib/components/learning/ReferenceSubnav.svelte';
-	import { connectorsReference } from '#lib/content/connectors.js';
+	import { connectorGroups, connectorsReference } from '#lib/content/connectors.js';
 	import { particlesReference } from '#lib/content/reference.js';
 </script>
 
@@ -19,18 +20,26 @@
 
 <div class="mt-8 space-y-14">
 	<ReferenceSubnav current="harf" />
-	<nav aria-label="Isi halaman" class="flex flex-wrap gap-x-5 text-primary">
-		<a class="inline-flex min-h-11 items-center underline" href="#kata-penghubung">Kata hubung</a>
-		<a class="inline-flex min-h-11 items-center underline" href="#kata-tugas">Kata tugas</a>
-	</nav>
+	<SectionTabs
+		items={[
+			{ id: 'kata-penghubung', label: 'Kata hubung' },
+			{ id: 'kata-tugas', label: 'Kata tugas' }
+		]}
+	/>
 
 	<ReferenceSection
 		table={connectorsReference}
-		intro="Pilih “Sembunyikan hubungan” untuk mengingat maknanya, atau “Sembunyikan efek pada kalimat” untuk menguji i‘rab."
+		glossary={{
+			groups: connectorGroups,
+			chipKey: 'relation',
+			details: [{ key: 'effect', label: 'Efek pada kalimat', lang: 'id' }]
+		}}
+		intro="Ketuk sebuah kata untuk melihat contoh dan efeknya pada i‘rab. Nyalakan “sembunyikan arti” untuk menguji ingatan."
 		tip="Bedakan penghubung urutan dari partikel yang mengubah status kata."
 	/>
 	<ReferenceSection
 		table={particlesReference}
+		glossary={{}}
 		tip="Baca kata tugas bersama kata yang mengikutinya, bukan sendirian."
 	/>
 

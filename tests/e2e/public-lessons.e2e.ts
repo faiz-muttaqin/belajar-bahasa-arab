@@ -193,15 +193,27 @@ test('tashrif and vocabulary contain lesson material on a phone', async ({ page 
 	await expect(word.getByText('Buku catatan', { exact: true })).toBeVisible();
 });
 
-test('the connector glossary supports recall of grammatical effects', async ({ page }) => {
+test('the connector glossary shows meanings under the Arabic and examples in a modal', async ({
+	page
+}) => {
 	await page.setViewportSize({ width: 375, height: 812 });
 	await page.goto('/rujukan/harf/#kata-penghubung');
 	const glossary = page.getByRole('region', { name: 'Glosarium kata penghubung' });
-	const effect = glossary.getByText('Menashabkan fi‘il mudhari‘.', { exact: false });
-	await expect(effect).toBeVisible();
-	await glossary.getByRole('radio', { name: 'Sembunyikan efek pada kalimat' }).check();
-	await expect(effect).toHaveCount(0);
-	const row = glossary.getByRole('row').filter({ has: page.getByText('أَنْ', { exact: true }) });
-	await row.getByRole('button', { name: /Buka: Efek pada kalimat/ }).click();
-	await expect(effect).toBeVisible();
+	await expect(glossary.getByRole('button', { name: /أَنْ.*untuk, bahwa/ })).toBeVisible();
+	expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
+
+	await glossary.getByRole('button', { name: /أَنْ.*untuk, bahwa/ }).click();
+	const modal = page.getByRole('dialog');
+	await expect(modal.getByText('Menashabkan fi‘il mudhari‘.', { exact: false })).toBeVisible();
+	await expect(modal.getByText('أُرِيدُ أَنْ أَقْرَأَ.')).toBeVisible();
+	await page.keyboard.press('Escape');
+	await expect(modal).toBeHidden();
+
+	await glossary.getByLabel('Sembunyikan arti').check();
+	await expect(glossary.getByText('Ketuk untuk melihat arti').first()).toBeVisible();
+});
+
+test('a search-style link opens the matching word in the modal', async ({ page }) => {
+	await page.goto('/rujukan/harf/#kata-penghubung-bal');
+	await expect(page.getByRole('dialog')).toContainText('melainkan');
 });

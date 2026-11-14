@@ -36,7 +36,7 @@
 <PageIntro
 	title="Cari materi"
 	section="cari"
-	description="Cari arti kata Arab, pelajaran, latihan, dan tabel rujukan. Pencarian berjalan di perangkat dengan salinan data yang diunduh."
+	description="Cari arti kata Arab, pelajaran, latihan, dan rujukan jenis kata. Pencarian berjalan di perangkat dengan salinan data yang diunduh."
 >
 	{#snippet lead()}
 		<p>Cari kata Arab dengan atau tanpa harakat, atau masukkan arti dalam bahasa Indonesia.</p>

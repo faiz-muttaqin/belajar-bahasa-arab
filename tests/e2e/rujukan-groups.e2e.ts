@@ -19,7 +19,7 @@ for (const [path, title] of pages) {
 		await page.setViewportSize({ width: 375, height: 812 });
 		await page.goto(path);
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
-		const nav = page.getByRole('navigation', { name: 'Jenis kata' });
+		const nav = page.getByRole('navigation', { name: 'Pilih jenis kata' });
 		await expect(nav.getByRole('link')).toHaveCount(4);
 		await expect(nav.locator('[aria-current="page"]')).toHaveAttribute('href', new RegExp(path));
 		expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
@@ -28,13 +28,12 @@ for (const [path, title] of pages) {
 	});
 }
 
-test('isim tables render with hafalan mode', async ({ page }) => {
+test('isim pronouns are grouped by person with the meaning under the Arabic', async ({ page }) => {
 	await page.goto('/rujukan/isim/');
-	const pronouns = page.getByRole('region', { name: /Kata ganti berdiri sendiri/ });
-	await expect(pronouns.getByRole('row')).toHaveCount(13);
-	await expect(pronouns.getByText('نَحْنُ', { exact: true })).toBeVisible();
-	await pronouns.getByRole('radio', { name: 'Sembunyikan arti' }).check();
-	await expect(pronouns.getByText('saya', { exact: true })).toHaveCount(0);
+	const pronouns = page.getByRole('region', { name: 'Kata ganti berdiri sendiri' });
+	await expect(pronouns.getByRole('heading', { name: 'Orang pertama' })).toBeVisible();
+	await expect(pronouns.getByRole('button')).toHaveCount(12);
+	await expect(pronouns.getByRole('button', { name: /نَحْنُ.*kami, kita/ })).toBeVisible();
 });
 
 test('an old anchor link on the hub moves to the new page', async ({ page }) => {

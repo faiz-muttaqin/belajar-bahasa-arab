@@ -20,12 +20,12 @@
 </script>
 
 <PageIntro
-	title="Tabel rujukan"
+	title="Jenis kata"
 	section="rujukan"
-	description="Tabel rujukan bahasa Arab per jenis kata: kata kerja dan wazan tashrif, kata benda dan sifat, kata hubung dan kata tugas, serta kata tanya."
+	description="Rujukan bahasa Arab per jenis kata: kata kerja dan wazan tashrif, kata benda dan sifat, kata hubung dan kata tugas, serta kata tanya."
 >
 	{#snippet lead()}
-		<p>Pilih jenis kata yang ingin dicek. Tiap halaman berisi tabel pendek dengan mode hafalan.</p>
+		<p>Pilih jenis kata yang ingin dicek. Ketuk sebuah kata untuk melihat contohnya.</p>
 	{/snippet}
 </PageIntro>
 
