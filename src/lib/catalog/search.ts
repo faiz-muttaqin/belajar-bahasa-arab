@@ -10,7 +10,7 @@ export const searchKinds = {
 
 export type SearchKind = keyof typeof searchKinds;
 type LessonLink = `${'belajar' | 'iqra'}/${string}/`;
-type SearchLink = LessonLink | `${LessonLink | 'kosakata/' | 'rujukan/'}#${string}`;
+type SearchLink = LessonLink | `${LessonLink | 'kosakata/' | 'rujukan/' | 'sharaf/'}#${string}`;
 
 type Entry = {
 	key: string;
@@ -44,6 +44,26 @@ function buildEntry(entry: Entry, extra: string[] = []): SearchEntry {
 
 export function indexCatalog(catalog: Catalog): SearchEntry[] {
 	const entries: SearchEntry[] = [];
+
+	for (const entry of catalog.sharaf ?? []) {
+		entries.push(
+			buildEntry(
+				{
+					key: `sharaf:${entry.id}`,
+					kind: 'word',
+					href: `sharaf/#${entry.id}`,
+					title: entry.meaning,
+					arabic: entry.lemma,
+					context: entry.bab ? `Sharaf · Bab ${entry.bab.number}` : 'Sharaf'
+				},
+				[
+					entry.root ?? '',
+					[...(entry.root ?? '')].join(' '),
+					...entry.forms.map((form) => form.value)
+				]
+			)
+		);
+	}
 
 	for (const word of catalog.vocabulary) {
 		entries.push(
