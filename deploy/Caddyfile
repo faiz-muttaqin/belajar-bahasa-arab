@@ -1,0 +1,21 @@
+# Serves the built site on a local port. Put your own reverse proxy or domain in front of it.
+# Change the path to your releases folder (the one that holds the `current` symlink).
+{
+	auto_https off
+}
+
+http://127.0.0.1:4173 {
+	root * /srv/belajar-bahasa-arab-releases/current
+	encode zstd gzip
+	file_server
+
+	# adapter-static writes 404.html for unknown paths.
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+
+	# Hashed build files never change.
+	@immutable path /_app/immutable/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+}
