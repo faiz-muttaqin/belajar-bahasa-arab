@@ -72,6 +72,13 @@
 	{/snippet}
 </PageIntro>
 
+<a
+	href={resolve('kaidah/sharaf/')}
+	class="mt-6 inline-flex min-h-11 items-center font-semibold text-primary underline"
+>
+	Pahami perubahan kata: akar, wazan dan tashrif
+</a>
+
 <div class="mt-8"><SpeechSettings /></div>
 
 <section class="mt-10 space-y-5" aria-label="Pencarian sharaf">
