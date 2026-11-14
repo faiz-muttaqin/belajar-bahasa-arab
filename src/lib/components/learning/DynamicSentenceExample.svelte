@@ -119,6 +119,13 @@
 	<dialog
 		bind:this={pickerDialog}
 		onclose={() => previousTrigger?.focus()}
+		onkeydown={(event) => {
+			// Search inputs may consume Escape to clear their value. Close the modal regardless.
+			if (event.key === 'Escape') {
+				event.preventDefault();
+				pickerDialog.close();
+			}
+		}}
 		class="w-[min(92vw,38rem)] max-w-none rounded-2xl border bg-card p-0 text-foreground shadow-xl backdrop:bg-black/60"
 		aria-label="Cari pengganti kata"
 	>
