@@ -11,12 +11,12 @@ import {
 import { isSharafEntries } from './lexicon.js';
 
 describe('transposed tashrif matrix', () => {
-	it('shows six bab rows and eleven morphology columns in right-to-left order', () => {
-		expect(babGroups(sharafEntries).map((b) => b.number)).toEqual([1, 2, 3, 4, 5, 6]);
+	it('shows twenty-two bab rows and eleven morphology columns in right-to-left order', () => {
+		expect(babGroups(sharafEntries).map((b) => b.number)).toEqual(Array.from({ length: 22 }, (_, i) => i + 1));
 		expect(tashrifColumns).toHaveLength(11);
 		expect(tashrifColumns[0].key).toBe('madhi');
 		expect(tashrifColumns[10].key).toBe('alah');
-		expect(selectedBabRows(sharafEntries, {}, 'all')).toHaveLength(6);
+		expect(selectedBabRows(sharafEntries, {}, 'all')).toHaveLength(22);
 	});
 
 	it('renders ف-ع-ل teaching patterns by default, preserving different bab harakat', () => {
@@ -26,6 +26,23 @@ describe('transposed tashrif matrix', () => {
 		expect(referenceWazanValue(6, 'madhi')).toBe('فَعُلَ');
 		expect(referenceWazanValue(1, 'fail')).toBe('فَاعِلٌ');
 		expect(referenceWazanValue(6, 'maful')).toBeUndefined();
+	});
+
+	it('provides representative extended wazan with their own families', () => {
+		const rows = babGroups(sharafEntries);
+		expect(rows.find((row) => row.number === 7)?.family).toBe('tsulatsi-mazid-1');
+		expect(rows.find((row) => row.number === 15)?.family).toBe('tsulatsi-mazid-3');
+		expect(rows.find((row) => row.number === 19)?.family).toBe('rubai-mujarrad');
+		expect(rows.find((row) => row.number === 22)?.family).toBe('rubai-mazid-2');
+		expect(referenceWazanValue(7, 'madhi')).toBe('فَعَّلَ');
+		expect(referenceWazanValue(15, 'madhi')).toBe('اِسْتَفْعَلَ');
+		expect(referenceWazanValue(19, 'mudhari')).toBe('يُفَعْلِلُ');
+	});
+
+	it('finds Indonesian glosses within matching bab without inventing paradigms', () => {
+		const examples = selectableVerbs(sharafEntries, 'all', 'mengajarkan');
+		expect(examples.some((entry) => entry.bab?.number === 7 && entry.lemma === 'عَلَّمَ')).toBe(true);
+		expect(selectableVerbs(sharafEntries, 7, 'belajar')).toEqual([]);
 	});
 
 	it('uses an existing glossary word only within its actual bab', () => {
