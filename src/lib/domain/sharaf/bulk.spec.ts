@@ -55,6 +55,11 @@ describe('full versioned Qutrub + Arramooz import', () => {
 		expect(searchSharaf(merged, 'كتب', 'verb').some((entry) => entry.bab?.number === 2)).toBe(true);
 	});
 
+	it('prioritizes exact vocalization over other words sharing the unvocalized spelling', () => {
+		const entries = mergeBulkSharaf(sharafEntries, data);
+		expect(searchSharaf(entries, 'آبَ', 'verb')[0]?.lemma).toBe('آبَ');
+	});
+
 	it('does not accept truncated or out-of-schema bulk snapshots', () => {
 		expect(isBulkSharafLexicon({ ...data, verbs: data.verbs.slice(1) })).toBe(false);
 		expect(isBulkSharafLexicon({ ...data, revision: 'not-this-version' })).toBe(false);
