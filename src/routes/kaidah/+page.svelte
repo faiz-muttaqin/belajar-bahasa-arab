@@ -37,6 +37,20 @@
 	</nav>
 </div>
 
+<aside class="mt-9 max-w-4xl rounded-xl border bg-card p-5">
+	<h2 class="text-lg font-semibold">Baru: bagaimana kata berubah?</h2>
+	<p class="mt-2 text-muted-foreground">
+		Pelajari akar dan wazan, tashrif istilahi, serta tashrif lughawi dengan arti Indonesia tepat di
+		bawah bentuk Arab.
+	</p>
+	<a
+		href={resolve('kaidah/sharaf/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
+		Pelajari perubahan kata (sharaf)
+	</a>
+</aside>
+
 <div class="mt-12 max-w-5xl space-y-16">
 	{#each grammarRules as rule, i (rule.id)}
 		<section id={rule.id} class="scroll-mt-24 space-y-5" aria-labelledby="{rule.id}-title">
