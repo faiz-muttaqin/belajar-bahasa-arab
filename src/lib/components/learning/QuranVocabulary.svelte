@@ -157,12 +157,13 @@
 											{item.quranFrequency.note ??
 												'Berdasarkan identitas lema dalam Quranic Arabic Corpus; bentuk berimbuhan dapat ikut terhitung.'}
 										</p>
-										<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- QAC frequency source -->
+										<!-- eslint-disable svelte/no-navigation-without-resolve -- external QAC frequency link -->
 										<a
 											href={item.quranFrequency.source}
 											class="inline-flex min-h-11 items-center text-primary underline"
 											>Verifikasi frekuensi</a
 										>
+										<!-- eslint-enable svelte/no-navigation-without-resolve -->
 									</details>
 								{/if}
 								{#if item.quranOccurrence}
