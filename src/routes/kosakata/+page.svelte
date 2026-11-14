@@ -6,9 +6,11 @@
 	import Sun from '@lucide/svelte/icons/sun';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import QuranVocabulary from '#lib/components/learning/QuranVocabulary.svelte';
+	import MsaVocabulary from '#lib/components/learning/MsaVocabulary.svelte';
 	import VocabCard from '#lib/components/learning/VocabCard.svelte';
 	import SpeechSettings from '#lib/components/learning/SpeechSettings.svelte';
 	import { quranVocabulary } from '#lib/content/quran-vocabulary.js';
+	import { msaVocabulary } from '#lib/content/msa-vocabulary.js';
 	import { publishedVocabulary } from '#lib/content/vocabulary.js';
 	import { type VocabularyCollectionId } from '#lib/domain/vocabulary/types.js';
 
@@ -48,21 +50,23 @@
 				count:
 					publishedVocabulary('harian').length +
 					publishedVocabulary('shalat').length +
-					quranVocabulary.length
+					quranVocabulary.length +
+					msaVocabulary.length
 			},
 			{ id: 'harian', label: 'Harian', count: publishedVocabulary('harian').length },
 			{ id: 'shalat', label: 'Shalat', count: publishedVocabulary('shalat').length },
-			{ id: 'quran', label: 'Al-Qur’an', count: quranVocabulary.length }
+			{ id: 'quran', label: 'Al-Qur’an', count: quranVocabulary.length },
+			{ id: 'msa', label: 'Umum MSA', count: msaVocabulary.length }
 		];
 </script>
 
 <PageIntro
 	title="Kosakata"
 	section="kosakata"
-	description="Kosakata bahasa Arab sehari-hari, bacaan shalat, dan Al-Qur’an menurut jenis kata, dengan glos bahasa Indonesia dan mode hafalan."
+	description="Kamus tematik bahasa Arab baku (MSA), kata benda, kata sifat, istilah modern, kosakata shalat dan Al-Qur’an, dengan pencarian serta mode hafalan."
 >
 	{#snippet lead()}
-		<p>Temukan arti kata yang muncul dalam bacaan dan coba ingat tanpa bantuan.</p>
+		<p>Pelajari isim benda, isim sifat, ungkapan, dan kata dari bacaan. Coba ingat tanpa bantuan.</p>
 	{/snippet}
 </PageIntro>
 
@@ -95,6 +99,13 @@
 		class="me-4 inline-flex min-h-11 items-center font-medium text-primary underline"
 	>
 		Kosakata Al-Qur’an
+	</a>
+	<a
+		href="#msa"
+		onclick={() => (activeCollection = 'msa')}
+		class="me-4 inline-flex min-h-11 items-center font-medium text-primary underline"
+	>
+		Kosakata MSA umum
 	</a>
 	<a
 		href={resolve('cari/?jenis=word')}
@@ -152,4 +163,8 @@
 
 {#if activeCollection === 'all' || activeCollection === 'quran'}
 	<QuranVocabulary {hafalan} />
+{/if}
+
+{#if activeCollection === 'all' || activeCollection === 'msa'}
+	<MsaVocabulary {hafalan} />
 {/if}
