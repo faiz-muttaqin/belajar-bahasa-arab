@@ -13,10 +13,10 @@
 			<li class="space-y-2 px-3 py-3 sm:px-4">
 				<p class="flex flex-wrap items-baseline gap-x-3">
 					<ArabicText text={arabic} class="font-semibold" />
-					<AudioPlayButton text={arabic} label="Dengarkan kata Arab" compact />
 					<span>{meaning}</span>
 					<span class="text-sm font-medium text-muted-foreground">{kind}</span>
 				</p>
+				<AudioPlayButton text={arabic} label="Dengarkan kata Arab" compact />
 				<dl class="grid gap-x-4 gap-y-2 text-base sm:grid-cols-2">
 					<div>
 						<dt class="font-semibold">Sharaf</dt>
