@@ -61,9 +61,39 @@ Aktifkan dengan `systemctl --user enable --now belajar-update.timer` (dan `login
 
 ## Menyajikan situs di sebuah port
 
-[Caddyfile](./Caddyfile) menyajikan folder `current` di `127.0.0.1:4173`, lengkap dengan
-`404.html` dan cache untuk file berhash. Pakai reverse proxy atau domain Anda sendiri di
-depannya. Bila memakai nginx, arahkan `root` ke `/srv/belajar-bahasa-arab-releases/current`,
+`update.sh` hanya membangun; **tidak ada yang otomatis berjalan di sebuah port** sampai Anda
+menjalankan server file statis. Contoh memakai [Caddy](https://caddyserver.com) dan
+[Caddyfile](./Caddyfile): ia menyajikan folder `current` di **`127.0.0.1:4173`** (port ini hanya
+pilihan contoh; ubah di baris `http://127.0.0.1:4173`). Karena hanya mendengarkan `127.0.0.1`,
+situs tidak terjangkau dari luar server; forwarder atau reverse proxy Anda harus berada di
+mesin yang sama dan meneruskan ke `127.0.0.1:4173`.
+
+```bash
+# sesuaikan baris `root` di deploy/Caddyfile ke folder rilis Anda, lalu:
+caddy run --config ~/belajar-bahasa-arab/deploy/Caddyfile --adapter caddyfile
+# cek dari server:
+curl -sI http://127.0.0.1:4173/ | head -1        # HTTP/1.1 200 OK
+curl -sI http://127.0.0.1:4173/tidak-ada/ | head -1   # HTTP/1.1 404 Not Found
+```
+
+Agar tetap berjalan setelah reboot, jadikan service systemd (`/etc/systemd/system/belajar-web.service`):
+
+```ini
+[Unit]
+Description=Belajar Bahasa Arab (static)
+After=network.target
+
+[Service]
+User=belajar
+ExecStart=/usr/bin/caddy run --config /home/belajar/belajar-bahasa-arab/deploy/Caddyfile --adapter caddyfile
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Caddy membaca file dari symlink `current` setiap permintaan, jadi rilis baru langsung tayang
+tanpa restart. Bila memakai nginx, arahkan `root` ke `/srv/belajar-bahasa-arab-releases/current`,
 `try_files $uri $uri/ =404;`, dan `error_page 404 /404.html;`. Karena `trailingSlash` aktif,
 alamat halaman berakhiran `/`.
 
