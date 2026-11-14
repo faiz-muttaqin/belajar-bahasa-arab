@@ -7,6 +7,8 @@
 	import ListPlus from '@lucide/svelte/icons/list-plus';
 	import Check from '@lucide/svelte/icons/check';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
+	import AudioPlayButton from '#lib/components/learning/AudioPlayButton.svelte';
+	import SpeechSettings from '#lib/components/learning/SpeechSettings.svelte';
 	import {
 		catalogState,
 		bulkSharafState,
@@ -156,6 +158,8 @@
 </script>
 
 <section class="min-w-0 space-y-4" aria-label="Matriks wazan 22 bab">
+	<SpeechSettings />
+
 	<div class="flex flex-wrap items-center justify-between gap-3">
 		<div class="flex flex-wrap items-center gap-2">
 			<button
@@ -478,7 +482,10 @@
 							class="flex h-full flex-col justify-between overflow-hidden rounded-lg border p-3"
 						>
 							<div class="min-h-0">
-								<ArabicText text={entry.lemma} />
+								<div class="flex flex-wrap items-center justify-between gap-2">
+									<ArabicText text={entry.lemma} />
+									<AudioPlayButton text={entry.lemma} label="Dengarkan contoh kata Arab" compact />
+								</div>
 								<p class="line-clamp-2 text-sm font-medium">{entry.meaning}</p>
 								<p class="text-xs text-muted-foreground">
 									Bab {entry.bab?.number} · {entry.root ?? 'Tanpa akar'}
@@ -521,7 +528,10 @@
 			>
 			<div class="flex flex-wrap justify-between gap-3">
 				<div>
-					<ArabicText text={inspected.lemma} size="display" />
+					<div class="flex flex-wrap items-center gap-2">
+						<ArabicText text={inspected.lemma} size="display" />
+						<AudioPlayButton text={inspected.lemma} label="Dengarkan kata Arab" compact />
+					</div>
 					<p class="font-semibold">{inspected.meaning}</p>
 					<p class="text-sm text-muted-foreground">
 						Akar: <ArabicText text={inspected.root ?? '—'} /> · Bab {inspected.bab?.number}
@@ -545,7 +555,12 @@
 						>
 							<dt class="text-sm">{column.label}</dt>
 							<dd>
-								{#if value}<ArabicText text={value} />{:else}<span
+								{#if value}
+									<div class="flex flex-wrap items-center gap-2">
+										<ArabicText text={value} />
+										<AudioPlayButton text={value} label="Dengarkan bentuk kata" compact />
+									</div>
+								{:else}<span
 										class="text-xs text-muted-foreground">Belum tercatat</span
 									>{/if}
 							</dd>
@@ -584,6 +599,11 @@
 				<p class="mt-2 text-sm">{explanations[cell.key]}</p>
 			</div>
 			<p class="text-sm leading-relaxed">{cell.group.notes}</p>
+			<AudioPlayButton
+				text={cell.entry ? (tashrifValue(cell.entry, cell.key) ?? '') : (referenceWazanValue(cell.group.number, cell.key) ?? '')}
+				label="Dengarkan wazan Arab"
+				compact
+			/>
 			{#if cell.entry}
 				<p class="text-sm">
 					Kata yang dipilih: <ArabicText text={cell.entry.lemma} /> — {cell.entry.meaning}
