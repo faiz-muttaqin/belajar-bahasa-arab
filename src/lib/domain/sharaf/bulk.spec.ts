@@ -37,8 +37,8 @@ describe('full versioned Qutrub + Arramooz import', () => {
 			(entry) => entry.lemma === 'كَتَبَ' && entry.root === 'كتب' && entry.bab?.number === 1
 		);
 		expect(kataba).toHaveLength(1);
-		expect(kataba[0].meaning).toBe('menulis');
-		expect(kataba[0].forms.some((form) => form.value === 'يَكْتُبُ')).toBe(true);
+		expect(kataba[0]!.meaning).toBe('menulis');
+		expect(kataba[0]!.forms.some((form) => form.value === 'يَكْتُبُ')).toBe(true);
 		expect(merged.filter((entry) => entry.partOfSpeech === 'verb').length).toBeGreaterThanOrEqual(7938);
 	});
 
