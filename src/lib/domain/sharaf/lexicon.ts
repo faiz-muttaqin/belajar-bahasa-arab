@@ -5,7 +5,7 @@
 export type PartOfSpeech = 'verb' | 'noun' | 'particle';
 export type SharafFilter = PartOfSpeech | 'all';
 export type BabSelection = 'lexical' | 'rule' | 'not-applicable';
-export type FormBehavior = 'regular' | 'special-rule' | 'irregular' | 'fixed';
+export type FormBehavior = 'regular' | 'special-rule' | 'irregular' | 'fixed' | 'unverified';
 
 export type SharafForm = {
 	label: string;
@@ -51,7 +51,7 @@ export function isSharafEntries(value: unknown): value is SharafEntry[] {
 			!Array.isArray(entry.sources) ||
 			!['verb', 'noun', 'particle'].some((kind) => kind === entry.partOfSpeech) ||
 			!['lexical', 'rule', 'not-applicable'].some((kind) => kind === entry.babSelection) ||
-			!['regular', 'special-rule', 'irregular', 'fixed'].some(
+			!['regular', 'special-rule', 'irregular', 'fixed', 'unverified'].some(
 				(kind) => kind === entry.formBehavior
 			) ||
 			!['draft', 'linguist_reviewed', 'approved'].some((status) => status === entry.reviewStatus)
@@ -98,9 +98,41 @@ export function normalizeArabicSearch(input: string): string {
 		.toLocaleLowerCase('id');
 }
 
+type IndexedSharafEntry = {
+	entry: SharafEntry;
+	index: number;
+	forms: readonly string[];
+	root?: string;
+	gloss: string;
+};
+
+// Source arrays are immutable catalog snapshots. Reuse normalized search keys
+// across every keystroke, and allow garbage collection when a catalog is replaced.
+const searchIndexCache = new WeakMap<readonly SharafEntry[], readonly IndexedSharafEntry[]>();
+
+/** Safe to warm after a cached or downloaded catalog becomes available. */
+export function prepareSharafSearchIndex(
+	entries: readonly SharafEntry[]
+): readonly IndexedSharafEntry[] {
+	const previous = searchIndexCache.get(entries);
+	if (previous) return previous;
+	const indexed = entries.map((entry, index) => ({
+		entry,
+		index,
+		forms: [entry.lemma, ...entry.forms.map((form) => form.value)].map(normalizeArabicSearch),
+		root: entry.root ? normalizeArabicSearch(entry.root) : undefined,
+		// Unknown Indonesian gloss is a display placeholder, not a search synonym.
+		gloss:
+			entry.meaning === 'Arti Indonesia belum tersedia' ? '' : normalizeArabicSearch(entry.meaning)
+	}));
+	searchIndexCache.set(entries, indexed);
+	return indexed;
+}
+
 /**
  * Return every plausible match, not only the first: unvocalized Arabic is ambiguous.
- * Exact spelling ranks ahead of root-family and prefix matches.
+ * Exact spelling ranks ahead of root-family, Indonesian meaning and prefix matches.
+ * Indexed keys avoid repeatedly normalizing the catalog on every search keystroke.
  */
 export function searchSharaf(
 	entries: readonly SharafEntry[],
@@ -108,16 +140,14 @@ export function searchSharaf(
 	filter: SharafFilter = 'all'
 ): SharafEntry[] {
 	const query = normalizeArabicSearch(input);
-	const filtered = entries.filter((entry) => filter === 'all' || entry.partOfSpeech === filter);
-	if (!query) return filtered;
+	const indexed = prepareSharafSearchIndex(entries).filter(
+		({ entry }) => filter === 'all' || entry.partOfSpeech === filter
+	);
+	if (!query) return indexed.map(({ entry }) => entry);
 
-	return filtered
-		.map((entry) => {
-			const forms = [entry.lemma, ...entry.forms.map((form) => form.value)].map(
-				normalizeArabicSearch
-			);
-			const root = entry.root ? normalizeArabicSearch(entry.root) : undefined;
-			const gloss = normalizeArabicSearch(entry.meaning);
+	return indexed
+		.map((item) => {
+			const { forms, root, gloss } = item;
 			let score = Number.POSITIVE_INFINITY;
 			if (forms.includes(query)) score = 0;
 			else if (root === query) score = 1;
@@ -125,9 +155,9 @@ export function searchSharaf(
 			else if (query.length >= 2 && forms.some((form) => form.startsWith(query))) score = 3;
 			else if (query.length >= 2 && root?.startsWith(query)) score = 4;
 			else if (query.length >= 2 && gloss.includes(query)) score = 5;
-			return { entry, score };
+			return { ...item, score };
 		})
 		.filter(({ score }) => Number.isFinite(score))
-		.sort((a, b) => a.score - b.score)
+		.sort((a, b) => a.score - b.score || a.index - b.index)
 		.map(({ entry }) => entry);
 }

@@ -25,7 +25,8 @@
 		regular: 'Kaidah umum',
 		'special-rule': 'Kaidah khusus',
 		irregular: 'Pengecualian',
-		fixed: 'Kata tetap'
+		fixed: 'Kata tetap',
+		unverified: 'Bentuk belum diverifikasi'
 	} as const;
 	const selectionLabels = {
 		lexical: 'Bab perlu diketahui dari pasangan madhi–mudhari',

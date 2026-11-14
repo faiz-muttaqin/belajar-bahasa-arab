@@ -1,5 +1,6 @@
 import { tashrifIstilahi } from '#lib/content/reference.js';
 import { publishedVocabulary } from '#lib/content/vocabulary.js';
+import { mergeStagedSharafPreview } from '#lib/content/sharaf-staging-preview.js';
 import type { SharafEntry } from '#lib/domain/sharaf/lexicon.js';
 import type { TashrifColumnKey } from '#lib/domain/sharaf/matrix.js';
 import { patternCatalog } from '#lib/domain/sharaf/patterns.js';
@@ -434,8 +435,8 @@ const advancedVerbs: readonly SharafEntry[] = expandedVerbs.map((word) => {
 	};
 });
 
-export const sharafEntries: readonly SharafEntry[] = [
+export const sharafEntries: readonly SharafEntry[] = mergeStagedSharafPreview([
 	...referenceVerbs,
 	...additional,
 	...advancedVerbs
-];
+]);

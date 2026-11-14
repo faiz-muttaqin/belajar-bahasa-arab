@@ -1,5 +1,6 @@
 import { resolve } from '$app/paths';
 import { readCatalog, saveCatalog } from './storage.js';
+import { prepareSharafSearchIndex } from '#lib/domain/sharaf/lexicon.js';
 import {
 	CATALOG_PATH,
 	MANIFEST_PATH,
@@ -17,6 +18,17 @@ export const catalogState = $state<{
 
 let inFlight: Promise<void> | undefined;
 let checked = false;
+
+function warmSharafSearch(entries: Catalog['sharaf']) {
+	if (!entries?.length) return;
+	// Lower-priority indexing happens after the currently displayed page has painted.
+	const warm = () => void prepareSharafSearchIndex(entries);
+	if ('requestIdleCallback' in window) {
+		window.requestIdleCallback(warm, { timeout: 2_000 });
+	} else {
+		setTimeout(warm, 0);
+	}
+}
 
 async function fetchCatalogFile(
 	path: typeof CATALOG_PATH | typeof MANIFEST_PATH,
@@ -41,6 +53,7 @@ async function sync() {
 			if (isCatalog(cached)) {
 				catalogState.catalog = cached;
 				catalogState.saved = true;
+				warmSharafSearch(cached.sharaf);
 			}
 		}
 		if (!navigator.onLine) return;
@@ -58,6 +71,7 @@ async function sync() {
 			// Keep the previous saved data until a complete replacement is ready.
 			catalogState.catalog = downloaded;
 			catalogState.saved = false;
+			warmSharafSearch(downloaded.sharaf);
 		}
 		if (catalogState.catalog && !catalogState.saved) {
 			await saveCatalog($state.snapshot(catalogState.catalog));
