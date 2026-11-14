@@ -131,7 +131,7 @@
 								class="sticky left-0 z-10 min-w-40 border-r bg-card px-3 py-4 text-start align-middle"
 							>
 								<p class="text-sm font-semibold">Bab {group.number}</p>
-								<ArabicText text={active?.lemma ?? group.exemplar} />
+								<ArabicText text={active?.lemma ?? group.pattern} />
 								<p class="max-w-36 text-xs text-muted-foreground">
 									{active ? active.meaning : 'Wazan dasar'}
 								</p>
