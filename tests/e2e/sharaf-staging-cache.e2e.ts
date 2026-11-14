@@ -27,46 +27,37 @@ test('background manifest refresh saves the enriched glossary to IndexedDB', asy
 	await expect
 		.poll(
 			() =>
-				page.evaluate(
-					() =>
-						new Promise<boolean>(async (resolve) => {
-							// A probe must not create an empty v1 database before the app opens it.
-							const databases = await indexedDB.databases();
-							if (!databases.some((database) => database.name === 'belajar-bahasa-arab-materi')) {
+				page.evaluate(async () => {
+					// Do not create an empty v1 database while probing for the application's store.
+					const existing = await indexedDB.databases();
+					if (!existing.some((db) => db.name === 'belajar-bahasa-arab-materi')) {
+						return false;
+					}
+					return new Promise<boolean>((resolve) => {
+						const request = indexedDB.open('belajar-bahasa-arab-materi', 1);
+						request.onerror = () => resolve(false);
+						request.onsuccess = () => {
+							const db = request.result;
+							if (!db.objectStoreNames.contains('packages')) {
+								db.close();
 								resolve(false);
 								return;
 							}
-							const request = indexedDB.open('belajar-bahasa-arab-materi', 1);
-							request.onerror = () => resolve(false);
-							request.onsuccess = () => {
-								const db = request.result;
-								if (!db.objectStoreNames.contains('packages')) {
-									db.close();
-									resolve(false);
-									return;
-								}
-								const lookup = db
-									.transaction('packages', 'readonly')
-									.objectStore('packages')
-									.get('active');
-								lookup.onerror = () => {
-									db.close();
-									resolve(false);
-								};
-								lookup.onsuccess = () => {
-									const data = lookup.result;
-									db.close();
-									resolve(
-										Boolean(
-											data?.sharaf?.some(
-												(entry: { id: string }) => entry.id === 'ar-verb-992502ac2973cfa7dd'
-											)
-										)
-									);
-								};
+							const lookup = db.transaction('packages', 'readonly').objectStore('packages').get('active');
+							lookup.onerror = () => {
+								db.close();
+								resolve(false);
 							};
-						})
-				),
+							lookup.onsuccess = () => {
+								const data = lookup.result;
+								db.close();
+								resolve(Boolean(data?.sharaf?.some(
+									(entry: { id: string }) => entry.id === 'ar-verb-992502ac2973cfa7dd'
+								)));
+							};
+						};
+					});
+				}),
 			{ timeout: 25_000 }
 		)
 		.toBe(true);
