@@ -1,0 +1,32 @@
+name: Verify grammar rule map
+
+on:
+  pull_request:
+    paths:
+      - 'src/lib/content/grammar-rules*'
+      - 'src/lib/components/learning/GrammarExample.svelte'
+      - 'src/lib/components/layout/section-icons.ts'
+      - 'src/lib/navigation.ts'
+      - 'src/routes/kaidah/**'
+      - 'src/routes/rujukan/+page.svelte'
+      - 'tests/e2e/grammar-rules.e2e.ts'
+      - 'docs/plans/nahwu-sharaf-knowledge-map.md'
+      - '.github/workflows/grammar-pr.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - run: bun run browsers:install
+      - run: bun run verify
