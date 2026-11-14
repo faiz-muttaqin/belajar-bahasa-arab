@@ -60,10 +60,13 @@ export const quranFrequencies: Readonly<Record<string, QuranFrequency>> = {
 		azab: 322,
 		haqq: 247,
 		khayr: 178,
+		kull: 359,
+		sabil: 176,
 		alim: 163
 	}),
 	...mapCounts('lemma', lemmaPage(2), {
 		jannah: 147,
+		ghayr: 147,
 		qalb: 132,
 		rahim: 116,
 		rahmah: 114,
