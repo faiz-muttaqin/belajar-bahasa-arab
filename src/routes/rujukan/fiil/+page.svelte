@@ -21,6 +21,17 @@
 <div class="mt-8 space-y-10">
 	<ReferenceSubnav current="fiil" />
 
+	<a
+		href={resolve('rujukan/fiil/kata-kerja/')}
+		class="block rounded-2xl border border-t-4 border-t-chart-1 bg-card p-5 transition-colors hover:bg-secondary"
+	>
+		<span class="block text-lg font-semibold">Daftar kata kerja per bab</span>
+		<span class="mt-1 block text-muted-foreground"
+			>Ribuan kata kerja untuk 22 wazan dengan transliterasi, mudhari, mashdar, dan arti. Ketuk
+			untuk melihat.</span
+		>
+	</a>
+
 	<section
 		id="tashrif-istilahi"
 		aria-labelledby="tashrif-heading"

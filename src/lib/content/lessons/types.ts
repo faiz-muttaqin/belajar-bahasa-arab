@@ -1,4 +1,19 @@
 import type { Path } from '$app/types';
+
+/** Pages lessons link to. Kept narrow: see SectionPath in navigation.ts for why. */
+type RelatedPage =
+	| 'rujukan/fiil/'
+	| 'rujukan/harf/'
+	| 'rujukan/isim/'
+	| 'rujukan/kata-tanya/'
+	| 'rujukan/'
+	| 'sharaf/'
+	| 'kosakata/'
+	| 'belajar/'
+	| 'iqra/'
+	| 'latihan/'
+	| 'cari/';
+export const relatedPagesExist: RelatedPage extends Path ? true : never = true;
 import { analyzedText, type AnalysisGroup, type SentenceAnalysis } from './analysis.js';
 import { hasApprovingReview, type ReviewRecord } from '#lib/domain/review.js';
 
@@ -40,7 +55,7 @@ export type Lesson = {
 	passage?: Passage;
 	analysis?: readonly AnalysisGroup[];
 	exercises: readonly Exercise[];
-	related?: readonly { label: string; path: `${Path}#${string}` }[];
+	related?: readonly { label: string; path: `${RelatedPage}#${string}` }[];
 };
 
 export type LessonSummary = Pick<Lesson, 'id' | 'slug' | 'title' | 'goal' | 'minutes' | 'level'>;

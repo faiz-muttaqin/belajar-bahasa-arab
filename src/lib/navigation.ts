@@ -1,6 +1,24 @@
 import type { Path } from '$app/types';
 
 /**
+ * The section pages as literals. `resolve()` stops type-checking once `Path` has more than
+ * about 25 members (TypeScript cannot match a union argument against its overloads), so
+ * components pass this narrow type instead. The check below keeps it honest.
+ */
+export type SectionPath =
+	| 'belajar/'
+	| 'iqra/'
+	| 'latihan/'
+	| 'kosakata/'
+	| 'rujukan/'
+	| 'cari/'
+	| 'progres/'
+	| 'bookmark/'
+	| 'editor/theme/'
+	| 'tentang/';
+export const sectionPathsExist: SectionPath extends Path ? true : never = true;
+
+/**
  * Site sections. One source of truth for the sidebar, mobile tab bar, menu sheet and footer.
  * Paths are SvelteKit 3 pathnames (no leading slash, trailing slash because the site uses
  * `trailingSlash = 'always'`), typed against the real routes; the home page uses the route
@@ -22,7 +40,7 @@ export type SectionId =
 export type Section = {
 	id: SectionId;
 	label: string;
-	path: Path | '/';
+	path: SectionPath | '/';
 	/** One plain sentence: used in the menu sheet and empty states. */
 	summary: string;
 	/** One of the five mobile tab-bar destinations. */

@@ -1,5 +1,9 @@
 import type { Path } from '$app/types';
 
+export type ReferenceGroupPath =
+	'rujukan/fiil/' | 'rujukan/isim/' | 'rujukan/harf/' | 'rujukan/kata-tanya/';
+export const groupPathsExist: ReferenceGroupPath extends Path ? true : never = true;
+
 export type ReferenceGroupId = 'fiil' | 'isim' | 'harf' | 'tanya';
 
 export type ReferenceGroup = {
@@ -7,7 +11,7 @@ export type ReferenceGroup = {
 	label: string;
 	/** Short Arabic term shown beside the label. */
 	arabic: string;
-	path: Path;
+	path: ReferenceGroupPath;
 	/** One plain sentence: what is on the page. */
 	summary: string;
 	/** How to recognise this kind of word. */
