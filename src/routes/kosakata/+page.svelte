@@ -91,6 +91,7 @@
 <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
 	<a
 		href="#al-quran"
+		onclick={() => (activeCollection = 'quran')}
 		class="me-4 inline-flex min-h-11 items-center font-medium text-primary underline"
 	>
 		Kosakata Al-Qur’an
