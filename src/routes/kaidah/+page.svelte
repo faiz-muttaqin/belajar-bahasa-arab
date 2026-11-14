@@ -37,47 +37,40 @@
 	</nav>
 </div>
 
-<aside class="mt-9 max-w-4xl rounded-xl border bg-card p-5">
-	<h2 class="text-lg font-semibold">Baru: bagaimana kata berubah?</h2>
-	<p class="mt-2 text-muted-foreground">
-		Pelajari akar dan wazan, tashrif istilahi, serta tashrif lughawi dengan arti Indonesia tepat di
-		bawah bentuk Arab.
-	</p>
+<nav aria-label="Tahapan kaidah lanjutan" class="mt-8 grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-3">
 	<a
 		href={resolve('kaidah/sharaf/')}
-		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
 	>
-		Pelajari perubahan kata (sharaf)
+		<span class="text-xs font-semibold text-muted-foreground">G-02 · Bentuk kata</span>
+		<strong class="group-hover:text-primary">Pelajari perubahan kata (sharaf)</strong>
+		<span class="text-sm text-muted-foreground">Akar, wazan, istilahi, dan lughawi.</span>
 	</a>
-</aside>
-
-<aside class="mt-6 max-w-4xl rounded-xl border bg-card p-5">
-	<h2 class="text-lg font-semibold">Lanjut: frasa dan perubahan harakat akhir</h2>
-	<p class="mt-2 text-muted-foreground">
-		Kenali ma‘rifah dan nakirah, kesesuaian sifat, idafah, serta perubahan rafa‘–naṣb–jarr. Setiap
-		kata Arab mempunyai glos Indonesia tepat di bawahnya.
-	</p>
 	<a
 		href={resolve('kaidah/frasa/')}
-		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
 	>
-		Pelajari frasa dan i‘rab
+		<span class="text-xs font-semibold text-muted-foreground">G-03 · Frasa</span>
+		<strong class="group-hover:text-primary">Pelajari frasa dan i‘rab</strong>
+		<span class="text-sm text-muted-foreground">Sifat, idafah, dan perubahan tanda akhir.</span>
 	</a>
-</aside>
-
-<aside class="mt-6 max-w-4xl rounded-xl border bg-card p-5">
-	<h2 class="text-lg font-semibold">Berikutnya: bangun kalimat utuh</h2>
-	<p class="mt-2 text-muted-foreground">
-		Bandingkan kalimat nominal dan verbal, peran fā‘il–maf‘ūl, aktif–pasif, negasi, kāna, dan inna.
-		Setiap contoh tetap mempunyai glos di bawah kata Arab.
-	</p>
 	<a
 		href={resolve('kaidah/kalimat/')}
-		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
 	>
-		Pelajari susunan kalimat lengkap
+		<span class="text-xs font-semibold text-muted-foreground">G-04 · Kalimat</span>
+		<strong class="group-hover:text-primary">Pelajari susunan kalimat lengkap</strong>
+		<span class="text-sm text-muted-foreground">Nominal, verbal, pasif, negasi, dan nawāsikh.</span>
 	</a>
-</aside>
+	<a
+		href={resolve('kaidah/klausa/')}
+		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
+	>
+		<span class="text-xs font-semibold text-muted-foreground">G-05 · Klausa</span>
+		<strong class="group-hover:text-primary">Pelajari hubungan klausa</strong>
+		<span class="text-sm text-muted-foreground">Kata hubung, ṣilah, syarat, sebab, dan kontras.</span>
+	</a>
+</nav>
 
 <div class="mt-12 max-w-5xl space-y-16">
 	{#each grammarRules as rule, i (rule.id)}
