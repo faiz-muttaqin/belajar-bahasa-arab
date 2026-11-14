@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { sharafEntries } from '#lib/content/sharaf.js';
-import { babGroups, selectedBabRows, selectableVerbs, tashrifColumns, tashrifValue } from './matrix.js';
+import { babGroups, referenceWazanValue, selectedBabRows, selectableVerbs, tashrifColumns, tashrifValue } from './matrix.js';
 import { parseSharafCatalog, SHARAF_CACHE_SCHEMA } from './cache.js';
 
 describe('transposed tashrif matrix', () => {
@@ -10,6 +10,15 @@ describe('transposed tashrif matrix', () => {
 		expect(tashrifColumns[0].key).toBe('madhi');
 		expect(tashrifColumns[10].key).toBe('alah');
 		expect(selectedBabRows(sharafEntries, {}, 'all')).toHaveLength(6);
+	});
+
+	it('renders ف-ع-ل teaching patterns by default, preserving different bab harakat', () => {
+		expect(referenceWazanValue(1, 'madhi')).toBe('فَعَلَ');
+		expect(referenceWazanValue(2, 'mudhari')).toBe('يَفْعِلُ');
+		expect(referenceWazanValue(3, 'mudhari')).toBe('يَفْعَلُ');
+		expect(referenceWazanValue(6, 'madhi')).toBe('فَعُلَ');
+		expect(referenceWazanValue(1, 'fail')).toBe('فَاعِلٌ');
+		expect(referenceWazanValue(6, 'maful')).toBeUndefined();
 	});
 
 	it('uses an existing glossary word only within its actual bab', () => {
