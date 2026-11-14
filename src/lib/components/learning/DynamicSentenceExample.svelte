@@ -13,16 +13,16 @@
 	} from '#lib/domain/grammar/dynamic-examples.js';
 
 	let { mode }: { mode: BuilderMode } = $props();
-	let state = $state<BuilderState>({ ...initialBuilderState });
-	let activeSlot = $state<BuilderSlot>('subject');
+	let selection: BuilderState = $state({ ...initialBuilderState });
+	let activeSlot: BuilderSlot = $state('subject');
 	let query = $state('');
 	let hydrated = $state(false);
 	let notice = $state('');
 	let pickerDialog: HTMLDialogElement;
 	let previousTrigger: HTMLButtonElement | undefined;
 
-	let example = $derived(composeBuilderExample(mode, state));
-	let results = $derived(searchBuilderChoices(state, activeSlot, query));
+	let example = $derived(composeBuilderExample(mode, selection));
+	let results = $derived(searchBuilderChoices(selection, activeSlot, query));
 
 	onMount(() => {
 		hydrated = true;
@@ -37,8 +37,8 @@
 	}
 
 	function choose(id: string) {
-		const result = chooseBuilderWord(state, activeSlot, id);
-		state = result.state;
+		const result = chooseBuilderWord(selection, activeSlot, id);
+		selection = result.state;
 		notice = result.resetObject
 			? 'Objek otomatis disesuaikan karena tidak cocok dengan fi‘il yang dipilih.'
 			: 'Contoh diperbarui. Perhatikan harakat dan arti setiap kata.';
@@ -46,7 +46,7 @@
 	}
 
 	function reset() {
-		state = { ...initialBuilderState };
+		selection = { ...initialBuilderState };
 		notice = 'Contoh dikembalikan ke bentuk awal.';
 	}
 </script>
