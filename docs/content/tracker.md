@@ -141,8 +141,8 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - **G-02 — ✅ Pilot merged (#20):** /kaidah/sharaf/ memuat akar ك ت ب, pola Form I, enam ṣīghah istilahi dan sembilan bentuk lughawi dengan dhamir, glos per bentuk, rujukan dan latihan; verba mu‘tal dan perluasan 22 wazan tetap pekerjaan lanjutan.
 - **G-03 — ✅ Pilot merged (#21):** /kaidah/frasa/ memuat lima kaidah dan 16 contoh dengan glos serta label i‘rab; masih draft untuk audit kebahasaan.
 - **G-04 — ✅ Pilot merged (#22):** /kaidah/kalimat/ memuat enam kaidah, 18 contoh (nominal, verbal, pasif, negasi, kāna/inna, tanya هَلْ), dengan peran berwarna, glos di bawah kata, dan label i‘rab isim vs mood fi‘il; materi tetap berstatus draft untuk audit linguistik.
-- **G-05 — 🟡 Implementasi pilot:** /kaidah/klausa/ memuat enam kelompok dan 16 contoh (‘aṭf, ṣilah, syarat, alasan, kontras, ḥāl/istitsnā’/tamyīz), glos per token dan rentang klausa berlabel; integrasi dan QA mengikuti PR, konten masih draft.
-- **G-06 — ⬜:** peta prasyarat, latihan susun kalimat, indeks kaidah dan bacaan panjang.
+- **G-05 — ✅ Pilot merged (#23):** /kaidah/klausa/ memuat enam kelompok dan 16 contoh (‘aṭf, ṣilah, syarat, alasan, kontras, ḥāl/istitsnā’/tamyīz); konten masih draft untuk audit linguistik.
+- **G-06 — 🟡 Pilot implementasi:** /kaidah/praktik/ memuat peta prasyarat, dua contoh kalimat dinamis melalui modal search kosakata/sharaf, dan bacaan dua kalimat beserta latihan; belum menyimpan skor atau mencakup seluruh korpus contoh.
 
 ## People and decisions needed
 
@@ -163,3 +163,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 14 November 2026: decisions D-1 to D-6 accepted, D-7 in progress ([ADR-004](../decisions/0004-content-decisions.md)); review and icon rules enforced in code; reviewer pack and LPMQ letter drafted; A-01 delivered on a branch.
 - 14 November 2026: added decisions D-1 to D-7 and research tasks RS-01 to RS-10 from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md); updated F-09, B1, V-01, V-03 to V-05 and R-02.
 - 13 November 2026: tracker created from research doc §5, §6.1a, §6.1b and the current build.
+
+- **D-01–D-06 — 🟡 Feature roadmap:** [Dynamic examples berbasis slot](../plans/dynamic-example-slots.md); D-01 pilot di G-06, D-02–D-06 perlu metadata morfologi, validasi valensi/semantik, pemasangan pada G-01–G-05, dan progres IndexedDB; tindak lanjut [issue #24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24).
