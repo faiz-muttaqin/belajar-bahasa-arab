@@ -40,16 +40,20 @@
 
 	let hafalan = $state(false);
 	let activeCollection = $state<'all' | VocabularyCollectionId>('all');
-	const collectionFilters: { id: 'all' | VocabularyCollectionId; label: string; count: number }[] = [
-		{
-			id: 'all',
-			label: 'All',
-			count: publishedVocabulary('harian').length + publishedVocabulary('shalat').length + quranVocabulary.length
-		},
-		{ id: 'harian', label: 'Harian', count: publishedVocabulary('harian').length },
-		{ id: 'shalat', label: 'Shalat', count: publishedVocabulary('shalat').length },
-		{ id: 'quran', label: 'Al-Qur’an', count: quranVocabulary.length }
-	];
+	const collectionFilters: { id: 'all' | VocabularyCollectionId; label: string; count: number }[] =
+		[
+			{
+				id: 'all',
+				label: 'All',
+				count:
+					publishedVocabulary('harian').length +
+					publishedVocabulary('shalat').length +
+					quranVocabulary.length
+			},
+			{ id: 'harian', label: 'Harian', count: publishedVocabulary('harian').length },
+			{ id: 'shalat', label: 'Shalat', count: publishedVocabulary('shalat').length },
+			{ id: 'quran', label: 'Al-Qur’an', count: quranVocabulary.length }
+		];
 </script>
 
 <PageIntro
@@ -75,7 +79,10 @@
 				class="inline-flex min-h-11 items-center gap-2 rounded-full border bg-card px-4 text-sm font-medium transition-colors hover:border-primary aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground"
 			>
 				{option.label}
-				<span class="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground group-aria-pressed:text-primary-foreground">{option.count}</span>
+				<span
+					class="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground group-aria-pressed:text-primary-foreground"
+					>{option.count}</span
+				>
 			</button>
 		{/each}
 	</div>
@@ -108,37 +115,37 @@
 	{#if activeCollection === 'all' || activeCollection === collection.id}
 		{@const Icon = collection.icon}
 		{@const items = publishedVocabulary(collection.id)}
-	<section
-		id={collection.id === 'shalat' ? 'quran' : collection.id}
-		class="mt-16 scroll-mt-24"
-		aria-labelledby="{collection.id}-heading"
-	>
-		<div class="flex items-center gap-3">
-			<span
-				class="inline-flex size-10 items-center justify-center rounded-xl bg-secondary {collection.iconClass}"
-			>
-				<Icon class="size-5" aria-hidden="true" />
-			</span>
-			<h2 id="{collection.id}-heading" class="text-2xl font-semibold">
-				{collection.title}
-			</h2>
-		</div>
-		<p class="mt-3 max-w-[60ch] text-pretty text-muted-foreground">{collection.blurb}</p>
-
-		<ul class="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4">
-			{#each items as item (item.id)}
-				<li id={`kata-${item.id}`} class="scroll-mt-24">
-					{#key hafalan}<VocabCard {item} {hafalan} />{/key}
-				</li>
-			{/each}
-		</ul>
-		<a
-			href={resolve(collection.lesson)}
-			class="mt-4 inline-flex min-h-11 items-center font-medium text-primary underline"
+		<section
+			id={collection.id === 'shalat' ? 'quran' : collection.id}
+			class="mt-16 scroll-mt-24"
+			aria-labelledby="{collection.id}-heading"
 		>
-			Lihat kata-kata ini dalam pelajaran
-		</a>
-	</section>
+			<div class="flex items-center gap-3">
+				<span
+					class="inline-flex size-10 items-center justify-center rounded-xl bg-secondary {collection.iconClass}"
+				>
+					<Icon class="size-5" aria-hidden="true" />
+				</span>
+				<h2 id="{collection.id}-heading" class="text-2xl font-semibold">
+					{collection.title}
+				</h2>
+			</div>
+			<p class="mt-3 max-w-[60ch] text-pretty text-muted-foreground">{collection.blurb}</p>
+
+			<ul class="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4">
+				{#each items as item (item.id)}
+					<li id={`kata-${item.id}`} class="scroll-mt-24">
+						{#key hafalan}<VocabCard {item} {hafalan} />{/key}
+					</li>
+				{/each}
+			</ul>
+			<a
+				href={resolve(collection.lesson)}
+				class="mt-4 inline-flex min-h-11 items-center font-medium text-primary underline"
+			>
+				Lihat kata-kata ini dalam pelajaran
+			</a>
+		</section>
 	{/if}
 {/each}
 

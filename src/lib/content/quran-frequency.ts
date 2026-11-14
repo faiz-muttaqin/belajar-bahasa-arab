@@ -15,7 +15,9 @@ const lemmas = 'https://corpus.quran.com/lemmas.jsp?group=1';
 const split = 'https://corpus.quran.com/lemmas.jsp';
 const lemmaPage = (page: number) => `https://corpus.quran.com/lemmas.jsp?group=1&page=${page}`;
 const verbPage = (page: number) =>
-	page === 1 ? 'https://corpus.quran.com/verbs.jsp' : `https://corpus.quran.com/verbs.jsp?page=${page}`;
+	page === 1
+		? 'https://corpus.quran.com/verbs.jsp'
+		: `https://corpus.quran.com/verbs.jsp?page=${page}`;
 
 function mapCounts(
 	basis: QuranFrequency['basis'],

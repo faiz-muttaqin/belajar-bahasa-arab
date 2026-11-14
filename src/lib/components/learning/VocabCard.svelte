@@ -25,7 +25,9 @@
 		<p class="mb-2 text-xs font-medium text-muted-foreground">
 			{#if item.quranFrequency}
 				{item.quranFrequency.occurrences.toLocaleString('id-ID')}× dalam Al-Qur’an
-				<span class="font-normal">({item.quranFrequency.basis === 'verb' ? 'lema fi’il' : 'lema'})</span>
+				<span class="font-normal"
+					>({item.quranFrequency.basis === 'verb' ? 'lema fi’il' : 'lema'})</span
+				>
 			{:else}
 				Frekuensi belum diverifikasi
 			{/if}

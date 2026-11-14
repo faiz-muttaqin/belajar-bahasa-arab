@@ -30,7 +30,9 @@ test('the site search can find a Qur’anic card using the attested spelling', a
 	await expect(page.locator('#kata-quran-ittabaa')).toBeVisible();
 });
 
-test('collection pills filter cards while preserving All and the sharaf audio controls', async ({ page }) => {
+test('collection pills filter cards while preserving All and the sharaf audio controls', async ({
+	page
+}) => {
 	await page.goto('/kosakata/');
 	const filters = page.getByRole('group', { name: 'Pilih koleksi' });
 	await expect(filters.getByRole('button')).toHaveCount(4);
@@ -43,7 +45,9 @@ test('collection pills filter cards while preserving All and the sharaf audio co
 	await expect(page.getByRole('heading', { name: 'Kosakata bacaan shalat' })).toBeVisible();
 });
 
-test('Qur’anic cards start with verified high-frequency lemmas and support group + sort filters', async ({ page }) => {
+test('Qur’anic cards start with verified high-frequency lemmas and support group + sort filters', async ({
+	page
+}) => {
 	await page.goto('/kosakata/#al-quran');
 	const section = page.getByRole('region', { name: 'Kosakata Al-Qur’an', exact: true });
 	const list = section.getByRole('list', { name: 'Daftar kata Al-Qur’an berdasarkan frekuensi' });
@@ -54,11 +58,15 @@ test('Qur’anic cards start with verified high-frequency lemmas and support gro
 	await section.getByLabel('Urutkan').selectOption('rare');
 	await expect(list.locator('> li').first()).toHaveAttribute('id', 'kata-quran-sabr');
 	await section.getByLabel('Urutkan').selectOption('frequent');
-	await section.getByRole('group', { name: 'Filter jenis kata Al-Qur’an' })
-		.getByRole('button', { name: /Fi’il · Iman dan ibadah/ }).click();
+	await section
+		.getByRole('group', { name: 'Filter jenis kata Al-Qur’an' })
+		.getByRole('button', { name: /Fi’il · Iman dan ibadah/ })
+		.click();
 	await expect(page.locator('#kata-quran-kull')).toHaveCount(0);
 	await expect(page.locator('#kata-quran-amana')).toBeVisible();
-	await section.getByRole('group', { name: 'Filter jenis kata Al-Qur’an' })
-		.getByRole('button', { name: /Semua jenis/ }).click();
+	await section
+		.getByRole('group', { name: 'Filter jenis kata Al-Qur’an' })
+		.getByRole('button', { name: /Semua jenis/ })
+		.click();
 	await expect(page.locator('#kata-quran-kull')).toBeVisible();
 });

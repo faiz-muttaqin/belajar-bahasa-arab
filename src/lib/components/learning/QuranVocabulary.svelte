@@ -8,7 +8,11 @@
 		TANZIL_TEXT_VERSION,
 		quranVocabulary
 	} from '#lib/content/quran-vocabulary.js';
-	import { sortQuranVocabulary, verifiedFrequencyCount, type QuranOrder } from '#lib/domain/vocabulary/frequency.js';
+	import {
+		sortQuranVocabulary,
+		verifiedFrequencyCount,
+		type QuranOrder
+	} from '#lib/domain/vocabulary/frequency.js';
 	import { QURAN_GROUPS, type QuranGroup } from '#lib/domain/vocabulary/types.js';
 
 	let { hafalan }: { hafalan: boolean } = $props();
@@ -51,8 +55,8 @@
 	<header class="space-y-2">
 		<h2 id="al-quran-heading" class="text-2xl font-semibold">Kosakata Al-Qur’an</h2>
 		<p class="max-w-[75ch] text-pretty text-muted-foreground">
-			{quranVocabulary.length} entri dari glosarium proyek. Urutan awal berdasarkan jumlah
-			kemunculan lema atau fi’il di Al-Qur’an, bukan frekuensi akar kata.
+			{quranVocabulary.length} entri dari glosarium proyek. Urutan awal berdasarkan jumlah kemunculan
+			lema atau fi’il di Al-Qur’an, bukan frekuensi akar kata.
 		</p>
 	</header>
 
@@ -97,36 +101,47 @@
 	</div>
 
 	<details class="max-w-[75ch] rounded-xl border bg-card px-4">
-		<summary class="min-h-11 cursor-pointer py-3 font-medium">Cara menghitung, sumber, dan playlist</summary>
+		<summary class="min-h-11 cursor-pointer py-3 font-medium"
+			>Cara menghitung, sumber, dan playlist</summary
+		>
 		<div class="space-y-3 pb-4 text-sm text-muted-foreground">
 			<p>
-				Frekuensi merujuk pada Quranic Arabic Corpus: daftar lema nonverba atau konkordansi
-				fi’il menurut pola morfologinya. Angka bukan hitungan ejaan yang persis sama dalam
-				ayat dan bukan jumlah seluruh turunan akar. Bentuk ambigu dipisahkan jika data
-				gramatikalnya memungkinkan. Data yang belum diperiksa tidak diberi angka nol.
+				Frekuensi merujuk pada Quranic Arabic Corpus: daftar lema nonverba atau konkordansi fi’il
+				menurut pola morfologinya. Angka bukan hitungan ejaan yang persis sama dalam ayat dan bukan
+				jumlah seluruh turunan akar. Bentuk ambigu dipisahkan jika data gramatikalnya memungkinkan.
+				Data yang belum diperiksa tidak diberi angka nol.
 			</p>
 			<p>
-				Contoh kata dari ayat mengikuti {TANZIL_TEXT_VERSION}. Seluruh angka berstatus
-				pemeriksaan data awal; tinjauan bahasa Arab oleh pengajar masih diperlukan.
+				Contoh kata dari ayat mengikuti {TANZIL_TEXT_VERSION}. Seluruh angka berstatus pemeriksaan
+				data awal; tinjauan bahasa Arab oleh pengajar masih diperlukan.
 			</p>
 			<div class="flex flex-wrap gap-x-5">
 				<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- QAC corpus -->
-				<a class="text-primary underline" href="https://corpus.quran.com/lemmas.jsp?group=1">Daftar lema</a>
+				<a class="text-primary underline" href="https://corpus.quran.com/lemmas.jsp?group=1"
+					>Daftar lema</a
+				>
 				<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- QAC corpus -->
-				<a class="text-primary underline" href="https://corpus.quran.com/verbs.jsp">Konkordansi fi’il</a>
+				<a class="text-primary underline" href="https://corpus.quran.com/verbs.jsp"
+					>Konkordansi fi’il</a
+				>
 			</div>
 			<ul class="flex flex-wrap gap-x-5">
 				{#each playlists as playlist (playlist.href)}
 					<li>
 						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- Arabic101 playlist -->
-						<a href={playlist.href} class="inline-flex min-h-11 items-center text-primary underline">{playlist.label}</a>
+						<a href={playlist.href} class="inline-flex min-h-11 items-center text-primary underline"
+							>{playlist.label}</a
+						>
 					</li>
 				{/each}
 			</ul>
 		</div>
 	</details>
 
-	<ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4" aria-label="Daftar kata Al-Qur’an berdasarkan frekuensi">
+	<ul
+		class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4"
+		aria-label="Daftar kata Al-Qur’an berdasarkan frekuensi"
+	>
 		{#each visible as item (item.id)}
 			<li id={`kata-${item.id}`} class="scroll-mt-24">
 				{#key hafalan}
@@ -135,13 +150,19 @@
 							<div class="flex flex-wrap gap-x-4 text-sm">
 								{#if item.quranFrequency}
 									<details class="w-full">
-										<summary class="min-h-11 cursor-pointer py-3 font-medium text-primary">Lihat sumber hitungan</summary>
+										<summary class="min-h-11 cursor-pointer py-3 font-medium text-primary"
+											>Lihat sumber hitungan</summary
+										>
 										<p class="pb-2 text-muted-foreground">
 											{item.quranFrequency.note ??
 												'Berdasarkan identitas lema dalam Quranic Arabic Corpus; bentuk berimbuhan dapat ikut terhitung.'}
 										</p>
 										<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- QAC frequency source -->
-										<a href={item.quranFrequency.source} class="inline-flex min-h-11 items-center text-primary underline">Verifikasi frekuensi</a>
+										<a
+											href={item.quranFrequency.source}
+											class="inline-flex min-h-11 items-center text-primary underline"
+											>Verifikasi frekuensi</a
+										>
 									</details>
 								{/if}
 								{#if item.quranOccurrence}
@@ -182,13 +203,15 @@
 	<p class="text-sm text-muted-foreground">
 		{TANZIL_NOTICE}.
 		<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- Tanzil license -->
-		<a href={TANZIL_LICENSE_URL} class="text-primary underline">Lisensi CC BY 3.0 · teks apa adanya</a>.
-		Data frekuensi dirujuk ke Quranic Arabic Corpus (© Kais Dukes, versi korpus 0.4);
-		tidak ada berkas anotasi korpus yang disalin ke proyek.
-		Transliterasi fi’il bertaut bersumber dari
+		<a href={TANZIL_LICENSE_URL} class="text-primary underline"
+			>Lisensi CC BY 3.0 · teks apa adanya</a
+		>. Data frekuensi dirujuk ke Quranic Arabic Corpus (© Kais Dukes, versi korpus 0.4); tidak ada
+		berkas anotasi korpus yang disalin ke proyek. Transliterasi fi’il bertaut bersumber dari
 		<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- Wiktionary attribution -->
 		<a href="https://en.wiktionary.org/" class="text-primary underline">Wiktionary</a>,
 		<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- Wiktionary content license -->
-		<a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-primary underline">CC BY-SA 4.0</a>.
+		<a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-primary underline"
+			>CC BY-SA 4.0</a
+		>.
 	</p>
 </section>

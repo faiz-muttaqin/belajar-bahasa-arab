@@ -25,7 +25,9 @@ describe('Qur’anic word frequency', () => {
 			'quran-inna'
 		]);
 		expect(sorted.at(-1)?.quranFrequency).toBeUndefined();
-		expect(sorted.filter((item) => item.quranFrequency).at(-1)?.quranFrequency?.occurrences).toBe(15);
+		expect(sorted.filter((item) => item.quranFrequency).at(-1)?.quranFrequency?.occurrences).toBe(
+			15
+		);
 	});
 
 	it('keeps unknown counts last even in reverse order', () => {
@@ -40,19 +42,25 @@ describe('Qur’anic word frequency', () => {
 		expect(negative?.arabic).toBe(prohibition?.arabic);
 		expect(negative?.quranFrequency?.occurrences).toBe(1364);
 		expect(prohibition?.quranFrequency?.occurrences).toBe(327);
-		expect(quranVocabulary.find((word) => word.id === 'quran-alladhina')?.quranFrequency).toBeUndefined();
+		expect(
+			quranVocabulary.find((word) => word.id === 'quran-alladhina')?.quranFrequency
+		).toBeUndefined();
 	});
 
 	it('validates positive count and a linked corpus source', () => {
 		const base = quranVocabulary.find((word) => word.id === 'quran-kull')!;
 		expect(validateVocab(base)).toEqual([]);
-		expect(validateVocab({
-			...base,
-			quranFrequency: { ...base.quranFrequency!, occurrences: -1 }
-		}).map((issue) => issue.message)).toContain('Quran frequency must be a positive verified integer');
-		expect(validateVocab({
-			...base,
-			quranFrequency: { ...base.quranFrequency!, source: 'https://example.com' }
-		}).map((issue) => issue.message)).toContain('Quran frequency requires a Quranic Arabic Corpus source URL');
+		expect(
+			validateVocab({
+				...base,
+				quranFrequency: { ...base.quranFrequency!, occurrences: -1 }
+			}).map((issue) => issue.message)
+		).toContain('Quran frequency must be a positive verified integer');
+		expect(
+			validateVocab({
+				...base,
+				quranFrequency: { ...base.quranFrequency!, source: 'https://example.com' }
+			}).map((issue) => issue.message)
+		).toContain('Quran frequency requires a Quranic Arabic Corpus source URL');
 	});
 });
