@@ -159,6 +159,69 @@ export const foundationLessons: readonly Lesson[] = [
 	},
 	{
 		...base,
+		id: 'lesson-a2-03',
+		slug: 'latih-harakat',
+		title: 'Latih harakat pada rangkaian baru',
+		minutes: 6,
+		competencies: ['CA-03'],
+		goal: 'Pindahkan pola harakat pendek, panjang, dan sukun ke huruf serta rangkaian lain.',
+		intro:
+			'Setelah mengenali nama tanda, latihan berikut meminta Anda membacanya pada huruf yang berbeda. Baca dari kanan, lalu bandingkan bunyi tanpa menghafal satu kata saja.',
+		examples: [
+			{
+				arabic: 'بَ بِ بُ',
+				meaning: 'Latihan bunyi: ba, bi, bu',
+				note: 'Huruf ba tetap sama; posisi dan bentuk tanda yang mengubah vokalnya.'
+			},
+			{
+				arabic: 'تَ تِ تُ',
+				meaning: 'Latihan bunyi: ta, ti, tu',
+				note: 'Aturan fathah, kasrah dan dammah tidak bergantung pada huruf ba.'
+			},
+			{
+				arabic: 'مَا مِي مُو',
+				meaning: 'Latihan bunyi panjang: mā, mī, mū',
+				note: 'Ini rangkaian untuk melatih bunyi, bukan tiga kosakata dengan arti sendiri.'
+			},
+			{
+				arabic: 'مِنْ',
+				meaning: 'min · dari',
+				note: 'Nun bersukun menutup suku kata. Jangan menambahkan vokal setelah n.'
+			}
+		],
+		patterns: [
+			'Harakat pendek mengubah vokal pada huruf yang sama. Gunakan aturan itu pada ba, ta dan mim.',
+			'Vokal panjang pada latihan mengikuti fathah + alif, kasrah + ya, atau dammah + waw. Huruf dengan sukun tidak menambah vokal pendek.'
+		],
+		exercises: [
+			{
+				arabic: 'مُ مِ مَ',
+				prompt: 'Baca dari kanan. Sebutkan bunyi yang dihasilkan tiga tanda.',
+				answer:
+				'Mu, mi, ma. Ketiganya memakai mim. Perhatikan bahwa susunan vokal berbeda dari contoh awal.'
+			},
+			{
+				arabic: 'بَا بَ',
+				prompt: 'Dari dua bentuk ba ini, bentuk mana yang memiliki vokal panjang?',
+				answer:
+				'بَا yang berada di sebelah kanan. Fathah diikuti alif memberi bunyi bā; بَ hanya ba pendek.'
+			},
+			{
+				arabic: 'مِنْ مِ',
+				prompt: 'Mana yang berakhir dengan konsonan tanpa vokal tambahan?',
+				answer:
+				'مِنْ berakhir dengan nun bersukun. Pada مِ hanya ada mim berkasrah yang berbunyi mi.'
+			},
+			{
+				arabic: 'بِي بُو',
+				prompt: 'Sebutkan kedua bunyi panjang ini, dari kanan.',
+				answer:
+				'Bī dan bū. Kasrah dengan ya menjadi ī; dammah dengan waw menjadi ū.'
+			}
+		]
+	},
+	{
+		...base,
 		id: 'lesson-a3-01',
 		slug: 'tasydid-dan-tanwin',
 		title: 'Kenali tasydid dan tanwin',
