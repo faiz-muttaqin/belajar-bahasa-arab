@@ -1,0 +1,49 @@
+name: Format sharaf 22 once
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/format-sharaf-22-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/sharaf-22-modal-sidebar-20261114'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Format changed files
+        run: |
+          bunx prettier --write \
+            src/lib/components/layout/DesktopSidebar.svelte \
+            src/lib/components/layout/SiteHeader.svelte \
+            src/lib/components/learning/TransposedTashrif.svelte \
+            src/lib/content/sharaf.ts \
+            src/lib/domain/sharaf/matrix.ts \
+            src/lib/domain/sharaf/matrix.spec.ts \
+            src/lib/domain/sharaf/lexicon.ts \
+            src/lib/domain/sharaf/lexicon.spec.ts \
+            src/lib/domain/sharaf/patterns.ts \
+            src/routes/+layout.svelte \
+            src/routes/rujukan/+page.svelte \
+            tests/e2e/sharaf-matrix.e2e.ts
+      - name: Commit formatted source if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add src/lib/components/layout/ src/lib/components/learning/TransposedTashrif.svelte src/lib/content/sharaf.ts src/lib/domain/sharaf/ src/routes/+layout.svelte src/routes/rujukan/+page.svelte tests/e2e/sharaf-matrix.e2e.ts
+            git commit -m "style(sharaf): apply repository Prettier formatting"
+            git push origin HEAD:feat/sharaf-22-modal-sidebar-20261114
+          fi
