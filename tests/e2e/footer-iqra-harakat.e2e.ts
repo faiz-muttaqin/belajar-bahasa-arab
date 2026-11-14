@@ -32,7 +32,7 @@ test('Iqra chart shows eleven marks and a working recall column', async ({ page 
 	await page.goto('/iqra/#bagan-harakat');
 	const chart = page.locator('#bagan-harakat');
 	const table = chart.getByRole('table');
-	await expect(table.locator('tbody tr')).toHaveCount(11);
+	await expect(table.locator('tbody tr[id^="bagan-harakat-"]')).toHaveCount(11);
 	await expect(table.getByText('ـَ', { exact: true })).toBeVisible();
 	await expect(chart.getByText('Materi masih menunggu tinjauan pengajar.')).toBeVisible();
 	await chart.getByRole('radio', { name: 'Sembunyikan bunyi' }).check();
@@ -60,7 +60,7 @@ test.describe('static HTML without JavaScript', () => {
 	test('contains harakat reference and new Iqra content', async ({ page }) => {
 		await page.goto('/iqra/');
 		await expect(page.locator('#bagan-harakat').getByRole('table')).toBeVisible();
-		await expect(page.locator('#bagan-harakat tbody tr')).toHaveCount(11);
+		await expect(page.locator('#bagan-harakat tbody tr[id^="bagan-harakat-"]')).toHaveCount(11);
 		await expect(
 			page.getByRole('link', { name: /Latih harakat pada rangkaian baru/ })
 		).toBeVisible();
