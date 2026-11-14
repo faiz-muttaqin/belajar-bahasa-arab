@@ -4,6 +4,7 @@ import type {
 	VerbReference,
 	VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
+import { quranFrequencies } from './quran-frequency.js';
 
 export const TANZIL_TEXT_VERSION = 'Tanzil Uthmani 1.1';
 export const TANZIL_NOTICE = 'Tanzil Quran Text © 2007–2021 Tanzil Project';
@@ -789,7 +790,12 @@ export const quranVocabulary: VocabularyItem[] = Object.entries(words).flatMap((
 	const quranGroup = name as QuranGroup;
 	return group.map(
 		([slug, arabic, transliteration, meaning, reference, token, context, verbReference]) => {
-			const sources = [`https://tanzil.net/#${reference}`, TANZIL_LICENSE_URL];
+			const quranFrequency = quranFrequencies[slug];
+			const sources = [
+				`https://tanzil.net/#${reference}`,
+				TANZIL_LICENSE_URL,
+				...(quranFrequency ? [quranFrequency.source] : [])
+			];
 			return {
 				id: `quran-${slug}`,
 				collection: 'quran',
@@ -802,6 +808,7 @@ export const quranVocabulary: VocabularyItem[] = Object.entries(words).flatMap((
 				context,
 				sources,
 				quranGroup,
+				quranFrequency,
 				quranOccurrence: { reference, token, textVersion: TANZIL_TEXT_VERSION },
 				verbReference
 			};
