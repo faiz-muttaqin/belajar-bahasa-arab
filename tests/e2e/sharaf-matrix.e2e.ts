@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test('transposed tashrif includes 22 rows and all 11 horizontally scrollable forms', async ({
 	page
 }) => {
-	await page.goto('/rujukan/#tashrif-istilahi');
+	await page.goto('/rujukan/fiil/#tashrif-istilahi');
 	const table = page
 		.getByRole('region', { name: 'Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri' })
 		.locator('table');
@@ -26,7 +26,7 @@ test('transposed tashrif includes 22 rows and all 11 horizontally scrollable for
 test('global Indonesian search and one clear button replace and restore the matching row', async ({
 	page
 }) => {
-	await page.goto('/rujukan/#tashrif-istilahi');
+	await page.goto('/rujukan/fiil/#tashrif-istilahi');
 	const table = page.getByRole('region', {
 		name: 'Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri'
 	});
@@ -50,7 +50,7 @@ test('global Indonesian search and one clear button replace and restore the matc
 test('highlights chosen words and shows short meanings below both examples and wazan', async ({
 	page
 }) => {
-	await page.goto('/rujukan/#tashrif-istilahi');
+	await page.goto('/rujukan/fiil/#tashrif-istilahi');
 	const rows = page.locator('#tashrif-matrix tbody tr');
 	const meanings = page.getByRole('switch', { name: 'Arti Indonesia' });
 	await expect(meanings).toBeEnabled();
@@ -101,7 +101,7 @@ test('highlights chosen words and shows short meanings below both examples and w
 test('clicking a bab narrows the glossary, and cell detail explains form and source', async ({
 	page
 }) => {
-	await page.goto('/rujukan/#tashrif-istilahi');
+	await page.goto('/rujukan/fiil/#tashrif-istilahi');
 	const modal = page.getByRole('dialog', { name: 'Kamus dan penjelasan sharaf' });
 	await page.getByRole('button', { name: 'Pilih kata untuk bab 15' }).click();
 	await expect(modal).toBeVisible();
@@ -130,7 +130,7 @@ test('the glossary snapshot is served as static JSON including the new patterns'
 test('keyboard navigation keeps focus when moving from a pattern to the glossary', async ({
 	page
 }) => {
-	await page.goto('/rujukan/#tashrif-istilahi');
+	await page.goto('/rujukan/fiil/#tashrif-istilahi');
 	const trigger = page.getByRole('button', { name: 'Detail fi’il mudhari’, bab 15' });
 	await trigger.focus();
 	await page.keyboard.press('Enter');
@@ -159,7 +159,7 @@ test('desktop uses a sidebar and the matrix occupies the remaining page width', 
 	page
 }) => {
 	await page.setViewportSize({ width: 1440, height: 900 });
-	await page.goto('/rujukan/#tashrif-istilahi');
+	await page.goto('/rujukan/fiil/#tashrif-istilahi');
 	await expect(page.getByRole('navigation', { name: 'Navigasi utama' })).toBeVisible();
 	const sidebar = page.getByRole('complementary', { name: 'Navigasi desktop' });
 	await expect(sidebar).toBeVisible();
@@ -173,7 +173,7 @@ test.describe('static HTML without JavaScript', () => {
 	test.use({ javaScriptEnabled: false });
 
 	test('ships all 22 bab and eleven header forms without client JavaScript', async ({ page }) => {
-		await page.goto('/rujukan/');
+		await page.goto('/rujukan/fiil/');
 		const table = page.getByRole('region', {
 			name: 'Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri'
 		});

@@ -132,7 +132,7 @@ test.describe('public lesson reader without JavaScript', () => {
 			);
 			await expect(
 				page.getByRole('link', { name: 'Hafalkan kata penghubung dan efeknya' })
-			).toHaveAttribute('href', /rujukan\/#kata-penghubung$/);
+			).toHaveAttribute('href', /rujukan\/harf\/#kata-penghubung$/);
 			await page.goBack();
 			const exercises = page.getByRole('region', { name: 'Latihan pemahaman' });
 			const reveal = exercises.getByText('Lihat pembahasan', { exact: true });
@@ -169,7 +169,7 @@ test('exercise index deep links to a lesson and navigation closes open feedback'
 
 test('tashrif and vocabulary contain lesson material on a phone', async ({ page }) => {
 	await page.setViewportSize({ width: 375, height: 812 });
-	await page.goto('/rujukan/');
+	await page.goto('/rujukan/fiil/');
 	await page.getByText('Contoh per bab dan mode hafalan', { exact: true }).click();
 	const tashrif = page.getByRole('region', { name: /Sebelas bentuk/ });
 	await expect(tashrif.getByRole('row')).toHaveCount(12);
@@ -195,7 +195,7 @@ test('tashrif and vocabulary contain lesson material on a phone', async ({ page 
 
 test('the connector glossary supports recall of grammatical effects', async ({ page }) => {
 	await page.setViewportSize({ width: 375, height: 812 });
-	await page.goto('/rujukan/#kata-penghubung');
+	await page.goto('/rujukan/harf/#kata-penghubung');
 	const glossary = page.getByRole('region', { name: 'Glosarium kata penghubung' });
 	const effect = glossary.getByText('Menashabkan fi‘il mudhari‘.', { exact: false });
 	await expect(effect).toBeVisible();

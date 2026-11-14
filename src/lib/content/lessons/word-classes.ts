@@ -190,6 +190,6 @@ export const wordClassesLesson: Lesson = {
 		}
 	],
 	related: [
-		{ label: 'Bandingkan akar dan pola di tabel tashrif', path: 'rujukan/#tashrif-istilahi' }
+		{ label: 'Bandingkan akar dan pola di tabel tashrif', path: 'rujukan/fiil/#tashrif-istilahi' }
 	]
 };

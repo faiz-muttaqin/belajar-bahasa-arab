@@ -9,7 +9,9 @@ const base = {
 	register: 'msa',
 	reviewStatus: 'draft',
 	revision: 3,
-	related: [{ label: 'Hafalkan kata penghubung dan efeknya', path: 'rujukan/#kata-penghubung' }],
+	related: [
+		{ label: 'Hafalkan kata penghubung dan efeknya', path: 'rujukan/harf/#kata-penghubung' }
+	],
 	examples: []
 } as const;
 

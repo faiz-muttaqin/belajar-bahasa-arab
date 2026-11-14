@@ -1,4 +1,6 @@
 import { connectorsReference } from './connectors.js';
+import { isimReferences } from './reference-isim.js';
+import { questionWords } from './reference-tanya.js';
 import { validateReferenceTable, type ReferenceTableData } from '#lib/domain/reference/table.js';
 
 const nutshell =
@@ -223,7 +225,13 @@ export const particlesReference: ReferenceTableData = {
 	]
 };
 
-export const referenceTables = [tashrifIstilahi, connectorsReference, particlesReference] as const;
+export const referenceTables = [
+	tashrifIstilahi,
+	connectorsReference,
+	particlesReference,
+	...isimReferences,
+	questionWords
+] as const;
 
 for (const table of referenceTables) {
 	const issues = validateReferenceTable(table);

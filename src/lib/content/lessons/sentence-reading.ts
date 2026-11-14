@@ -229,6 +229,6 @@ export const sentenceReadingLessons: readonly Lesson[] = [
 				answer: 'Penulisan surat menjadi penanda waktu. Tindakan utama adalah Sami keluar.'
 			}
 		],
-		related: [{ label: 'Buka tabel tashrif istilahi', path: 'rujukan/#tashrif-istilahi' }]
+		related: [{ label: 'Buka tabel tashrif istilahi', path: 'rujukan/fiil/#tashrif-istilahi' }]
 	}
 ];

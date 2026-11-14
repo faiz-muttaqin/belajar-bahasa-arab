@@ -16,6 +16,14 @@ const routes = [
 	{ path: '/latihan/', file: 'latihan/index.html', h1: 'Latihan' },
 	{ path: '/kosakata/', file: 'kosakata/index.html', h1: 'Kosakata' },
 	{ path: '/rujukan/', file: 'rujukan/index.html', h1: 'Tabel rujukan' },
+	{ path: '/rujukan/fiil/', file: 'rujukan/fiil/index.html', h1: 'Rujukan kata kerja' },
+	{ path: '/rujukan/isim/', file: 'rujukan/isim/index.html', h1: 'Rujukan kata benda dan sifat' },
+	{
+		path: '/rujukan/harf/',
+		file: 'rujukan/harf/index.html',
+		h1: 'Rujukan kata hubung dan kata tugas'
+	},
+	{ path: '/rujukan/kata-tanya/', file: 'rujukan/kata-tanya/index.html', h1: 'Rujukan kata tanya' },
 	{ path: '/sharaf/', file: 'sharaf/index.html', h1: 'Cari akar dan wazan' },
 	{ path: '/cari/', file: 'cari/index.html', h1: 'Cari materi' },
 	{ path: '/progres/', file: 'progres/index.html', h1: 'Progres' },
