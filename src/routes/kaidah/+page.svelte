@@ -65,6 +65,17 @@
 	</a>
 </aside>
 
+<aside class="mt-6 max-w-4xl rounded-xl border bg-card p-5">
+	<h2 class="text-lg font-semibold">Berikutnya: bangun kalimat utuh</h2>
+	<p class="mt-2 text-muted-foreground">
+		Bandingkan kalimat nominal dan verbal, peran fā‘il–maf‘ūl, aktif–pasif,
+		negasi, kāna, dan inna. Setiap contoh tetap mempunyai glos di bawah kata Arab.
+	</p>
+	<a href={resolve('kaidah/kalimat/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+		Pelajari susunan kalimat lengkap
+	</a>
+</aside>
+
 <div class="mt-12 max-w-5xl space-y-16">
 	{#each grammarRules as rule, i (rule.id)}
 		<section id={rule.id} class="scroll-mt-24 space-y-5" aria-labelledby="{rule.id}-title">
