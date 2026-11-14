@@ -63,8 +63,11 @@ describe('G-05: connected clauses and syntax', () => {
 	it('requires jussive on both condition and simple verbal result, but not nominal answer', () => {
 		const condition = clauseRules.find((item) => item.id === 'conditions')!;
 		const simple = condition.examples.find((item) => item.id === 'if-study')!;
-		expect(simple.spans.filter((span) => ['condition', 'result'].includes(span.kind))
-			.flatMap((span) => span.tokens.map((token) => token.mood))).toEqual(['jussive', 'jussive']);
+		expect(
+			simple.spans
+				.filter((span) => ['condition', 'result'].includes(span.kind))
+				.flatMap((span) => span.tokens.map((token) => token.mood))
+		).toEqual(['jussive', 'jussive']);
 		const nominal = condition.examples.find((item) => item.id === 'if-nominal-result')!;
 		expect(nominal.spans.at(-1)!.tokens[0]!.arabic).toBe('فَأَنْتَ');
 		expect(nominal.spans.at(-1)!.tokens[1]!.irab).toBe('raf');
@@ -85,8 +88,11 @@ describe('G-05: connected clauses and syntax', () => {
 			'exception',
 			'specification'
 		]);
-		expect(extra.examples.map((ex) => ex.spans.at(-1)!.tokens.at(-1)!.irab))
-			.toEqual(['nasb', 'nasb', 'nasb']);
+		expect(extra.examples.map((ex) => ex.spans.at(-1)!.tokens.at(-1)!.irab)).toEqual([
+			'nasb',
+			'nasb',
+			'nasb'
+		]);
 	});
 
 	it('rejects missing glosses, duplicate spans, and mixed noun case with verb mood', () => {
@@ -95,16 +101,27 @@ describe('G-05: connected clauses and syntax', () => {
 		const first = base.spans[0]!;
 		const broken: ClauseRule = {
 			...rule,
-			examples: [{
-				...base,
-				spans: [
-					{ ...first, tokens: [{ ...first.tokens[0]!, gloss: '', irab: 'raf', mood: 'jussive' }] },
-					{ ...first }
-				]
-			}]
+			examples: [
+				{
+					...base,
+					spans: [
+						{
+							...first,
+							tokens: [{ ...first.tokens[0]!, gloss: '', irab: 'raf', mood: 'jussive' }]
+						},
+						{ ...first }
+					]
+				}
+			]
 		};
-		expect(validateClauseRules([broken])).toContain('Incomplete token: coordination/and-two-actions/first');
-		expect(validateClauseRules([broken])).toContain('Case/mood collision: coordination/and-two-actions/first');
-		expect(validateClauseRules([broken])).toContain('Duplicate span: coordination/and-two-actions/first');
+		expect(validateClauseRules([broken])).toContain(
+			'Incomplete token: coordination/and-two-actions/first'
+		);
+		expect(validateClauseRules([broken])).toContain(
+			'Case/mood collision: coordination/and-two-actions/first'
+		);
+		expect(validateClauseRules([broken])).toContain(
+			'Duplicate span: coordination/and-two-actions/first'
+		);
 	});
 });

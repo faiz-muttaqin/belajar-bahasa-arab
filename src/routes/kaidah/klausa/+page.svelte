@@ -13,8 +13,8 @@
 >
 	{#snippet lead()}
 		<p>
-			Satu kalimat dapat mempunyai beberapa bagian. Kenali batas klausa, fungsi penghubung,
-			lalu periksa mengapa akhir kata atau fi‘il berubah.
+			Satu kalimat dapat mempunyai beberapa bagian. Kenali batas klausa, fungsi penghubung, lalu
+			periksa mengapa akhir kata atau fi‘il berubah.
 		</p>
 	{/snippet}
 </PageIntro>
@@ -22,13 +22,13 @@
 <div class="mt-8 max-w-4xl space-y-4">
 	<p class="text-muted-foreground">
 		Ini adalah tahap <strong>G-05</strong>. Tiap blok berwarna menandai
-		<strong>bagian kalimat</strong>, bukan otomatis i‘rab kata-katanya.
-		Glos Indonesia berada di bawah tiap token Arab, sedangkan label kecil
-		menjelaskan perannya. Harakat, i‘rab isim, dan mood muḍāri‘ tetap harus dianalisis tersendiri.
+		<strong>bagian kalimat</strong>, bukan otomatis i‘rab kata-katanya. Glos Indonesia berada di
+		bawah tiap token Arab, sedangkan label kecil menjelaskan perannya. Harakat, i‘rab isim, dan mood
+		muḍāri‘ tetap harus dianalisis tersendiri.
 	</p>
 	<p class="text-sm text-muted-foreground">
-		Tanda hubung وَ dan فَ ditulis melekat pada kata berikutnya sesuai ejaan Arab.
-		Contoh dan penjelasan merupakan materi proyek yang masih berstatus draft.
+		Tanda hubung وَ dan فَ ditulis melekat pada kata berikutnya sesuai ejaan Arab. Contoh dan
+		penjelasan merupakan materi proyek yang masih berstatus draft.
 	</p>
 	<nav aria-label="Pilih jenis hubungan klausa" class="flex flex-wrap gap-2">
 		{#each clauseRules as rule (rule.id)}
@@ -62,7 +62,8 @@
 			</div>
 
 			<p class="max-w-3xl border-s-4 border-primary ps-4 text-sm">
-				<strong>Batas kaidah:</strong> {rule.limitation}
+				<strong>Batas kaidah:</strong>
+				{rule.limitation}
 			</p>
 
 			<details class="max-w-3xl rounded-xl border bg-card p-4">
@@ -95,10 +96,13 @@
 <aside class="mt-14 max-w-4xl space-y-3 rounded-2xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Kembali ke prasyarat</h2>
 	<p class="text-muted-foreground">
-		Klausa yang tersambung terdiri dari kalimat dan frasa yang telah dipelajari.
-		G-06 akan menghubungkan aturan ini dengan latihan menyusun paragraf dan peta prasyarat.
+		Klausa yang tersambung terdiri dari kalimat dan frasa yang telah dipelajari. G-06 akan
+		menghubungkan aturan ini dengan latihan menyusun paragraf dan peta prasyarat.
 	</p>
-	<nav aria-label="Materi dasar terkait" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
+	<nav
+		aria-label="Materi dasar terkait"
+		class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold"
+	>
 		<a href={resolve('kaidah/')} class="text-primary underline">Peta kaidah</a>
 		<a href={resolve('kaidah/kalimat/')} class="text-primary underline">Kalimat lengkap</a>
 		<a href={resolve('kaidah/frasa/')} class="text-primary underline">Frasa dan i‘rab</a>

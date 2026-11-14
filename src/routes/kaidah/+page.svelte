@@ -37,7 +37,10 @@
 	</nav>
 </div>
 
-<nav aria-label="Tahapan kaidah lanjutan" class="mt-8 grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-3">
+<nav
+	aria-label="Tahapan kaidah lanjutan"
+	class="mt-8 grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-3"
+>
 	<a
 		href={resolve('kaidah/sharaf/')}
 		aria-label="Pelajari perubahan kata (sharaf)"
@@ -72,7 +75,9 @@
 	>
 		<span class="text-xs font-semibold text-muted-foreground">G-05 · Klausa</span>
 		<strong class="group-hover:text-primary">Pelajari hubungan klausa</strong>
-		<span class="text-sm text-muted-foreground">Kata hubung, ṣilah, syarat, sebab, dan kontras.</span>
+		<span class="text-sm text-muted-foreground"
+			>Kata hubung, ṣilah, syarat, sebab, dan kontras.</span
+		>
 	</a>
 </nav>
 

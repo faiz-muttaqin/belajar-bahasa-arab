@@ -1,10 +1,14 @@
 import { expect, test } from '@playwright/test';
 
-test('G-05 clause roadmap and previous sentence lessons link in both directions', async ({ page }) => {
+test('G-05 clause roadmap and previous sentence lessons link in both directions', async ({
+	page
+}) => {
 	await page.goto('/kaidah/');
 	await page.getByRole('link', { name: /Pelajari hubungan klausa/ }).click();
 	await expect(page).toHaveURL(/\/kaidah\/klausa\/$/);
-	await expect(page.getByRole('heading', { name: 'Kalimat majemuk dan hubungan klausa' })).toBeVisible();
+	await expect(
+		page.getByRole('heading', { name: 'Kalimat majemuk dan hubungan klausa' })
+	).toBeVisible();
 	await expect(page.getByRole('link', { name: 'Kalimat lengkap' })).toBeVisible();
 
 	await page.goto('/kaidah/kalimat/');
@@ -26,7 +30,9 @@ test('G-05 renders 16 examples with explicit nested clause and token roles', asy
 	await expect(page.locator('#relative-clauses')).toContainText('قَرَأْتُهُ');
 });
 
-test('G-05 shows conditional jussive and distinguishes cause, contrast and exception', async ({ page }) => {
+test('G-05 shows conditional jussive and distinguishes cause, contrast and exception', async ({
+	page
+}) => {
 	await page.goto('/kaidah/klausa/');
 	const condition = page.locator('#conditions figure').first();
 	await expect(condition.locator('[data-mood="jussive"]')).toHaveCount(2);
@@ -47,7 +53,9 @@ test('G-05 shows conditional jussive and distinguishes cause, contrast and excep
 test.describe('G-05 Arabic clause reading without JS on narrow screen', () => {
 	test.use({ javaScriptEnabled: false, viewport: { width: 375, height: 812 } });
 
-	test('keeps 16 examples, labels and native exercises accessible without overflow', async ({ page }) => {
+	test('keeps 16 examples, labels and native exercises accessible without overflow', async ({
+		page
+	}) => {
 		await page.goto('/kaidah/klausa/');
 		await expect(page.locator('section[id] figure')).toHaveCount(16);
 		await expect(page.locator('[data-span="relative"]')).toHaveCount(3);

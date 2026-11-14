@@ -30,7 +30,7 @@
 		{#each example.spans as span (span.id)}
 			<section
 				data-span={span.kind}
-				class="flex min-w-0 max-w-full flex-col gap-3 rounded-xl border p-3 {spanColors[span.kind]}"
+				class="flex max-w-full min-w-0 flex-col gap-3 rounded-xl border p-3 {spanColors[span.kind]}"
 				aria-label={CLAUSE_SPAN_LABELS[span.kind]}
 			>
 				<div class="text-start" dir="ltr">
@@ -40,7 +40,7 @@
 				<div class="flex min-w-0 flex-wrap justify-start gap-2" dir="rtl">
 					{#each span.tokens as token, i (span.id + '-' + i)}
 						<div
-							class="flex min-w-0 max-w-full flex-col items-center gap-1 rounded-lg border border-border/70 bg-background/80 px-2 py-2 text-center"
+							class="flex max-w-full min-w-0 flex-col items-center gap-1 rounded-lg border border-border/70 bg-background/80 px-2 py-2 text-center"
 							data-irab={token.irab ?? 'none'}
 							data-mood={token.mood ?? 'none'}
 						>

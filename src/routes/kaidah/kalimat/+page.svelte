@@ -98,8 +98,8 @@
 <aside class="mt-9 max-w-4xl rounded-xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Berikutnya: hubungan antarklausa</h2>
 	<p class="mt-2 text-muted-foreground">
-		Gunakan kata hubung, isim mawṣūl, klausa syarat, alasan, dan kontras
-		untuk membuat kalimat lebih panjang tanpa kehilangan fungsi tiap unsur.
+		Gunakan kata hubung, isim mawṣūl, klausa syarat, alasan, dan kontras untuk membuat kalimat lebih
+		panjang tanpa kehilangan fungsi tiap unsur.
 	</p>
 	<a
 		href={resolve('kaidah/klausa/')}
