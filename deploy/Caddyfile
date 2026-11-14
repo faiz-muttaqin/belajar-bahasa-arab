@@ -1,10 +1,15 @@
 # Serves the built site on a local port. Put your own reverse proxy or domain in front of it.
 # Change the path to your releases folder (the one that holds the `current` symlink).
+#
+# The site address is `:4173` (any Host header) with `bind 127.0.0.1`, so it is still reachable
+# from this machine only. Do NOT write `http://127.0.0.1:4173` here: Caddy would then answer a
+# proxied request that carries your real domain in the Host header with an empty 200 page.
 {
 	auto_https off
 }
 
-http://127.0.0.1:4173 {
+http://:4173 {
+	bind 127.0.0.1
 	root * /srv/belajar-bahasa-arab-releases/current
 	encode zstd gzip
 	file_server

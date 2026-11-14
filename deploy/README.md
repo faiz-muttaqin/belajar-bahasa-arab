@@ -64,9 +64,22 @@ Aktifkan dengan `systemctl --user enable --now belajar-update.timer` (dan `login
 `update.sh` hanya membangun; **tidak ada yang otomatis berjalan di sebuah port** sampai Anda
 menjalankan server file statis. Contoh memakai [Caddy](https://caddyserver.com) dan
 [Caddyfile](./Caddyfile): ia menyajikan folder `current` di **`127.0.0.1:4173`** (port ini hanya
-pilihan contoh; ubah di baris `http://127.0.0.1:4173`). Karena hanya mendengarkan `127.0.0.1`,
+pilihan contoh; ubah di baris `http://:4173`). Karena hanya mendengarkan `127.0.0.1`,
 situs tidak terjangkau dari luar server; forwarder atau reverse proxy Anda harus berada di
 mesin yang sama dan meneruskan ke `127.0.0.1:4173`.
+
+Alamat site sengaja `:4173` dengan `bind 127.0.0.1`, bukan `http://127.0.0.1:4173`. Caddy memilih
+blok berdasarkan header `Host`; reverse proxy biasanya meneruskan domain Anda sebagai `Host`,
+dan dengan alamat `127.0.0.1` Caddy akan menjawab `200` **kosong** (halaman putih tanpa error).
+Uji dengan header yang sama seperti proxy:
+
+```bash
+curl -s -o /dev/null -w '%{http_code} %{size_download}B\n' -H 'Host: contoh.domain.anda' http://127.0.0.1:4173/
+# harus 200 dan ukuran > 0
+```
+
+`update.sh` bisa menjalankan uji itu otomatis setelah tiap deploy (lihat `SMOKE_HOST` di atas
+script). Bila gagal, rilis dikembalikan ke yang sebelumnya.
 
 ```bash
 # sesuaikan baris `root` di deploy/Caddyfile ke folder rilis Anda, lalu:

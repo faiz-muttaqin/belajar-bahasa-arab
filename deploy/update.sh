@@ -12,6 +12,10 @@
 #   RELEASES_DIR  where releases and `current` live     (default: <repo>/../belajar-bahasa-arab-releases)
 #   KEEP          how many releases to keep             (default: 3)
 #   POST_DEPLOY   command to run after a new release    (default: none, e.g. "sudo systemctl reload caddy")
+#   SMOKE_HOST    domain to send as the Host header in a post-deploy check (default: check off).
+#                 When set, the new release must answer 200 with a non-empty HTML page through
+#                 SMOKE_URL, otherwise `current` is rolled back to the previous release.
+#   SMOKE_URL     address to check                      (default: http://127.0.0.1:4173/)
 #   FORCE=1       rebuild even if this commit was already built or failed before
 set -euo pipefail
 
@@ -87,7 +91,25 @@ release="$RELEASES_DIR/$short"
 rm -rf "$release"
 mkdir -p "$release"
 cp -R build/. "$release/"
+prev="$(readlink "$RELEASES_DIR/current" 2>/dev/null || true)"
 ln -sfn "$release" "$RELEASES_DIR/current"
+
+# Optional smoke test through the same Host header the reverse proxy sends. It catches a site
+# that is "up" but serving an empty page (for example a Caddy site address that does not match).
+if [ -n "${SMOKE_HOST:-}" ]; then
+	smoke_url="${SMOKE_URL:-http://127.0.0.1:4173/}"
+	body="$(curl -fsS -m 20 -H "Host: $SMOKE_HOST" "$smoke_url" 2>/dev/null || true)"
+	if ! printf '%s' "$body" | grep -qi '<html'; then
+		if [ -n "$prev" ] && [ -d "$prev" ]; then
+			ln -sfn "$prev" "$RELEASES_DIR/current"
+			log "smoke test FAILED for $short ($smoke_url, Host: $SMOKE_HOST); rolled back to $(basename "$prev"). Check the web server and proxy."
+		else
+			log "smoke test FAILED for $short ($smoke_url, Host: $SMOKE_HOST); no previous release to roll back to"
+		fi
+		printf '%s' "$sha" >"$RELEASES_DIR/.failed-sha"
+		exit 1
+	fi
+fi
 printf '%s' "$sha" >"$RELEASES_DIR/.deployed-sha"
 rm -f "$RELEASES_DIR/.failed-sha"
 log "deployed $short -> $RELEASES_DIR/current"
