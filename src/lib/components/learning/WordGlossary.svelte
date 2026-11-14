@@ -21,7 +21,9 @@
 		chipKey,
 		arabicKey = 'arabic',
 		meaningKey = 'meaning',
-		exampleKey = 'example'
+		exampleKey = 'example',
+		linkKey,
+		linkLabel = 'Sumber'
 	}: {
 		table: ReferenceTableData;
 		groups?: readonly Group[];
@@ -32,6 +34,9 @@
 		arabicKey?: string;
 		meaningKey?: string;
 		exampleKey?: string;
+		/** Column holding an external URL, shown as a link in the modal. */
+		linkKey?: string;
+		linkLabel?: string;
 	} = $props();
 
 	const uid = $props.id();
@@ -95,7 +100,7 @@
 								class="flex h-full min-h-28 w-full flex-col items-center justify-center gap-1 rounded-2xl border bg-card p-3 text-center transition-colors hover:bg-secondary"
 							>
 								<ArabicText text={row.cells[arabicKey] ?? ''} size="block" class="text-3xl" />
-								<span class="text-sm leading-snug">
+								<span class="line-clamp-3 text-sm leading-snug">
 									{#if isShown(row.id)}
 										{row.cells[meaningKey]}
 									{:else}
@@ -130,7 +135,7 @@
 	onclick={(event) => {
 		if (event.target === dialog) dialog?.close();
 	}}
-	class="m-auto w-[min(92vw,34rem)] rounded-2xl border bg-card p-0 text-card-foreground shadow-xl backdrop:bg-black/40"
+	class="m-auto max-h-[88vh] w-[min(92vw,34rem)] overflow-y-auto rounded-2xl border bg-card p-0 text-card-foreground shadow-xl backdrop:bg-black/40"
 >
 	{#if selected}
 		<div class="space-y-5 p-6">
@@ -169,6 +174,16 @@
 					</div>
 				{/if}
 			{/each}
+
+			{#if linkKey && selected.cells[linkKey]}
+				<!-- eslint-disable svelte/no-navigation-without-resolve -- external source -->
+				<a
+					href={selected.cells[linkKey]}
+					rel="noopener noreferrer"
+					class="inline-flex min-h-11 items-center text-primary underline">{linkLabel}</a
+				>
+				<!-- eslint-enable svelte/no-navigation-without-resolve -->
+			{/if}
 
 			{#if selected.cells[exampleKey]}
 				<div class="rounded-xl bg-secondary p-4">

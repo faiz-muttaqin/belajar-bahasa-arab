@@ -1,0 +1,49 @@
+import { expect, test } from '@playwright/test';
+
+test('the verb index lists the six bab with counts', async ({ page }) => {
+	await page.goto('/rujukan/fiil/kata-kerja/');
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Daftar kata kerja per bab');
+	for (const bab of ['Bab 1 · Menolong', 'Bab 3 · Membuka', 'Bab 6 · Menjadi baik']) {
+		await expect(page.getByRole('link', { name: new RegExp(bab) })).toBeVisible();
+	}
+});
+
+test('a bab page shows verbs with the meaning under the Arabic and a detail modal', async ({
+	page
+}) => {
+	await page.goto('/rujukan/fiil/kata-kerja/3/');
+	const tile = page.getByRole('button', { name: /فَتَحَ/ });
+	await expect(tile).toBeVisible();
+	await tile.click();
+	const modal = page.getByRole('dialog');
+	await expect(modal.getByText('fataḥa')).toBeVisible();
+	await expect(modal.getByText('يَفْتَحُ')).toBeVisible();
+	await expect(modal.getByText('Arti Inggris (Wiktionary)')).toBeVisible();
+	await expect(modal.getByRole('link', { name: 'Lihat di Wiktionary' })).toHaveAttribute(
+		'href',
+		/en\.wiktionary\.org\/wiki\//
+	);
+	await page.keyboard.press('Escape');
+	await expect(modal).toBeHidden();
+});
+
+test('the page fits a phone and credits Wiktionary', async ({ page }) => {
+	await page.setViewportSize({ width: 375, height: 812 });
+	await page.goto('/rujukan/fiil/kata-kerja/1/');
+	expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
+	await expect(page.getByText(/English Wiktionary/)).toBeVisible();
+});
+
+test.describe('without JavaScript', () => {
+	test.use({ javaScriptEnabled: false });
+
+	test('verbs are in the static HTML', async ({ page }) => {
+		await page.goto('/rujukan/fiil/kata-kerja/4/');
+		await expect(page.getByText('عَلِمَ', { exact: true }).first()).toBeAttached();
+	});
+});
+
+test('the 22 wazan table page is unchanged and links to the verb list', async ({ page }) => {
+	await page.goto('/rujukan/fiil/');
+	await expect(page.getByRole('link', { name: /Daftar kata kerja per bab/ })).toBeVisible();
+});

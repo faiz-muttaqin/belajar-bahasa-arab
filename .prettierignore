@@ -14,3 +14,6 @@ bun.lockb
 # Claude Code agent worktrees
 /.claude/
 /content-local/
+
+# Generated data (see docs/data/wiktionary-verbs.md)
+/data/wiktionary/
