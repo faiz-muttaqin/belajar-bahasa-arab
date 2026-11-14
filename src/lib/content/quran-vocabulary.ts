@@ -226,7 +226,25 @@ const words: Record<QuranGroup, Word[]> = {
 			'عِندَ',
 			'Menunjukkan kedekatan atau keberadaan menurut konteks.'
 		],
-		['maa', 'مَعَ', 'maʿa', 'bersama', '2:153', 'مَعَ', 'Menandai kebersamaan atau penyertaan.']
+		['maa', 'مَعَ', 'maʿa', 'bersama', '2:153', 'مَعَ', 'Menandai kebersamaan atau penyertaan.'],
+		[
+			'kull',
+			'كُلٌّ',
+			'kull',
+			'setiap, seluruh',
+			'2:20',
+			'كُلِّ',
+			'Dalam frasa “setiap sesuatu”, i‘rabnya mengikuti susunan kalimat.'
+		],
+		[
+			'ghayr',
+			'غَيْرٌ',
+			'ghayr',
+			'selain, bukan',
+			'1:7',
+			'غَيْرِ',
+			'Pada ayat ini digunakan untuk mengecualikan suatu golongan.'
+		]
 	],
 	'fiil-ujar': [
 		[
@@ -545,6 +563,15 @@ const words: Record<QuranGroup, Word[]> = {
 	],
 	isim: [
 		['allah', 'اللَّهُ', 'Allāh', 'Allah', '112:2', 'ٱللَّهُ', 'Nama diri.'],
+		[
+			'sabil',
+			'سَبِيلٌ',
+			'sabīl',
+			'jalan, cara',
+			'2:154',
+			'سَبِيلِ',
+			'Dalam ayat ini bermakna jalan atau perjuangan di jalan Allah.'
+		],
 		[
 			'rabb',
 			'رَبٌّ',
