@@ -51,12 +51,12 @@ test('Qur’anic cards start with verified high-frequency lemmas and support gro
 	await page.goto('/kosakata/#al-quran');
 	const section = page.getByRole('region', { name: 'Kosakata Al-Qur’an', exact: true });
 	const list = section.getByRole('list', { name: 'Daftar kata Al-Qur’an berdasarkan frekuensi' });
-	await expect(list.locator('> li').first()).toHaveAttribute('id', 'kata-quran-min');
+	await expect(list.locator(':scope > li').first()).toHaveAttribute('id', 'kata-quran-min');
 	await expect(page.locator('#kata-quran-min')).toContainText('3.226×');
 	await expect(section.getByText(/85 sudah memiliki hitungan terverifikasi/)).toBeVisible();
 	await expect(page.locator('#kata-quran-kull')).toContainText('359×');
 	await section.getByLabel('Urutkan').selectOption('rare');
-	await expect(list.locator('> li').first()).toHaveAttribute('id', 'kata-quran-sabr');
+	await expect(list.locator(':scope > li').first()).toHaveAttribute('id', 'kata-quran-sabr');
 	await section.getByLabel('Urutkan').selectOption('frequent');
 	await section
 		.getByRole('group', { name: 'Filter jenis kata Al-Qur’an' })
