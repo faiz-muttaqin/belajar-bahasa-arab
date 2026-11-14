@@ -109,6 +109,17 @@
 	</a>
 </aside>
 
+<aside class="mt-9 max-w-4xl rounded-xl border bg-card p-5">
+	<h2 class="text-lg font-semibold">Coba contoh yang dapat diubah</h2>
+	<p class="mt-2 text-muted-foreground">
+		Ganti mubtada, khabar, fi‘il, pelaku, atau objek melalui pencarian kata yang sesuai
+		dengan struktur kalimat. Data pengganti terhubung ke kamus dan tabel sharaf.
+	</p>
+	<a href={resolve('kaidah/praktik/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+		Buka contoh dinamis
+	</a>
+</aside>
+
 <aside class="mt-14 max-w-4xl space-y-3 rounded-2xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Kaitkan dengan kaidah sebelumnya</h2>
 	<p class="text-muted-foreground">
