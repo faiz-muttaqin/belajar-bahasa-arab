@@ -1,0 +1,38 @@
+name: Verify browser Arabic audio
+
+on:
+  pull_request:
+    paths:
+      - 'src/lib/audio/**'
+      - 'src/lib/components/learning/AudioPlayButton.svelte'
+      - 'src/lib/components/learning/SpeechSettings.svelte'
+      - 'src/lib/components/learning/LessonReader.svelte'
+      - 'src/lib/components/learning/VocabCard.svelte'
+      - 'src/lib/components/learning/WordGlossary.svelte'
+      - 'src/lib/components/learning/SentenceBreakdown.svelte'
+      - 'src/lib/components/learning/SentenceWordNotes.svelte'
+      - 'src/lib/components/learning/TransposedTashrif.svelte'
+      - 'src/routes/+layout.svelte'
+      - 'src/routes/kosakata/+page.svelte'
+      - 'src/routes/sharaf/+page.svelte'
+      - 'tests/e2e/browser-arabic-audio.e2e.ts'
+      - 'docs/audio/browser-speech.md'
+      - '.github/workflows/audio-pr.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - run: bun run browsers:install
+      - run: bun run verify
