@@ -146,7 +146,7 @@ export const phraseRules: readonly PhraseRule[] = [
 		keyRule:
 			'Muḍāf tidak memakai tanwin, sementara muḍāf ilaih berstatus jarr. Huruf jar seperti فِي atau عَلَى juga menjadikan isim sesudahnya majrūr. Kasus muḍāf sendiri ditentukan oleh fungsi frasa dalam kalimat.',
 		limitation:
-			'Contoh بَابُ الْبَيْتِ memakai rafa‘ pada muḍāf hanya sebagai satu konteks. Dalam فِي بَابِ الْبَيْتِ muḍāf menjadi jarr, tetapi muḍāf ilaih tetap jarr.',
+			'Contoh بَابُ الْبَيْتِ memakai rafa‘ pada muḍāf hanya sebagai satu konteks. Dalam فِي كِتَابِ الطَّالِبِ muḍāf menjadi jarr, tetapi muḍāf ilaih tetap jarr.',
 		examples: [
 			{
 				id: 'idafah-door',
@@ -170,16 +170,16 @@ export const phraseRules: readonly PhraseRule[] = [
 				id: 'preposition-idafah',
 				tokens: [
 					{ arabic: 'فِي', gloss: 'di', role: 'Huruf jar' },
-					{ arabic: 'بَابِ', gloss: 'pintu', role: 'Muḍāf', irab: 'jarr', marker: 'kasra' },
-					{ arabic: 'الْبَيْتِ', gloss: 'rumah itu', role: 'Muḍāf ilaih', irab: 'jarr', marker: 'kasra' }
+					{ arabic: 'كِتَابِ', gloss: 'buku', role: 'Muḍāf', irab: 'jarr', marker: 'kasra' },
+					{ arabic: 'الطَّالِبِ', gloss: 'murid itu', role: 'Muḍāf ilaih', irab: 'jarr', marker: 'kasra' }
 				],
-				translation: 'Di pintu rumah itu.',
-				explanation: 'Kedua isim berkasra, tetapi alasannya berbeda: بَابِ karena فِي, الْبَيْتِ karena iḍāfah.'
+				translation: 'Di dalam buku murid itu.',
+				explanation: 'Kedua isim berkasra, tetapi alasannya berbeda: كِتَابِ karena فِي, الطَّالِبِ karena iḍāfah.'
 			}
 		],
 		exercise: {
-			question: 'Dalam فِي بَابِ الْبَيْتِ, apakah kedua isim majrūr dengan sebab yang sama?',
-			answer: 'Tidak. بَابِ karena فِي, sedangkan الْبَيْتِ karena menjadi muḍāf ilaih.',
+			question: 'Dalam فِي كِتَابِ الطَّالِبِ, apakah kedua isim majrūr dengan sebab yang sama?',
+			answer: 'Tidak. كِتَابِ karena فِي, sedangkan الطَّالِبِ karena menjadi muḍāf ilaih.',
 			reason: 'Peran sintaksis dan penyebab i‘rab perlu dibaca, bukan sekadar melihat kasra.'
 		},
 		sources: [ajurrumiyya, madinah],
