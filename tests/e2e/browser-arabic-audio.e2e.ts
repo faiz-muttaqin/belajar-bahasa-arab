@@ -117,7 +117,7 @@ test('Arabic lessons speak the original vocalized sentence even when harakat are
 	await useMockArabicSpeech(page);
 	await page.goto('/belajar/bedah-kalimat-bacaan/');
 	await page.getByLabel('Tampilkan harakat').uncheck();
-	const passage = page.locator('#bacaan');
+	const passage = page.locator('section[aria-labelledby="bacaan"]');
 	await passage.getByRole('button', { name: 'Dengarkan kalimat Arab' }).first().click();
 	const sentence = await page.evaluate(
 		() =>
