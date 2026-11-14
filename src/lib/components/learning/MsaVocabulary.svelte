@@ -31,7 +31,6 @@
 	let activeClass = $state<'all' | MsaClass>('all');
 	let activeTopic = $state<'all' | MsaTopic>('all');
 	let query = $state('');
-	let shown = $state(48);
 
 	let results = $derived(
 		vocabulary.filter((entry) => {
@@ -53,7 +52,6 @@
 
 	function setClass(value: 'all' | MsaClass) {
 		activeClass = value;
-		shown = 48;
 	}
 
 	function setTopic(value: 'all' | MsaTopic) {
@@ -120,7 +118,7 @@
 
 	<div class="space-y-4">
 		<p role="status" class="text-sm text-muted-foreground">
-			{results.length} dari {vocabulary.length} kata cocok. Menampilkan {Math.min(shown, results.length)} entri.
+			{results.length} dari {vocabulary.length} kata cocok. Menampilkan {results.length} entri.
 		</p>
 		{#if results.length === 0}
 			<p class="rounded-xl border border-dashed p-5 text-muted-foreground">
@@ -131,14 +129,14 @@
 				class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4"
 				aria-label="Daftar kosakata MSA"
 			>
-				{#each results.slice(0, shown) as item (item.id)}
+				{#each results as item (item.id)}
 					<li id={`kata-${item.id}`} class="scroll-mt-24">
 						{#key hafalan}
 							<VocabCard {item} {hafalan}>
 								{#snippet details()}
 									<div class="space-y-2 text-sm">
 										<p class="text-muted-foreground">
-											{MSA_CLASSES[item.msa!.wordClass]} · {MSA_TOPICS[item.msa!.topic]}
+											{MSA_CLASSES[item.msa?.wordClass ?? 'noun']} · {MSA_TOPICS[item.msa?.topic ?? 'objects']}
 										</p>
 										{#if item.msa?.root}
 											<p>Akar: <ArabicText text={item.msa.root} /></p>
@@ -184,15 +182,7 @@
 					</li>
 				{/each}
 			</ul>
-			{#if shown < results.length}
-				<button
-					type="button"
-					class="min-h-11 rounded-lg border px-4 font-medium hover:bg-secondary"
-					onclick={() => (shown += 48)}
-				>
-					Tampilkan 48 entri berikutnya
-				</button>
-			{/if}
+
 		{/if}
 	</div>
 
