@@ -7,6 +7,7 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import QuranVocabulary from '#lib/components/learning/QuranVocabulary.svelte';
 	import VocabCard from '#lib/components/learning/VocabCard.svelte';
+	import SpeechSettings from '#lib/components/learning/SpeechSettings.svelte';
 	import { publishedVocabulary } from '#lib/content/vocabulary.js';
 	import { type VocabularyCollectionId } from '#lib/domain/vocabulary/types.js';
 
@@ -48,6 +49,8 @@
 		<p>Temukan arti kata yang muncul dalam bacaan dan coba ingat tanpa bantuan.</p>
 	{/snippet}
 </PageIntro>
+
+<div class="mt-8"><SpeechSettings /></div>
 
 <div class="mt-10">
 	<a

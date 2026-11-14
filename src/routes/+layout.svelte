@@ -4,6 +4,7 @@
 	import '#lib/theme/fonts.css';
 	import { onMount } from 'svelte';
 	import { startBackgroundCatalog } from '#lib/catalog/sync.svelte.js';
+	import { startBrowserSpeech } from '#lib/audio/speech.svelte.js';
 	import favicon from '#lib/assets/favicon.svg';
 	import SiteFooter from '#lib/components/layout/SiteFooter.svelte';
 	import DesktopSidebar from '#lib/components/layout/DesktopSidebar.svelte';
@@ -18,6 +19,7 @@
 	// Follow saved preference, OS colour-scheme changes and other tabs (reference counted).
 	onMount(() => themeMode.start());
 	onMount(startBackgroundCatalog);
+	onMount(startBrowserSpeech);
 </script>
 
 <svelte:head>

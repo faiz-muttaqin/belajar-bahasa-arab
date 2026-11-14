@@ -4,6 +4,7 @@
 	import X from '@lucide/svelte/icons/x';
 	import type { ReferenceTableData } from '#lib/domain/reference/table.js';
 	import ArabicText from './ArabicText.svelte';
+	import AudioPlayButton from './AudioPlayButton.svelte';
 
 	/**
 	 * Word grid: each word is a tile with the Arabic and its meaning right below, like the
@@ -152,7 +153,14 @@
 			<div class="flex items-start justify-between gap-4">
 				<div>
 					<h2 id="{uid}-title" class="sr-only">{selected.cells[meaningKey]}</h2>
-					<ArabicText text={selected.cells[arabicKey] ?? ''} size="block" class="text-5xl" />
+					<div class="flex flex-wrap items-center gap-2">
+						<ArabicText text={selected.cells[arabicKey] ?? ''} size="block" class="text-5xl" />
+						<AudioPlayButton
+							text={selected.cells[arabicKey] ?? ''}
+							label="Dengarkan kata Arab"
+							compact
+						/>
+					</div>
 					<p class="mt-2 text-lg font-medium">{selected.cells[meaningKey]}</p>
 					{#if chipKey && selected.cells[chipKey]}
 						<p
@@ -198,7 +206,14 @@
 			{#if selected.cells[exampleKey]}
 				<div class="rounded-xl bg-secondary p-4">
 					<h3 class="text-sm font-semibold text-muted-foreground">Contoh</h3>
-					<ArabicText text={selected.cells[exampleKey] ?? ''} size="block" class="mt-1 text-2xl" />
+					<div class="mt-1 flex items-start justify-between gap-2">
+						<ArabicText text={selected.cells[exampleKey] ?? ''} size="block" class="text-2xl" />
+						<AudioPlayButton
+							text={selected.cells[exampleKey] ?? ''}
+							label="Dengarkan contoh Arab"
+							compact
+						/>
+					</div>
 					{#if selected.explanation}
 						<p class="mt-2 text-pretty">{selected.explanation}</p>
 					{/if}
