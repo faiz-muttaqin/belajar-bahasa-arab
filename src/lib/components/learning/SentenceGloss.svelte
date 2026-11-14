@@ -26,7 +26,9 @@
 	>
 		{#each example.tokens as token, i (example.id + '-' + i)}
 			<div
-				class="flex min-w-0 max-w-full flex-col items-center gap-1 rounded-xl border px-3 py-3 text-center {roleColor[token.role]}"
+				class="flex max-w-full min-w-0 flex-col items-center gap-1 rounded-xl border px-3 py-3 text-center {roleColor[
+					token.role
+				]}"
 				data-role={token.role}
 				data-irab={token.irab ?? 'none'}
 				data-mood={token.mood ?? 'none'}

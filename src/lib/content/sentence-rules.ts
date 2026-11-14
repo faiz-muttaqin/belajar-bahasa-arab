@@ -6,7 +6,8 @@
 
 import type { IrabCase } from './phrase-rules.js';
 
-export type SentenceRole = 'topic' | 'predicate' | 'verb' | 'agent' | 'object' | 'deputy' | 'particle';
+export type SentenceRole =
+	'topic' | 'predicate' | 'verb' | 'agent' | 'object' | 'deputy' | 'particle';
 
 export const SENTENCE_ROLE_LABELS: Record<SentenceRole, string> = {
 	topic: 'Topik / ism',
@@ -65,20 +66,27 @@ const course = (lesson: number, label: string) => ({
 });
 
 const nominalSources = [
-	{ name: 'Madinah Arabic — jumlah ismiyyah, jenis khabar (pelajaran 4)', url: 'https://madinaharabic.com/free-content/grammar/lesson-4/part-9' },
+	{
+		name: 'Madinah Arabic — jumlah ismiyyah, jenis khabar (pelajaran 4)',
+		url: 'https://madinaharabic.com/free-content/grammar/lesson-4/part-9'
+	},
 	course(58, 'mubtada dan khabar')
 ];
 const verbalSources = [course(64, 'fā‘il'), course(66, 'maf‘ūl bih')];
 const passiveSources = [course(34, 'aktif dan pasif'), course(65, 'nā’ib al-fā‘il')];
 const negationSources = [course(31, 'kalimat negatif'), course(36, 'i‘rab fi‘il muḍāri‘')];
-const nasikhSources = [course(59, 'kāna dan saudara-saudaranya'), course(60, 'inna dan saudara-saudaranya')];
+const nasikhSources = [
+	course(59, 'kāna dan saudara-saudaranya'),
+	course(60, 'inna dan saudara-saudaranya')
+];
 
 export const sentenceRules: readonly SentenceRule[] = [
 	{
 		id: 'nominal',
 		title: 'Jumlah ismiyyah dan bentuk khabar',
 		arabicTerm: 'الْجُمْلَةُ الْاِسْمِيَّةُ',
-		summary: 'Kalimat nominal menempatkan pokok pembicaraan sebagai mubtada, kemudian memberi berita melalui khabar.',
+		summary:
+			'Kalimat nominal menempatkan pokok pembicaraan sebagai mubtada, kemudian memberi berita melalui khabar.',
 		keyRule:
 			'Khabar dapat berupa satu kata, syibh-jumlah (jar–majrūr atau zharf), atau kalimat lain. Jika mubtada diikuti fi‘il, fi‘il itu dapat menjadi bagian dari jumlah fi‘liyyah yang berfungsi sebagai khabar; jangan otomatis melabeli mubtada sebagai fā‘il fi‘il tersebut.',
 		limitation:
@@ -87,18 +95,52 @@ export const sentenceRules: readonly SentenceRule[] = [
 			{
 				id: 'nominal-simple',
 				tokens: [
-					{ arabic: 'الْكِتَابُ', gloss: 'buku itu', role: 'topic', detail: 'Mubtada', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'جَدِيدٌ', gloss: 'baru', role: 'predicate', detail: 'Khabar mufrad', irab: 'raf', marker: 'tanwin ḍamm' }
+					{
+						arabic: 'الْكِتَابُ',
+						gloss: 'buku itu',
+						role: 'topic',
+						detail: 'Mubtada',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'جَدِيدٌ',
+						gloss: 'baru',
+						role: 'predicate',
+						detail: 'Khabar mufrad',
+						irab: 'raf',
+						marker: 'tanwin ḍamm'
+					}
 				],
 				translation: 'Buku itu baru.',
-				explanation: 'Mubtada dan khabar mufrad sama-sama marfū‘. Ini berbeda dari frasa الْكِتَابُ الْجَدِيدُ.'
+				explanation:
+					'Mubtada dan khabar mufrad sama-sama marfū‘. Ini berbeda dari frasa الْكِتَابُ الْجَدِيدُ.'
 			},
 			{
 				id: 'nominal-prepositional',
 				tokens: [
-					{ arabic: 'الْكِتَابُ', gloss: 'buku itu', role: 'topic', detail: 'Mubtada', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'فِي', gloss: 'di dalam', role: 'predicate', detail: 'Huruf jar · bagian khabar' },
-					{ arabic: 'الْحَقِيبَةِ', gloss: 'tas itu', role: 'predicate', detail: 'Majrūr · bagian khabar', irab: 'jarr', marker: 'kasra' }
+					{
+						arabic: 'الْكِتَابُ',
+						gloss: 'buku itu',
+						role: 'topic',
+						detail: 'Mubtada',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'فِي',
+						gloss: 'di dalam',
+						role: 'predicate',
+						detail: 'Huruf jar · bagian khabar'
+					},
+					{
+						arabic: 'الْحَقِيبَةِ',
+						gloss: 'tas itu',
+						role: 'predicate',
+						detail: 'Majrūr · bagian khabar',
+						irab: 'jarr',
+						marker: 'kasra'
+					}
 				],
 				translation: 'Buku itu ada di dalam tas.',
 				explanation: 'فِي الْحَقِيبَةِ merupakan syibh-jumlah sebagai khabar; الْحَقِيبَةِ majrūr karena فِي.'
@@ -106,12 +148,34 @@ export const sentenceRules: readonly SentenceRule[] = [
 			{
 				id: 'nominal-verbal-predicate',
 				tokens: [
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'topic', detail: 'Mubtada', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'يَكْتُبُ', gloss: 'sedang menulis', role: 'predicate', detail: 'Fi‘il dalam jumlah khabar; fā‘il tersembunyi', mood: 'indicative', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih dalam khabar', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'topic',
+						detail: 'Mubtada',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'يَكْتُبُ',
+						gloss: 'sedang menulis',
+						role: 'predicate',
+						detail: 'Fi‘il dalam jumlah khabar; fā‘il tersembunyi',
+						mood: 'indicative',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih dalam khabar',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu sedang menulis pelajaran tersebut.',
-				explanation: 'الطَّالِبُ adalah mubtada; jumlah fi‘liyyah يَكْتُبُ الدَّرْسَ merupakan khabar, dengan fā‘il tersirat هُوَ.'
+				explanation:
+					'الطَّالِبُ adalah mubtada; jumlah fi‘liyyah يَكْتُبُ الدَّرْسَ merupakan khabar, dengan fā‘il tersirat هُوَ.'
 			}
 		],
 		exercise: {
@@ -126,7 +190,8 @@ export const sentenceRules: readonly SentenceRule[] = [
 		id: 'verbal',
 		title: 'Jumlah fi‘liyyah: tindakan, pelaku dan objek',
 		arabicTerm: 'الْفِعْلُ وَالْفَاعِلُ وَالْمَفْعُولُ بِهِ',
-		summary: 'Kalimat verbal dasar diawali fi‘il, diikuti fā‘il sebagai pelaku dan—bila fi‘il transitif—maf‘ūl bih sebagai objek.',
+		summary:
+			'Kalimat verbal dasar diawali fi‘il, diikuti fā‘il sebagai pelaku dan—bila fi‘il transitif—maf‘ūl bih sebagai objek.',
 		keyRule:
 			'Fā‘il adalah marfū‘, sedangkan maf‘ūl bih biasa manṣūb. Tidak semua fi‘il memerlukan objek. Perubahan urutan subjek dan verba memengaruhi analisis struktur: الطَّالِبُ يَكْتُبُ adalah jumlah ismiyyah dengan khabar berupa jumlah fi‘liyyah.',
 		limitation:
@@ -136,21 +201,58 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'verbal-past',
 				tokens: [
 					{ arabic: 'كَتَبَ', gloss: 'telah menulis', role: 'verb', detail: 'Fi‘il māḍī' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu telah menulis pelajaran tersebut.',
-				explanation: 'Pelaku الطَّالِبُ marfū‘ dan objek الدَّرْسَ manṣūb; kedua akhir kata berbeda karena fungsi, bukan karena makna kamus.'
+				explanation:
+					'Pelaku الطَّالِبُ marfū‘ dan objek الدَّرْسَ manṣūb; kedua akhir kata berbeda karena fungsi, bukan karena makna kamus.'
 			},
 			{
 				id: 'verbal-present',
 				tokens: [
-					{ arabic: 'يَقْرَأُ', gloss: 'sedang membaca', role: 'verb', detail: 'Fi‘il muḍāri‘', mood: 'indicative', marker: 'ḍamma' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الْكِتَابَ', gloss: 'buku itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'يَقْرَأُ',
+						gloss: 'sedang membaca',
+						role: 'verb',
+						detail: 'Fi‘il muḍāri‘',
+						mood: 'indicative',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الْكِتَابَ',
+						gloss: 'buku itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu sedang membaca buku itu.',
-				explanation: 'Fi‘il muḍāri‘ memiliki mood (marfū‘), sedangkan isim fā‘il dan objek memiliki i‘rab nomina.'
+				explanation:
+					'Fi‘il muḍāri‘ memiliki mood (marfū‘), sedangkan isim fā‘il dan objek memiliki i‘rab nomina.'
 			}
 		],
 		exercise: {
@@ -165,7 +267,8 @@ export const sentenceRules: readonly SentenceRule[] = [
 		id: 'passive',
 		title: 'Aktif dan pasif: perubahan pelaku',
 		arabicTerm: 'الْمَبْنِيُّ لِلْمَعْلُومِ وَالْمَبْنِيُّ لِلْمَجْهُولِ',
-		summary: 'Bentuk pasif mengubah fi‘il dan posisi unsur: objek aktif dapat menjadi nā’ib al-fā‘il pada kalimat pasif.',
+		summary:
+			'Bentuk pasif mengubah fi‘il dan posisi unsur: objek aktif dapat menjadi nā’ib al-fā‘il pada kalimat pasif.',
 		keyRule:
 			'Bentuk lampau pasif Form I yang reguler mengikuti pola فُعِلَ, misalnya كُتِبَ. Pada kalimat pasif sederhana, pelaku tidak disebut; objek sebelumnya menjadi nā’ib al-fā‘il yang marfū‘. Jangan menerjemahkan nā’ib al-fā‘il sebagai “pelaku tersembunyi”.',
 		limitation:
@@ -175,8 +278,22 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'active-writing',
 				tokens: [
 					{ arabic: 'كَتَبَ', gloss: 'telah menulis', role: 'verb', detail: 'Fi‘il aktif' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu telah menulis pelajaran tersebut.',
 				explanation: 'Dalam kalimat aktif, pelaku disebut dan objek berada pada naṣb.'
@@ -185,17 +302,39 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'passive-writing',
 				tokens: [
 					{ arabic: 'كُتِبَ', gloss: 'telah ditulis', role: 'verb', detail: 'Fi‘il pasif' },
-					{ arabic: 'الدَّرْسُ', gloss: 'pelajaran itu', role: 'deputy', detail: 'Nā’ib al-fā‘il', irab: 'raf', marker: 'ḍamma' }
+					{
+						arabic: 'الدَّرْسُ',
+						gloss: 'pelajaran itu',
+						role: 'deputy',
+						detail: 'Nā’ib al-fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					}
 				],
 				translation: 'Pelajaran itu telah ditulis.',
-				explanation: 'الدَّرْسُ beralih dari objek aktif (الدَّرْسَ) menjadi nā’ib al-fā‘il yang marfū‘. Pelaku tidak disebut.'
+				explanation:
+					'الدَّرْسُ beralih dari objek aktif (الدَّرْسَ) menjadi nā’ib al-fā‘il yang marfū‘. Pelaku tidak disebut.'
 			},
 			{
 				id: 'active-opening',
 				tokens: [
 					{ arabic: 'فَتَحَ', gloss: 'telah membuka', role: 'verb', detail: 'Fi‘il aktif' },
-					{ arabic: 'الْحَارِسُ', gloss: 'penjaga itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الْبَابَ', gloss: 'pintu itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'الْحَارِسُ',
+						gloss: 'penjaga itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الْبَابَ',
+						gloss: 'pintu itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Penjaga itu telah membuka pintu.',
 				explanation: 'Pada bentuk aktif, الْبَابَ menjadi objek manṣūb.'
@@ -204,7 +343,14 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'passive-opening',
 				tokens: [
 					{ arabic: 'فُتِحَ', gloss: 'telah dibuka', role: 'verb', detail: 'Fi‘il pasif' },
-					{ arabic: 'الْبَابُ', gloss: 'pintu itu', role: 'deputy', detail: 'Nā’ib al-fā‘il', irab: 'raf', marker: 'ḍamma' }
+					{
+						arabic: 'الْبَابُ',
+						gloss: 'pintu itu',
+						role: 'deputy',
+						detail: 'Nā’ib al-fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					}
 				],
 				translation: 'Pintu itu telah dibuka.',
 				explanation: 'Posisi nā’ib al-fā‘il ditandai rafa‘; siapa yang membuka tidak dinyatakan.'
@@ -213,7 +359,8 @@ export const sentenceRules: readonly SentenceRule[] = [
 		exercise: {
 			question: 'Pada كُتِبَ الدَّرْسُ, apakah الدَّرْسُ menjadi orang yang menulis?',
 			answer: 'Tidak. الدَّرْسُ adalah nā’ib al-fā‘il, bukan pelaku sebenarnya.',
-			reason: 'Bentuk pasif tidak menyebut pelaku; unsur yang dikenai perbuatan menempati fungsi gramatikal marfū‘.'
+			reason:
+				'Bentuk pasif tidak menyebut pelaku; unsur yang dikenai perbuatan menempati fungsi gramatikal marfū‘.'
 		},
 		sources: passiveSources,
 		reviewStatus: 'draft'
@@ -222,7 +369,8 @@ export const sentenceRules: readonly SentenceRule[] = [
 		id: 'negation',
 		title: 'Negasi dan perubahan akhir muḍāri‘',
 		arabicTerm: 'النَّفْيُ وَإِعْرَابُ الْمُضَارِعِ',
-		summary: 'Lā, lam dan lan sama-sama menegasikan, tetapi memengaruhi waktu/mood fi‘il secara berbeda.',
+		summary:
+			'Lā, lam dan lan sama-sama menegasikan, tetapi memengaruhi waktu/mood fi‘il secara berbeda.',
 		keyRule:
 			'لَا pada negasi biasa diikuti muḍāri‘ marfū‘; لَمْ menegasikan kejadian lampau dan menjazmkan muḍāri‘; لَنْ menegasikan masa depan dan menashabkan muḍāri‘. Jangan mencampurnya dengan لَا الناهية (larangan), yang juga menjazmkan.',
 		limitation:
@@ -231,20 +379,63 @@ export const sentenceRules: readonly SentenceRule[] = [
 			{
 				id: 'affirmative-present',
 				tokens: [
-					{ arabic: 'يَكْتُبُ', gloss: 'menulis', role: 'verb', detail: 'Muḍāri‘ positif', mood: 'indicative', marker: 'ḍamma' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'يَكْتُبُ',
+						gloss: 'menulis',
+						role: 'verb',
+						detail: 'Muḍāri‘ positif',
+						mood: 'indicative',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu menulis pelajaran.',
-				explanation: 'Tanpa partikel yang menashabkan atau menjazmkan, يَكْتُبُ berada dalam keadaan marfū‘.'
+				explanation:
+					'Tanpa partikel yang menashabkan atau menjazmkan, يَكْتُبُ berada dalam keadaan marfū‘.'
 			},
 			{
 				id: 'negation-la',
 				tokens: [
 					{ arabic: 'لَا', gloss: 'tidak', role: 'particle', detail: 'Negasi biasa' },
-					{ arabic: 'يَكْتُبُ', gloss: 'menulis', role: 'verb', detail: 'Muḍāri‘', mood: 'indicative', marker: 'ḍamma' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'يَكْتُبُ',
+						gloss: 'menulis',
+						role: 'verb',
+						detail: 'Muḍāri‘',
+						mood: 'indicative',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu tidak menulis pelajaran.',
 				explanation: 'لَا النافية tidak membuat fi‘il muḍāri‘ menjadi majzūm dalam contoh ini.'
@@ -253,9 +444,30 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'negation-lam',
 				tokens: [
 					{ arabic: 'لَمْ', gloss: 'tidak (lampau)', role: 'particle', detail: 'Harf jazm' },
-					{ arabic: 'يَكْتُبْ', gloss: 'menulis', role: 'verb', detail: 'Muḍāri‘ majzūm', mood: 'jussive', marker: 'sukūn' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'يَكْتُبْ',
+						gloss: 'menulis',
+						role: 'verb',
+						detail: 'Muḍāri‘ majzūm',
+						mood: 'jussive',
+						marker: 'sukūn'
+					},
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu tidak menulis pelajaran tersebut (pada waktu lampau).',
 				explanation: 'لَمْ mengubah akhir muḍāri‘ dari يَكْتُبُ menjadi يَكْتُبْ (majzūm).'
@@ -264,9 +476,30 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'negation-lan',
 				tokens: [
 					{ arabic: 'لَنْ', gloss: 'tidak akan', role: 'particle', detail: 'Harf naṣb' },
-					{ arabic: 'يَكْتُبَ', gloss: 'menulis', role: 'verb', detail: 'Muḍāri‘ manṣūb', mood: 'subjunctive', marker: 'fatḥa' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'يَكْتُبَ',
+						gloss: 'menulis',
+						role: 'verb',
+						detail: 'Muḍāri‘ manṣūb',
+						mood: 'subjunctive',
+						marker: 'fatḥa'
+					},
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Murid itu tidak akan menulis pelajaran tersebut.',
 				explanation: 'لَنْ menashabkan muḍāri‘ sehingga akhir fi‘il menjadi يَكْتُبَ.'
@@ -293,8 +526,22 @@ export const sentenceRules: readonly SentenceRule[] = [
 			{
 				id: 'nawasikh-base',
 				tokens: [
-					{ arabic: 'الْكِتَابُ', gloss: 'buku itu', role: 'topic', detail: 'Mubtada', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'جَدِيدٌ', gloss: 'baru', role: 'predicate', detail: 'Khabar', irab: 'raf', marker: 'tanwin ḍamm' }
+					{
+						arabic: 'الْكِتَابُ',
+						gloss: 'buku itu',
+						role: 'topic',
+						detail: 'Mubtada',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'جَدِيدٌ',
+						gloss: 'baru',
+						role: 'predicate',
+						detail: 'Khabar',
+						irab: 'raf',
+						marker: 'tanwin ḍamm'
+					}
 				],
 				translation: 'Buku itu baru.',
 				explanation: 'Sebelum nāsikh, mubtada dan khabar mufrad sama-sama marfū‘.'
@@ -303,8 +550,22 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'nawasikh-inna',
 				tokens: [
 					{ arabic: 'إِنَّ', gloss: 'sesungguhnya', role: 'particle', detail: 'Harf nāsikh' },
-					{ arabic: 'الْكِتَابَ', gloss: 'buku itu', role: 'topic', detail: 'Ism inna', irab: 'nasb', marker: 'fatḥa' },
-					{ arabic: 'جَدِيدٌ', gloss: 'baru', role: 'predicate', detail: 'Khabar inna', irab: 'raf', marker: 'tanwin ḍamm' }
+					{
+						arabic: 'الْكِتَابَ',
+						gloss: 'buku itu',
+						role: 'topic',
+						detail: 'Ism inna',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					},
+					{
+						arabic: 'جَدِيدٌ',
+						gloss: 'baru',
+						role: 'predicate',
+						detail: 'Khabar inna',
+						irab: 'raf',
+						marker: 'tanwin ḍamm'
+					}
 				],
 				translation: 'Sesungguhnya buku itu baru.',
 				explanation: 'إِنَّ menyebabkan ism-nya manṣūb (الْكِتَابَ), sedangkan khabar-nya tetap marfū‘.'
@@ -313,8 +574,22 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'nawasikh-kana',
 				tokens: [
 					{ arabic: 'كَانَ', gloss: 'dahulu', role: 'verb', detail: 'Fi‘il nāsikh' },
-					{ arabic: 'الْكِتَابُ', gloss: 'buku itu', role: 'topic', detail: 'Ism kāna', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'جَدِيدًا', gloss: 'baru', role: 'predicate', detail: 'Khabar kāna', irab: 'nasb', marker: 'tanwin fatḥ' }
+					{
+						arabic: 'الْكِتَابُ',
+						gloss: 'buku itu',
+						role: 'topic',
+						detail: 'Ism kāna',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'جَدِيدًا',
+						gloss: 'baru',
+						role: 'predicate',
+						detail: 'Khabar kāna',
+						irab: 'nasb',
+						marker: 'tanwin fatḥ'
+					}
 				],
 				translation: 'Buku itu dahulu baru.',
 				explanation: 'كَانَ menyebabkan khabar-nya manṣūb (جَدِيدًا), sementara ism-nya tetap marfū‘.'
@@ -342,19 +617,48 @@ export const sentenceRules: readonly SentenceRule[] = [
 				id: 'question-nominal',
 				tokens: [
 					{ arabic: 'هَلْ', gloss: 'apakah', role: 'particle', detail: 'Partikel tanya' },
-					{ arabic: 'الْكِتَابُ', gloss: 'buku itu', role: 'topic', detail: 'Mubtada', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'جَدِيدٌ', gloss: 'baru', role: 'predicate', detail: 'Khabar', irab: 'raf', marker: 'tanwin ḍamm' }
+					{
+						arabic: 'الْكِتَابُ',
+						gloss: 'buku itu',
+						role: 'topic',
+						detail: 'Mubtada',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'جَدِيدٌ',
+						gloss: 'baru',
+						role: 'predicate',
+						detail: 'Khabar',
+						irab: 'raf',
+						marker: 'tanwin ḍamm'
+					}
 				],
 				translation: 'Apakah buku itu baru?',
-				explanation: 'هَلْ menanyakan benar/tidaknya berita; i‘rab dasar mubtada dan khabar tidak berubah.'
+				explanation:
+					'هَلْ menanyakan benar/tidaknya berita; i‘rab dasar mubtada dan khabar tidak berubah.'
 			},
 			{
 				id: 'question-verbal',
 				tokens: [
 					{ arabic: 'هَلْ', gloss: 'apakah', role: 'particle', detail: 'Partikel tanya' },
 					{ arabic: 'كَتَبَ', gloss: 'telah menulis', role: 'verb', detail: 'Fi‘il māḍī' },
-					{ arabic: 'الطَّالِبُ', gloss: 'murid itu', role: 'agent', detail: 'Fā‘il', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الدَّرْسَ', gloss: 'pelajaran itu', role: 'object', detail: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'الطَّالِبُ',
+						gloss: 'murid itu',
+						role: 'agent',
+						detail: 'Fā‘il',
+						irab: 'raf',
+						marker: 'ḍamma'
+					},
+					{
+						arabic: 'الدَّرْسَ',
+						gloss: 'pelajaran itu',
+						role: 'object',
+						detail: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Apakah murid itu telah menulis pelajaran tersebut?',
 				explanation: 'هَلْ tidak menghapus pemisahan pelaku marfū‘ dan objek manṣūb.'
@@ -376,16 +680,26 @@ export function validateSentenceRules(rules: readonly SentenceRule[]): string[] 
 	for (const rule of rules) {
 		if (ids.has(rule.id)) errors.push('Duplicate sentence rule: ' + rule.id);
 		ids.add(rule.id);
-		if (!rule.examples.length || !rule.sources.length || rule.sources.some((s) => !s.url.startsWith('https://')))
+		if (
+			!rule.examples.length ||
+			!rule.sources.length ||
+			rule.sources.some((s) => !s.url.startsWith('https://'))
+		)
 			errors.push('Missing example or source: ' + rule.id);
 		const exampleIds = new Set<string>();
 		for (const example of rule.examples) {
-			if (exampleIds.has(example.id)) errors.push('Duplicate sentence example: ' + rule.id + '/' + example.id);
+			if (exampleIds.has(example.id))
+				errors.push('Duplicate sentence example: ' + rule.id + '/' + example.id);
 			exampleIds.add(example.id);
 			if (!example.tokens.length || !example.translation.trim() || !example.explanation.trim())
 				errors.push('Incomplete example: ' + rule.id + '/' + example.id);
 			for (const token of example.tokens) {
-				if (!token.arabic.trim() || !token.gloss.trim() || !token.detail.trim() || !SENTENCE_ROLE_LABELS[token.role])
+				if (
+					!token.arabic.trim() ||
+					!token.gloss.trim() ||
+					!token.detail.trim() ||
+					!SENTENCE_ROLE_LABELS[token.role]
+				)
 					errors.push('Incomplete token: ' + rule.id + '/' + example.id);
 				if (token.irab && token.mood)
 					errors.push('Mixed noun case and verb mood: ' + rule.id + '/' + example.id);

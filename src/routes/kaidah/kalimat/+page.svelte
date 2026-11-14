@@ -21,10 +21,12 @@
 
 <div class="mt-8 max-w-4xl space-y-4">
 	<p class="text-muted-foreground">
-		Ini adalah tahap <strong>G-04</strong>. Warna menunjukkan <strong>fungsi kata dalam kalimat</strong>,
-		sedangkan label kecil membedakan <strong>kasus isim</strong> dan
-		<strong>mood fi‘il muḍāri‘</strong>. Kata kerja lampau bukan isim yang dapat langsung
-		diberi label rafa‘/naṣb/jarr.
+		Ini adalah tahap <strong>G-04</strong>. Warna menunjukkan
+		<strong>fungsi kata dalam kalimat</strong>, sedangkan label kecil membedakan
+		<strong>kasus isim</strong>
+		dan
+		<strong>mood fi‘il muḍāri‘</strong>. Kata kerja lampau bukan isim yang dapat langsung diberi
+		label rafa‘/naṣb/jarr.
 	</p>
 	<p class="text-sm text-muted-foreground">
 		Contoh dan terjemahan ditulis untuk situs ini, berstatus draft dan disertai sumber kaidah.
@@ -62,7 +64,8 @@
 			</div>
 
 			<p class="max-w-3xl border-s-4 border-primary ps-4 text-sm">
-				<strong>Batas kaidah:</strong> {rule.limitation}
+				<strong>Batas kaidah:</strong>
+				{rule.limitation}
 			</p>
 
 			<details class="max-w-3xl rounded-xl border bg-card p-4">
@@ -95,10 +98,13 @@
 <aside class="mt-14 max-w-4xl space-y-3 rounded-2xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Kaitkan dengan kaidah sebelumnya</h2>
 	<p class="text-muted-foreground">
-		Kembali ke frasa, i‘rab, dan akar kata untuk memahami mengapa unsur yang sama
-		memiliki fungsi dan bentuk berbeda. Klausa yang saling terhubung akan dilanjutkan pada G-05.
+		Kembali ke frasa, i‘rab, dan akar kata untuk memahami mengapa unsur yang sama memiliki fungsi
+		dan bentuk berbeda. Klausa yang saling terhubung akan dilanjutkan pada G-05.
 	</p>
-	<nav aria-label="Materi dasar terkait" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
+	<nav
+		aria-label="Materi dasar terkait"
+		class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold"
+	>
 		<a href={resolve('kaidah/')} class="text-primary underline">Peta kaidah</a>
 		<a href={resolve('kaidah/frasa/')} class="text-primary underline">Frasa dan i‘rab</a>
 		<a href={resolve('kaidah/sharaf/')} class="text-primary underline">Akar dan wazan</a>

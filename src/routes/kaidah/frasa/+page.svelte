@@ -105,10 +105,13 @@
 <aside class="mt-9 max-w-4xl rounded-xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Dari frasa menjadi kalimat</h2>
 	<p class="mt-2 text-muted-foreground">
-		Lihat bagaimana rafa‘, naṣb, dan jarr digunakan dalam kalimat nominal,
-		verbal, negasi, dan pasif.
+		Lihat bagaimana rafa‘, naṣb, dan jarr digunakan dalam kalimat nominal, verbal, negasi, dan
+		pasif.
 	</p>
-	<a href={resolve('kaidah/kalimat/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+	<a
+		href={resolve('kaidah/kalimat/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
 		Lanjutkan ke kalimat lengkap
 	</a>
 </aside>

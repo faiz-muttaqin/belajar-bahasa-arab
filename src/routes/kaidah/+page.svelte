@@ -68,10 +68,13 @@
 <aside class="mt-6 max-w-4xl rounded-xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Berikutnya: bangun kalimat utuh</h2>
 	<p class="mt-2 text-muted-foreground">
-		Bandingkan kalimat nominal dan verbal, peran fā‘il–maf‘ūl, aktif–pasif,
-		negasi, kāna, dan inna. Setiap contoh tetap mempunyai glos di bawah kata Arab.
+		Bandingkan kalimat nominal dan verbal, peran fā‘il–maf‘ūl, aktif–pasif, negasi, kāna, dan inna.
+		Setiap contoh tetap mempunyai glos di bawah kata Arab.
 	</p>
-	<a href={resolve('kaidah/kalimat/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+	<a
+		href={resolve('kaidah/kalimat/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
 		Pelajari susunan kalimat lengkap
 	</a>
 </aside>

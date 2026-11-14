@@ -10,7 +10,12 @@ import {
 describe('G-04: complete Arabic sentences', () => {
 	it('covers six scoped topics with 18 sourced and vocalized examples', () => {
 		expect(sentenceRules.map((rule) => rule.id)).toEqual([
-			'nominal', 'verbal', 'passive', 'negation', 'nawasikh', 'questions'
+			'nominal',
+			'verbal',
+			'passive',
+			'negation',
+			'nawasikh',
+			'questions'
 		]);
 		expect(sentenceRules.map((rule) => rule.examples.length)).toEqual([3, 2, 4, 4, 3, 2]);
 		expect(sentenceRules.every((rule) => rule.reviewStatus === 'draft')).toBe(true);
@@ -57,11 +62,12 @@ describe('G-04: complete Arabic sentences', () => {
 	it('distinguishes la/lam/lan and their different muḍāri‘ endings', () => {
 		const rule = sentenceRules.find((rule) => rule.id === 'negation')!;
 		const forms = rule.examples.map((ex) => ex.tokens.find((token) => token.role === 'verb')!);
-		expect(forms.map((token) => token.arabic)).toEqual([
-			'يَكْتُبُ', 'يَكْتُبُ', 'يَكْتُبْ', 'يَكْتُبَ'
-		]);
+		expect(forms.map((token) => token.arabic)).toEqual(['يَكْتُبُ', 'يَكْتُبُ', 'يَكْتُبْ', 'يَكْتُبَ']);
 		expect(forms.map((token) => token.mood)).toEqual([
-			'indicative', 'indicative', 'jussive', 'subjunctive'
+			'indicative',
+			'indicative',
+			'jussive',
+			'subjunctive'
 		]);
 	});
 
@@ -82,9 +88,7 @@ describe('G-04: complete Arabic sentences', () => {
 			examples: [
 				{
 					...first.examples[0]!,
-					tokens: [
-						{ ...first.examples[0]!.tokens[0]!, gloss: '', mood: 'jussive' }
-					]
+					tokens: [{ ...first.examples[0]!.tokens[0]!, gloss: '', mood: 'jussive' }]
 				}
 			]
 		};
