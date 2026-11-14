@@ -3,11 +3,7 @@ import { grammarRules, validateGrammarRules, GRAMMAR_ROLE_LABELS } from './gramm
 
 describe('grammar knowledge map foundation', () => {
 	it('has three source-backed constructions with stable unique identifiers', () => {
-		expect(grammarRules.map((rule) => rule.id)).toEqual([
-			'nat-manut',
-			'mubtada-khabar',
-			'idafah'
-		]);
+		expect(grammarRules.map((rule) => rule.id)).toEqual(['nat-manut', 'mubtada-khabar', 'idafah']);
 		expect(validateGrammarRules(grammarRules)).toEqual([]);
 	});
 

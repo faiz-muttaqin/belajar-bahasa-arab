@@ -16,9 +16,7 @@ test('grammar map contrasts phrase, nominal sentence and idafah', async ({ page 
 	await expect(page.locator('#nat-manut figure').first()).toContainText('Sebuah buku baru.');
 
 	await page.locator('#nat-manut summary').first().click();
-	await expect(page.locator('#nat-manut details').first()).toContainText(
-		'Karena جَدِيدٌ menerangkan'
-	);
+	await expect(page.locator('#nat-manut details').first()).toContainText('Karena جَدِيدٌ menerangkan');
 });
 
 test('source links and navigation from the word-class reference are available', async ({
@@ -40,9 +38,7 @@ test.describe('no-script grammar reading on narrow screen', () => {
 		await expect(page.locator('#idafah [data-role="mudaf-ilaih"]').first()).toContainText(
 			'murid itu'
 		);
-		await expect(page.locator('#mubtada-khabar figure').first()).toContainText(
-			'Buku itu baru.'
-		);
+		await expect(page.locator('#mubtada-khabar figure').first()).toContainText('Buku itu baru.');
 
 		const sizes = await page.evaluate(() => ({
 			page: document.documentElement.scrollWidth,

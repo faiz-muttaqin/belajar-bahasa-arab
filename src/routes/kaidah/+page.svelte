@@ -12,15 +12,18 @@
 	description="Pelajari kaidah susunan frasa dan kalimat Arab dengan penanda fungsi kata, glos Indonesia tepat di bawah teks Arab, dan latihan singkat."
 >
 	{#snippet lead()}
-		<p>Mulai dari kata, lihat bagaimana susunannya mengubah makna. Setiap warna juga punya label fungsi kata.</p>
+		<p>
+			Mulai dari kata, lihat bagaimana susunannya mengubah makna. Setiap warna juga punya label
+			fungsi kata.
+		</p>
 	{/snippet}
 </PageIntro>
 
 <div class="mt-8 max-w-4xl space-y-3">
 	<p class="text-muted-foreground">
 		Peta ini menghubungkan <strong>nahwu</strong> (fungsi kata dalam susunan) dengan
-		<strong>sharaf</strong> (perubahan bentuk kata). Contoh di sini berstatus draft dan ditulis
-		khusus untuk website; sumber kaidah dicantumkan di tiap topik.
+		<strong>sharaf</strong> (perubahan bentuk kata). Contoh di sini berstatus draft dan ditulis khusus
+		untuk website; sumber kaidah dicantumkan di tiap topik.
 	</p>
 	<nav aria-label="Pilih kaidah" class="flex flex-wrap gap-2">
 		{#each grammarRules as rule (rule.id)}

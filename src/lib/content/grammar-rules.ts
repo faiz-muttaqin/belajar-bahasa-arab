@@ -3,13 +3,7 @@
  * The examples and Indonesian explanations are original to this project.
  * Source pages identify the grammatical rules, not a verbatim text licence.
  */
-export type GrammarRole =
-	| 'manut'
-	| 'nat'
-	| 'mubtada'
-	| 'khabar'
-	| 'mudaf'
-	| 'mudaf-ilaih';
+export type GrammarRole = 'manut' | 'nat' | 'mubtada' | 'khabar' | 'mudaf' | 'mudaf-ilaih';
 
 export const GRAMMAR_ROLE_LABELS: Record<GrammarRole, string> = {
 	manut: 'Man‘ūt · diterangkan',
@@ -149,7 +143,8 @@ export const grammarRules: readonly GrammarRule[] = [
 		title: 'Iḍāfah: hubungan dua isim',
 		arabicTerm: 'الْإِضَافَةُ',
 		kind: 'frasa',
-		summary: 'Dua isim digabung untuk menunjukkan kepemilikan atau hubungan, misalnya buku seorang murid.',
+		summary:
+			'Dua isim digabung untuk menunjukkan kepemilikan atau hubungan, misalnya buku seorang murid.',
 		keyRule:
 			'Isim pertama adalah muḍāf dan tidak memakai tanwin. Isim kedua adalah muḍāf ilaih dan berstatus majrūr. Akhiran muḍāf dapat berubah mengikuti posisinya dalam kalimat.',
 		contrast:

@@ -24,7 +24,7 @@
 	>
 		{#each example.tokens as token, i (`${example.id}-${i}`)}
 			<div
-				class="flex min-w-0 max-w-full flex-col items-center gap-1 rounded-xl border px-3 py-2 text-center {roleColors[
+				class="flex max-w-full min-w-0 flex-col items-center gap-1 rounded-xl border px-3 py-2 text-center {roleColors[
 					token.role
 				]}"
 				data-role={token.role}
