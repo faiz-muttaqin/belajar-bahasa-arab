@@ -15,6 +15,28 @@ export const tashrifColumns = [
 ] as const;
 
 export type TashrifColumnKey = (typeof tashrifColumns)[number]['key'];
+
+/**
+ * Teaching wazan corresponding to the eleven reference-table rows. These are
+ * *examples of form templates*, not claims that every masdar, ism makan or
+ * instrument can be derived mechanically for every Arabic lexeme.
+ *
+ * Bab numbering deliberately follows this project's existing reference table.
+ */
+export const referenceWazans: Readonly<Record<number, Readonly<Partial<Record<TashrifColumnKey, string>>>>> = {
+	1: { madhi: 'فَعَلَ', mudhari: 'يَفْعُلُ', mashdar: 'فَعْلٌ', mimi: 'مَفْعَلٌ', fail: 'فَاعِلٌ', maful: 'مَفْعُولٌ', amr: 'اُفْعُلْ', nahy: 'لَا تَفْعُلْ', zaman: 'مَفْعَلٌ', makan: 'مَفْعَلٌ', alah: 'مِفْعَلٌ' },
+	2: { madhi: 'فَعَلَ', mudhari: 'يَفْعِلُ', mashdar: 'فَعْلٌ', mimi: 'مَفْعَلٌ', fail: 'فَاعِلٌ', maful: 'مَفْعُولٌ', amr: 'اِفْعِلْ', nahy: 'لَا تَفْعِلْ', zaman: 'مَفْعِلٌ', makan: 'مَفْعِلٌ', alah: 'مِفْعَلٌ' },
+	3: { madhi: 'فَعَلَ', mudhari: 'يَفْعَلُ', mashdar: 'فَعْلٌ', mimi: 'مَفْعَلٌ', fail: 'فَاعِلٌ', maful: 'مَفْعُولٌ', amr: 'اِفْعَلْ', nahy: 'لَا تَفْعَلْ', zaman: 'مَفْعَلٌ', makan: 'مَفْعَلٌ', alah: 'مِفْعَالٌ' },
+	4: { madhi: 'فَعِلَ', mudhari: 'يَفْعَلُ', mashdar: 'فِعْلٌ', mimi: 'مَفْعَلٌ', fail: 'فَاعِلٌ', maful: 'مَفْعُولٌ', amr: 'اِفْعَلْ', nahy: 'لَا تَفْعَلْ', zaman: 'مَفْعَلٌ', makan: 'مَفْعَلٌ' },
+	5: { madhi: 'فَعِلَ', mudhari: 'يَفْعِلُ', mashdar: 'فُعْلَانٌ', mimi: 'مَفْعَلٌ', fail: 'فَاعِلٌ', maful: 'مَفْعُولٌ', amr: 'اِفْعِلْ', nahy: 'لَا تَفْعِلْ', zaman: 'مَفْعِلٌ', makan: 'مَفْعِلٌ' },
+	6: { madhi: 'فَعُلَ', mudhari: 'يَفْعُلُ', mashdar: 'فُعْلٌ', mimi: 'مَفْعَلٌ', fail: 'فَعَلٌ', amr: 'اُفْعُلْ', nahy: 'لَا تَفْعُلْ', zaman: 'مَفْعَلٌ', makan: 'مَفْعَلٌ' }
+};
+
+export function referenceWazanValue(bab: number, key: TashrifColumnKey): string | undefined {
+	return referenceWazans[bab]?.[key];
+}
+
+
 export type BabGroup = { number: number; exemplar: string; pattern: string; count: number };
 
 export function babGroups(entries: readonly SharafEntry[]): BabGroup[] {
