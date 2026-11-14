@@ -1,4 +1,4 @@
-import { resolve } from '$app/paths';
+import { base, resolve } from '$app/paths';
 import { readCatalog, saveCatalog, readBulkSharafCache, saveBulkSharafCache } from './storage.js';
 import { prepareSharafSearchIndex } from '#lib/domain/sharaf/lexicon.js';
 import { BULK_SHARAF_PATH, isBulkSharafLexicon, mergeBulkSharaf, type BulkSharafLexicon } from '#lib/domain/sharaf/bulk.js';
@@ -120,7 +120,7 @@ async function syncBulkSharaf() {
 			return;
 		}
 		if (!navigator.onLine) return;
-		const response = await fetch(resolve(BULK_SHARAF_PATH), {
+		const response = await fetch(`${base}/${BULK_SHARAF_PATH}`, {
 			cache: 'force-cache',
 			signal: AbortSignal.timeout(30_000)
 		});
