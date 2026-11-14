@@ -7,7 +7,26 @@ import type { ReviewStatus } from '#lib/domain/reference/table.js';
 import { hasApprovingReview, type ReviewRecord, type ReviewerRole } from '#lib/domain/review.js';
 
 /** Collections shown on /kosakata/. Qur'anic/classical words are labelled separately (§3.3). */
-export type VocabularyCollectionId = 'harian' | 'quran';
+export type VocabularyCollectionId = 'harian' | 'quran' | 'shalat';
+
+export const QURAN_GROUPS = {
+	harf: 'Harf dan kata penghubung',
+	rujukan: 'Isim rujukan dan keterangan',
+	'fiil-ujar': 'Fi’il · Ucapan dan pengetahuan',
+	'fiil-iman': 'Fi’il · Iman dan ibadah',
+	'fiil-tindakan': 'Fi’il · Keadaan dan tindakan',
+	isim: 'Isim · Benda, konsep, dan sifat'
+} as const;
+
+export type QuranGroup = keyof typeof QURAN_GROUPS;
+export type QuranOccurrence = {
+	/** Surah and ayah in the Tanzil download. */
+	reference: `${number}:${number}`;
+	/** Complete, unmodified orthographic token, including any attached particle. */
+	token: string;
+	textVersion: 'Tanzil Uthmani 1.1';
+};
+export type VerbReference = { bab: number; id: string };
 
 /** Keys of the curated icon registry (src/lib/components/learning/vocab-icons.ts). */
 export type VocabIconKey =
@@ -41,17 +60,23 @@ export type VocabularyItem = {
 	reviews?: ReviewRecord[];
 	/** Free-text note on where learners meet the word, e.g. a shalat recitation. */
 	context?: string;
+	transliteration?: string;
+	quranGroup?: QuranGroup;
+	quranOccurrence?: QuranOccurrence;
+	verbReference?: VerbReference;
 };
 
 export const COLLECTION_LABELS: Record<VocabularyCollectionId, string> = {
 	harian: 'Kosakata harian',
-	quran: "Al-Qur'an dan bacaan shalat"
+	quran: 'Kosakata Al-Qur’an',
+	shalat: 'Kosakata bacaan shalat'
 };
 
 /** D-7: who must approve items in each collection. */
 export const REQUIRED_REVIEWER: Record<VocabularyCollectionId, ReviewerRole> = {
 	harian: 'arabic_teacher',
-	quran: 'ustadz'
+	quran: 'ustadz',
+	shalat: 'ustadz'
 };
 
 export type VocabIssue = { id: string; message: string };
@@ -62,8 +87,14 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 	if (item.arabic.trim() === '') add('Empty Arabic text');
 	if (item.meaning.trim() === '') add('Empty meaning');
 	if (item.icon && item.concreteness !== 'concrete') add('Icon on a non-concrete word (D-6)');
-	if (item.collection === 'quran' && item.register !== 'classical') {
-		add("Qur'anic collection items must use the classical register label");
+	if (item.collection !== 'harian' && item.register !== 'classical') {
+		add('Classical collections must use the classical register label');
+	}
+	if (
+		item.collection === 'quran' &&
+		(!item.quranGroup || !item.quranOccurrence || !item.transliteration)
+	) {
+		add('Qur’anic items require a group, a transliteration and an ayah witness');
 	}
 	return issues;
 }

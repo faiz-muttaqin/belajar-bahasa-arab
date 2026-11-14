@@ -5,6 +5,7 @@
 	import Brain from '@lucide/svelte/icons/brain';
 	import Sun from '@lucide/svelte/icons/sun';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
+	import QuranVocabulary from '#lib/components/learning/QuranVocabulary.svelte';
 	import VocabCard from '#lib/components/learning/VocabCard.svelte';
 	import { publishedVocabulary } from '#lib/content/vocabulary.js';
 	import { type VocabularyCollectionId } from '#lib/domain/vocabulary/types.js';
@@ -26,7 +27,7 @@
 			lesson: 'belajar/menunjuk-dan-bertanya/'
 		},
 		{
-			id: 'quran',
+			id: 'shalat',
 			icon: BookHeart,
 			iconClass: 'text-primary',
 			title: 'Kosakata bacaan shalat',
@@ -41,7 +42,7 @@
 <PageIntro
 	title="Kosakata"
 	section="kosakata"
-	description="Kosakata dari pelajaran bahasa Arab sehari-hari dan bacaan shalat dengan arti bahasa Indonesia dan mode mengingat."
+	description="Kosakata bahasa Arab sehari-hari, bacaan shalat, dan Al-Qur’an menurut jenis kata, dengan glos bahasa Indonesia dan mode hafalan."
 >
 	{#snippet lead()}
 		<p>Temukan arti kata yang muncul dalam bacaan dan coba ingat tanpa bantuan.</p>
@@ -49,6 +50,12 @@
 </PageIntro>
 
 <div class="mt-10">
+	<a
+		href="#al-quran"
+		class="me-4 inline-flex min-h-11 items-center font-medium text-primary underline"
+	>
+		Kosakata Al-Qur’an
+	</a>
 	<a
 		href={resolve('cari/?jenis=word')}
 		class="me-4 inline-flex min-h-11 items-center font-medium text-primary underline"
@@ -68,7 +75,11 @@
 {#each collections as collection (collection.id)}
 	{@const Icon = collection.icon}
 	{@const items = publishedVocabulary(collection.id)}
-	<section id={collection.id} class="mt-16 scroll-mt-24" aria-labelledby="{collection.id}-heading">
+	<section
+		id={collection.id === 'shalat' ? 'quran' : collection.id}
+		class="mt-16 scroll-mt-24"
+		aria-labelledby="{collection.id}-heading"
+	>
 		<div class="flex items-center gap-3">
 			<span
 				class="inline-flex size-10 items-center justify-center rounded-xl bg-secondary {collection.iconClass}"
@@ -96,3 +107,5 @@
 		</a>
 	</section>
 {/each}
+
+<QuranVocabulary {hafalan} />

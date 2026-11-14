@@ -3,6 +3,7 @@ import {
 	type VocabularyCollectionId,
 	type VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
+import { quranVocabulary } from './quran-vocabulary.js';
 
 type Entry = Pick<
 	VocabularyItem,
@@ -171,18 +172,21 @@ const vocabulary: readonly VocabularyItem[] = [
 	})),
 	...prayer.map((item): VocabularyItem => ({
 		...item,
-		collection: 'quran',
+		collection: 'shalat',
 		register: 'classical',
 		reviewStatus: 'draft',
 		sources: prayerSources
-	}))
+	})),
+	...quranVocabulary
 ];
 
 // This catalog contains original glosses and contextual notes, as allowed by ADR-004 D-8.
+const ids = new Set<string>();
 for (const item of vocabulary) {
-	if (!item.sources.length || validateVocab(item).length) {
+	if (ids.has(item.id) || !item.sources.length || validateVocab(item).length) {
 		throw new Error(`Kosakata tidak lengkap: ${item.id}`);
 	}
+	ids.add(item.id);
 }
 
 export function publishedVocabulary(collection: VocabularyCollectionId): VocabularyItem[] {

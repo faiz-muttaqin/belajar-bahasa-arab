@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Eye from '@lucide/svelte/icons/eye';
+	import type { Snippet } from 'svelte';
 	import type { VocabularyItem } from '#lib/domain/vocabulary/types.js';
 	import { vocabIcons } from './vocab-icons.js';
 
@@ -7,7 +8,11 @@
 	 * One vocabulary item: association icon, the Arabic word large, and its meaning.
 	 * In hafalan mode the meaning starts hidden and is revealed with a real button.
 	 */
-	let { item, hafalan = false }: { item: VocabularyItem; hafalan?: boolean } = $props();
+	let {
+		item,
+		hafalan = false,
+		details
+	}: { item: VocabularyItem; hafalan?: boolean; details?: Snippet } = $props();
 
 	let shown = $state(false);
 	let meaningVisible = $derived(!hafalan || shown);
@@ -27,6 +32,9 @@
 
 	<div class="mt-auto min-h-11 pt-3" aria-live="polite">
 		{#if meaningVisible}
+			{#if item.transliteration}
+				<p class="mb-1 text-sm text-muted-foreground">{item.transliteration}</p>
+			{/if}
 			<p class="text-lg font-medium">{item.meaning}</p>
 			{#if item.context}
 				<p class="mt-1 text-sm text-pretty text-muted-foreground">{item.context}</p>
@@ -42,4 +50,7 @@
 			</button>
 		{/if}
 	</div>
+	{#if meaningVisible && details}
+		<div class="mt-3 border-t pt-1">{@render details()}</div>
+	{/if}
 </article>

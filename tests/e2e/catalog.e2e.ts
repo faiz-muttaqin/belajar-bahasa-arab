@@ -11,6 +11,13 @@ test('the build exports a versioned catalog alongside static HTML', async () => 
 		catalog.lessons.some(({ slug }: { slug: string }) => slug === 'bedah-kalimat-bacaan')
 	).toBe(true);
 	expect(catalog.vocabulary).not.toHaveLength(0);
+	expect(catalog.vocabulary).toContainEqual(
+		expect.objectContaining({
+			id: 'quran-qala',
+			quranOccurrence: { reference: '2:30', token: 'قَالَ', textVersion: 'Tanzil Uthmani 1.1' },
+			verbReference: { bab: 1, id: 'قال-1' }
+		})
+	);
 	expect(catalog.references.map(({ id }: { id: string }) => id)).toContain('kata-penghubung');
 	expect(bytes.toString('utf8')).not.toContain('"reviews":');
 });
