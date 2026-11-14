@@ -41,7 +41,8 @@
 			<SharafForms forms={section.forms} />
 
 			<p class="max-w-3xl border-s-4 border-primary ps-4 text-sm">
-				<strong>Perhatikan:</strong> {section.note}
+				<strong>Perhatikan:</strong>
+				{section.note}
 			</p>
 
 			<details class="max-w-3xl rounded-xl border bg-card p-4">
@@ -74,19 +75,15 @@
 <aside class="mt-14 max-w-4xl space-y-4 rounded-2xl border bg-card p-5">
 	<h2 class="text-xl font-semibold">Lanjutkan ke 22 kelompok wazan</h2>
 	<p class="text-muted-foreground">
-		Contoh di atas memakai fi‘il tsulātsī mujarrad ṣaḥīḥ (كَتَبَ) agar prinsipnya mudah
-		dibandingkan. Verba mu‘tal, mahmūz, muḍā‘af, serta pola mazīd mempunyai perubahan tambahan.
-		Jangan menghasilkan semua bentuk hanya dari tiga huruf akar tanpa kamus dan pemeriksaan.
+		Contoh di atas memakai fi‘il tsulātsī mujarrad ṣaḥīḥ (كَتَبَ) agar prinsipnya mudah dibandingkan.
+		Verba mu‘tal, mahmūz, muḍā‘af, serta pola mazīd mempunyai perubahan tambahan. Jangan
+		menghasilkan semua bentuk hanya dari tiga huruf akar tanpa kamus dan pemeriksaan.
 	</p>
 	<nav aria-label="Rujukan lanjutan" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
 		<a href={resolve('rujukan/fiil/')} class="text-primary underline">
 			Lihat tabel 22 bab tashrif
 		</a>
-		<a href={resolve('sharaf/')} class="text-primary underline">
-			Cari akar dan wazan di kamus
-		</a>
-		<a href={resolve('kaidah/')} class="text-primary underline">
-			Kembali ke peta nahwu
-		</a>
+		<a href={resolve('sharaf/')} class="text-primary underline"> Cari akar dan wazan di kamus </a>
+		<a href={resolve('kaidah/')} class="text-primary underline"> Kembali ke peta nahwu </a>
 	</nav>
 </aside>

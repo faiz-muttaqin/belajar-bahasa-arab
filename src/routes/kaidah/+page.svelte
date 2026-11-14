@@ -40,10 +40,13 @@
 <aside class="mt-9 max-w-4xl rounded-xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Baru: bagaimana kata berubah?</h2>
 	<p class="mt-2 text-muted-foreground">
-		Pelajari akar dan wazan, tashrif istilahi, serta tashrif lughawi dengan
-		arti Indonesia tepat di bawah bentuk Arab.
+		Pelajari akar dan wazan, tashrif istilahi, serta tashrif lughawi dengan arti Indonesia tepat di
+		bawah bentuk Arab.
 	</p>
-	<a href={resolve('kaidah/sharaf/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+	<a
+		href={resolve('kaidah/sharaf/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
 		Pelajari perubahan kata (sharaf)
 	</a>
 </aside>
