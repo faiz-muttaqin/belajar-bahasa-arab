@@ -11,7 +11,7 @@
 <PageIntro
 	title="Tabel rujukan"
 	section="rujukan"
-	description="Tabel tashrif istilahi enam bab kata kerja Arab tiga huruf dan rujukan kata tugas untuk memahami hubungan dalam kalimat."
+	description="Tabel tashrif istilahi 22 kelompok wazan: tsulatsi dan ruba’i, dilengkapi kamus contoh, pencarian arti Indonesia, dan penjelasan perubahan kata."
 >
 	{#snippet lead()}
 		<p>Bandingkan bentuk kata kerja dan cek arti kata tugas saat membaca.</p>
@@ -37,11 +37,10 @@
 		class="min-w-0 scroll-mt-24 space-y-4"
 	>
 		<h2 id="tashrif-heading" class="text-2xl font-semibold">{tashrifIstilahi.title}</h2>
-		<p class="max-w-[65ch] text-pretty">
-			Mulai dari bab ketiga. <ArabicText text="فَتَحَ" /> menyatakan tindakan membuka,
-			<ArabicText text="فَتْحٌ" /> menamai tindakan itu, dan <ArabicText text="مَفْتُوحٌ" />
-			berarti “terbuka” atau “yang dibuka”. Ketiganya berbagi akar
-			<ArabicText text="ف ت ح" />.
+		<p class="max-w-[85ch] text-pretty">
+			Kenali 22 kelompok wazan dari <ArabicText text="فَعَلَ" /> sampai pola ruba’i mazid. Klik bab untuk
+			memilih contoh kata nyata dari glosarium; klik salah satu bentuk untuk melihat kaidahnya. Semua
+			sebelas bentuk tetap ada dan dapat digeser horizontal.
 		</p>
 		<TransposedTashrif />
 		<details class="space-y-4 rounded-xl border p-4">
@@ -50,11 +49,11 @@
 			</summary>
 			<ReferenceTable table={{ ...tashrifIstilahi, id: 'tashrif-contoh' }} />
 		</details>
-		<p class="max-w-[65ch] text-base text-muted-foreground">
-			Tabel dimulai dari wazan dengan huruf ف–ع–ل. Di panel kanan, cari dan pilih kata yang tersedia
-			dalam glosarium untuk mengganti baris babnya. Bentuk turunan yang belum dicatat tidak diisi
-			otomatis. Contoh mashdar, isim tempat, dan isim alat tidak selalu dapat ditebak hanya dari bab
-			fi’il.
+
+		<p class="max-w-[85ch] text-base text-muted-foreground">
+			Kolom mengikuti urutan madhi, mudhari, mashdar, dan seterusnya sampai isim alat. Kamus proyek
+			disimpan secara statis, dan versi datanya tersedia di penyimpanan lokal bila browser
+			mendukungnya. Wazan simbolik tidak menjamin semua turunan digunakan secara leksikal.
 		</p>
 		<a
 			class="inline-flex min-h-11 items-center font-medium text-primary underline"
@@ -63,7 +62,9 @@
 			Latih mengenali akar dan bentuk kata
 		</a>
 		<p class="text-base text-muted-foreground">
-			Urutan enam bab mengikuti tradisi <cite>Al-Amtsilah at-Tashrifiyyah</cite>.
+			Keenam bab awal merupakan tsulatsi mujarrad; bab selanjutnya mencakup tsulatsi mazid dan
+			ruba’i. Penomoran 22 kelompok mengikuti tabel rujukan sharaf tradisional, bukan penomoran Form
+			I–X dalam tata bahasa Arab modern.
 			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external reference -->
 			<a
 				href="https://www.terjemahmatan.com/2017/03/download-buku-ringkasan-al-amtsilah-at.html"

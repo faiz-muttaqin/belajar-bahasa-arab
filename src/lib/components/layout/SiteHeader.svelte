@@ -9,15 +9,12 @@
 	import { activeSectionId, sections } from '#lib/navigation.js';
 	import { themeMode } from '#lib/theme/index.js';
 	import { sectionIcons } from './section-icons.js';
-	import ThemeToggle from './ThemeToggle.svelte';
-
-	const headerSections = sections.filter((s) => s.inHeader);
 
 	let active = $derived(activeSectionId(page.route.id));
 	let menuOpen = $state(false);
 </script>
 
-<header class="sticky top-0 z-40 border-b bg-background">
+<header class="sticky top-0 z-40 border-b bg-background lg:hidden">
 	<div class="mx-auto flex h-16 max-w-5xl items-center gap-2 px-4 md:gap-4 md:px-6">
 		<a
 			href={resolve('/')}
@@ -27,22 +24,6 @@
 			Belajar Bahasa Arab
 		</a>
 
-		<nav aria-label="Navigasi utama" class="hidden lg:block">
-			<ul class="flex items-center gap-1">
-				{#each headerSections as section (section.id)}
-					<li>
-						<a
-							href={resolve(section.path)}
-							aria-current={active === section.id ? 'page' : undefined}
-							class="inline-flex min-h-11 items-center rounded-md px-3 text-base font-medium text-muted-foreground decoration-2 underline-offset-8 transition-colors hover:text-foreground aria-[current=page]:text-foreground aria-[current=page]:underline"
-						>
-							{section.label}
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</nav>
-
 		<a
 			href={resolve('cari/')}
 			aria-label="Cari materi"
@@ -51,8 +32,6 @@
 		>
 			<Search class="size-5" aria-hidden="true" />
 		</a>
-
-		<div class="hidden lg:block"><ThemeToggle /></div>
 
 		<Sheet.Root bind:open={menuOpen}>
 			<Sheet.Trigger>

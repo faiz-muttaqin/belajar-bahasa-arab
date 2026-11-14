@@ -1,4 +1,5 @@
 import { searchSharaf, type SharafEntry } from './lexicon.js';
+import { patternCatalog, type PatternFamily } from './patterns.js';
 
 export const tashrifColumns = [
 	{ key: 'madhi', label: 'fi’il madhi' },
@@ -103,25 +104,36 @@ export const referenceWazans: Readonly<
 };
 
 export function referenceWazanValue(bab: number, key: TashrifColumnKey): string | undefined {
-	return referenceWazans[bab]?.[key];
+	return (
+		referenceWazans[bab]?.[key] ?? patternCatalog.find((pattern) => pattern.number === bab)?.[key]
+	);
 }
 
-export type BabGroup = { number: number; exemplar: string; pattern: string; count: number };
+export type BabGroup = {
+	number: number;
+	exemplar: string;
+	pattern: string;
+	family: PatternFamily;
+	familyLabel: string;
+	count: number;
+	notes: string;
+	source: string;
+};
 
+/** Render all 22 teaching rows, including patterns without an attested glossary entry. */
 export function babGroups(entries: readonly SharafEntry[]): BabGroup[] {
-	const verbs = entries.filter((entry) => entry.partOfSpeech === 'verb' && entry.bab);
-	const numbers = new Set(verbs.map((entry) => entry.bab!.number));
-	return [...numbers]
-		.sort((a, b) => a - b)
-		.map((number) => {
-			const members = verbs.filter((entry) => entry.bab?.number === number);
-			return {
-				number,
-				exemplar: members[0]!.bab!.exemplar,
-				pattern: members[0]!.bab!.pattern,
-				count: members.length
-			};
-		});
+	return patternCatalog.map((pattern) => ({
+		number: pattern.number,
+		exemplar: pattern.madhi,
+		pattern: `${pattern.madhi} – ${pattern.mudhari}`,
+		family: pattern.family,
+		familyLabel: pattern.familyLabel,
+		count: entries.filter(
+			(entry) => entry.partOfSpeech === 'verb' && entry.bab?.number === pattern.number
+		).length,
+		notes: pattern.notes,
+		source: pattern.source
+	}));
 }
 
 /** Never generate forms that have not been explicitly recorded in the glossary. */

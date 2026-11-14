@@ -62,7 +62,10 @@ export function isSharafEntries(value: unknown): value is SharafEntry[] {
 			(bab === undefined ||
 				(entry.partOfSpeech === 'verb' &&
 					isRecord(bab) &&
-					[1, 2, 3, 4, 5, 6].some((number) => number === bab.number) &&
+					typeof bab.number === 'number' &&
+					Number.isInteger(bab.number) &&
+					bab.number >= 1 &&
+					bab.number <= 22 &&
 					typeof bab.exemplar === 'string' &&
 					typeof bab.pattern === 'string')) &&
 			entry.sources.every(
@@ -87,7 +90,8 @@ export function normalizeArabicSearch(input: string): string {
 		.replace(/[أإآٱ]/g, 'ا')
 		.replace(/ى/g, 'ي')
 		.replace(/\s+/g, '')
-		.trim();
+		.trim()
+		.toLocaleLowerCase('id');
 }
 
 /**
@@ -109,11 +113,14 @@ export function searchSharaf(
 				normalizeArabicSearch
 			);
 			const root = entry.root ? normalizeArabicSearch(entry.root) : undefined;
+			const gloss = normalizeArabicSearch(entry.meaning);
 			let score = Number.POSITIVE_INFINITY;
 			if (forms.includes(query)) score = 0;
 			else if (root === query) score = 1;
-			else if (query.length >= 2 && forms.some((form) => form.startsWith(query))) score = 2;
-			else if (query.length >= 2 && root?.startsWith(query)) score = 3;
+			else if (gloss === query) score = 2;
+			else if (query.length >= 2 && forms.some((form) => form.startsWith(query))) score = 3;
+			else if (query.length >= 2 && root?.startsWith(query)) score = 4;
+			else if (query.length >= 2 && gloss.includes(query)) score = 5;
 			return { entry, score };
 		})
 		.filter(({ score }) => Number.isFinite(score))
