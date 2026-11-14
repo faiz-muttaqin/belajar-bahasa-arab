@@ -38,7 +38,7 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 | F-07 | Progress, bookmarks, review queue in IndexedDB + export/import   | ⬜             | —            | Guide §5; schema version and migration from the start.                                                                                                            |
 | F-08 | Audio player component (click-to-play, replay, speed, errors)    | ⬜             | —            | Needs one reviewed clip from A-01.                                                                                                                                |
 | F-09 | Spaced-repetition scheduler (client-side)                        | ⬜             | —            | Use ts-fsrs (MIT), desired retention 0.90, default params; rating map wrong=Again, correct=Good, fast=Easy. Spike: browser bundle despite node>=24 engines field. |
-| F-10 | Tashrif tertransposisi + kamus sharaf + cache browser             | 🟡             | sharaf PR #2 | Implementasi draft di branch fitur, butuh CI, review pengajar, dan audit dataset sebelum pengayaan. |
+| F-10 | Tashrif tertransposisi + kamus sharaf + cache browser            | 🟡             | sharaf PR #2 | Implementasi draft di branch fitur, butuh CI, review pengajar, dan audit dataset sebelum pengayaan.                                                               |
 
 ## Audio
 
