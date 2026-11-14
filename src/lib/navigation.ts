@@ -11,6 +11,7 @@ export type SectionPath =
 	| 'latihan/'
 	| 'kosakata/'
 	| 'rujukan/'
+	| 'kaidah/'
 	| 'cari/'
 	| 'progres/'
 	| 'bookmark/'
@@ -31,6 +32,7 @@ export type SectionId =
 	| 'latihan'
 	| 'kosakata'
 	| 'rujukan'
+	| 'kaidah'
 	| 'cari'
 	| 'progres'
 	| 'bookmark'
@@ -88,6 +90,13 @@ export const sections: readonly Section[] = [
 		label: 'Jenis kata',
 		path: 'rujukan/',
 		summary: 'Kata kerja, kata benda, kata hubung, dan kata tanya, ringkas dan bisa dihafal.',
+		inTabBar: false
+	},
+	{
+		id: 'kaidah',
+		label: 'Kaidah',
+		path: 'kaidah/',
+		summary: 'Susunan frasa dan kalimat, fungsi kata, serta hubungan dengan sharaf.',
 		inTabBar: false
 	},
 	{
