@@ -24,6 +24,7 @@
 	let babFilter = $state<number | 'all'>('all');
 	let selected = $state<Record<number, string>>({});
 	let cacheStatus = $state('Data awal dari website');
+	let tableScroller: HTMLDivElement;
 
 	const rtlColumns = [...tashrifColumns].reverse();
 	let groups = $derived(babGroups(entries));
@@ -45,6 +46,8 @@
 
 	onMount(() => {
 		let cancelled = false;
+		// The madhi column is physically rightmost; show it first on interactive pages.
+		tableScroller.scrollLeft = tableScroller.scrollWidth;
 
 		async function refresh() {
 			const cached = await readSharafCache();
@@ -105,6 +108,7 @@
 		     reverse DOM order so madhi sits at the far right and reads RTL. -->
 		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 		<div
+			bind:this={tableScroller}
 			class="relative min-w-0 overflow-x-auto rounded-xl border"
 			role="region"
 			aria-label="Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri"
