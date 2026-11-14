@@ -70,7 +70,8 @@ test('highlights chosen words and shows short meanings below both examples and w
 	await page.getByRole('button', { name: 'Pilih kata untuk bab 1', exact: true }).click();
 	const modal = page.getByRole('dialog');
 	await modal.getByRole('searchbox').fill('makan');
-	await modal.getByRole('button', { name: 'Gunakan', exact: true }).click();
+	// With the full dictionary loaded, several words contain "makan"; the exact gloss ranks first.
+	await modal.getByRole('button', { name: 'Gunakan', exact: true }).first().click();
 	const example = rows.first();
 	await expect(example.getByText('Kata dipilih', { exact: true })).toBeVisible();
 	expect(await example.evaluate((row) => getComputedStyle(row).backgroundColor)).not.toBe(
@@ -131,6 +132,8 @@ test('keyboard navigation keeps focus when moving from a pattern to the glossary
 	page
 }) => {
 	await page.goto('/rujukan/fiil/#tashrif-istilahi');
+	// The switch is enabled only after hydration; pressing keys earlier would do nothing.
+	await expect(page.getByRole('switch', { name: 'Arti Indonesia' })).toBeEnabled();
 	const trigger = page.getByRole('button', { name: 'Detail fi’il mudhari’, bab 15' });
 	await trigger.focus();
 	await page.keyboard.press('Enter');
