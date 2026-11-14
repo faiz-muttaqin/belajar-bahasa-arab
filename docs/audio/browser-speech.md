@@ -80,5 +80,5 @@ labelled optional fallback.
 F-07: IndexedDB progress/bookmark/review queue and export/import — pending.
 F-09: FSRS client-side scheduler — pending, should use F-07 storage model.
 F-06: static reviewed-audio manifest/checksum validation — still pending.
-A-02/A-03: listener review and encoding choices for *recorded* clips —
+A-02/A-03: listener review and encoding choices for _recorded_ clips —
 unchanged.

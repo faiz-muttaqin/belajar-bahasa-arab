@@ -125,7 +125,7 @@
 									{@const text = analyzedText(sentence)}
 									<div class="space-y-1 border-b pb-2 last:border-b-0">
 										<div class="flex flex-wrap items-start justify-end gap-2">
-											<AudioPlayButton text={text} label="Dengarkan kalimat Arab" compact />
+											<AudioPlayButton {text} label="Dengarkan kalimat Arab" compact />
 											<ArabicText
 												text={showHarakat ? text : stripHarakat(text)}
 												size="block"
@@ -142,7 +142,11 @@
 								{/each}
 							{:else}
 								<div class="flex flex-wrap items-start justify-end gap-2">
-									<AudioPlayButton text={paragraph.arabic} label="Dengarkan paragraf Arab" compact />
+									<AudioPlayButton
+										text={paragraph.arabic}
+										label="Dengarkan paragraf Arab"
+										compact
+									/>
 									<ArabicText
 										text={showHarakat ? paragraph.arabic : stripHarakat(paragraph.arabic)}
 										size="block"

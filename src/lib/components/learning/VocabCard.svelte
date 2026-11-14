@@ -25,7 +25,7 @@
 	{/if}
 
 	<div class="mt-4 flex items-start justify-between gap-2">
-		<p lang="ar" dir="rtl" class="arabic-word min-w-0">{item.arabic}</p>
+		<p lang="ar" dir="rtl" class="min-w-0 arabic-word">{item.arabic}</p>
 		<AudioPlayButton text={item.arabic} label="Dengarkan kata Arab" compact />
 	</div>
 

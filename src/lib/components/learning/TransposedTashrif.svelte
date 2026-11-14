@@ -560,9 +560,7 @@
 										<ArabicText text={value} />
 										<AudioPlayButton text={value} label="Dengarkan bentuk kata" compact />
 									</div>
-								{:else}<span
-										class="text-xs text-muted-foreground">Belum tercatat</span
-									>{/if}
+								{:else}<span class="text-xs text-muted-foreground">Belum tercatat</span>{/if}
 							</dd>
 						</div>
 					{/each}
@@ -600,7 +598,9 @@
 			</div>
 			<p class="text-sm leading-relaxed">{cell.group.notes}</p>
 			<AudioPlayButton
-				text={cell.entry ? (tashrifValue(cell.entry, cell.key) ?? '') : (referenceWazanValue(cell.group.number, cell.key) ?? '')}
+				text={cell.entry
+					? (tashrifValue(cell.entry, cell.key) ?? '')
+					: (referenceWazanValue(cell.group.number, cell.key) ?? '')}
 				label="Dengarkan wazan Arab"
 				compact
 			/>

@@ -102,9 +102,7 @@ export function setSpeechVoice(id: string) {
 export function startBrowserSpeech(): () => void {
 	const engine = getEngine();
 	browserSpeech.initialized = true;
-	browserSpeech.supported = Boolean(
-		engine && typeof SpeechSynthesisUtterance !== 'undefined'
-	);
+	browserSpeech.supported = Boolean(engine && typeof SpeechSynthesisUtterance !== 'undefined');
 	readSettings();
 	if (!engine || !browserSpeech.supported) {
 		return () => {
@@ -150,7 +148,8 @@ export function speakArabic(text: string, key: string): boolean {
 	const available = engine.getVoices();
 	const arabic = arabicVoices(engine);
 	if (available.length > 0 && arabic.length === 0) {
-		browserSpeech.error = 'Tidak ada suara bahasa Arab di perangkat. Tambahkan suara Arab melalui pengaturan sistem.';
+		browserSpeech.error =
+			'Tidak ada suara bahasa Arab di perangkat. Tambahkan suara Arab melalui pengaturan sistem.';
 		browserSpeech.errorKey = key;
 		return false;
 	}

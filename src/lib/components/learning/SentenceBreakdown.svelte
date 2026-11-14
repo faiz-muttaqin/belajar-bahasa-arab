@@ -26,7 +26,11 @@
 						<div class="text-start text-xl">
 							<div class="flex flex-wrap items-start gap-2">
 								<ArabicText text={analyzedText(sentence)} class="block wrap-break-word" />
-								<AudioPlayButton text={analyzedText(sentence)} label="Dengarkan kalimat Arab" compact />
+								<AudioPlayButton
+									text={analyzedText(sentence)}
+									label="Dengarkan kalimat Arab"
+									compact
+								/>
 							</div>
 						</div>
 						<SentenceWordNotes {sentence} />

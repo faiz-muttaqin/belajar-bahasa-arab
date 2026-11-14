@@ -2,11 +2,7 @@
 	import { onDestroy } from 'svelte';
 	import Volume2 from '@lucide/svelte/icons/volume-2';
 	import Square from '@lucide/svelte/icons/square';
-	import {
-		browserSpeech,
-		speakArabic,
-		stopArabicSpeech
-	} from '#lib/audio/speech.svelte.js';
+	import { browserSpeech, speakArabic, stopArabicSpeech } from '#lib/audio/speech.svelte.js';
 
 	let {
 		text,
