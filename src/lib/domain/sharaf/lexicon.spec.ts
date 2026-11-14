@@ -13,7 +13,9 @@ describe('normalizeArabicSearch', () => {
 describe('searchSharaf', () => {
 	it('finds a verb by madhi, mudhari and its consonantal root', () => {
 		for (const query of ['كَتَبَ', 'كتب', 'يكتب']) {
-			expect(searchSharaf(sharafEntries, query).some((item) => item.id === 'fiil-kataba')).toBe(true);
+			expect(searchSharaf(sharafEntries, query).some((item) => item.id === 'fiil-kataba')).toBe(
+				true
+			);
 		}
 	});
 
@@ -24,7 +26,9 @@ describe('searchSharaf', () => {
 	});
 
 	it('filters function words separately from verbs', () => {
-		expect(searchSharaf(sharafEntries, 'في', 'particle').map((item) => item.id)).toContain('partikel-fi');
+		expect(searchSharaf(sharafEntries, 'في', 'particle').map((item) => item.id)).toContain(
+			'partikel-fi'
+		);
 		expect(searchSharaf(sharafEntries, 'في', 'verb')).toEqual([]);
 	});
 

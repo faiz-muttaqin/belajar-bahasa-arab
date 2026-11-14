@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { sharafEntries } from '#lib/content/sharaf.js';
-import { babGroups, referenceWazanValue, selectedBabRows, selectableVerbs, tashrifColumns, tashrifValue } from './matrix.js';
+import {
+	babGroups,
+	referenceWazanValue,
+	selectedBabRows,
+	selectableVerbs,
+	tashrifColumns,
+	tashrifValue
+} from './matrix.js';
 import { parseSharafCatalog, SHARAF_CACHE_SCHEMA } from './cache.js';
 
 describe('transposed tashrif matrix', () => {
@@ -39,7 +46,9 @@ describe('transposed tashrif matrix', () => {
 	it('rejects wrong cache schema or malformed records', () => {
 		expect(parseSharafCatalog({ schema: 999, entries: sharafEntries })).toBeNull();
 		expect(parseSharafCatalog({ schema: SHARAF_CACHE_SCHEMA, entries: [{ id: 'x' }] })).toBeNull();
-		expect(parseSharafCatalog({ schema: SHARAF_CACHE_SCHEMA, entries: [...sharafEntries] })?.entries.length)
-			.toBe(sharafEntries.length);
+		expect(
+			parseSharafCatalog({ schema: SHARAF_CACHE_SCHEMA, entries: [...sharafEntries] })?.entries
+				.length
+		).toBe(sharafEntries.length);
 	});
 });

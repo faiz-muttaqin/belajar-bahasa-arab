@@ -7,12 +7,54 @@ import type { SharafEntry } from '#lib/domain/sharaf/lexicon.js';
  * This is deliberately small: no third-party lexicon has been imported.
  */
 const babs = [
-	{ key: 'nasara', root: 'نصر', meaning: 'menolong', number: 1, exemplar: 'نَصَرَ', pattern: 'فَعَلَ – يَفْعُلُ' },
-	{ key: 'daraba', root: 'ضرب', meaning: 'memukul', number: 2, exemplar: 'ضَرَبَ', pattern: 'فَعَلَ – يَفْعِلُ' },
-	{ key: 'fataha', root: 'فتح', meaning: 'membuka', number: 3, exemplar: 'فَتَحَ', pattern: 'فَعَلَ – يَفْعَلُ' },
-	{ key: 'alima', root: 'علم', meaning: 'mengetahui', number: 4, exemplar: 'عَلِمَ', pattern: 'فَعِلَ – يَفْعَلُ' },
-	{ key: 'hasiba', root: 'حسب', meaning: 'mengira', number: 5, exemplar: 'حَسِبَ', pattern: 'فَعِلَ – يَفْعِلُ' },
-	{ key: 'hasuna', root: 'حسن', meaning: 'menjadi baik', number: 6, exemplar: 'حَسُنَ', pattern: 'فَعُلَ – يَفْعُلُ' }
+	{
+		key: 'nasara',
+		root: 'نصر',
+		meaning: 'menolong',
+		number: 1,
+		exemplar: 'نَصَرَ',
+		pattern: 'فَعَلَ – يَفْعُلُ'
+	},
+	{
+		key: 'daraba',
+		root: 'ضرب',
+		meaning: 'memukul',
+		number: 2,
+		exemplar: 'ضَرَبَ',
+		pattern: 'فَعَلَ – يَفْعِلُ'
+	},
+	{
+		key: 'fataha',
+		root: 'فتح',
+		meaning: 'membuka',
+		number: 3,
+		exemplar: 'فَتَحَ',
+		pattern: 'فَعَلَ – يَفْعَلُ'
+	},
+	{
+		key: 'alima',
+		root: 'علم',
+		meaning: 'mengetahui',
+		number: 4,
+		exemplar: 'عَلِمَ',
+		pattern: 'فَعِلَ – يَفْعَلُ'
+	},
+	{
+		key: 'hasiba',
+		root: 'حسب',
+		meaning: 'mengira',
+		number: 5,
+		exemplar: 'حَسِبَ',
+		pattern: 'فَعِلَ – يَفْعِلُ'
+	},
+	{
+		key: 'hasuna',
+		root: 'حسن',
+		meaning: 'menjadi baik',
+		number: 6,
+		exemplar: 'حَسُنَ',
+		pattern: 'فَعُلَ – يَفْعُلُ'
+	}
 ] as const;
 
 function referenceForm(rowId: string, column: string): string {
@@ -111,7 +153,8 @@ const additional: SharafEntry[] = [
 		forms: [{ label: 'Dasar fi’il terkait', value: 'فَتَحَ' }],
 		babSelection: 'not-applicable',
 		formBehavior: 'regular',
-		explanation: 'مَفْتُوحٌ adalah isim maf’ul, bukan fi’il yang mempunyai nomor bab sendiri. Keluarga akar katanya ف ت ح.',
+		explanation:
+			'مَفْتُوحٌ adalah isim maf’ul, bukan fi’il yang mempunyai nomor bab sendiri. Keluarga akar katanya ف ت ح.',
 		sources: maftuh.sources,
 		reviewStatus: 'draft'
 	},
@@ -123,7 +166,8 @@ const additional: SharafEntry[] = [
 		forms: [],
 		babSelection: 'not-applicable',
 		formBehavior: 'fixed',
-		explanation: 'Ini kata tugas. Hafalkan fungsi dan contoh pemakaiannya, bukan mencari bab tashrif fi’il.',
+		explanation:
+			'Ini kata tugas. Hafalkan fungsi dan contoh pemakaiannya, bukan mencari bab tashrif fi’il.',
 		sources: word.sources,
 		reviewStatus: 'draft'
 	}))

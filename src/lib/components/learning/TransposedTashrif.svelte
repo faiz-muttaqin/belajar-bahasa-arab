@@ -3,7 +3,11 @@
 	import { resolve } from '$app/paths';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { sharafEntries } from '#lib/content/sharaf.js';
-	import { parseSharafCatalog, readSharafCache, writeSharafCache } from '#lib/domain/sharaf/cache.js';
+	import {
+		parseSharafCatalog,
+		readSharafCache,
+		writeSharafCache
+	} from '#lib/domain/sharaf/cache.js';
 	import {
 		babGroups,
 		referenceWazanValue,
@@ -67,7 +71,9 @@
 				}
 			} catch {
 				if (!cancelled) {
-					cacheStatus = cached ? 'Memakai glosarium dari cache lokal' : 'Memakai data statis bawaan';
+					cacheStatus = cached
+						? 'Memakai glosarium dari cache lokal'
+						: 'Memakai data statis bawaan';
 				}
 			}
 		}
@@ -113,18 +119,22 @@
 						<th
 							scope="col"
 							class="sticky left-0 z-20 min-w-40 border-r bg-secondary px-3 py-3 text-start text-xs font-semibold"
-						>Bab / kata</th>
+							>Bab / kata</th
+						>
 						{#each rtlColumns as column (column.key)}
 							<th
 								scope="col"
 								class="min-w-32 px-3 py-3 text-center text-xs font-medium text-secondary-foreground"
-							>{column.label}</th>
+								>{column.label}</th
+							>
 						{/each}
 					</tr>
 				</thead>
 				<tbody>
 					{#each visibleGroups as group (group.number)}
-						{@const active = entries.find((entry) => entry.id === selected[group.number] && entry.bab?.number === group.number)}
+						{@const active = entries.find(
+							(entry) => entry.id === selected[group.number] && entry.bab?.number === group.number
+						)}
 						<tr class="border-b last:border-b-0">
 							<th
 								scope="row"
@@ -139,22 +149,28 @@
 									<button
 										type="button"
 										class="mt-1 min-h-9 text-xs font-medium text-primary underline"
-										onclick={() => resetBab(group.number)}
-									>Kembalikan wazan</button>
+										onclick={() => resetBab(group.number)}>Kembalikan wazan</button
+									>
 								{/if}
 							</th>
 							{#each rtlColumns as column (column.key)}
 								{@const value = active
 									? tashrifValue(active, column.key)
 									: referenceWazanValue(group.number, column.key)}
-								<td class="px-3 py-4 align-middle text-center">
+								<td class="px-3 py-4 text-center align-middle">
 									{#if value}
-										<span lang="ar" dir="rtl" class="block whitespace-nowrap arabic-block text-center">{value}</span>
+										<span
+											lang="ar"
+											dir="rtl"
+											class="block arabic-block text-center whitespace-nowrap">{value}</span
+										>
 									{:else}
 										<span
 											class="text-sm text-muted-foreground"
-											title={active ? 'Bentuk ini belum tercatat untuk kata yang dipilih' : 'Tidak dicontohkan dalam tabel rujukan'}
-										>—</span>
+											title={active
+												? 'Bentuk ini belum tercatat untuk kata yang dipilih'
+												: 'Tidak dicontohkan dalam tabel rujukan'}>—</span
+										>
 									{/if}
 								</td>
 							{/each}
@@ -164,13 +180,16 @@
 			</table>
 		</div>
 		<p class="text-sm text-muted-foreground">
-			Baris default adalah pola simbolik, bukan klaim bahwa semua mashdar atau isim alat
-			terbentuk secara otomatis. Jika memilih kata, tanda — berarti bentuk tersebut belum
-			tercatat atau tidak dicontohkan dalam glosarium.
+			Baris default adalah pola simbolik, bukan klaim bahwa semua mashdar atau isim alat terbentuk
+			secara otomatis. Jika memilih kata, tanda — berarti bentuk tersebut belum tercatat atau tidak
+			dicontohkan dalam glosarium.
 		</p>
 	</div>
 
-	<aside class="order-first space-y-4 rounded-xl border bg-card p-4 xl:order-last xl:sticky xl:top-24" aria-label="Pilih kata contoh">
+	<aside
+		class="order-first space-y-4 rounded-xl border bg-card p-4 xl:sticky xl:top-24 xl:order-last"
+		aria-label="Pilih kata contoh"
+	>
 		<div>
 			<h3 class="text-lg font-semibold">Pilih contoh kata</h3>
 			<p class="mt-1 text-sm text-muted-foreground">
@@ -204,7 +223,9 @@
 				placeholder="كتب، يكتب، نصر..."
 				class="min-h-11 w-full rounded-lg border bg-background px-3 text-lg"
 			/>
-			<p class="text-xs text-muted-foreground">Bisa tanpa harakat. {suggestions.length} kata ditemukan.</p>
+			<p class="text-xs text-muted-foreground">
+				Bisa tanpa harakat. {suggestions.length} kata ditemukan.
+			</p>
 		</div>
 
 		<ul class="max-h-[24rem] space-y-2 overflow-y-auto pe-1">
@@ -226,13 +247,20 @@
 			{/each}
 		</ul>
 		{#if suggestions.length > 40}
-			<p class="text-xs text-muted-foreground">Menampilkan 40 hasil pertama. Persempit kata pencarian.</p>
+			<p class="text-xs text-muted-foreground">
+				Menampilkan 40 hasil pertama. Persempit kata pencarian.
+			</p>
 		{:else if suggestions.length === 0}
-			<p class="text-sm text-muted-foreground">Belum ada entri yang cocok. Coba akar atau bentuk lain.</p>
+			<p class="text-sm text-muted-foreground">
+				Belum ada entri yang cocok. Coba akar atau bentuk lain.
+			</p>
 		{/if}
 
 		<p role="status" class="border-t pt-3 text-xs text-muted-foreground">{cacheStatus}</p>
-		<a href={resolve('sharaf/')} class="inline-flex min-h-11 items-center text-sm font-medium text-primary underline">
+		<a
+			href={resolve('sharaf/')}
+			class="inline-flex min-h-11 items-center text-sm font-medium text-primary underline"
+		>
 			Buka kamus sharaf
 		</a>
 	</aside>

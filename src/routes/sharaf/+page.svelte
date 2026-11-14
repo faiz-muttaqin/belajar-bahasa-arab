@@ -37,7 +37,10 @@
 	description="Cari contoh kata bahasa Arab berdasarkan ejaan, akar, maupun bentuk tashrif; lihat bab, wazan, serta alasan perubahan bentuknya."
 >
 	{#snippet lead()}
-		<p>Cari tanpa harakat atau ketik akar kata. Temukan bab tashrif dan bedakan hafalan leksikal dari kaidah pembentukan.</p>
+		<p>
+			Cari tanpa harakat atau ketik akar kata. Temukan bab tashrif dan bedakan hafalan leksikal dari
+			kaidah pembentukan.
+		</p>
 	{/snippet}
 </PageIntro>
 
@@ -52,9 +55,11 @@
 			placeholder="Contoh: كتب، يكتب، فتح، قال"
 			autocomplete="off"
 			bind:value={query}
-			class="arabic-block w-full min-h-14 rounded-xl border bg-card px-4 py-2 text-foreground outline-offset-4 focus-visible:outline-2 focus-visible:outline-ring"
+			class="min-h-14 w-full rounded-xl border bg-card px-4 py-2 arabic-block text-foreground outline-offset-4 focus-visible:outline-2 focus-visible:outline-ring"
 		/>
-		<p class="text-sm text-muted-foreground">Pencarian mengabaikan harakat; satu ejaan bisa mempunyai beberapa analisis.</p>
+		<p class="text-sm text-muted-foreground">
+			Pencarian mengabaikan harakat; satu ejaan bisa mempunyai beberapa analisis.
+		</p>
 	</div>
 	<fieldset class="space-y-2">
 		<legend class="font-medium">Jenis kata</legend>
@@ -65,7 +70,8 @@
 					aria-pressed={filter === option.value}
 					onclick={() => (filter = option.value)}
 					class="min-h-11 rounded-full border px-4 text-sm font-medium transition-colors aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground"
-				>{option.label}</button>
+					>{option.label}</button
+				>
 			{/each}
 		</div>
 	</fieldset>
@@ -76,7 +82,10 @@
 	{#if results.length === 0}
 		<div class="rounded-xl border border-dashed p-6">
 			<p class="font-medium">Tidak ditemukan dalam indeks awal.</p>
-			<p class="mt-2 text-muted-foreground">Ini belum kamus bahasa Arab lengkap. Coba akar kata seperti كتب atau فتح, atau hapus filter. Tidak ditemukan bukan berarti katanya tidak ada.</p>
+			<p class="mt-2 text-muted-foreground">
+				Ini belum kamus bahasa Arab lengkap. Coba akar kata seperti كتب atau فتح, atau hapus filter.
+				Tidak ditemukan bukan berarti katanya tidak ada.
+			</p>
 		</div>
 	{:else}
 		<ul class="grid gap-4 md:grid-cols-2">
@@ -87,16 +96,25 @@
 							<ArabicText text={entry.lemma} size="block" class="text-3xl" />
 							<p class="mt-1 font-medium">{entry.meaning}</p>
 						</div>
-						<span class="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{behaviorLabels[entry.formBehavior]}</span>
+						<span
+							class="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground"
+							>{behaviorLabels[entry.formBehavior]}</span
+						>
 					</div>
 					<dl class="mt-5 grid grid-cols-2 gap-4 text-sm">
 						<div>
 							<dt class="text-muted-foreground">Akar</dt>
-							<dd>{#if entry.root}<ArabicText text={entry.root} />{:else}Tidak berlaku{/if}</dd>
+							<dd>
+								{#if entry.root}<ArabicText text={entry.root} />{:else}Tidak berlaku{/if}
+							</dd>
 						</div>
 						<div>
 							<dt class="text-muted-foreground">Bab</dt>
-							<dd>{#if entry.bab}Bab {entry.bab.number}: <ArabicText text={entry.bab.exemplar} />{:else}Tidak berlaku{/if}</dd>
+							<dd>
+								{#if entry.bab}Bab {entry.bab.number}: <ArabicText
+										text={entry.bab.exemplar}
+									/>{:else}Tidak berlaku{/if}
+							</dd>
 						</div>
 						{#if entry.bab}
 							<div class="col-span-2">
@@ -136,6 +154,10 @@
 </section>
 
 <p class="mt-8 text-sm text-muted-foreground">
-	Indeks ini baru berisi contoh dari materi proyek dan beberapa ilustrasi kaidah; belum mencakup seluruh kosakata Arab. Data pihak ketiga tidak diimpor sampai audit lisensi dan tinjauan ilmiah selesai.
-	<a href={resolve('rujukan/')} class="font-medium text-primary underline">Buka tabel tashrif istilahi</a>.
+	Indeks ini baru berisi contoh dari materi proyek dan beberapa ilustrasi kaidah; belum mencakup
+	seluruh kosakata Arab. Data pihak ketiga tidak diimpor sampai audit lisensi dan tinjauan ilmiah
+	selesai.
+	<a href={resolve('rujukan/')} class="font-medium text-primary underline"
+		>Buka tabel tashrif istilahi</a
+	>.
 </p>
