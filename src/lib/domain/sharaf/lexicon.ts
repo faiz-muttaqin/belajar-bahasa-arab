@@ -121,7 +121,9 @@ export function prepareSharafSearchIndex(
 		entry,
 		index,
 		forms: [entry.lemma, ...entry.forms.map((form) => form.value)].map(normalizeArabicSearch),
-		exactForms: [entry.lemma, ...entry.forms.map((form) => form.value)].map((form) => form.normalize('NFC')),
+		exactForms: [entry.lemma, ...entry.forms.map((form) => form.value)].map((form) =>
+			form.normalize('NFC')
+		),
 		root: entry.root ? normalizeArabicSearch(entry.root) : undefined,
 		// Unknown Indonesian gloss is a display placeholder, not a search synonym.
 		gloss:
