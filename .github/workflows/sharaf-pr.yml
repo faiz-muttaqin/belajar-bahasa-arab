@@ -3,6 +3,9 @@ name: Verify sharaf reference
 on:
   pull_request:
     paths:
+      - 'src/lib/components/layout/DesktopSidebar.svelte'
+      - 'src/lib/components/layout/SiteHeader.svelte'
+      - 'src/routes/+layout.svelte'
       - 'src/lib/components/learning/TransposedTashrif.svelte'
       - 'src/lib/content/sharaf.ts'
       - 'src/lib/domain/sharaf/**'
