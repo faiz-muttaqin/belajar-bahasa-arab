@@ -4,6 +4,7 @@ import {
 	type VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
 import { quranVocabulary } from './quran-vocabulary.js';
+import { msaVocabulary } from './msa-vocabulary.js';
 
 type Entry = Pick<
 	VocabularyItem,
@@ -177,6 +178,7 @@ const vocabulary: readonly VocabularyItem[] = [
 		reviewStatus: 'draft',
 		sources: prayerSources
 	})),
+	...msaVocabulary,
 	...quranVocabulary
 ];
 

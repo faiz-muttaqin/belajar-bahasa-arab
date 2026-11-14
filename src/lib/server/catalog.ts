@@ -16,7 +16,8 @@ const content: CatalogContent = {
 	vocabulary: [
 		...publishedVocabulary('harian'),
 		...publishedVocabulary('shalat'),
-		...publishedVocabulary('quran')
+		...publishedVocabulary('quran'),
+		...publishedVocabulary('msa')
 	].map(publicRecord),
 	references: referenceTables.map(publicRecord),
 	sharaf: sharafEntries

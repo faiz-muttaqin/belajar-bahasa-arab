@@ -82,13 +82,21 @@ export function indexCatalog(
 					href: `kosakata/#kata-${word.id}`,
 					title: word.meaning,
 					arabic: word.arabic,
-					context: word.quranGroup ? `Al-Qur’an · ${QURAN_GROUPS[word.quranGroup]}` : word.context
+					context: word.quranGroup
+						? `Al-Qur’an · ${QURAN_GROUPS[word.quranGroup]}`
+						: word.msa
+							? `MSA · ${word.msa.wordClass}`
+							: word.context
 				},
 				[
 					word.context ?? '',
 					word.transliteration ?? '',
 					word.transliteration?.normalize('NFD').replace(/\p{M}/gu, '') ?? '',
-					word.quranOccurrence?.token ?? ''
+					word.quranOccurrence?.token ?? '',
+					word.msa?.root ?? '',
+					word.msa?.plural?.value ?? '',
+					word.msa?.feminine ?? '',
+					word.msa?.example?.arabic ?? ''
 				]
 			)
 		);
