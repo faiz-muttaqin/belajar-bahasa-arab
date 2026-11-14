@@ -2,6 +2,7 @@
 	import Eye from '@lucide/svelte/icons/eye';
 	import type { VocabularyItem } from '#lib/domain/vocabulary/types.js';
 	import { vocabIcons } from './vocab-icons.js';
+	import AudioPlayButton from './AudioPlayButton.svelte';
 
 	/**
 	 * One vocabulary item: association icon, the Arabic word large, and its meaning.
@@ -23,7 +24,10 @@
 		</span>
 	{/if}
 
-	<p lang="ar" dir="rtl" class="mt-4 arabic-word">{item.arabic}</p>
+	<div class="mt-4 flex items-start justify-between gap-2">
+		<p lang="ar" dir="rtl" class="arabic-word min-w-0">{item.arabic}</p>
+		<AudioPlayButton text={item.arabic} label="Dengarkan kata Arab" compact />
+	</div>
 
 	<div class="mt-auto min-h-11 pt-3" aria-live="polite">
 		{#if meaningVisible}
