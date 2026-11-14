@@ -2,6 +2,8 @@
 
 **Status:** 14 November 2026 · **157 entri awal** untuk penutur Indonesia · **Draft** (belum ditashih ahli bahasa Arab).
 
+**Audit berbasis sumber:** [protokol dan pilot lima lema](../research/2026-11-14-source-based-verification.md). Sebagian klaim awal sudah dicocokkan ke halaman lema; koleksi keseluruhan **belum** research-verified.
+
 Koleksi ini menambahkan data _di luar kamus verba_ pada `/kosakata/` → **Umum MSA**. Ada 111 kata benda, 34 kata sifat, 11 ungkapan, dan 1 partikel seruan yang dikelompokkan dalam sembilan tema. Setiap entri punya ID stabil, lemma/ungkapan Arab, arti Indonesia yang ditulis ulang untuk proyek, jenis kata, tema, dan sumber rujukan untuk pemeriksaan. Subset yang dipilih mencatat bentuk jamak, feminin, akar atau contoh frasa; bentuk yang belum tercatat **tidak dibangkitkan secara otomatis**.
 
 ## Mengapa 12.000+ verba bukan seluruh leksikon?
