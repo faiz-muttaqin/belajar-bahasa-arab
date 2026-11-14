@@ -3,7 +3,6 @@
 	import { resolve } from '$app/paths';
 	import {
 		builderSlotLabels,
-		builderSlots,
 		chooseBuilderWord,
 		composeBuilderExample,
 		initialBuilderState,
