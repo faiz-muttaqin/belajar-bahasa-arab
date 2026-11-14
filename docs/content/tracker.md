@@ -51,21 +51,21 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 
 Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 
-| ID  | Unit (proposed)     | Can-do goal (draft)                                       | Stage | Sources                              | Reviewer | Next action                                                                                                  |
-| --- | ------------------- | --------------------------------------------------------- | ----- | ------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------ |
-| B0  | Kesiapan & bunyi    | Distinguish sounds/writing; find meaning of simple words  | 1 🟡  | §5.2                                 | —        | Pick sound contrasts hard for Indonesian speakers.                                                           |
-| B1  | Benda di sekitar    | Point to and name things simply                           | 1 🟡  | §5.2, Fase F themes                  | —        | Blocked on D-4 (unit order) and RS-01 (MSA vocabulary source).                                               |
-| B2  | Menunjukkan sesuatu | Understand "ini ..." vs "ini [benda tertentu]"            | 3 🟡  | Madinah Arabic                       | —        | Pelajaran menunjuk dan bentuk al- tersedia.                                                                  |
-| B3  | Deskripsi           | Understand simple descriptions                            | 3 🟡  | Madinah Arabic                       | —        | Pelajaran membedakan sifat dan kabar tersedia.                                                               |
-| B4  | Orang dan milik     | Understand person/thing relations                         | 3 🟡  | Madinah Arabic                       | —        | Pelajaran idafah dan akhiran kepemilikan tersedia.                                                           |
-| B5  | Lokasi              | Understand "di/atas/dekat" with pictures                  | 3 🟡  | Madinah Arabic                       | —        | Pelajaran lokasi dengan huruf jarr tersedia.                                                                 |
-| B6  | Tindakan            | Tell the action from the doer                             | 3 🟡  | Madinah Arabic                       | —        | Pelajaran pelaku, sasaran dan bentuk pasif tersedia.                                                         |
-| B7  | Waktu dan bentuk    | Tell past from non-past                                   | 3 🟡  | Madinah Arabic                       | —        | Pelajaran waktu dan negasi tersedia.                                                                         |
-| B8  | Bertanya            | Understand simple questions in context                    | 3 🟡  | Madinah Arabic                       | —        | Pertanyaan benda/orang dan klausa relatif tersedia.                                                          |
-| B9  | Gender/number       | Recognise gender and number effects                       | 3 🟡  | Madinah Arabic                       | —        | Pelajaran gender, tunggal, ganda, dan jamak tersedia.                                                        |
-| B10 | Pola akar kata      | Recognise word families                                   | 3 🟡  | Cahaya Tauhid, Classical Arabic      | —        | Pelajaran akar kata dan tabel enam bab tersedia.                                                             |
-| B11 | Gabungan kalimat    | Understand a short everyday paragraph                     | 3 🟡  | Al Jazeera format, original readings | —        | Bacaan 3–4 paragraf tersedia, dengan bedah bentuk sharaf, jenis kata, dan peran nahwu pada kalimat terpilih. |
-| B12 | Integrasi           | Listen, read, choose a response; transfer to new examples | 3 🟡  | Original assessment                  | —        | Uji memahami dokumen pengumuman tersedia.                                                                    |
+| ID  | Unit (proposed)     | Can-do goal (draft)                                       | Stage | Sources                              | Reviewer | Next action                                                                                                                    |
+| --- | ------------------- | --------------------------------------------------------- | ----- | ------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| B0  | Kesiapan & bunyi    | Distinguish sounds/writing; find meaning of simple words  | 1 🟡  | §5.2                                 | —        | Pick sound contrasts hard for Indonesian speakers.                                                                             |
+| B1  | Benda di sekitar    | Point to and name things simply                           | 1 🟡  | §5.2, Fase F themes                  | —        | Blocked on D-4 (unit order) and RS-01 (MSA vocabulary source).                                                                 |
+| B2  | Menunjukkan sesuatu | Understand "ini ..." vs "ini [benda tertentu]"            | 3 🟡  | Madinah Arabic                       | —        | Pelajaran menunjuk dan bentuk al- tersedia.                                                                                    |
+| B3  | Deskripsi           | Understand simple descriptions                            | 3 🟡  | Madinah Arabic                       | —        | Pelajaran membedakan sifat dan kabar tersedia.                                                                                 |
+| B4  | Orang dan milik     | Understand person/thing relations                         | 3 🟡  | Madinah Arabic                       | —        | Pelajaran idafah dan akhiran kepemilikan tersedia.                                                                             |
+| B5  | Lokasi              | Understand "di/atas/dekat" with pictures                  | 3 🟡  | Madinah Arabic                       | —        | Pelajaran lokasi dengan huruf jarr tersedia.                                                                                   |
+| B6  | Tindakan            | Tell the action from the doer                             | 3 🟡  | Madinah Arabic                       | —        | Pelajaran pelaku, sasaran dan bentuk pasif tersedia.                                                                           |
+| B7  | Waktu dan bentuk    | Tell past from non-past                                   | 3 🟡  | Madinah Arabic                       | —        | Pelajaran waktu dan negasi tersedia.                                                                                           |
+| B8  | Bertanya            | Understand simple questions in context                    | 3 🟡  | Madinah Arabic                       | —        | Pertanyaan benda/orang dan klausa relatif tersedia.                                                                            |
+| B9  | Gender/number       | Recognise gender and number effects                       | 3 🟡  | Madinah Arabic                       | —        | Pelajaran gender, tunggal, ganda, dan jamak tersedia.                                                                          |
+| B10 | Pola akar kata      | Recognise word families                                   | 3 🟡  | Cahaya Tauhid, Classical Arabic      | —        | Pelajaran akar kata dan tabel enam bab tersedia.                                                                               |
+| B11 | Gabungan kalimat    | Understand a short everyday paragraph                     | 3 🟡  | Al Jazeera format, original readings | —        | Bacaan 3–4 paragraf tersedia, dengan bedah bentuk sharaf, jenis kata, dan peran nahwu pada semua 24 kalimat dalam tiga bacaan. |
+| B12 | Integrasi           | Listen, read, choose a response; transfer to new examples | 3 🟡  | Original assessment                  | —        | Uji memahami dokumen pengumuman tersedia.                                                                                      |
 
 ## Foundation path (Jalur A, optional "Iqra" track)
 
@@ -89,11 +89,11 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 
 ## Reference tables (research doc §6.1a)
 
-| ID   | Table                              | Stage | Sources                                 | Reviewer | Next action                                                   |
-| ---- | ---------------------------------- | ----- | --------------------------------------- | -------- | ------------------------------------------------------------- |
-| R-01 | Jenis ḥarf (jarr, 'aṭf, nafy, ...) | 3 🟡  | Madinah Arabic, Quranic Arabic Corpus   | —        | Tabel kata depan dan penghubung tersedia.                     |
-| R-02 | Tashrif istilahi                   | 3 🟡  | Ringkasan Al-Amtsilah, Classical Arabic | —        | Enam bab kata kerja dasar dan 11 bentuk tradisional tersedia. |
-| R-03 | Harakat chart (foundation path)    | 0 ⬜  | —                                       | —        | Mechanical display; still needs reviewer for labels.          |
+| ID   | Table                              | Stage | Sources                                 | Reviewer | Next action                                                                                 |
+| ---- | ---------------------------------- | ----- | --------------------------------------- | -------- | ------------------------------------------------------------------------------------------- |
+| R-01 | Jenis ḥarf (jarr, 'aṭf, nafy, ...) | 3 🟡  | Madinah Arabic, Quranic Arabic Corpus   | —        | Tabel kata depan dan glosarium 12 penghubung dengan efek i‘rab serta mode hafalan tersedia. |
+| R-02 | Tashrif istilahi                   | 3 🟡  | Ringkasan Al-Amtsilah, Classical Arabic | —        | Enam bab kata kerja dasar dan 11 bentuk tradisional tersedia.                               |
+| R-03 | Harakat chart (foundation path)    | 0 ⬜  | —                                       | —        | Mechanical display; still needs reviewer for labels.                                        |
 
 ## Decisions needed (from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md), §7)
 

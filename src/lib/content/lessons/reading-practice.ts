@@ -1,4 +1,6 @@
-import { bagAnalysis, bottlesAnalysis, photoAnalysis } from './reading-analysis.js';
+import { bagAnalysis } from './reading-words/bag.js';
+import { photoAnalysis } from './reading-words/photo.js';
+import { bottlesAnalysis } from './reading-words/bottles.js';
 import type { Lesson } from './types.js';
 
 const base = {
@@ -6,7 +8,8 @@ const base = {
 	level: 'Menengah',
 	register: 'msa',
 	reviewStatus: 'draft',
-	revision: 1,
+	revision: 3,
+	related: [{ label: 'Hafalkan kata penghubung dan efeknya', path: 'rujukan/#kata-penghubung' }],
 	examples: []
 } as const;
 
@@ -37,12 +40,11 @@ export const readingPractice: readonly Lesson[] = [
 		minutes: 12,
 		competencies: ['CB-14', 'CB-19', 'CB-23'],
 		references: [relative, passive, reading],
-		analysis: bagAnalysis,
-		revision: 2,
 		intro:
 			'Baca cerita sampai akhir. Pada bacaan kedua, pilih satu kalimat dan tandai tiga hal: tindakan utama, siapa atau apa yang terlibat, dan bagian yang menambahkan rincian.',
 		passage: {
 			title: 'Tas di halte',
+			analysis: bagAnalysis,
 			arabicTitle: 'حَقِيبَةٌ فِي مَحَطَّةِ الْحَافِلَاتِ',
 			glossary: [
 				{ arabic: 'تُغَادِرَ', meaning: 'Berangkat, meninggalkan tempat' },
@@ -122,12 +124,11 @@ export const readingPractice: readonly Lesson[] = [
 		minutes: 12,
 		competencies: ['CB-12', 'CB-14', 'CB-23', 'CB-24'],
 		references: [pronouns, relative, reading],
-		analysis: photoAnalysis,
-		revision: 2,
 		intro:
 			'Setiap kali menemukan akhiran -hā, tulis kata yang digantikannya. Jika ada beberapa kandidat feminin, uji mana yang masuk akal berdasarkan tindakan dan konteks.',
 		passage: {
 			title: 'Foto untuk pameran',
+			analysis: photoAnalysis,
 			arabicTitle: 'صُورَةٌ لِلْمَعْرِضِ',
 			glossary: [
 				{ arabic: 'مَعْرِضٌ', meaning: 'Pameran' },
@@ -198,12 +199,11 @@ export const readingPractice: readonly Lesson[] = [
 		minutes: 15,
 		competencies: ['CB-12', 'CB-22', 'CB-23', 'CB-24'],
 		references: [pronouns, passive, reading],
-		analysis: bottlesAnalysis,
-		revision: 2,
 		intro:
 			'Baca teks sebagai laporan singkat. Beri setiap paragraf satu label fungsi. Ketika menulis ringkasan, cek apakah laporan sudah mengukur hasil atau masih menyatakan rencana.',
 		passage: {
 			title: 'Wadah air yang dapat diisi ulang',
+			analysis: bottlesAnalysis,
 			arabicTitle: 'قَوَارِيرُ يُمْكِنُ تَعْبِئَتُهَا مِنْ جَدِيدٍ',
 			glossary: [
 				{ arabic: 'يُرْمَى', meaning: 'Dibuang' },

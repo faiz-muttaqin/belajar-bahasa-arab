@@ -1,3 +1,4 @@
+import { connectorsReference } from './connectors.js';
 import { validateReferenceTable, type ReferenceTableData } from '#lib/domain/reference/table.js';
 
 const nutshell =
@@ -222,7 +223,7 @@ export const particlesReference: ReferenceTableData = {
 	]
 };
 
-for (const table of [tashrifIstilahi, particlesReference]) {
+for (const table of [tashrifIstilahi, particlesReference, connectorsReference]) {
 	const issues = validateReferenceTable(table);
 	if (issues.length || !table.sources.length) {
 		throw new Error(

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { analyzedText, type AnalysisGroup } from '#lib/content/lessons/analysis.js';
 	import ArabicText from './ArabicText.svelte';
+	import SentenceWordNotes from './SentenceWordNotes.svelte';
 	import MixedText from './MixedText.svelte';
 
 	let { groups }: { groups: readonly AnalysisGroup[] } = $props();
@@ -16,8 +17,7 @@
 	{#each groups as group, g (group.heading)}
 		<details open={g === 0} class="rounded-xl border bg-card px-4 sm:px-5">
 			<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">
-				{#if group.paragraph}Paragraf {group.paragraph} ·
-				{/if}{group.heading}
+				{group.heading}
 			</summary>
 			<div class="space-y-6 border-t pb-5">
 				{#each group.sentences as sentence, i (i)}
@@ -25,34 +25,7 @@
 						<div class="text-start text-xl">
 							<ArabicText text={analyzedText(sentence)} class="block wrap-break-word" />
 						</div>
-						<ol class="divide-y rounded-lg border">
-							{#each sentence.words as [arabic, meaning, kind, sharaf, nahwu], w (w)}
-								<li class="space-y-2 px-3 py-3 sm:px-4">
-									<p class="flex flex-wrap items-baseline gap-x-3">
-										<ArabicText text={arabic} class="font-semibold" />
-										<span>{meaning}</span>
-										<span class="text-sm font-medium text-muted-foreground">{kind}</span>
-									</p>
-									<dl class="grid gap-x-4 gap-y-2 text-base sm:grid-cols-2">
-										<div>
-											<dt class="font-semibold">Sharaf</dt>
-											<dd class="text-muted-foreground"><MixedText text={sharaf} /></dd>
-										</div>
-										<div>
-											<dt class="font-semibold">Nahwu</dt>
-											<dd class="text-muted-foreground"><MixedText text={nahwu} /></dd>
-										</div>
-									</dl>
-								</li>
-							{/each}
-						</ol>
-						<p><strong>Susunan</strong> · <MixedText text={sentence.structure} /></p>
-						<details class="border-t">
-							<summary class="min-h-11 cursor-pointer py-3 font-medium text-primary">
-								Lihat makna utuh
-							</summary>
-							<p>{sentence.translation}</p>
-						</details>
+						<SentenceWordNotes {sentence} />
 					</div>
 				{/each}
 				{#if group.comparison}

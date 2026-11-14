@@ -5,7 +5,7 @@ export type Word = readonly [
 		| 'Isim'
 		| 'Fi‘il'
 		| 'Harf'
-		| 'Isim + harf'
+		| 'Harf + isim'
 		| 'Fi‘il + harf'
 		| 'Fi‘il + isim'
 		| 'Fi‘il + harf + isim',
@@ -21,8 +21,6 @@ export type SentenceAnalysis = {
 
 export type AnalysisGroup = {
 	heading: string;
-	/** 1-based location for a sentence from the lesson's reading. */
-	paragraph?: number;
 	sentences: readonly SentenceAnalysis[];
 	comparison?: string;
 };

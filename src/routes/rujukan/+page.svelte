@@ -3,6 +3,7 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import ReferenceTable from '#lib/components/learning/ReferenceTable.svelte';
+	import { connectorsReference } from '#lib/content/connectors.js';
 	import { particlesReference, tashrifIstilahi } from '#lib/content/reference.js';
 </script>
 
@@ -17,6 +18,15 @@
 </PageIntro>
 
 <div class="mt-10 min-w-0 space-y-16">
+	<nav aria-label="Isi rujukan" class="flex flex-wrap gap-x-5 text-primary">
+		<a class="inline-flex min-h-11 items-center underline" href="#tashrif-istilahi"
+			>Tashrif istilahi</a
+		>
+		<a class="inline-flex min-h-11 items-center underline" href="#kata-penghubung"
+			>Glosarium kata penghubung</a
+		>
+		<a class="inline-flex min-h-11 items-center underline" href="#kata-tugas">Kata tugas</a>
+	</nav>
 	<section
 		id="tashrif-istilahi"
 		aria-labelledby="tashrif-heading"
@@ -49,6 +59,32 @@
 				class="underline">Rujukan urutan bab</a
 			>.
 		</p>
+	</section>
+
+	<section
+		id="kata-penghubung"
+		aria-labelledby="penghubung-heading"
+		class="min-w-0 scroll-mt-24 space-y-4"
+	>
+		<h2 id="penghubung-heading" class="text-2xl font-semibold">{connectorsReference.title}</h2>
+		<p class="max-w-[65ch] text-pretty">
+			Pilih “Sembunyikan hubungan” untuk mengingat maknanya, atau “Sembunyikan efek pada kalimat”
+			untuk menguji i‘rab. Bedakan penghubung urutan dari partikel yang mengubah status kata.
+		</p>
+		<ReferenceTable table={connectorsReference} />
+		<details>
+			<summary class="min-h-11 cursor-pointer py-3 font-medium text-primary"
+				>Rujukan tata bahasa</summary
+			>
+			<ul class="list-disc space-y-2 ps-5">
+				{#each connectorsReference.sources as source (source)}
+					<li>
+						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external source -->
+						<a href={source} class="break-all underline">{source}</a>
+					</li>
+				{/each}
+			</ul>
+		</details>
 	</section>
 
 	<section

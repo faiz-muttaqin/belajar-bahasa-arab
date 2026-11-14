@@ -1,5 +1,5 @@
 import type { Path } from '$app/types';
-import { analyzedText, type AnalysisGroup } from './analysis.js';
+import { analyzedText, type AnalysisGroup, type SentenceAnalysis } from './analysis.js';
 import { hasApprovingReview, type ReviewRecord } from '#lib/domain/review.js';
 
 export type LessonTrack = 'belajar' | 'iqra';
@@ -11,6 +11,8 @@ type Passage = {
 	arabicTitle: string;
 	glossary?: readonly Pick<Example, 'arabic' | 'meaning'>[];
 	paragraphs: readonly { arabic: string; meaning: string; role: string }[];
+	/** One array of complete sentence annotations per paragraph, in reading order. */
+	analysis?: readonly (readonly SentenceAnalysis[])[];
 };
 type Exercise = {
 	prompt: string;
@@ -73,19 +75,22 @@ export function validateLessons(lessons: readonly Lesson[]) {
 		}
 
 		for (const group of lesson.analysis ?? []) {
-			const paragraph =
-				group.paragraph === undefined ? undefined : lesson.passage?.paragraphs[group.paragraph - 1];
-			if (!group.sentences.length || (group.paragraph !== undefined && !paragraph)) {
-				throw new Error(`Invalid analysis location: ${lesson.id} (${group.heading})`);
+			validateSentences(group.sentences, `${lesson.id} (${group.heading})`);
+		}
+
+		const passage = lesson.passage;
+		if (passage?.analysis) {
+			if (passage.analysis.length !== passage.paragraphs.length) {
+				throw new Error(`Incomplete paragraph coverage: ${lesson.id}`);
 			}
-			for (const sentence of group.sentences) {
-				if (
-					!sentence.words.length ||
-					sentence.words.some((word) => word.some((field) => !field.trim())) ||
-					(paragraph &&
-						!paragraph.arabic.normalize('NFC').includes(analyzedText(sentence).normalize('NFC')))
-				) {
-					throw new Error(`Invalid analysis text: ${lesson.id} (${group.heading})`);
+			for (const [i, paragraph] of passage.paragraphs.entries()) {
+				const sentences = passage.analysis[i] ?? [];
+				const location = `${lesson.id} (paragraph ${i + 1})`;
+				validateSentences(sentences, location);
+				const source = paragraph.arabic.normalize('NFC').split(/(?<=[.!؟])\s+/u);
+				const analyzed = sentences.map((sentence) => analyzedText(sentence).normalize('NFC'));
+				if (source.length !== analyzed.length || source.some((text, j) => text !== analyzed[j])) {
+					throw new Error(`Incomplete sentence or word coverage: ${location}`);
 				}
 			}
 		}
@@ -97,5 +102,20 @@ export function validateLessons(lessons: readonly Lesson[]) {
 		) {
 			throw new Error(`Missing approval for lesson: ${lesson.id}`);
 		}
+	}
+}
+
+function validateSentences(sentences: readonly SentenceAnalysis[], location: string) {
+	if (
+		!sentences.length ||
+		sentences.some(
+			(sentence) =>
+				!sentence.structure.trim() ||
+				!sentence.translation.trim() ||
+				!sentence.words.length ||
+				sentence.words.some((word) => word.some((field) => !field.trim()))
+		)
+	) {
+		throw new Error(`Incomplete word analysis: ${location}`);
 	}
 }

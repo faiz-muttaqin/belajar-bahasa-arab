@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
+	import { analyzedText } from '#lib/content/lessons/analysis.js';
 	import { stripHarakat } from '#lib/domain/arabic/harakat.js';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import { Button } from '#lib/components/ui/button/index.js';
@@ -10,6 +11,7 @@
 	import ArabicText from './ArabicText.svelte';
 	import MixedText from './MixedText.svelte';
 	import SentenceBreakdown from './SentenceBreakdown.svelte';
+	import SentenceWordNotes from './SentenceWordNotes.svelte';
 
 	type LessonLink = Pick<Lesson, 'title' | 'slug'>;
 	let { lesson, previous, next }: { lesson: Lesson; previous?: LessonLink; next?: LessonLink } =
@@ -47,7 +49,7 @@
 		{lesson.level} · {register[lesson.register]} · ± {lesson.minutes} menit
 	</p>
 
-	{#if lesson.analysis?.length}
+	{#if lesson.analysis?.length || lesson.passage?.analysis}
 		<a
 			href="#bedah-kalimat"
 			class="inline-flex min-h-11 items-center font-medium text-primary underline"
@@ -81,7 +83,11 @@
 		{/if}
 
 		{#if lesson.passage}
-			<section aria-labelledby="bacaan" class="space-y-4 rounded-2xl border bg-card p-4 sm:p-6">
+			<section
+				id={lesson.passage.analysis ? 'bedah-kalimat' : undefined}
+				aria-labelledby="bacaan"
+				class="scroll-mt-24 space-y-4 rounded-2xl border bg-card p-4 sm:p-6"
+			>
 				<h2 id="bacaan" class="text-2xl font-semibold">
 					<ArabicText
 						text={showHarakat
@@ -95,16 +101,43 @@
 						Tampilkan harakat
 					</label>
 				{/if}
+				{#if lesson.passage.analysis}
+					<p class="text-muted-foreground">
+						Buka “Bedah per kata” tepat di bawah kalimat. Harakat akhir bisa berubah karena peran
+						kata, seperti kasrah setelah harf jarr, atau karena cara menyambung bunyi. Bentuk yang
+						tetap disebut mabni.
+					</p>
+				{/if}
 				<div class="space-y-6">
 					{#each lesson.passage.paragraphs as paragraph, i (i)}
-						<div>
-							<p class="font-medium text-muted-foreground">Paragraf {i + 1}</p>
-							<ArabicText
-								text={showHarakat ? paragraph.arabic : stripHarakat(paragraph.arabic)}
-								size="block"
-								class="mt-2 wrap-break-word"
-							/>
-						</div>
+						{@const sentences = lesson.passage.analysis?.[i]}
+						<section aria-label={`Paragraf ${i + 1}`} class="space-y-3">
+							<h3 class="font-medium text-muted-foreground">Paragraf {i + 1}</h3>
+							{#if sentences}
+								{#each sentences as sentence, j (j)}
+									{@const text = analyzedText(sentence)}
+									<div class="space-y-1 border-b pb-2 last:border-b-0">
+										<ArabicText
+											text={showHarakat ? text : stripHarakat(text)}
+											size="block"
+											class="wrap-break-word"
+										/>
+										<details open={i === 0 && j === 0}>
+											<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">
+												Bedah per kata <span class="sr-only">kalimat {j + 1}</span>
+											</summary>
+											<SentenceWordNotes {sentence} />
+										</details>
+									</div>
+								{/each}
+							{:else}
+								<ArabicText
+									text={showHarakat ? paragraph.arabic : stripHarakat(paragraph.arabic)}
+									size="block"
+									class="wrap-break-word"
+								/>
+							{/if}
+						</section>
 					{/each}
 				</div>
 				{#if lesson.passage.glossary?.length}
@@ -123,9 +156,6 @@
 					</details>
 				{/if}
 			</section>
-			{#if lesson.analysis?.length}
-				<SentenceBreakdown groups={lesson.analysis} />
-			{/if}
 
 			<details class="rounded-xl border bg-card px-4 pb-2 sm:px-5">
 				<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">

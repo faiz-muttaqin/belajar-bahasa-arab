@@ -105,14 +105,34 @@ test.describe('public lesson reader without JavaScript', () => {
 		] as const) {
 			await intermediate.getByRole('link', { name: new RegExp(title) }).click();
 			expect(new URL(page.url()).pathname).toBe(`/belajar/${slug}/`);
-			await expect(
-				page.locator('section[aria-labelledby="bacaan"] p[lang="ar"][dir="rtl"]')
-			).toHaveCount(paragraphs);
+			const passage = page.locator('#bedah-kalimat');
+			const blocks = passage.getByRole('region', { name: /^Paragraf/ });
+			await expect(blocks).toHaveCount(paragraphs);
+			const sentences = blocks.locator('p[lang="ar"][dir="rtl"]');
+			await expect(sentences).toHaveCount(8);
+			for (const sentence of await sentences.all()) {
+				const notes = sentence.locator('+ details');
+				await expect(notes).toHaveCount(1);
+				const words = (await sentence.innerText()).trim().split(/\s+/u);
+				await expect(notes.locator('li > p > [lang="ar"]')).toHaveText(words);
+			}
 			await page.getByRole('link', { name: 'Buka bedah per kata' }).click();
 			await expect(page).toHaveURL(/#bedah-kalimat$/);
-			const analysis = page.getByRole('region', { name: 'Bedah per kata' });
-			await expect(analysis.getByText('Sharaf', { exact: true }).first()).toBeVisible();
-			await expect(analysis.getByText('Nahwu', { exact: true }).first()).toBeVisible();
+			const firstNotes = sentences.first().locator('+ details');
+			await expect(firstNotes.getByText('Sharaf', { exact: true }).first()).toBeVisible();
+			await expect(firstNotes.getByText('Nahwu', { exact: true }).first()).toBeVisible();
+			const lastNotes = sentences.last().locator('+ details');
+			await lastNotes.locator('summary').first().click();
+			await expect(lastNotes.getByText('Nahwu', { exact: true }).first()).toBeVisible();
+			await expect(lastNotes.locator('details > p')).toBeHidden();
+			await lastNotes.getByText('Lihat makna utuh', { exact: true }).click();
+			await expect(lastNotes.locator('details > p')).toBeVisible();
+			expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+				375
+			);
+			await expect(
+				page.getByRole('link', { name: 'Hafalkan kata penghubung dan efeknya' })
+			).toHaveAttribute('href', /rujukan\/#kata-penghubung$/);
 			await page.goBack();
 			const exercises = page.getByRole('region', { name: 'Latihan pemahaman' });
 			const reveal = exercises.getByText('Lihat pembahasan', { exact: true });
@@ -170,4 +190,17 @@ test('tashrif and vocabulary contain lesson material on a phone', async ({ page 
 	await expect(word.getByText('Buku catatan', { exact: true })).toBeHidden();
 	await word.getByRole('button', { name: 'Lihat arti' }).click();
 	await expect(word.getByText('Buku catatan', { exact: true })).toBeVisible();
+});
+
+test('the connector glossary supports recall of grammatical effects', async ({ page }) => {
+	await page.setViewportSize({ width: 375, height: 812 });
+	await page.goto('/rujukan/#kata-penghubung');
+	const glossary = page.getByRole('region', { name: 'Glosarium kata penghubung' });
+	const effect = glossary.getByText('Menashabkan fi‘il mudhari‘.', { exact: false });
+	await expect(effect).toBeVisible();
+	await glossary.getByRole('radio', { name: 'Sembunyikan efek pada kalimat' }).check();
+	await expect(effect).toHaveCount(0);
+	const row = glossary.getByRole('row').filter({ has: page.getByText('أَنْ', { exact: true }) });
+	await row.getByRole('button', { name: /Buka: Efek pada kalimat/ }).click();
+	await expect(effect).toBeVisible();
 });

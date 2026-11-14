@@ -42,11 +42,12 @@ Tersedia sebagai HTML statis pada build website. Setiap halaman memuat teks Arab
 
 ## Bedah per kata
 
-Pelajaran jenis kata dan tiga bacaan menengah terbaru memakai glos per kata, label isim/fi‘il/harf, bentuk sharaf, dan peran nahwu. Bedah bacaan merujuk ke potongan dari paragraf tertentu. Pelajaran dasar membandingkan frasa sifat dengan kalimat nominal, serta kalimat aktif dengan kalimat pasif.
+Pelajaran jenis kata dan ketiga bacaan menengah memakai glos per kata, label isim/fi‘il/harf, bentuk sharaf, dan alasan harakat akhir. Pada tiga bacaan, pembahasan mencakup semua 24 kalimat dan dapat dibuka tepat di bawah kalimat terkait. Pelajaran dasar membandingkan frasa sifat dengan kalimat nominal, serta kalimat aktif dengan kalimat pasif.
 
 ## Tabel dan kosakata
 
 - [Tashrif istilahi](/rujukan/#tashrif-istilahi) memuat enam bab dasar dengan 11 bentuk dari madhi sampai isim alat. Bentuk mashdar disajikan sebagai entri kamus. Tabel mengikuti urutan tradisi Al-Amtsilah dan memakai penjelasan asli. [Ringkasan oleh Nor Kandir, bagian 5.2](https://www.terjemahmatan.com/2017/03/download-buku-ringkasan-al-amtsilah-at.html) · [Fundamentals of Classical Arabic](https://www.sacredlearning.org/resources/fundamentals_vol1.pdf)
+- [Glosarium kata penghubung](/rujukan/#kata-penghubung) memuat 12 bentuk dengan hubungan makna, efek i‘rab, contoh, dan mode hafalan.
 - [Kata tugas](/rujukan/#kata-tugas) menunjukkan peran lokasi, arah, urutan, sebab, dan kontras dalam contoh.
 - [Kosakata](/kosakata/) berisi 17 kata harian serta 7 kata bacaan shalat, dengan glos dan contoh konteks Indonesia.
 
