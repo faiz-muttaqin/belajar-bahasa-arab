@@ -60,4 +60,4 @@ Periksa lisensi **per dataset, versi dan file**, serta kesesuaiannya dengan ADR-
 
 Pengujian otomatis ditambahkan untuk normalisasi harakat, pencarian madhi/mudhari/akar, pengelompokan akar lintas kelas kata, filter partikel, dan pemisahan babSelection/formBehavior.
 
-Jalankan `bun run check && bun run lint && bun run test:unit -- --run && bun run build`. **Belum dijalankan lewat GitHub connector**, karena connector ini mendukung perubahan file/PR tetapi tidak menyediakan eksekusi perintah build. Uji browser, aksesibilitas, dan review konten Arab diperlukan sebelum merge.
+**CI GitHub Actions sukses** pada [run 43563230556](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/43563230556): `bun run check`, `bun run lint`, `bun run test:unit --run`, `bun run build`, dan tes Playwright khusus tabel. Kode belum mendapat tinjauan akademis guru bahasa Arab; uji aksesibilitas manual, perangkat mobile nyata, dan audit lisensi masih diperlukan sebelum dianggap final.
