@@ -124,14 +124,14 @@
 								{#each sentences as sentence, j (j)}
 									{@const text = analyzedText(sentence)}
 									<div class="space-y-1 border-b pb-2 last:border-b-0">
-										<div class="flex flex-wrap items-start justify-end gap-2">
+										<div class="flex justify-start">
 											<AudioPlayButton {text} label="Dengarkan kalimat Arab" compact />
-											<ArabicText
-												text={showHarakat ? text : stripHarakat(text)}
-												size="block"
-												class="ms-auto max-w-[42ch] wrap-break-word"
-											/>
 										</div>
+										<ArabicText
+											text={showHarakat ? text : stripHarakat(text)}
+											size="block"
+											class="ms-auto max-w-[42ch] wrap-break-word"
+										/>
 										<details open={i === 0 && j === 0}>
 											<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">
 												Bedah per kata <span class="sr-only">kalimat {j + 1}</span>
