@@ -250,6 +250,7 @@
 	</div>
 </section>
 
+<!-- eslint-disable svelte/no-navigation-without-resolve -- modal contains verified external source links -->
 <dialog
 	bind:this={dialogEl}
 	onclose={() => {
@@ -458,3 +459,4 @@
 		</div>
 	{/if}
 </dialog>
+<!-- eslint-enable svelte/no-navigation-without-resolve -->
