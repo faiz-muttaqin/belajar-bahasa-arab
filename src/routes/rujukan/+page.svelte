@@ -3,6 +3,7 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import ReferenceTable from '#lib/components/learning/ReferenceTable.svelte';
+	import TransposedTashrif from '#lib/components/learning/TransposedTashrif.svelte';
 	import { connectorsReference } from '#lib/content/connectors.js';
 	import { particlesReference, tashrifIstilahi } from '#lib/content/reference.js';
 </script>
@@ -42,11 +43,12 @@
 			berarti “terbuka” atau “yang dibuka”. Ketiganya berbagi akar
 			<ArabicText text="ف ت ح" />.
 		</p>
-		<ReferenceTable table={tashrifIstilahi} />
+		<TransposedTashrif />
 		<p class="max-w-[65ch] text-base text-muted-foreground">
-			Mashdar ditulis dalam bentuk kamus. Garis menandai bentuk yang tidak dicontohkan pada bab
-			tersebut. Sebagian bentuk dipakai untuk latihan pola, seperti contoh isim alat pada bab
-			pertama. Untuk arti dalam bacaan, periksa pemakaian katanya di kamus.
+			Tabel dimulai dari wazan dengan huruf ف–ع–ل. Di panel kanan, cari dan pilih kata yang
+			tersedia dalam glosarium untuk mengganti baris babnya. Bentuk turunan yang belum dicatat
+			tidak diisi otomatis. Contoh mashdar, isim tempat, dan isim alat tidak selalu dapat
+			ditebak hanya dari bab fi’il.
 		</p>
 		<a
 			class="inline-flex min-h-11 items-center font-medium text-primary underline"
