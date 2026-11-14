@@ -1,11 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { sharafEntries } from '#lib/content/sharaf.js';
-import {
-	isBulkSharafLexicon,
-	mergeBulkSharaf,
-	type BulkSharafLexicon
-} from './bulk.js';
+import { isBulkSharafLexicon, mergeBulkSharaf, type BulkSharafLexicon } from './bulk.js';
 import { searchSharaf } from './lexicon.js';
 
 const raw: unknown = JSON.parse(readFileSync('static/data/sharaf-lexicon-v1.json', 'utf8'));
@@ -39,7 +35,9 @@ describe('full versioned Qutrub + Arramooz import', () => {
 		expect(kataba).toHaveLength(1);
 		expect(kataba[0]!.meaning).toBe('menulis');
 		expect(kataba[0]!.forms.some((form) => form.value === 'يَكْتُبُ')).toBe(true);
-		expect(merged.filter((entry) => entry.partOfSpeech === 'verb').length).toBeGreaterThanOrEqual(7938);
+		expect(merged.filter((entry) => entry.partOfSpeech === 'verb').length).toBeGreaterThanOrEqual(
+			7938
+		);
 	});
 
 	it('keeps unattested derivations and missing Indonesian glosses blank', () => {

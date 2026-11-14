@@ -27,7 +27,10 @@ const qRows = verbRows('qutrub-ar_verb_normalized.dict');
 const aRows = verbRows('arramooz-verb_triliteral.tsv');
 const all = new Map();
 
-for (const [source, rows] of [['q', qRows], ['a', aRows]]) {
+for (const [source, rows] of [
+	['q', qRows],
+	['a', aRows]
+]) {
 	for (const [sourceLemma, sourceRoot, nativeBab, transitivity, id] of rows) {
 		const lemma = sourceLemma.normalize('NFC');
 		const root = sourceRoot.normalize('NFC');
@@ -39,8 +42,12 @@ for (const [source, rows] of [['q', qRows], ['a', aRows]]) {
 			all.set(key, record);
 		}
 		const offset = source === 'q' ? 3 : 4;
-		record[offset] = [...new Set((record[offset] ? record[offset].split(',') : []).concat([transitivity]))].join('/');
-		record[offset + 2] = [...new Set((record[offset + 2] ? record[offset + 2].split(',') : []).concat([id]))].join(',');
+		record[offset] = [
+			...new Set((record[offset] ? record[offset].split(',') : []).concat([transitivity]))
+		].join('/');
+		record[offset + 2] = [
+			...new Set((record[offset + 2] ? record[offset + 2].split(',') : []).concat([id]))
+		].join(',');
 	}
 }
 
@@ -93,14 +100,24 @@ const data = {
 		stopwordTypes: types
 	},
 	verbFields: [
-		'vocalized_madhi', 'root', 'internal_bab', 'qutrub_transitivity',
-		'arramooz_transitivity', 'qutrub_source_ids', 'arramooz_source_ids'
+		'vocalized_madhi',
+		'root',
+		'internal_bab',
+		'qutrub_transitivity',
+		'arramooz_transitivity',
+		'qutrub_source_ids',
+		'arramooz_source_ids'
 	],
 	wordFields: ['vocalized', 'unvocalized', 'source_pos', 'source_class', 'source_line'],
 	verbs,
 	words
 };
-if (qRows.length !== 7889 || aRows.length !== 7952 || verbs.length !== 7938 || words.length !== 596) {
+if (
+	qRows.length !== 7889 ||
+	aRows.length !== 7952 ||
+	verbs.length !== 7938 ||
+	words.length !== 596
+) {
 	throw new Error('Unexpected upstream dictionary totals: ' + JSON.stringify(data.totals));
 }
 

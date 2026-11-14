@@ -58,7 +58,9 @@
 	type CellDetail = { group: BabGroup; key: TashrifColumnKey; entry?: SharafEntry };
 	type ModalMode = 'search' | 'word' | 'cell';
 
-	let entries = $derived(mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data));
+	let entries = $derived(
+		mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data)
+	);
 	let selected = $state<Record<number, string>>({});
 	let showMeanings = $state(false);
 	let interactive = $state(false);
@@ -483,7 +485,10 @@
 						onclick={() => (visibleSuggestions += 48)}
 						class="min-h-11 rounded-md border px-4 text-sm font-medium hover:bg-secondary"
 					>
-						Tampilkan lebih banyak ({Math.min(visibleSuggestions, suggestions.length).toLocaleString('id-ID')} dari {suggestions.length.toLocaleString('id-ID')})
+						Tampilkan lebih banyak ({Math.min(
+							visibleSuggestions,
+							suggestions.length
+						).toLocaleString('id-ID')} dari {suggestions.length.toLocaleString('id-ID')})
 					</button>
 				{/if}
 			{:else}

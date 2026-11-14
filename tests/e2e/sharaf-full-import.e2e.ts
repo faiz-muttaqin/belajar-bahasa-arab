@@ -25,10 +25,13 @@ test('the modal filters the full dataset without rendering thousands of cards at
 	await page.getByRole('button', { name: 'Cari kata atau arti Indonesia' }).click();
 	const modal = page.getByRole('dialog', { name: 'Kamus dan penjelasan sharaf' });
 	await expect
-		.poll(async () => {
-			const raw = await modal.getByText(/contoh kata tersedia/).textContent();
-			return Number(raw?.match(/[\d.]+/)?.[0].replace(/\./g, '') ?? 0);
-		}, { timeout: 30_000 })
+		.poll(
+			async () => {
+				const raw = await modal.getByText(/contoh kata tersedia/).textContent();
+				return Number(raw?.match(/[\d.]+/)?.[0].replace(/\./g, '') ?? 0);
+			},
+			{ timeout: 30_000 }
+		)
 		.toBeGreaterThan(7900);
 	expect(await modal.locator('li').count()).toBeLessThanOrEqual(48);
 	await modal.getByRole('searchbox', { name: 'Cari Arab atau Indonesia' }).fill('آبَ');
@@ -44,33 +47,37 @@ test('the full dataset is persisted under an IndexedDB v2 store, not a second da
 	await page.goto('/sharaf/');
 	await expect
 		.poll(
-			() => page.evaluate(async () => {
-				const matches = await indexedDB.databases();
-				const own = matches.find((item) => item.name === 'belajar-bahasa-arab-materi');
-				if (!own || (own.version ?? 0) < 2) return false;
-				return new Promise<boolean>((resolve) => {
-					const request = indexedDB.open('belajar-bahasa-arab-materi');
-					request.onerror = () => resolve(false);
-					request.onsuccess = () => {
-						const db = request.result;
-						if (!db.objectStoreNames.contains('sharaf-lexicon')) {
-							db.close();
-							resolve(false);
-							return;
-						}
-						const lookup = db
-							.transaction('sharaf-lexicon', 'readonly')
-							.objectStore('sharaf-lexicon')
-							.get('active');
-						lookup.onerror = () => { db.close(); resolve(false); };
-						lookup.onsuccess = () => {
-							const value = lookup.result;
-							db.close();
-							resolve(value?.totals?.uniqueVerbs === 7938);
+			() =>
+				page.evaluate(async () => {
+					const matches = await indexedDB.databases();
+					const own = matches.find((item) => item.name === 'belajar-bahasa-arab-materi');
+					if (!own || (own.version ?? 0) < 2) return false;
+					return new Promise<boolean>((resolve) => {
+						const request = indexedDB.open('belajar-bahasa-arab-materi');
+						request.onerror = () => resolve(false);
+						request.onsuccess = () => {
+							const db = request.result;
+							if (!db.objectStoreNames.contains('sharaf-lexicon')) {
+								db.close();
+								resolve(false);
+								return;
+							}
+							const lookup = db
+								.transaction('sharaf-lexicon', 'readonly')
+								.objectStore('sharaf-lexicon')
+								.get('active');
+							lookup.onerror = () => {
+								db.close();
+								resolve(false);
+							};
+							lookup.onsuccess = () => {
+								const value = lookup.result;
+								db.close();
+								resolve(value?.totals?.uniqueVerbs === 7938);
+							};
 						};
-					};
-				});
-			}),
+					});
+				}),
 			{ timeout: 30_000 }
 		)
 		.toBe(true);
@@ -80,7 +87,9 @@ test('sitewide search includes corpus-only words and can open the corresponding 
 	page
 }) => {
 	await page.goto('/cari/?jenis=word&q=آب');
-	await expect(page.getByText('7.938 entri verba leksikal tersedia.')).toBeVisible({ timeout: 30_000 });
+	await expect(page.getByText('7.938 entri verba leksikal tersedia.')).toBeVisible({
+		timeout: 30_000
+	});
 	const link = page.locator('a[href*="sharaf/#bulk-qutrub-t278-bab-1"]');
 	await expect(link).toBeVisible();
 	await link.click();

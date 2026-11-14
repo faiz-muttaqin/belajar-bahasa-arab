@@ -53,7 +53,8 @@ export function isBulkSharafLexicon(value: unknown): value is BulkSharafLexicon 
 		data.totals.stopwordRecords !== 596 ||
 		data.verbs.length !== data.totals.uniqueVerbs ||
 		data.words.length !== data.totals.stopwordRecords
-	) return false;
+	)
+		return false;
 
 	const seen = new Set<string>();
 	for (const row of data.verbs) {
@@ -66,7 +67,8 @@ export function isBulkSharafLexicon(value: unknown): value is BulkSharafLexicon 
 			row[2] < 1 ||
 			row[2] > 6 ||
 			![3, 4, 5, 6].every((i) => typeof row[i] === 'string')
-		) return false;
+		)
+			return false;
 		const key = JSON.stringify([row[0].normalize('NFC'), row[1].normalize('NFC'), row[2]]);
 		if (seen.has(key)) return false;
 		seen.add(key);
@@ -87,7 +89,10 @@ const arramoozUrl =
 const stopwordsUrl =
 	'https://github.com/linuxscout/arabicstopwords/blob/f6018e22e02067022231d4dbda0e46b4b1b7e1e7/releases/latest/csv/stopwords_classified.csv';
 
-const mergedCache = new WeakMap<readonly SharafEntry[], WeakMap<BulkSharafLexicon, readonly SharafEntry[]>>();
+const mergedCache = new WeakMap<
+	readonly SharafEntry[],
+	WeakMap<BulkSharafLexicon, readonly SharafEntry[]>
+>();
 
 /** Do not infer mudhari, masdar or Indonesian gloss from a root/bab alone. */
 export function mergeBulkSharaf(
@@ -102,11 +107,17 @@ export function mergeBulkSharaf(
 		firstParty
 			.filter((entry) => entry.partOfSpeech === 'verb' && entry.root && entry.bab)
 			.map((entry) =>
-				JSON.stringify([entry.lemma.normalize('NFC'), entry.root!.normalize('NFC'), entry.bab!.number])
+				JSON.stringify([
+					entry.lemma.normalize('NFC'),
+					entry.root!.normalize('NFC'),
+					entry.bab!.number
+				])
 			)
 	);
 	const wordKeys = new Set(
-		firstParty.filter((entry) => entry.partOfSpeech !== 'verb').map((entry) => entry.lemma.normalize('NFC'))
+		firstParty
+			.filter((entry) => entry.partOfSpeech !== 'verb')
+			.map((entry) => entry.lemma.normalize('NFC'))
 	);
 	for (const [lemma, root, bab, qTrans, aTrans, qIds, aIds] of bulk.verbs) {
 		const key = JSON.stringify([lemma, root, bab]);
@@ -121,7 +132,11 @@ export function mergeBulkSharaf(
 			root,
 			meaning: BULK_SHARAF_GLOSS_MISSING,
 			partOfSpeech: 'verb',
-			bab: { number: bab, exemplar: pattern.madhi, pattern: `${pattern.madhi} – ${pattern.mudhari}` },
+			bab: {
+				number: bab,
+				exemplar: pattern.madhi,
+				pattern: `${pattern.madhi} – ${pattern.mudhari}`
+			},
 			forms: [],
 			babSelection: 'lexical',
 			formBehavior: 'unverified',
@@ -142,11 +157,7 @@ export function mergeBulkSharaf(
 	// these are kept in the raw archive but not misclassified in the glossary.
 	for (const [lemma, , type, originalClass, line] of bulk.words) {
 		const partOfSpeech =
-			type === 'حرف'
-				? 'particle'
-				: ['اسم', 'ضمير', 'اسم فعل'].includes(type)
-					? 'noun'
-					: undefined;
+			type === 'حرف' ? 'particle' : ['اسم', 'ضمير', 'اسم فعل'].includes(type) ? 'noun' : undefined;
 		if (!partOfSpeech || wordKeys.has(lemma.normalize('NFC'))) continue;
 		wordKeys.add(lemma.normalize('NFC'));
 		rows.push({

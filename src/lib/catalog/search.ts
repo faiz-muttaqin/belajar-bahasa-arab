@@ -46,7 +46,10 @@ function buildEntry(entry: Entry, extra: string[] = []): SearchEntry {
 	};
 }
 
-export function indexCatalog(catalog: Catalog, sharafEntries: readonly SharafEntry[] = catalog.sharaf ?? []): SearchEntry[] {
+export function indexCatalog(
+	catalog: Catalog,
+	sharafEntries: readonly SharafEntry[] = catalog.sharaf ?? []
+): SearchEntry[] {
 	const entries: SearchEntry[] = [];
 
 	for (const entry of sharafEntries) {

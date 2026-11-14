@@ -13,7 +13,9 @@
 	let filter = $state<SharafFilter>('all');
 	let visible = $state(48);
 	let targetId = $state('');
-	let entries = $derived(mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data));
+	let entries = $derived(
+		mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data)
+	);
 	let results = $derived(searchSharaf(entries, query, filter));
 	let shown = $derived.by(() => {
 		const first = results.slice(0, visible);
@@ -27,7 +29,9 @@
 	});
 	$effect(() => {
 		if (targetId && shown.some((entry) => entry.id === targetId)) {
-			void tick().then(() => document.getElementById(targetId)?.scrollIntoView({ block: 'center' }));
+			void tick().then(() =>
+				document.getElementById(targetId)?.scrollIntoView({ block: 'center' })
+			);
 		}
 	});
 	function formLabel(label: string): string {
@@ -103,7 +107,9 @@
 </section>
 
 <section class="mt-10" aria-label="Hasil pencarian">
-	<h2 class="mb-5 text-xl font-semibold">{results.length.toLocaleString('id-ID')} entri ditemukan</h2>
+	<h2 class="mb-5 text-xl font-semibold">
+		{results.length.toLocaleString('id-ID')} entri ditemukan
+	</h2>
 	{#if results.length === 0}
 		<div class="rounded-xl border border-dashed p-6">
 			<p class="font-medium">Tidak ditemukan dalam indeks awal.</p>
@@ -183,19 +189,24 @@
 				onclick={() => (visible += 48)}
 				class="mt-5 min-h-11 rounded-lg border px-4 text-sm font-medium hover:bg-secondary"
 			>
-				Tampilkan lebih banyak ({Math.min(visible, results.length).toLocaleString('id-ID')} dari {results.length.toLocaleString('id-ID')})
+				Tampilkan lebih banyak ({Math.min(visible, results.length).toLocaleString('id-ID')} dari {results.length.toLocaleString(
+					'id-ID'
+				)})
 			</button>
 		{/if}
 	{/if}
 </section>
 
 <p class="mt-8 text-sm text-muted-foreground">
-	Kamus ini menggabungkan contoh kurikulum dengan data leksikal Qutrub dan Arramooz
-	(sekitar 7.938 kombinasi verba), serta kelas kata yang dipilih dari Arabic Stopwords.
-	Entri leksikal yang belum mempunyai terjemahan atau turunan terverifikasi ditandai secara eksplisit.
-	{#if bulkSharafState.busy} Dataset lengkap sedang diunduh ke cache browser.
-	{:else if bulkSharafState.saved} Dataset lengkap sudah tersedia di cache lokal.
-	{:else if bulkSharafState.error} Dataset besar belum tersedia; contoh dasar tetap bisa dipakai.
+	Kamus ini menggabungkan contoh kurikulum dengan data leksikal Qutrub dan Arramooz (sekitar 7.938
+	kombinasi verba), serta kelas kata yang dipilih dari Arabic Stopwords. Entri leksikal yang belum
+	mempunyai terjemahan atau turunan terverifikasi ditandai secara eksplisit.
+	{#if bulkSharafState.busy}
+		Dataset lengkap sedang diunduh ke cache browser.
+	{:else if bulkSharafState.saved}
+		Dataset lengkap sudah tersedia di cache lokal.
+	{:else if bulkSharafState.error}
+		Dataset besar belum tersedia; contoh dasar tetap bisa dipakai.
 	{/if}
 	<a href={resolve('rujukan/')} class="font-medium text-primary underline"
 		>Buka tabel tashrif istilahi</a

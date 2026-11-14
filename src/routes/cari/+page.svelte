@@ -7,7 +7,12 @@
 	import MixedText from '#lib/components/learning/MixedText.svelte';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Input } from '#lib/components/ui/input/index.js';
-	import { catalogState, bulkSharafState, prepareCatalog, prepareBulkSharaf } from '#lib/catalog/sync.svelte.js';
+	import {
+		catalogState,
+		bulkSharafState,
+		prepareCatalog,
+		prepareBulkSharaf
+	} from '#lib/catalog/sync.svelte.js';
 	import { mergeBulkSharaf } from '#lib/domain/sharaf/bulk.js';
 	import {
 		hasArabic,
@@ -22,7 +27,9 @@
 	let category = $state<SearchKind | 'all'>('all');
 	let visible = $state(20);
 	const options = Object.entries(searchKinds) as [SearchKind, string][];
-	let allSharaf = $derived(mergeBulkSharaf(catalogState.catalog?.sharaf ?? [], bulkSharafState.data));
+	let allSharaf = $derived(
+		mergeBulkSharaf(catalogState.catalog?.sharaf ?? [], bulkSharafState.data)
+	);
 	let index = $derived(catalogState.catalog ? indexCatalog(catalogState.catalog, allSharaf) : []);
 	let results = $derived(searchCatalog(index, query, category === 'all' ? undefined : category));
 
@@ -104,7 +111,9 @@
 		{#if bulkSharafState.busy}
 			<p>Kamus sharaf besar sedang diunduh…</p>
 		{:else if bulkSharafState.data}
-			<p>{bulkSharafState.data.totals.uniqueVerbs.toLocaleString('id-ID')} entri verba leksikal tersedia.</p>
+			<p>
+				{bulkSharafState.data.totals.uniqueVerbs.toLocaleString('id-ID')} entri verba leksikal tersedia.
+			</p>
 		{/if}
 		{#if catalogState.error || (catalogState.catalog && !catalogState.saved)}
 			<Button

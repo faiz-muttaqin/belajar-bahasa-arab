@@ -1,7 +1,12 @@
 import { base, resolve } from '$app/paths';
 import { readCatalog, saveCatalog, readBulkSharafCache, saveBulkSharafCache } from './storage.js';
 import { prepareSharafSearchIndex } from '#lib/domain/sharaf/lexicon.js';
-import { BULK_SHARAF_PATH, isBulkSharafLexicon, mergeBulkSharaf, type BulkSharafLexicon } from '#lib/domain/sharaf/bulk.js';
+import {
+	BULK_SHARAF_PATH,
+	isBulkSharafLexicon,
+	mergeBulkSharaf,
+	type BulkSharafLexicon
+} from '#lib/domain/sharaf/bulk.js';
 import {
 	CATALOG_PATH,
 	MANIFEST_PATH,
