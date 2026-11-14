@@ -79,6 +79,15 @@
 			>Kata hubung, ṣilah, syarat, sebab, dan kontras.</span
 		>
 	</a>
+	<a
+		href={resolve('kaidah/praktik/')}
+		aria-label="Praktik interaktif dan contoh dinamis"
+		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
+	>
+		<span class="text-xs font-semibold text-muted-foreground">G-06 · Praktik</span>
+		<strong class="group-hover:text-primary">Praktik interaktif dan contoh dinamis</strong>
+		<span class="text-sm text-muted-foreground">Peta prasyarat, modal pengganti kata, dan paragraf.</span>
+	</a>
 </nav>
 
 <div class="mt-12 max-w-5xl space-y-16">
