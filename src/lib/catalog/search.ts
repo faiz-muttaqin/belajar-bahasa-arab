@@ -2,6 +2,7 @@ import { stripHarakat } from '#lib/domain/arabic/harakat.js';
 import { groupOfTable } from '#lib/content/reference-groups.js';
 import type { Catalog } from './types.js';
 import type { SharafEntry } from '#lib/domain/sharaf/lexicon.js';
+import { QURAN_GROUPS } from '#lib/domain/vocabulary/types.js';
 
 export const searchKinds = {
 	word: 'Kamus',
@@ -74,14 +75,22 @@ export function indexCatalog(
 
 	for (const word of catalog.vocabulary) {
 		entries.push(
-			buildEntry({
-				key: `vocab:${word.id}`,
-				kind: 'word',
-				href: `kosakata/#kata-${word.id}`,
-				title: word.meaning,
-				arabic: word.arabic,
-				context: word.context
-			})
+			buildEntry(
+				{
+					key: `vocab:${word.id}`,
+					kind: 'word',
+					href: `kosakata/#kata-${word.id}`,
+					title: word.meaning,
+					arabic: word.arabic,
+					context: word.quranGroup ? `Al-Qur’an · ${QURAN_GROUPS[word.quranGroup]}` : word.context
+				},
+				[
+					word.context ?? '',
+					word.transliteration ?? '',
+					word.transliteration?.normalize('NFD').replace(/\p{M}/gu, '') ?? '',
+					word.quranOccurrence?.token ?? ''
+				]
+			)
 		);
 	}
 

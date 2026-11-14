@@ -31,7 +31,7 @@ describe('validateVocab', () => {
 
 	it("requires the classical label in the Qur'anic collection", () => {
 		expect(validateVocab({ ...base, collection: 'quran' }).map((i) => i.message)).toContain(
-			"Qur'anic collection items must use the classical register label"
+			'Classical collections must use the classical register label'
 		);
 	});
 });
@@ -56,7 +56,14 @@ describe('isPublishableVocab', () => {
 	});
 
 	it("requires an ustadz for the Qur'anic collection", () => {
-		const quran: VocabularyItem = { ...approved, collection: 'quran', register: 'classical' };
+		const quran: VocabularyItem = {
+			...approved,
+			collection: 'quran',
+			register: 'classical',
+			quranGroup: 'harf',
+			transliteration: 'min',
+			quranOccurrence: { reference: '2:22', token: 'مِنَ', textVersion: 'Tanzil Uthmani 1.1' }
+		};
 		expect(isPublishableVocab(quran)).toBe(false);
 		expect(isPublishableVocab({ ...quran, reviews: [{ ...teacher, role: 'ustadz' }] })).toBe(true);
 	});

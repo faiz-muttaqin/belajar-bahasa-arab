@@ -73,8 +73,12 @@
 	onMount(() => {
 		const prefix = `#${table.id}-`;
 		if (!location.hash.startsWith(prefix)) return;
-		const id = location.hash.slice(prefix.length);
-		if (rowsById.has(id)) open(id);
+		try {
+			const id = decodeURIComponent(location.hash.slice(prefix.length));
+			if (rowsById.has(id)) open(id);
+		} catch {
+			// Ignore malformed percent encoding in incoming links.
+		}
 	});
 </script>
 

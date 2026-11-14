@@ -13,7 +13,11 @@ function publicRecord<T extends { reviews?: unknown }>(source: T): Omit<T, 'revi
 
 const content: CatalogContent = {
 	lessons: [...lessonsFor('belajar'), ...lessonsFor('iqra')].map(publicRecord),
-	vocabulary: [...publishedVocabulary('harian'), ...publishedVocabulary('quran')].map(publicRecord),
+	vocabulary: [
+		...publishedVocabulary('harian'),
+		...publishedVocabulary('shalat'),
+		...publishedVocabulary('quran')
+	].map(publicRecord),
 	references: referenceTables.map(publicRecord),
 	sharaf: sharafEntries
 };
