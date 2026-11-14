@@ -40,6 +40,7 @@
 <nav aria-label="Tahapan kaidah lanjutan" class="mt-8 grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-3">
 	<a
 		href={resolve('kaidah/sharaf/')}
+		aria-label="Pelajari perubahan kata (sharaf)"
 		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
 	>
 		<span class="text-xs font-semibold text-muted-foreground">G-02 · Bentuk kata</span>
@@ -48,6 +49,7 @@
 	</a>
 	<a
 		href={resolve('kaidah/frasa/')}
+		aria-label="Pelajari frasa dan i‘rab"
 		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
 	>
 		<span class="text-xs font-semibold text-muted-foreground">G-03 · Frasa</span>
@@ -56,6 +58,7 @@
 	</a>
 	<a
 		href={resolve('kaidah/kalimat/')}
+		aria-label="Pelajari susunan kalimat lengkap"
 		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
 	>
 		<span class="text-xs font-semibold text-muted-foreground">G-04 · Kalimat</span>
@@ -64,6 +67,7 @@
 	</a>
 	<a
 		href={resolve('kaidah/klausa/')}
+		aria-label="Pelajari hubungan klausa"
 		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
 	>
 		<span class="text-xs font-semibold text-muted-foreground">G-05 · Klausa</span>
