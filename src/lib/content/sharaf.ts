@@ -295,7 +295,8 @@ const expandedVerbs = [
 		root: 'طمأن',
 		meaning: 'menjadi tenang, merasa tenteram',
 		mudhari: 'يَطْمَئِنُّ',
-		mashdar: 'اِطْمِئْنَانٌ'
+		mashdar: 'اِطْمِئْنَانٌ',
+		source: 'https://www.arabicacademy.gov.eg/ar/search_engine/roots/%D8%B7%D9%85%D8%A3%D9%86'
 	}
 ] as const;
 

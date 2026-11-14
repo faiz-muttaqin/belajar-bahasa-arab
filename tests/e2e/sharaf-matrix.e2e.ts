@@ -76,6 +76,22 @@ test('the glossary snapshot is served as static JSON including the new patterns'
 	);
 });
 
+test('keyboard navigation keeps focus when moving from a pattern to the glossary', async ({
+	page
+}) => {
+	await page.goto('/rujukan/#tashrif-istilahi');
+	const trigger = page.getByRole('button', { name: 'Detail fi’il mudhari’, bab 15' });
+	await trigger.focus();
+	await page.keyboard.press('Enter');
+	const modal = page.getByRole('dialog', { name: 'Kamus dan penjelasan sharaf' });
+	await modal.getByRole('button', { name: 'Cari kata pada bab ini' }).press('Enter');
+	await expect(modal.getByRole('searchbox')).toBeFocused();
+	await expect(modal.getByRole('combobox')).toHaveValue('15');
+	await page.keyboard.press('Escape');
+	await expect(modal).toBeHidden();
+	await expect(trigger).toBeFocused();
+});
+
 test('general search links to glossary entry and the corresponding tashrif column', async ({
 	page
 }) => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { resolve } from '$app/paths';
 	import Search from '@lucide/svelte/icons/search';
 	import X from '@lucide/svelte/icons/x';
@@ -57,6 +57,7 @@
 	let selected = $state<Record<number, string>>({});
 	let family = $state<PatternFamily | 'all'>('all');
 	let dialogEl: HTMLDialogElement;
+	let queryInput = $state<HTMLInputElement>();
 	let tableScroller: HTMLDivElement;
 	let modalMode = $state<ModalMode>('search');
 	let modalBab = $state<number | 'all'>('all');
@@ -77,13 +78,15 @@
 		);
 	}
 
-	function openSearch(bab: number | 'all' = 'all') {
+	async function openSearch(bab: number | 'all' = 'all') {
 		modalBab = bab;
 		modalQuery = '';
 		modalMode = 'search';
 		inspected = null;
 		cell = null;
-		dialogEl.showModal();
+		if (!dialogEl.open) dialogEl.showModal();
+		await tick();
+		queryInput?.focus();
 	}
 
 	function inspectWord(entry: SharafEntry) {
@@ -105,7 +108,9 @@
 
 	onMount(() => {
 		// Put fi'il madhi, the rightmost column, in view without affecting SSR.
-		tableScroller.scrollLeft = tableScroller.scrollWidth;
+		if (!location.hash.startsWith('#tashrif-istilahi-')) {
+			tableScroller.scrollLeft = tableScroller.scrollWidth;
+		}
 	});
 </script>
 
@@ -171,7 +176,7 @@
 						<th
 							id={`tashrif-istilahi-${column.key}`}
 							scope="col"
-							class="min-w-36 scroll-mt-24 px-3 py-3 text-center text-xs font-semibold text-secondary-foreground"
+							class="min-w-36 scroll-mt-24 scroll-ml-48 px-3 py-3 text-center text-xs font-semibold text-secondary-foreground"
 							>{column.label}</th
 						>
 					{/each}
@@ -244,7 +249,7 @@
 			class="min-h-11 content-center font-medium text-primary underline"
 			>Unduh data glosarium JSON</a
 		>
-		{#if catalogState.saved}
+		{#if catalogState.saved && catalogState.catalog?.sharaf}
 			<span class="text-muted-foreground">Glosarium tersimpan di perangkat</span>
 		{/if}
 	</div>
@@ -295,7 +300,9 @@
 					<input
 						id="modal-sharaf-query"
 						type="search"
+						bind:this={queryInput}
 						bind:value={modalQuery}
+						dir="auto"
 						autocomplete="off"
 						placeholder="menulis, membuka, كتب، يكتب..."
 						class="min-h-11 w-full rounded-lg border bg-background px-3 text-base"
@@ -440,10 +447,7 @@
 			{:else}
 				<button
 					type="button"
-					onclick={() => {
-						dialogEl.close();
-						openSearch(cell!.group.number);
-					}}
+					onclick={() => void openSearch(cell!.group.number)}
 					class="min-h-11 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground"
 					>Cari kata pada bab ini</button
 				>

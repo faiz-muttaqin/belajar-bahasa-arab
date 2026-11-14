@@ -5,6 +5,7 @@ on:
     paths:
       - 'src/lib/components/layout/DesktopSidebar.svelte'
       - 'src/lib/components/layout/SiteHeader.svelte'
+      - 'src/lib/navigation.ts'
       - 'src/routes/+layout.svelte'
       - 'src/lib/components/learning/TransposedTashrif.svelte'
       - 'src/lib/content/sharaf.ts'
@@ -13,6 +14,8 @@ on:
       - 'src/routes/sharaf/**'
       - 'src/routes/data/sharaf.json/**'
       - 'tests/e2e/sharaf-matrix.e2e.ts'
+      - 'tests/e2e/public-lessons.e2e.ts'
+      - 'tests/e2e/catalog.e2e.ts'
       - '.github/workflows/sharaf-pr.yml'
 
 permissions:
@@ -30,9 +33,5 @@ jobs:
         with:
           bun-version: '1.4.4'
       - run: bun install --frozen-lockfile
-      - run: bun run check
-      - run: bun run lint
       - run: bun run browsers:install
-      - run: bun run test:unit --run
-      - run: bun run build
-      - run: bunx playwright test tests/e2e/sharaf-matrix.e2e.ts
+      - run: bun run verify

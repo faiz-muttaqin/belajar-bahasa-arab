@@ -1,7 +1,7 @@
 import type { Path } from '$app/types';
 
 /**
- * Site sections. One source of truth for the header, mobile tab bar, menu sheet and footer.
+ * Site sections. One source of truth for the sidebar, mobile tab bar, menu sheet and footer.
  * Paths are SvelteKit 3 pathnames (no leading slash, trailing slash because the site uses
  * `trailingSlash = 'always'`), typed against the real routes; the home page uses the route
  * ID '/'. Pass them through `resolve()` from `$app/paths` when rendering.
@@ -25,8 +25,6 @@ export type Section = {
 	path: Path | '/';
 	/** One plain sentence: used in the menu sheet and empty states. */
 	summary: string;
-	/** Shown as a text link in the desktop header. */
-	inHeader: boolean;
 	/** One of the five mobile tab-bar destinations. */
 	inTabBar: boolean;
 };
@@ -37,7 +35,6 @@ export const sections: readonly Section[] = [
 		label: 'Beranda',
 		path: '/',
 		summary: 'Halaman awal dan titik untuk melanjutkan belajar.',
-		inHeader: false,
 		inTabBar: true
 	},
 	{
@@ -45,7 +42,6 @@ export const sections: readonly Section[] = [
 		label: 'Belajar',
 		path: 'belajar/',
 		summary: 'Jalur utama untuk yang sudah bisa membaca tulisan Arab berharakat.',
-		inHeader: true,
 		inTabBar: true
 	},
 	{
@@ -53,7 +49,6 @@ export const sections: readonly Section[] = [
 		label: 'Iqra',
 		path: 'iqra/',
 		summary: 'Jalur fondasi opsional: huruf, bunyi dan harakat dari awal.',
-		inHeader: true,
 		inTabBar: false
 	},
 	{
@@ -61,7 +56,6 @@ export const sections: readonly Section[] = [
 		label: 'Latihan',
 		path: 'latihan/',
 		summary: 'Latihan mengingat dan memahami, dengan umpan balik yang menjelaskan alasannya.',
-		inHeader: true,
 		inTabBar: true
 	},
 	{
@@ -69,7 +63,6 @@ export const sections: readonly Section[] = [
 		label: 'Kosakata',
 		path: 'kosakata/',
 		summary: 'Daftar kata yang sudah dipelajari, lengkap dengan contoh dalam konteks.',
-		inHeader: true,
 		inTabBar: true
 	},
 	{
@@ -77,7 +70,6 @@ export const sections: readonly Section[] = [
 		label: 'Tabel rujukan',
 		path: 'rujukan/',
 		summary: 'Tabel ringkas yang bisa diulang dan dihafal, dengan penjelasan per baris.',
-		inHeader: true,
 		inTabBar: false
 	},
 	{
@@ -85,7 +77,6 @@ export const sections: readonly Section[] = [
 		label: 'Cari',
 		path: 'cari/',
 		summary: 'Cari arti kata Arab, pelajaran, latihan, atau tabel dari perangkat ini.',
-		inHeader: false,
 		inTabBar: false
 	},
 	{
@@ -93,7 +84,6 @@ export const sections: readonly Section[] = [
 		label: 'Progres',
 		path: 'progres/',
 		summary: 'Ringkasan belajar yang tersimpan di perangkat ini.',
-		inHeader: true,
 		inTabBar: true
 	},
 	{
@@ -101,7 +91,6 @@ export const sections: readonly Section[] = [
 		label: 'Bookmark',
 		path: 'bookmark/',
 		summary: 'Pelajaran dan kata yang Anda tandai untuk dibuka lagi.',
-		inHeader: false,
 		inTabBar: false
 	},
 	{
@@ -109,7 +98,6 @@ export const sections: readonly Section[] = [
 		label: 'Tema',
 		path: 'editor/theme/',
 		summary: 'Atur warna, huruf dan mode terang atau gelap sesuai kenyamanan Anda.',
-		inHeader: false,
 		inTabBar: false
 	},
 	{
@@ -117,7 +105,6 @@ export const sections: readonly Section[] = [
 		label: 'Tentang',
 		path: 'tentang/',
 		summary: 'Metode, sumber, status materi dan cara data Anda disimpan.',
-		inHeader: false,
 		inTabBar: false
 	}
 ];

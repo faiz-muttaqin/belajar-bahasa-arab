@@ -43,6 +43,12 @@
 			sebelas bentuk tetap ada dan dapat digeser horizontal.
 		</p>
 		<TransposedTashrif />
+		<details class="space-y-4 rounded-xl border p-4">
+			<summary class="min-h-11 cursor-pointer py-2 font-semibold text-primary">
+				Contoh per bab dan mode hafalan
+			</summary>
+			<ReferenceTable table={{ ...tashrifIstilahi, id: 'tashrif-contoh' }} />
+		</details>
 
 		<p class="max-w-[85ch] text-base text-muted-foreground">
 			Kolom mengikuti urutan madhi, mudhari, mashdar, dan seterusnya sampai isim alat. Kamus proyek

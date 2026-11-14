@@ -25,8 +25,8 @@
 3. `matrix.ts`: menggabungkan katalog pola dan contoh kata untuk UI.
 4. `lexicon.ts`: mencari bentuk, akar, dan terjemahan Indonesia. Pencarian
    tanpa harakat bisa ambigu sehingga semua kandidat tetap ditampilkan.
-5. `catalog/sync.svelte.ts`: katalog statis bersama existing repo, versi
-   manifest, IndexedDB dengan fallback localStorage; tidak ada backend baru.
+5. `catalog/sync.svelte.ts`: katalog statis bersama dengan manifest versi dan
+   penyimpanan IndexedDB. Data bawaan tersedia selama paket belum tersimpan.
 
 Perlu diketahui: nomor bab di diagram 22 bukan identik dengan penomoran Forms
 I–X yang umum dalam tata bahasa Arab internasional. Empat pola tsulatsi mazid

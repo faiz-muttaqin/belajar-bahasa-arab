@@ -16,7 +16,6 @@
 		<a href={resolve('/')} class="block rounded-md text-lg leading-tight font-bold">
 			Belajar Bahasa Arab
 		</a>
-		<p class="mt-2 text-xs text-muted-foreground">Belajar, telusuri, dan hafalkan</p>
 	</div>
 
 	<nav aria-label="Navigasi utama" class="min-h-0 flex-1 overflow-y-auto px-3 py-4">
@@ -26,6 +25,7 @@
 				<li>
 					<a
 						href={resolve(section.path)}
+						aria-label={section.id === 'cari' ? 'Cari materi' : undefined}
 						aria-current={active === section.id ? 'page' : undefined}
 						class="flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground aria-[current=page]:bg-sidebar-accent aria-[current=page]:font-semibold aria-[current=page]:text-primary"
 					>
