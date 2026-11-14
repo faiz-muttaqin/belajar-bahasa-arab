@@ -7,7 +7,8 @@
 	import ListPlus from '@lucide/svelte/icons/list-plus';
 	import Check from '@lucide/svelte/icons/check';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
-	import { catalogState } from '#lib/catalog/sync.svelte.js';
+	import { catalogState, bulkSharafState, prepareBulkSharaf } from '#lib/catalog/sync.svelte.js';
+	import { mergeBulkSharaf } from '#lib/domain/sharaf/bulk.js';
 	import { sharafEntries } from '#lib/content/sharaf.js';
 	import {
 		babGroups,
@@ -57,7 +58,7 @@
 	type CellDetail = { group: BabGroup; key: TashrifColumnKey; entry?: SharafEntry };
 	type ModalMode = 'search' | 'word' | 'cell';
 
-	let entries = $derived(catalogState.catalog?.sharaf ?? sharafEntries);
+	let entries = $derived(mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data));
 	let selected = $state<Record<number, string>>({});
 	let showMeanings = $state(false);
 	let interactive = $state(false);
@@ -68,6 +69,7 @@
 	let modalMode = $state<ModalMode>('search');
 	let modalBab = $state<number | 'all'>('all');
 	let modalQuery = $state('');
+	let visibleSuggestions = $state(48);
 	let inspected = $state<SharafEntry | null>(null);
 	let cell = $state<CellDetail | null>(null);
 
@@ -77,6 +79,7 @@
 		groups.filter((group) => family === 'all' || group.family === family)
 	);
 	let suggestions = $derived(selectableVerbs(entries, modalBab, modalQuery));
+	let shownSuggestions = $derived(suggestions.slice(0, visibleSuggestions));
 	let visibleNumbers = $derived(new Set(visibleGroups.map((group) => group.number)));
 	let fillable = $derived(visibleGroups.some((group) => group.count > 0 && !activeFor(group)));
 
@@ -97,6 +100,7 @@
 	async function openSearch(bab: number | 'all' = 'all') {
 		modalBab = bab;
 		modalQuery = '';
+		visibleSuggestions = 48;
 		modalMode = 'search';
 		inspected = null;
 		cell = null;
@@ -124,6 +128,7 @@
 
 	onMount(() => {
 		interactive = true;
+		void prepareBulkSharaf();
 		// Put fi'il madhi, the rightmost column, in view without affecting SSR.
 		if (!location.hash.startsWith('#tashrif-istilahi-')) {
 			tableScroller.scrollLeft = tableScroller.scrollWidth;
@@ -411,6 +416,7 @@
 						type="search"
 						bind:this={queryInput}
 						bind:value={modalQuery}
+						oninput={() => (visibleSuggestions = 48)}
 						dir="auto"
 						autocomplete="off"
 						placeholder="menulis, membuka, كتب، يكتب..."
@@ -422,6 +428,7 @@
 					<select
 						id="modal-sharaf-bab"
 						bind:value={modalBab}
+						onchange={() => (visibleSuggestions = 48)}
 						class="min-h-11 w-full rounded-lg border bg-background px-3 text-sm"
 					>
 						<option value="all">Semua bab</option>
@@ -432,11 +439,17 @@
 				</div>
 			</div>
 			<p class="text-sm text-muted-foreground">
-				{suggestions.length} contoh kata tersedia. Pilih “Gunakan” untuk mengisi baris yang sesuai.
+				{suggestions.length.toLocaleString('id-ID')} contoh kata tersedia.
+				{#if bulkSharafState.busy}
+					Sedang menyiapkan kamus besar…
+				{:else if bulkSharafState.error && !bulkSharafState.data}
+					Kamus besar belum bisa diunduh; contoh bawaan masih tersedia.
+				{/if}
+				Pilih “Gunakan” untuk mengisi baris yang sesuai.
 			</p>
 			{#if suggestions.length}
 				<ul class="grid max-h-[50dvh] gap-2 overflow-y-auto sm:grid-cols-2">
-					{#each suggestions as entry (entry.id)}
+					{#each shownSuggestions as entry (entry.id)}
 						<li class="rounded-lg border p-3">
 							<div class="flex items-start justify-between gap-2">
 								<div>
@@ -464,6 +477,15 @@
 						</li>
 					{/each}
 				</ul>
+				{#if visibleSuggestions < suggestions.length}
+					<button
+						type="button"
+						onclick={() => (visibleSuggestions += 48)}
+						class="min-h-11 rounded-md border px-4 text-sm font-medium hover:bg-secondary"
+					>
+						Tampilkan lebih banyak ({Math.min(visibleSuggestions, suggestions.length).toLocaleString('id-ID')} dari {suggestions.length.toLocaleString('id-ID')})
+					</button>
+				{/if}
 			{:else}
 				<p class="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
 					Belum ditemukan dalam glosarium. Tidak ada bentuk kata yang dibuat tanpa rujukan.
