@@ -1,0 +1,32 @@
+name: Temporary format G-04 branch
+on:
+  push:
+    branches:
+      - 'feat/grammar-sentences-phase4-20261114'
+permissions:
+  contents: write
+jobs:
+  format:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/grammar-sentences-phase4-20261114
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - run: bun run format
+      - name: Commit formatted files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          if ! git diff --staged --quiet; then
+            git commit -m 'style(nahwu): apply Prettier to G-04'
+            git push origin HEAD:refs/heads/feat/grammar-sentences-phase4-20261114
+          fi
