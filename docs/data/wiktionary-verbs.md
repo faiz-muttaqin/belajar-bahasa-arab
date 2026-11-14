@@ -96,3 +96,15 @@ punya madhi, akar, dan bab, dan tidak diisi dengan tebakan.
 - Transliterasi mengikuti skema Wiktionary (misalnya `ʔ`, `ḡ`), bukan ejaan Indonesia.
 - Bab 5 hanya 8 kata; sumber lain bisa mencatat lebih banyak.
 - Arti Inggris Wiktionary kadang memuat arti kasar atau teknis; semuanya diterjemahkan apa adanya.
+
+## Modal "Cari contoh kata dan wazan" (`/rujukan/fiil/`)
+
+Tabel 22 wazan tidak diubah, tetapi kamus di modalnya sekarang memakai data ini. Modal
+memuat `static/data/verbs-enrich-v1.json` (dibuat oleh `scripts/build-verb-enrichment.mjs`, sekitar
+2 MB, 0,6 MB terkompresi, diunduh terpisah dan di-cache browser) dan menempelkannya ke daftar PR #6:
+arti dan bentuk (mudhari, mashdar, isim fa'il dan maf'ul) dari Wiktionary, arti dari model untuk
+sisanya, dan seluruh kata kerja mazid (bab 7 sampai 22) sebagai entri baru. Kata sekitar 12.500 di
+modal. Daftarnya berupa daftar berjendela (`VirtualGrid`): hanya baris yang terlihat yang digambar,
+jadi ribuan kata tetap ringan. Setiap kartu menyebut sumber arti (Wiktionary, terjemahan Claude,
+dari model, deskripsi model, belum diketahui). Jalankan ulang skripnya bila data di `data/`
+berubah.

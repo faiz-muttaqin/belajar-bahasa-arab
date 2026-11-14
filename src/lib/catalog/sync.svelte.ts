@@ -7,6 +7,8 @@ import {
 	mergeBulkSharaf,
 	type BulkSharafLexicon
 } from '#lib/domain/sharaf/bulk.js';
+import type { VerbEnrichment } from '#lib/domain/sharaf/enrichment.js';
+import { fetchEnrichment } from './enrichment-load.js';
 import {
 	CATALOG_PATH,
 	MANIFEST_PATH,
@@ -28,6 +30,31 @@ export const bulkSharafState = $state<{
 	saved: boolean;
 	error: boolean;
 }>({ busy: false, saved: false, error: false });
+
+/** Meanings, mudhari and mashdar for thousands of verbs; a separate asset, HTTP-cached. */
+export const enrichmentState = $state<{ data?: VerbEnrichment; busy: boolean; error: boolean }>({
+	busy: false,
+	error: false
+});
+let enrichmentInFlight: Promise<void> | undefined;
+
+export function prepareEnrichment() {
+	if (enrichmentState.data) return Promise.resolve();
+	if (enrichmentInFlight) return enrichmentInFlight;
+	enrichmentState.busy = true;
+	enrichmentState.error = false;
+	enrichmentInFlight = (async () => {
+		try {
+			enrichmentState.data = await fetchEnrichment();
+		} catch {
+			enrichmentState.error = true;
+		} finally {
+			enrichmentState.busy = false;
+			enrichmentInFlight = undefined;
+		}
+	})();
+	return enrichmentInFlight;
+}
 
 let bulkInFlight: Promise<void> | undefined;
 let bulkChecked = false;
@@ -165,10 +192,12 @@ export function startBackgroundCatalog() {
 	const refresh = () => {
 		void prepareCatalog(true);
 		void prepareBulkSharaf();
+		void prepareEnrichment();
 	};
 	const warm = () => {
 		void prepareCatalog();
 		void prepareBulkSharaf();
+		void prepareEnrichment();
 	};
 	let timer: ReturnType<typeof setTimeout> | undefined;
 

@@ -18,9 +18,7 @@ test('the deployed static lexicon contains 7,938 unique verb combinations', asyn
 	expect(license).toContain('GNU GENERAL PUBLIC LICENSE');
 });
 
-test('the modal filters the full dataset without rendering thousands of cards at once', async ({
-	page
-}) => {
+test('the modal lists thousands of words but renders only the rows in view', async ({ page }) => {
 	await page.goto('/rujukan/fiil/#tashrif-istilahi');
 	await page.getByRole('button', { name: 'Cari kata atau arti Indonesia' }).click();
 	const modal = page.getByRole('dialog', { name: 'Kamus dan penjelasan sharaf' });
@@ -32,13 +30,30 @@ test('the modal filters the full dataset without rendering thousands of cards at
 			},
 			{ timeout: 30_000 }
 		)
-		.toBeGreaterThan(7900);
-	expect(await modal.locator('li').count()).toBeLessThanOrEqual(48);
+		.toBeGreaterThan(12_000);
+	// Windowed list: thousands of words, a few dozen DOM rows.
+	expect(await modal.getByRole('listitem').count()).toBeLessThanOrEqual(60);
 	await modal.getByRole('searchbox', { name: 'Cari Arab atau Indonesia' }).fill('آبَ');
 	await expect(modal.getByText('آبَ', { exact: true }).first()).toBeVisible();
 	await modal.getByRole('button', { name: 'Gunakan' }).first().click();
 	await expect(modal).toBeHidden();
 	await expect(page.locator('#tashrif-matrix tbody tr').first()).toContainText('آبَ');
+});
+
+test('the modal covers mazid bab and shows Indonesian meanings with their source', async ({
+	page
+}) => {
+	await page.goto('/rujukan/fiil/#tashrif-istilahi');
+	await page.getByRole('button', { name: 'Cari kata atau arti Indonesia' }).click();
+	const modal = page.getByRole('dialog', { name: 'Kamus dan penjelasan sharaf' });
+	await expect(modal.getByText(/contoh kata tersedia/)).toContainText(/1\d\.\d{3}/, {
+		timeout: 30_000
+	});
+	await modal.getByLabel('Batasi ke bab').selectOption('15');
+	await expect(modal.getByText(/contoh kata tersedia/)).toContainText('319');
+	await modal.getByRole('searchbox', { name: 'Cari Arab atau Indonesia' }).fill('اسْتَخْرَجَ');
+	const card = modal.getByRole('listitem').first();
+	await expect(card).toContainText('terjemahan Claude');
 });
 
 test('the full dataset is persisted under an IndexedDB v2 store, not a second database', async ({
