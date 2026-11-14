@@ -17,7 +17,6 @@ const lemmaPage = (page: number) => `https://corpus.quran.com/lemmas.jsp?group=1
 const verbPage = (page: number) =>
 	page === 1 ? 'https://corpus.quran.com/verbs.jsp' : `https://corpus.quran.com/verbs.jsp?page=${page}`;
 
-type FrequencyEvidence = { count: number; source: string; note?: string };
 function mapCounts(
 	basis: QuranFrequency['basis'],
 	source: string,
