@@ -9,6 +9,7 @@
 	import { LESSON_LICENSE, type Lesson } from '#lib/content/lessons/types.js';
 	import ArabicText from './ArabicText.svelte';
 	import MixedText from './MixedText.svelte';
+	import SentenceBreakdown from './SentenceBreakdown.svelte';
 
 	type LessonLink = Pick<Lesson, 'title' | 'slug'>;
 	let { lesson, previous, next }: { lesson: Lesson; previous?: LessonLink; next?: LessonLink } =
@@ -46,8 +47,21 @@
 		{lesson.level} · {register[lesson.register]} · ± {lesson.minutes} menit
 	</p>
 
+	{#if lesson.analysis?.length}
+		<a
+			href="#bedah-kalimat"
+			class="inline-flex min-h-11 items-center font-medium text-primary underline"
+		>
+			Buka bedah per kata
+		</a>
+	{/if}
+
 	<article class="space-y-12">
 		<p class="text-pretty">{lesson.intro}</p>
+
+		{#if lesson.analysis?.length && !lesson.passage}
+			<SentenceBreakdown groups={lesson.analysis} />
+		{/if}
 
 		{#if lesson.examples.length}
 			<section aria-labelledby="contoh" class="space-y-4">
@@ -108,21 +122,25 @@
 						</dl>
 					</details>
 				{/if}
-				<details class="border-t">
-					<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">
-						Terjemahan dan fungsi paragraf
-					</summary>
-					<p class="mt-2 font-semibold">{lesson.passage.title}</p>
-					<ol class="mt-2 list-decimal space-y-3 ps-6">
-						{#each lesson.passage.paragraphs as paragraph, i (i)}
-							<li class="space-y-1">
-								<p>{paragraph.meaning}</p>
-								<p class="text-muted-foreground">{paragraph.role}</p>
-							</li>
-						{/each}
-					</ol>
-				</details>
 			</section>
+			{#if lesson.analysis?.length}
+				<SentenceBreakdown groups={lesson.analysis} />
+			{/if}
+
+			<details class="rounded-xl border bg-card px-4 pb-2 sm:px-5">
+				<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">
+					Terjemahan dan fungsi paragraf
+				</summary>
+				<p class="mt-2 font-semibold">{lesson.passage.title}</p>
+				<ol class="mt-2 list-decimal space-y-3 ps-6">
+					{#each lesson.passage.paragraphs as paragraph, i (i)}
+						<li class="space-y-1">
+							<p>{paragraph.meaning}</p>
+							<p class="text-muted-foreground">{paragraph.role}</p>
+						</li>
+					{/each}
+				</ol>
+			</details>
 		{/if}
 
 		<section id="latihan" aria-labelledby="latihan-heading" class="scroll-mt-24 space-y-4">

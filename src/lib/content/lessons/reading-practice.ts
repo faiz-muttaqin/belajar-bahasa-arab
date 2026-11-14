@@ -1,3 +1,4 @@
+import { bagAnalysis, bottlesAnalysis, photoAnalysis } from './reading-analysis.js';
 import type { Lesson } from './types.js';
 
 const base = {
@@ -36,6 +37,8 @@ export const readingPractice: readonly Lesson[] = [
 		minutes: 12,
 		competencies: ['CB-14', 'CB-19', 'CB-23'],
 		references: [relative, passive, reading],
+		analysis: bagAnalysis,
+		revision: 2,
 		intro:
 			'Baca cerita sampai akhir. Pada bacaan kedua, pilih satu kalimat dan tandai tiga hal: tindakan utama, siapa atau apa yang terlibat, dan bagian yang menambahkan rincian.',
 		passage: {
@@ -119,6 +122,8 @@ export const readingPractice: readonly Lesson[] = [
 		minutes: 12,
 		competencies: ['CB-12', 'CB-14', 'CB-23', 'CB-24'],
 		references: [pronouns, relative, reading],
+		analysis: photoAnalysis,
+		revision: 2,
 		intro:
 			'Setiap kali menemukan akhiran -hā, tulis kata yang digantikannya. Jika ada beberapa kandidat feminin, uji mana yang masuk akal berdasarkan tindakan dan konteks.',
 		passage: {
@@ -193,6 +198,8 @@ export const readingPractice: readonly Lesson[] = [
 		minutes: 15,
 		competencies: ['CB-12', 'CB-22', 'CB-23', 'CB-24'],
 		references: [pronouns, passive, reading],
+		analysis: bottlesAnalysis,
+		revision: 2,
 		intro:
 			'Baca teks sebagai laporan singkat. Beri setiap paragraf satu label fungsi. Ketika menulis ringkasan, cek apakah laporan sudah mengukur hasil atau masih menyatakan rencana.',
 		passage: {
@@ -222,7 +229,7 @@ export const readingPractice: readonly Lesson[] = [
 				},
 				{
 					arabic:
-						'خِلَالَ الْأُسْبُوعِ الْأَوَّلِ، اسْتَخْدَمَ كَثِيرٌ مِنَ الطُّلَّابِ نُقْطَةَ التَّعْبِئَةِ. وَلَكِنَّ فَرِيقَ النَّظَافَةِ لَمْ يَقِسْ كَمِّيَّةَ النَّفَايَاتِ بَعْدَ.',
+						'خِلَالَ الْأُسْبُوعِ الْأَوَّلِ، اسْتَخْدَمَ كَثِيرٌ مِنَ الطُّلَّابِ نُقْطَةَ التَّعْبِئَةِ. وَلَكِنَّ فَرِيقَ النَّظَافَةِ لَمْ يَقِسْ كَمِّيَّةَ النَّفَايَاتِ بَعْدُ.',
 					meaning:
 						'Selama minggu pertama, banyak siswa menggunakan tempat isi ulang. Namun tim kebersihan belum mengukur jumlah sampah.',
 					role: 'Hasil awal dan batas bukti. Pemakaian tempat isi ulang sudah diamati. Dampaknya pada sampah masih belum diukur.'
@@ -258,7 +265,7 @@ export const readingPractice: readonly Lesson[] = [
 				prompt:
 					'Apa hasil yang benar-benar diamati pada minggu pertama? Apakah teks sudah membuktikan sampah berkurang?',
 				answer:
-					'Banyak siswa menggunakan tempat isi ulang. Paragraf 3 mengatakan لَمْ يَقِسْ كَمِّيَّةَ النَّفَايَاتِ بَعْدَ, sehingga dampak pada jumlah sampah belum diketahui.'
+					'Banyak siswa menggunakan tempat isi ulang. Paragraf 3 mengatakan لَمْ يَقِسْ كَمِّيَّةَ النَّفَايَاتِ بَعْدُ, sehingga dampak pada jumlah sampah belum diketahui.'
 			},
 			{
 				prompt:

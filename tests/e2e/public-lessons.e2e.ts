@@ -60,6 +60,27 @@ test.describe('public lesson reader without JavaScript', () => {
 		);
 	});
 
+	test('shows word formation and grammar before the full translation', async ({ page }) => {
+		await page.goto('/belajar/');
+		await page.getByRole('link', { name: 'Mulai dari isim, fi‘il, dan harf' }).click();
+		await expect(page).toHaveURL(/\/belajar\/isim-fiil-harf\/#bedah-kalimat$/);
+		const analysis = page.getByRole('region', { name: 'Bedah per kata' });
+		await expect(analysis.getByText('Isim', { exact: true }).first()).toBeVisible();
+		await expect(analysis.getByText('Sharaf', { exact: true }).first()).toBeVisible();
+		await expect(analysis.getByText('Nahwu', { exact: true }).first()).toBeVisible();
+
+		await analysis.getByText('Kalimat verbal aktif dan pasif', { exact: true }).click();
+		const comparison = analysis
+			.locator('details')
+			.filter({ has: page.getByText('Kalimat verbal aktif dan pasif', { exact: true }) });
+		await expect(comparison.getByText('الْبَابَ', { exact: true }).first()).toBeVisible();
+		await expect(comparison.getByText('الْبَابُ', { exact: true }).first()).toBeVisible();
+		const translation = comparison.getByText('Pintu itu dibuka.', { exact: true });
+		await expect(translation).toBeHidden();
+		await comparison.getByText('Lihat makna utuh', { exact: true }).last().click();
+		await expect(translation).toBeVisible();
+	});
+
 	test('offers all three new multi-paragraph readings with exercises and feedback', async ({
 		page
 	}) => {
@@ -87,6 +108,12 @@ test.describe('public lesson reader without JavaScript', () => {
 			await expect(
 				page.locator('section[aria-labelledby="bacaan"] p[lang="ar"][dir="rtl"]')
 			).toHaveCount(paragraphs);
+			await page.getByRole('link', { name: 'Buka bedah per kata' }).click();
+			await expect(page).toHaveURL(/#bedah-kalimat$/);
+			const analysis = page.getByRole('region', { name: 'Bedah per kata' });
+			await expect(analysis.getByText('Sharaf', { exact: true }).first()).toBeVisible();
+			await expect(analysis.getByText('Nahwu', { exact: true }).first()).toBeVisible();
+			await page.goBack();
 			const exercises = page.getByRole('region', { name: 'Latihan pemahaman' });
 			const reveal = exercises.getByText('Lihat pembahasan', { exact: true });
 			await expect(reveal).toHaveCount(questions);

@@ -4,10 +4,13 @@ import { foundationLessons } from './foundation.js';
 import { sentenceReadingLessons } from './sentence-reading.js';
 import { intermediateLessons } from './intermediate.js';
 import { validateLessons, type LessonSummary, type LessonTrack } from './types.js';
+import { wordClassesLesson } from './word-classes.js';
 
 const lessons = [
 	...foundationLessons,
-	...beginnerLessons,
+	...beginnerLessons.flatMap((lesson) =>
+		lesson.id === 'lesson-u3-01' ? [lesson, wordClassesLesson] : [lesson]
+	),
 	...sentenceReadingLessons,
 	numberLesson,
 	...intermediateLessons

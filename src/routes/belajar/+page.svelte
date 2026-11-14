@@ -17,6 +17,13 @@
 	{/snippet}
 </PageIntro>
 
+<a
+	href={resolve('belajar/isim-fiil-harf/#bedah-kalimat')}
+	class="mt-6 inline-flex min-h-11 items-center font-medium text-primary underline"
+>
+	Mulai dari isim, fi‘il, dan harf
+</a>
+
 <LessonList track="belajar" lessons={data.lessons} />
 
 <a

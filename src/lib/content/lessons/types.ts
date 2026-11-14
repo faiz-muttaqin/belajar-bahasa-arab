@@ -1,4 +1,5 @@
 import type { Path } from '$app/types';
+import { analyzedText, type AnalysisGroup } from './analysis.js';
 import { hasApprovingReview, type ReviewRecord } from '#lib/domain/review.js';
 
 export type LessonTrack = 'belajar' | 'iqra';
@@ -35,6 +36,7 @@ export type Lesson = {
 	examples: readonly Example[];
 	patterns: readonly string[];
 	passage?: Passage;
+	analysis?: readonly AnalysisGroup[];
 	exercises: readonly Exercise[];
 	related?: readonly { label: string; path: `${Path}#${string}` }[];
 };
@@ -64,10 +66,28 @@ export function validateLessons(lessons: readonly Lesson[]) {
 			!lesson.references.length ||
 			!lesson.exercises.length ||
 			!lesson.patterns.length ||
-			!(lesson.examples.length || lesson.passage?.paragraphs.length) ||
+			!(lesson.examples.length || lesson.passage?.paragraphs.length || lesson.analysis?.length) ||
 			lesson.references.some(({ href }) => !href.startsWith('https://'))
 		) {
 			throw new Error(`Incomplete lesson: ${lesson.id}`);
+		}
+
+		for (const group of lesson.analysis ?? []) {
+			const paragraph =
+				group.paragraph === undefined ? undefined : lesson.passage?.paragraphs[group.paragraph - 1];
+			if (!group.sentences.length || (group.paragraph !== undefined && !paragraph)) {
+				throw new Error(`Invalid analysis location: ${lesson.id} (${group.heading})`);
+			}
+			for (const sentence of group.sentences) {
+				if (
+					!sentence.words.length ||
+					sentence.words.some((word) => word.some((field) => !field.trim())) ||
+					(paragraph &&
+						!paragraph.arabic.normalize('NFC').includes(analyzedText(sentence).normalize('NFC')))
+				) {
+					throw new Error(`Invalid analysis text: ${lesson.id} (${group.heading})`);
+				}
+			}
 		}
 
 		if (
