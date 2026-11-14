@@ -35,7 +35,7 @@ test('collection pills filter cards while preserving All and the sharaf audio co
 }) => {
 	await page.goto('/kosakata/');
 	const filters = page.getByRole('group', { name: 'Pilih koleksi' });
-	await expect(filters.getByRole('button')).toHaveCount(4);
+	await expect(filters.getByRole('button')).toHaveCount(5);
 	await filters.getByRole('button', { name: /Al-Qur’an/ }).click();
 	await expect(page.getByRole('heading', { name: 'Kosakata harian' })).toHaveCount(0);
 	await expect(page.getByRole('heading', { name: 'Kosakata bacaan shalat' })).toHaveCount(0);
