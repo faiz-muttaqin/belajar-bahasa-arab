@@ -1,6 +1,7 @@
 import { resolve } from '$app/paths';
-import { readCatalog, saveCatalog } from './storage.js';
+import { readCatalog, saveCatalog, readBulkSharafCache, saveBulkSharafCache } from './storage.js';
 import { prepareSharafSearchIndex } from '#lib/domain/sharaf/lexicon.js';
+import { BULK_SHARAF_PATH, isBulkSharafLexicon, mergeBulkSharaf, type BulkSharafLexicon } from '#lib/domain/sharaf/bulk.js';
 import {
 	CATALOG_PATH,
 	MANIFEST_PATH,
@@ -16,6 +17,15 @@ export const catalogState = $state<{
 	error: boolean;
 }>({ busy: false, saved: false, error: false });
 
+export const bulkSharafState = $state<{
+	data?: BulkSharafLexicon;
+	busy: boolean;
+	saved: boolean;
+	error: boolean;
+}>({ busy: false, saved: false, error: false });
+
+let bulkInFlight: Promise<void> | undefined;
+let bulkChecked = false;
 let inFlight: Promise<void> | undefined;
 let checked = false;
 
@@ -94,10 +104,63 @@ export function prepareCatalog(refresh = false) {
 	return inFlight;
 }
 
+async function syncBulkSharaf() {
+	bulkSharafState.busy = true;
+	bulkSharafState.error = false;
+	try {
+		if (!bulkSharafState.data) {
+			const cached = await readBulkSharafCache();
+			if (isBulkSharafLexicon(cached)) {
+				bulkSharafState.data = cached;
+				bulkSharafState.saved = true;
+			}
+		}
+		if (bulkSharafState.data) {
+			bulkChecked = true;
+			return;
+		}
+		if (!navigator.onLine) return;
+		const response = await fetch(resolve(BULK_SHARAF_PATH), {
+			cache: 'force-cache',
+			signal: AbortSignal.timeout(30_000)
+		});
+		if (!response.ok) throw new Error(`Gagal mengambil leksikon: HTTP ${response.status}`);
+		const parsed: unknown = await response.json();
+		if (!isBulkSharafLexicon(parsed)) throw new Error('Skema leksikon tidak sesuai');
+		bulkSharafState.data = parsed;
+		// Build the normalized search index after the page has painted.
+		if (catalogState.catalog?.sharaf) {
+			const full = mergeBulkSharaf(catalogState.catalog.sharaf, parsed);
+			warmSharafSearch(full);
+		}
+		bulkSharafState.saved = (await saveBulkSharafCache(parsed)) !== 'none';
+		bulkChecked = true;
+	} catch {
+		bulkSharafState.error = true;
+	} finally {
+		bulkSharafState.busy = false;
+	}
+}
+
+export function prepareBulkSharaf() {
+	if (bulkInFlight) return bulkInFlight;
+	if (bulkChecked) return Promise.resolve();
+	bulkInFlight = syncBulkSharaf().finally(() => {
+		bulkInFlight = undefined;
+	});
+	return bulkInFlight;
+}
+
 // Start after the current page has finished loading. An explicit visit to search starts immediately.
 export function startBackgroundCatalog() {
-	const refresh = () => void prepareCatalog(true);
-	const warm = () => void prepareCatalog();
+	const refresh = () => {
+		void prepareCatalog(true);
+		void prepareBulkSharaf();
+	};
+	const warm = () => {
+		void prepareCatalog();
+		void prepareBulkSharaf();
+	};
 	let timer: ReturnType<typeof setTimeout> | undefined;
 
 	const schedule = () => {
