@@ -4,7 +4,9 @@ import {
 	groupByLetter,
 	letterGroup,
 	stemWord,
+	toRecallRows,
 	toRows,
+	type RecallVerb,
 	type WiktionaryVerb
 } from './wiktionary-verbs.js';
 
@@ -88,5 +90,49 @@ describe('babInfos', () => {
 		expect(babInfos.map((b) => b.bab)).toEqual([...Array.from({ length: 22 }, (_, i) => i + 1), 0]);
 		expect(babInfos[6]?.madhi.normalize('NFC')).toBe('فَعَّلَ'.normalize('NFC'));
 		expect(babInfos[18]?.family).toBe('Ruba’i mujarrad');
+	});
+});
+
+const recall = (over: Partial<RecallVerb>): RecallVerb => ({
+	id: 'r-1',
+	ar: 'أَبَتَ',
+	root: 'ءبت',
+	bab: 1,
+	code: 'ل',
+	kind: 'padanan',
+	meanings: ['menolak', 'enggan', 'berpaling'],
+	description: '',
+	confidence: 'medium',
+	model: 'fable-5.2',
+	...over
+});
+
+describe('toRecallRows', () => {
+	it('shows a padanan with the model named and the source stated', () => {
+		const [row] = toRecallRows([recall({})]);
+		expect(row?.cells.meaning).toBe('menolak; enggan');
+		expect(row?.cells.meaningsFull).toBe('menolak; enggan; berpaling');
+		expect(row?.cells.badge).toBe('dari model');
+		expect(row?.cells.model).toBe('Claude Fable 5.2');
+		expect(row?.cells.src).toContain('GPLv2');
+	});
+
+	it('marks a description as a description, not an equivalent', () => {
+		const [row] = toRecallRows([
+			recall({ kind: 'deskripsi', meanings: [], description: 'Perbuatan melabur dinding.' })
+		]);
+		expect(row?.cells.badge).toBe('deskripsi');
+		expect(row?.cells.description).toBe('Perbuatan melabur dinding.');
+		expect(row?.cells.meaningsFull).toBeUndefined();
+	});
+
+	it('says plainly when the meaning is unknown and invents nothing', () => {
+		const [row] = toRecallRows([
+			recall({ kind: 'tidak_diketahui', meanings: [], confidence: 'none', model: 'sonnet-5.5' })
+		]);
+		expect(row?.cells.meaning).toBe('Arti belum diketahui');
+		expect(row?.cells.badge).toBe('belum diketahui');
+		expect(row?.cells.meaningsFull).toBeUndefined();
+		expect(row?.cells.model).toBeUndefined();
 	});
 });

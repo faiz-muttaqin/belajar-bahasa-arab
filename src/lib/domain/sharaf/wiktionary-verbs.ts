@@ -166,3 +166,53 @@ export function toRows(
 		return { id: v.id, cells };
 	});
 }
+
+/** A verb from the Qutrub and Arramooz word list whose meaning comes from model recall. */
+export type RecallVerb = {
+	id: string;
+	ar: string;
+	root: string;
+	bab: number;
+	code: string;
+	kind: 'padanan' | 'deskripsi' | 'tidak_diketahui';
+	meanings: string[];
+	description: string;
+	confidence: 'high' | 'medium' | 'low' | 'none';
+	model: string;
+};
+
+const confidenceLabel = { high: 'tinggi', medium: 'sedang', low: 'rendah', none: '-' } as const;
+const modelLabel: Record<string, string> = {
+	'fable-5.2': 'Claude Fable 5.2',
+	'sonnet-5.5': 'Claude Sonnet 5.5'
+};
+
+/** Tile rows for recall verbs. Every cell that comes from a model says so in the modal. */
+export function toRecallRows(verbs: readonly RecallVerb[]): ReferenceTableData['rows'] {
+	return verbs.map((v) => {
+		const cells: Record<string, string> = {
+			arabic: v.ar,
+			root: v.root.split('').join(' '),
+			src: 'Qutrub dan Arramooz (GPLv2)'
+		};
+		if (v.kind === 'padanan') {
+			cells.meaning = v.meanings.slice(0, 2).join('; ');
+			cells.badge = 'dari model';
+			cells.meaningsFull = v.meanings.join('; ');
+		} else if (v.kind === 'deskripsi') {
+			cells.meaning = v.description;
+			cells.badge = 'deskripsi';
+			cells.description = v.description;
+		} else {
+			cells.meaning = 'Arti belum diketahui';
+			cells.badge = 'belum diketahui';
+			cells.unknown = 'Model tidak mengenali kata kerja ini, jadi tidak ada arti yang ditampilkan.';
+		}
+		if (v.kind !== 'tidak_diketahui') {
+			cells.confidence = confidenceLabel[v.confidence];
+			cells.model = modelLabel[v.model] ?? v.model;
+		}
+		if (v.code) cells.code = v.code;
+		return { id: v.id, cells };
+	});
+}

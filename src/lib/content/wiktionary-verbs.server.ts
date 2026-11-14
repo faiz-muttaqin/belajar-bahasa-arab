@@ -5,29 +5,40 @@
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { VerbTranslation, WiktionaryVerb } from '#lib/domain/sharaf/wiktionary-verbs.js';
+import type {
+	RecallVerb,
+	VerbTranslation,
+	WiktionaryVerb
+} from '#lib/domain/sharaf/wiktionary-verbs.js';
 
-const dir = join(process.cwd(), 'data', 'wiktionary');
+const root = join(process.cwd(), 'data');
 
 function readJson<T>(name: string, fallback: T): T {
-	const file = join(dir, name);
+	const file = join(root, name);
 	return existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')) as T) : fallback;
 }
 
 type Source = { attribution: string; verbs: WiktionaryVerb[] };
 
 export function loadVerbs() {
-	const formI = readJson<Source>('verbs-form-i.json', { attribution: '', verbs: [] });
-	const mazid = readJson<Source>('verbs-mazid.json', { attribution: '', verbs: [] });
+	const formI = readJson<Source>('wiktionary/verbs-form-i.json', { attribution: '', verbs: [] });
+	const mazid = readJson<Source>('wiktionary/verbs-mazid.json', { attribution: '', verbs: [] });
 	const translations = {
-		...readJson<Record<string, VerbTranslation>>('verbs-form-i.id.json', {}),
-		...readJson<Record<string, VerbTranslation>>('verbs-mazid.id.json', {})
+		...readJson<Record<string, VerbTranslation>>('wiktionary/verbs-form-i.id.json', {}),
+		...readJson<Record<string, VerbTranslation>>('wiktionary/verbs-mazid.id.json', {})
 	};
-	const google = readJson<Record<string, string>>('verbs-form-i.google.json', {});
+	const google = readJson<Record<string, string>>('wiktionary/verbs-form-i.google.json', {});
 	return {
 		attribution: formI.attribution || mazid.attribution,
 		verbs: [...formI.verbs, ...mazid.verbs],
 		translations,
 		google
 	};
+}
+
+/** Verbs from the Qutrub and Arramooz list with meanings recalled by a model. */
+export function loadRecall(): RecallVerb[] {
+	return readJson<{ verbs: RecallVerb[] }>('recall/verbs-qutrub-arramooz-recall.json', {
+		verbs: []
+	}).verbs;
 }

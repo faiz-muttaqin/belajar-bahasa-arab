@@ -1,6 +1,12 @@
 import { error } from '@sveltejs/kit';
-import { loadVerbs } from '#lib/content/wiktionary-verbs.server.js';
-import { babInfos, groupByLetter, stemWord, toRows } from '#lib/domain/sharaf/wiktionary-verbs.js';
+import { loadRecall, loadVerbs } from '#lib/content/wiktionary-verbs.server.js';
+import {
+	babInfos,
+	groupByLetter,
+	stemWord,
+	toRecallRows,
+	toRows
+} from '#lib/domain/sharaf/wiktionary-verbs.js';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const prerender = true;
@@ -25,7 +31,20 @@ export const load: PageServerLoad = ({ params }) => {
 			ids: items.map((v) => v.id)
 		})
 	);
+	const recall = loadRecall().filter((v) => v.bab === info.bab);
+	const recallGroups = groupByLetter(recall, (v) => stemWord(v.ar, v.bab)).map(
+		({ letter, verbs: items }) => ({ letter, ids: items.map((v) => v.id) })
+	);
 	return {
+		recall: {
+			rows: toRecallRows(recall),
+			groups: recallGroups,
+			counts: {
+				padanan: recall.filter((v) => v.kind === 'padanan').length,
+				deskripsi: recall.filter((v) => v.kind === 'deskripsi').length,
+				unknown: recall.filter((v) => v.kind === 'tidak_diketahui').length
+			}
+		},
 		info,
 		attribution,
 		rows,

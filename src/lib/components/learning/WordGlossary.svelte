@@ -23,7 +23,8 @@
 		meaningKey = 'meaning',
 		exampleKey = 'example',
 		linkKey,
-		linkLabel = 'Sumber'
+		linkLabel = 'Sumber',
+		groupIdPrefix
 	}: {
 		table: ReferenceTableData;
 		groups?: readonly Group[];
@@ -37,6 +38,8 @@
 		/** Column holding an external URL, shown as a link in the modal. */
 		linkKey?: string;
 		linkLabel?: string;
+		/** Adds an anchor id (prefix + group title) to each group, for sub tabs. */
+		groupIdPrefix?: string;
 	} = $props();
 
 	const uid = $props.id();
@@ -86,7 +89,10 @@
 	</label>
 
 	{#each shownGroups as group (group.title)}
-		<div class="space-y-3">
+		<div
+			id={groupIdPrefix ? `${groupIdPrefix}${group.title}` : undefined}
+			class="scroll-mt-32 space-y-3"
+		>
 			{#if group.title}<h3 class="font-semibold text-muted-foreground">{group.title}</h3>{/if}
 			<ul class="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-3">
 				{#each group.ids as id (id)}

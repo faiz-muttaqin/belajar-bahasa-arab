@@ -56,3 +56,22 @@ test('a mazid page groups verbs by root letter and opens the detail modal', asyn
 	await tile.click();
 	await expect(page.getByRole('dialog').getByText('Transliterasi (Wiktionary)')).toBeVisible();
 });
+
+test('the extra list on a bab page is labelled as model knowledge and unverified', async ({
+	page
+}) => {
+	await page.goto('/rujukan/fiil/kata-kerja/1/');
+	await expect(
+		page.getByRole('heading', { name: /Daftar tambahan dari Qutrub dan Arramooz/ })
+	).toBeVisible();
+	await expect(page.getByText('Belum diverifikasi.')).toBeVisible();
+	await page.getByText('Tampilkan daftar tambahan').click();
+	await expect(page.getByText('Arti belum diketahui').first()).toBeVisible();
+	await page
+		.getByRole('button', { name: /dari model/ })
+		.first()
+		.click();
+	const modal = page.getByRole('dialog');
+	await expect(modal.getByText('belum diverifikasi', { exact: false }).first()).toBeVisible();
+	await expect(modal.getByText('Claude', { exact: false }).first()).toBeVisible();
+});

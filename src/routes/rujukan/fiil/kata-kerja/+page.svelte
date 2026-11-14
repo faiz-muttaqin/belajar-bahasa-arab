@@ -7,13 +7,16 @@
 
 	let { data }: PageProps = $props();
 	let total = $derived(data.babs.reduce((sum, bab) => sum + bab.count, 0));
+	let recallTotal = $derived(data.babs.reduce((sum, bab) => sum + bab.recallCount, 0));
 	let families = $derived(
-		[...new Set(data.babs.filter((bab) => bab.count > 0).map((bab) => bab.family))].map(
-			(family) => ({
-				family,
-				babs: data.babs.filter((bab) => bab.count > 0 && bab.family === family)
-			})
-		)
+		[
+			...new Set(
+				data.babs.filter((bab) => bab.count + bab.recallCount > 0).map((bab) => bab.family)
+			)
+		].map((family) => ({
+			family,
+			babs: data.babs.filter((bab) => bab.count + bab.recallCount > 0 && bab.family === family)
+		}))
 	);
 </script>
 
@@ -24,8 +27,9 @@
 >
 	{#snippet lead()}
 		<p>
-			{total.toLocaleString('id')} kata kerja, dikelompokkan menurut 22 wazan tashrif. Ketuk sebuah kata
-			untuk melihat bentuk dan artinya.
+			{total.toLocaleString('id')} kata kerja bersumber Wiktionary, dikelompokkan menurut 22 wazan tashrif,
+			ditambah {recallTotal.toLocaleString('id')} dari daftar Qutrub dan Arramooz yang artinya dari pengetahuan
+			model. Ketuk sebuah kata untuk melihat bentuk dan artinya.
 		</p>
 	{/snippet}
 </PageIntro>
@@ -51,7 +55,8 @@
 								</span>
 							{/if}
 							<span class="mt-3 block text-sm text-muted-foreground"
-								>{bab.count.toLocaleString('id')} kata kerja</span
+								>{bab.count.toLocaleString('id')} kata kerja{#if bab.recallCount > 0}
+									, ditambah {bab.recallCount.toLocaleString('id')} dari daftar tambahan{/if}</span
 							>
 						</a>
 					</li>

@@ -10,8 +10,9 @@
   diunduh 14 November 2026, tidak disimpan di repo). Teks Wiktionary berlisensi CC BY-SA 4.0 dan
   GFDL; setiap kata menautkan ke halaman Wiktionary-nya dan halaman memuat atribusi. Ini sejalan
   dengan lisensi materi proyek (CC BY-SA 4.0, ADR-004 D-1). Ini gambaran umum, bukan nasihat hukum.
-- Data ini **tidak bergantung pada PR #6** (Qutrub dan Arramooz, GPLv2). Isi dan daftar kata
-  berasal hanya dari Wiktionary; PR #6 dipakai sebagai pembanding mutu (lihat di bawah).
+- Data Wiktionary **tidak bergantung pada PR #6** (Qutrub dan Arramooz, GPLv2). Isi dan daftar kata
+  berasal hanya dari Wiktionary; PR #6 dipakai sebagai pembanding mutu (lihat di bawah). PR #6 sudah di-merge; kata-kata
+  nya yang tidak ada di Wiktionary memakai arti dari model: lihat [model-recall](./model-recall.md).
 
 ## Isi
 
