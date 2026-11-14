@@ -43,8 +43,59 @@ test('global Indonesian search and one clear button replace and restore the matc
 	await expect(rows.nth(6).locator('td').last()).toHaveText('عَلَّمَ');
 	await expect(rows.first().locator('td').last()).toHaveText('فَعَلَ');
 
-	await page.getByRole('button', { name: 'Clear semua pilihan kata dan kembalikan wazan' }).click();
+	await page.getByRole('button', { name: 'Kembali ke wazan untuk semua bab' }).click();
 	await expect(rows.nth(6).locator('td').last()).toHaveText('فَعَّلَ');
+});
+
+test('highlights chosen words and shows short meanings below both examples and wazan', async ({
+	page
+}) => {
+	await page.goto('/rujukan/#tashrif-istilahi');
+	const rows = page.locator('#tashrif-matrix tbody tr');
+	const meanings = page.getByRole('switch', { name: 'Arti Indonesia' });
+	await expect(meanings).toBeEnabled();
+	await expect(meanings).not.toBeChecked();
+	await meanings.press('Space');
+	expect(
+		await page
+			.locator('#tashrif-matrix')
+			.evaluate((element) =>
+				Math.abs(element.scrollWidth - element.clientWidth - element.scrollLeft)
+			)
+	).toBeLessThan(2);
+	const wazan = rows.nth(1);
+	await expect(wazan.getByText('Wazan', { exact: true })).toBeVisible();
+	await expect(wazan.getByText('waktu berbuat', { exact: true })).toBeVisible();
+
+	await page.getByRole('button', { name: 'Pilih kata untuk bab 1', exact: true }).click();
+	const modal = page.getByRole('dialog');
+	await modal.getByRole('searchbox').fill('makan');
+	await modal.getByRole('button', { name: 'Gunakan', exact: true }).click();
+	const example = rows.first();
+	await expect(example.getByText('Kata dipilih', { exact: true })).toBeVisible();
+	expect(await example.evaluate((row) => getComputedStyle(row).backgroundColor)).not.toBe(
+		await wazan.evaluate((row) => getComputedStyle(row).backgroundColor)
+	);
+	await expect(example.getByText('(telah) makan', { exact: true })).toBeVisible();
+	await expect(example.getByText('(sedang) makan', { exact: true })).toBeVisible();
+	await expect(example.getByText('makanlah!', { exact: true })).toBeVisible();
+	await expect(example.getByText('waktu makan', { exact: true })).toBeVisible();
+	await expect(example.locator('td').first()).toHaveText('—');
+	await expect(example.getByText('waktu makan', { exact: true })).toHaveCSS('font-size', '12px');
+
+	const family = page.getByLabel('Kelompok tashrif');
+	await family.selectOption('tsulatsi-mujarrad');
+	await page.getByRole('button', { name: 'Isi contoh', exact: true }).click();
+	await expect(rows.getByText('Kata dipilih', { exact: true })).toHaveCount(6);
+	await expect(rows.first().getByText('(telah) makan', { exact: true })).toBeVisible();
+	await family.selectOption('all');
+	await expect(rows.getByText('Wazan', { exact: true })).toHaveCount(16);
+	await page.getByRole('button', { name: 'Isi contoh', exact: true }).click();
+	await expect(rows.getByText('Kata dipilih', { exact: true })).toHaveCount(22);
+	await meanings.press('Space');
+	await expect(rows.getByText('waktu makan', { exact: true })).toHaveCount(0);
+	await page.getByRole('button', { name: 'Kembali ke wazan untuk semua bab' }).click();
+	await expect(rows.getByText('Wazan', { exact: true })).toHaveCount(22);
 });
 
 test('clicking a bab narrows the glossary, and cell detail explains form and source', async ({

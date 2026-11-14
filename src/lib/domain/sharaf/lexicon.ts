@@ -10,6 +10,7 @@ export type FormBehavior = 'regular' | 'special-rule' | 'irregular' | 'fixed';
 export type SharafForm = {
 	label: string;
 	value: string;
+	meaning?: string;
 };
 
 export type SharafEntry = {
@@ -73,7 +74,10 @@ export function isSharafEntries(value: unknown): value is SharafEntry[] {
 			) &&
 			entry.forms.every(
 				(form: unknown) =>
-					isRecord(form) && typeof form.label === 'string' && typeof form.value === 'string'
+					isRecord(form) &&
+					typeof form.label === 'string' &&
+					typeof form.value === 'string' &&
+					(form.meaning === undefined || typeof form.meaning === 'string')
 			)
 		);
 	});

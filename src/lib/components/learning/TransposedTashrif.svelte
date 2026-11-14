@@ -4,14 +4,18 @@
 	import Search from '@lucide/svelte/icons/search';
 	import X from '@lucide/svelte/icons/x';
 	import RotateCcw from '@lucide/svelte/icons/rotate-ccw';
+	import ListPlus from '@lucide/svelte/icons/list-plus';
+	import Check from '@lucide/svelte/icons/check';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { catalogState } from '#lib/catalog/sync.svelte.js';
 	import { sharafEntries } from '#lib/content/sharaf.js';
 	import {
 		babGroups,
 		referenceWazanValue,
+		selectedBabRows,
 		selectableVerbs,
 		tashrifColumns,
+		tashrifMeaning,
 		tashrifValue,
 		type TashrifColumnKey,
 		type BabGroup
@@ -55,6 +59,8 @@
 
 	let entries = $derived(catalogState.catalog?.sharaf ?? sharafEntries);
 	let selected = $state<Record<number, string>>({});
+	let showMeanings = $state(false);
+	let interactive = $state(false);
 	let family = $state<PatternFamily | 'all'>('all');
 	let dialogEl: HTMLDialogElement;
 	let queryInput = $state<HTMLInputElement>();
@@ -71,11 +77,21 @@
 		groups.filter((group) => family === 'all' || group.family === family)
 	);
 	let suggestions = $derived(selectableVerbs(entries, modalBab, modalQuery));
+	let visibleNumbers = $derived(new Set(visibleGroups.map((group) => group.number)));
+	let fillable = $derived(visibleGroups.some((group) => group.count > 0 && !activeFor(group)));
 
 	function activeFor(group: BabGroup): SharafEntry | undefined {
 		return entries.find(
 			(entry) => entry.id === selected[group.number] && entry.bab?.number === group.number
 		);
+	}
+
+	function fillExamples() {
+		const next = { ...selected };
+		for (const entry of selectedBabRows(entries, selected, 'all')) {
+			if (entry.bab && visibleNumbers.has(entry.bab.number)) next[entry.bab.number] = entry.id;
+		}
+		selected = next;
 	}
 
 	async function openSearch(bab: number | 'all' = 'all') {
@@ -107,6 +123,7 @@
 	}
 
 	onMount(() => {
+		interactive = true;
 		// Put fi'il madhi, the rightmost column, in view without affecting SSR.
 		if (!location.hash.startsWith('#tashrif-istilahi-')) {
 			tableScroller.scrollLeft = tableScroller.scrollWidth;
@@ -120,7 +137,8 @@
 			<button
 				type="button"
 				onclick={() => openSearch()}
-				class="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground hover:opacity-90"
+				disabled={!interactive}
+				class="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-55"
 			>
 				<Search class="size-4" aria-hidden="true" />
 				Cari kata atau arti Indonesia
@@ -129,6 +147,7 @@
 			<select
 				id="pattern-family-filter"
 				bind:value={family}
+				disabled={!interactive}
 				class="min-h-11 min-w-48 rounded-lg border bg-card px-3 text-sm"
 			>
 				{#each allFamilies as item (item.key)}
@@ -136,24 +155,71 @@
 				{/each}
 			</select>
 		</div>
-		<button
-			type="button"
-			onclick={() => (selected = {})}
-			class="inline-flex min-h-11 items-center gap-2 rounded-lg border px-3 text-sm font-medium hover:bg-secondary"
-			aria-label="Clear semua pilihan kata dan kembalikan wazan"
-		>
-			<RotateCcw class="size-4" aria-hidden="true" />
-			Clear semua
-		</button>
+		<div class="flex flex-wrap items-center gap-2">
+			<button
+				type="button"
+				onclick={fillExamples}
+				disabled={!interactive || !fillable}
+				class="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/50 bg-accent px-3 text-sm font-semibold text-accent-foreground hover:border-primary disabled:opacity-45"
+			>
+				<ListPlus class="size-4" aria-hidden="true" />
+				Isi contoh
+			</button>
+			<button
+				type="button"
+				onclick={() => (selected = {})}
+				disabled={!interactive || Object.keys(selected).length === 0}
+				class="inline-flex min-h-11 items-center gap-2 rounded-lg border px-3 text-sm font-medium hover:bg-secondary disabled:opacity-45"
+				aria-label="Kembali ke wazan untuk semua bab"
+			>
+				<RotateCcw class="size-4" aria-hidden="true" />
+				Kembali ke wazan
+			</button>
+			<label
+				class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg px-2 text-sm font-medium"
+			>
+				<input
+					type="checkbox"
+					role="switch"
+					checked={showMeanings}
+					onchange={async (event) => {
+						const atMadhi =
+							tableScroller.scrollWidth - tableScroller.clientWidth - tableScroller.scrollLeft < 2;
+						showMeanings = event.currentTarget.checked;
+						if (atMadhi) {
+							await tick();
+							tableScroller.scrollLeft = tableScroller.scrollWidth;
+						}
+					}}
+					disabled={!interactive}
+					class="peer sr-only"
+					aria-controls="tashrif-matrix"
+				/>
+				<span
+					aria-hidden="true"
+					class="relative h-5 w-9 shrink-0 rounded-full border border-muted-foreground bg-muted-foreground peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring before:absolute before:start-0.5 before:top-0.5 before:size-3.5 before:rounded-full before:bg-card peer-checked:before:translate-x-4 peer-checked:before:bg-primary-foreground"
+				></span>
+				Arti Indonesia
+			</label>
+		</div>
 	</div>
 
 	<p class="text-sm text-muted-foreground">
 		{visibleGroups.length} bab · 11 bentuk dari kanan ke kiri. Klik bab di kolom kiri untuk memilih kata,
 		atau klik sel untuk melihat penjelasan perubahan. Geser tabel ke samping untuk melihat seluruh bentuk.
 	</p>
+	{#if family !== 'all'}
+		<p class="text-sm text-muted-foreground">Isi contoh berlaku untuk kelompok yang ditampilkan.</p>
+	{/if}
+	{#if showMeanings}
+		<p class="text-sm text-muted-foreground">
+			Padanan pendek untuk mengingat fungsi bentuk. Terjemahan lengkap mengikuti konteks kalimat.
+		</p>
+	{/if}
 
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<div
+		id="tashrif-matrix"
 		bind:this={tableScroller}
 		role="region"
 		aria-label="Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri"
@@ -161,7 +227,7 @@
 		class="relative max-w-full overflow-x-auto rounded-xl border bg-card"
 	>
 		<table class="w-max min-w-full border-collapse">
-			<caption class="px-4 py-3 text-start text-sm text-muted-foreground">
+			<caption class="sr-only">
 				22 pola tradisional dari tsulatsi hingga ruba’i; kolom fi’il madhi di paling kanan. Sel
 				tanpa bentuk tercatat diberi tanda —.
 			</caption>
@@ -169,14 +235,14 @@
 				<tr>
 					<th
 						scope="col"
-						class="sticky left-0 z-20 min-w-48 border-r bg-secondary px-3 py-3 text-start text-xs font-semibold"
+						class="sticky left-0 z-20 min-w-36 border-r bg-secondary px-3 py-3 text-start text-xs font-semibold sm:min-w-48"
 						>Bab dan kelompok</th
 					>
 					{#each rtlColumns as column (column.key)}
 						<th
 							id={`tashrif-istilahi-${column.key}`}
 							scope="col"
-							class="min-w-36 scroll-mt-24 scroll-ml-48 px-3 py-3 text-center text-xs font-semibold text-secondary-foreground"
+							class="min-w-36 scroll-mt-24 scroll-ml-36 px-3 py-3 text-center text-xs font-semibold text-secondary-foreground sm:scroll-ml-48"
 							>{column.label}</th
 						>
 					{/each}
@@ -185,18 +251,49 @@
 			<tbody>
 				{#each visibleGroups as group (group.number)}
 					{@const active = activeFor(group)}
-					<tr class="border-b last:border-b-0">
-						<th scope="row" class="sticky left-0 z-10 min-w-48 border-r bg-card p-0 text-start">
+					{@const statusId = `tashrif-status-${group.number}`}
+					<tr
+						class={active
+							? 'border-b border-primary/25 bg-primary/15 last:border-b-0'
+							: 'border-b last:border-b-0'}
+					>
+						<th
+							scope="row"
+							class={[
+								'sticky left-0 z-10 min-w-36 border-r p-0 text-start sm:min-w-48',
+								active
+									? 'border-r-primary/30 bg-[color-mix(in_oklab,var(--primary)_22%,var(--card))]'
+									: 'bg-card'
+							]}
+						>
 							<button
 								type="button"
 								onclick={() => openSearch(group.number)}
-								class="flex min-h-24 w-full flex-col items-start justify-center gap-1 px-3 py-3 text-start hover:bg-secondary focus-visible:z-30"
+								class={[
+									'flex min-h-24 w-full flex-col items-start justify-center gap-1 border-l-4 px-3 py-3 text-start focus-visible:z-30',
+									active
+										? 'border-l-primary hover:bg-primary/10'
+										: 'border-l-transparent hover:bg-secondary'
+								]}
 								aria-label={`Pilih kata untuk bab ${group.number}`}
+								aria-describedby={statusId}
 							>
-								<span class="text-sm font-semibold"
-									>Bab {group.number}
-									<span class="font-normal text-muted-foreground">({group.count})</span></span
-								>
+								<span class="flex flex-wrap items-center gap-x-2 gap-y-1">
+									<span class="text-sm font-semibold">Bab {group.number}</span>
+									{#if active}
+										<span
+											id={statusId}
+											class="inline-flex items-center gap-1 rounded bg-primary px-1.5 py-0.5 text-xs font-semibold text-primary-foreground"
+										>
+											<Check class="size-3" aria-hidden="true" />
+											Kata dipilih
+										</span>
+									{:else}
+										<span id={statusId} class="text-xs font-medium text-muted-foreground"
+											>Wazan</span
+										>
+									{/if}
+								</span>
 								<span lang="ar" dir="rtl" class="arabic-inline"
 									>{active?.lemma ?? group.pattern}</span
 								>
@@ -209,12 +306,19 @@
 							{@const value = active
 								? tashrifValue(active, column.key)
 								: referenceWazanValue(group.number, column.key)}
+							{@const meaning =
+								showMeanings && value ? tashrifMeaning(column.key, active) : undefined}
+							{@const meaningId = `tashrif-arti-${group.number}-${column.key}`}
 							<td class="px-1 py-2 text-center align-middle">
 								<button
 									type="button"
 									onclick={() => inspectCell(group, column.key)}
 									aria-label={`Detail ${column.label}, bab ${group.number}`}
-									class="min-h-16 w-full rounded-md px-3 py-2 hover:bg-secondary focus-visible:relative"
+									aria-describedby={meaning ? meaningId : undefined}
+									class={[
+										'min-h-16 w-full rounded-md px-3 py-2 focus-visible:relative',
+										active ? 'hover:bg-primary/10' : 'hover:bg-secondary'
+									]}
 								>
 									{#if value}
 										<span
@@ -224,6 +328,11 @@
 										>
 									{:else}
 										<span class="text-sm text-muted-foreground">—</span>
+									{/if}
+									{#if meaning}
+										<span id={meaningId} lang="id" class="block text-xs leading-relaxed"
+											>{meaning}</span
+										>
 									{/if}
 								</button>
 							</td>

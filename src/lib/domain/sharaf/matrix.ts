@@ -17,6 +17,20 @@ export const tashrifColumns = [
 
 export type TashrifColumnKey = (typeof tashrifColumns)[number]['key'];
 
+const patternMeanings = {
+	madhi: '(telah) berbuat',
+	mudhari: '(sedang) berbuat',
+	mashdar: 'perbuatan',
+	mimi: 'perbuatan (mashdar bermim)',
+	fail: 'pelaku atau sifat',
+	maful: 'yang dikenai perbuatan',
+	amr: 'berbuatlah!',
+	nahy: 'jangan berbuat!',
+	zaman: 'waktu berbuat',
+	makan: 'tempat berbuat',
+	alah: 'alat untuk berbuat'
+} satisfies Record<TashrifColumnKey, string>;
+
 /**
  * Teaching wazan corresponding to the eleven reference-table rows. These are
  * *examples of form templates*, not claims that every masdar, ism makan or
@@ -137,9 +151,35 @@ export function babGroups(entries: readonly SharafEntry[]): BabGroup[] {
 }
 
 /** Never generate forms that have not been explicitly recorded in the glossary. */
+function findForm(entry: SharafEntry, key: TashrifColumnKey) {
+	return entry.forms.find((form) => form.label.toLowerCase() === key);
+}
+
 export function tashrifValue(entry: SharafEntry, key: TashrifColumnKey): string | undefined {
 	if (key === 'madhi' && entry.partOfSpeech === 'verb') return entry.lemma;
-	return entry.forms.find((form) => form.label.toLowerCase() === key)?.value;
+	return findForm(entry, key)?.value;
+}
+
+/** Short associations for the table. Sentence context determines the full translation. */
+export function tashrifMeaning(key: TashrifColumnKey, entry?: SharafEntry): string | undefined {
+	if (!entry) return patternMeanings[key];
+	const form = findForm(entry, key);
+	if (key !== 'madhi' && !form) return undefined;
+	if (form?.meaning) return form.meaning;
+
+	const verb = entry.meaning.split(',')[0]!.trim();
+	switch (key) {
+		case 'madhi':
+			return `(telah) ${verb}`;
+		case 'mudhari':
+			return `(sedang) ${verb}`;
+		case 'amr':
+			return `${verb}!`;
+		case 'nahy':
+			return `jangan ${verb}!`;
+		default:
+			return patternMeanings[key];
+	}
 }
 
 export function selectableVerbs(
@@ -153,8 +193,8 @@ export function selectableVerbs(
 }
 
 /**
- * One selected lexical verb per bab; no mixing of rows from different paradigms.
- * Initially show the reference exemplar for every bab, if present.
+ * One lexical example per bab for batch fill. Keep manual selections and prefer
+ * the reference exemplar when it is available.
  */
 export function selectedBabRows(
 	entries: readonly SharafEntry[],
@@ -168,7 +208,7 @@ export function selectedBabRows(
 				(entry) => entry.partOfSpeech === 'verb' && entry.bab?.number === group.number
 			);
 			const selected = verbs.find((entry) => entry.id === overrides[group.number]);
-			const exemplar = verbs.find((entry) => entry.lemma === group.exemplar);
+			const exemplar = verbs.find((entry) => entry.lemma === entry.bab?.exemplar);
 			const fallback = selected ?? exemplar ?? verbs[0];
 			return fallback ? [fallback] : [];
 		});

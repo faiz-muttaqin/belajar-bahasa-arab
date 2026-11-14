@@ -1,6 +1,7 @@
 import { tashrifIstilahi } from '#lib/content/reference.js';
 import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import type { SharafEntry } from '#lib/domain/sharaf/lexicon.js';
+import type { TashrifColumnKey } from '#lib/domain/sharaf/matrix.js';
 import { patternCatalog } from '#lib/domain/sharaf/patterns.js';
 
 /**
@@ -58,6 +59,71 @@ const babs = [
 	}
 ] as const;
 
+const referenceMeanings: Record<string, Partial<Record<TashrifColumnKey, string>>> = {
+	nasara: {
+		mashdar: 'pertolongan',
+		mimi: 'pertolongan',
+		fail: 'penolong',
+		maful: 'yang ditolong',
+		amr: 'tolonglah!',
+		nahy: 'jangan menolong!',
+		zaman: 'waktu menolong',
+		makan: 'tempat menolong',
+		alah: 'alat bantu'
+	},
+	daraba: {
+		mashdar: 'pukulan',
+		mimi: 'pemukulan',
+		fail: 'pemukul (orang)',
+		maful: 'yang dipukul',
+		amr: 'pukullah!',
+		nahy: 'jangan memukul!',
+		zaman: 'waktu memukul',
+		makan: 'tempat memukul',
+		alah: 'alat pemukul'
+	},
+	fataha: {
+		mashdar: 'pembukaan',
+		mimi: 'pembukaan',
+		fail: 'pembuka',
+		maful: 'yang dibuka',
+		amr: 'bukalah!',
+		nahy: 'jangan membuka!',
+		zaman: 'waktu membuka',
+		makan: 'tempat membuka',
+		alah: 'kunci'
+	},
+	alima: {
+		mashdar: 'pengetahuan',
+		mimi: 'hal mengetahui',
+		fail: 'orang yang tahu',
+		maful: 'yang diketahui',
+		amr: 'ketahuilah!',
+		nahy: 'jangan sampai tahu!',
+		zaman: 'waktu mengetahui',
+		makan: 'tempat mengetahui'
+	},
+	hasiba: {
+		mashdar: 'perhitungan',
+		mimi: 'hal mengira',
+		fail: 'orang yang menghitung',
+		maful: 'yang dihitung',
+		amr: 'kiralah!',
+		nahy: 'jangan mengira!',
+		zaman: 'waktu mengira',
+		makan: 'tempat mengira'
+	},
+	hasuna: {
+		mashdar: 'kebaikan',
+		mimi: 'hal menjadi baik',
+		fail: 'baik (sifat)',
+		amr: 'jadilah baik!',
+		nahy: 'jangan menjadi baik!',
+		zaman: 'waktu menjadi baik',
+		makan: 'tempat menjadi baik'
+	}
+};
+
 function referenceForm(rowId: string, column: string): string {
 	const value = tashrifIstilahi.rows.find((row) => row.id === rowId)?.cells[column];
 	if (!value || value === '—') throw new Error(`Missing reference form: ${rowId}/${column}`);
@@ -80,7 +146,11 @@ const referenceVerbs: SharafEntry[] = babs.map((bab) => ({
 	bab: { number: bab.number, exemplar: bab.exemplar, pattern: bab.pattern },
 	forms: tashrifIstilahi.rows
 		.filter((row) => row.cells[bab.key] && row.cells[bab.key] !== '—')
-		.map((row) => ({ label: row.id, value: row.cells[bab.key]! })),
+		.map((row) => ({
+			label: row.id,
+			value: row.cells[bab.key]!,
+			meaning: referenceMeanings[bab.key]?.[row.id as TashrifColumnKey]
+		})),
 	babSelection: 'lexical',
 	formBehavior: 'regular',
 	explanation:
@@ -97,6 +167,35 @@ const qaraa = vocabularyWord('qaraa');
 const connectors = [fi, thumma];
 
 const additional: SharafEntry[] = [
+	{
+		id: 'fiil-akala',
+		lemma: 'أَكَلَ',
+		meaning: 'makan',
+		partOfSpeech: 'verb',
+		root: 'أكل',
+		bab: { number: 1, exemplar: 'نَصَرَ', pattern: 'فَعَلَ – يَفْعُلُ' },
+		forms: [
+			{ label: 'mudhari', value: 'يَأْكُلُ' },
+			{ label: 'mashdar', value: 'أَكْلٌ', meaning: 'kegiatan makan' },
+			{ label: 'mimi', value: 'مَأْكَلٌ', meaning: 'kegiatan makan' },
+			{ label: 'fail', value: 'آكِلٌ', meaning: 'orang yang makan' },
+			{ label: 'maful', value: 'مَأْكُولٌ', meaning: 'yang dimakan' },
+			{ label: 'amr', value: 'كُلْ', meaning: 'makanlah!' },
+			{ label: 'nahy', value: 'لَا تَأْكُلْ', meaning: 'jangan makan!' },
+			{ label: 'zaman', value: 'مَأْكَلٌ', meaning: 'waktu makan' },
+			{ label: 'makan', value: 'مَأْكَلٌ', meaning: 'tempat makan' }
+		],
+		babSelection: 'lexical',
+		formBehavior: 'special-rule',
+		explanation:
+			'أَكَلَ – يَأْكُلُ mengikuti pasangan madhi–mudhari bab pertama. Hamzah awal kata dasar dilepas dalam bentuk perintah yang lazim, كُلْ. Kata مَأْكَلٌ dapat menunjukkan kegiatan, waktu, atau tempat sesuai konteks.',
+		sources: [
+			'https://www.arabicacademy.gov.eg/ar/search_engine/roots/%D8%A3%D9%83%D9%84',
+			'https://faculty.kfupm.edu.sa/ics/sukairi/swe423%28021%29/schoolarabia/arabic/masadr_moshtaqat/masader_moshtaqat13.htm',
+			'https://qkt.journals.ekb.eg/article_47844_be91503905660c8fe032b8a033f5523a.pdf'
+		],
+		reviewStatus: 'draft'
+	},
 	{
 		id: 'fiil-kataba',
 		lemma: kataba.arabic,
@@ -186,7 +285,7 @@ const expandedVerbs = [
 		root: 'علم',
 		meaning: 'mengajarkan',
 		mudhari: 'يُعَلِّمُ',
-		mashdar: 'تَعْلِيمٌ'
+		mashdar: ['تَعْلِيمٌ', 'pengajaran']
 	},
 	{
 		number: 8,
@@ -194,7 +293,7 @@ const expandedVerbs = [
 		root: 'قتل',
 		meaning: 'berperang, memerangi',
 		mudhari: 'يُقَاتِلُ',
-		mashdar: 'مُقَاتَلَةٌ'
+		mashdar: ['مُقَاتَلَةٌ', 'pertempuran']
 	},
 	{
 		number: 9,
@@ -202,7 +301,7 @@ const expandedVerbs = [
 		root: 'كرم',
 		meaning: 'memuliakan',
 		mudhari: 'يُكْرِمُ',
-		mashdar: 'إِكْرَامٌ'
+		mashdar: ['إِكْرَامٌ', 'penghormatan']
 	},
 	{
 		number: 10,
@@ -210,16 +309,23 @@ const expandedVerbs = [
 		root: 'عون',
 		meaning: 'saling membantu',
 		mudhari: 'يَتَعَاوَنُ',
-		mashdar: 'تَعَاوُنٌ'
+		mashdar: ['تَعَاوُنٌ', 'kerja sama']
 	},
-	{ number: 11, lemma: 'تَعَلَّمَ', root: 'علم', meaning: 'belajar', mudhari: 'يَتَعَلَّمُ', mashdar: 'تَعَلُّمٌ' },
+	{
+		number: 11,
+		lemma: 'تَعَلَّمَ',
+		root: 'علم',
+		meaning: 'belajar',
+		mudhari: 'يَتَعَلَّمُ',
+		mashdar: ['تَعَلُّمٌ', 'proses belajar']
+	},
 	{
 		number: 12,
 		lemma: 'اِجْتَمَعَ',
 		root: 'جمع',
 		meaning: 'berkumpul',
 		mudhari: 'يَجْتَمِعُ',
-		mashdar: 'اِجْتِمَاعٌ'
+		mashdar: ['اِجْتِمَاعٌ', 'pertemuan']
 	},
 	{
 		number: 13,
@@ -227,7 +333,7 @@ const expandedVerbs = [
 		root: 'كسر',
 		meaning: 'pecah, menjadi patah',
 		mudhari: 'يَنْكَسِرُ',
-		mashdar: 'اِنْكِسَارٌ'
+		mashdar: ['اِنْكِسَارٌ', 'peristiwa pecah']
 	},
 	{
 		number: 14,
@@ -235,7 +341,7 @@ const expandedVerbs = [
 		root: 'حمر',
 		meaning: 'menjadi merah',
 		mudhari: 'يَحْمَرُّ',
-		mashdar: 'اِحْمِرَارٌ'
+		mashdar: ['اِحْمِرَارٌ', 'perubahan menjadi merah']
 	},
 	{
 		number: 15,
@@ -243,7 +349,7 @@ const expandedVerbs = [
 		root: 'غفر',
 		meaning: 'memohon ampun',
 		mudhari: 'يَسْتَغْفِرُ',
-		mashdar: 'اِسْتِغْفَارٌ'
+		mashdar: ['اِسْتِغْفَارٌ', 'permohonan ampun']
 	},
 	{
 		number: 16,
@@ -251,7 +357,7 @@ const expandedVerbs = [
 		root: 'عشب',
 		meaning: 'ditumbuhi rumput lebat',
 		mudhari: 'يَعْشَوْشِبُ',
-		mashdar: 'اِعْشِيشَابٌ',
+		mashdar: ['اِعْشِيشَابٌ', 'tumbuhnya rumput lebat'],
 		source: 'https://sina.birzeit.edu/qabas/lemma/2020895100'
 	},
 	{
@@ -270,7 +376,7 @@ const expandedVerbs = [
 		root: 'دحرج',
 		meaning: 'menggelindingkan',
 		mudhari: 'يُدَحْرِجُ',
-		mashdar: 'دَحْرَجَةٌ'
+		mashdar: ['دَحْرَجَةٌ', 'tindakan menggelindingkan']
 	},
 	{
 		number: 20,
@@ -278,7 +384,7 @@ const expandedVerbs = [
 		root: 'دحرج',
 		meaning: 'menggelinding',
 		mudhari: 'يَتَدَحْرَجُ',
-		mashdar: 'تَدَحْرُجٌ'
+		mashdar: ['تَدَحْرُجٌ', 'gerak menggelinding']
 	},
 	{
 		number: 21,
@@ -286,7 +392,7 @@ const expandedVerbs = [
 		root: 'حرجم',
 		meaning: 'berkumpul berdesakan',
 		mudhari: 'يَحْرَنْجِمُ',
-		mashdar: 'اِحْرِنْجَامٌ',
+		mashdar: ['اِحْرِنْجَامٌ', 'peristiwa berkumpul berdesakan'],
 		source: 'https://www.arabicacademy.gov.eg/ar/search_engine/roots/%D8%AD%D8%B1%D8%AC%D9%85'
 	},
 	{
@@ -295,7 +401,7 @@ const expandedVerbs = [
 		root: 'طمأن',
 		meaning: 'menjadi tenang, merasa tenteram',
 		mudhari: 'يَطْمَئِنُّ',
-		mashdar: 'اِطْمِئْنَانٌ',
+		mashdar: ['اِطْمِئْنَانٌ', 'ketenteraman'],
 		source: 'https://www.arabicacademy.gov.eg/ar/search_engine/roots/%D8%B7%D9%85%D8%A3%D9%86'
 	}
 ] as const;
@@ -316,7 +422,9 @@ const advancedVerbs: readonly SharafEntry[] = expandedVerbs.map((word) => {
 		},
 		forms: [
 			{ label: 'mudhari', value: word.mudhari },
-			...('mashdar' in word && word.mashdar ? [{ label: 'mashdar', value: word.mashdar }] : [])
+			...('mashdar' in word && word.mashdar
+				? [{ label: 'mashdar', value: word.mashdar[0], meaning: word.mashdar[1] }]
+				: [])
 		],
 		babSelection: 'lexical',
 		formBehavior: word.number >= 16 && word.number <= 18 ? 'special-rule' : 'regular',
