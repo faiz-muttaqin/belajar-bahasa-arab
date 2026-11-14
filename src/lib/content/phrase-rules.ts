@@ -56,7 +56,8 @@ export const phraseRules: readonly PhraseRule[] = [
 		id: 'marifah-nakirah',
 		title: 'Ma‘rifah dan nakirah',
 		arabicTerm: 'الْمَعْرِفَةُ وَالنَّكِرَةُ',
-		summary: 'Bedakan kata benda yang merujuk sesuatu yang tertentu dengan sesuatu yang belum ditentukan.',
+		summary:
+			'Bedakan kata benda yang merujuk sesuatu yang tertentu dengan sesuatu yang belum ditentukan.',
 		keyRule:
 			'Kata benda biasa yang memakai الْـ menjadi ma‘rifah. Nakirah dari isim munṣarif sering tampak dengan tanwin, tetapi tanwin bukan definisi universal nakirah: kata diri, bentuk diptote, dan konstruksi iḍāfah memiliki aturan lain.',
 		limitation:
@@ -64,21 +65,39 @@ export const phraseRules: readonly PhraseRule[] = [
 		examples: [
 			{
 				id: 'indefinite-book',
-				tokens: [{ arabic: 'كِتَابٌ', gloss: 'sebuah buku', role: 'Isim nakirah', irab: 'raf', marker: 'tanwin ḍamm' }],
+				tokens: [
+					{
+						arabic: 'كِتَابٌ',
+						gloss: 'sebuah buku',
+						role: 'Isim nakirah',
+						irab: 'raf',
+						marker: 'tanwin ḍamm'
+					}
+				],
 				translation: 'Sebuah buku.',
 				explanation: 'Kata benda biasa yang tidak tertentu; tanwin ḍamm dalam contoh marfū‘.'
 			},
 			{
 				id: 'definite-book',
-				tokens: [{ arabic: 'الْكِتَابُ', gloss: 'buku itu', role: 'Isim ma‘rifah', irab: 'raf', marker: 'ḍamma' }],
+				tokens: [
+					{
+						arabic: 'الْكِتَابُ',
+						gloss: 'buku itu',
+						role: 'Isim ma‘rifah',
+						irab: 'raf',
+						marker: 'ḍamma'
+					}
+				],
 				translation: 'Buku itu.',
-				explanation: 'Awalan الْـ menjadikan referennya tertentu; akhir rafa‘ di sini memakai ḍamma, bukan tanwin.'
+				explanation:
+					'Awalan الْـ menjadikan referennya tertentu; akhir rafa‘ di sini memakai ḍamma, bukan tanwin.'
 			}
 		],
 		exercise: {
 			question: 'Apakah setiap nakirah harus memakai tanwin?',
 			answer: 'Tidak. Tanwin merupakan petunjuk umum pada isim munṣarif, bukan syarat mutlak.',
-			reason: 'Beberapa isim nakirah tidak menerima tanwin, misalnya pola yang termasuk mamnū‘ min aṣ-ṣarf.'
+			reason:
+				'Beberapa isim nakirah tidak menerima tanwin, misalnya pola yang termasuk mamnū‘ min aṣ-ṣarf.'
 		},
 		sources: [ajurrumiyya, madinah],
 		reviewStatus: 'draft'
@@ -87,7 +106,8 @@ export const phraseRules: readonly PhraseRule[] = [
 		id: 'naat-agreement',
 		title: 'Na‘at mengikuti man‘ūt',
 		arabicTerm: 'النَّعْتُ وَالْمَنْعُوتُ',
-		summary: 'Sifat menyesuaikan kata benda yang dijelaskannya, bukan berdiri otomatis sebagai khabar.',
+		summary:
+			'Sifat menyesuaikan kata benda yang dijelaskannya, bukan berdiri otomatis sebagai khabar.',
 		keyRule:
 			'Na‘at yang sesungguhnya mengikuti man‘ūt dalam kasus i‘rab dan ma‘rifah/nakirah. Pada sifat biasa, kesesuaian jenis dan jumlah juga diperhatikan; jamak benda tidak berakal umumnya memakai sifat feminin tunggal.',
 		limitation:
@@ -109,7 +129,8 @@ export const phraseRules: readonly PhraseRule[] = [
 					{ arabic: 'الْجَدِيدُ', gloss: 'yang baru', role: 'Na‘at', irab: 'raf', marker: 'ḍamma' }
 				],
 				translation: 'Buku baru itu.',
-				explanation: 'Keduanya ma‘rifah dengan الْـ. Jika sifatnya nakirah, maknanya dapat berubah menjadi berita.'
+				explanation:
+					'Keduanya ma‘rifah dengan الْـ. Jika sifatnya nakirah, maknanya dapat berubah menjadi berita.'
 			},
 			{
 				id: 'feminine-adjective',
@@ -123,8 +144,20 @@ export const phraseRules: readonly PhraseRule[] = [
 			{
 				id: 'nonhuman-plural',
 				tokens: [
-					{ arabic: 'كُتُبٌ', gloss: 'buku-buku', role: 'Man‘ūt · jamak taksir', irab: 'raf', marker: 'tanwin ḍamm' },
-					{ arabic: 'جَدِيدَةٌ', gloss: 'baru', role: 'Na‘at · feminin tunggal', irab: 'raf', marker: 'tanwin ḍamm' }
+					{
+						arabic: 'كُتُبٌ',
+						gloss: 'buku-buku',
+						role: 'Man‘ūt · jamak taksir',
+						irab: 'raf',
+						marker: 'tanwin ḍamm'
+					},
+					{
+						arabic: 'جَدِيدَةٌ',
+						gloss: 'baru',
+						role: 'Na‘at · feminin tunggal',
+						irab: 'raf',
+						marker: 'tanwin ḍamm'
+					}
 				],
 				translation: 'Buku-buku baru.',
 				explanation: 'Jamak benda tidak berakal lazim diterangkan oleh sifat feminin tunggal.'
@@ -133,7 +166,8 @@ export const phraseRules: readonly PhraseRule[] = [
 		exercise: {
 			question: 'Mengapa sifat pada كُتُبٌ جَدِيدَةٌ berbentuk feminin tunggal?',
 			answer: 'Karena كُتُبٌ adalah jamak benda tidak berakal.',
-			reason: 'Ini pola agreement khusus yang tidak boleh disimpulkan hanya dari bentuk jamak kata bendanya.'
+			reason:
+				'Ini pola agreement khusus yang tidak boleh disimpulkan hanya dari bentuk jamak kata bendanya.'
 		},
 		sources: [ajurrumiyya, madinah],
 		reviewStatus: 'draft'
@@ -142,7 +176,8 @@ export const phraseRules: readonly PhraseRule[] = [
 		id: 'idafah-jar',
 		title: 'Iḍāfah serta jar–majrūr',
 		arabicTerm: 'الْإِضَافَةُ وَالْجَارُّ وَالْمَجْرُورُ',
-		summary: 'Pelajari dua jalan yang membuat isim menjadi majrūr: sesudah huruf jar atau sebagai muḍāf ilaih.',
+		summary:
+			'Pelajari dua jalan yang membuat isim menjadi majrūr: sesudah huruf jar atau sebagai muḍāf ilaih.',
 		keyRule:
 			'Muḍāf tidak memakai tanwin, sementara muḍāf ilaih berstatus jarr. Huruf jar seperti فِي atau عَلَى juga menjadikan isim sesudahnya majrūr. Kasus muḍāf sendiri ditentukan oleh fungsi frasa dalam kalimat.',
 		limitation:
@@ -152,16 +187,29 @@ export const phraseRules: readonly PhraseRule[] = [
 				id: 'idafah-door',
 				tokens: [
 					{ arabic: 'بَابُ', gloss: 'pintu', role: 'Muḍāf', irab: 'raf', marker: 'ḍamma' },
-					{ arabic: 'الْبَيْتِ', gloss: 'rumah itu', role: 'Muḍāf ilaih', irab: 'jarr', marker: 'kasra' }
+					{
+						arabic: 'الْبَيْتِ',
+						gloss: 'rumah itu',
+						role: 'Muḍāf ilaih',
+						irab: 'jarr',
+						marker: 'kasra'
+					}
 				],
 				translation: 'Pintu rumah itu.',
-				explanation: 'Muḍāf ilaih majrūr; muḍāf tidak bertanwin. Susunan ini frasa, bukan kalimat lengkap.'
+				explanation:
+					'Muḍāf ilaih majrūr; muḍāf tidak bertanwin. Susunan ini frasa, bukan kalimat lengkap.'
 			},
 			{
 				id: 'preposition-house',
 				tokens: [
 					{ arabic: 'فِي', gloss: 'di dalam', role: 'Huruf jar' },
-					{ arabic: 'الْبَيْتِ', gloss: 'rumah itu', role: 'Isim majrūr', irab: 'jarr', marker: 'kasra' }
+					{
+						arabic: 'الْبَيْتِ',
+						gloss: 'rumah itu',
+						role: 'Isim majrūr',
+						irab: 'jarr',
+						marker: 'kasra'
+					}
 				],
 				translation: 'Di dalam rumah itu.',
 				explanation: 'Kasra pada الْبَيْتِ disebabkan huruf jar فِي.'
@@ -171,10 +219,17 @@ export const phraseRules: readonly PhraseRule[] = [
 				tokens: [
 					{ arabic: 'فِي', gloss: 'di', role: 'Huruf jar' },
 					{ arabic: 'كِتَابِ', gloss: 'buku', role: 'Muḍāf', irab: 'jarr', marker: 'kasra' },
-					{ arabic: 'الطَّالِبِ', gloss: 'murid itu', role: 'Muḍāf ilaih', irab: 'jarr', marker: 'kasra' }
+					{
+						arabic: 'الطَّالِبِ',
+						gloss: 'murid itu',
+						role: 'Muḍāf ilaih',
+						irab: 'jarr',
+						marker: 'kasra'
+					}
 				],
 				translation: 'Di dalam buku murid itu.',
-				explanation: 'Kedua isim berkasra, tetapi alasannya berbeda: كِتَابِ karena فِي, الطَّالِبِ karena iḍāfah.'
+				explanation:
+					'Kedua isim berkasra, tetapi alasannya berbeda: كِتَابِ karena فِي, الطَّالِبِ karena iḍāfah.'
 			}
 		],
 		exercise: {
@@ -189,7 +244,8 @@ export const phraseRules: readonly PhraseRule[] = [
 		id: 'perubahan-irab',
 		title: 'Tiga kasus: rafa‘, naṣb, jarr',
 		arabicTerm: 'الرَّفْعُ وَالنَّصْبُ وَالْجَرُّ',
-		summary: 'Satu isim dapat berubah harakat akhirnya karena berperan sebagai pelaku, objek, atau mengikuti huruf jar.',
+		summary:
+			'Satu isim dapat berubah harakat akhirnya karena berperan sebagai pelaku, objek, atau mengikuti huruf jar.',
 		keyRule:
 			'Pada isim tunggal munṣarif seperti الطَّالِب, rafa‘ ditandai ḍamma, naṣb oleh fatḥa, dan jarr oleh kasra. Ini salah satu kelas isim; tidak semua tanda i‘rab selalu berupa tiga harakat tersebut.',
 		limitation:
@@ -208,7 +264,13 @@ export const phraseRules: readonly PhraseRule[] = [
 				id: 'case-object',
 				tokens: [
 					{ arabic: 'رَأَيْتُ', gloss: 'saya melihat', role: 'Fi‘il + dhamir subjek' },
-					{ arabic: 'الطَّالِبَ', gloss: 'murid itu', role: 'Maf‘ūl bih', irab: 'nasb', marker: 'fatḥa' }
+					{
+						arabic: 'الطَّالِبَ',
+						gloss: 'murid itu',
+						role: 'Maf‘ūl bih',
+						irab: 'nasb',
+						marker: 'fatḥa'
+					}
 				],
 				translation: 'Saya melihat murid itu.',
 				explanation: 'الطَّالِبَ menjadi objek langsung, maka manṣūb.'
@@ -218,7 +280,13 @@ export const phraseRules: readonly PhraseRule[] = [
 				tokens: [
 					{ arabic: 'سَلَّمْتُ', gloss: 'saya memberi salam', role: 'Fi‘il + dhamir subjek' },
 					{ arabic: 'عَلَى', gloss: 'kepada', role: 'Huruf jar' },
-					{ arabic: 'الطَّالِبِ', gloss: 'murid itu', role: 'Isim majrūr', irab: 'jarr', marker: 'kasra' }
+					{
+						arabic: 'الطَّالِبِ',
+						gloss: 'murid itu',
+						role: 'Isim majrūr',
+						irab: 'jarr',
+						marker: 'kasra'
+					}
 				],
 				translation: 'Saya memberi salam kepada murid itu.',
 				explanation: 'الطَّالِبِ menjadi majrūr sesudah عَلَى.'
@@ -246,7 +314,13 @@ export const phraseRules: readonly PhraseRule[] = [
 				id: 'dual-subject',
 				tokens: [
 					{ arabic: 'جَاءَ', gloss: 'telah datang', role: 'Fi‘il māḍī' },
-					{ arabic: 'طَالِبَانِ', gloss: 'dua murid', role: 'Fā‘il · mutsanna', irab: 'raf', marker: 'alif' }
+					{
+						arabic: 'طَالِبَانِ',
+						gloss: 'dua murid',
+						role: 'Fā‘il · mutsanna',
+						irab: 'raf',
+						marker: 'alif'
+					}
 				],
 				translation: 'Dua murid datang.',
 				explanation: 'Tanda rafa‘ mutsanna adalah alif.'
@@ -255,16 +329,29 @@ export const phraseRules: readonly PhraseRule[] = [
 				id: 'dual-object',
 				tokens: [
 					{ arabic: 'رَأَيْتُ', gloss: 'saya melihat', role: 'Fi‘il + dhamir subjek' },
-					{ arabic: 'طَالِبَيْنِ', gloss: 'dua murid', role: 'Maf‘ūl bih · mutsanna', irab: 'nasb', marker: 'yā’' }
+					{
+						arabic: 'طَالِبَيْنِ',
+						gloss: 'dua murid',
+						role: 'Maf‘ūl bih · mutsanna',
+						irab: 'nasb',
+						marker: 'yā’'
+					}
 				],
 				translation: 'Saya melihat dua murid.',
-				explanation: 'Tanda naṣb mutsanna adalah yā’, bukan fatḥa akhir sebagaimana isim tunggal biasa.'
+				explanation:
+					'Tanda naṣb mutsanna adalah yā’, bukan fatḥa akhir sebagaimana isim tunggal biasa.'
 			},
 			{
 				id: 'sound-plural-subject',
 				tokens: [
 					{ arabic: 'جَاءَ', gloss: 'telah datang', role: 'Fi‘il māḍī' },
-					{ arabic: 'الْمُعَلِّمُونَ', gloss: 'para guru itu', role: 'Fā‘il · jamak mudzakkar salim', irab: 'raf', marker: 'wāw' }
+					{
+						arabic: 'الْمُعَلِّمُونَ',
+						gloss: 'para guru itu',
+						role: 'Fā‘il · jamak mudzakkar salim',
+						irab: 'raf',
+						marker: 'wāw'
+					}
 				],
 				translation: 'Para guru itu datang.',
 				explanation: 'Tanda rafa‘ jamak mudzakkar salim adalah wāw.'
@@ -273,7 +360,13 @@ export const phraseRules: readonly PhraseRule[] = [
 				id: 'sound-plural-object',
 				tokens: [
 					{ arabic: 'رَأَيْتُ', gloss: 'saya melihat', role: 'Fi‘il + dhamir subjek' },
-					{ arabic: 'الْمُعَلِّمِينَ', gloss: 'para guru itu', role: 'Maf‘ūl bih · jamak mudzakkar salim', irab: 'nasb', marker: 'yā’' }
+					{
+						arabic: 'الْمُعَلِّمِينَ',
+						gloss: 'para guru itu',
+						role: 'Maf‘ūl bih · jamak mudzakkar salim',
+						irab: 'nasb',
+						marker: 'yā’'
+					}
 				],
 				translation: 'Saya melihat para guru itu.',
 				explanation: 'Tanda naṣb/jarr jamak mudzakkar salim adalah yā’.'
@@ -282,7 +375,8 @@ export const phraseRules: readonly PhraseRule[] = [
 		exercise: {
 			question: 'Mengapa طَالِبَانِ berubah menjadi طَالِبَيْنِ ketika menjadi maf‘ūl bih?',
 			answer: 'Karena isim mutsanna memakai alif untuk rafa‘ dan yā’ untuk naṣb/jarr.',
-			reason: 'Tanda i‘rab bergantung pada jenis bentuk nomina, bukan sekadar aturan ḍamma/fatḥa/kasra.'
+			reason:
+				'Tanda i‘rab bergantung pada jenis bentuk nomina, bukan sekadar aturan ḍamma/fatḥa/kasra.'
 		},
 		sources: [ajurrumiyya, madinah],
 		reviewStatus: 'draft'
@@ -300,7 +394,8 @@ export function validatePhraseRules(rules: readonly PhraseRule[]): string[] {
 		if (!rule.examples.length) errors.push('Missing examples: ' + rule.id);
 		const exampleIds = new Set<string>();
 		for (const example of rule.examples) {
-			if (exampleIds.has(example.id)) errors.push('Duplicate example: ' + rule.id + '/' + example.id);
+			if (exampleIds.has(example.id))
+				errors.push('Duplicate example: ' + rule.id + '/' + example.id);
 			exampleIds.add(example.id);
 			if (!example.tokens.length || !example.translation.trim())
 				errors.push('Incomplete example: ' + rule.id + '/' + example.id);
@@ -309,7 +404,8 @@ export function validatePhraseRules(rules: readonly PhraseRule[]): string[] {
 					errors.push('Missing token gloss or role: ' + rule.id + '/' + example.id);
 				if (token.irab && (!IRAB_CASE_LABELS[token.irab] || !token.marker?.trim()))
 					errors.push('Missing i‘rab sign: ' + rule.id + '/' + example.id);
-				if (!token.irab && token.marker) errors.push('Marker without i‘rab: ' + rule.id + '/' + example.id);
+				if (!token.irab && token.marker)
+					errors.push('Marker without i‘rab: ' + rule.id + '/' + example.id);
 			}
 		}
 	}

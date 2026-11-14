@@ -72,10 +72,13 @@
 	<aside class="rounded-xl border bg-card p-5">
 		<h2 class="text-lg font-semibold">Dari tabel isim ke i‘rab</h2>
 		<p class="mt-2 text-muted-foreground">
-			Lihat perbedaan ma‘rifah dan nakirah, bagaimana na‘at mengikuti man‘ūt, serta bagaimana
-			rafa‘, naṣb, dan jarr mengubah bentuk isim pada susunan yang berbeda.
+			Lihat perbedaan ma‘rifah dan nakirah, bagaimana na‘at mengikuti man‘ūt, serta bagaimana rafa‘,
+			naṣb, dan jarr mengubah bentuk isim pada susunan yang berbeda.
 		</p>
-		<a href={resolve('kaidah/frasa/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+		<a
+			href={resolve('kaidah/frasa/')}
+			class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+		>
 			Buka kaidah frasa dan i‘rab
 		</a>
 	</aside>

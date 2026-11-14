@@ -54,10 +54,13 @@
 <aside class="mt-6 max-w-4xl rounded-xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Lanjut: frasa dan perubahan harakat akhir</h2>
 	<p class="mt-2 text-muted-foreground">
-		Kenali ma‘rifah dan nakirah, kesesuaian sifat, idafah, serta perubahan rafa‘–naṣb–jarr.
-		Setiap kata Arab mempunyai glos Indonesia tepat di bawahnya.
+		Kenali ma‘rifah dan nakirah, kesesuaian sifat, idafah, serta perubahan rafa‘–naṣb–jarr. Setiap
+		kata Arab mempunyai glos Indonesia tepat di bawahnya.
 	</p>
-	<a href={resolve('kaidah/frasa/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+	<a
+		href={resolve('kaidah/frasa/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
 		Pelajari frasa dan i‘rab
 	</a>
 </aside>

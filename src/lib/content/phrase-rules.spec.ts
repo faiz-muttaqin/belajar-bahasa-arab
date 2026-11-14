@@ -41,22 +41,14 @@ describe('G-03: sourced phrase and i‘rab lessons', () => {
 	it('shows raf, nasb and jarr on the same noun in three different contexts', () => {
 		const rule = phraseRules.find((item) => item.id === 'perubahan-irab')!;
 		const nouns = rule.examples.map((example) => example.tokens.at(-1)!);
-		expect(nouns.map((noun) => noun.arabic)).toEqual([
-			'الطَّالِبُ',
-			'الطَّالِبَ',
-			'الطَّالِبِ'
-		]);
+		expect(nouns.map((noun) => noun.arabic)).toEqual(['الطَّالِبُ', 'الطَّالِبَ', 'الطَّالِبِ']);
 		expect(nouns.map((noun) => noun.irab)).toEqual(['raf', 'nasb', 'jarr']);
 	});
 
 	it('distinguishes the cause of jarr in nested preposition and idafah examples', () => {
 		const rule = phraseRules.find((item) => item.id === 'idafah-jar')!;
 		const example = rule.examples.find((item) => item.id === 'preposition-idafah')!;
-		expect(example.tokens.map((token) => token.arabic)).toEqual([
-			'فِي',
-			'كِتَابِ',
-			'الطَّالِبِ'
-		]);
+		expect(example.tokens.map((token) => token.arabic)).toEqual(['فِي', 'كِتَابِ', 'الطَّالِبِ']);
 		expect(example.tokens.map((token) => token.irab)).toEqual([undefined, 'jarr', 'jarr']);
 		expect(example.explanation).toContain('alasannya berbeda');
 	});
@@ -71,20 +63,24 @@ describe('G-03: sourced phrase and i‘rab lessons', () => {
 		const first = phraseRules[0]!;
 		const missingGloss: PhraseRule = {
 			...first,
-			examples: [{
-				...first.examples[0]!,
-				tokens: [{ ...first.examples[0]!.tokens[0]!, gloss: '' }]
-			}]
+			examples: [
+				{
+					...first.examples[0]!,
+					tokens: [{ ...first.examples[0]!.tokens[0]!, gloss: '' }]
+				}
+			]
 		};
 		expect(validatePhraseRules([missingGloss])).toContain(
 			'Missing token gloss or role: marifah-nakirah/indefinite-book'
 		);
 		const missingMarker: PhraseRule = {
 			...first,
-			examples: [{
-				...first.examples[0]!,
-				tokens: [{ ...first.examples[0]!.tokens[0]!, marker: '' }]
-			}]
+			examples: [
+				{
+					...first.examples[0]!,
+					tokens: [{ ...first.examples[0]!.tokens[0]!, marker: '' }]
+				}
+			]
 		};
 		expect(validatePhraseRules([missingMarker])).toContain(
 			'Missing i‘rab sign: marifah-nakirah/indefinite-book'

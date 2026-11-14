@@ -6,13 +6,13 @@ Rujukan primer berupa **Al-Ājurrūmiyyah**, karya Ibn Ājurrūm, dengan teks Ar
 
 ## Pemetaan kaidah ke materi
 
-| Topik G-03 | Dasar rujukan | Contoh dan batasan |
-| --- | --- | --- |
-| Ma‘rifah/nakirah | Bab an-Na‘t (definisi ma‘rifah/nakirah) | كِتَابٌ dan الْكِتَابُ hanya contoh isim tunggal munṣarif pada kondisi rafa‘. Ma‘rifah **tidak selalu membutuhkan** الْـ. |
-| Kesesuaian sifat | Bab an-Na‘t (na‘at mengikuti kasus/ketertentuan man‘ūt) | كِتَابٌ جَدِيدٌ, الْكِتَابُ الْجَدِيدُ, مَدْرَسَةٌ كَبِيرَةٌ. Pengecualian jamak ghayr ‘āqil (كُتُبٌ جَدِيدَةٌ) harus dibaca sebagai *agreement* feminin tunggal yang umum dalam MSA, bukan klaim bahwa semua bentuk jamak demikian. |
-| Jar dan iḍāfah | Bab al-Makhfūḍāt min al-Asmā’ | بَابُ الْبَيْتِ, فِي الْبَيْتِ, dan فِي كِتَابِ الطَّالِبِ membandingkan sumber jarr. Muḍāf tidak selalu marfū‘. |
-| Kasus isim tunggal | Bab al-I‘rāb dan tanda-tanda i‘rāb | Dalam جَاءَ الطَّالِبُ / رَأَيْتُ الطَّالِبَ / سَلَّمْتُ عَلَى الطَّالِبِ, tanda ḍamma/fatḥa/kasra berlaku pada *isim mufrad munṣarif*, bukan pada semua isim. |
-| Dual dan jamak mudzakkar salim | Bab tanda i‘rāb, bagian perubahan dengan huruf | طَالِبَانِ vs طَالِبَيْنِ memakai alif/yā’; الْمُعَلِّمُونَ vs الْمُعَلِّمِينَ memakai wāw/yā’. Bentuk jamak taksir perlu analisis lain. |
+| Topik G-03                     | Dasar rujukan                                           | Contoh dan batasan                                                                                                                                                                                     |
+| ------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ma‘rifah/nakirah               | Bab an-Na‘t (definisi ma‘rifah/nakirah)                 | كِتَابٌ dan الْكِتَابُ hanya contoh isim tunggal munṣarif pada kondisi rafa‘. Ma‘rifah **tidak selalu membutuhkan** الْـ.                                                                                      |
+| Kesesuaian sifat               | Bab an-Na‘t (na‘at mengikuti kasus/ketertentuan man‘ūt) | كِتَابٌ جَدِيدٌ, الْكِتَابُ الْجَدِيدُ, مَدْرَسَةٌ كَبِيرَةٌ. Pengecualian jamak ghayr ‘āqil (كُتُبٌ جَدِيدَةٌ) harus dibaca sebagai _agreement_ feminin tunggal yang umum dalam MSA, bukan klaim bahwa semua bentuk jamak demikian. |
+| Jar dan iḍāfah                 | Bab al-Makhfūḍāt min al-Asmā’                           | بَابُ الْبَيْتِ, فِي الْبَيْتِ, dan فِي كِتَابِ الطَّالِبِ membandingkan sumber jarr. Muḍāf tidak selalu marfū‘.                                                                                                          |
+| Kasus isim tunggal             | Bab al-I‘rāb dan tanda-tanda i‘rāb                      | Dalam جَاءَ الطَّالِبُ / رَأَيْتُ الطَّالِبَ / سَلَّمْتُ عَلَى الطَّالِبِ, tanda ḍamma/fatḥa/kasra berlaku pada _isim mufrad munṣarif_, bukan pada semua isim.                                                                  |
+| Dual dan jamak mudzakkar salim | Bab tanda i‘rāb, bagian perubahan dengan huruf          | طَالِبَانِ vs طَالِبَيْنِ memakai alif/yā’; الْمُعَلِّمُونَ vs الْمُعَلِّمِينَ memakai wāw/yā’. Bentuk jamak taksir perlu analisis lain.                                                                                      |
 
 ## Ketentuan pembelajaran
 

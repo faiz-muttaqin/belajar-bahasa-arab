@@ -19,15 +19,18 @@
 	description="Nahwu frasa dan perubahan harakat akhir: ma‘rifah, nakirah, na‘at, idafah, jar–majrur, rafa, nasb, jarr, bentuk ganda dan jamak."
 >
 	{#snippet lead()}
-		<p>Bandingkan bentuk yang hampir sama, baca fungsi dan akhir katanya, lalu lihat arti Indonesia tepat di bawah setiap kata Arab.</p>
+		<p>
+			Bandingkan bentuk yang hampir sama, baca fungsi dan akhir katanya, lalu lihat arti Indonesia
+			tepat di bawah setiap kata Arab.
+		</p>
 	{/snippet}
 </PageIntro>
 
 <div class="mt-8 max-w-4xl space-y-4">
 	<p class="text-muted-foreground">
-		<strong>I‘rab</strong> adalah perubahan penanda pada akhir kata akibat fungsi dalam susunan.
-		Di bawah ini warna membedakan <em>kasus i‘rab</em>, bukan jenis kata. Label teks tetap
-		tersedia ketika warna tidak terlihat.
+		<strong>I‘rab</strong> adalah perubahan penanda pada akhir kata akibat fungsi dalam susunan. Di
+		bawah ini warna membedakan <em>kasus i‘rab</em>, bukan jenis kata. Label teks tetap tersedia
+		ketika warna tidak terlihat.
 	</p>
 	<div class="flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label="Legenda i‘rab">
 		{#each caseLegend as irab (irab)}
@@ -68,7 +71,8 @@
 				{/each}
 			</div>
 			<p class="max-w-3xl border-s-4 border-primary ps-4 text-sm">
-				<strong>Batas kaidah:</strong> {rule.limitation}
+				<strong>Batas kaidah:</strong>
+				{rule.limitation}
 			</p>
 
 			<details class="max-w-3xl rounded-xl border bg-card p-4">
@@ -101,10 +105,13 @@
 <aside class="mt-14 max-w-4xl space-y-3 rounded-2xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Hubungkan dengan materi sebelumnya</h2>
 	<p class="text-muted-foreground">
-		Frasa sifat dan idafah sudah diperkenalkan di G-01. Di sini tanda akhir kata diterangkan
-		lebih lanjut; untuk perubahan bentuk fi‘il, gunakan G-02.
+		Frasa sifat dan idafah sudah diperkenalkan di G-01. Di sini tanda akhir kata diterangkan lebih
+		lanjut; untuk perubahan bentuk fi‘il, gunakan G-02.
 	</p>
-	<nav aria-label="Kembali ke materi terkait" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
+	<nav
+		aria-label="Kembali ke materi terkait"
+		class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold"
+	>
 		<a href={resolve('kaidah/')} class="text-primary underline">Peta kaidah</a>
 		<a href={resolve('kaidah/sharaf/')} class="text-primary underline">Perubahan kata (sharaf)</a>
 		<a href={resolve('rujukan/isim/')} class="text-primary underline">Tabel isim dan sifat</a>

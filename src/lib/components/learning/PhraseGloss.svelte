@@ -21,7 +21,7 @@
 		{#each example.tokens as token, i (example.id + '-' + i)}
 			<div
 				data-irab={token.irab ?? 'none'}
-				class="flex min-w-0 max-w-full flex-col items-center gap-1 rounded-xl border px-3 py-3 text-center {token.irab
+				class="flex max-w-full min-w-0 flex-col items-center gap-1 rounded-xl border px-3 py-3 text-center {token.irab
 					? caseTint[token.irab]
 					: 'border-border bg-secondary/50'}"
 			>

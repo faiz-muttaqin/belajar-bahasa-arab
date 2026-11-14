@@ -31,9 +31,7 @@ test('G-03 presents distinct case labels, word glosses and a clarifying exercise
 	await expect(cases.nth(2).locator('[data-irab="jarr"]')).toContainText('kasra');
 
 	await page.locator('#perubahan-irab summary').first().click();
-	await expect(page.locator('#perubahan-irab details').first()).toContainText(
-		'Lema dasarnya sama'
-	);
+	await expect(page.locator('#perubahan-irab details').first()).toContainText('Lema dasarnya sama');
 });
 
 test('G-03 illustrates nominal plurality and nested idafah without colour-only labels', async ({
@@ -59,9 +57,7 @@ test.describe('G-03 static narrow-screen rendering with JavaScript disabled', ()
 		await expect(page.locator('#marifah-nakirah [data-irab="raf"]')).toHaveCount(2);
 		await expect(page.locator('#jumlah-dan-gender [data-irab="nasb"]')).toHaveCount(2);
 		await page.locator('#idafah-jar summary').first().click();
-		await expect(page.locator('#idafah-jar details').first()).toContainText(
-			'كِتَابِ'
-		);
+		await expect(page.locator('#idafah-jar details').first()).toContainText('كِتَابِ');
 		const sizes = await page.evaluate(() => ({
 			page: document.documentElement.scrollWidth,
 			viewport: document.documentElement.clientWidth
