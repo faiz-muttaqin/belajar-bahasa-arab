@@ -3,6 +3,8 @@
 	import { resolve } from '$app/paths';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
+	import AudioPlayButton from '#lib/components/learning/AudioPlayButton.svelte';
+	import SpeechSettings from '#lib/components/learning/SpeechSettings.svelte';
 	import { catalogState, bulkSharafState, prepareBulkSharaf } from '#lib/catalog/sync.svelte.js';
 	import { mergeBulkSharaf } from '#lib/domain/sharaf/bulk.js';
 	import { sharafEntries } from '#lib/content/sharaf.js';
@@ -70,6 +72,8 @@
 	{/snippet}
 </PageIntro>
 
+<div class="mt-8"><SpeechSettings /></div>
+
 <section class="mt-10 space-y-5" aria-label="Pencarian sharaf">
 	<div class="space-y-2">
 		<label for="sharaf-query" class="block font-medium">Kata atau akar bahasa Arab</label>
@@ -124,7 +128,10 @@
 				<li id={entry.id} class="scroll-mt-24 rounded-2xl border bg-card p-5">
 					<div class="flex flex-wrap items-start justify-between gap-2">
 						<div>
-							<ArabicText text={entry.lemma} size="block" class="text-3xl" />
+							<div class="flex flex-wrap items-center gap-2">
+								<ArabicText text={entry.lemma} size="block" class="text-3xl" />
+								<AudioPlayButton text={entry.lemma} label="Dengarkan lema Arab" compact />
+							</div>
 							<p class="mt-1 font-medium">{entry.meaning}</p>
 						</div>
 						<span
@@ -161,7 +168,10 @@
 								{#each entry.forms as form (form.label)}
 									<div class="flex items-center justify-between gap-3 border-t border-border pt-2">
 										<dt class="text-sm text-muted-foreground">{formLabel(form.label)}</dt>
-										<dd><ArabicText text={form.value} /></dd>
+										<dd class="flex flex-wrap items-center gap-2">
+											<ArabicText text={form.value} />
+											<AudioPlayButton text={form.value} label="Dengarkan bentuk kata" compact />
+										</dd>
 									</div>
 								{/each}
 							</dl>
