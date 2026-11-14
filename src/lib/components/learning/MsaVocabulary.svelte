@@ -56,7 +56,6 @@
 
 	function setTopic(value: 'all' | MsaTopic) {
 		activeTopic = value;
-		shown = 48;
 	}
 </script>
 
