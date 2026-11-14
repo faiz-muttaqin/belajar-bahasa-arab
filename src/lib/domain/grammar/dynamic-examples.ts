@@ -189,7 +189,10 @@ export function optionsForBuilderSlot(state: BuilderState, slot: BuilderSlot): B
 		case 'object': {
 			const verb = verbs.find((item) => item.id === state.verb);
 			if (!verb) return [];
-			return objects.filter((item) => verb.allowedObjects.includes(item.id)).map(nounChoice);
+			return verb.allowedObjects
+				.map((id) => objects.find((item) => item.id === id))
+				.filter((item): item is DirectObject => item !== undefined)
+				.map(nounChoice);
 		}
 	}
 }
