@@ -78,6 +78,7 @@ const conditional = { name: 'Al-Islam.org — jussive conditional particles', ur
 const conditionGrammar = { name: 'Rafed — fi‘l ash-sharṭ dan jawāb ash-sharṭ', url: 'https://lib.rafed.net/view.php?b_id=1934&page=65&type=c_fbook' };
 const reason = { name: 'LibreTexts — karena (li’anna) vs karena (bisabab)', url: 'https://human.libretexts.org/Bookshelves/Languages/Arabic/Introduction_to_Arabic_II_%28Hanaa_Alkassas_Layla_Bahar_Al-Aloom_and_Samira_Murtada%29/03%3A_My_Favorite_Season/3.07%3A_Grammar_%282%29_Answering_Why' };
 const ajurrumiyya = { name: 'Tafsīr al-Ājurrūmiyyah — bab al-ḥāl, tamyīz, istitsnā’', url: 'https://aqeedeh.com/book_files/pdf/ar/tabsit-al-ajrumiyeh-Ar-PDF.pdf' };
+const nasikh = { name: 'Arabic: An Essential Grammar — bab 26, inna dan saudara-saudaranya', url: 'https://www.ziyaraat.net/books/ArabicAnEssentialGrammar.pdf' };
 
 export const clauseRules: readonly ClauseRule[] = [
 	{
@@ -396,7 +397,7 @@ export const clauseRules: readonly ClauseRule[] = [
 			answer: 'الْخَطَّ, yakni ism لَكِنَّ.',
 			reason: 'لَكِنَّ dengan tasydid adalah harf nāsikh yang bekerja seperti إِنَّ.'
 		},
-		sources: [coordination, un],
+		sources: [nasikh, un],
 		reviewStatus: 'draft'
 	},
 	{
