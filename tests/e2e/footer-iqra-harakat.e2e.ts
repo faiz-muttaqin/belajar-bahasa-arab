@@ -61,7 +61,9 @@ test.describe('static HTML without JavaScript', () => {
 		await page.goto('/iqra/');
 		await expect(page.locator('#bagan-harakat').getByRole('table')).toBeVisible();
 		await expect(page.locator('#bagan-harakat tbody tr')).toHaveCount(11);
-		await expect(page.getByRole('link', { name: /Latih harakat pada rangkaian baru/ })).toBeVisible();
+		await expect(
+			page.getByRole('link', { name: /Latih harakat pada rangkaian baru/ })
+		).toBeVisible();
 		await page.goto('/iqra/latih-harakat/');
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText(
 			'Latih harakat pada rangkaian baru'

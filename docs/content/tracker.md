@@ -75,13 +75,13 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 
 ## Foundation path (Jalur A, optional "Iqra" track)
 
-| ID  | Stage (proposed)            | Can-do goal (draft)                              | Stage | Next action                                     |
-| --- | --------------------------- | ------------------------------------------------ | ----- | ----------------------------------------------- |
-| A0  | Sound contrasts             | Hear and pick the audio that matches the writing | 0 ⬜  | Needs reviewed audio (A-01, A-02).              |
-| A1  | Letters and forms           | Recognise letters in initial/medial/final forms  | 3 🟡  | Lesson A1 tersedia; perlu penilaian guru dan uji transfer. |
+| ID  | Stage (proposed)            | Can-do goal (draft)                              | Stage | Next action                                                           |
+| --- | --------------------------- | ------------------------------------------------ | ----- | --------------------------------------------------------------------- |
+| A0  | Sound contrasts             | Hear and pick the audio that matches the writing | 0 ⬜  | Needs reviewed audio (A-01, A-02).                                    |
+| A1  | Letters and forms           | Recognise letters in initial/medial/final forms  | 3 🟡  | Lesson A1 tersedia; perlu penilaian guru dan uji transfer.            |
 | A2  | Harakat, long vowels, sukun | Decode unseen words accurately                   | 3 🟡  | Pelajaran A2-01, A2-02, A2-03 + bagan 11 tanda; review belum selesai. |
-| A3  | Tasydid, tanwin             | Read short vocalised words                       | 3 🟡  | Lesson tasydid/tanwin tersedia; tinjauan guru diperlukan. |
-| A4  | Phrases and sentences       | Read simple vocalised sentences; join Jalur B    | 3 🟡  | Lesson kalimat pendek tersedia; uji membaca mandiri diperlukan. |
+| A3  | Tasydid, tanwin             | Read short vocalised words                       | 3 🟡  | Lesson tasydid/tanwin tersedia; tinjauan guru diperlukan.             |
+| A4  | Phrases and sentences       | Read simple vocalised sentences; join Jalur B    | 3 🟡  | Lesson kalimat pendek tersedia; uji membaca mandiri diperlukan.       |
 
 ## Vocabulary collections (research doc §6.1b)
 
@@ -95,10 +95,10 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 
 ## Reference tables (research doc §6.1a)
 
-| ID   | Table                              | Stage | Sources                                 | Reviewer | Next action                                                                                 |
-| ---- | ---------------------------------- | ----- | --------------------------------------- | -------- | ------------------------------------------------------------------------------------------- |
-| R-01 | Jenis ḥarf (jarr, 'aṭf, nafy, ...) | 3 🟡  | Madinah Arabic, Quranic Arabic Corpus   | —        | Tabel kata depan dan glosarium 12 penghubung dengan efek i‘rab serta mode hafalan tersedia. |
-| R-02 | Tashrif istilahi                   | 3 🟡  | Ringkasan Al-Amtsilah, Classical Arabic | —        | Enam bab kata kerja dasar dan 11 bentuk tradisional tersedia.                               |
+| ID   | Table                              | Stage | Sources                                 | Reviewer | Next action                                                                                   |
+| ---- | ---------------------------------- | ----- | --------------------------------------- | -------- | --------------------------------------------------------------------------------------------- |
+| R-01 | Jenis ḥarf (jarr, 'aṭf, nafy, ...) | 3 🟡  | Madinah Arabic, Quranic Arabic Corpus   | —        | Tabel kata depan dan glosarium 12 penghubung dengan efek i‘rab serta mode hafalan tersedia.   |
+| R-02 | Tashrif istilahi                   | 3 🟡  | Ringkasan Al-Amtsilah, Classical Arabic | —        | Enam bab kata kerja dasar dan 11 bentuk tradisional tersedia.                                 |
 | R-03 | Harakat chart (foundation path)    | 3 🟡  | W3C ALREQ, materi Iqra sendiri          | —        | Bagan 11 tanda terhubung di halaman Iqra, mode hafalan bunyi; review label/pelafalan pending. |
 
 ## Decisions needed (from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md), §7)

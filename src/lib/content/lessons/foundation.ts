@@ -198,25 +198,23 @@ export const foundationLessons: readonly Lesson[] = [
 				arabic: 'مُ مِ مَ',
 				prompt: 'Baca dari kanan. Sebutkan bunyi yang dihasilkan tiga tanda.',
 				answer:
-				'Mu, mi, ma. Ketiganya memakai mim. Perhatikan bahwa susunan vokal berbeda dari contoh awal.'
+					'Mu, mi, ma. Ketiganya memakai mim. Perhatikan bahwa susunan vokal berbeda dari contoh awal.'
 			},
 			{
 				arabic: 'بَا بَ',
 				prompt: 'Dari dua bentuk ba ini, bentuk mana yang memiliki vokal panjang?',
 				answer:
-				'بَا yang berada di sebelah kanan. Fathah diikuti alif memberi bunyi bā; بَ hanya ba pendek.'
+					'بَا yang berada di sebelah kanan. Fathah diikuti alif memberi bunyi bā; بَ hanya ba pendek.'
 			},
 			{
 				arabic: 'مِنْ مِ',
 				prompt: 'Mana yang berakhir dengan konsonan tanpa vokal tambahan?',
-				answer:
-				'مِنْ berakhir dengan nun bersukun. Pada مِ hanya ada mim berkasrah yang berbunyi mi.'
+				answer: 'مِنْ berakhir dengan nun bersukun. Pada مِ hanya ada mim berkasrah yang berbunyi mi.'
 			},
 			{
 				arabic: 'بِي بُو',
 				prompt: 'Sebutkan kedua bunyi panjang ini, dari kanan.',
-				answer:
-				'Bī dan bū. Kasrah dengan ya menjadi ī; dammah dengan waw menjadi ū.'
+				answer: 'Bī dan bū. Kasrah dengan ya menjadi ī; dammah dengan waw menjadi ū.'
 			}
 		]
 	},

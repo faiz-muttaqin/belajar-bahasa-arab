@@ -11,7 +11,8 @@ import { validateReferenceTable, type ReferenceTableData } from '#lib/domain/ref
 export const harakatReference: ReferenceTableData = {
 	id: 'bagan-harakat',
 	title: 'Bagan harakat dan tanda baca',
-	caption: 'Tanda pada garis sambung Arab (ـ) dan contoh baca. Urutan bunyi Latin hanya bantuan awal.',
+	caption:
+		'Tanda pada garis sambung Arab (ـ) dan contoh baca. Urutan bunyi Latin hanya bantuan awal.',
 	reviewStatus: 'draft',
 	sources: ['https://www.w3.org/TR/alreq/'],
 	columns: [
@@ -44,12 +45,14 @@ export const harakatReference: ReferenceTableData = {
 		{
 			id: 'tasydid',
 			cells: { kelompok: 'Konsonan rangkap', tanda: 'ـَّ', contoh: 'مَرَّ', bunyi: 'mar-ra' },
-			explanation: 'Tasydid merangkap konsonan. Pada contoh, bunyi r menutup bagian mar dan membuka ra.'
+			explanation:
+				'Tasydid merangkap konsonan. Pada contoh, bunyi r menutup bagian mar dan membuka ra.'
 		},
 		{
 			id: 'dammatain',
 			cells: { kelompok: 'Tanwin', tanda: 'ـٌ', contoh: 'قَلَمٌ', bunyi: 'qalamun' },
-			explanation: 'Dammatain dibaca dengan akhir -un saat disambung. Ketika berhenti, bunyinya bisa berubah.'
+			explanation:
+				'Dammatain dibaca dengan akhir -un saat disambung. Ketika berhenti, bunyinya bisa berubah.'
 		},
 		{
 			id: 'fathatain',

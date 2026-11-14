@@ -42,8 +42,8 @@
 	</div>
 	<ReferenceTable table={harakatReference} />
 	<p class="max-w-[70ch] text-sm text-muted-foreground">
-		Contoh ini adalah latihan tulisan Arab, bukan kutipan ayat. Bunyi tanwin ditulis untuk
-		bacaan sambung; cara berhenti dapat berbeda. Materi masih menunggu tinjauan pengajar.
+		Contoh ini adalah latihan tulisan Arab, bukan kutipan ayat. Bunyi tanwin ditulis untuk bacaan
+		sambung; cara berhenti dapat berbeda. Materi masih menunggu tinjauan pengajar.
 	</p>
 </section>
 
