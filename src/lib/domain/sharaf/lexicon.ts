@@ -62,7 +62,7 @@ export function isSharafEntries(value: unknown): value is SharafEntry[] {
 			(bab === undefined ||
 				(entry.partOfSpeech === 'verb' &&
 					isRecord(bab) &&
-					Number.isInteger(bab.number) && bab.number >= 1 && bab.number <= 22 &&
+					typeof bab.number === 'number' && Number.isInteger(bab.number) && bab.number >= 1 && bab.number <= 22 &&
 					typeof bab.exemplar === 'string' &&
 					typeof bab.pattern === 'string')) &&
 			entry.sources.every(
