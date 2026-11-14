@@ -17,6 +17,24 @@ Menjawab pertanyaan pelajar: "Saya tahu kata Arab ini, tetapi masuk bab tashrif 
 
 Normalisasi pencarian melepas harakat dan menyederhanakan beberapa varian alif/ya. **Tidak digunakan sebagai primary key** atau untuk menyamakan kata secara ilmiah. Hasil dicocokkan ke lemma, bentuk tersimpan, dan akar, dengan skor exact sebelum root/prefix. Tidak ada klaim bahwa hasil kosong berarti kata itu tidak sah.
 
+## Tampilan tabel tashrif yang ditransposisi
+
+Pada `/rujukan/#tashrif-istilahi`, bentuk-bentuk sekarang berada pada header kecil di atas (madhi paling kanan, lalu mudhari, hingga isim alat ke kiri), sedangkan enam bab menjadi baris di kolom kiri. **Default semua sel adalah wazan simbolik ف–ع–ل** dengan harakat yang disesuaikan untuk bab dan kategori bentuk, bukan kata riil yang mungkin belum terverifikasi. Sebagai contoh, `فَعَلَ` untuk madhi bab pertama dan `فَاعِلٌ` hanya untuk isim fa'il; tidak semua bentuk memakai pola harakat yang sama.
+
+Panel kanan bisa memfilter bab, mencari lemma/bentuk/akar dari `src/lib/content/sharaf.ts`, dan memilih sebuah fi'il untuk mengisi **hanya** babnya. Tombol reset per-bab maupun seluruh tabel mengembalikan tampilan ke wazan. Ketika sebuah kata nyata dipilih, bentuk yang tidak tersedia dalam sumber ditandai `—`, **bukan dibangkitkan dengan tebakan**.
+
+### Static-first dan cache
+
+- HTML awal memuat wazan tanpa perlu JavaScript atau jaringan tambahan setelah dokumen diterima.
+- Endpoint `/data/sharaf.json` di-`prerender` pada build, bukan backend runtime.
+- Sesudah hidrasi, browser membaca IndexedDB jika ada (fallback localStorage), lalu mengambil JSON statis yang lebih baru tanpa memblokir interaksi; jika fetch atau penyimpanan gagal, tabel bawaan tetap tersedia.
+- Ada version schema `SHARAF_CACHE_SCHEMA = 1` dan pemeriksaan struktur pada data cache. Bila skema berubah, naikkan nomor versinya dan strategi migrasi.
+- Ini **cache data glosarium**, bukan jaminan seluruh aplikasi berfungsi offline tanpa service worker yang juga menyimpan asset HTML/JS/CSS.
+
+### Batasan akademik
+
+Tabel simbolik merepresentasikan **contoh pola dari rujukan yang telah tersedia di proyek**, terutama bagi mashdar, mashdar mimi, isim zaman/makan, dan isim alat yang tidak seluruhnya qiyasi. Semua data contoh masih `draft`; diperlukan tinjauan pengajar sebelum mengklaim lengkap atau baku untuk seluruh leksikon Arab. **فَاعِلٌ bukan wazan universal**, melainkan satu pola khusus untuk isim fa'il.
+
 ## Dataset awal dan pembatasan
 
 Enam contoh bab berasal dari `src/lib/content/reference.ts`; kata كَتَبَ, قَرَأَ, مَفْتُوحٌ dan beberapa partikel memanfaatkan kosakata internal; قَالَ adalah contoh penjelasan i‘lal ajwaf yang harus ditinjau pengajar. Semua berstatus **draft**. Tidak ada impor dataset pihak ketiga dalam PR ini.
