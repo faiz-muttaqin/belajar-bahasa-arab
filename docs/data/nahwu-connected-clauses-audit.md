@@ -1,0 +1,36 @@
+# G-05 — Peta sumber dan audit klausa tersambung
+
+**Tanggal:** 14 November 2026 · **Status:** seluruh contoh \`draft\`. Pengujian kode bukan tashih seorang guru bahasa Arab.
+
+G-05 dibangun di atas G-01–G-04, bukan kurikulum paralel. Rute \`/kaidah/klausa/\` memakai **rentang klausa** (main, link, relative, condition, result, reason, contrast, circumstance, exception, specification), lalu **glos tepat di bawah token Arab**. Rentang klausa, peran kata, i‘rab isim dan mood fi‘il adalah empat dimensi **berbeda**; jangan gabungkan menjadi satu label warna.
+
+## Bukti kaidah yang diperiksa
+
+| Topik | Rujukan | Contoh dan batas |
+| --- | --- | --- |
+| ‘Aṭf / urutan | [Arabic: An Essential Grammar — conjunctions](https://www.ziyaraat.net/books/arabicanessentialgrammar.pdf), [UN Arabic Curriculum — discourse](https://languages.un.org/sites/default/files/2025-03/Arabic%20Language%20Curriculum_1.pdf) | **وَ** dapat menghubungkan tindakan/kata, **ثُمَّ** mengungkapkan urutan; \`وَكَتَبَ\` dan \`وَالطَّالِبُ\` ditulis **satu token ortografis**. |
+| Isim mawṣūl / ṣilah | [Michigan State University OpenBooks](https://openbooks.lib.msu.edu/arb201/chapter/3-2-grammar-in-context/), [Al Jazeera Learning Arabic](https://learning.aljazeera.net/ar/node/19497) | **الَّذِي** maskulin tunggal, **الَّتِي** feminin tunggal. Klausa ṣilah tidak identik dengan khabar utama. Contoh \`قَرَأْتُهُ\` mempertahankan dhamir \`ـهُ\` sebagai penghubung balik (‘ā’id). |
+| Syarat / jawab | [Al-Islam.org — jussive conditional](https://al-islam.org/elementary-arabic-syntax-2-rashid-al-shartuni/jussive-cases-aorist-tense), [Rafed — إِنْ syarat](https://lib.rafed.net/view.php?b_id=1934&page=65&type=c_fbook) | **إِنْ** menjazmkan fi‘il syarat dan jawab yang muḍāri‘ sederhana; pada jawab nominal digunakan \`فَأَنْتَ نَاجِحٌ\`, bukan menandai khabar sebagai fi‘il majzūm. |
+| Sebab dan alasan | [LibreTexts — لأن / بسبب](https://human.libretexts.org/Bookshelves/Languages/Arabic/Introduction_to_Arabic_II_%28Hanaa_Alkassas_Layla_Bahar_Al-Aloom_and_Samira_Murtada%29/03%3A_My_Favorite_Season/3.07%3A_Grammar_%282%29_Answering_Why), [UN Arabic Curriculum](https://languages.un.org/sites/default/files/2025-03/Arabic%20Language%20Curriculum_1.pdf) | **لِأَنَّ** mengantar jumlah nominal dengan ism manṣūb; **بِسَبَبِ الْمَرَضِ** adalah frasa ber-iḍāfah yang majrūr. |
+| Kontras | [Arabic: An Essential Grammar — inna dan saudara-saudaranya, bab 26](https://www.ziyaraat.net/books/ArabicAnEssentialGrammar.pdf), [UN Arabic Curriculum](https://languages.un.org/sites/default/files/2025-03/Arabic%20Language%20Curriculum_1.pdf) | **لَكِنَّ** bertasydid adalah nāsikh: ism manṣūb dan khabar marfū‘. Tidak sama dengan **لَكِنْ** yang bukan nāsikh. |
+| Ḥāl, istitsnā’, tamyīz | [Tabsīṭ al-Ājurrūmiyyah](https://aqeedeh.com/book_files/pdf/ar/tabsit-al-ajrumiyeh-Ar-PDF.pdf), [A Reference Grammar of MSA — tamyīz 11–99](https://nabataea.net/media/04shop/PDFS/Arabic%20-%20Modern%20Grammar.pdf) | Ḥāl mufrad \`مُبْتَسِمًا\`, pengecualian positif lengkap \`إِلَّا طَالِبًا\`, bilangan puluhan dan tamyīz \`عِشْرِينَ كِتَابًا\`. Kasus alternatif di luar contoh belum ditelusuri. |
+
+Rujukan ini menyokong **jenis kaidah**, tetapi tidak otomatis menjadi bukti semua contoh buatan baru sudah benar. Contoh situs ditulis sendiri dan **bukan kutipan** dari buku, lembaga, atau ayat. Jangan mengimpor dokumen sumber tanpa audit lisensi.
+
+## Jebakan konseptual yang dijaga
+
+- **Rentang kata vs rentang klausa**: \`وَكَتَبَ\` adalah satu token ortografis dengan prefiks penghubung. \`الَّذِي\` terpisah dari ṣilah, sedangkan hasil kalimat utama boleh muncul setelah ṣilah.
+- **Mood vs i‘rab**: \`تَدْرُسْ\` dan \`تَنْجَحْ\` adalah muḍāri‘ majzūm; \`نَاجِحٌ\` dalam jawab nominal adalah isim/khabar marfū‘. Tipe \`mood\` dan \`irab\` tidak boleh hadir bersamaan pada token yang sama.
+- **I‘rab internal tetap berlaku** pada frasa sebab, ṣilah, dan pelengkap. Warna menunjukkan fungsi rentang klausa; tidak mengubah kasus isim.
+- **Istitsnā’**: hanya kalimat *positif dan lengkap* yang diajarkan untuk \`إِلَّا ...\` manṣūb. Kalimat negatif memiliki lebih dari satu analisis; tidak diajarkan otomatis.
+- **Tamyīz**: \`عِشْرِينَ كِتَابًا\` berlaku untuk kata bilangan puluhan. Jangan menerapkan aturan tunggal-manṣūb untuk seluruh bilangan (3–10, 100, 1000).
+- **Register**: materi ditargetkan MSA pengantar; kitab nahwu dan teks Qur’ani dipakai sebagai rujukan kaidah bila relevan, tidak sebagai pengganti verifikasi penggunaan modern.
+- Seluruh konten G-05 tetap \`draft\`, mengikuti [protokol audit per klaim](../research/2026-11-14-source-based-verification.md).
+
+## Definisi selesai tahap G-05 awal
+
+- Keenam kelompok punya contoh Arab berharakat, glos di bawah kata, dan terjemahan utuh.
+- Link silang G-04 ↔ G-05, dan kartu roadmap G-02–G-05 di /kaidah/ tidak menduplikasi menu global.
+- Unit test mencakup span, glos, mood/kasus, kata relatif, syarat, kontras, pengecualian.
+- E2E menguji mobile dan JavaScript mati dengan batas overflow horizontal, tanpa backend baru.
+- **Selanjutnya G-06:** peta prasyarat dan latihan menyusun frasa–kalimat–klausa dan membaca paragraf. Pertanyaan pengajar yang belum dituntaskan masuk [G-05 #18](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/18).
