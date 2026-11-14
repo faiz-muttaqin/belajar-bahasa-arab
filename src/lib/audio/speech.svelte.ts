@@ -126,6 +126,11 @@ export function startBrowserSpeech(): () => void {
 
 export function stopArabicSpeech() {
 	sequence++;
+	if (activeUtterance) {
+		// Detach callbacks before cancel() to ignore stale interrupted utterances.
+		activeUtterance.onend = null;
+		activeUtterance.onerror = null;
+	}
 	activeUtterance = undefined;
 	browserSpeech.activeKey = null;
 	try {
