@@ -1,0 +1,41 @@
+name: Format sharaf staging once
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/format-sharaf-staging-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/sharaf-staging-seed-cache-20261114'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Apply project Prettier
+        run: |
+          bunx prettier --write \
+            docs/content/tracker.md \
+            docs/data/sharaf-staging-preview.md \
+            src/lib/domain/sharaf/lexicon.ts \
+            tests/e2e/sharaf-staging-cache.e2e.ts
+      - name: Commit formatter result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add docs/content/tracker.md docs/data/sharaf-staging-preview.md src/lib/domain/sharaf/lexicon.ts tests/e2e/sharaf-staging-cache.e2e.ts
+            git commit -m "style(sharaf): apply project Prettier to staging import"
+            git push origin HEAD:feat/sharaf-staging-seed-cache-20261114
+          fi
