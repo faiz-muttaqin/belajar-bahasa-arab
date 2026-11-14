@@ -36,7 +36,12 @@ test('global Indonesian search and one clear button replace and restore the matc
 	await expect(modal).toBeVisible();
 	await modal.getByRole('searchbox', { name: 'Cari Arab atau Indonesia' }).fill('mengajarkan');
 	await expect(modal.getByText('عَلَّمَ')).toBeVisible();
-	await modal.getByRole('button', { name: 'Detail' }).click();
+	await modal
+		.getByRole('listitem')
+		.filter({ hasText: 'عَلَّمَ' })
+		.getByRole('button', { name: 'Detail', exact: true })
+		.first()
+		.click();
 	await expect(modal.getByText('Bentuk kata yang tercatat')).toBeVisible();
 	await modal.getByRole('button', { name: 'Gunakan di tabel' }).click();
 	await expect(modal).not.toBeVisible();
@@ -71,7 +76,12 @@ test('highlights chosen words and shows short meanings below both examples and w
 	const modal = page.getByRole('dialog');
 	await modal.getByRole('searchbox').fill('makan');
 	// With the full dictionary loaded, several words contain "makan"; the exact gloss ranks first.
-	await modal.getByRole('button', { name: 'Gunakan', exact: true }).first().click();
+	await modal
+		.getByRole('listitem')
+		.filter({ hasText: 'أَكَلَ' })
+		.getByRole('button', { name: 'Gunakan', exact: true })
+		.first()
+		.click();
 	const example = rows.first();
 	await expect(example.getByText('Kata dipilih', { exact: true })).toBeVisible();
 	expect(await example.evaluate((row) => getComputedStyle(row).backgroundColor)).not.toBe(
@@ -108,7 +118,12 @@ test('clicking a bab narrows the glossary, and cell detail explains form and sou
 	await expect(modal).toBeVisible();
 	await expect(modal.getByRole('combobox', { name: 'Batasi ke bab' })).toHaveValue('15');
 	await expect(modal.getByText('اِسْتَغْفَرَ')).toBeVisible();
-	await modal.getByRole('button', { name: 'Gunakan' }).click();
+	await modal
+		.getByRole('listitem')
+		.filter({ hasText: 'اِسْتَغْفَرَ' })
+		.getByRole('button', { name: 'Gunakan', exact: true })
+		.first()
+		.click();
 
 	await page.getByRole('button', { name: 'Detail fi’il mudhari’, bab 15' }).click();
 	await expect(modal.getByText('Penjelasan perubahan kata')).toBeVisible();
