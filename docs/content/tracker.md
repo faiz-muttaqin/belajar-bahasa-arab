@@ -78,10 +78,10 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 | ID  | Stage (proposed)            | Can-do goal (draft)                              | Stage | Next action                                     |
 | --- | --------------------------- | ------------------------------------------------ | ----- | ----------------------------------------------- |
 | A0  | Sound contrasts             | Hear and pick the audio that matches the writing | 0 ⬜  | Needs reviewed audio (A-01, A-02).              |
-| A1  | Letters and forms           | Recognise letters in initial/medial/final forms  | 0 ⬜  | Original exercises only (no Iqra reproduction). |
-| A2  | Harakat, long vowels, sukun | Decode unseen words accurately                   | 0 ⬜  | Harakat chart on tatweel base (see taste.md).   |
-| A3  | Tasydid, tanwin             | Read short vocalised words                       | 0 ⬜  |                                                 |
-| A4  | Phrases and sentences       | Read simple vocalised sentences; join Jalur B    | 0 ⬜  |                                                 |
+| A1  | Letters and forms           | Recognise letters in initial/medial/final forms  | 3 🟡  | Lesson A1 tersedia; perlu penilaian guru dan uji transfer. |
+| A2  | Harakat, long vowels, sukun | Decode unseen words accurately                   | 3 🟡  | Pelajaran A2-01, A2-02, A2-03 + bagan 11 tanda; review belum selesai. |
+| A3  | Tasydid, tanwin             | Read short vocalised words                       | 3 🟡  | Lesson tasydid/tanwin tersedia; tinjauan guru diperlukan. |
+| A4  | Phrases and sentences       | Read simple vocalised sentences; join Jalur B    | 3 🟡  | Lesson kalimat pendek tersedia; uji membaca mandiri diperlukan. |
 
 ## Vocabulary collections (research doc §6.1b)
 
@@ -99,7 +99,7 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 | ---- | ---------------------------------- | ----- | --------------------------------------- | -------- | ------------------------------------------------------------------------------------------- |
 | R-01 | Jenis ḥarf (jarr, 'aṭf, nafy, ...) | 3 🟡  | Madinah Arabic, Quranic Arabic Corpus   | —        | Tabel kata depan dan glosarium 12 penghubung dengan efek i‘rab serta mode hafalan tersedia. |
 | R-02 | Tashrif istilahi                   | 3 🟡  | Ringkasan Al-Amtsilah, Classical Arabic | —        | Enam bab kata kerja dasar dan 11 bentuk tradisional tersedia.                               |
-| R-03 | Harakat chart (foundation path)    | 0 ⬜  | —                                       | —        | Mechanical display; still needs reviewer for labels.                                        |
+| R-03 | Harakat chart (foundation path)    | 3 🟡  | W3C ALREQ, materi Iqra sendiri          | —        | Bagan 11 tanda terhubung di halaman Iqra, mode hafalan bunyi; review label/pelafalan pending. |
 
 ## Decisions needed (from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md), §7)
 
@@ -142,6 +142,8 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 | 5 to 10 test learners (3 profiles, §10.2)                                                 | product owner | ⬜     |
 
 ## Changelog
+
+- 14 November 2026: footer disederhanakan tanpa duplikasi menu; R-03 bagan harakat 11 tanda dan pelajaran latihan A2-03 dibuat (status draft). Tahapan A1–A4 di tracker diselaraskan dengan halaman pelajaran yang sudah ada, bukan dianggap disetujui pengajar.
 
 - 14 November 2026: external source audit (RS-11) done: Cahaya Tauhid and Learn Tajweed conditional, other four research-only; competency graph, onboarding spec and three DRAFT lesson briefs added for review.
 - 14 November 2026: decisions D-1 to D-6 accepted, D-7 in progress ([ADR-004](../decisions/0004-content-decisions.md)); review and icon rules enforced in code; reviewer pack and LPMQ letter drafted; A-01 delivered on a branch.
