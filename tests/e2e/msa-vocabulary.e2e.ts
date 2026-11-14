@@ -17,10 +17,14 @@ test('MSA collection is independently selectable without changing Quran and pray
 	await expect(page.getByRole('heading', { name: 'Kosakata Al-Qur’an' })).toBeVisible();
 });
 
-test('word class and semantic topic filters keep adjectives separate from nouns', async ({ page }) => {
+test('word class and semantic topic filters keep adjectives separate from nouns', async ({
+	page
+}) => {
 	await page.goto('/kosakata/');
-	await page.getByRole('group', { name: 'Pilih koleksi' })
-		.getByRole('button', { name: /Umum MSA/ }).click();
+	await page
+		.getByRole('group', { name: 'Pilih koleksi' })
+		.getByRole('button', { name: /Umum MSA/ })
+		.click();
 	const section = page.locator('#msa');
 
 	await section.getByRole('button', { name: 'Isim · kata sifat' }).click();
@@ -31,10 +35,14 @@ test('word class and semantic topic filters keep adjectives separate from nouns'
 	await expect(section.locator('#kata-msa-kitab')).toHaveCount(0);
 });
 
-test('searches Arabic without harakat, Indonesian meaning and recorded plural', async ({ page }) => {
+test('searches Arabic without harakat, Indonesian meaning and recorded plural', async ({
+	page
+}) => {
 	await page.goto('/kosakata/');
-	await page.getByRole('group', { name: 'Pilih koleksi' })
-		.getByRole('button', { name: /Umum MSA/ }).click();
+	await page
+		.getByRole('group', { name: 'Pilih koleksi' })
+		.getByRole('button', { name: /Umum MSA/ })
+		.click();
 	const section = page.locator('#msa');
 	const input = section.getByRole('searchbox', { name: 'Cari kata atau arti' });
 
@@ -59,7 +67,9 @@ test('deep links and original phrase examples remain in static HTML with JavaScr
 
 test.describe('static MSA vocabulary without JavaScript', () => {
 	test.use({ javaScriptEnabled: false, viewport: { width: 375, height: 812 } });
-	test('renders all 157 entries on initial response and avoids horizontal overflow', async ({ page }) => {
+	test('renders all 157 entries on initial response and avoids horizontal overflow', async ({
+		page
+	}) => {
 		await page.goto('/kosakata/#kata-msa-imraah');
 		await expect(page.locator('#msa li[id^="kata-msa-"]')).toHaveCount(157);
 		await expect(page.locator('#kata-msa-imraah')).toContainText('نِسَاءٌ');

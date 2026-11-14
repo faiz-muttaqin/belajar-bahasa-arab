@@ -63,8 +63,8 @@
 	<header class="max-w-[75ch] space-y-2">
 		<h2 id="msa-heading" class="text-2xl font-semibold">Kosakata umum MSA</h2>
 		<p class="text-muted-foreground">
-			Benda, sifat, sapaan, waktu, alam, dan istilah modern dalam bahasa Arab baku. Ini
-			daftar belajar tematik, bukan urutan berdasarkan frekuensi.
+			Benda, sifat, sapaan, waktu, alam, dan istilah modern dalam bahasa Arab baku. Ini daftar
+			belajar tematik, bukan urutan berdasarkan frekuensi.
 		</p>
 	</header>
 
@@ -135,7 +135,9 @@
 								{#snippet details()}
 									<div class="space-y-2 text-sm">
 										<p class="text-muted-foreground">
-											{MSA_CLASSES[item.msa?.wordClass ?? 'noun']} · {MSA_TOPICS[item.msa?.topic ?? 'objects']}
+											{MSA_CLASSES[item.msa?.wordClass ?? 'noun']} · {MSA_TOPICS[
+												item.msa?.topic ?? 'objects'
+											]}
 										</p>
 										{#if item.msa?.root}
 											<p>Akar: <ArabicText text={item.msa.root} /></p>
@@ -143,7 +145,11 @@
 										{#if item.msa?.plural}
 											<div>
 												<p class="text-muted-foreground">
-													{item.msa.plural.kind === 'sound' ? 'Jamak salim' : item.msa.plural.kind === 'broken' ? 'Jamak taksir' : 'Jamak leksikal'}
+													{item.msa.plural.kind === 'sound'
+														? 'Jamak salim'
+														: item.msa.plural.kind === 'broken'
+															? 'Jamak taksir'
+															: 'Jamak leksikal'}
 												</p>
 												<ArabicText text={item.msa.plural.value} />
 											</div>
@@ -155,9 +161,13 @@
 											</div>
 										{/if}
 										{#if item.msa?.formation === 'loanword'}
-											<p class="text-muted-foreground">Kata serapan; jangan memaksakan akar tsulatsi.</p>
+											<p class="text-muted-foreground">
+												Kata serapan; jangan memaksakan akar tsulatsi.
+											</p>
 										{:else if item.msa?.formation === 'compound'}
-											<p class="text-muted-foreground">Gabungan beberapa kata; periksa strukturnya sebagai frasa.</p>
+											<p class="text-muted-foreground">
+												Gabungan beberapa kata; periksa strukturnya sebagai frasa.
+											</p>
 										{/if}
 										{#if item.msa?.example}
 											<div class="space-y-1 border-t pt-2">
@@ -181,13 +191,12 @@
 					</li>
 				{/each}
 			</ul>
-
 		{/if}
 	</div>
 
 	<p class="max-w-[75ch] text-sm text-muted-foreground">
-		Semua contoh masih draft; belum ditashih guru bahasa Arab. Beberapa bentuk jamak dicatat
-		sebagai data leksikal, bukan aturan otomatis. Sumber katalog ini adalah rujukan untuk
-		pemeriksaan lanjut, bukan klaim bahwa setiap lema sudah diverifikasi sendiri.
+		Semua contoh masih draft; belum ditashih guru bahasa Arab. Beberapa bentuk jamak dicatat sebagai
+		data leksikal, bukan aturan otomatis. Sumber katalog ini adalah rujukan untuk pemeriksaan
+		lanjut, bukan klaim bahwa setiap lema sudah diverifikasi sendiri.
 	</p>
 </section>

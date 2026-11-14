@@ -139,7 +139,10 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 	if (item.arabic.trim() === '') add('Empty Arabic text');
 	if (item.meaning.trim() === '') add('Empty meaning');
 	if (item.icon && item.concreteness !== 'concrete') add('Icon on a non-concrete word (D-6)');
-	if ((item.collection === 'quran' || item.collection === 'shalat') && item.register !== 'classical') {
+	if (
+		(item.collection === 'quran' || item.collection === 'shalat') &&
+		item.register !== 'classical'
+	) {
 		add('Classical collections must use the classical register label');
 	}
 	if (
@@ -154,7 +157,8 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 		else {
 			if (!Object.hasOwn(MSA_TOPICS, item.msa.topic)) add('Unknown MSA topic');
 			if (!Object.hasOwn(MSA_CLASSES, item.msa.wordClass)) add('Unknown MSA word class');
-			if (item.msa.plural && item.msa.wordClass !== 'noun') add('Only noun entries can have a nominal plural');
+			if (item.msa.plural && item.msa.wordClass !== 'noun')
+				add('Only noun entries can have a nominal plural');
 			if (item.msa.feminine && item.msa.wordClass !== 'adjective') {
 				add('Feminine adjective belongs to an adjective entry');
 			}

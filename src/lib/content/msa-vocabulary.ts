@@ -259,7 +259,13 @@ export const msaVocabulary: readonly VocabularyItem[] = Object.entries(seeds).fl
 				const parts = line.split('|');
 				if (parts.length !== 4) throw new Error(`Malformed MSA row: ${line}`);
 				const [slug, arabic, meaning, wordClass] = parts;
-				if (!slug || !arabic || !meaning || !wordClass || !['noun', 'adjective', 'expression', 'particle'].includes(wordClass)) {
+				if (
+					!slug ||
+					!arabic ||
+					!meaning ||
+					!wordClass ||
+					!['noun', 'adjective', 'expression', 'particle'].includes(wordClass)
+				) {
 					throw new Error(`Invalid MSA row: ${line}`);
 				}
 				const grouping = topic as MsaTopic;

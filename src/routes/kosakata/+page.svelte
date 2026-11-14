@@ -66,7 +66,9 @@
 	description="Kamus tematik bahasa Arab baku (MSA), kata benda, kata sifat, istilah modern, kosakata shalat dan Al-Qur’an, dengan pencarian serta mode hafalan."
 >
 	{#snippet lead()}
-		<p>Pelajari isim benda, isim sifat, ungkapan, dan kata dari bacaan. Coba ingat tanpa bantuan.</p>
+		<p>
+			Pelajari isim benda, isim sifat, ungkapan, dan kata dari bacaan. Coba ingat tanpa bantuan.
+		</p>
 	{/snippet}
 </PageIntro>
 

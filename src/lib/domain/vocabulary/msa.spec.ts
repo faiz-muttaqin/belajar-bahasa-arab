@@ -21,7 +21,9 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 		expect(count('adjective')).toBe(34);
 		expect(count('expression')).toBe(11);
 		expect(count('particle')).toBe(1);
-		expect(msaVocabulary.find((item) => item.id === 'msa-ya-nida')?.msa?.wordClass).toBe('particle');
+		expect(msaVocabulary.find((item) => item.id === 'msa-ya-nida')?.msa?.wordClass).toBe(
+			'particle'
+		);
 	});
 
 	it('stores selected lexical plurals and female adjectives without generating unknown forms', () => {
@@ -43,9 +45,11 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 
 	it('does not permit a foreign-register classification or unsupported MSA subgroup', () => {
 		const item = msaVocabulary[0]!;
-		expect(validateVocab({ ...item, register: 'classical' }).map((issue) => issue.message))
-			.toContain('MSA collection must use msa register');
-		expect(validateVocab({ ...item, msa: undefined }).map((issue) => issue.message))
-			.toContain('MSA lexical metadata is required');
+		expect(
+			validateVocab({ ...item, register: 'classical' }).map((issue) => issue.message)
+		).toContain('MSA collection must use msa register');
+		expect(validateVocab({ ...item, msa: undefined }).map((issue) => issue.message)).toContain(
+			'MSA lexical metadata is required'
+		);
 	});
 });
