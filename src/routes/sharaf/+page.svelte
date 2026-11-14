@@ -4,7 +4,7 @@
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { sharafEntries } from '#lib/content/sharaf.js';
 	import { tashrifColumns } from '#lib/domain/sharaf/matrix.js';
-	import { searchSharaf, type SharafFilter, type SharafEntry } from '#lib/domain/sharaf/lexicon.js';
+	import { searchSharaf, type SharafFilter } from '#lib/domain/sharaf/lexicon.js';
 
 	let query = $state('');
 	let filter = $state<SharafFilter>('all');
@@ -142,8 +142,11 @@
 						<summary class="cursor-pointer font-medium text-primary">Sumber dan status</summary>
 						<p class="mt-2">Status: {entry.reviewStatus} (belum ditinjau pengajar).</p>
 						<ul class="mt-2 space-y-1">
-							{#each entry.sources as source}
-								<li><a href={source} class="break-all underline">{source}</a></li>
+							{#each entry.sources as source (source)}
+								<li>
+									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external source -->
+									<a href={source} class="break-all underline">{source}</a>
+								</li>
 							{/each}
 						</ul>
 					</details>
