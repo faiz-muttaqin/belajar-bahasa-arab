@@ -50,7 +50,7 @@
 			}
 
 			try {
-				const response = await fetch(resolve('data/sharaf/'));
+				const response = await fetch(resolve('data/sharaf.json'));
 				if (!response.ok) throw new Error('Unduhan glosarium gagal');
 				const snapshot = parseSharafCatalog(await response.json());
 				if (!snapshot) throw new Error('Format glosarium tidak sesuai');
@@ -212,7 +212,7 @@
 				<li>
 					<button
 						type="button"
-						aria-pressed={selected[entry.bab!.number] === entry.id}
+						aria-pressed={selected[entry.bab?.number ?? 0] === entry.id}
 						onclick={() => selectWord(entry)}
 						class="w-full rounded-lg border px-3 py-2 text-start transition-colors hover:border-primary hover:bg-secondary aria-pressed:border-primary aria-pressed:bg-secondary"
 					>
