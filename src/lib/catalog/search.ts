@@ -1,4 +1,5 @@
 import { stripHarakat } from '#lib/domain/arabic/harakat.js';
+import { groupOfTable } from '#lib/content/reference-groups.js';
 import type { Catalog } from './types.js';
 
 export const searchKinds = {
@@ -10,7 +11,9 @@ export const searchKinds = {
 
 export type SearchKind = keyof typeof searchKinds;
 type LessonLink = `${'belajar' | 'iqra'}/${string}/`;
-type SearchLink = LessonLink | `${LessonLink | 'kosakata/' | 'rujukan/' | 'sharaf/'}#${string}`;
+type SearchLink =
+	| LessonLink
+	| `${LessonLink | 'kosakata/' | 'rujukan/fiil/' | 'rujukan/isim/' | 'rujukan/harf/' | 'rujukan/kata-tanya/' | 'rujukan/' | 'sharaf/'}#${string}`;
 
 type Entry = {
 	key: string;
@@ -161,7 +164,9 @@ export function indexCatalog(catalog: Catalog): SearchEntry[] {
 	}
 
 	for (const table of catalog.references) {
-		const href = `rujukan/#${table.id}` as const;
+		const page = (groupOfTable(table.id)?.path ?? 'rujukan/') as
+			'rujukan/fiil/' | 'rujukan/isim/' | 'rujukan/harf/' | 'rujukan/kata-tanya/' | 'rujukan/';
+		const href = `${page}#${table.id}` as const;
 		entries.push(
 			buildEntry({
 				key: table.id,
@@ -172,7 +177,7 @@ export function indexCatalog(catalog: Catalog): SearchEntry[] {
 			})
 		);
 		for (const row of table.rows) {
-			const arabic = row.cells.arabic ?? row.cells.fataha;
+			const arabic = row.cells.arabic ?? row.cells.pattern ?? row.cells.fataha;
 			const title = row.cells.meaning ?? row.cells.form ?? table.title;
 			const context = row.cells.effect ?? row.explanation ?? table.title;
 			entries.push(
@@ -180,7 +185,7 @@ export function indexCatalog(catalog: Catalog): SearchEntry[] {
 					{
 						key: `${table.id}:${row.id}`,
 						kind: 'reference',
-						href: `rujukan/#${table.id}-${row.id}`,
+						href: `${page}#${table.id}-${row.id}`,
 						title,
 						arabic,
 						context
