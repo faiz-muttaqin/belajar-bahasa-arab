@@ -39,6 +39,7 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 | F-08 | Audio player component (click-to-play, replay, speed, errors)    | ⬜             | —            | Needs one reviewed clip from A-01.                                                                                                                                |
 | F-09 | Spaced-repetition scheduler (client-side)                        | ⬜             | —            | Use ts-fsrs (MIT), desired retention 0.90, default params; rating map wrong=Again, correct=Good, fast=Easy. Spike: browser bundle despite node>=24 engines field. |
 | F-10 | Tashrif tertransposisi + kamus sharaf + cache browser            | 🟡             | sharaf PR #2 | CI + E2E lulus pada PR #2. Tinjauan guru bahasa Arab dan audit lisensi dataset wajib sebelum ekspansi.                                                            |
+| F-11 | Tabel 22 bab, modal glosarium, dan sidebar desktop               | 🟡             | sharaf PR #3 | Kode + CI (types, lint, unit, build, E2E) lulus; PR #3 masih draft. Pola langka dan contoh perlu review bahasa Arab.                                              |
 
 ## Audio
 
