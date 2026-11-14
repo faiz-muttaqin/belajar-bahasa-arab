@@ -27,8 +27,8 @@
 	>
 		<span class="block text-lg font-semibold">Daftar kata kerja per bab</span>
 		<span class="mt-1 block text-muted-foreground"
-			>Ribuan kata kerja tiga huruf dengan transliterasi, mudhari, mashdar, dan arti. Ketuk untuk
-			melihat.</span
+			>Ribuan kata kerja untuk 22 wazan dengan transliterasi, mudhari, mashdar, dan arti. Ketuk
+			untuk melihat.</span
 		>
 	</a>
 

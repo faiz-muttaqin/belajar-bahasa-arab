@@ -42,7 +42,7 @@
 <PageIntro
 	title={data.info.title}
 	section="rujukan"
-	description="Kata kerja tsulatsi mujarrad untuk bab ini, dikelompokkan menurut huruf pertama, dengan transliterasi, mudhari, mashdar, dan arti dari Wiktionary."
+	description="Kata kerja untuk wazan ini, dikelompokkan menurut huruf akar pertama, dengan transliterasi, mudhari, mashdar, dan arti dari Wiktionary."
 >
 	{#snippet lead()}
 		<p>

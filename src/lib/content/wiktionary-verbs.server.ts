@@ -14,12 +14,20 @@ function readJson<T>(name: string, fallback: T): T {
 	return existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')) as T) : fallback;
 }
 
+type Source = { attribution: string; verbs: WiktionaryVerb[] };
+
 export function loadVerbs() {
-	const source = readJson<{ attribution: string; verbs: WiktionaryVerb[] }>('verbs-form-i.json', {
-		attribution: '',
-		verbs: []
-	});
-	const translations = readJson<Record<string, VerbTranslation>>('verbs-form-i.id.json', {});
+	const formI = readJson<Source>('verbs-form-i.json', { attribution: '', verbs: [] });
+	const mazid = readJson<Source>('verbs-mazid.json', { attribution: '', verbs: [] });
+	const translations = {
+		...readJson<Record<string, VerbTranslation>>('verbs-form-i.id.json', {}),
+		...readJson<Record<string, VerbTranslation>>('verbs-mazid.id.json', {})
+	};
 	const google = readJson<Record<string, string>>('verbs-form-i.google.json', {});
-	return { attribution: source.attribution, verbs: source.verbs, translations, google };
+	return {
+		attribution: formI.attribution || mazid.attribution,
+		verbs: [...formI.verbs, ...mazid.verbs],
+		translations,
+		google
+	};
 }

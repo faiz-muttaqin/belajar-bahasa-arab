@@ -3,6 +3,7 @@ import {
 	babInfos,
 	groupByLetter,
 	letterGroup,
+	stemWord,
 	toRows,
 	type WiktionaryVerb
 } from './wiktionary-verbs.js';
@@ -68,8 +69,24 @@ describe('toRows', () => {
 	});
 });
 
+describe('stemWord', () => {
+	it('removes the wazan prefix so mazid verbs sort by the first root letter', () => {
+		expect(stemWord('أَعْلَمَ', 9)).toBe('علم');
+		expect(stemWord('تَكَلَّمَ', 11)).toBe('كلم');
+		expect(stemWord('اِسْتَخْدَمَ', 15)).toBe('خدم');
+		expect(stemWord('اِنْفَصَلَ', 13)).toBe('فصل');
+	});
+
+	it('leaves bab 1 to 8 words and very short words alone', () => {
+		expect(stemWord('كَتَبَ', 1)).toBe('كتب');
+		expect(stemWord('اِتَّ', 12)).toBe('اِتَّ'.replace(/[\u064B-\u0652]/g, ''));
+	});
+});
+
 describe('babInfos', () => {
-	it('lists the six bab in site order plus an unknown group', () => {
-		expect(babInfos.map((b) => b.bab)).toEqual([1, 2, 3, 4, 5, 6, 0]);
+	it('lists all 22 groups in site order plus an unknown group', () => {
+		expect(babInfos.map((b) => b.bab)).toEqual([...Array.from({ length: 22 }, (_, i) => i + 1), 0]);
+		expect(babInfos[6]?.madhi.normalize('NFC')).toBe('فَعَّلَ'.normalize('NFC'));
+		expect(babInfos[18]?.family).toBe('Ruba’i mujarrad');
 	});
 });

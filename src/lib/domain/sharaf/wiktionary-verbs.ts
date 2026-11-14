@@ -4,6 +4,7 @@
  * grouping by bab and first root letter, and building tile rows. Nothing is invented here.
  */
 import type { ReferenceTableData } from '#lib/domain/reference/table.js';
+import { patternCatalog } from './patterns.js';
 
 export type WiktionaryVerb = {
 	id: string;
@@ -15,7 +16,9 @@ export type WiktionaryVerb = {
 	passiveParticiple?: string;
 	bab: number;
 	altBabs: number[];
-	babSource: 'wiktionary-pattern' | 'derived-from-forms' | 'unknown';
+	babSource: 'wiktionary-pattern' | 'derived-from-forms' | 'wiktionary-form' | 'unknown';
+	/** Wiktionary verb form (I to XIII, Iq to IVq); only set for forms other than I. */
+	form?: string;
 	pattern: string | null;
 	transitive: boolean;
 	en: string[];
@@ -27,30 +30,83 @@ export type VerbTranslation = { idGlosses: string[]; uncertain?: boolean };
 
 export type BabInfo = {
 	slug: string;
+	/** Group number 1 to 22 (site order), or 0 for "belum diketahui". */
 	bab: number;
 	title: string;
+	family: string;
 	madhi: string;
 	mudhari: string;
 	example: string;
 };
 
-/** Site order of the six bab, same as the tashrif reference. */
+const sixNames: Record<number, [string, string]> = {
+	1: ['Menolong', 'نَصَرَ'],
+	2: ['Memukul', 'ضَرَبَ'],
+	3: ['Membuka', 'فَتَحَ'],
+	4: ['Mengetahui', 'عَلِمَ'],
+	5: ['Mengira', 'حَسِبَ'],
+	6: ['Menjadi baik', 'حَسُنَ']
+};
+
+/** All 22 groups in site order (same numbering as the tashrif table) plus an unknown group. */
 export const babInfos: readonly BabInfo[] = [
-	{ slug: '1', bab: 1, title: 'Bab 1 · Menolong', madhi: 'فَعَلَ', mudhari: 'يَفْعُلُ', example: 'نَصَرَ' },
-	{ slug: '2', bab: 2, title: 'Bab 2 · Memukul', madhi: 'فَعَلَ', mudhari: 'يَفْعِلُ', example: 'ضَرَبَ' },
-	{ slug: '3', bab: 3, title: 'Bab 3 · Membuka', madhi: 'فَعَلَ', mudhari: 'يَفْعَلُ', example: 'فَتَحَ' },
-	{ slug: '4', bab: 4, title: 'Bab 4 · Mengetahui', madhi: 'فَعِلَ', mudhari: 'يَفْعَلُ', example: 'عَلِمَ' },
-	{ slug: '5', bab: 5, title: 'Bab 5 · Mengira', madhi: 'فَعِلَ', mudhari: 'يَفْعِلُ', example: 'حَسِبَ' },
+	...patternCatalog.map((pattern) => {
+		const named = sixNames[pattern.number];
+		return {
+			slug: String(pattern.number),
+			bab: pattern.number,
+			title: named ? `Bab ${pattern.number} · ${named[0]}` : `Bab ${pattern.number}`,
+			family: pattern.familyLabel,
+			madhi: pattern.madhi,
+			mudhari: pattern.mudhari,
+			example: named?.[1] ?? ''
+		};
+	}),
 	{
-		slug: '6',
-		bab: 6,
-		title: 'Bab 6 · Menjadi baik',
-		madhi: 'فَعُلَ',
-		mudhari: 'يَفْعُلُ',
-		example: 'حَسُنَ'
-	},
-	{ slug: 'lain', bab: 0, title: 'Bab belum diketahui', madhi: '', mudhari: '', example: '' }
+		slug: 'lain',
+		bab: 0,
+		title: 'Bab belum diketahui',
+		family: '',
+		madhi: '',
+		mudhari: '',
+		example: ''
+	}
 ];
+
+/**
+ * Letters that belong to the wazan, not to the root, at the start of a madhi form. Removed
+ * before grouping so mazid verbs sort by their first root letter, not by "ا" or "ت".
+ */
+const wazanPrefix: Record<number, string> = {
+	9: 'أ',
+	10: 'ت',
+	11: 'ت',
+	12: 'ا',
+	13: 'ان',
+	14: 'ا',
+	15: 'است',
+	16: 'ا',
+	17: 'ا',
+	18: 'ا',
+	20: 'ت',
+	21: 'ا',
+	22: 'ا'
+};
+
+const MARKS = /[\u064B-\u0652\u0670]/g;
+
+/** The word without the wazan prefix, used to group mazid verbs by first root letter. */
+export function stemWord(arabic: string, bab: number): string {
+	const bare = arabic
+		.normalize('NFC')
+		.replace(/\u0640/g, '')
+		.replace(MARKS, '')
+		.replace(/[ٱإآ]/g, 'ا');
+	const prefix = wazanPrefix[bab];
+	return prefix && bare.startsWith(prefix) && bare.length - prefix.length >= 2
+		? bare.slice(prefix.length)
+		: bare;
+}
 
 const alefs = new Set(['ا', 'أ', 'إ', 'آ', 'ٱ', 'ء', 'ؤ', 'ئ']);
 const order = 'أبتثجحخدذرزسشصضطظعغفقكلمنهوي';
@@ -64,10 +120,13 @@ export function letterGroup(arabic: string): string {
 	return first;
 }
 
-export function groupByLetter<T extends { ar: string }>(items: readonly T[]) {
+export function groupByLetter<T extends { ar: string }>(
+	items: readonly T[],
+	word: (item: T) => string = (item) => item.ar
+) {
 	const groups = new Map<string, T[]>();
 	for (const item of items) {
-		const key = letterGroup(item.ar);
+		const key = letterGroup(word(item));
 		groups.set(key, [...(groups.get(key) ?? []), item]);
 	}
 	return [...groups.entries()]

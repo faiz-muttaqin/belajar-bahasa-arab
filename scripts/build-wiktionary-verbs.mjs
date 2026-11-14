@@ -67,7 +67,32 @@ const tagged = (forms, ...tags) =>
 /** Wiktionary uses "-" for a missing form. */
 const clean = (form) => (form && form !== '-' ? form : undefined);
 
+/**
+ * Wiktionary form to the site's group number (1 to 22, same order as the tashrif table).
+ * Western numbering differs from the traditional order: V and VI, VII and VIII swap, and
+ * XI, XII, XIII map to the last three tsulatsi mazid +3 rows. Form XIV has no site row.
+ */
+const FORM_BAB = {
+	II: 7,
+	III: 8,
+	IV: 9,
+	VI: 10,
+	V: 11,
+	VIII: 12,
+	VII: 13,
+	IX: 14,
+	X: 15,
+	XII: 16,
+	XIII: 17,
+	XI: 18,
+	Iq: 19,
+	IIq: 20,
+	IIIq: 21,
+	IVq: 22
+};
+
 const verbs = [];
+const mazid = [];
 const seen = new Map();
 const rl = createInterface({ input: createReadStream(source, { encoding: 'utf8' }) });
 let lines = 0;
@@ -78,8 +103,10 @@ for await (const line of rl) {
 	if (entry.pos !== 'verb') continue;
 	const template = (entry.head_templates ?? []).find((t) => t.name === 'ar-verb');
 	const arg = template?.args?.['1'] ?? '';
-	const match = arg.match(/^([IVX]+)(?=$|[/.:])(?:\/([^.:]+))?/);
-	if (!match || match[1] !== 'I') continue;
+	const match = arg.match(/^([IVX]+q?)(?=$|[/.:])(?:\/([^.:]+))?/);
+	if (!match) continue;
+	const form = match[1];
+	if (form !== 'I' && !FORM_BAB[form]) continue;
 	const forms = entry.forms ?? [];
 	const madhi = forms.find((f) => (f.tags ?? []).includes('canonical'))?.form;
 	if (!madhi) continue;
@@ -96,10 +123,11 @@ for await (const line of rl) {
 	const derived = patternBabs.length ? 0 : babFromForms(madhi, nonPast);
 	const babs = patternBabs.length ? patternBabs : derived ? [derived] : [];
 	const title = strip(entry.word ?? madhi);
-	const count = (seen.get(title) ?? 0) + 1;
-	seen.set(title, count);
-	verbs.push({
-		id: `${title}-${count}`,
+	const key = form === 'I' ? title : `${title}:${form}`;
+	const count = (seen.get(key) ?? 0) + 1;
+	seen.set(key, count);
+	const record = {
+		id: form === 'I' ? `${title}-${count}` : `${title}-${form}-${count}`,
 		ar: madhi.normalize('NFC'),
 		tr: tagged(forms, 'romanization'),
 		nonPast,
@@ -117,10 +145,24 @@ for await (const line of rl) {
 		transitive: (entry.senses ?? []).some((s) => (s.tags ?? []).includes('transitive')),
 		en: [...new Set(glosses)].slice(0, 3),
 		page: `https://en.wiktionary.org/wiki/${encodeURIComponent(title)}`
-	});
+	};
+	if (form === 'I') {
+		verbs.push(record);
+	} else {
+		// Group comes from the form, not from vowels: the dump gives no vowel pattern here.
+		mazid.push({
+			...record,
+			form,
+			bab: FORM_BAB[form],
+			altBabs: [],
+			babSource: 'wiktionary-form',
+			pattern: null
+		});
+	}
 }
 
 verbs.sort((a, b) => a.bab - b.bab || a.ar.localeCompare(b.ar, 'ar'));
+mazid.sort((a, b) => a.bab - b.bab || a.ar.localeCompare(b.ar, 'ar'));
 const counts = Object.fromEntries(
 	[0, 1, 2, 3, 4, 5, 6].map((bab) => [bab, verbs.filter((v) => v.bab === bab).length])
 );
@@ -142,3 +184,28 @@ writeFileSync(
 	) + '\n'
 );
 console.log(`read ${lines} lines, wrote ${verbs.length} Form I verbs`, counts);
+
+const outMazid = new URL('../data/wiktionary/verbs-mazid.json', import.meta.url).pathname;
+const mazidCounts = Object.fromEntries(
+	Array.from({ length: 16 }, (_, i) => i + 7).map((bab) => [
+		bab,
+		mazid.filter((v) => v.bab === bab).length
+	])
+);
+writeFileSync(
+	outMazid,
+	JSON.stringify(
+		{
+			schema: 1,
+			license: 'CC BY-SA 4.0',
+			attribution:
+				'Data from the English Wiktionary (en.wiktionary.org), extracted by kaikki.org (Tatu Ylonen), CC BY-SA 4.0 and GFDL. Each entry links to its Wiktionary page.',
+			source: 'https://kaikki.org/dictionary/Arabic/kaikki.org-dictionary-Arabic.jsonl',
+			totals: { verbs: mazid.length, perBab: mazidCounts },
+			verbs: mazid
+		},
+		null,
+		0
+	) + '\n'
+);
+console.log(`wrote ${mazid.length} mazid verbs`, mazidCounts);

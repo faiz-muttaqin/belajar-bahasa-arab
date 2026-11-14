@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { loadVerbs } from '#lib/content/wiktionary-verbs.server.js';
-import { babInfos, groupByLetter, toRows } from '#lib/domain/sharaf/wiktionary-verbs.js';
+import { babInfos, groupByLetter, stemWord, toRows } from '#lib/domain/sharaf/wiktionary-verbs.js';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const prerender = true;
@@ -19,10 +19,12 @@ export const load: PageServerLoad = ({ params }) => {
 	const inBab = verbs.filter((v) => v.bab === info.bab);
 	const rows = toRows(inBab, translations, google);
 	const byId = new Map(rows.map((row) => [row.id, row]));
-	const groups = groupByLetter(inBab).map(({ letter, verbs: items }) => ({
-		letter,
-		ids: items.map((v) => v.id)
-	}));
+	const groups = groupByLetter(inBab, (v) => stemWord(v.ar, v.bab)).map(
+		({ letter, verbs: items }) => ({
+			letter,
+			ids: items.map((v) => v.id)
+		})
+	);
 	return {
 		info,
 		attribution,
