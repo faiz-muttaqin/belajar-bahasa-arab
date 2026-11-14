@@ -263,5 +263,12 @@
 		>
 			Buka kamus sharaf
 		</a>
+		<a
+			href={resolve('data/sharaf.json')}
+			download
+			class="inline-flex min-h-11 items-center text-xs font-medium text-primary underline"
+		>
+			Unduh glosarium JSON
+		</a>
 	</aside>
 </div>
