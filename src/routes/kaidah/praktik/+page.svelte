@@ -43,6 +43,7 @@
 	<ol class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-3">
 		{#each grammarStages as stage (stage.id)}
 			<li class="min-w-0 rounded-xl border bg-card p-4">
+				<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- URLs are resolved in stageLinks using $app/paths -->
 				<a href={stageLinks[stage.id]} class="group block space-y-2">
 					<span class="text-xs font-semibold text-primary">{stage.label}</span>
 					<h3 class="font-semibold group-hover:underline">{stage.title}</h3>
