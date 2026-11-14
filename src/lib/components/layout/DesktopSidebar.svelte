@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import Search from '@lucide/svelte/icons/search';
 	import { activeSectionId, sections } from '#lib/navigation.js';
 	import { sectionIcons } from './section-icons.js';
 	import ThemeToggle from './ThemeToggle.svelte';
