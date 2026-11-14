@@ -242,6 +242,7 @@ const mainLexicon = 'https://kaikki.org/dictionary/Arabic/index.html';
 const msaPhrasebook = 'https://en.wiktionary.org/wiki/Appendix:Basic_Arabic_phrases';
 const wiktionaryCopyright = 'https://en.wiktionary.org/wiki/Wiktionary:Copyrights';
 const specificSource: Readonly<Record<string, string>> = {
+	kitab: 'https://en.wiktionary.org/wiki/كتاب',
 	imraah: 'https://en.wiktionary.org/wiki/امرأة',
 	hasub: 'https://en.wiktionary.org/wiki/حاسوب',
 	internet: 'https://en.wiktionary.org/wiki/إنترنت',
