@@ -21,6 +21,18 @@
 </script>
 
 <article class="flex h-full flex-col rounded-2xl border bg-card p-5">
+	{#if item.collection === 'quran'}
+		<p class="mb-2 text-xs font-medium text-muted-foreground">
+			{#if item.quranFrequency}
+				{item.quranFrequency.occurrences.toLocaleString('id-ID')}× dalam Al-Qur’an
+				<span class="font-normal"
+					>({item.quranFrequency.basis === 'verb' ? 'lema fi’il' : 'lema'})</span
+				>
+			{:else}
+				Frekuensi belum diverifikasi
+			{/if}
+		</p>
+	{/if}
 	{#if Icon && !hafalan}
 		<span
 			class="inline-flex size-12 items-center justify-center rounded-xl bg-secondary text-primary"

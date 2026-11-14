@@ -4,6 +4,7 @@ import type {
 	VerbReference,
 	VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
+import { quranFrequencies } from './quran-frequency.js';
 
 export const TANZIL_TEXT_VERSION = 'Tanzil Uthmani 1.1';
 export const TANZIL_NOTICE = 'Tanzil Quran Text © 2007–2021 Tanzil Project';
@@ -225,7 +226,25 @@ const words: Record<QuranGroup, Word[]> = {
 			'عِندَ',
 			'Menunjukkan kedekatan atau keberadaan menurut konteks.'
 		],
-		['maa', 'مَعَ', 'maʿa', 'bersama', '2:153', 'مَعَ', 'Menandai kebersamaan atau penyertaan.']
+		['maa', 'مَعَ', 'maʿa', 'bersama', '2:153', 'مَعَ', 'Menandai kebersamaan atau penyertaan.'],
+		[
+			'kull',
+			'كُلٌّ',
+			'kull',
+			'setiap, seluruh',
+			'2:20',
+			'كُلِّ',
+			'Dalam frasa “setiap sesuatu”, i‘rabnya mengikuti susunan kalimat.'
+		],
+		[
+			'ghayr',
+			'غَيْرٌ',
+			'ghayr',
+			'selain, bukan',
+			'1:7',
+			'غَيْرِ',
+			'Pada ayat ini digunakan untuk mengecualikan suatu golongan.'
+		]
 	],
 	'fiil-ujar': [
 		[
@@ -545,6 +564,15 @@ const words: Record<QuranGroup, Word[]> = {
 	isim: [
 		['allah', 'اللَّهُ', 'Allāh', 'Allah', '112:2', 'ٱللَّهُ', 'Nama diri.'],
 		[
+			'sabil',
+			'سَبِيلٌ',
+			'sabīl',
+			'jalan, cara',
+			'2:154',
+			'سَبِيلِ',
+			'Dalam ayat ini bermakna jalan atau perjuangan di jalan Allah.'
+		],
+		[
 			'rabb',
 			'رَبٌّ',
 			'rabb',
@@ -789,7 +817,12 @@ export const quranVocabulary: VocabularyItem[] = Object.entries(words).flatMap((
 	const quranGroup = name as QuranGroup;
 	return group.map(
 		([slug, arabic, transliteration, meaning, reference, token, context, verbReference]) => {
-			const sources = [`https://tanzil.net/#${reference}`, TANZIL_LICENSE_URL];
+			const quranFrequency = quranFrequencies[slug];
+			const sources = [
+				`https://tanzil.net/#${reference}`,
+				TANZIL_LICENSE_URL,
+				...(quranFrequency ? [quranFrequency.source] : [])
+			];
 			return {
 				id: `quran-${slug}`,
 				collection: 'quran',
@@ -802,6 +835,7 @@ export const quranVocabulary: VocabularyItem[] = Object.entries(words).flatMap((
 				context,
 				sources,
 				quranGroup,
+				quranFrequency,
 				quranOccurrence: { reference, token, textVersion: TANZIL_TEXT_VERSION },
 				verbReference
 			};

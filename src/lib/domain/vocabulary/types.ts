@@ -19,6 +19,18 @@ export const QURAN_GROUPS = {
 } as const;
 
 export type QuranGroup = keyof typeof QURAN_GROUPS;
+/**
+ * A manually verified statistic for a particular lemma/verb analysis.
+ * Not a root count, substring count, or token total.
+ */
+export type QuranFrequency = {
+	occurrences: number;
+	basis: 'lemma' | 'verb';
+	source: string;
+	evidence: 'manually-checked';
+	note?: string;
+};
+
 export type QuranOccurrence = {
 	/** Surah and ayah in the Tanzil download. */
 	reference: `${number}:${number}`;
@@ -63,6 +75,7 @@ export type VocabularyItem = {
 	transliteration?: string;
 	quranGroup?: QuranGroup;
 	quranOccurrence?: QuranOccurrence;
+	quranFrequency?: QuranFrequency;
 	verbReference?: VerbReference;
 };
 
@@ -95,6 +108,16 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 		(!item.quranGroup || !item.quranOccurrence || !item.transliteration)
 	) {
 		add('Qur’anic items require a group, a transliteration and an ayah witness');
+	}
+	if (item.quranFrequency) {
+		const freq = item.quranFrequency;
+		if (item.collection !== 'quran') add('Only Qur’anic entries can carry Quran frequency');
+		if (!Number.isSafeInteger(freq.occurrences) || freq.occurrences <= 0) {
+			add('Quran frequency must be a positive verified integer');
+		}
+		if (!/^https:\/\/corpus\.quran\.com\//.test(freq.source)) {
+			add('Quran frequency requires a Quranic Arabic Corpus source URL');
+		}
 	}
 	return issues;
 }
