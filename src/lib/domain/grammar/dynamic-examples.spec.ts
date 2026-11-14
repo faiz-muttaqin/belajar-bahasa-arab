@@ -75,8 +75,8 @@ describe('G-06 dynamic example slots', () => {
 	it('prevents incompatible verb/object combinations and arbitrary ids', () => {
 		const withOpen = chooseBuilderWord(initialBuilderState, 'verb', 'fiil-fataha').state;
 		expect(optionsForBuilderSlot(withOpen, 'object').map((item) => item.id)).toEqual([
-			'msa-kitab',
-			'bab'
+			'bab',
+			'msa-kitab'
 		]);
 		expect(() => chooseBuilderWord(withOpen, 'object', 'msa-risalah')).toThrow(
 			'Incompatible replacement'
