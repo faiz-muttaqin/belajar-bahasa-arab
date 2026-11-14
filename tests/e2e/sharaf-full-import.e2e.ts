@@ -35,7 +35,7 @@ test('the modal filters the full dataset without rendering thousands of cards at
 		.toBeGreaterThan(7900);
 	expect(await modal.locator('li').count()).toBeLessThanOrEqual(48);
 	await modal.getByRole('searchbox', { name: 'Cari Arab atau Indonesia' }).fill('آبَ');
-	await expect(modal.getByText('آبَ', { exact: true })).toBeVisible();
+	await expect(modal.getByText('آبَ', { exact: true }).first()).toBeVisible();
 	await modal.getByRole('button', { name: 'Gunakan' }).first().click();
 	await expect(modal).toBeHidden();
 	await expect(page.locator('#tashrif-matrix tbody tr').first()).toContainText('آبَ');
