@@ -8,6 +8,7 @@
 	import QuranVocabulary from '#lib/components/learning/QuranVocabulary.svelte';
 	import VocabCard from '#lib/components/learning/VocabCard.svelte';
 	import SpeechSettings from '#lib/components/learning/SpeechSettings.svelte';
+	import { quranVocabulary } from '#lib/content/quran-vocabulary.js';
 	import { publishedVocabulary } from '#lib/content/vocabulary.js';
 	import { type VocabularyCollectionId } from '#lib/domain/vocabulary/types.js';
 
@@ -38,6 +39,17 @@
 	];
 
 	let hafalan = $state(false);
+	let activeCollection = $state<'all' | VocabularyCollectionId>('all');
+	const collectionFilters: { id: 'all' | VocabularyCollectionId; label: string; count: number }[] = [
+		{
+			id: 'all',
+			label: 'All',
+			count: publishedVocabulary('harian').length + publishedVocabulary('shalat').length + quranVocabulary.length
+		},
+		{ id: 'harian', label: 'Harian', count: publishedVocabulary('harian').length },
+		{ id: 'shalat', label: 'Shalat', count: publishedVocabulary('shalat').length },
+		{ id: 'quran', label: 'Al-Qur’an', count: quranVocabulary.length }
+	];
 </script>
 
 <PageIntro
@@ -52,7 +64,24 @@
 
 <div class="mt-8"><SpeechSettings /></div>
 
-<div class="mt-10">
+<section class="mt-10 space-y-3" aria-label="Filter koleksi kosakata">
+	<h2 class="text-sm font-semibold text-muted-foreground">Koleksi kosakata</h2>
+	<div role="group" aria-label="Pilih koleksi" class="flex flex-wrap gap-2">
+		{#each collectionFilters as option (option.id)}
+			<button
+				type="button"
+				aria-pressed={activeCollection === option.id}
+				onclick={() => (activeCollection = option.id)}
+				class="inline-flex min-h-11 items-center gap-2 rounded-full border bg-card px-4 text-sm font-medium transition-colors hover:border-primary aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground"
+			>
+				{option.label}
+				<span class="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground group-aria-pressed:text-primary-foreground">{option.count}</span>
+			</button>
+		{/each}
+	</div>
+</section>
+
+<div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
 	<a
 		href="#al-quran"
 		class="me-4 inline-flex min-h-11 items-center font-medium text-primary underline"
@@ -76,8 +105,9 @@
 </div>
 
 {#each collections as collection (collection.id)}
-	{@const Icon = collection.icon}
-	{@const items = publishedVocabulary(collection.id)}
+	{#if activeCollection === 'all' || activeCollection === collection.id}
+		{@const Icon = collection.icon}
+		{@const items = publishedVocabulary(collection.id)}
 	<section
 		id={collection.id === 'shalat' ? 'quran' : collection.id}
 		class="mt-16 scroll-mt-24"
@@ -109,6 +139,9 @@
 			Lihat kata-kata ini dalam pelajaran
 		</a>
 	</section>
+	{/if}
 {/each}
 
-<QuranVocabulary {hafalan} />
+{#if activeCollection === 'all' || activeCollection === 'quran'}
+	<QuranVocabulary {hafalan} />
+{/if}
