@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
+	import Search from '@lucide/svelte/icons/search';
 	import MenuIcon from '@lucide/svelte/icons/menu';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Sheet from '#lib/components/ui/sheet/index.js';
@@ -17,7 +18,7 @@
 </script>
 
 <header class="sticky top-0 z-40 border-b bg-background">
-	<div class="mx-auto flex h-16 max-w-5xl items-center gap-4 px-4 md:px-6">
+	<div class="mx-auto flex h-16 max-w-5xl items-center gap-2 px-4 md:gap-4 md:px-6">
 		<a
 			href={resolve('/')}
 			class="me-auto inline-flex min-h-11 items-center rounded-md text-lg font-semibold"
@@ -41,6 +42,15 @@
 				{/each}
 			</ul>
 		</nav>
+
+		<a
+			href={resolve('cari/')}
+			aria-label="Cari materi"
+			aria-current={active === 'cari' ? 'page' : undefined}
+			class="inline-flex size-11 shrink-0 items-center justify-center rounded-md hover:bg-accent aria-[current=page]:text-primary"
+		>
+			<Search class="size-5" aria-hidden="true" />
+		</a>
 
 		<div class="hidden lg:block"><ThemeToggle /></div>
 

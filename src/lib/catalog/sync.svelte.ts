@@ -1,0 +1,101 @@
+import { resolve } from '$app/paths';
+import { readCatalog, saveCatalog } from './storage.js';
+import {
+	CATALOG_PATH,
+	MANIFEST_PATH,
+	isCatalog,
+	isCatalogManifest,
+	type Catalog
+} from './types.js';
+
+export const catalogState = $state<{
+	catalog?: Catalog;
+	busy: boolean;
+	saved: boolean;
+	error: boolean;
+}>({ busy: false, saved: false, error: false });
+
+let inFlight: Promise<void> | undefined;
+let checked = false;
+
+async function fetchCatalogFile(
+	path: typeof CATALOG_PATH | typeof MANIFEST_PATH,
+	version?: string
+) {
+	const url = new URL(resolve(path), location.href);
+	if (version) url.searchParams.set('v', version);
+	const response = await fetch(url, {
+		cache: version ? 'default' : 'no-cache',
+		signal: AbortSignal.timeout(15_000)
+	});
+	if (!response.ok) throw new Error(`HTTP ${response.status}`);
+	return response;
+}
+
+async function sync() {
+	catalogState.busy = true;
+	catalogState.error = false;
+	try {
+		if (!catalogState.catalog) {
+			const cached = await readCatalog().catch(() => undefined);
+			if (isCatalog(cached)) {
+				catalogState.catalog = cached;
+				catalogState.saved = true;
+			}
+		}
+		if (!navigator.onLine) return;
+
+		const manifest: unknown = await (await fetchCatalogFile(MANIFEST_PATH)).json();
+		if (!isCatalogManifest(manifest)) throw new Error('Versi daftar materi tidak sesuai.');
+		if (catalogState.catalog?.version !== manifest.version) {
+			const response = await fetchCatalogFile(CATALOG_PATH, manifest.version);
+			const bytes = await response.arrayBuffer();
+			if (bytes.byteLength !== manifest.bytes) throw new Error('Unduhan materi tidak lengkap.');
+			const downloaded: unknown = JSON.parse(new TextDecoder().decode(bytes));
+			if (!isCatalog(downloaded) || downloaded.version !== manifest.version) {
+				throw new Error('Versi unduhan materi tidak sesuai.');
+			}
+			// Keep the previous saved data until a complete replacement is ready.
+			catalogState.catalog = downloaded;
+			catalogState.saved = false;
+		}
+		if (catalogState.catalog && !catalogState.saved) {
+			await saveCatalog($state.snapshot(catalogState.catalog));
+			catalogState.saved = true;
+		}
+		checked = true;
+	} catch {
+		catalogState.error = true;
+	} finally {
+		catalogState.busy = false;
+	}
+}
+
+export function prepareCatalog(refresh = false) {
+	if (inFlight) return inFlight;
+	if (checked && !refresh) return Promise.resolve();
+	inFlight = sync().finally(() => {
+		inFlight = undefined;
+	});
+	return inFlight;
+}
+
+// Start after the current page has finished loading. An explicit visit to search starts immediately.
+export function startBackgroundCatalog() {
+	const refresh = () => void prepareCatalog(true);
+	const warm = () => void prepareCatalog();
+	let timer: ReturnType<typeof setTimeout> | undefined;
+
+	const schedule = () => {
+		timer = setTimeout(warm, 800);
+	};
+	if (document.readyState === 'complete') schedule();
+	else window.addEventListener('load', schedule, { once: true });
+	window.addEventListener('online', refresh);
+
+	return () => {
+		clearTimeout(timer);
+		window.removeEventListener('load', schedule);
+		window.removeEventListener('online', refresh);
+	};
+}

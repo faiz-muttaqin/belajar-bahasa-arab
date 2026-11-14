@@ -37,6 +37,10 @@
 	<section aria-labelledby="data" class="space-y-3">
 		<h2 id="data" class="text-2xl font-semibold">Data dan privasi</h2>
 		<p>
+			Salinan pelajaran, kosakata, dan tabel diunduh ke IndexedDB. Pencarian membaca salinan itu
+			langsung di perangkat.
+		</p>
+		<p>
 			Tidak ada akun dan tidak ada server untuk data Anda. Pengaturan disimpan di browser, dan
 			progres belajar akan disimpan di penyimpanan lokal browser (IndexedDB). Data ini tidak
 			berpindah antarperangkat dan bisa hilang jika data situs dihapus.

@@ -2,6 +2,7 @@
 	import './layout.css';
 	import '#lib/theme/fonts.css';
 	import { onMount } from 'svelte';
+	import { startBackgroundCatalog } from '#lib/catalog/sync.svelte.js';
 	import favicon from '#lib/assets/favicon.svg';
 	import SiteFooter from '#lib/components/layout/SiteFooter.svelte';
 	import SiteHeader from '#lib/components/layout/SiteHeader.svelte';
@@ -13,6 +14,7 @@
 
 	// Follow saved preference, OS colour-scheme changes and other tabs (reference counted).
 	onMount(() => themeMode.start());
+	onMount(startBackgroundCatalog);
 </script>
 
 <svelte:head>

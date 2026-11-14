@@ -8,6 +8,7 @@ import Info from '@lucide/svelte/icons/info';
 import Languages from '@lucide/svelte/icons/languages';
 import ListChecks from '@lucide/svelte/icons/list-checks';
 import Palette from '@lucide/svelte/icons/palette';
+import Search from '@lucide/svelte/icons/search';
 import Table2 from '@lucide/svelte/icons/table-2';
 import type { SectionId } from '#lib/navigation.js';
 
@@ -19,6 +20,7 @@ export const sectionIcons: Record<SectionId, Component> = {
 	latihan: ListChecks,
 	kosakata: BookA,
 	rujukan: Table2,
+	cari: Search,
 	progres: ChartNoAxesColumn,
 	bookmark: Bookmark,
 	tema: Palette,

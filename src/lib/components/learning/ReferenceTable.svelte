@@ -100,7 +100,10 @@
 			<tbody>
 				{#each table.rows as row, rowIndex (row.id)}
 					{@const isExpanded = expanded.has(row.id)}
-					<tr class={cn('align-middle', !isExpanded && 'border-b last:border-b-0')}>
+					<tr
+						id={`${table.id}-${row.id}`}
+						class={cn('scroll-mt-24 align-middle', !isExpanded && 'border-b last:border-b-0')}
+					>
 						<td class="py-3 ps-2">
 							{#if row.explanation}
 								<button

@@ -6,6 +6,8 @@ Read [AGENTS.md](./AGENTS.md) and the [stack guide](./docs/arabic-learning-stack
 
 The static build includes [public lessons](./docs/content/public-lessons.md) for the post-Iqra track and the optional reading foundation. Lessons cover Indonesian explanations of Arabic sentences, paragraphs and short documents. The build also includes the tashrif table and vocabulary from the lessons.
 
+`/cari/` searches public lessons, exercises, vocabulary and reference tables using Arabic with or without harakat and Indonesian keywords. After the first page loads, the browser downloads the versioned JSON catalog into IndexedDB. A service worker caches the public pages for offline access. The same data is available at `/data/materi.json`, with its version and size in `/data/manifest.json`.
+
 ## Requirements
 
 - Node.js 26.13.1 (see `.nvmrc`; run `nvm use`)

@@ -13,6 +13,7 @@ export type SectionId =
 	| 'latihan'
 	| 'kosakata'
 	| 'rujukan'
+	| 'cari'
 	| 'progres'
 	| 'bookmark'
 	| 'tema'
@@ -77,6 +78,14 @@ export const sections: readonly Section[] = [
 		path: 'rujukan/',
 		summary: 'Tabel ringkas yang bisa diulang dan dihafal, dengan penjelasan per baris.',
 		inHeader: true,
+		inTabBar: false
+	},
+	{
+		id: 'cari',
+		label: 'Cari',
+		path: 'cari/',
+		summary: 'Cari arti kata Arab, pelajaran, latihan, atau tabel dari perangkat ini.',
+		inHeader: false,
 		inTabBar: false
 	},
 	{
