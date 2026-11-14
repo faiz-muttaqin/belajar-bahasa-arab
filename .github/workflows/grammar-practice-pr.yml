@@ -1,0 +1,28 @@
+name: Verify G-06 interactive grammar practice
+on:
+  pull_request:
+    paths:
+      - 'src/lib/domain/grammar/**'
+      - 'src/lib/content/grammar-pathway*'
+      - 'src/lib/components/learning/DynamicSentenceExample.svelte'
+      - 'src/routes/kaidah/**'
+      - 'src/routes/latihan/+page.svelte'
+      - 'tests/e2e/grammar-practice.e2e.ts'
+      - 'docs/plans/dynamic-example-slots.md'
+      - '.github/workflows/grammar-practice-pr.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - run: bun run browsers:install
+      - run: bun run verify

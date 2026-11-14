@@ -96,14 +96,15 @@
 <aside class="mt-14 max-w-4xl space-y-3 rounded-2xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Kembali ke prasyarat</h2>
 	<p class="text-muted-foreground">
-		Klausa yang tersambung terdiri dari kalimat dan frasa yang telah dipelajari. G-06 akan
-		menghubungkan aturan ini dengan latihan menyusun paragraf dan peta prasyarat.
+		Klausa yang tersambung terdiri dari kalimat dan frasa yang telah dipelajari. G-06 memperkenalkan
+		contoh dinamis dan latihan membaca paragraf dengan peta prasyarat.
 	</p>
 	<nav
 		aria-label="Materi dasar terkait"
 		class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold"
 	>
 		<a href={resolve('kaidah/')} class="text-primary underline">Peta kaidah</a>
+		<a href={resolve('kaidah/praktik/')} class="text-primary underline">Praktik interaktif</a>
 		<a href={resolve('kaidah/kalimat/')} class="text-primary underline">Kalimat lengkap</a>
 		<a href={resolve('kaidah/frasa/')} class="text-primary underline">Frasa dan i‘rab</a>
 		<a href={resolve('belajar/')} class="text-primary underline">Jalur belajar</a>
