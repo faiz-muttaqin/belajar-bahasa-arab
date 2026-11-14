@@ -43,7 +43,9 @@ describe('searchSharaf', () => {
 		expect(searchSharaf(sharafEntries, 'menulis', 'verb').map((entry) => entry.id)).toContain(
 			'fiil-kataba'
 		);
-		expect(searchSharaf(sharafEntries, 'memohon ampun', 'verb').map((entry) => entry.bab?.number)).toContain(15);
+		expect(
+			searchSharaf(sharafEntries, 'memohon ampun', 'verb').map((entry) => entry.bab?.number)
+		).toContain(15);
 	});
 
 	it('does not claim a missing query is an invalid Arabic word', () => {

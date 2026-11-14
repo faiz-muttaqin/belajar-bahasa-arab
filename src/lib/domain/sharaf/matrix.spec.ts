@@ -12,7 +12,9 @@ import { isSharafEntries } from './lexicon.js';
 
 describe('transposed tashrif matrix', () => {
 	it('shows twenty-two bab rows and eleven morphology columns in right-to-left order', () => {
-		expect(babGroups(sharafEntries).map((b) => b.number)).toEqual(Array.from({ length: 22 }, (_, i) => i + 1));
+		expect(babGroups(sharafEntries).map((b) => b.number)).toEqual(
+			Array.from({ length: 22 }, (_, i) => i + 1)
+		);
 		expect(tashrifColumns).toHaveLength(11);
 		expect(tashrifColumns[0].key).toBe('madhi');
 		expect(tashrifColumns[10].key).toBe('alah');

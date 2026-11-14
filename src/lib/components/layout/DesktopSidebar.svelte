@@ -14,7 +14,7 @@
 	aria-label="Navigasi desktop"
 >
 	<div class="border-b px-5 py-6">
-		<a href={resolve('/')} class="block rounded-md text-lg font-bold leading-tight">
+		<a href={resolve('/')} class="block rounded-md text-lg leading-tight font-bold">
 			Belajar Bahasa Arab
 		</a>
 		<p class="mt-2 text-xs text-muted-foreground">Belajar, telusuri, dan hafalkan</p>

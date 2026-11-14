@@ -71,7 +71,9 @@ test('the glossary snapshot is served as static JSON including the new patterns'
 	expect(response.ok()).toBe(true);
 	const catalog = await response.json();
 	expect(catalog.schema).toBe(1);
-	expect(catalog.entries.some((entry: { id: string }) => entry.id === 'fiil-expanded-22')).toBe(true);
+	expect(catalog.entries.some((entry: { id: string }) => entry.id === 'fiil-expanded-22')).toBe(
+		true
+	);
 });
 
 test('general search links to glossary entry and the corresponding tashrif column', async ({
@@ -103,9 +105,7 @@ test('desktop uses a sidebar and the matrix occupies the remaining page width', 
 test.describe('static HTML without JavaScript', () => {
 	test.use({ javaScriptEnabled: false });
 
-	test('ships all 22 bab and eleven header forms without client JavaScript', async ({
-		page
-	}) => {
+	test('ships all 22 bab and eleven header forms without client JavaScript', async ({ page }) => {
 		await page.goto('/rujukan/');
 		const table = page.getByRole('region', {
 			name: 'Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri'

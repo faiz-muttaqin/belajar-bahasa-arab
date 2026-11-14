@@ -104,7 +104,9 @@ export const referenceWazans: Readonly<
 };
 
 export function referenceWazanValue(bab: number, key: TashrifColumnKey): string | undefined {
-	return referenceWazans[bab]?.[key] ?? patternCatalog.find((pattern) => pattern.number === bab)?.[key];
+	return (
+		referenceWazans[bab]?.[key] ?? patternCatalog.find((pattern) => pattern.number === bab)?.[key]
+	);
 }
 
 export type BabGroup = {
@@ -126,7 +128,9 @@ export function babGroups(entries: readonly SharafEntry[]): BabGroup[] {
 		pattern: `${pattern.madhi} – ${pattern.mudhari}`,
 		family: pattern.family,
 		familyLabel: pattern.familyLabel,
-		count: entries.filter((entry) => entry.partOfSpeech === 'verb' && entry.bab?.number === pattern.number).length,
+		count: entries.filter(
+			(entry) => entry.partOfSpeech === 'verb' && entry.bab?.number === pattern.number
+		).length,
 		notes: pattern.notes,
 		source: pattern.source
 	}));

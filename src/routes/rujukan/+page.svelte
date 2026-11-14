@@ -38,17 +38,16 @@
 	>
 		<h2 id="tashrif-heading" class="text-2xl font-semibold">{tashrifIstilahi.title}</h2>
 		<p class="max-w-[85ch] text-pretty">
-			Kenali 22 kelompok wazan dari <ArabicText text="فَعَلَ" /> sampai pola ruba’i mazid.
-			Klik bab untuk memilih contoh kata nyata dari glosarium; klik salah satu bentuk untuk melihat
-			kaidahnya. Semua sebelas bentuk tetap ada dan dapat digeser horizontal.
+			Kenali 22 kelompok wazan dari <ArabicText text="فَعَلَ" /> sampai pola ruba’i mazid. Klik bab untuk
+			memilih contoh kata nyata dari glosarium; klik salah satu bentuk untuk melihat kaidahnya. Semua
+			sebelas bentuk tetap ada dan dapat digeser horizontal.
 		</p>
 		<TransposedTashrif />
 
 		<p class="max-w-[85ch] text-base text-muted-foreground">
-			Kolom mengikuti urutan madhi, mudhari, mashdar, dan seterusnya sampai isim alat.
-			Kamus proyek disimpan secara statis, dan versi datanya tersedia di penyimpanan lokal
-			bila browser mendukungnya. Wazan simbolik tidak menjamin semua turunan digunakan
-			secara leksikal.
+			Kolom mengikuti urutan madhi, mudhari, mashdar, dan seterusnya sampai isim alat. Kamus proyek
+			disimpan secara statis, dan versi datanya tersedia di penyimpanan lokal bila browser
+			mendukungnya. Wazan simbolik tidak menjamin semua turunan digunakan secara leksikal.
 		</p>
 		<a
 			class="inline-flex min-h-11 items-center font-medium text-primary underline"
@@ -57,9 +56,9 @@
 			Latih mengenali akar dan bentuk kata
 		</a>
 		<p class="text-base text-muted-foreground">
-			Keenam bab awal merupakan tsulatsi mujarrad; bab selanjutnya mencakup tsulatsi mazid
-			dan ruba’i. Penomoran 22 kelompok mengikuti tabel rujukan sharaf tradisional, bukan
-			penomoran Form I–X dalam tata bahasa Arab modern. 
+			Keenam bab awal merupakan tsulatsi mujarrad; bab selanjutnya mencakup tsulatsi mazid dan
+			ruba’i. Penomoran 22 kelompok mengikuti tabel rujukan sharaf tradisional, bukan penomoran Form
+			I–X dalam tata bahasa Arab modern.
 			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external reference -->
 			<a
 				href="https://www.terjemahmatan.com/2017/03/download-buku-ringkasan-al-amtsilah-at.html"
