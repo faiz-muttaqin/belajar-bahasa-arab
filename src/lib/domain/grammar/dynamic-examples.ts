@@ -84,10 +84,7 @@ const verbs: readonly VerbSelection[] = [
 	{ id: 'fiil-fataha', gloss: 'membuka', allowedObjects: ['bab', 'msa-kitab'] }
 ];
 
-const vocabulary = [
-	...publishedVocabulary('msa'),
-	...publishedVocabulary('harian')
-];
+const vocabulary = [...publishedVocabulary('msa'), ...publishedVocabulary('harian')];
 
 function vocab(id: string) {
 	const entry = vocabulary.find((item) => item.id === id);
@@ -207,8 +204,9 @@ export function searchBuilderChoices(
 	const normalized = normalizeArabicSearch(query);
 	if (!normalized) return all;
 	return all.filter((choice) =>
-		[choice.arabic, choice.lemma, choice.gloss, choice.meaning, choice.bab ?? '']
-			.some((text) => normalizeArabicSearch(text).includes(normalized))
+		[choice.arabic, choice.lemma, choice.gloss, choice.meaning, choice.bab ?? ''].some((text) =>
+			normalizeArabicSearch(text).includes(normalized)
+		)
 	);
 }
 
@@ -225,7 +223,10 @@ export function chooseBuilderWord(
 	}
 	const next = { ...state, [slot]: id };
 	let resetObject = false;
-	if (slot === 'verb' && !optionsForBuilderSlot(next, 'object').some((choice) => choice.id === next.object)) {
+	if (
+		slot === 'verb' &&
+		!optionsForBuilderSlot(next, 'object').some((choice) => choice.id === next.object)
+	) {
 		next.object = optionsForBuilderSlot(next, 'object')[0]!.id;
 		resetObject = true;
 	}
@@ -245,11 +246,29 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 		const predicate = picked(state, 'predicate');
 		return {
 			tokens: [
-				{ slot: 'subject', arabic: subject.arabic, gloss: subject.gloss, role: 'Mubtada', marker: 'Rafa‘ · ḍamma' },
-				{ slot: 'predicate', arabic: predicate.arabic, gloss: predicate.gloss, role: 'Khabar', marker: 'Rafa‘ · tanwin ḍamm' }
+				{
+					slot: 'subject',
+					arabic: subject.arabic,
+					gloss: subject.gloss,
+					role: 'Mubtada',
+					marker: 'Rafa‘ · ḍamma'
+				},
+				{
+					slot: 'predicate',
+					arabic: predicate.arabic,
+					gloss: predicate.gloss,
+					role: 'Khabar',
+					marker: 'Rafa‘ · tanwin ḍamm'
+				}
 			],
-			translation: subject.gloss.charAt(0).toUpperCase() + subject.gloss.slice(1) + ' ' + predicate.gloss + '.',
-			explanation: 'Isim ma‘rifah sebagai mubtada; khabar nakirah mengikuti gender dan jumlah mufrad tanpa menjadi na‘at.',
+			translation:
+				subject.gloss.charAt(0).toUpperCase() +
+				subject.gloss.slice(1) +
+				' ' +
+				predicate.gloss +
+				'.',
+			explanation:
+				'Isim ma‘rifah sebagai mubtada; khabar nakirah mengikuti gender dan jumlah mufrad tanpa menjadi na‘at.',
 			changedObject: false
 		};
 	}
@@ -258,12 +277,38 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 	const object = picked(state, 'object');
 	return {
 		tokens: [
-			{ slot: 'verb', arabic: verb.arabic, gloss: verb.gloss, role: 'Fi‘il māḍī', marker: 'Bentuk tetap · orang ketiga maskulin' },
-			{ slot: 'agent', arabic: agent.arabic, gloss: agent.gloss, role: 'Fā‘il', marker: 'Rafa‘ · ḍamma' },
-			{ slot: 'object', arabic: object.arabic, gloss: object.gloss, role: 'Maf‘ūl bih', marker: 'Naṣb · fatḥa' }
+			{
+				slot: 'verb',
+				arabic: verb.arabic,
+				gloss: verb.gloss,
+				role: 'Fi‘il māḍī',
+				marker: 'Bentuk tetap · orang ketiga maskulin'
+			},
+			{
+				slot: 'agent',
+				arabic: agent.arabic,
+				gloss: agent.gloss,
+				role: 'Fā‘il',
+				marker: 'Rafa‘ · ḍamma'
+			},
+			{
+				slot: 'object',
+				arabic: object.arabic,
+				gloss: object.gloss,
+				role: 'Maf‘ūl bih',
+				marker: 'Naṣb · fatḥa'
+			}
 		],
-		translation: agent.gloss.charAt(0).toUpperCase() + agent.gloss.slice(1) + ' ' + verb.gloss + ' ' + object.gloss + '.',
-		explanation: 'Kalimat VSO memakai fi‘il māḍī maskulin tunggal; fā‘il marfū‘ dan objek manṣūb. Kata dipilih dari daftar kompatibilitas semantis yang terbatas.',
+		translation:
+			agent.gloss.charAt(0).toUpperCase() +
+			agent.gloss.slice(1) +
+			' ' +
+			verb.gloss +
+			' ' +
+			object.gloss +
+			'.',
+		explanation:
+			'Kalimat VSO memakai fi‘il māḍī maskulin tunggal; fā‘il marfū‘ dan objek manṣūb. Kata dipilih dari daftar kompatibilitas semantis yang terbatas.',
 		changedObject: false
 	};
 }
@@ -271,13 +316,25 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 export function validateBuilderRegistry(): string[] {
 	const errors: string[] = [];
 	for (const noun of [...nouns, ...agents, ...objects]) {
-		try { ensureNoun(noun.id); } catch { errors.push('Missing noun source: ' + noun.id); }
+		try {
+			ensureNoun(noun.id);
+		} catch {
+			errors.push('Missing noun source: ' + noun.id);
+		}
 	}
 	for (const adjective of adjectives) {
-		try { adjectiveChoice(adjective.id, 'feminine'); } catch { errors.push('Missing adjective form: ' + adjective.id); }
+		try {
+			adjectiveChoice(adjective.id, 'feminine');
+		} catch {
+			errors.push('Missing adjective form: ' + adjective.id);
+		}
 	}
 	for (const verb of verbs) {
-		try { verbChoice(verb); } catch { errors.push('Missing verb source: ' + verb.id); }
+		try {
+			verbChoice(verb);
+		} catch {
+			errors.push('Missing verb source: ' + verb.id);
+		}
 		for (const objectId of verb.allowedObjects) {
 			if (!objects.some((object) => object.id === objectId))
 				errors.push('Unknown compatible object: ' + verb.id + '/' + objectId);
@@ -285,7 +342,9 @@ export function validateBuilderRegistry(): string[] {
 		if (!verb.allowedObjects.length) errors.push('Verb has no compatible object: ' + verb.id);
 	}
 	for (const mode of ['nominal', 'verbal'] as const) {
-		try { composeBuilderExample(mode, initialBuilderState); } catch {
+		try {
+			composeBuilderExample(mode, initialBuilderState);
+		} catch {
 			errors.push('Broken initial example: ' + mode);
 		}
 	}

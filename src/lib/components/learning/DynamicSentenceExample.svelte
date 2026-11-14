@@ -51,11 +51,16 @@
 	}
 </script>
 
-<section class="min-w-0 space-y-4 rounded-2xl border bg-card p-4 sm:p-6" aria-label="Contoh Arab interaktif {mode}">
+<section
+	class="min-w-0 space-y-4 rounded-2xl border bg-card p-4 sm:p-6"
+	aria-label="Contoh Arab interaktif {mode}"
+>
 	<div class="flex flex-wrap items-center justify-between gap-3">
 		<div>
 			<h3 class="font-semibold">
-				{mode === 'nominal' ? 'Kalimat nominal · mubtada dan khabar' : 'Kalimat verbal · fi‘il dan objek'}
+				{mode === 'nominal'
+					? 'Kalimat nominal · mubtada dan khabar'
+					: 'Kalimat verbal · fi‘il dan objek'}
 			</h3>
 			<p class="text-sm text-muted-foreground">
 				{mode === 'nominal'
@@ -68,7 +73,8 @@
 				type="button"
 				onclick={reset}
 				class="min-h-11 rounded-lg border px-3 text-sm font-semibold hover:bg-secondary"
-			>Reset</button>
+				>Reset</button
+			>
 		{/if}
 	</div>
 
@@ -80,7 +86,7 @@
 		>
 			{#each example.tokens as token (token.slot)}
 				<div
-					class="flex min-w-0 max-w-full flex-col items-center gap-1 rounded-xl border bg-secondary/45 p-3 text-center"
+					class="flex max-w-full min-w-0 flex-col items-center gap-1 rounded-xl border bg-secondary/45 p-3 text-center"
 					data-slot={token.slot}
 				>
 					<span lang="ar" dir="rtl" class="text-3xl leading-[1.9]">{token.arabic}</span>
@@ -164,9 +170,11 @@
 				{/each}
 			</ul>
 			<p class="text-xs text-muted-foreground">
-				Pencarian dibatasi pada pengganti yang sudah memiliki bentuk, i‘rab, dan konteks
-				kompatibel. Tidak semua entri kamus boleh digunakan langsung.
-				Buka <a href={resolve('kosakata/')} class="underline">kamus kosakata</a>
+				Pencarian dibatasi pada pengganti yang sudah memiliki bentuk, i‘rab, dan konteks kompatibel.
+				Tidak semua entri kamus boleh digunakan langsung. Buka <a
+					href={resolve('kosakata/')}
+					class="underline">kamus kosakata</a
+				>
 				atau <a href={resolve('sharaf/')} class="underline">kamus sharaf dan wazan</a>
 				untuk daftar lebih luas.
 			</p>

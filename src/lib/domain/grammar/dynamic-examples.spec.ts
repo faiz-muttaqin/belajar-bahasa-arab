@@ -13,10 +13,7 @@ import { sharafEntries } from '#lib/content/sharaf.js';
 describe('G-06 dynamic example slots', () => {
 	it('sources all choices from current dictionary entries, with audited surface frames', () => {
 		expect(validateBuilderRegistry()).toEqual([]);
-		const words = [
-			...publishedVocabulary('msa'),
-			...publishedVocabulary('harian')
-		];
+		const words = [...publishedVocabulary('msa'), ...publishedVocabulary('harian')];
 		const options = [
 			...optionsForBuilderSlot(initialBuilderState, 'subject'),
 			...optionsForBuilderSlot(initialBuilderState, 'predicate'),
@@ -28,9 +25,10 @@ describe('G-06 dynamic example slots', () => {
 			expect(option.arabic).toMatch(/[\u0621-\u064a]/);
 			expect(option.gloss.trim()).not.toBe('');
 			expect(option.lemma.trim()).not.toBe('');
-			expect(option.source === 'sharaf'
-				? sharafEntries.some((item) => item.id === option.id && item.lemma === option.lemma)
-				: words.some((item) => item.id === option.id && item.arabic === option.lemma)
+			expect(
+				option.source === 'sharaf'
+					? sharafEntries.some((item) => item.id === option.id && item.lemma === option.lemma)
+					: words.some((item) => item.id === option.id && item.arabic === option.lemma)
 			).toBe(true);
 		}
 	});
@@ -38,10 +36,7 @@ describe('G-06 dynamic example slots', () => {
 	it('shows female adjectives when a feminine noun replaces the nominal subject', () => {
 		const next = chooseBuilderWord(initialBuilderState, 'subject', 'msa-madrasah').state;
 		const example = composeBuilderExample('nominal', next);
-		expect(example.tokens.map((item) => item.arabic)).toEqual([
-			'الْمَدْرَسَةُ',
-			'جَدِيدَةٌ'
-		]);
+		expect(example.tokens.map((item) => item.arabic)).toEqual(['الْمَدْرَسَةُ', 'جَدِيدَةٌ']);
 		expect(example.tokens.map((item) => item.marker)).toEqual([
 			'Rafa‘ · ḍamma',
 			'Rafa‘ · tanwin ḍamm'
@@ -50,32 +45,45 @@ describe('G-06 dynamic example slots', () => {
 	});
 
 	it('searches Arabic with or without harakat and the Indonesian meaning', () => {
-		expect(searchBuilderChoices(initialBuilderState, 'subject', 'مدرسة').map((item) => item.id))
-			.toEqual(['msa-madrasah']);
-		expect(searchBuilderChoices(initialBuilderState, 'verb', 'قرأ').map((item) => item.id))
-			.toEqual(['fiil-qaraa']);
-		expect(searchBuilderChoices(initialBuilderState, 'predicate', 'besar').map((item) => item.id))
-			.toEqual(['msa-kabir']);
-		expect(searchBuilderChoices(initialBuilderState, 'verb', 'Bab 3').some((item) => item.id === 'fiil-fataha'))
-			.toBe(true);
+		expect(
+			searchBuilderChoices(initialBuilderState, 'subject', 'مدرسة').map((item) => item.id)
+		).toEqual(['msa-madrasah']);
+		expect(searchBuilderChoices(initialBuilderState, 'verb', 'قرأ').map((item) => item.id)).toEqual(
+			['fiil-qaraa']
+		);
+		expect(
+			searchBuilderChoices(initialBuilderState, 'predicate', 'besar').map((item) => item.id)
+		).toEqual(['msa-kabir']);
+		expect(
+			searchBuilderChoices(initialBuilderState, 'verb', 'Bab 3').some(
+				(item) => item.id === 'fiil-fataha'
+			)
+		).toBe(true);
 	});
 
 	it('switches incompatible objects automatically when choosing a different verb', () => {
 		const next = chooseBuilderWord(initialBuilderState, 'verb', 'fiil-fataha');
 		expect(next.resetObject).toBe(true);
 		expect(next.state.object).toBe('bab');
-		expect(composeBuilderExample('verbal', next.state).tokens.map((item) => item.arabic))
-			.toEqual(['فَتَحَ', 'الطَّالِبُ', 'الْبَابَ']);
+		expect(composeBuilderExample('verbal', next.state).tokens.map((item) => item.arabic)).toEqual([
+			'فَتَحَ',
+			'الطَّالِبُ',
+			'الْبَابَ'
+		]);
 	});
 
 	it('prevents incompatible verb/object combinations and arbitrary ids', () => {
 		const withOpen = chooseBuilderWord(initialBuilderState, 'verb', 'fiil-fataha').state;
-		expect(optionsForBuilderSlot(withOpen, 'object').map((item) => item.id))
-			.toEqual(['msa-kitab', 'bab']);
-		expect(() => chooseBuilderWord(withOpen, 'object', 'msa-risalah'))
-			.toThrow('Incompatible replacement');
-		expect(() => chooseBuilderWord(initialBuilderState, 'verb', 'not-in-lexicon'))
-			.toThrow('Incompatible replacement');
+		expect(optionsForBuilderSlot(withOpen, 'object').map((item) => item.id)).toEqual([
+			'msa-kitab',
+			'bab'
+		]);
+		expect(() => chooseBuilderWord(withOpen, 'object', 'msa-risalah')).toThrow(
+			'Incompatible replacement'
+		);
+		expect(() => chooseBuilderWord(initialBuilderState, 'verb', 'not-in-lexicon')).toThrow(
+			'Incompatible replacement'
+		);
 	});
 
 	it('generates a compositional Indonesian meaning for both selected frames', () => {

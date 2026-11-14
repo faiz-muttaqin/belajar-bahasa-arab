@@ -112,10 +112,13 @@
 <aside class="mt-9 max-w-4xl rounded-xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Coba contoh yang dapat diubah</h2>
 	<p class="mt-2 text-muted-foreground">
-		Ganti mubtada, khabar, fi‘il, pelaku, atau objek melalui pencarian kata yang sesuai
-		dengan struktur kalimat. Data pengganti terhubung ke kamus dan tabel sharaf.
+		Ganti mubtada, khabar, fi‘il, pelaku, atau objek melalui pencarian kata yang sesuai dengan
+		struktur kalimat. Data pengganti terhubung ke kamus dan tabel sharaf.
 	</p>
-	<a href={resolve('kaidah/praktik/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+	<a
+		href={resolve('kaidah/praktik/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
 		Buka contoh dinamis
 	</a>
 </aside>

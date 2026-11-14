@@ -20,10 +20,13 @@
 <aside class="mt-8 max-w-4xl rounded-2xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Praktik komposisi kalimat</h2>
 	<p class="mt-2 text-muted-foreground">
-		Coba ganti kata Arab dalam contoh melalui modal pencarian kamus, kemudian baca
-		dua kalimat terhubung dan buka pembahasannya.
+		Coba ganti kata Arab dalam contoh melalui modal pencarian kamus, kemudian baca dua kalimat
+		terhubung dan buka pembahasannya.
 	</p>
-	<a href={resolve('kaidah/praktik/')} class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline">
+	<a
+		href={resolve('kaidah/praktik/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
 		Buka praktik contoh dinamis
 	</a>
 </aside>

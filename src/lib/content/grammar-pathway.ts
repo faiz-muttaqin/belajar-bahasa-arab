@@ -9,12 +9,48 @@ export const grammarStages: readonly {
 	outcome: string;
 	prerequisites: readonly GrammarStageId[];
 }[] = [
-	{ id: 'g01', label: 'G-01', title: 'Kaidah pertama', outcome: 'Membedakan frasa sifat, idafah dan kalimat nominal', prerequisites: [] },
-	{ id: 'g02', label: 'G-02', title: 'Akar dan tashrif', outcome: 'Mengenali perubahan bentuk kata dan bab wazan', prerequisites: ['g01'] },
-	{ id: 'g03', label: 'G-03', title: 'Frasa dan i‘rab', outcome: 'Menganalisis peran, agreement dan tanda kasus', prerequisites: ['g01'] },
-	{ id: 'g04', label: 'G-04', title: 'Kalimat lengkap', outcome: 'Menganalisis fi‘il, fā‘il, maf‘ūl, pasif, negasi dan nāsikh', prerequisites: ['g02', 'g03'] },
-	{ id: 'g05', label: 'G-05', title: 'Hubungan klausa', outcome: 'Menghubungkan kalimat melalui ‘aṭf, ṣilah, syarat dan alasan', prerequisites: ['g04'] },
-	{ id: 'g06', label: 'G-06', title: 'Praktik terarah', outcome: 'Memilih kata yang cocok lalu membaca rangkaian kalimat', prerequisites: ['g04', 'g05'] }
+	{
+		id: 'g01',
+		label: 'G-01',
+		title: 'Kaidah pertama',
+		outcome: 'Membedakan frasa sifat, idafah dan kalimat nominal',
+		prerequisites: []
+	},
+	{
+		id: 'g02',
+		label: 'G-02',
+		title: 'Akar dan tashrif',
+		outcome: 'Mengenali perubahan bentuk kata dan bab wazan',
+		prerequisites: ['g01']
+	},
+	{
+		id: 'g03',
+		label: 'G-03',
+		title: 'Frasa dan i‘rab',
+		outcome: 'Menganalisis peran, agreement dan tanda kasus',
+		prerequisites: ['g01']
+	},
+	{
+		id: 'g04',
+		label: 'G-04',
+		title: 'Kalimat lengkap',
+		outcome: 'Menganalisis fi‘il, fā‘il, maf‘ūl, pasif, negasi dan nāsikh',
+		prerequisites: ['g02', 'g03']
+	},
+	{
+		id: 'g05',
+		label: 'G-05',
+		title: 'Hubungan klausa',
+		outcome: 'Menghubungkan kalimat melalui ‘aṭf, ṣilah, syarat dan alasan',
+		prerequisites: ['g04']
+	},
+	{
+		id: 'g06',
+		label: 'G-06',
+		title: 'Praktik terarah',
+		outcome: 'Memilih kata yang cocok lalu membaca rangkaian kalimat',
+		prerequisites: ['g04', 'g05']
+	}
 ];
 
 /** Original, hand-annotated paragraph; no automatic composition. */
@@ -43,7 +79,13 @@ export const practiceReading: ClauseExample = {
 			note: 'Kalimat berikutnya; pelaku tersirat sama',
 			tokens: [
 				{ arabic: 'كَتَبَ', gloss: 'telah menulis', role: 'Fi‘il māḍī; fā‘il tersirat' },
-				{ arabic: 'رِسَالَةً', gloss: 'sebuah surat', role: 'Maf‘ūl bih', irab: 'nasb', marker: 'tanwin fatḥ' }
+				{
+					arabic: 'رِسَالَةً',
+					gloss: 'sebuah surat',
+					role: 'Maf‘ūl bih',
+					irab: 'nasb',
+					marker: 'tanwin fatḥ'
+				}
 			]
 		}
 	],
@@ -86,8 +128,8 @@ export function validateGrammarPathway(): string[] {
 	const processed = new Set<GrammarStageId>();
 	let unresolved = grammarStages.length;
 	while (unresolved > 0) {
-		const ready = grammarStages.filter((node) =>
-			!processed.has(node.id) && node.prerequisites.every((item) => processed.has(item))
+		const ready = grammarStages.filter(
+			(node) => !processed.has(node.id) && node.prerequisites.every((item) => processed.has(item))
 		);
 		if (!ready.length) return [...errors, 'Prerequisite cycle'];
 		for (const node of ready) processed.add(node.id);

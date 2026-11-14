@@ -96,8 +96,8 @@
 <aside class="mt-14 max-w-4xl space-y-3 rounded-2xl border bg-card p-5">
 	<h2 class="text-lg font-semibold">Kembali ke prasyarat</h2>
 	<p class="text-muted-foreground">
-		Klausa yang tersambung terdiri dari kalimat dan frasa yang telah dipelajari. G-06
-		memperkenalkan contoh dinamis dan latihan membaca paragraf dengan peta prasyarat.
+		Klausa yang tersambung terdiri dari kalimat dan frasa yang telah dipelajari. G-06 memperkenalkan
+		contoh dinamis dan latihan membaca paragraf dengan peta prasyarat.
 	</p>
 	<nav
 		aria-label="Materi dasar terkait"

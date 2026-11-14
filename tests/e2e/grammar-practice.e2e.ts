@@ -6,7 +6,9 @@ test('G-06 prerequisite map is reachable from grammar, sentences and exercise na
 	await page.goto('/kaidah/');
 	await page.getByRole('link', { name: 'Praktik interaktif dan contoh dinamis' }).click();
 	await expect(page).toHaveURL(/\/kaidah\/praktik\/$/);
-	await expect(page.getByRole('heading', { name: 'Praktik bahasa Arab: dari kata ke paragraf' })).toBeVisible();
+	await expect(
+		page.getByRole('heading', { name: 'Praktik bahasa Arab: dari kata ke paragraf' })
+	).toBeVisible();
 	await expect(page.locator('section[aria-labelledby="prereq-title"] li')).toHaveCount(6);
 
 	await page.goto('/kaidah/kalimat/');
@@ -80,15 +82,19 @@ test.describe('G-06 prerender fallback with JavaScript disabled', () => {
 		page
 	}) => {
 		await page.goto('/kaidah/praktik/');
-		await expect(page.getByRole('region', { name: 'Contoh Arab interaktif nominal' })).toContainText('الْكِتَابُ');
-		await expect(page.getByRole('region', { name: 'Contoh Arab interaktif verbal' })).toContainText('الرِّسَالَةَ');
+		await expect(
+			page.getByRole('region', { name: 'Contoh Arab interaktif nominal' })
+		).toContainText('الْكِتَابُ');
+		await expect(page.getByRole('region', { name: 'Contoh Arab interaktif verbal' })).toContainText(
+			'الرِّسَالَةَ'
+		);
 		await expect(page.getByRole('button', { name: /Ganti Mubtada/ })).toHaveCount(0);
 		await expect(page.locator('section[aria-labelledby="reading-title"] figure')).toHaveCount(1);
 		await expect(page.locator('section[aria-labelledby="reading-title"] details')).toHaveCount(3);
 		await page.locator('section[aria-labelledby="reading-title"] summary').first().click();
-		await expect(page.locator('section[aria-labelledby="reading-title"] details').first()).toContainText(
-			'Pertama membaca buku'
-		);
+		await expect(
+			page.locator('section[aria-labelledby="reading-title"] details').first()
+		).toContainText('Pertama membaca buku');
 
 		const sizes = await page.evaluate(() => ({
 			page: document.documentElement.scrollWidth,

@@ -86,7 +86,9 @@
 	>
 		<span class="text-xs font-semibold text-muted-foreground">G-06 · Praktik</span>
 		<strong class="group-hover:text-primary">Praktik interaktif dan contoh dinamis</strong>
-		<span class="text-sm text-muted-foreground">Peta prasyarat, modal pengganti kata, dan paragraf.</span>
+		<span class="text-sm text-muted-foreground"
+			>Peta prasyarat, modal pengganti kata, dan paragraf.</span
+		>
 	</a>
 </nav>
 

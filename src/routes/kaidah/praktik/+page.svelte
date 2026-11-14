@@ -27,8 +27,8 @@
 >
 	{#snippet lead()}
 		<p>
-			Pilih bentuk dan kata yang sudah dikenali, bandingkan susunannya,
-			lalu coba membaca kalimat yang saling terhubung.
+			Pilih bentuk dan kata yang sudah dikenali, bandingkan susunannya, lalu coba membaca kalimat
+			yang saling terhubung.
 		</p>
 	{/snippet}
 </PageIntro>
@@ -36,9 +36,9 @@
 <section class="mt-8 max-w-5xl space-y-4" aria-labelledby="prereq-title">
 	<h2 id="prereq-title" class="text-xl font-semibold">Peta prasyarat</h2>
 	<p class="text-sm text-muted-foreground">
-		G-02 dan G-03 sama-sama berangkat dari fondasi G-01; keduanya
-		diperlukan sebelum mendalami kalimat di G-04. Dari sana, lanjut ke klausa dan praktik.
-		Peta ini menunjukkan hubungan materi, bukan rekam kemajuan pribadi.
+		G-02 dan G-03 sama-sama berangkat dari fondasi G-01; keduanya diperlukan sebelum mendalami
+		kalimat di G-04. Dari sana, lanjut ke klausa dan praktik. Peta ini menunjukkan hubungan materi,
+		bukan rekam kemajuan pribadi.
 	</p>
 	<ol class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-3">
 		{#each grammarStages as stage (stage.id)}
@@ -48,7 +48,9 @@
 					<h3 class="font-semibold group-hover:underline">{stage.title}</h3>
 					<p class="text-sm text-muted-foreground">{stage.outcome}</p>
 					<p class="text-xs text-muted-foreground">
-						Prasyarat: {stage.prerequisites.length ? stage.prerequisites.map((id) => id.toUpperCase().replace('G', 'G-')).join(', ') : 'mulai di sini'}
+						Prasyarat: {stage.prerequisites.length
+							? stage.prerequisites.map((id) => id.toUpperCase().replace('G', 'G-')).join(', ')
+							: 'mulai di sini'}
 					</p>
 				</a>
 			</li>
@@ -60,9 +62,9 @@
 	<div>
 		<h2 id="builder-title" class="text-2xl font-semibold">Contoh dinamis dengan pemilihan kata</h2>
 		<p class="mt-2 max-w-3xl text-muted-foreground">
-			Ketuk <strong>Ganti kata</strong> untuk membuka pencarian dalam kamus terpilih.
-			Pilihannya dibatasi oleh fungsi kata, gender, kasus, dan kecocokan makna.
-			Bukan sembarang kata dari kamus dapat dimasukkan ke semua posisi.
+			Ketuk <strong>Ganti kata</strong> untuk membuka pencarian dalam kamus terpilih. Pilihannya dibatasi
+			oleh fungsi kata, gender, kasus, dan kecocokan makna. Bukan sembarang kata dari kamus dapat dimasukkan
+			ke semua posisi.
 		</p>
 	</div>
 	<div class="grid gap-5 lg:grid-cols-2">
@@ -70,10 +72,10 @@
 		<DynamicSentenceExample mode="verbal" />
 	</div>
 	<p class="text-sm text-muted-foreground">
-		Ini pilot dengan lema sumber MSA/kamus sharaf proyek dan bentuk yang sudah ditetapkan
-		untuk contoh ini. Fi‘il pada contoh verbal masih terbatas pada māḍī orang ketiga
-		maskulin tunggal, sementara jenis objek hanya yang cocok dengan fi‘il.
-		Tidak ada perubahan bentuk atau terjemahan otomatis yang diklaim berlaku universal.
+		Ini pilot dengan lema sumber MSA/kamus sharaf proyek dan bentuk yang sudah ditetapkan untuk
+		contoh ini. Fi‘il pada contoh verbal masih terbatas pada māḍī orang ketiga maskulin tunggal,
+		sementara jenis objek hanya yang cocok dengan fi‘il. Tidak ada perubahan bentuk atau terjemahan
+		otomatis yang diklaim berlaku universal.
 	</p>
 	<nav aria-label="Kamus terkait" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
 		<a href={resolve('kosakata/')} class="text-primary underline">Kamus MSA</a>
@@ -86,8 +88,8 @@
 	<div>
 		<h2 id="reading-title" class="text-2xl font-semibold">Baca rangkaian dua kalimat</h2>
 		<p class="mt-2 max-w-3xl text-muted-foreground">
-			Gunakan kemampuan G-04 untuk mengenali pelaku dan objek, lalu G-05 untuk memahami
-			penghubung serta pelaku yang tidak diulang. Teks dapat dibaca tanpa JavaScript.
+			Gunakan kemampuan G-04 untuk mengenali pelaku dan objek, lalu G-05 untuk memahami penghubung
+			serta pelaku yang tidak diulang. Teks dapat dibaca tanpa JavaScript.
 		</p>
 	</div>
 	<div class="max-w-3xl">
@@ -105,8 +107,8 @@
 		{/each}
 	</div>
 	<p class="text-sm text-muted-foreground">
-		Ini latihan mandiri dengan pembahasan terbuka, belum menyimpan skor atau mengubah
-		progres pelajaran di perangkat. Materi dan contoh masih berstatus draft untuk audit kebahasaan.
+		Ini latihan mandiri dengan pembahasan terbuka, belum menyimpan skor atau mengubah progres
+		pelajaran di perangkat. Materi dan contoh masih berstatus draft untuk audit kebahasaan.
 	</p>
 </section>
 
