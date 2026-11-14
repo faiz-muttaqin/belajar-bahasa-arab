@@ -37,8 +37,13 @@ Tersedia sebagai HTML statis pada build website. Setiap halaman memuat teks Arab
 | lesson-a1-01 | [Bentuk huruf](/iqra/bentuk-huruf/)                       | CA-02 · mulai dari ba, ta dan tsa sebagai satu kelompok contoh |
 | lesson-a2-01 | [Harakat pendek](/iqra/harakat-pendek/)                   | CA-03 · bedakan bentuk a, i dan u                              |
 | lesson-a2-02 | [Vokal panjang dan sukun](/iqra/vokal-panjang-dan-sukun/) | CA-03 · bedakan vokal panjang dan akhir suku kata              |
+| lesson-a2-03 | [Latih harakat pada rangkaian baru](/iqra/latih-harakat/) | CA-03 · alihkan pola vokal pendek, panjang, dan sukun ke huruf lain |
 | lesson-a3-01 | [Tasydid dan tanwin](/iqra/tasydid-dan-tanwin/)           | CA-04 · baca konsonan rangkap dan akhir tanwin                 |
 | lesson-a4-01 | [Kalimat pendek](/iqra/baca-kalimat-pendek/)              | CA-05, CA-06 · kelompokkan makna dan baca al- saat menyambung  |
+
+## Rujukan Iqra
+
+- [Bagan harakat](/iqra/#bagan-harakat) memuat 11 contoh tanda baca, bunyi pendek, tanwin, sukun, tasydid, dan panjang; kolom bunyi bisa disembunyikan untuk latihan. Contoh masih draft dan perlu tinjauan guru bahasa Arab.
 
 ## Bedah per kata
 
