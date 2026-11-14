@@ -1,6 +1,7 @@
 import { stripHarakat } from '#lib/domain/arabic/harakat.js';
 import { groupOfTable } from '#lib/content/reference-groups.js';
 import type { Catalog } from './types.js';
+import type { SharafEntry } from '#lib/domain/sharaf/lexicon.js';
 
 export const searchKinds = {
 	word: 'Kamus',
@@ -45,10 +46,13 @@ function buildEntry(entry: Entry, extra: string[] = []): SearchEntry {
 	};
 }
 
-export function indexCatalog(catalog: Catalog): SearchEntry[] {
+export function indexCatalog(
+	catalog: Catalog,
+	sharafEntries: readonly SharafEntry[] = catalog.sharaf ?? []
+): SearchEntry[] {
 	const entries: SearchEntry[] = [];
 
-	for (const entry of catalog.sharaf ?? []) {
+	for (const entry of sharafEntries) {
 		entries.push(
 			buildEntry(
 				{

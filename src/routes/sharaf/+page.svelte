@@ -1,17 +1,39 @@
 <script lang="ts">
+	import { onMount, tick } from 'svelte';
 	import { resolve } from '$app/paths';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
-	import { catalogState } from '#lib/catalog/sync.svelte.js';
+	import { catalogState, bulkSharafState, prepareBulkSharaf } from '#lib/catalog/sync.svelte.js';
+	import { mergeBulkSharaf } from '#lib/domain/sharaf/bulk.js';
 	import { sharafEntries } from '#lib/content/sharaf.js';
 	import { tashrifColumns } from '#lib/domain/sharaf/matrix.js';
 	import { searchSharaf, type SharafFilter } from '#lib/domain/sharaf/lexicon.js';
 
 	let query = $state('');
 	let filter = $state<SharafFilter>('all');
-	let results = $derived(
-		searchSharaf(catalogState.catalog?.sharaf ?? sharafEntries, query, filter)
+	let visible = $state(48);
+	let targetId = $state('');
+	let entries = $derived(
+		mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data)
 	);
+	let results = $derived(searchSharaf(entries, query, filter));
+	let shown = $derived.by(() => {
+		const first = results.slice(0, visible);
+		const pinned = targetId ? entries.find((entry) => entry.id === targetId) : undefined;
+		return pinned && !first.some((entry) => entry.id === pinned.id) ? [pinned, ...first] : first;
+	});
+
+	onMount(() => {
+		void prepareBulkSharaf();
+		targetId = decodeURIComponent(location.hash.slice(1));
+	});
+	$effect(() => {
+		if (targetId && shown.some((entry) => entry.id === targetId)) {
+			void tick().then(() =>
+				document.getElementById(targetId)?.scrollIntoView({ block: 'center' })
+			);
+		}
+	});
 	function formLabel(label: string): string {
 		return tashrifColumns.find((column) => column.key === label.toLowerCase())?.label ?? label;
 	}
@@ -54,11 +76,11 @@
 		<input
 			id="sharaf-query"
 			type="search"
-			lang="ar"
-			dir="rtl"
-			placeholder="Contoh: كتب، يكتب، فتح، قال"
+			dir="auto"
+			placeholder="Contoh: كتب، يكتب، فتح، menolong"
 			autocomplete="off"
 			bind:value={query}
+			oninput={() => (visible = 48)}
 			class="min-h-14 w-full rounded-xl border bg-card px-4 py-2 arabic-block text-foreground outline-offset-4 focus-visible:outline-2 focus-visible:outline-ring"
 		/>
 		<p class="text-sm text-muted-foreground">
@@ -72,7 +94,10 @@
 				<button
 					type="button"
 					aria-pressed={filter === option.value}
-					onclick={() => (filter = option.value)}
+					onclick={() => {
+						filter = option.value;
+						visible = 48;
+					}}
 					class="min-h-11 rounded-full border px-4 text-sm font-medium transition-colors aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground"
 					>{option.label}</button
 				>
@@ -82,7 +107,9 @@
 </section>
 
 <section class="mt-10" aria-label="Hasil pencarian">
-	<h2 class="mb-5 text-xl font-semibold">{results.length} entri contoh ditemukan</h2>
+	<h2 class="mb-5 text-xl font-semibold">
+		{results.length.toLocaleString('id-ID')} entri ditemukan
+	</h2>
 	{#if results.length === 0}
 		<div class="rounded-xl border border-dashed p-6">
 			<p class="font-medium">Tidak ditemukan dalam indeks awal.</p>
@@ -93,7 +120,7 @@
 		</div>
 	{:else}
 		<ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,22rem),1fr))] gap-4">
-			{#each results as entry (entry.id)}
+			{#each shown as entry (entry.id)}
 				<li id={entry.id} class="scroll-mt-24 rounded-2xl border bg-card p-5">
 					<div class="flex flex-wrap items-start justify-between gap-2">
 						<div>
@@ -156,13 +183,31 @@
 				</li>
 			{/each}
 		</ul>
+		{#if visible < results.length}
+			<button
+				type="button"
+				onclick={() => (visible += 48)}
+				class="mt-5 min-h-11 rounded-lg border px-4 text-sm font-medium hover:bg-secondary"
+			>
+				Tampilkan lebih banyak ({Math.min(visible, results.length).toLocaleString('id-ID')} dari {results.length.toLocaleString(
+					'id-ID'
+				)})
+			</button>
+		{/if}
 	{/if}
 </section>
 
 <p class="mt-8 text-sm text-muted-foreground">
-	Indeks ini baru berisi contoh dari materi proyek dan beberapa ilustrasi kaidah; belum mencakup
-	seluruh kosakata Arab. Data pihak ketiga tidak diimpor sampai audit lisensi dan tinjauan ilmiah
-	selesai.
+	Kamus ini menggabungkan contoh kurikulum dengan data leksikal Qutrub dan Arramooz (sekitar 7.938
+	kombinasi verba), serta kelas kata yang dipilih dari Arabic Stopwords. Entri leksikal yang belum
+	mempunyai terjemahan atau turunan terverifikasi ditandai secara eksplisit.
+	{#if bulkSharafState.busy}
+		Dataset lengkap sedang diunduh ke cache browser.
+	{:else if bulkSharafState.saved}
+		Dataset lengkap sudah tersedia di cache lokal.
+	{:else if bulkSharafState.error}
+		Dataset besar belum tersedia; contoh dasar tetap bisa dipakai.
+	{/if}
 	<a href={resolve('rujukan/')} class="font-medium text-primary underline"
 		>Buka tabel tashrif istilahi</a
 	>.

@@ -10,6 +10,12 @@ on:
       - 'src/lib/components/learning/TransposedTashrif.svelte'
       - 'src/lib/content/sharaf.ts'
       - 'src/lib/content/sharaf-staging-preview.ts'
+      - 'src/lib/catalog/search.ts'
+      - 'src/routes/cari/**'
+      - 'data/sharaf-upstream/**'
+      - 'static/data/sharaf-lexicon-v1.json'
+      - 'scripts/build-sharaf-lexicon.mjs'
+      - 'tests/e2e/sharaf-full-import.e2e.ts'
       - 'src/lib/catalog/storage.ts'
       - 'src/lib/catalog/sync.svelte.ts'
       - 'src/lib/domain/sharaf/**'
@@ -37,5 +43,6 @@ jobs:
         with:
           bun-version: '1.4.4'
       - run: bun install --frozen-lockfile
+      - run: bun scripts/build-sharaf-lexicon.mjs --check
       - run: bun run browsers:install
       - run: bun run verify

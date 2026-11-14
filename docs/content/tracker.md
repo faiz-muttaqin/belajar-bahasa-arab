@@ -42,6 +42,7 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 | F-11 | Tabel 22 bab, modal glosarium, dan sidebar desktop               | 🟡             | sharaf PR #3   | Sudah dipublikasikan. Pola langka dan contoh perlu tinjauan bahasa Arab.                                                                                          |
 | F-12 | Sorotan baris, isi contoh per kelompok, dan padanan Indonesia    | 🟡             | Sharaf         | Glos terkait bentuk ditulis proyek. Contoh أَكَلَ mencatat rujukan lema, perubahan bunyi, dan fungsi bentuk.                                                         |
 | F-13 | Sampel leksikon staging + indeks pencarian dan cache browser     | 🟡             | sharaf PR baru | 17 record verba dan 3 kata tugas dari fixture berjejak sumber; 6 kandidat akar tidak diimpor. Perlu verifikasi leksikal dan lisensi sebelum impor penuh.          |
+| F-14 | Impor 7.938 kata kerja lengkap + caching IndexedDB v2            | 🟡             | sharaf PR baru | Qutrub/Arramooz dideduplikasi; 596 record stopwords disimpan. 22 bab tetap; bentuk dan terjemahan belum diverifikasi di luar contoh yang ada.                     |
 
 ## Audio
 

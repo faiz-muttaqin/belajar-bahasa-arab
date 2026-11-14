@@ -102,6 +102,7 @@ type IndexedSharafEntry = {
 	entry: SharafEntry;
 	index: number;
 	forms: readonly string[];
+	exactForms: readonly string[];
 	root?: string;
 	gloss: string;
 };
@@ -120,6 +121,9 @@ export function prepareSharafSearchIndex(
 		entry,
 		index,
 		forms: [entry.lemma, ...entry.forms.map((form) => form.value)].map(normalizeArabicSearch),
+		exactForms: [entry.lemma, ...entry.forms.map((form) => form.value)].map((form) =>
+			form.normalize('NFC')
+		),
 		root: entry.root ? normalizeArabicSearch(entry.root) : undefined,
 		// Unknown Indonesian gloss is a display placeholder, not a search synonym.
 		gloss:
@@ -140,6 +144,7 @@ export function searchSharaf(
 	filter: SharafFilter = 'all'
 ): SharafEntry[] {
 	const query = normalizeArabicSearch(input);
+	const exactQuery = input.trim().normalize('NFC');
 	const indexed = prepareSharafSearchIndex(entries).filter(
 		({ entry }) => filter === 'all' || entry.partOfSpeech === filter
 	);
@@ -147,9 +152,10 @@ export function searchSharaf(
 
 	return indexed
 		.map((item) => {
-			const { forms, root, gloss } = item;
+			const { forms, exactForms, root, gloss } = item;
 			let score = Number.POSITIVE_INFINITY;
-			if (forms.includes(query)) score = 0;
+			if (exactForms.includes(exactQuery)) score = -1;
+			else if (forms.includes(query)) score = 0;
 			else if (root === query) score = 1;
 			else if (gloss === query) score = 2;
 			else if (query.length >= 2 && forms.some((form) => form.startsWith(query))) score = 3;
