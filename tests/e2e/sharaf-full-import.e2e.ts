@@ -27,7 +27,7 @@ test('the modal filters the full dataset without rendering thousands of cards at
 	await expect
 		.poll(async () => {
 			const raw = await modal.getByText(/contoh kata tersedia/).textContent();
-			return Number(raw?.match(/[\\d.]+/)?.[0].replace(/\\./g, '') ?? 0);
+			return Number(raw?.match(/[\d.]+/)?.[0].replace(/\./g, '') ?? 0);
 		}, { timeout: 30_000 })
 		.toBeGreaterThan(7900);
 	expect(await modal.locator('li').count()).toBeLessThanOrEqual(48);
