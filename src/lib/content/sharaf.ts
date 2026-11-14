@@ -35,11 +35,9 @@ const referenceVerbs: SharafEntry[] = babs.map((bab) => ({
 	partOfSpeech: 'verb',
 	root: bab.root,
 	bab: { number: bab.number, exemplar: bab.exemplar, pattern: bab.pattern },
-	forms: [
-		{ label: 'Madhi', value: referenceForm('madhi', bab.key) },
-		{ label: 'Mudhari', value: referenceForm('mudhari', bab.key) },
-		{ label: 'Mashdar (contoh)', value: referenceForm('mashdar', bab.key) }
-	],
+	forms: tashrifIstilahi.rows
+		.filter((row) => row.cells[bab.key] && row.cells[bab.key] !== '—')
+		.map((row) => ({ label: row.id, value: row.cells[bab.key]! })),
 	babSelection: 'lexical',
 	formBehavior: 'regular',
 	explanation:
@@ -63,7 +61,7 @@ const additional: SharafEntry[] = [
 		partOfSpeech: 'verb',
 		root: 'كتب',
 		bab: { number: 1, exemplar: 'نَصَرَ', pattern: 'فَعَلَ – يَفْعُلُ' },
-		forms: [{ label: 'Mudhari', value: 'يَكْتُبُ' }],
+		forms: [{ label: 'mudhari', value: 'يَكْتُبُ' }],
 		babSelection: 'lexical',
 		formBehavior: 'regular',
 		explanation:
@@ -78,7 +76,7 @@ const additional: SharafEntry[] = [
 		partOfSpeech: 'verb',
 		root: 'قرأ',
 		bab: { number: 3, exemplar: 'فَتَحَ', pattern: 'فَعَلَ – يَفْعَلُ' },
-		forms: [{ label: 'Mudhari', value: 'يَقْرَأُ' }],
+		forms: [{ label: 'mudhari', value: 'يَقْرَأُ' }],
 		babSelection: 'lexical',
 		formBehavior: 'special-rule',
 		explanation:
@@ -94,8 +92,8 @@ const additional: SharafEntry[] = [
 		root: 'قول',
 		bab: { number: 1, exemplar: 'نَصَرَ', pattern: 'فَعَلَ – يَفْعُلُ' },
 		forms: [
-			{ label: 'Mudhari', value: 'يَقُولُ' },
-			{ label: 'Amr', value: 'قُلْ' }
+			{ label: 'mudhari', value: 'يَقُولُ' },
+			{ label: 'amr', value: 'قُلْ' }
 		],
 		babSelection: 'lexical',
 		formBehavior: 'special-rule',
