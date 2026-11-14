@@ -95,7 +95,6 @@
 							aria-label="Ganti {builderSlotLabels[token.slot]}"
 							onclick={(event) => openPicker(token.slot, event)}
 						>
-							<icon name="search" aria-hidden="true" />
 							Ganti kata
 						</button>
 					{/if}
