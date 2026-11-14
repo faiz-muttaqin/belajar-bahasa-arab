@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { analyzedText, type AnalysisGroup } from '#lib/content/lessons/analysis.js';
 	import ArabicText from './ArabicText.svelte';
+	import AudioPlayButton from './AudioPlayButton.svelte';
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
 	import MixedText from './MixedText.svelte';
 
@@ -23,7 +24,10 @@
 				{#each group.sentences as sentence, i (i)}
 					<div class="space-y-3 pt-4">
 						<div class="text-start text-xl">
-							<ArabicText text={analyzedText(sentence)} class="block wrap-break-word" />
+							<div class="flex flex-wrap items-start gap-2">
+								<ArabicText text={analyzedText(sentence)} class="block wrap-break-word" />
+								<AudioPlayButton text={analyzedText(sentence)} label="Dengarkan kalimat Arab" compact />
+							</div>
 						</div>
 						<SentenceWordNotes {sentence} />
 					</div>
