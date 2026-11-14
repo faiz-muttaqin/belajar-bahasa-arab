@@ -1,34 +1,37 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
+	import { resolve } from '$app/paths';
 	import BookHeart from '@lucide/svelte/icons/book-heart';
 	import Brain from '@lucide/svelte/icons/brain';
 	import Sun from '@lucide/svelte/icons/sun';
-	import EmptyState from '#lib/components/layout/EmptyState.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import VocabCard from '#lib/components/learning/VocabCard.svelte';
 	import { publishedVocabulary } from '#lib/content/vocabulary.js';
-	import { COLLECTION_LABELS, type VocabularyCollectionId } from '#lib/domain/vocabulary/types.js';
+	import { type VocabularyCollectionId } from '#lib/domain/vocabulary/types.js';
 
 	const collections: {
 		id: VocabularyCollectionId;
 		icon: Component;
 		iconClass: string;
+		title: string;
 		blurb: string;
-		empty: string;
+		lesson: 'belajar/kata-inti-shalat/' | 'belajar/menunjuk-dan-bertanya/';
 	}[] = [
 		{
 			id: 'harian',
 			icon: Sun,
 			iconClass: 'text-chart-3',
-			blurb: 'Benda dan kegiatan sehari-hari, masing-masing dengan ikon pengingat.',
-			empty: 'Kata-kata harian sedang dipilih dan ditinjau.'
+			title: 'Kosakata harian',
+			blurb: 'Kata benda, kata kerja, dan kata penghubung dari pelajaran.',
+			lesson: 'belajar/menunjuk-dan-bertanya/'
 		},
 		{
 			id: 'quran',
 			icon: BookHeart,
 			iconClass: 'text-primary',
-			blurb: 'Kata yang sering Anda dengar dalam Al-Qur’an dan bacaan shalat.',
-			empty: 'Daftar kata sedang disusun dari sumber yang jelas dan ditinjau guru.'
+			title: 'Kosakata bacaan shalat',
+			blurb: 'Makna kata yang muncul dalam takbir, tasbih, dan salam.',
+			lesson: 'belajar/kata-inti-shalat/'
 		}
 	];
 
@@ -38,10 +41,10 @@
 <PageIntro
 	title="Kosakata"
 	section="kosakata"
-	description="Koleksi kosakata bahasa Arab untuk dihafal: kosakata harian dan kosakata Al-Qur'an serta bacaan shalat, dengan ikon pengingat dan arti."
+	description="Kosakata dari pelajaran bahasa Arab sehari-hari dan bacaan shalat dengan arti bahasa Indonesia dan mode mengingat."
 >
 	{#snippet lead()}
-		<p>Dua koleksi untuk dihafal pelan-pelan: harian, serta Al-Qur’an dan bacaan shalat.</p>
+		<p>Temukan arti kata yang muncul dalam bacaan dan coba ingat tanpa bantuan.</p>
 	{/snippet}
 </PageIntro>
 
@@ -68,33 +71,23 @@
 				<Icon class="size-5" aria-hidden="true" />
 			</span>
 			<h2 id="{collection.id}-heading" class="text-2xl font-semibold">
-				{COLLECTION_LABELS[collection.id]}
+				{collection.title}
 			</h2>
 		</div>
 		<p class="mt-3 max-w-[60ch] text-pretty text-muted-foreground">{collection.blurb}</p>
 
-		<div class="mt-6">
-			{#if items.length > 0}
-				<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-					{#each items as item (item.id)}
-						<li>
-							{#key hafalan}<VocabCard {item} {hafalan} />{/key}
-						</li>
-					{/each}
-				</ul>
-			{:else}
-				<EmptyState title="Segera hadir">
-					<p>{collection.empty}</p>
-				</EmptyState>
-			{/if}
-		</div>
-
-		{#if import.meta.env.DEV && collection.id === 'harian'}
-			<div class="mt-8">
-				{#await import('#lib/fixtures/VocabPreview.svelte') then { default: VocabPreview }}
-					<VocabPreview {hafalan} />
-				{/await}
-			</div>
-		{/if}
+		<ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			{#each items as item (item.id)}
+				<li>
+					{#key hafalan}<VocabCard {item} {hafalan} />{/key}
+				</li>
+			{/each}
+		</ul>
+		<a
+			href={resolve(collection.lesson)}
+			class="mt-4 inline-flex min-h-11 items-center font-medium text-primary underline"
+		>
+			Lihat kata-kata ini dalam pelajaran
+		</a>
 	</section>
 {/each}

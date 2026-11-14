@@ -152,6 +152,8 @@ Everything stays in the learner's browser. Follows research doc §9 (IndexedDB f
 
 ## 7. Mapping to existing routes
 
+Pada website, beranda dan menu membuka daftar `/belajar/` atau `/iqra/`. Pelajar dapat memilih Dasar, Menengah, atau Fondasi sesuai kemampuan membaca. Halaman pelajaran memakai `/<jalur>/<slug>/` dengan tautan sebelumnya dan berikutnya. Halaman `/latihan/` membuka latihan tiap pelajaran secara langsung. Tabel di bawah merekam rencana awal. Lihat [cakupan yang sudah tersedia](../content/public-lessons.md).
+
 Current routes all exist as prerendered pages (`src/routes/`, `prerender = true`, `trailingSlash = 'always'`). Most show empty states today.
 
 | Route                             | Today                                                                                                                                                                        | Onboarding behaviour (proposed)                                                                                                                                                                                                                                                                                        |

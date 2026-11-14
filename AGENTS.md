@@ -27,7 +27,7 @@ Read [`docs/arabic-learning-stack-guide-sveltekit.md`](./docs/arabic-learning-st
 - Root HTML `lang="id"`; Arabic spans `lang="ar" dir="rtl"`, isolate mixed-direction text. Test shadda, sukun, vowels, hamza and stacked harakat at multiple sizes.
 - Start with Noto Naskh Arabic; compare Amiri and Scheherazade New visually before final choice. Indonesian UI font: Plus Jakarta Sans (Inter fallback).
 - Keep learning domain logic separate from Svelte components; create small components `ArabicText`, `AudioPlayButton`, `LessonStepper`, etc., rather than a heavy education UI framework.
-- Use stable lesson IDs and content revision; never tie stored progress only to slugs. Published material requires source/provenance and human subject-matter review.
+- Use stable lesson IDs and content revision; never tie stored progress only to slugs. Public lessons require source/provenance. Original lessons and sourced reference text can appear under ADR-004 D-8. Approved material requires human subject-matter review.
 - Never auto-play audio or preload an entire catalog; mobile playback and errors require clear user controls.
 
 ## Project commands

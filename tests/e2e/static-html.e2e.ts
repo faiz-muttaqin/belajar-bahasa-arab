@@ -5,7 +5,7 @@ import { expect, test } from '@playwright/test';
 // client-side JavaScript (see AGENTS.md, "Non-negotiable architecture").
 
 const routes = [
-	{ path: '/', file: 'index.html', h1: 'Pahami bahasa Arab, bukan sekadar menghafal' },
+	{ path: '/', file: 'index.html', h1: 'Pahami bahasa Arab dari kata hingga paragraf' },
 	{ path: '/belajar/', file: 'belajar/index.html', h1: 'Belajar' },
 	{ path: '/iqra/', file: 'iqra/index.html', h1: 'Mulai dari huruf' },
 	{ path: '/latihan/', file: 'latihan/index.html', h1: 'Latihan' },

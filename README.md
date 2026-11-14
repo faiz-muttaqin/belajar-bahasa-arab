@@ -4,7 +4,7 @@ Static-first Arabic learning website for Indonesian-speaking learners. Built wit
 
 Read [AGENTS.md](./AGENTS.md) and the [stack guide](./docs/arabic-learning-stack-guide-sveltekit.md) before changing the architecture.
 
-Curriculum content is prepared separately. This repository currently holds only the application shell and tooling; no lessons are published yet.
+The static build includes [public lessons](./docs/content/public-lessons.md) for the post-Iqra track and the optional reading foundation. Lessons cover Indonesian explanations of Arabic sentences, paragraphs and short documents. The build also includes the tashrif table and vocabulary from the lessons.
 
 ## Requirements
 

@@ -1,4 +1,4 @@
-# ADR-004: Content decisions D-1 to D-7
+# ADR-004: Content decisions D-1 to D-8
 
 **Status:** accepted by the product owner, 14 November 2026
 **Context:** [curriculum re-research](../research/2026-11-14-riset-ulang-kurikulum.md) §7 and [content tracker](../content/tracker.md). Licensing and regulatory points are background, not legal advice; confirm with an IP or legal adviser before launch.
@@ -54,6 +54,12 @@ The product owner's intent: open, non-commercial, educational reuse. A non-comme
 - Review record per item: reviewer name, role, date, decision (`approved` / `changes_requested` / `rejected`), notes.
 - Enforced in code: `approved` content without an approving review record is not publishable.
 - Recruitment: [reviewer invitation pack](../content/reviewer-pack.md).
+
+## D-8 Materi teks di build publik
+
+Disetujui pemilik produk pada 14 November 2026. Pelajaran, glos kosakata, dan tabel rujukan yang ditulis proyek boleh masuk ke build publik dengan sumber yang dicatat. Status tinjauan disimpan di data internal. Pengajar dapat meninjau dan memperbaiki materi secara bertahap. Jalur utama berfokus pada pemahaman makna, struktur kalimat, paragraf, dan dokumen pendek hingga tingkat menengah. Lihat [cakupan pelajaran dan bukti penilaian](../content/public-lessons.md).
+
+Gunakan urutan konsep dari Madinah Arabic dan tradisi sharaf yang sudah ada. Buat contoh dan bacaan berbahasa Arab serta pembahasan Indonesia untuk melatih pemahaman kalimat dan paragraf. Materi berstatus `approved`, audio, karya pihak ketiga, serta teks dan terjemahan Al-Qur’an tetap mengikuti pemeriksaan di atas. Bacaan tingkat mahir disiapkan dengan pendampingan pengajar.
 
 ## Consequences
 

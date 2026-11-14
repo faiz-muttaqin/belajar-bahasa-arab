@@ -19,11 +19,11 @@
 
 	// Learning cycle from the research doc (§1), one short line each.
 	const steps: { title: string; text: string; icon: Component }[] = [
-		{ title: 'Dengar', text: 'Mulai dari suara dan situasi.', icon: Headphones },
+		{ title: 'Dengar', text: 'Mulai dari suara saat audio tersedia.', icon: Headphones },
 		{ title: 'Pahami', text: 'Tebak makna dari konteks.', icon: Lightbulb },
 		{ title: 'Lihat polanya', text: 'Penjelasan singkat berbahasa Indonesia.', icon: ScanEye },
 		{ title: 'Ingat kembali', text: 'Latihan tanpa melihat jawaban.', icon: Brain },
-		{ title: 'Ulangi', text: 'Muncul lagi beberapa hari kemudian.', icon: CalendarClock }
+		{ title: 'Ulangi', text: 'Coba baca ulang setelah beberapa hari.', icon: CalendarClock }
 	];
 
 	// Decorative only: the first hijaiyah letters as the page's visual signature.
@@ -34,11 +34,11 @@
 	<div class="space-y-8">
 		<PageIntro
 			title="Belajar Bahasa Arab"
-			heading="Pahami bahasa Arab, bukan sekadar menghafal"
-			description="Belajar bahasa Arab untuk penutur Indonesia: dengarkan, pahami artinya, lalu pelajari polanya. Tanpa akun, data belajar tersimpan di perangkat Anda."
+			heading="Pahami bahasa Arab dari kata hingga paragraf"
+			description="Pelajaran bahasa Arab untuk penutur Indonesia, dari huruf dan harakat hingga memahami struktur kalimat, paragraf, dan dokumen pendek."
 		>
 			{#snippet lead()}
-				<p>Dengarkan, pahami, lalu pelajari polanya.</p>
+				<p>Baca contohnya, pahami maknanya, lalu coba jelaskan dengan kata-kata Anda sendiri.</p>
 			{/snippet}
 		</PageIntro>
 		<div class="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -115,7 +115,7 @@
 				<span class="flex-1">
 					<span class="block text-lg font-semibold">Sudah bisa membaca Arab</span>
 					<span class="mt-1 block text-pretty text-muted-foreground">
-						Langsung belajar memahami kata dan kalimat.
+						Pelajari makna kata, susunan kalimat, dan fungsi paragraf.
 					</span>
 				</span>
 				<ArrowRight
@@ -154,7 +154,7 @@
 	<ul class="mt-8 grid gap-4 md:grid-cols-2">
 		<li>
 			<a
-				href={resolve('kosakata/')}
+				href={resolve('kosakata/#harian')}
 				class="flex h-full gap-4 rounded-2xl bg-secondary p-6 transition-colors hover:bg-accent"
 			>
 				<span
@@ -172,7 +172,7 @@
 		</li>
 		<li>
 			<a
-				href={resolve('kosakata/')}
+				href={resolve('kosakata/#quran')}
 				class="flex h-full gap-4 rounded-2xl bg-secondary p-6 transition-colors hover:bg-accent"
 			>
 				<span
@@ -181,9 +181,9 @@
 					<BookHeart class="size-6" aria-hidden="true" />
 				</span>
 				<span>
-					<span class="block text-lg font-semibold">Al-Qur'an dan bacaan shalat</span>
+					<span class="block text-lg font-semibold">Bacaan shalat</span>
 					<span class="mt-1 block text-pretty text-secondary-foreground">
-						Kata yang sudah sering Anda dengar, kini dengan artinya.
+						Makna kata dalam takbir, tasbih, dan salam.
 					</span>
 				</span>
 			</a>
@@ -196,7 +196,7 @@
 >
 	<Info class="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
 	<p class="text-pretty">
-		Materi sedang disiapkan dan akan ditinjau guru bahasa Arab sebelum terbit.
+		Lihat rujukan yang dipakai dan cara latihan disusun.
 		<a
 			href={resolve('tentang/')}
 			class="text-primary underline decoration-1 underline-offset-4 hover:decoration-2"

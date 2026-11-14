@@ -151,7 +151,7 @@ The build or PR **fails** if any item that would ship:
 6. contains Qur'anic text that does not match our pinned Tanzil corpus, or a Qur'an translation not from QuranEnc with its version (D-2, D-3);
 7. includes any excluded asset (publisher logos, logo-bearing PDFs, fonts without licence text, hotlinked third-party audio or video).
 
-Original content may use `source_license: PROJECT_ORIGINAL` and list research references (including `inspiration-only` rows) separately; inspiration does not create a licence obligation, but the reference stays in the ledger.
+Original content may use `source_license: PROJECT_ORIGINAL` and list research references separately. [ADR-004 D-8](../decisions/0004-content-decisions.md#d-8-materi-teks-di-build-publik) permits original text lessons and sourced reference text written by the project to appear before human review. Item 5 still applies to approved content, audio and third-party materials.
 
 The ledger count of imported materials stays at **zero** until an item passes all seven checks and a human reviewer signs it off.
 

@@ -16,21 +16,21 @@
 	<section aria-labelledby="metode" class="space-y-3">
 		<h2 id="metode" class="text-2xl font-semibold">Metode</h2>
 		<p>
-			Bahasa Arab yang dipahami, bukan sekadar istilah yang dihafal. Setiap konsep berjalan dari
-			situasi dan suara, ke tulisan berharakat dan maknanya, lalu pola dan penjelasan singkat dalam
-			bahasa Indonesia, kemudian latihan mengingat dan pengulangan terjadwal.
+			Mulailah dari contoh berharakat dan artinya. Perhatikan polanya, lalu jawab pertanyaan dengan
+			kata-kata Anda sendiri. Pada tingkat menengah, cari bukti dalam teks untuk menjelaskan
+			hubungan antarkalimat dan fungsi tiap paragraf.
 		</p>
 		<p>
-			Fokus awal adalah bahasa Arab fusha (bahasa Arab standar). Perbedaan dengan bahasa Arab klasik
-			dan dialek percakapan akan dijelaskan secara terpisah.
+			Bacaan shalat diperkenalkan melalui makna frasa pendek. Pelajaran selanjutnya menggunakan
+			bahasa Arab standar dalam situasi sehari-hari.
 		</p>
 	</section>
 
 	<section aria-labelledby="status" class="space-y-3">
-		<h2 id="status" class="text-2xl font-semibold">Status materi</h2>
+		<h2 id="status" class="text-2xl font-semibold">Isi pelajaran</h2>
 		<p>
-			Materi sedang disusun. Setiap contoh bahasa Arab, penjelasan tata bahasa dan audio wajib punya
-			sumber dan ditinjau guru bahasa Arab sebelum terbit. Audio tidak pernah diputar otomatis.
+			Setiap pelajaran memuat bacaan, contoh, dan pembahasan dalam bahasa Indonesia. Rujukan
+			tercantum di akhir pelajaran.
 		</p>
 	</section>
 
@@ -45,6 +45,7 @@
 
 	<section aria-labelledby="sumber" class="space-y-3">
 		<h2 id="sumber" class="text-2xl font-semibold">Sumber dan atribusi</h2>
+		<p>Rujukan dan lisensi CC BY-SA 4.0 untuk tulisan asli dicantumkan pada setiap pelajaran.</p>
 		<ul class="list-disc space-y-2 ps-6">
 			<li>Huruf antarmuka: Plus Jakarta Sans (SIL Open Font License 1.1).</li>
 			<li>Huruf Arab: Noto Naskh Arabic (SIL Open Font License 1.1).</li>

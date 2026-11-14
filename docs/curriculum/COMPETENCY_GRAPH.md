@@ -48,38 +48,38 @@ interface Competency {
 
 Status of every node: **not reviewed**. Titles are Indonesian; terms are transliterated and their spelling waits on RS-07.
 
-| ID    | Title                                          | Arabic term                                                                            | Track     | Unit                | Hard prerequisites | Soft prerequisites  | Optional | Tracker               |
-| ----- | ---------------------------------------------- | -------------------------------------------------------------------------------------- | --------- | ------------------- | ------------------ | ------------------- | -------- | --------------------- |
-| CA-01 | Membedakan bunyi yang sering tertukar          | makhārij al-ḥurūf                                                                      | A         | A0                  | none               | none                | none     | A0, B0                |
-| CA-02 | Mengenali huruf dan bentuknya                  | ḥurūf hijāʾiyyah _(to confirm)_                                                        | A         | A1                  | none               | none                | none     | A1                    |
-| CA-03 | Membaca harakat, vokal panjang, sukun          | harakat, mad, sukun                                                                    | A         | A2                  | CA-02              | CA-01               | none     | A2, R-03              |
-| CA-04 | Membaca tasydid dan tanwin                     | tasydid, tanwin                                                                        | A         | A3                  | CA-03              | none                | none     | A3                    |
-| CA-06 | Membaca al- dan hamzah waṣl                    | lam syamsiyah/qamariyah, hamzat al-waṣl                                                | A         | A4                  | CA-03              | none                | none     | A4 (part)             |
-| CA-05 | Membaca ungkapan dan kalimat pendek berharakat | none                                                                                   | A         | A4 (join point)     | CA-03              | CA-04, CA-06        | none     | A4                    |
-| CB-01 | Kata inti bacaan shalat                        | Allāhu akbar, subḥāna, rabbī, al-ʿaẓīm, al-aʿlā, as-salāmu ʿalaikum (final list RS-04) | B         | U1                  | none               | none                | none     | V-04, RS-04           |
-| CB-02 | Varian bacaan shalat berdampingan              | riwayat (D-5 fields)                                                                   | B         | U1 (optional panel) | none               | CB-01               | none     | V-04                  |
-| CB-03 | Benda di sekitar                               | `[ARABIC: concrete noun from RS-01 list]`                                              | B         | U2                  | none               | none                | none     | B1, V-01              |
-| CB-04 | Menunjuk dan bertanya                          | hādhā, mā, man                                                                         | B         | U2                  | none               | CB-03               | none     | B2, B8                |
-| CB-05 | Yang tertentu: al-                             | al-; maʿrifah / nakirah                                                                | B         | U3                  | none               | CB-04               | CA-06    | B2                    |
-| CB-06 | Kalimat nominal sederhana                      | jumlah ismiyyah (term later)                                                           | B         | U3                  | none               | CB-04, CB-05        | none     | B3                    |
-| CB-07 | Lokasi dengan ḥarf jarr                        | ḥarf jarr; fī                                                                          | B         | U4                  | none               | CB-03               | none     | B5, R-01              |
-| CB-08 | Kata ganti terpisah                            | ḍamīr munfaṣil                                                                         | B         | U4                  | none               | CB-06               | none     | B4                    |
-| CB-09 | Milik: iḍāfah                                  | iḍāfah                                                                                 | B         | U5                  | none               | CB-03, CB-05        | none     | B4                    |
-| CB-10 | Kata tunjuk feminin dan penanda gender         | _(forms and terms to confirm)_                                                         | B         | U6                  | none               | CB-04               | none     | B9 (part)             |
-| CB-11 | Frasa sifat                                    | murakkab waṣfī                                                                         | B         | U7                  | none               | CB-05, CB-10        | none     | B3                    |
-| CB-12 | Kata ganti melekat                             | ḍamīr muttaṣil                                                                         | B         | U8                  | none               | CB-08, CB-09        | none     | B4                    |
-| CB-13 | Kata kerja paling sering                       | qāla, kāna; fiʿl māḍī                                                                  | B         | U9                  | none               | CB-06               | none     | B6, V-03              |
-| CB-14 | Pelaku dan tindakan                            | jumlah fiʿliyyah; fāʿil                                                                | B         | U9                  | none               | CB-03, CB-13        | none     | B6                    |
-| CB-15 | Lampau dan bukan lampau                        | fiʿl māḍī, fiʿl muḍāriʿ                                                                | B         | U10                 | none               | CB-13, CB-14        | none     | B7                    |
-| CB-16 | Tiga jenis kata                                | ism, fiʿl, ḥarf                                                                        | B         | U10                 | none               | CB-06, CB-07, CB-14 | none     | none                  |
-| CB-17 | Gender dan jumlah                              | tunggal, dua, jamak                                                                    | B         | backlog             | none               | CB-10, CB-11        | none     | B9                    |
-| CB-18 | Keluarga akar kata                             | jadhr, wazn                                                                            | B         | backlog             | none               | CB-15               | none     | B10                   |
-| CB-19 | Kata tugas Al-Qur'an paling sering             | min, fī, inna, ʿalā, alladhī, mā, lā                                                   | B         | thread              | none               | CB-04, CB-07        | CB-01    | V-03                  |
-| CB-20 | Bertanya dan dialog pendek                     | none                                                                                   | B         | backlog             | none               | CB-04, CB-08        | none     | B8, B11               |
-| CB-21 | Integrasi dan transfer                         | none                                                                                   | B         | backlog             | none               | CB-11, CB-15, CB-20 | none     | B11, B12              |
-| CR-01 | Tabel tashrif istilahi                         | tashrif istilahi                                                                       | reference | reference           | none               | CB-15               | CB-18    | R-02 (blocked, RS-06) |
-| CR-02 | Tabel jenis ḥarf                               | ḥarf jarr, ʿaṭf, nafy, ...                                                             | reference | reference           | none               | CB-07               | CB-16    | R-01                  |
-| CR-03 | Iʿrāb: empat keadaan akhir kata                | rafʿ, naṣb, jarr, jazm                                                                 | reference | reference           | none               | CB-06, CB-14, CB-16 | none     | none                  |
+| ID    | Title                                          | Arabic term                                                                            | Track     | Unit                | Hard prerequisites | Soft prerequisites  | Optional | Tracker                        |
+| ----- | ---------------------------------------------- | -------------------------------------------------------------------------------------- | --------- | ------------------- | ------------------ | ------------------- | -------- | ------------------------------ |
+| CA-01 | Membedakan bunyi yang sering tertukar          | makhārij al-ḥurūf                                                                      | A         | A0                  | none               | none                | none     | A0, B0                         |
+| CA-02 | Mengenali huruf dan bentuknya                  | ḥurūf hijāʾiyyah _(to confirm)_                                                        | A         | A1                  | none               | none                | none     | A1                             |
+| CA-03 | Membaca harakat, vokal panjang, sukun          | harakat, mad, sukun                                                                    | A         | A2                  | CA-02              | CA-01               | none     | A2, R-03                       |
+| CA-04 | Membaca tasydid dan tanwin                     | tasydid, tanwin                                                                        | A         | A3                  | CA-03              | none                | none     | A3                             |
+| CA-06 | Membaca al- dan hamzah waṣl                    | lam syamsiyah/qamariyah, hamzat al-waṣl                                                | A         | A4                  | CA-03              | none                | none     | A4 (part)                      |
+| CA-05 | Membaca ungkapan dan kalimat pendek berharakat | none                                                                                   | A         | A4 (join point)     | CA-03              | CA-04, CA-06        | none     | A4                             |
+| CB-01 | Kata inti bacaan shalat                        | Allāhu akbar, subḥāna, rabbī, al-ʿaẓīm, al-aʿlā, as-salāmu ʿalaikum (final list RS-04) | B         | U1                  | none               | none                | none     | V-04, RS-04                    |
+| CB-02 | Varian bacaan shalat berdampingan              | riwayat (D-5 fields)                                                                   | B         | U1 (optional panel) | none               | CB-01               | none     | V-04                           |
+| CB-03 | Benda di sekitar                               | `[ARABIC: concrete noun from RS-01 list]`                                              | B         | U2                  | none               | none                | none     | B1, V-01                       |
+| CB-04 | Menunjuk dan bertanya                          | hādhā, mā, man                                                                         | B         | U2                  | none               | CB-03               | none     | B2, B8                         |
+| CB-05 | Yang tertentu: al-                             | al-; maʿrifah / nakirah                                                                | B         | U3                  | none               | CB-04               | CA-06    | B2                             |
+| CB-06 | Kalimat nominal sederhana                      | jumlah ismiyyah (term later)                                                           | B         | U3                  | none               | CB-04, CB-05        | none     | B3                             |
+| CB-07 | Lokasi dengan ḥarf jarr                        | ḥarf jarr; fī                                                                          | B         | U4                  | none               | CB-03               | none     | B5, R-01                       |
+| CB-08 | Kata ganti terpisah                            | ḍamīr munfaṣil                                                                         | B         | U4                  | none               | CB-06               | none     | B4                             |
+| CB-09 | Milik: iḍāfah                                  | iḍāfah                                                                                 | B         | U5                  | none               | CB-03, CB-05        | none     | B4                             |
+| CB-10 | Kata tunjuk feminin dan penanda gender         | _(forms and terms to confirm)_                                                         | B         | U6                  | none               | CB-04               | none     | B9 (part)                      |
+| CB-11 | Frasa sifat                                    | murakkab waṣfī                                                                         | B         | U7                  | none               | CB-05, CB-10        | none     | B3                             |
+| CB-12 | Kata ganti melekat                             | ḍamīr muttaṣil                                                                         | B         | U8                  | none               | CB-08, CB-09        | none     | B4                             |
+| CB-13 | Kata kerja paling sering                       | qāla, kāna; fiʿl māḍī                                                                  | B         | U9                  | none               | CB-06               | none     | B6, V-03                       |
+| CB-14 | Pelaku dan tindakan                            | jumlah fiʿliyyah; fāʿil                                                                | B         | U9                  | none               | CB-03, CB-13        | none     | B6                             |
+| CB-15 | Lampau dan bukan lampau                        | fiʿl māḍī, fiʿl muḍāriʿ                                                                | B         | U10                 | none               | CB-13, CB-14        | none     | B7                             |
+| CB-16 | Tiga jenis kata                                | ism, fiʿl, ḥarf                                                                        | B         | U10                 | none               | CB-06, CB-07, CB-14 | none     | none                           |
+| CB-17 | Gender dan jumlah                              | tunggal, dua, jamak                                                                    | B         | backlog             | none               | CB-10, CB-11        | none     | B9                             |
+| CB-18 | Keluarga akar kata                             | jadhr, wazn                                                                            | B         | backlog             | none               | CB-15               | none     | B10                            |
+| CB-19 | Kata tugas Al-Qur'an paling sering             | min, fī, inna, ʿalā, alladhī, mā, lā                                                   | B         | thread              | none               | CB-04, CB-07        | CB-01    | V-03                           |
+| CB-20 | Bertanya dan dialog pendek                     | none                                                                                   | B         | backlog             | none               | CB-04, CB-08        | none     | B8, B11                        |
+| CB-21 | Integrasi dan transfer                         | none                                                                                   | B         | backlog             | none               | CB-11, CB-15, CB-20 | none     | B11, B12                       |
+| CR-01 | Tabel tashrif istilahi                         | tashrif istilahi                                                                       | reference | reference           | none               | CB-15               | CB-18    | R-02 (enam bab dasar tersedia) |
+| CR-02 | Tabel jenis ḥarf                               | ḥarf jarr, ʿaṭf, nafy, ...                                                             | reference | reference           | none               | CB-07               | CB-16    | R-01                           |
+| CR-03 | Iʿrāb: empat keadaan akhir kata                | rafʿ, naṣb, jarr, jazm                                                                 | reference | reference           | none               | CB-06, CB-14, CB-16 | none     | none                           |
 
 ## 3. Units (provisional)
 
@@ -101,6 +101,16 @@ Unit order follows ADR-004 D-4. Can-do goals are drafts; outcomes and evidence p
 | Backlog   | CB-17, CB-18, CB-20, CB-21     | Not in D-4                                     | Old B-list items kept as can-do backlog (D-4 point 3).                                                |
 | Reference | CR-01, CR-02, CR-03            | Not in D-4                                     | Optional tables and reference pages; never gates.                                                     |
 | Jalur A   | CA-01 to CA-06                 | Research doc §5.2                              | Optional foundation; CA-05 is the join point to Jalur B.                                              |
+
+### Cakupan bacaan tingkat menengah
+
+| ID    | Bukti yang dicari dari jawaban pelajar                                                        | Prasyarat yang disarankan |
+| ----- | --------------------------------------------------------------------------------------------- | ------------------------- |
+| CB-22 | Menjelaskan alasan, akibat, urutan atau kontras dan menunjuk penandanya.                      | CB-07, CB-12, CB-15       |
+| CB-23 | Menulis gagasan utama satu paragraf dan memilih satu detail yang mendukungnya.                | CB-22                     |
+| CB-24 | Menjelaskan fungsi setiap paragraf, melacak rujukan antarpagraf dan merangkum dokumen pendek. | CB-12, CB-22, CB-23       |
+
+CB-21 tetap menjadi kompetensi transfer. Uji akhir memberi pengumuman baru agar pelajar bisa menerapkan CB-24 pada jenis dokumen yang berbeda. Ketiga node di atas adalah perluasan kasus bacaan dan belum termasuk hitungan grafik awal pada §6. [Daftar pelajaran](../content/public-lessons.md).
 
 ## 4. Activity gates
 
@@ -176,7 +186,7 @@ flowchart TD
   end
 
   subgraph REF["Rujukan opsional"]
-    CR01["CR-01 Tabel tashrif (blocked RS-06)"]
+    CR01["CR-01 Tabel tashrif istilahi"]
     CR02["CR-02 Tabel jenis harf"]
     CR03["CR-03 I'rab"]
   end

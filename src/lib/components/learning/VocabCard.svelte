@@ -15,20 +15,13 @@
 </script>
 
 <article class="flex h-full flex-col rounded-2xl border bg-card p-5">
-	<div class="flex items-start justify-between gap-3">
-		{#if Icon}
-			<span
-				class="inline-flex size-12 items-center justify-center rounded-xl bg-secondary text-primary"
-			>
-				<Icon class="size-6" aria-hidden="true" />
-			</span>
-		{/if}
+	{#if Icon && !hafalan}
 		<span
-			class="ms-auto rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
+			class="inline-flex size-12 items-center justify-center rounded-xl bg-secondary text-primary"
 		>
-			{item.register === 'classical' ? "Al-Qur'an / klasik" : 'Fusha'}
+			<Icon class="size-6" aria-hidden="true" />
 		</span>
-	</div>
+	{/if}
 
 	<p lang="ar" dir="rtl" class="mt-4 arabic-word">{item.arabic}</p>
 

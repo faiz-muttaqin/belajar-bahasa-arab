@@ -1,6 +1,6 @@
 # Plan: local copies of existing curriculum (personal-use mode)
 
-**Status:** design done, implementation not started. Content does not exist yet in this repo.
+**Status:** personal-use design, deferred. The current build ships [original public lessons](../content/public-lessons.md).
 **Owner decision (2026-11-14):** the owner wants to study from material that already exists in
 the cloned source repos, without waiting for teacher review, and to review the UI with real
 content. Copies stay **local only**: the owner chose "simpan lokal saja" over making the repo

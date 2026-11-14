@@ -1,25 +1,39 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { Button } from '#lib/components/ui/button/index.js';
-	import EmptyState from '#lib/components/layout/EmptyState.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+	const levels = ['Dasar', 'Menengah', 'Fondasi'] as const;
 </script>
 
 <PageIntro
 	title="Latihan"
 	section="latihan"
-	description="Latihan mengingat dan memahami bahasa Arab tanpa jawaban terlihat, dengan umpan balik yang menjelaskan alasannya."
+	description="Latihan membaca tulisan Arab, memahami makna kalimat, dan menganalisis paragraf dengan pembahasan dalam bahasa Indonesia."
 >
 	{#snippet lead()}
-		<p>Ingat kembali tanpa melihat jawaban, lalu lihat alasannya.</p>
+		<p>Pilih pelajaran dan jawab pertanyaannya sebelum membuka pembahasan.</p>
 	{/snippet}
 </PageIntro>
 
-<div class="mt-12">
-	<EmptyState title="Belum ada latihan">
-		<p>Latihan muncul setelah pelajaran pertama. Tanpa batas waktu, tanpa skor harian.</p>
-		{#snippet actions()}
-			<Button href={resolve('belajar/')}>Mulai belajar</Button>
-		{/snippet}
-	</EmptyState>
+<div class="mt-10 max-w-3xl space-y-10">
+	{#each levels as level (level)}
+		<section aria-label={level} class="space-y-4">
+			<h2 class="text-2xl font-semibold">{level}</h2>
+			<ul class="divide-y rounded-xl border">
+				{#each data.lessons.filter((lesson) => lesson.level === level) as lesson (lesson.id)}
+					<li>
+						<a
+							class="flex min-h-11 flex-wrap items-center justify-between gap-x-4 rounded-xl px-4 py-3 hover:bg-accent"
+							href={resolve(`${lesson.track}/${lesson.slug}/#latihan`)}
+						>
+							<span class="font-medium">{lesson.title}</span>
+							<span class="text-base text-muted-foreground">{lesson.count} soal</span>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</section>
+	{/each}
 </div>

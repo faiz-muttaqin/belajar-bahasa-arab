@@ -126,9 +126,10 @@
 									<button
 										type="button"
 										class="inline-flex min-h-11 items-center rounded-md border border-dashed px-3 text-sm text-muted-foreground hover:text-foreground"
+										aria-label="Buka: {column.label}, baris {rowIndex + 1}"
 										onclick={() => reveal(cellId)}
 									>
-										Buka<span class="sr-only">: {column.label}, baris {rowIndex + 1}</span>
+										Buka
 									</button>
 								{:else if column.lang === 'ar'}
 									<span

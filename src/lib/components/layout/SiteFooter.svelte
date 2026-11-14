@@ -8,10 +8,6 @@
 		<div class="max-w-[65ch] space-y-3 text-base text-pretty text-muted-foreground">
 			<p class="font-semibold text-foreground">Belajar Bahasa Arab</p>
 			<p>Tanpa akun. Data belajar Anda disimpan di perangkat ini, bukan di server.</p>
-			<p>
-				Materi sedang disiapkan. Setiap contoh dan audio akan ditinjau guru bahasa Arab sebelum
-				terbit.
-			</p>
 		</div>
 		<nav aria-label="Semua bagian (footer)">
 			<ul class="grid grid-cols-2 gap-x-6 sm:grid-cols-3">
