@@ -29,10 +29,10 @@ describe('grammar knowledge map foundation', () => {
 	it('rejects examples without a word gloss', () => {
 		const bad = [
 			{
-				...grammarRules[0],
+				...grammarRules[0]!,
 				examples: [
 					{
-						...grammarRules[0].examples[0],
+						...grammarRules[0]!.examples[0]!,
 						tokens: [{ arabic: 'كِتَابٌ', gloss: '', role: 'manut' as const }]
 					}
 				]
