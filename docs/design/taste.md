@@ -24,7 +24,7 @@ Sources: research digest of the local UI/UX skills (`frontend-design-direction`,
 - Colour: one accent (`primary`, teal) for actions, active states and markers. Secondary panels use `secondary`. A chart colour may tint an icon (e.g. amber `chart-3` for "harian") but never text.
 - Desktop (`lg` and up): sticky 64 px header with visible text links; Beranda is the wordmark. Active link: `aria-current="page"` plus underline.
 - Mobile: header with wordmark and a "Menu" button (Sheet listing every section with a one-line summary), plus a bottom tab bar with exactly five labelled destinations: Beranda, Belajar, Latihan, Kosakata, Progres. Lesson and exercise pages will hide the tab bar (focus mode).
-- Footer repeats every section and states the data and content-status facts in plain text.
+- Footer is a restrained single-row status and privacy note, not another navigation menu; one optional link to the About/sources page.
 - Every page: one H1, a lead paragraph, its own `<title>` (`Topik · Belajar Bahasa Arab`) and an honest meta description (`PageIntro`).
 - Empty sections say what is missing, what will appear and how, and give one next action (`EmptyState`).
 

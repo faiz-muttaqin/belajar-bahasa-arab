@@ -19,7 +19,7 @@ export type SectionPath =
 export const sectionPathsExist: SectionPath extends Path ? true : never = true;
 
 /**
- * Site sections. One source of truth for the sidebar, mobile tab bar, menu sheet and footer.
+ * Site sections. One source of truth for the sidebar, mobile tab bar and menu sheet.
  * Paths are SvelteKit 3 pathnames (no leading slash, trailing slash because the site uses
  * `trailingSlash = 'always'`), typed against the real routes; the home page uses the route
  * ID '/'. Pass them through `resolve()` from `$app/paths` when rendering.
