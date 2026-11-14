@@ -139,8 +139,8 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 
 - **G-01 — ✅ Implemented (#14):** tiga kaidah awal, glos di bawah token, warna + label, latihan statis, QA CI; materi tetap berstatus draft untuk audit kebahasaan.
 - **G-02 — ✅ Pilot merged (#20):** /kaidah/sharaf/ memuat akar ك ت ب, pola Form I, enam ṣīghah istilahi dan sembilan bentuk lughawi dengan dhamir, glos per bentuk, rujukan dan latihan; verba mu‘tal dan perluasan 22 wazan tetap pekerjaan lanjutan.
-- **G-03 — 🟡 Implementasi pilot:** /kaidah/frasa/ memuat lima kaidah (ma‘rifah/nakirah, kesesuaian sifat, iḍāfah/jar–majrūr, tiga kasus i‘rab dan tanda kasus mutsanna/jamak mudzakkar salim), 16 contoh dengan glos dan label i‘rab; audit sumber dan QA mengikuti PR.
-- **G-04 — ⬜:** kalimat nominal/verbal lengkap, pasif, negasi dan nawāsikh.
+- **G-03 — ✅ Pilot merged (#21):** /kaidah/frasa/ memuat lima kaidah dan 16 contoh dengan glos serta label i‘rab; masih draft untuk audit kebahasaan.
+- **G-04 — 🟡 Implementasi pilot:** /kaidah/kalimat/ memuat enam kaidah, 18 contoh (nominal, verbal, pasif, negasi, kāna/inna, tanya هَلْ), dengan peran berwarna, glos di bawah kata, dan label i‘rab isim vs mood fi‘il; audit dan QA mengikuti PR.
 - **G-05 — ⬜:** klausa, penghubung, syarat, sebab-akibat dan kalimat majemuk.
 - **G-06 — ⬜:** peta prasyarat, latihan susun kalimat, indeks kaidah dan bacaan panjang.
 
