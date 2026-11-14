@@ -54,6 +54,20 @@
 	{/each}
 </ul>
 
+<aside class="mt-8 max-w-3xl rounded-xl border bg-card p-5">
+	<h2 class="font-semibold">Dari jenis kata ke susunan kalimat</h2>
+	<p class="mt-2 text-muted-foreground">
+		Pelajari na‘at–man‘ūt, mubtada–khabar, dan idafah dengan warna peran serta arti yang terletak
+		tepat di bawah tiap kata Arab.
+	</p>
+	<a
+		href={resolve('kaidah/')}
+		class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>
+		Buka peta kaidah
+	</a>
+</aside>
+
 <p class="mt-8 text-muted-foreground">
 	Mencari kata tertentu?
 	<a href={resolve('sharaf/')} class="font-medium text-primary underline">Cari akar dan wazan</a>

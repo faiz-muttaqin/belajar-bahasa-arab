@@ -10,6 +10,7 @@ import ListChecks from '@lucide/svelte/icons/list-checks';
 import Palette from '@lucide/svelte/icons/palette';
 import Search from '@lucide/svelte/icons/search';
 import Table2 from '@lucide/svelte/icons/table-2';
+import Waypoints from '@lucide/svelte/icons/waypoints';
 import type { SectionId } from '#lib/navigation.js';
 
 /** One icon per section, reused as a marker in the tab bar, menu, page intros and footer. */
@@ -20,6 +21,7 @@ export const sectionIcons: Record<SectionId, Component> = {
 	latihan: ListChecks,
 	kosakata: BookA,
 	rujukan: Table2,
+	kaidah: Waypoints,
 	cari: Search,
 	progres: ChartNoAxesColumn,
 	bookmark: Bookmark,

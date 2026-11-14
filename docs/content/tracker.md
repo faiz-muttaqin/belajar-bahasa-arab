@@ -133,6 +133,17 @@ Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 | RS-13 | Daftar kata kerja 22 wazan dari Wiktionary (2.788 Form I + 4.479 mazid dan ruba'i, transliterasi, mudhari, mashdar, arti Inggris, terjemahan Indonesia oleh Claude, pembanding Google) | 🟡 draft, belum ditinjau     | [wiktionary-verbs](../data/wiktionary-verbs.md). Tidak bergantung pada PR #6.                                                                                                                                                                                                                                                                                                                                    |
 | RS-14 | Arti 5.005 kata kerja Qutrub/Arramooz tanpa data Wiktionary dari pengetahuan model (Sonnet 5.5, Fable 5.2), dengan verba kontrol                                                       | 🟡 draft, tidak diverifikasi | [model-recall](../data/model-recall.md). Ketepatan 86% pada kontrol; lebih rendah pada kata langka.                                                                                                                                                                                                                                                                                                              |
 
+## Nahwu–sharaf knowledge map
+
+Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.md). Pelajaran existing tetap sumber isi; halaman baru merangkum hubungan antaraturan dan memberi penanda peran.
+
+- **G-01 — 🟡 Draft:** tiga kaidah awal, glos di bawah token, warna + label, latihan statis dan tautan ke referensi; QA CI dan audit sumber per klaim mengikuti PR.
+- **G-02 — ⬜:** sharaf lanjutan (akar, wazan, istilahi/lughawi, mu‘tal).
+- **G-03 — ⬜:** nahwu frasa dan tanda i‘rab.
+- **G-04 — ⬜:** kalimat nominal/verbal lengkap, pasif, negasi dan nawāsikh.
+- **G-05 — ⬜:** klausa, penghubung, syarat, sebab-akibat dan kalimat majemuk.
+- **G-06 — ⬜:** peta prasyarat, latihan susun kalimat, indeks kaidah dan bacaan panjang.
+
 ## People and decisions needed
 
 | Need                                                                                      | Who           | Status |
