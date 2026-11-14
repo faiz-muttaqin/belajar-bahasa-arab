@@ -3,11 +3,15 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { sharafEntries } from '#lib/content/sharaf.js';
+	import { tashrifColumns } from '#lib/domain/sharaf/matrix.js';
 	import { searchSharaf, type SharafFilter, type SharafEntry } from '#lib/domain/sharaf/lexicon.js';
 
 	let query = $state('');
 	let filter = $state<SharafFilter>('all');
 	let results = $derived(searchSharaf(sharafEntries, query, filter));
+	function formLabel(label: string): string {
+		return tashrifColumns.find((column) => column.key === label.toLowerCase())?.label ?? label;
+	}
 	const filters: { value: SharafFilter; label: string }[] = [
 		{ value: 'all', label: 'Semua' },
 		{ value: 'verb', label: 'Fi’il' },
@@ -107,7 +111,7 @@
 							<dl class="mt-2 space-y-2">
 								{#each entry.forms as form (form.label)}
 									<div class="flex items-center justify-between gap-3 border-t border-border pt-2">
-										<dt class="text-sm text-muted-foreground">{form.label}</dt>
+										<dt class="text-sm text-muted-foreground">{formLabel(form.label)}</dt>
 										<dd><ArabicText text={form.value} /></dd>
 									</div>
 								{/each}
