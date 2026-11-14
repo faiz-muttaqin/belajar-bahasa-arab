@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SentenceAnalysis } from '#lib/content/lessons/analysis.js';
 	import ArabicText from './ArabicText.svelte';
+	import AudioPlayButton from './AudioPlayButton.svelte';
 	import MixedText from './MixedText.svelte';
 
 	let { sentence }: { sentence: SentenceAnalysis } = $props();
@@ -12,6 +13,7 @@
 			<li class="space-y-2 px-3 py-3 sm:px-4">
 				<p class="flex flex-wrap items-baseline gap-x-3">
 					<ArabicText text={arabic} class="font-semibold" />
+					<AudioPlayButton text={arabic} label="Dengarkan kata Arab" compact />
 					<span>{meaning}</span>
 					<span class="text-sm font-medium text-muted-foreground">{kind}</span>
 				</p>
