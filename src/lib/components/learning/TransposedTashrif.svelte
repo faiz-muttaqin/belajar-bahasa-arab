@@ -1,242 +1,350 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { resolve } from '$app/paths';
+	import Search from '@lucide/svelte/icons/search';
+	import X from '@lucide/svelte/icons/x';
+	import RotateCcw from '@lucide/svelte/icons/rotate-ccw';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
-	import { sharafEntries } from '#lib/content/sharaf.js';
 	import { catalogState } from '#lib/catalog/sync.svelte.js';
+	import { sharafEntries } from '#lib/content/sharaf.js';
 	import {
 		babGroups,
 		referenceWazanValue,
 		selectableVerbs,
 		tashrifColumns,
-		tashrifValue
+		tashrifValue,
+		type TashrifColumnKey,
+		type BabGroup
 	} from '#lib/domain/sharaf/matrix.js';
 	import type { SharafEntry } from '#lib/domain/sharaf/lexicon.js';
+	import type { PatternFamily } from '#lib/domain/sharaf/patterns.js';
 
-	// The project ships an immediately readable static reference. A same-origin
-	// prerendered JSON snapshot is refreshed in the background and cached locally.
+	const allFamilies: { key: PatternFamily | 'all'; name: string }[] = [
+		{ key: 'all', name: 'Semua kelompok (22)' },
+		{ key: 'tsulatsi-mujarrad', name: 'Tsulatsi mujarrad (6)' },
+		{ key: 'tsulatsi-mazid-1', name: 'Tsulatsi mazid +1 (3)' },
+		{ key: 'tsulatsi-mazid-2', name: 'Tsulatsi mazid +2 (5)' },
+		{ key: 'tsulatsi-mazid-3', name: 'Tsulatsi mazid +3 (4)' },
+		{ key: 'rubai-mujarrad', name: 'Ruba’i mujarrad (1)' },
+		{ key: 'rubai-mazid-1', name: 'Ruba’i mazid +1 (1)' },
+		{ key: 'rubai-mazid-2', name: 'Ruba’i mazid +2 (2)' }
+	];
+
+	const explanations: Record<TashrifColumnKey, string> = {
+		madhi: 'Fi’il madhi menunjukkan peristiwa yang sudah terjadi. Pola harakat dan jumlah huruf tambahan menjadi petunjuk identifikasi bab.',
+		mudhari: 'Fi’il mudhari menunjukkan peristiwa nonlampau. Pada tsulatsi mujarrad, pasangan madhi dan mudhari membantu menentukan bab sima’i.',
+		mashdar: 'Mashdar menamai perbuatan tanpa waktu. Bentuknya sering perlu rujukan kamus; pola di tabel hanya contoh representatif.',
+		mimi: 'Mashdar mimi memiliki tambahan mim. Untuk beberapa bentuk, ejaannya serupa dengan isim zaman dan tempat.',
+		fail: 'Isim fa’il menyatakan pelaku atau sifat. Untuk bentuk mazid, polanya umumnya mengikuti mudhari dengan mim dan kasrah sebelum huruf terakhir.',
+		maful: 'Isim maf’ul menyatakan yang dikenai perbuatan. Tidak setiap fi’il lazim memiliki isim maf’ul yang umum digunakan.',
+		amr: 'Fi’il amr untuk perintah. Perubahan huruf illat dan hamzah dapat memerlukan aturan khusus.',
+		nahy: 'Fi’il nahy menggabungkan partikel larangan لا dengan mudhari majzum. Contohnya di tabel berupa pola dasar.',
+		zaman: 'Isim zaman menunjuk waktu terjadinya suatu perbuatan. Bentuk leksikalnya perlu dibedakan dari pola simbolik.',
+		makan: 'Isim makan menunjuk tempat terjadinya suatu perbuatan. Tidak semua akar menghasilkan bentuk tempat yang lazim.',
+		alah: 'Isim alat menamai alat. Banyak bentuknya bersifat leksikal dan tidak boleh diturunkan secara otomatis hanya dari akar.'
+	};
+
+	type CellDetail = { group: BabGroup; key: TashrifColumnKey; entry?: SharafEntry };
+	type ModalMode = 'search' | 'word' | 'cell';
+
 	let entries = $derived(catalogState.catalog?.sharaf ?? sharafEntries);
-	let query = $state('');
-	let babFilter = $state<number | 'all'>('all');
 	let selected = $state<Record<number, string>>({});
+	let family = $state<PatternFamily | 'all'>('all');
+	let dialogEl: HTMLDialogElement;
 	let tableScroller: HTMLDivElement;
+	let modalMode = $state<ModalMode>('search');
+	let modalBab = $state<number | 'all'>('all');
+	let modalQuery = $state('');
+	let inspected = $state<SharafEntry | null>(null);
+	let cell = $state<CellDetail | null>(null);
 
 	const rtlColumns = [...tashrifColumns].reverse();
 	let groups = $derived(babGroups(entries));
 	let visibleGroups = $derived(
-		groups.filter((group) => babFilter === 'all' || group.number === babFilter)
+		groups.filter((group) => family === 'all' || group.family === family)
 	);
-	let suggestions = $derived(selectableVerbs(entries, babFilter, query));
+	let suggestions = $derived(selectableVerbs(entries, modalBab, modalQuery));
 
-	function selectWord(entry: SharafEntry) {
-		if (!entry.bab) return;
-		selected = { ...selected, [entry.bab.number]: entry.id };
+	function activeFor(group: BabGroup): SharafEntry | undefined {
+		return entries.find(
+			(entry) => entry.id === selected[group.number] && entry.bab?.number === group.number
+		);
 	}
 
-	function resetBab(bab: number) {
-		const next = { ...selected };
-		delete next[bab];
-		selected = next;
+	function openSearch(bab: number | 'all' = 'all') {
+		modalBab = bab;
+		modalQuery = '';
+		modalMode = 'search';
+		inspected = null;
+		cell = null;
+		dialogEl.showModal();
+	}
+
+	function inspectWord(entry: SharafEntry) {
+		inspected = entry;
+		modalMode = 'word';
+	}
+
+	function useWord(entry: SharafEntry) {
+		if (!entry.bab) return;
+		selected = { ...selected, [entry.bab.number]: entry.id };
+		dialogEl.close();
+	}
+
+	function inspectCell(group: BabGroup, key: TashrifColumnKey) {
+		cell = { group, key, entry: activeFor(group) };
+		modalMode = 'cell';
+		dialogEl.showModal();
 	}
 
 	onMount(() => {
-		// The madhi column is physically rightmost; show it first on interactive pages.
-		if (!location.hash.startsWith('#tashrif-istilahi-')) {
-			tableScroller.scrollLeft = tableScroller.scrollWidth;
-		}
+		// Put fi'il madhi, the rightmost column, in view without affecting SSR.
+		tableScroller.scrollLeft = tableScroller.scrollWidth;
 	});
 </script>
 
-<div class="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_17rem] xl:items-start">
-	<div class="min-w-0 space-y-3">
-		<div class="flex flex-wrap items-baseline justify-between gap-3">
-			<p class="text-sm text-muted-foreground">
-				Bentuk dibaca dari kanan ke kiri. Semua bab mulai dengan wazan ف–ع–ل.
-			</p>
-			{#if Object.keys(selected).length > 0}
-				<button
-					type="button"
-					class="min-h-11 text-sm font-medium text-primary underline"
-					onclick={() => (selected = {})}
-				>
-					Kembalikan semua ke wazan
-				</button>
-			{/if}
-		</div>
-		<!-- The bab label is the first physical (leftmost) column. Forms appear in
-		     reverse DOM order so madhi sits at the far right and reads RTL. -->
-		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-		<div
-			bind:this={tableScroller}
-			class="relative min-w-0 overflow-x-auto rounded-xl border"
-			role="region"
-			aria-label="Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri"
-			tabindex="0"
-		>
-			<table class="w-full min-w-max border-collapse text-start">
-				<caption class="px-4 py-3 text-start text-sm text-muted-foreground">
-					Enam bab × sebelas bentuk. Geser horizontal untuk melihat seluruh perubahan.
-				</caption>
-				<thead class="border-y bg-secondary">
-					<tr>
-						<th
-							scope="col"
-							class="sticky left-0 z-20 min-w-40 border-r bg-secondary px-3 py-3 text-start text-xs font-semibold"
-							>Bab / kata</th
-						>
-						{#each rtlColumns as column (column.key)}
-							<th
-								id={`tashrif-istilahi-${column.key}`}
-								scope="col"
-								class="min-w-32 scroll-mt-24 scroll-ml-40 px-3 py-3 text-center text-xs font-medium text-secondary-foreground"
-								>{column.label}</th
-							>
-						{/each}
-					</tr>
-				</thead>
-				<tbody>
-					{#each visibleGroups as group (group.number)}
-						{@const active = entries.find(
-							(entry) => entry.id === selected[group.number] && entry.bab?.number === group.number
-						)}
-						<tr class="border-b last:border-b-0">
-							<th
-								scope="row"
-								class="sticky left-0 z-10 min-w-40 border-r bg-card px-3 py-4 text-start align-middle"
-							>
-								<p class="text-sm font-semibold">Bab {group.number}</p>
-								<ArabicText text={active?.lemma ?? group.pattern} />
-								<p class="max-w-36 text-xs text-muted-foreground">
-									{active ? active.meaning : 'Wazan dasar'}
-								</p>
-								{#if active}
-									<button
-										type="button"
-										class="mt-1 min-h-9 text-xs font-medium text-primary underline"
-										onclick={() => resetBab(group.number)}>Kembalikan wazan</button
-									>
-								{/if}
-							</th>
-							{#each rtlColumns as column (column.key)}
-								{@const value = active
-									? tashrifValue(active, column.key)
-									: referenceWazanValue(group.number, column.key)}
-								<td class="px-3 py-4 text-center align-middle">
-									{#if value}
-										<span
-											lang="ar"
-											dir="rtl"
-											class="block arabic-block text-center whitespace-nowrap">{value}</span
-										>
-									{:else}
-										<span
-											class="text-sm text-muted-foreground"
-											title={active
-												? 'Bentuk ini belum tercatat untuk kata yang dipilih'
-												: 'Tidak dicontohkan dalam tabel rujukan'}>—</span
-										>
-									{/if}
-								</td>
-							{/each}
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
-		<p class="text-sm text-muted-foreground">
-			Baris default adalah pola simbolik, bukan klaim bahwa semua mashdar atau isim alat terbentuk
-			secara otomatis. Jika memilih kata, tanda — berarti bentuk tersebut belum tercatat atau tidak
-			dicontohkan dalam glosarium.
-		</p>
-	</div>
-
-	<aside
-		class="order-first space-y-4 rounded-xl border bg-card p-4 xl:sticky xl:top-24 xl:order-last"
-		aria-label="Pilih kata contoh"
-	>
-		<div>
-			<h3 class="text-lg font-semibold">Pilih contoh kata</h3>
-			<p class="mt-1 text-sm text-muted-foreground">
-				Pilih fi’il dari glosarium; baris bab yang sesuai akan menampilkan bentuk kata itu.
-			</p>
-		</div>
-
-		<div class="space-y-2">
-			<label for="tashrif-bab" class="block text-sm font-medium">Tampilkan bab</label>
-			<select
-				id="tashrif-bab"
-				bind:value={babFilter}
-				class="min-h-11 w-full rounded-lg border bg-background px-3 text-sm"
+<section class="min-w-0 space-y-4" aria-label="Matriks wazan 22 bab">
+	<div class="flex flex-wrap items-center justify-between gap-3">
+		<div class="flex flex-wrap items-center gap-2">
+			<button
+				type="button"
+				onclick={() => openSearch()}
+				class="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground hover:opacity-90"
 			>
-				<option value="all">Semua bab</option>
-				{#each groups as group (group.number)}
-					<option value={group.number}>Bab {group.number}</option>
+				<Search class="size-4" aria-hidden="true" />
+				Cari kata atau arti Indonesia
+			</button>
+			<label class="sr-only" for="pattern-family-filter">Kelompok tashrif</label>
+			<select
+				id="pattern-family-filter"
+				bind:value={family}
+				class="min-h-11 min-w-48 rounded-lg border bg-card px-3 text-sm"
+			>
+				{#each allFamilies as item (item.key)}
+					<option value={item.key}>{item.name}</option>
 				{/each}
 			</select>
 		</div>
+		<button
+			type="button"
+			onclick={() => (selected = {})}
+			class="inline-flex min-h-11 items-center gap-2 rounded-lg border px-3 text-sm font-medium hover:bg-secondary"
+			aria-label="Clear semua pilihan kata dan kembalikan wazan"
+		>
+			<RotateCcw class="size-4" aria-hidden="true" />
+			Clear semua
+		</button>
+	</div>
 
-		<div class="space-y-2">
-			<label for="tashrif-search" class="block text-sm font-medium">Cari kata atau akar</label>
-			<input
-				id="tashrif-search"
-				bind:value={query}
-				type="search"
-				lang="ar"
-				dir="rtl"
-				autocomplete="off"
-				placeholder="كتب، يكتب، نصر..."
-				class="min-h-11 w-full rounded-lg border bg-background px-3 text-lg"
-			/>
-			<p class="text-xs text-muted-foreground">
-				Bisa tanpa harakat. {suggestions.length} kata ditemukan.
+	<p class="text-sm text-muted-foreground">
+		{visibleGroups.length} bab · 11 bentuk dari kanan ke kiri. Klik bab di kolom kiri untuk memilih kata,
+		atau klik sel untuk melihat penjelasan perubahan. Geser tabel ke samping untuk melihat seluruh bentuk.
+	</p>
+
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+	<div
+		bind:this={tableScroller}
+		role="region"
+		aria-label="Tabel tashrif istilahi: bab di kiri, bentuk dari kanan ke kiri"
+		tabindex="0"
+		class="relative max-w-full overflow-x-auto rounded-xl border bg-card"
+	>
+		<table class="w-max min-w-full border-collapse">
+			<caption class="px-4 py-3 text-start text-sm text-muted-foreground">
+				22 pola tradisional dari tsulatsi hingga ruba’i; kolom fi’il madhi di paling kanan.
+				Sel tanpa bentuk tercatat diberi tanda —.
+			</caption>
+			<thead class="border-y bg-secondary">
+				<tr>
+					<th
+						scope="col"
+						class="sticky left-0 z-20 min-w-48 border-r bg-secondary px-3 py-3 text-start text-xs font-semibold"
+					>Bab dan kelompok</th>
+					{#each rtlColumns as column (column.key)}
+						<th
+							id={`tashrif-istilahi-${column.key}`}
+							scope="col"
+							class="min-w-36 scroll-mt-24 px-3 py-3 text-center text-xs font-semibold text-secondary-foreground"
+						>{column.label}</th>
+					{/each}
+				</tr>
+			</thead>
+			<tbody>
+				{#each visibleGroups as group (group.number)}
+					{@const active = activeFor(group)}
+					<tr class="border-b last:border-b-0">
+						<th scope="row" class="sticky left-0 z-10 min-w-48 border-r bg-card p-0 text-start">
+							<button
+								type="button"
+								onclick={() => openSearch(group.number)}
+								class="flex min-h-24 w-full flex-col items-start justify-center gap-1 px-3 py-3 text-start hover:bg-secondary focus-visible:z-30"
+								aria-label={`Pilih kata untuk bab ${group.number}`}
+							>
+								<span class="text-sm font-semibold">Bab {group.number} <span class="font-normal text-muted-foreground">({group.count})</span></span>
+								<span lang="ar" dir="rtl" class="arabic-inline">{active?.lemma ?? group.pattern}</span>
+								<span class="max-w-44 text-xs font-medium text-muted-foreground">{active?.meaning ?? group.familyLabel}</span>
+							</button>
+						</th>
+						{#each rtlColumns as column (column.key)}
+							{@const value = active ? tashrifValue(active, column.key) : referenceWazanValue(group.number, column.key)}
+							<td class="px-1 py-2 text-center align-middle">
+								<button
+									type="button"
+									onclick={() => inspectCell(group, column.key)}
+									aria-label={`Detail ${column.label}, bab ${group.number}`}
+									class="min-h-16 w-full rounded-md px-3 py-2 hover:bg-secondary focus-visible:relative"
+								>
+									{#if value}
+										<span lang="ar" dir="rtl" class="block whitespace-nowrap arabic-block text-center">{value}</span>
+									{:else}
+										<span class="text-sm text-muted-foreground">—</span>
+									{/if}
+								</button>
+							</td>
+						{/each}
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
+
+	<p class="text-sm text-muted-foreground">
+		Tampilan awal menunjukkan wazan simbolik; bukan berarti setiap akar menghasilkan semua bentuk.
+		Ketika kata dipilih, hanya bentuk yang tercatat dalam glosarium yang ditampilkan. Tanda — tidak
+		berarti bentuk tersebut pasti tidak ada.
+	</p>
+	<div class="flex flex-wrap items-center gap-5 text-sm">
+		<a href={resolve('sharaf/')} class="min-h-11 content-center font-medium text-primary underline">Buka kamus lengkap dalam proyek</a>
+		<a href={resolve('data/sharaf.json')} download class="min-h-11 content-center font-medium text-primary underline">Unduh data glosarium JSON</a>
+		{#if catalogState.saved}
+			<span class="text-muted-foreground">Glosarium tersimpan di perangkat</span>
+		{/if}
+	</div>
+</section>
+
+<dialog
+	bind:this={dialogEl}
+	onclose={() => {
+		inspected = null;
+		cell = null;
+	}}
+	class="fixed inset-0 m-auto max-h-[min(90dvh,900px)] w-[min(96vw,58rem)] overflow-y-auto rounded-2xl border bg-card p-0 text-card-foreground shadow-xl backdrop:bg-black/60"
+	aria-label="Kamus dan penjelasan sharaf"
+>
+	<div class="sticky top-0 z-10 flex items-center justify-between gap-3 border-b bg-card px-5 py-4">
+		<div>
+			<h3 class="font-semibold">
+				{modalMode === 'search' ? 'Cari contoh kata dan wazan' : modalMode === 'word' ? 'Detail kata dan pola' : 'Penjelasan perubahan kata'}
+			</h3>
+			<p class="text-sm text-muted-foreground">
+				{modalMode === 'search' ? 'Cari dengan bahasa Indonesia, Arab, madhi, mudhari, atau akar kata.' : 'Lihat alasan pola, bentuk yang tercatat, dan sumber rujukan.'}
 			</p>
 		</div>
+		<button type="button" onclick={() => dialogEl.close()} aria-label="Tutup modal" class="inline-flex size-11 shrink-0 items-center justify-center rounded-lg hover:bg-secondary">
+			<X aria-hidden="true" class="size-5" />
+		</button>
+	</div>
 
-		<ul class="max-h-[24rem] space-y-2 overflow-y-auto pe-1">
-			{#each suggestions.slice(0, 40) as entry (entry.id)}
-				<li>
-					<button
-						type="button"
-						aria-pressed={selected[entry.bab?.number ?? 0] === entry.id}
-						onclick={() => selectWord(entry)}
-						class="w-full rounded-lg border px-3 py-2 text-start transition-colors hover:border-primary hover:bg-secondary aria-pressed:border-primary aria-pressed:bg-secondary"
-					>
-						<span class="flex flex-wrap items-center justify-between gap-1">
-							<ArabicText text={entry.lemma} />
-							<span class="text-xs text-muted-foreground">Bab {entry.bab?.number}</span>
-						</span>
-						<span class="block text-sm text-muted-foreground">{entry.meaning}</span>
-					</button>
-				</li>
-			{/each}
-		</ul>
-		{#if suggestions.length > 40}
-			<p class="text-xs text-muted-foreground">
-				Menampilkan 40 hasil pertama. Persempit kata pencarian.
-			</p>
-		{:else if suggestions.length === 0}
-			<p class="text-sm text-muted-foreground">
-				Belum ada entri yang cocok. Coba akar atau bentuk lain.
-			</p>
-		{/if}
-
-		{#if catalogState.saved && catalogState.catalog?.sharaf}
-			<p role="status" class="border-t pt-3 text-xs text-muted-foreground">
-				Glosarium tersimpan di perangkat.
-			</p>
-		{/if}
-		<a
-			href={resolve('sharaf/')}
-			class="inline-flex min-h-11 items-center text-sm font-medium text-primary underline"
-		>
-			Buka kamus sharaf
-		</a>
-		<a
-			href={resolve('data/sharaf.json')}
-			download
-			class="inline-flex min-h-11 items-center text-xs font-medium text-primary underline"
-		>
-			Unduh glosarium JSON
-		</a>
-	</aside>
-</div>
+	{#if modalMode === 'search'}
+		<div class="space-y-4 p-5">
+			<div class="grid gap-3 sm:grid-cols-[1fr_13rem]">
+				<div>
+					<label for="modal-sharaf-query" class="mb-2 block text-sm font-medium">Cari Arab atau Indonesia</label>
+					<input
+						id="modal-sharaf-query"
+						type="search"
+						bind:value={modalQuery}
+						autocomplete="off"
+						placeholder="menulis, membuka, كتب، يكتب..."
+						class="min-h-11 w-full rounded-lg border bg-background px-3 text-base"
+					/>
+				</div>
+				<div>
+					<label for="modal-sharaf-bab" class="mb-2 block text-sm font-medium">Batasi ke bab</label>
+					<select id="modal-sharaf-bab" bind:value={modalBab} class="min-h-11 w-full rounded-lg border bg-background px-3 text-sm">
+						<option value="all">Semua bab</option>
+						{#each groups as group (group.number)}
+							<option value={group.number}>Bab {group.number} · {group.familyLabel}</option>
+						{/each}
+					</select>
+				</div>
+			</div>
+			<p class="text-sm text-muted-foreground">{suggestions.length} contoh kata tersedia. Pilih “Gunakan” untuk mengisi baris yang sesuai.</p>
+			{#if suggestions.length}
+				<ul class="grid max-h-[50dvh] gap-2 overflow-y-auto sm:grid-cols-2">
+					{#each suggestions as entry (entry.id)}
+						<li class="rounded-lg border p-3">
+							<div class="flex items-start justify-between gap-2">
+								<div>
+									<ArabicText text={entry.lemma} />
+									<p class="text-sm font-medium">{entry.meaning}</p>
+									<p class="text-xs text-muted-foreground">Bab {entry.bab?.number} · {entry.root ?? 'Tanpa akar'}</p>
+								</div>
+							</div>
+							<div class="mt-2 flex gap-2">
+								<button type="button" onclick={() => useWord(entry)} class="min-h-10 rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground">Gunakan</button>
+								<button type="button" onclick={() => inspectWord(entry)} class="min-h-10 rounded-md border px-3 text-sm font-medium hover:bg-secondary">Detail</button>
+							</div>
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<p class="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">Belum ditemukan dalam glosarium. Tidak ada bentuk kata yang dibuat tanpa rujukan.</p>
+			{/if}
+		</div>
+	{:else if modalMode === 'word' && inspected}
+		<div class="space-y-4 p-5">
+			<button type="button" onclick={() => (modalMode = 'search')} class="min-h-10 text-sm font-medium text-primary underline">Kembali ke pencarian</button>
+			<div class="flex flex-wrap justify-between gap-3">
+				<div>
+					<ArabicText text={inspected.lemma} size="display" />
+					<p class="font-semibold">{inspected.meaning}</p>
+					<p class="text-sm text-muted-foreground">Akar: <ArabicText text={inspected.root ?? '—'} /> · Bab {inspected.bab?.number}</p>
+				</div>
+				<button type="button" onclick={() => useWord(inspected!)} class="min-h-11 self-start rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground">Gunakan di tabel</button>
+			</div>
+			<p class="rounded-lg bg-secondary p-4 text-sm leading-relaxed">{inspected.explanation}</p>
+			<div>
+				<h4 class="font-semibold">Bentuk kata yang tercatat</h4>
+				<dl class="mt-2 grid gap-2 sm:grid-cols-2">
+					{#each tashrifColumns as column (column.key)}
+						{@const value = tashrifValue(inspected, column.key)}
+						<div class="flex min-h-12 items-center justify-between gap-3 rounded-lg border px-3 py-2">
+							<dt class="text-sm">{column.label}</dt>
+							<dd>{#if value}<ArabicText text={value} />{:else}<span class="text-xs text-muted-foreground">Belum tercatat</span>{/if}</dd>
+						</div>
+					{/each}
+				</dl>
+			</div>
+			<h4 class="font-semibold">Sumber</h4>
+			<ul class="space-y-2 text-sm">
+				{#each inspected.sources as source (source)}
+					<li>
+						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external morphological reference -->
+						<a href={source} target="_blank" rel="noopener noreferrer" class="break-all text-primary underline">{source}</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	{:else if modalMode === 'cell' && cell}
+		<div class="space-y-4 p-5">
+			<p class="text-sm text-muted-foreground">{cell.group.familyLabel} · Bab {cell.group.number}</p>
+			<div class="rounded-lg bg-secondary p-4">
+				<p class="font-semibold">{tashrifColumns.find((col) => col.key === cell?.key)?.label}</p>
+				<ArabicText text={cell.entry ? tashrifValue(cell.entry, cell.key) ?? '—' : referenceWazanValue(cell.group.number, cell.key) ?? '—'} size="display" />
+				<p class="mt-2 text-sm">{explanations[cell.key]}</p>
+			</div>
+			<p class="text-sm leading-relaxed">{cell.group.notes}</p>
+			{#if cell.entry}
+				<p class="text-sm">Kata yang dipilih: <ArabicText text={cell.entry.lemma} /> — {cell.entry.meaning}</p>
+				<p class="text-sm text-muted-foreground">{cell.entry.explanation}</p>
+				<button type="button" onclick={() => inspectWord(cell!.entry!)} class="min-h-11 rounded-md border px-4 text-sm font-medium hover:bg-secondary">Lihat seluruh bentuk kata</button>
+			{:else}
+				<button type="button" onclick={() => { dialogEl.close(); openSearch(cell!.group.number); }} class="min-h-11 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground">Cari kata pada bab ini</button>
+			{/if}
+			<p class="text-xs text-muted-foreground">Referensi pola:</p>
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external reference -->
+			<a href={cell.group.source} target="_blank" rel="noopener noreferrer" class="block break-all text-sm text-primary underline">{cell.group.source}</a>
+		</div>
+	{/if}
+</dialog>
