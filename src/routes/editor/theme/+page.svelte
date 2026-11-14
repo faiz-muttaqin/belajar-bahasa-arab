@@ -23,7 +23,7 @@
 	import { Input } from '#lib/components/ui/input/index.js';
 	import { themeToCss, type ThemeOverrides } from '#lib/theme/css.js';
 	import { ThemeEditor } from '#lib/theme/editor.svelte.js';
-	import { themeInitScriptTag, themeMode } from '#lib/theme/index.js';
+	import { themeMode } from '#lib/theme/index.js';
 	import {
 		ARABIC_FONTS,
 		COLOR_GROUPS,
@@ -149,9 +149,6 @@
 </script>
 
 <svelte:head>
-	<!-- Saved theme before first paint. Idempotent, so it can stay once the root layout includes it too. -->
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -- static script built from our own source, no user input -->
-	{@html themeInitScriptTag}
 	<title>Editor tema · Belajar Bahasa Arab</title>
 	<meta
 		name="description"
@@ -159,44 +156,31 @@
 	/>
 </svelte:head>
 
-<a
-	href="#konten"
-	class="sr-only z-50 rounded-md bg-primary px-3 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
-	>Lewati ke konten</a
->
-
-<EditorNav items={navItems} active={activeSection} />
-
-<div class="pb-24 md:pb-0 md:pl-20 lg:pl-56" data-editor-ready={editor.ready || undefined}>
-	<header class="border-b border-border">
-		<div class="mx-auto max-w-6xl px-4 pt-4 pb-5 md:px-6">
-			<a
-				href={resolve('/')}
-				class="inline-flex min-h-11 items-center gap-1.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-			>
-				<ArrowLeft class="size-4" aria-hidden="true" />
-				Beranda
-			</a>
-			<h1 class="mt-1 text-2xl font-semibold md:text-3xl">Editor tema</h1>
-			<p class="mt-2 max-w-2xl leading-relaxed text-muted-foreground">
-				Atur warna, sudut dan huruf untuk mode terang dan gelap. Perubahan langsung terlihat di
-				seluruh halaman dan tersimpan di browser ini saja. Anda bisa mengembalikannya ke tema bawaan
-				kapan saja.
+<div class="min-w-0" data-editor-ready={editor.ready || undefined}>
+	<header class="border-b border-border pb-5">
+		<a
+			href={resolve('/')}
+			class="inline-flex min-h-11 items-center gap-1.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+		>
+			<ArrowLeft class="size-4" aria-hidden="true" />
+			Beranda
+		</a>
+		<h1 class="mt-1 text-2xl font-semibold md:text-3xl">Editor tema</h1>
+		<p class="mt-2 max-w-2xl leading-relaxed text-muted-foreground">
+			Atur warna, sudut dan huruf untuk mode terang dan gelap. Perubahan langsung terlihat di
+			seluruh halaman dan tersimpan di browser ini saja. Anda bisa mengembalikannya ke tema bawaan
+			kapan saja.
+		</p>
+		<noscript>
+			<p class="mt-3 rounded-md bg-accent px-3 py-2 text-sm text-accent-foreground">
+				JavaScript tidak aktif. Anda masih bisa melihat nilai tema bawaan dan menyalin CSS di bagian
+				Ekspor, tetapi perubahan baru bisa dilakukan setelah JavaScript diaktifkan.
 			</p>
-			<noscript>
-				<p class="mt-3 rounded-md bg-accent px-3 py-2 text-sm text-accent-foreground">
-					JavaScript tidak aktif. Anda masih bisa melihat nilai tema bawaan dan menyalin CSS di
-					bagian Ekspor, tetapi perubahan baru bisa dilakukan setelah JavaScript diaktifkan.
-				</p>
-			</noscript>
-		</div>
+		</noscript>
 	</header>
 
-	<!-- Toolbar: sticky so the main actions stay in reach while scrolling long lists. -->
-	<div
-		class="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85"
-	>
-		<div class="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-4 py-2 md:px-6">
+	<div class="sticky top-16 z-20 border-b border-border bg-background lg:top-0">
+		<div class="flex flex-wrap items-center gap-2 py-2">
 			<ModeSwitcher value={themeMode.preference} onchange={setMode} hideLegend />
 			<div class="ml-auto flex items-center gap-0.5 sm:gap-1">
 				<Button variant="ghost" onclick={undo} disabled={!editor.canUndo} aria-label="Urungkan">
@@ -215,21 +199,18 @@
 				</Button>
 			</div>
 		</div>
+		<EditorNav items={navItems} active={activeSection} />
 		<p role="status" class="sr-only">{status}</p>
 	</div>
 
 	{#if editor.ready && !editor.storageAvailable}
-		<p class="mx-auto mt-4 max-w-6xl px-4 text-sm text-destructive md:px-6">
+		<p class="mt-4 text-sm text-destructive">
 			Penyimpanan browser tidak tersedia. Perubahan hanya berlaku sampai halaman ini ditutup.
 		</p>
 	{/if}
 
-	<main
-		id="konten"
-		tabindex="-1"
-		class="mx-auto max-w-6xl space-y-10 px-4 py-6 outline-none md:px-6"
-	>
-		<section id="tema" aria-labelledby="tema-judul" class="scroll-mt-16 space-y-4">
+	<div class="space-y-10 py-6">
+		<section id="tema" aria-labelledby="tema-judul" class="scroll-mt-48 space-y-4 lg:scroll-mt-32">
 			<div>
 				<h2 id="tema-judul" class="text-lg font-semibold">Pilihan tema</h2>
 				<p class="text-sm text-muted-foreground">
@@ -240,9 +221,13 @@
 		</section>
 
 		<!-- Own grid, so the sticky preview stops before the export section. -->
-		<div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8">
+		<div class="grid gap-10 xl:grid-cols-2">
 			<div class="min-w-0 space-y-10">
-				<section id="warna" aria-labelledby="warna-judul" class="scroll-mt-16 space-y-4">
+				<section
+					id="warna"
+					aria-labelledby="warna-judul"
+					class="scroll-mt-48 space-y-4 lg:scroll-mt-32"
+				>
 					<div class="flex flex-wrap items-end justify-between gap-2">
 						<div>
 							<h2 id="warna-judul" class="text-lg font-semibold">
@@ -299,7 +284,11 @@
 					{/each}
 				</section>
 
-				<section id="bentuk" aria-labelledby="bentuk-judul" class="scroll-mt-16 space-y-6">
+				<section
+					id="bentuk"
+					aria-labelledby="bentuk-judul"
+					class="scroll-mt-48 space-y-6 lg:scroll-mt-32"
+				>
 					<div>
 						<h2 id="bentuk-judul" class="text-lg font-semibold">Bentuk dan huruf</h2>
 						<p class="text-sm text-muted-foreground">Berlaku untuk mode terang dan gelap.</p>
@@ -390,9 +379,13 @@
 			</div>
 
 			<div
-				class="min-w-0 lg:sticky lg:top-16 lg:max-h-[calc(100dvh-5rem)] lg:self-start lg:overflow-y-auto"
+				class="min-w-0 xl:sticky xl:top-32 xl:max-h-[calc(100dvh-9rem)] xl:self-start xl:overflow-y-auto"
 			>
-				<section id="pratinjau" aria-labelledby="pratinjau-judul" class="scroll-mt-16 space-y-8">
+				<section
+					id="pratinjau"
+					aria-labelledby="pratinjau-judul"
+					class="scroll-mt-48 space-y-8 lg:scroll-mt-32"
+				>
 					<div class="space-y-4">
 						<div>
 							<h2 id="pratinjau-judul" class="text-lg font-semibold">Pratinjau</h2>
@@ -408,10 +401,10 @@
 		<section
 			id="ekspor"
 			aria-label="Ekspor dan impor"
-			class="grid scroll-mt-16 gap-10 lg:grid-cols-2 lg:gap-8"
+			class="grid scroll-mt-48 gap-10 lg:scroll-mt-32 xl:grid-cols-2"
 		>
 			<CssExport {css} />
 			<CssImport onimport={onImport} />
 		</section>
-	</main>
+	</div>
 </div>

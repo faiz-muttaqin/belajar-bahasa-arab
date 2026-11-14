@@ -17,15 +17,15 @@
 	{/snippet}
 </PageIntro>
 
-<div class="mt-10 max-w-3xl space-y-10">
+<div class="mt-10 space-y-10">
 	{#each levels as level (level)}
 		<section aria-label={level} class="space-y-4">
 			<h2 class="text-2xl font-semibold">{level}</h2>
-			<ul class="divide-y rounded-xl border">
+			<ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,18rem),1fr))] gap-3">
 				{#each data.lessons.filter((lesson) => lesson.level === level) as lesson (lesson.id)}
 					<li>
 						<a
-							class="flex min-h-11 flex-wrap items-center justify-between gap-x-4 rounded-xl px-4 py-3 hover:bg-accent"
+							class="flex h-full min-h-11 flex-wrap items-center justify-between gap-x-4 rounded-xl border bg-card px-4 py-3 hover:bg-accent"
 							href={resolve(`${lesson.track}/${lesson.slug}/#latihan`)}
 						>
 							<span class="font-medium">{lesson.title}</span>

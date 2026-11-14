@@ -30,7 +30,7 @@
 	const letters = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح'];
 </script>
 
-<div class="grid items-center gap-10 lg:grid-cols-[1fr_22rem]">
+<div class="grid items-center gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
 	<div class="space-y-8">
 		<PageIntro
 			title="Belajar Bahasa Arab"
@@ -80,7 +80,7 @@
 
 <section class="mt-24" aria-labelledby="alur-heading">
 	<h2 id="alur-heading" class="text-2xl font-semibold">Cara belajarnya</h2>
-	<ol class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+	<ol class="mt-8 grid grid-cols-[repeat(auto-fit,minmax(min(100%,13rem),1fr))] gap-4">
 		{#each steps as step, i (step.title)}
 			{@const Icon = step.icon}
 			<li class="rounded-2xl border bg-card p-5">

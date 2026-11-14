@@ -13,7 +13,7 @@
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
-	let isWideReference = $derived(page.route.id === '/rujukan' || page.route.id === '/sharaf');
+	let isThemeEditor = $derived(page.route.id === '/editor/theme');
 
 	// Follow saved preference, OS colour-scheme changes and other tabs (reference counted).
 	onMount(() => themeMode.start());
@@ -40,14 +40,16 @@
 <div class="min-w-0 lg:pl-60">
 	<SiteHeader />
 
-	<!-- The reference matrix uses all remaining width. Lessons keep a readable measure. -->
-	<div class="min-w-0 pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
+	<div
+		class={[
+			'min-w-0 pb-[calc(4rem+env(safe-area-inset-bottom))]',
+			isThemeEditor ? 'md:pb-0' : 'lg:pb-0'
+		]}
+	>
 		<main
 			id="konten"
 			tabindex="-1"
-			class={isWideReference
-				? 'w-full min-w-0 px-4 pt-8 md:px-6 lg:px-8 lg:pt-10 2xl:px-12'
-				: 'mx-auto max-w-5xl px-4 pt-10 md:px-6 md:pt-16'}
+			class="w-full min-w-0 px-4 pt-8 md:px-6 lg:px-8 lg:pt-10 2xl:px-12"
 		>
 			{@render children()}
 		</main>
@@ -55,4 +57,6 @@
 	</div>
 </div>
 
-<TabBar />
+{#if !isThemeEditor}
+	<TabBar />
+{/if}

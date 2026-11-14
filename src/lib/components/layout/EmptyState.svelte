@@ -12,10 +12,7 @@
 	const uid = $props.id();
 </script>
 
-<section
-	class="max-w-[60ch] rounded-2xl bg-secondary/70 p-6 md:p-8"
-	aria-labelledby="{uid}-heading"
->
+<section class="rounded-2xl bg-secondary/70 p-6 md:p-8" aria-labelledby="{uid}-heading">
 	<div class="flex gap-4">
 		<span
 			class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-primary"

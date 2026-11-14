@@ -91,7 +91,7 @@
 			</p>
 		</div>
 	{:else}
-		<ul class="grid gap-4 md:grid-cols-2">
+		<ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,22rem),1fr))] gap-4">
 			{#each results as entry (entry.id)}
 				<li id={entry.id} class="scroll-mt-24 rounded-2xl border bg-card p-5">
 					<div class="flex flex-wrap items-start justify-between gap-2">

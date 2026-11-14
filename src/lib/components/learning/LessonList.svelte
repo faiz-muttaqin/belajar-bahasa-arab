@@ -7,7 +7,7 @@
 	const levels = ['Fondasi', 'Dasar', 'Menengah'] as const;
 </script>
 
-<div class="mt-10 max-w-3xl space-y-12">
+<div class="mt-10 space-y-12">
 	{#if track === 'belajar'}
 		<nav class="flex flex-wrap gap-x-6" aria-label="Tingkat pelajaran">
 			<a class="inline-flex min-h-11 items-center font-medium text-primary underline" href="#dasar"
@@ -24,12 +24,12 @@
 		{#if group.length}
 			<section id={level.toLowerCase()} aria-label={level} class="scroll-mt-24 space-y-4">
 				<h2 class="text-2xl font-semibold">{level}</h2>
-				<ol class="divide-y rounded-2xl border bg-card">
+				<ol class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,20rem),1fr))] gap-4">
 					{#each group as lesson (lesson.id)}
 						<li>
 							<a
 								href={resolve(`${track}/${lesson.slug}/`)}
-								class="group flex items-center justify-between gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-accent sm:px-6"
+								class="group flex h-full items-center justify-between gap-4 rounded-xl border bg-card px-4 py-4 transition-colors hover:bg-accent sm:px-6"
 							>
 								<span>
 									<span class="block font-semibold group-hover:underline">{lesson.title}</span>

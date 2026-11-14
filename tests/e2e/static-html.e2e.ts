@@ -7,6 +7,11 @@ import { expect, test } from '@playwright/test';
 const routes = [
 	{ path: '/', file: 'index.html', h1: 'Pahami bahasa Arab dari kata hingga paragraf' },
 	{ path: '/belajar/', file: 'belajar/index.html', h1: 'Belajar' },
+	{
+		path: '/belajar/bedah-kalimat-bacaan/',
+		file: 'belajar/bedah-kalimat-bacaan/index.html',
+		h1: 'Bedah kalimat dalam cerita'
+	},
 	{ path: '/iqra/', file: 'iqra/index.html', h1: 'Mulai dari huruf' },
 	{ path: '/latihan/', file: 'latihan/index.html', h1: 'Latihan' },
 	{ path: '/kosakata/', file: 'kosakata/index.html', h1: 'Kosakata' },
@@ -15,7 +20,8 @@ const routes = [
 	{ path: '/cari/', file: 'cari/index.html', h1: 'Cari materi' },
 	{ path: '/progres/', file: 'progres/index.html', h1: 'Progres' },
 	{ path: '/bookmark/', file: 'bookmark/index.html', h1: 'Bookmark' },
-	{ path: '/tentang/', file: 'tentang/index.html', h1: 'Tentang' }
+	{ path: '/tentang/', file: 'tentang/index.html', h1: 'Tentang' },
+	{ path: '/editor/theme/', file: 'editor/theme/index.html', h1: 'Editor tema' }
 ];
 
 for (const route of routes) {
@@ -77,6 +83,23 @@ test('skip link moves focus to the main content', async ({ page }) => {
 	await page.keyboard.press('Enter');
 	await expect(page).toHaveURL(/#konten$/);
 	await expect(page.locator('main#konten')).toBeFocused();
+});
+
+test('the site fills the desktop area beside the navigation', async ({ page }) => {
+	await page.setViewportSize({ width: 1920, height: 950 });
+	for (const route of routes) {
+		await page.goto(route.path);
+		const main = page.getByRole('main');
+		const width = await main.evaluate((element) => element.getBoundingClientRect().width);
+		expect(width, route.path).toBeGreaterThanOrEqual(1650);
+	}
+
+	await page.goto('/belajar/');
+	const lessons = page.getByRole('region', { name: 'Dasar', exact: true }).getByRole('link');
+	const first = await lessons.nth(0).boundingBox();
+	const second = await lessons.nth(1).boundingBox();
+	expect(first?.y).toBe(second?.y);
+	expect(second!.x).toBeGreaterThan(first!.x);
 });
 
 test('prerendered pages mark the current section without JavaScript', async () => {

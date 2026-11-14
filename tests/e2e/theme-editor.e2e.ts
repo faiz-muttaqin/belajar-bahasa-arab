@@ -36,6 +36,7 @@ test.describe('without JavaScript', () => {
 
 		await expect(page.locator('html')).toHaveAttribute('lang', 'id');
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText('Editor tema');
+		await expect(page.getByRole('main')).toHaveCount(1);
 		await expect(page.locator('#warna-light-primary')).toHaveValue('#145f4c');
 		await expect(page.getByRole('radio', { name: 'Ikuti sistem' })).toBeChecked();
 		await expect(page.getByRole('textbox', { name: 'CSS tema' })).toHaveValue(
@@ -171,15 +172,32 @@ test.describe('navigation adapts to the screen', () => {
 		await expect(navs).toHaveCount(1);
 		const box = await navs.boundingBox();
 		expect(box && box.y + box.height).toBeCloseTo(812, 0);
+		await expect(page.getByRole('navigation', { name: 'Navigasi cepat' })).toHaveCount(0);
+		await navs.getByRole('link', { name: 'Bentuk dan huruf' }).click();
+		await expect(page).toHaveURL(/#bentuk$/);
+		expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+			375
+		);
 	});
 
-	test('desktop gets a left sidebar', async ({ page }) => {
-		await page.setViewportSize({ width: 1280, height: 800 });
+	test('desktop editor fills the area beside the site sidebar', async ({ page }) => {
+		await page.setViewportSize({ width: 1920, height: 950 });
 		await page.goto(URL);
+		const sidebar = await page
+			.getByRole('complementary', { name: 'Navigasi desktop' })
+			.boundingBox();
+		const themes = await page.getByRole('region', { name: 'Pilihan tema' }).boundingBox();
+		expect(sidebar).not.toBeNull();
+		expect(themes).not.toBeNull();
+		expect(themes!.x - (sidebar!.x + sidebar!.width)).toBeLessThanOrEqual(48);
+		expect(1920 - (themes!.x + themes!.width)).toBeLessThanOrEqual(48);
+
+		const first = await page.getByRole('button', { name: /^Kertas klasik/ }).boundingBox();
+		const fifth = await page.getByRole('button', { name: /^Madu/ }).boundingBox();
+		expect(first?.y).toBe(fifth?.y);
 		const nav = page.getByRole('navigation', { name: 'Bagian editor' });
-		await expect(nav).toHaveCount(1);
-		const box = await nav.boundingBox();
-		expect(box?.x).toBe(0);
-		await expect(nav.getByRole('link', { name: 'Bentuk dan huruf' })).toBeVisible();
+		await nav.getByRole('link', { name: 'Bentuk dan huruf' }).click();
+		await expect(page).toHaveURL(/#bentuk$/);
+		await expect(page.getByRole('heading', { name: 'Bentuk dan huruf' })).toBeInViewport();
 	});
 });

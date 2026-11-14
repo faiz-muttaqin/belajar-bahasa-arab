@@ -12,8 +12,8 @@
 	{/snippet}
 </PageIntro>
 
-<div class="mt-12 max-w-[65ch] space-y-12">
-	<section aria-labelledby="metode" class="space-y-3">
+<div class="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+	<section aria-labelledby="metode" class="max-w-[65ch] space-y-3">
 		<h2 id="metode" class="text-2xl font-semibold">Metode</h2>
 		<p>
 			Mulailah dari contoh berharakat dan artinya. Perhatikan polanya, lalu jawab pertanyaan dengan
@@ -26,7 +26,7 @@
 		</p>
 	</section>
 
-	<section aria-labelledby="status" class="space-y-3">
+	<section aria-labelledby="status" class="max-w-[65ch] space-y-3">
 		<h2 id="status" class="text-2xl font-semibold">Isi pelajaran</h2>
 		<p>
 			Setiap pelajaran memuat bacaan, contoh, dan pembahasan dalam bahasa Indonesia. Rujukan
@@ -34,7 +34,7 @@
 		</p>
 	</section>
 
-	<section aria-labelledby="data" class="space-y-3">
+	<section aria-labelledby="data" class="max-w-[65ch] space-y-3">
 		<h2 id="data" class="text-2xl font-semibold">Data dan privasi</h2>
 		<p>
 			Salinan pelajaran, kosakata, dan tabel diunduh ke IndexedDB. Pencarian membaca salinan itu
@@ -47,7 +47,7 @@
 		</p>
 	</section>
 
-	<section aria-labelledby="sumber" class="space-y-3">
+	<section aria-labelledby="sumber" class="max-w-[65ch] space-y-3">
 		<h2 id="sumber" class="text-2xl font-semibold">Sumber dan atribusi</h2>
 		<p>Rujukan dan lisensi CC BY-SA 4.0 untuk tulisan asli dicantumkan pada setiap pelajaran.</p>
 		<ul class="list-disc space-y-2 ps-6">

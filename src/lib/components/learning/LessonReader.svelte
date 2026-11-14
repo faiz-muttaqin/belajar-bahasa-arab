@@ -30,7 +30,7 @@
 	};
 </script>
 
-<div class="mx-auto max-w-[68ch] space-y-8">
+<div class="min-w-0 space-y-8">
 	<a
 		href={resolve(lesson.track === 'iqra' ? 'iqra/' : 'belajar/')}
 		class="inline-flex min-h-11 items-center gap-1 font-medium text-primary hover:underline"
@@ -59,7 +59,7 @@
 	{/if}
 
 	<article class="space-y-12">
-		<p class="text-pretty">{lesson.intro}</p>
+		<p class="max-w-[68ch] text-pretty">{lesson.intro}</p>
 
 		{#if lesson.analysis?.length && !lesson.passage}
 			<SentenceBreakdown groups={lesson.analysis} />
@@ -68,7 +68,7 @@
 		{#if lesson.examples.length}
 			<section aria-labelledby="contoh" class="space-y-4">
 				<h2 id="contoh" class="text-2xl font-semibold">Baca contohnya</h2>
-				<ul class="space-y-4">
+				<ul class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,22rem),1fr))] gap-4">
 					{#each lesson.examples as example, i (i)}
 						<li class="space-y-2 rounded-2xl border bg-card p-4 sm:p-6">
 							<ArabicText text={example.arabic} size="block" class="wrap-break-word" />
@@ -102,7 +102,7 @@
 					</label>
 				{/if}
 				{#if lesson.passage.analysis}
-					<p class="text-muted-foreground">
+					<p class="max-w-[68ch] text-muted-foreground">
 						Buka “Bedah per kata” tepat di bawah kalimat. Harakat akhir bisa berubah karena peran
 						kata, seperti kasrah setelah harf jarr, atau karena cara menyambung bunyi. Bentuk yang
 						tetap disebut mabni.
@@ -120,7 +120,7 @@
 										<ArabicText
 											text={showHarakat ? text : stripHarakat(text)}
 											size="block"
-											class="wrap-break-word"
+											class="ms-auto max-w-[42ch] wrap-break-word"
 										/>
 										<details open={i === 0 && j === 0}>
 											<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary">
@@ -134,7 +134,7 @@
 								<ArabicText
 									text={showHarakat ? paragraph.arabic : stripHarakat(paragraph.arabic)}
 									size="block"
-									class="wrap-break-word"
+									class="ms-auto max-w-[42ch] wrap-break-word"
 								/>
 							{/if}
 						</section>
@@ -162,7 +162,7 @@
 					Terjemahan dan fungsi paragraf
 				</summary>
 				<p class="mt-2 font-semibold">{lesson.passage.title}</p>
-				<ol class="mt-2 list-decimal space-y-3 ps-6">
+				<ol class="mt-2 max-w-[68ch] list-decimal space-y-3 ps-6">
 					{#each lesson.passage.paragraphs as paragraph, i (i)}
 						<li class="space-y-1">
 							<p>{paragraph.meaning}</p>
@@ -178,7 +178,9 @@
 			<p class="text-muted-foreground">
 				Jawab dalam hati atau tulis di kertas, lalu buka pembahasan.
 			</p>
-			<ol class="list-decimal space-y-5 ps-6">
+			<ol
+				class="grid list-decimal grid-cols-[repeat(auto-fill,minmax(min(100%,25rem),1fr))] gap-x-10 gap-y-5 ps-6"
+			>
 				{#each lesson.exercises as exercise, i (i)}
 					<li
 						id={`soal-${i + 1}`}
@@ -204,7 +206,7 @@
 			class="space-y-4 rounded-2xl bg-secondary p-4 text-secondary-foreground sm:p-6"
 		>
 			<h2 id="pola" class="text-2xl font-semibold">Pola yang perlu diingat</h2>
-			<ul class="list-disc space-y-2 ps-6">
+			<ul class="max-w-[68ch] list-disc space-y-2 ps-6">
 				{#each lesson.patterns as pattern, i (i)}
 					<li><MixedText text={pattern} /></li>
 				{/each}

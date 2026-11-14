@@ -43,8 +43,8 @@
 	{/snippet}
 </PageIntro>
 
-<div class="mt-8 max-w-3xl space-y-6">
-	<div class="grid gap-4 sm:grid-cols-[1fr_12rem]">
+<div class="mt-8 space-y-6">
+	<div class="grid max-w-[65ch] gap-4 sm:grid-cols-[minmax(0,1fr)_12rem]">
 		<div class="space-y-2">
 			<label for="cari-materi" class="block font-medium">Kata atau frasa</label>
 			<div class="relative">
@@ -120,12 +120,12 @@
 	{#if query.trim() && catalogState.catalog}
 		<p role="status" class="text-muted-foreground">{results.length} hasil</p>
 		{#if results.length}
-			<ul class="divide-y rounded-xl border bg-card">
+			<ul class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,20rem),1fr))] gap-4">
 				{#each results.slice(0, visible) as result (result.key)}
 					<li>
 						<a
 							href={resolve(result.href)}
-							class="block space-y-1 rounded-md px-4 py-3 hover:bg-accent"
+							class="block h-full space-y-1 rounded-xl border bg-card px-4 py-3 hover:bg-accent"
 						>
 							<span class="block text-sm text-muted-foreground">{searchKinds[result.kind]}</span>
 							{#if result.arabic}

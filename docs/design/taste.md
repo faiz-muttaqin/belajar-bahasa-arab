@@ -16,7 +16,7 @@ Sources: research digest of the local UI/UX skills (`frontend-design-direction`,
 
 ## Layout and navigation
 
-- Reading column: prose capped at `65ch`; page container `max-w-5xl`; gutters 16 px mobile, 24 px from `md`.
+- Reading column: use a comfortable line length for prose. Grids, tables, and editor panels use the available width. Gutters are 16 px on phones, 24 px on tablets, and 32–48 px on desktop.
 - Spacing ladder (Tailwind steps): 1, 2, 3, 4, 6, 8, 12, 16, 24. Sections are separated by space and at most one hairline rule, not boxes.
 - Panels are allowed for grouping, but quietly: `rounded-2xl`, `bg-card` with a 1 px border or a soft `bg-secondary` fill, no shadows, never a card inside a card. Use them for step tiles, start-point choices, collections, vocabulary cards and empty states.
 - Keep copy short: one-sentence leads, one or two sentences per empty state, about six words per tile line. Space separates sections (`mt-16` to `mt-24`).

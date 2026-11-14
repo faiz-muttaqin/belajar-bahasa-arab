@@ -81,7 +81,7 @@
 		</div>
 		<p class="mt-3 max-w-[60ch] text-pretty text-muted-foreground">{collection.blurb}</p>
 
-		<ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		<ul class="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4">
 			{#each items as item (item.id)}
 				<li id={`kata-${item.id}`} class="scroll-mt-24">
 					{#key hafalan}<VocabCard {item} {hafalan} />{/key}

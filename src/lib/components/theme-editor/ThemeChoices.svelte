@@ -112,7 +112,7 @@
 	<div class="space-y-3">
 		<div>
 			<h3 class="font-semibold">Tema siap pakai</h3>
-			<p class="text-sm text-muted-foreground">
+			<p class="max-w-[75ch] text-sm text-muted-foreground">
 				Belum tahu mau warna apa? Pilih salah satu dari {THEME_PRESETS.length} tema, lalu ubah sesuka
 				hati. Tema hangat memakai latar kekuningan yang lebih sedikit cahaya birunya dan tidak menyilaukan.
 				Semua tema lulus pemeriksaan kontras WCAG AA di mode terang dan gelap.
@@ -123,7 +123,7 @@
 				<h4 class="text-sm font-medium">{group.title}</h4>
 				<!-- Phones: one swipeable row per group; larger screens: a grid. -->
 				<ul
-					class="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4"
+					class="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] sm:overflow-visible sm:px-0 sm:pb-0"
 				>
 					{#each group.presets as preset (preset.id)}
 						{@const active = activePresetId === preset.id}
@@ -160,7 +160,7 @@
 				browser ini saja.
 			</p>
 		</div>
-		<form class="flex flex-col gap-2 sm:flex-row sm:items-end" onsubmit={save}>
+		<form class="flex max-w-2xl flex-col gap-2 sm:flex-row sm:items-end" onsubmit={save}>
 			<div class="flex-1 space-y-1.5">
 				<label for="nama-tema" class="text-sm font-medium">Nama tema</label>
 				<Input
