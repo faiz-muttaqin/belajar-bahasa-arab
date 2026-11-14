@@ -38,7 +38,7 @@
 						onchange={(event) => setSpeechRate(Number(event.currentTarget.value) as SpeechRate)}
 					>
 						{#each SPEECH_RATES as rate (rate)}
-							<option value={rate}>{rateLabel(rate)}</option>
+							<option value={String(rate)}>{rateLabel(rate)}</option>
 						{/each}
 					</select>
 				</label>
