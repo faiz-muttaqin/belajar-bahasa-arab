@@ -29,7 +29,13 @@ test('background manifest refresh saves the enriched glossary to IndexedDB', asy
 			() =>
 				page.evaluate(
 					() =>
-						new Promise<boolean>((resolve) => {
+						new Promise<boolean>(async (resolve) => {
+							// A probe must not create an empty v1 database before the app opens it.
+							const databases = await indexedDB.databases();
+							if (!databases.some((database) => database.name === 'belajar-bahasa-arab-materi')) {
+								resolve(false);
+								return;
+							}
 							const request = indexedDB.open('belajar-bahasa-arab-materi', 1);
 							request.onerror = () => resolve(false);
 							request.onsuccess = () => {
