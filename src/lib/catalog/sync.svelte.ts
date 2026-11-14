@@ -26,7 +26,7 @@ function warmSharafSearch(entries: Catalog['sharaf']) {
 	if ('requestIdleCallback' in window) {
 		window.requestIdleCallback(warm, { timeout: 2_000 });
 	} else {
-		window.setTimeout(warm, 0);
+		setTimeout(warm, 0);
 	}
 }
 
