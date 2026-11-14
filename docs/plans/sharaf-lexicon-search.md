@@ -4,7 +4,7 @@ Status: **prototype, belum diaudit pengajar**. URL: `/sharaf/`. Fitur ini meleng
 
 ## Tujuan
 
-Menjawab pertanyaan pelajar: "Saya tahu kata Arab ini, tetapi masuk bab tashrif mana?" Cari memakai bentuk kata atau akar, lihat madhi–mudhari, bab, wazan, kategori kaidah dan sumbernya. Nomor bab mengikuti urutan tabel proyek (bab 4 عِلِمَ, bab 5 حَسِبَ, bab 6 حَسُنَ); **nomor bab tidak universal antar kitab**.
+Menjawab pertanyaan pelajar: "Saya tahu kata Arab ini, tetapi masuk bab tashrif mana?" Cari memakai bentuk kata atau akar, lihat madhi–mudhari, bab, wazan, kategori kaidah dan sumbernya. Nomor bab mengikuti urutan tabel proyek (bab 4 عَلِمَ, bab 5 حَسِبَ, bab 6 حَسُنَ). Urutannya dapat berbeda antar kitab.
 
 ## Model data
 
@@ -27,9 +27,8 @@ Panel kanan bisa memfilter bab, mencari lemma/bentuk/akar dari `src/lib/content/
 
 - HTML awal memuat wazan tanpa perlu JavaScript atau jaringan tambahan setelah dokumen diterima.
 - Endpoint `/data/sharaf.json` di-`prerender` pada build, bukan backend runtime.
-- Sesudah hidrasi, browser membaca IndexedDB jika ada (fallback localStorage), lalu mengambil JSON statis yang lebih baru tanpa memblokir interaksi; jika fetch atau penyimpanan gagal, tabel bawaan tetap tersedia.
-- Ada version schema `SHARAF_CACHE_SCHEMA = 1` dan pemeriksaan struktur pada data cache. Bila skema berubah, naikkan nomor versinya dan strategi migrasi.
-- Ini **cache data glosarium**, bukan jaminan seluruh aplikasi berfungsi offline tanpa service worker yang juga menyimpan asset HTML/JS/CSS.
+- Glosarium termasuk dalam `/data/materi.json` dan diindeks oleh `/cari/`. Katalog bersama diunduh di latar belakang dan disimpan di IndexedDB. Tabel dan halaman kamus memakai contoh bawaan selama katalog belum tersedia.
+- Service worker menyimpan halaman dan aset untuk pembacaan offline. Salinan glosarium tersendiri dapat diunduh dari `/data/sharaf.json`.
 
 ### Batasan akademik
 

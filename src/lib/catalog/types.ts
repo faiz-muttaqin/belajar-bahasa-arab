@@ -1,5 +1,6 @@
 import type { Lesson } from '#lib/content/lessons/types.js';
 import type { ReferenceTableData } from '#lib/domain/reference/table.js';
+import { isSharafEntries, type SharafEntry } from '#lib/domain/sharaf/lexicon.js';
 import type { VocabularyItem } from '#lib/domain/vocabulary/types.js';
 
 export const CATALOG_SCHEMA = 1;
@@ -10,6 +11,7 @@ export type CatalogContent = {
 	lessons: Omit<Lesson, 'reviews'>[];
 	vocabulary: Omit<VocabularyItem, 'reviews'>[];
 	references: Omit<ReferenceTableData, 'reviews'>[];
+	sharaf?: readonly SharafEntry[];
 };
 
 export type CatalogVersion = {
@@ -40,7 +42,8 @@ export function isCatalog(value: unknown): value is Catalog {
 		'vocabulary' in value &&
 		Array.isArray(value.vocabulary) &&
 		'references' in value &&
-		Array.isArray(value.references)
+		Array.isArray(value.references) &&
+		(!('sharaf' in value) || isSharafEntries(value.sharaf))
 	);
 }
 

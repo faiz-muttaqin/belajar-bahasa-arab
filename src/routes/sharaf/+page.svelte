@@ -2,13 +2,16 @@
 	import { resolve } from '$app/paths';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
+	import { catalogState } from '#lib/catalog/sync.svelte.js';
 	import { sharafEntries } from '#lib/content/sharaf.js';
 	import { tashrifColumns } from '#lib/domain/sharaf/matrix.js';
 	import { searchSharaf, type SharafFilter } from '#lib/domain/sharaf/lexicon.js';
 
 	let query = $state('');
 	let filter = $state<SharafFilter>('all');
-	let results = $derived(searchSharaf(sharafEntries, query, filter));
+	let results = $derived(
+		searchSharaf(catalogState.catalog?.sharaf ?? sharafEntries, query, filter)
+	);
 	function formLabel(label: string): string {
 		return tashrifColumns.find((column) => column.key === label.toLowerCase())?.label ?? label;
 	}
@@ -90,7 +93,7 @@
 	{:else}
 		<ul class="grid gap-4 md:grid-cols-2">
 			{#each results as entry (entry.id)}
-				<li class="rounded-2xl border bg-card p-5">
+				<li id={entry.id} class="scroll-mt-24 rounded-2xl border bg-card p-5">
 					<div class="flex flex-wrap items-start justify-between gap-2">
 						<div>
 							<ArabicText text={entry.lemma} size="block" class="text-3xl" />
@@ -139,8 +142,7 @@
 					<p class="mt-4 text-sm font-medium">{selectionLabels[entry.babSelection]}</p>
 					<p class="mt-2 text-sm leading-relaxed text-muted-foreground">{entry.explanation}</p>
 					<details class="mt-4 text-sm">
-						<summary class="cursor-pointer font-medium text-primary">Sumber dan status</summary>
-						<p class="mt-2">Status: {entry.reviewStatus} (belum ditinjau pengajar).</p>
+						<summary class="cursor-pointer font-medium text-primary">Sumber</summary>
 						<ul class="mt-2 space-y-1">
 							{#each entry.sources as source (source)}
 								<li>

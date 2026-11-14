@@ -11,6 +11,7 @@ const routes = [
 	{ path: '/latihan/', file: 'latihan/index.html', h1: 'Latihan' },
 	{ path: '/kosakata/', file: 'kosakata/index.html', h1: 'Kosakata' },
 	{ path: '/rujukan/', file: 'rujukan/index.html', h1: 'Tabel rujukan' },
+	{ path: '/sharaf/', file: 'sharaf/index.html', h1: 'Cari akar dan wazan' },
 	{ path: '/cari/', file: 'cari/index.html', h1: 'Cari materi' },
 	{ path: '/progres/', file: 'progres/index.html', h1: 'Progres' },
 	{ path: '/bookmark/', file: 'bookmark/index.html', h1: 'Bookmark' },

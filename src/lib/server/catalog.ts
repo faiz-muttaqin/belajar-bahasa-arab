@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { CATALOG_SCHEMA, type CatalogContent, type CatalogManifest } from '#lib/catalog/types.js';
 import { lessonsFor } from '#lib/content/lessons/index.js';
 import { referenceTables } from '#lib/content/reference.js';
+import { sharafEntries } from '#lib/content/sharaf.js';
 import { publishedVocabulary } from '#lib/content/vocabulary.js';
 
 function publicRecord<T extends { reviews?: unknown }>(source: T): Omit<T, 'reviews'> {
@@ -13,7 +14,8 @@ function publicRecord<T extends { reviews?: unknown }>(source: T): Omit<T, 'revi
 const content: CatalogContent = {
 	lessons: [...lessonsFor('belajar'), ...lessonsFor('iqra')].map(publicRecord),
 	vocabulary: [...publishedVocabulary('harian'), ...publishedVocabulary('quran')].map(publicRecord),
-	references: referenceTables.map(publicRecord)
+	references: referenceTables.map(publicRecord),
+	sharaf: sharafEntries
 };
 
 const version = createHash('sha256')

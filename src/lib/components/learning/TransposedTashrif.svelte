@@ -3,11 +3,7 @@
 	import { resolve } from '$app/paths';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { sharafEntries } from '#lib/content/sharaf.js';
-	import {
-		parseSharafCatalog,
-		readSharafCache,
-		writeSharafCache
-	} from '#lib/domain/sharaf/cache.js';
+	import { catalogState } from '#lib/catalog/sync.svelte.js';
 	import {
 		babGroups,
 		referenceWazanValue,
@@ -19,11 +15,10 @@
 
 	// The project ships an immediately readable static reference. A same-origin
 	// prerendered JSON snapshot is refreshed in the background and cached locally.
-	let entries = $state<readonly SharafEntry[]>(sharafEntries);
+	let entries = $derived(catalogState.catalog?.sharaf ?? sharafEntries);
 	let query = $state('');
 	let babFilter = $state<number | 'all'>('all');
 	let selected = $state<Record<number, string>>({});
-	let cacheStatus = $state('Data awal dari website');
 	let tableScroller: HTMLDivElement;
 
 	const rtlColumns = [...tashrifColumns].reverse();
@@ -45,46 +40,10 @@
 	}
 
 	onMount(() => {
-		let cancelled = false;
 		// The madhi column is physically rightmost; show it first on interactive pages.
-		tableScroller.scrollLeft = tableScroller.scrollWidth;
-
-		async function refresh() {
-			const cached = await readSharafCache();
-			if (cached && !cancelled) {
-				entries = cached.entries;
-				cacheStatus = 'Data tersedia di penyimpanan lokal';
-			}
-
-			try {
-				const response = await fetch(resolve('data/sharaf.json'));
-				if (!response.ok) throw new Error('Unduhan glosarium gagal');
-				const snapshot = parseSharafCatalog(await response.json());
-				if (!snapshot) throw new Error('Format glosarium tidak sesuai');
-				if (cancelled) return;
-				entries = snapshot.entries;
-				const backend = await writeSharafCache(snapshot);
-				if (!cancelled) {
-					cacheStatus =
-						backend === 'indexeddb'
-							? 'Glosarium tersimpan di IndexedDB'
-							: backend === 'localStorage'
-								? 'Glosarium tersimpan di localStorage'
-								: 'Glosarium tersedia selama halaman terbuka';
-				}
-			} catch {
-				if (!cancelled) {
-					cacheStatus = cached
-						? 'Memakai glosarium dari cache lokal'
-						: 'Memakai data statis bawaan';
-				}
-			}
+		if (!location.hash.startsWith('#tashrif-istilahi-')) {
+			tableScroller.scrollLeft = tableScroller.scrollWidth;
 		}
-
-		void refresh();
-		return () => {
-			cancelled = true;
-		};
 	});
 </script>
 
@@ -127,8 +86,9 @@
 						>
 						{#each rtlColumns as column (column.key)}
 							<th
+								id={`tashrif-istilahi-${column.key}`}
 								scope="col"
-								class="min-w-32 px-3 py-3 text-center text-xs font-medium text-secondary-foreground"
+								class="min-w-32 scroll-mt-24 scroll-ml-40 px-3 py-3 text-center text-xs font-medium text-secondary-foreground"
 								>{column.label}</th
 							>
 						{/each}
@@ -260,7 +220,11 @@
 			</p>
 		{/if}
 
-		<p role="status" class="border-t pt-3 text-xs text-muted-foreground">{cacheStatus}</p>
+		{#if catalogState.saved && catalogState.catalog?.sharaf}
+			<p role="status" class="border-t pt-3 text-xs text-muted-foreground">
+				Glosarium tersimpan di perangkat.
+			</p>
+		{/if}
 		<a
 			href={resolve('sharaf/')}
 			class="inline-flex min-h-11 items-center text-sm font-medium text-primary underline"

@@ -44,6 +44,12 @@
 			<ArabicText text="ف ت ح" />.
 		</p>
 		<TransposedTashrif />
+		<details class="space-y-4 rounded-xl border p-4">
+			<summary class="min-h-11 cursor-pointer py-2 font-semibold text-primary">
+				Contoh per bab dan mode hafalan
+			</summary>
+			<ReferenceTable table={{ ...tashrifIstilahi, id: 'tashrif-contoh' }} />
+		</details>
 		<p class="max-w-[65ch] text-base text-muted-foreground">
 			Tabel dimulai dari wazan dengan huruf ف–ع–ل. Di panel kanan, cari dan pilih kata yang tersedia
 			dalam glosarium untuk mengganti baris babnya. Bentuk turunan yang belum dicatat tidak diisi

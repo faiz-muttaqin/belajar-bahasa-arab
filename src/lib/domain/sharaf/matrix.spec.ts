@@ -8,7 +8,7 @@ import {
 	tashrifColumns,
 	tashrifValue
 } from './matrix.js';
-import { parseSharafCatalog, SHARAF_CACHE_SCHEMA } from './cache.js';
+import { isSharafEntries } from './lexicon.js';
 
 describe('transposed tashrif matrix', () => {
 	it('shows six bab rows and eleven morphology columns in right-to-left order', () => {
@@ -43,12 +43,9 @@ describe('transposed tashrif matrix', () => {
 		expect(tashrifValue(example, 'alah')).toBeDefined();
 	});
 
-	it('rejects wrong cache schema or malformed records', () => {
-		expect(parseSharafCatalog({ schema: 999, entries: sharafEntries })).toBeNull();
-		expect(parseSharafCatalog({ schema: SHARAF_CACHE_SCHEMA, entries: [{ id: 'x' }] })).toBeNull();
-		expect(
-			parseSharafCatalog({ schema: SHARAF_CACHE_SCHEMA, entries: [...sharafEntries] })?.entries
-				.length
-		).toBe(sharafEntries.length);
+	it('rejects malformed or duplicate glossary records in the public catalog', () => {
+		expect(isSharafEntries(sharafEntries)).toBe(true);
+		expect(isSharafEntries([{ id: 'x' }])).toBe(false);
+		expect(isSharafEntries([...sharafEntries, sharafEntries[0]])).toBe(false);
 	});
 });

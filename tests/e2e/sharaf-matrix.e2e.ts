@@ -42,6 +42,20 @@ test('the glossary snapshot is served as static JSON', async ({ request }) => {
 	expect(catalog.entries.some((entry: { id: string }) => entry.id === 'fiil-kataba')).toBe(true);
 });
 
+test('general search links to a glossary entry and the corresponding tashrif column', async ({
+	page
+}) => {
+	await page.goto('/cari/?jenis=word&q=قول');
+	await page.getByRole('link', { name: /قَالَ.*berkata/ }).click();
+	await expect(page).toHaveURL(/\/sharaf\/#fiil-qala$/);
+	await expect(page.locator('#fiil-qala')).toContainText('Kaidah khusus');
+
+	await page.goto('/cari/?jenis=reference&q=mashdar');
+	await page.locator('a[href$="#tashrif-istilahi-mashdar"]').click();
+	await expect(page).toHaveURL(/#tashrif-istilahi-mashdar$/);
+	await expect(page.locator('#tashrif-istilahi-mashdar')).toHaveText('mashdar');
+});
+
 test.describe('static reference without JavaScript', () => {
 	test.use({ javaScriptEnabled: false });
 

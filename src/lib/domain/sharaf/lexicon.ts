@@ -30,6 +30,52 @@ export type SharafEntry = {
 	reviewStatus: 'draft' | 'linguist_reviewed' | 'approved';
 };
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+export function isSharafEntries(value: unknown): value is SharafEntry[] {
+	if (!Array.isArray(value) || value.length === 0) return false;
+	const ids = new Set<string>();
+	return value.every((entry: unknown) => {
+		if (
+			!isRecord(entry) ||
+			typeof entry.id !== 'string' ||
+			ids.has(entry.id) ||
+			typeof entry.lemma !== 'string' ||
+			typeof entry.meaning !== 'string' ||
+			typeof entry.explanation !== 'string' ||
+			(entry.root !== undefined && typeof entry.root !== 'string') ||
+			!Array.isArray(entry.forms) ||
+			!Array.isArray(entry.sources) ||
+			!['verb', 'noun', 'particle'].some((kind) => kind === entry.partOfSpeech) ||
+			!['lexical', 'rule', 'not-applicable'].some((kind) => kind === entry.babSelection) ||
+			!['regular', 'special-rule', 'irregular', 'fixed'].some(
+				(kind) => kind === entry.formBehavior
+			) ||
+			!['draft', 'linguist_reviewed', 'approved'].some((status) => status === entry.reviewStatus)
+		)
+			return false;
+		ids.add(entry.id);
+		const bab = entry.bab;
+		return (
+			(bab === undefined ||
+				(entry.partOfSpeech === 'verb' &&
+					isRecord(bab) &&
+					[1, 2, 3, 4, 5, 6].some((number) => number === bab.number) &&
+					typeof bab.exemplar === 'string' &&
+					typeof bab.pattern === 'string')) &&
+			entry.sources.every(
+				(source: unknown) => typeof source === 'string' && source.startsWith('https://')
+			) &&
+			entry.forms.every(
+				(form: unknown) =>
+					isRecord(form) && typeof form.label === 'string' && typeof form.value === 'string'
+			)
+		);
+	});
+}
+
 /**
  * Search normalization only. Do not store this as an identity key:
  * removing marks and unifying alif/ya can merge distinct Arabic analyses.

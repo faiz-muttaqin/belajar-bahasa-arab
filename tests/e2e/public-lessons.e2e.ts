@@ -170,6 +170,7 @@ test('exercise index deep links to a lesson and navigation closes open feedback'
 test('tashrif and vocabulary contain lesson material on a phone', async ({ page }) => {
 	await page.setViewportSize({ width: 375, height: 812 });
 	await page.goto('/rujukan/');
+	await page.getByText('Contoh per bab dan mode hafalan', { exact: true }).click();
 	const tashrif = page.getByRole('region', { name: /Sebelas bentuk/ });
 	await expect(tashrif.getByRole('row')).toHaveCount(12);
 	await expect(tashrif.getByRole('columnheader', { name: /Bab 6/ })).toBeVisible();
