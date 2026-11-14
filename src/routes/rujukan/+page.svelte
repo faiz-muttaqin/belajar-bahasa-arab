@@ -19,6 +19,9 @@
 
 <div class="mt-10 min-w-0 space-y-16">
 	<nav aria-label="Isi rujukan" class="flex flex-wrap gap-x-5 text-primary">
+		<a class="inline-flex min-h-11 items-center underline" href={resolve('sharaf/')}
+			>Cari akar dan wazan</a
+		>
 		<a class="inline-flex min-h-11 items-center underline" href="#tashrif-istilahi"
 			>Tashrif istilahi</a
 		>
