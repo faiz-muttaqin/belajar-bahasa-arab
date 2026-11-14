@@ -1,6 +1,7 @@
 import { tashrifIstilahi } from '#lib/content/reference.js';
 import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import type { SharafEntry } from '#lib/domain/sharaf/lexicon.js';
+import { patternCatalog } from '#lib/domain/sharaf/patterns.js';
 
 /**
  * First-party teaching index. Reuses the project's own reference tables.
@@ -173,4 +174,59 @@ const additional: SharafEntry[] = [
 	}))
 ];
 
-export const sharafEntries: readonly SharafEntry[] = [...referenceVerbs, ...additional];
+/**
+ * Lexical examples for the sixteen additional teaching patterns.
+ * The forms below are explicitly recorded examples, not generated from roots.
+ * Keep source URLs next to entries for future lexicographic audit.
+ */
+const expandedVerbs = [
+	{ number: 7, lemma: 'عَلَّمَ', root: 'علم', meaning: 'mengajarkan', mudhari: 'يُعَلِّمُ', mashdar: 'تَعْلِيمٌ' },
+	{ number: 8, lemma: 'قَاتَلَ', root: 'قتل', meaning: 'berperang, memerangi', mudhari: 'يُقَاتِلُ', mashdar: 'مُقَاتَلَةٌ' },
+	{ number: 9, lemma: 'أَكْرَمَ', root: 'كرم', meaning: 'memuliakan', mudhari: 'يُكْرِمُ', mashdar: 'إِكْرَامٌ' },
+	{ number: 10, lemma: 'تَعَاوَنَ', root: 'عون', meaning: 'saling membantu', mudhari: 'يَتَعَاوَنُ', mashdar: 'تَعَاوُنٌ' },
+	{ number: 11, lemma: 'تَعَلَّمَ', root: 'علم', meaning: 'belajar', mudhari: 'يَتَعَلَّمُ', mashdar: 'تَعَلُّمٌ' },
+	{ number: 12, lemma: 'اِجْتَمَعَ', root: 'جمع', meaning: 'berkumpul', mudhari: 'يَجْتَمِعُ', mashdar: 'اِجْتِمَاعٌ' },
+	{ number: 13, lemma: 'اِنْكَسَرَ', root: 'كسر', meaning: 'pecah, menjadi patah', mudhari: 'يَنْكَسِرُ', mashdar: 'اِنْكِسَارٌ' },
+	{ number: 14, lemma: 'اِحْمَرَّ', root: 'حمر', meaning: 'menjadi merah', mudhari: 'يَحْمَرُّ', mashdar: 'اِحْمِرَارٌ' },
+	{ number: 15, lemma: 'اِسْتَغْفَرَ', root: 'غفر', meaning: 'memohon ampun', mudhari: 'يَسْتَغْفِرُ', mashdar: 'اِسْتِغْفَارٌ' },
+	{ number: 16, lemma: 'اِعْشَوْشَبَ', root: 'عشب', meaning: 'ditumbuhi rumput lebat', mudhari: 'يَعْشَوْشِبُ', mashdar: 'اِعْشِيشَابٌ', source: 'https://sina.birzeit.edu/qabas/lemma/2020895100' },
+	{ number: 17, lemma: 'اِجْلَوَّذَ', root: 'جلذ', meaning: 'melaju cepat', mudhari: 'يَجْلَوِّذُ', source: 'https://www.arabicterminology.com/content/%D8%A7%D9%90%D8%AC%D9%92%D9%84%D9%8E%D9%88%D9%91%D9%8E%D8%B0%D9%8E' },
+	{ number: 18, lemma: 'اِحْمَارَّ', root: 'حمر', meaning: 'menjadi semakin merah', mudhari: 'يَحْمَارُّ' },
+	{ number: 19, lemma: 'دَحْرَجَ', root: 'دحرج', meaning: 'menggelindingkan', mudhari: 'يُدَحْرِجُ', mashdar: 'دَحْرَجَةٌ' },
+	{ number: 20, lemma: 'تَدَحْرَجَ', root: 'دحرج', meaning: 'menggelinding', mudhari: 'يَتَدَحْرَجُ', mashdar: 'تَدَحْرُجٌ' },
+	{ number: 21, lemma: 'اِحْرَنْجَمَ', root: 'حرجم', meaning: 'berkumpul berdesakan', mudhari: 'يَحْرَنْجِمُ', mashdar: 'اِحْرِنْجَامٌ', source: 'https://www.arabicacademy.gov.eg/ar/search_engine/roots/%D8%AD%D8%B1%D8%AC%D9%85' },
+	{ number: 22, lemma: 'اِطْمَأَنَّ', root: 'طمأن', meaning: 'menjadi tenang, merasa tenteram', mudhari: 'يَطْمَئِنُّ', mashdar: 'اِطْمِئْنَانٌ' }
+] as const;
+
+const advancedVerbs: readonly SharafEntry[] = expandedVerbs.map((word) => {
+	const pattern = patternCatalog.find((p) => p.number === word.number);
+	if (!pattern) throw new Error(`Missing pattern ${word.number}`);
+	return {
+		id: `fiil-expanded-${word.number}`,
+		lemma: word.lemma,
+		meaning: word.meaning,
+		partOfSpeech: 'verb',
+		root: word.root,
+		bab: {
+			number: word.number,
+			exemplar: pattern.madhi,
+			pattern: `${pattern.madhi} – ${pattern.mudhari}`
+		},
+		forms: [
+			{ label: 'mudhari', value: word.mudhari },
+			...('mashdar' in word && word.mashdar
+				? [{ label: 'mashdar', value: word.mashdar }]
+				: [])
+		],
+		babSelection: 'lexical',
+		formBehavior: word.number >= 16 && word.number <= 18 ? 'special-rule' : 'regular',
+		explanation: `${pattern.notes} Kata ini adalah contoh yang tercatat untuk kelompok ${pattern.number}; daftar bentuknya belum berarti seluruh turunan telah diverifikasi.`,
+		sources: [
+			pattern.source,
+			...('source' in word && word.source ? [word.source] : [])
+		],
+		reviewStatus: 'draft'
+	};
+});
+
+export const sharafEntries: readonly SharafEntry[] = [...referenceVerbs, ...additional, ...advancedVerbs];
