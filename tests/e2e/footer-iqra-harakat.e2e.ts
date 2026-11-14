@@ -37,7 +37,7 @@ test('Iqra chart shows eleven marks and a working recall column', async ({ page 
 	await expect(chart.getByText('Materi masih menunggu tinjauan pengajar.')).toBeVisible();
 	await chart.getByRole('radio', { name: 'Sembunyikan bunyi' }).check();
 	await expect(table.getByText('ba', { exact: true })).toBeHidden();
-	await chart.getByRole('button', { name: 'Buka: Bunyi, baris 1' }).click();
+	await chart.getByRole('button', { name: 'Buka: Bunyi, baris 1', exact: true }).click();
 	await expect(table.getByText('ba', { exact: true })).toBeVisible();
 });
 
