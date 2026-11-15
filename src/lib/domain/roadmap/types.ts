@@ -42,7 +42,7 @@ export type RoadmapCheckpoint = SourcedDraft & {
 	competencyIds: readonly string[];
 	status: 'planned' | 'available';
 	/** Static checkpoint route only when published questions exist. */
-	path?: import('$app/types').Path;
+	path?: 'belajar/checkpoint-2/' | 'belajar/checkpoint-3/';
 	/** Number of individually authored questions in the published checkpoint. */
 	questionCount?: number;
 };
