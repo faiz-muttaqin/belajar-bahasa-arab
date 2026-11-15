@@ -164,4 +164,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 14 November 2026: added decisions D-1 to D-7 and research tasks RS-01 to RS-10 from the [riset ulang](../research/2026-11-14-riset-ulang-kurikulum.md); updated F-09, B1, V-01, V-03 to V-05 and R-02.
 - 13 November 2026: tracker created from research doc §5, §6.1a, §6.1b and the current build.
 
+- **D-02 — 🟡 Kontrak leksikal:** `LexemeRecord` + `WordSurface` + provenance lintas vocabulary/sharaf tersedia, terhubung ke pilihan G-06 dengan label audit `draft`; belum ada infleksi universal atau integrasi ke seluruh G-01–G-05. [Audit](../data/dynamic-example-lexeme-audit.md).
 - **D-01–D-06 — 🟡 Feature roadmap:** [Dynamic examples berbasis slot](../plans/dynamic-example-slots.md); D-01 pilot di G-06, D-02–D-06 perlu metadata morfologi, validasi valensi/semantik, pemasangan pada G-01–G-05, dan progres IndexedDB; tindak lanjut [issue #24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24).
