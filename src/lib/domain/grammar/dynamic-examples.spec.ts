@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import {
+	assessBuilderChoices,
 	chooseBuilderWord,
 	chooseVerbFrame,
+	contractForBuilderSlot,
 	composeBuilderExample,
 	initialBuilderState,
 	optionsForBuilderSlot,
 	searchBuilderChoices,
+	searchBuilderChoiceAssessments,
 	validateBuilderRegistry
 } from './dynamic-examples.js';
 import { publishedVocabulary } from '#lib/content/vocabulary.js';
@@ -160,6 +163,47 @@ describe('G-06 dynamic example slots', () => {
 		expect(result.state.verbFrame).toBe('past');
 		expect(result.resetObject).toBe(false);
 		expect(composeBuilderExample('verbal', result.state).tokens[0]!.arabic).toBe('قَرَأَ');
+	});
+
+	it('D-04a explains excluded semantic candidates without exposing them as selectable choices', () => {
+		const opened = chooseBuilderWord(initialBuilderState, 'verb', 'fiil-fataha').state;
+		const decisions = assessBuilderChoices(opened, 'object');
+		expect(decisions.map(({ choice }) => choice.id)).toEqual(['bab', 'msa-kitab', 'msa-risalah']);
+		expect(
+			decisions.find(({ choice }) => choice.id === 'msa-risalah')?.compatibility
+		).toMatchObject({
+			allowed: false,
+			reasons: [expect.objectContaining({ code: 'unlisted-collocation' })]
+		});
+		expect(decisions.find(({ choice }) => choice.id === 'bab')?.compatibility.allowed).toBe(true);
+		expect(searchBuilderChoiceAssessments(opened, 'object', 'رسالة')).toHaveLength(1);
+		expect(searchBuilderChoices(opened, 'object', 'رسالة')).toEqual([]);
+		expect(() => chooseBuilderWord(opened, 'object', 'msa-risalah')).toThrow(
+			'Incompatible replacement'
+		);
+	});
+
+	it('D-04a contracts distinguish gender-dependent nominal khabar from object case', () => {
+		const initial = contractForBuilderSlot(initialBuilderState, 'predicate');
+		expect(initial.required).toMatchObject({
+			gender: 'masculine',
+			number: 'singular',
+			definiteness: 'indefinite',
+			case: 'raf'
+		});
+		const feminine = chooseBuilderWord(initialBuilderState, 'subject', 'msa-madrasah').state;
+		expect(contractForBuilderSlot(feminine, 'predicate').required.gender).toBe('feminine');
+		for (const candidate of assessBuilderChoices(feminine, 'predicate')) {
+			expect(candidate.compatibility.allowed).toBe(true);
+			expect(candidate.choice.features.gender).toBe('feminine');
+			expect(candidate.compatibility.allowedExplanation).toContain('nakirah');
+		}
+		expect(contractForBuilderSlot(initialBuilderState, 'object').required.case).toBe('nasb');
+		expect(contractForBuilderSlot(initialBuilderState, 'agent').required).toMatchObject({
+			case: 'raf',
+			gender: 'masculine',
+			number: 'singular'
+		});
 	});
 
 	it('prevents incompatible verb/object combinations and arbitrary ids', () => {

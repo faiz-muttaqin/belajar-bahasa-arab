@@ -21,6 +21,12 @@ import {
 	type WordClass
 } from './lexeme-forms.js';
 import { resolveVerbFrame, validateVerbFrameRegistry, type VerbFrameId } from './verb-frames.js';
+import {
+	evaluateAdjectiveAgreement,
+	evaluateSlotCandidate,
+	type ConstraintResult,
+	type SlotContract
+} from './grammar-constraints.js';
 
 export type BuilderMode = 'nominal' | 'verbal';
 export type BuilderSlot = 'subject' | 'predicate' | 'verb' | 'agent' | 'object';
@@ -42,6 +48,7 @@ export type BuilderChoice = {
 	gloss: string;
 	meaning: string;
 	source: 'msa' | 'harian' | 'sharaf';
+	wordClass: WordClass;
 	bab?: string;
 	/** Morphology of the actual inserted word, not of its dictionary lemma. */
 	features: MorphFeatures;
@@ -162,6 +169,7 @@ function adjectiveChoice(id: string, gender: Gender): BuilderChoice {
 		gloss,
 		meaning: entry.meaning,
 		source: 'msa',
+		wordClass: 'adjective',
 		features: form.features,
 		evidence: form.evidence
 	};
@@ -186,6 +194,7 @@ function nounChoice(item: NominalNoun | VerbAgent | DirectObject): BuilderChoice
 		gloss: item.gloss,
 		meaning: entry.meaning,
 		source: entry.collection === 'harian' ? 'harian' : 'msa',
+		wordClass: 'noun',
 		features: form.features,
 		evidence: form.evidence
 	};
@@ -208,6 +217,7 @@ function verbChoice(item: VerbSelection): BuilderChoice {
 		gloss: item.gloss,
 		meaning: entry.meaning,
 		source: 'sharaf',
+		wordClass: 'verb',
 		bab: entry.bab ? 'Bab ' + entry.bab.number : undefined,
 		features: form.features,
 		evidence: form.evidence,
@@ -238,23 +248,96 @@ export const builderSlotLabels: Record<BuilderSlot, string> = {
 	object: 'Maf‘ūl bih · isim manṣūb'
 };
 
-export function optionsForBuilderSlot(state: BuilderState, slot: BuilderSlot): BuilderChoice[] {
+export type BuilderChoiceAssessment = {
+	choice: BuilderChoice;
+	compatibility: ConstraintResult;
+};
+
+/**
+ * Requirements are for the teaching frame (not inferred from the final harakat
+ * of arbitrary dictionary lemmas). A noun in an iḍāfah or a different sentence
+ * construction will need its own audited template in D-05.
+ */
+export function contractForBuilderSlot(state: BuilderState, slot: BuilderSlot): SlotContract {
+	switch (slot) {
+		case 'subject':
+			return {
+				expectedClass: 'noun',
+				required: { case: 'raf', definiteness: 'definite', number: 'singular' },
+				explanation: 'Mubtada pada contoh ini adalah isim tunggal ma‘rifah dan marfū‘.'
+			};
+		case 'predicate': {
+			const noun = nouns.find((item) => item.id === state.subject);
+			if (!noun) throw new Error('Subject has no audited morphology');
+			return {
+				expectedClass: 'adjective',
+				required: {
+					case: 'raf',
+					definiteness: 'indefinite',
+					number: 'singular',
+					gender: noun.gender
+				},
+				explanation: 'Khabar mengikuti gender subjek tetapi tetap nakirah dan marfū‘; bukan na‘at.'
+			};
+		}
+		case 'verb':
+			return {
+				expectedClass: 'verb',
+				required: {
+					aspect: 'perfect',
+					voice: 'active',
+					person: 3,
+					gender: 'masculine',
+					number: 'singular'
+				},
+				explanation:
+					'Pilihan lema fi‘il memakai bentuk dasar terkurasi; mode waktu disesuaikan kembali bila tidak tersedia.'
+			};
+		case 'agent':
+			return {
+				expectedClass: 'noun',
+				required: {
+					case: 'raf',
+					definiteness: 'definite',
+					gender: 'masculine',
+					number: 'singular'
+				},
+				explanation: 'Fā‘il eksplisit pada contoh VSO ini tunggal maskulin dan marfū‘.'
+			};
+		case 'object':
+			return {
+				expectedClass: 'noun',
+				required: { case: 'nasb', definiteness: 'definite', number: 'singular' },
+				requiresCollocation: true,
+				allowedLexemeIds: verbs.find((item) => item.id === state.verb)?.allowedObjects,
+				explanation:
+					'Maf‘ūl bih manṣūb; pasangan kata telah dikurasi khusus untuk contoh fi‘il ini.'
+			};
+	}
+}
+
+function candidatePool(state: BuilderState, slot: BuilderSlot): BuilderChoice[] {
 	switch (slot) {
 		case 'subject':
 			return nouns.map(nounChoice);
 		case 'predicate': {
-			const noun = nouns.find((entry) => entry.id === state.subject);
-			if (!noun) return [];
-			return adjectives.map((entry) => adjectiveChoice(entry.id, noun.gender));
+			const noun = nouns.find((item) => item.id === state.subject);
+			return noun ? adjectives.map((item) => adjectiveChoice(item.id, noun.gender)) : [];
 		}
 		case 'verb':
 			return verbs.map(verbChoice);
 		case 'agent':
 			return agents.map(nounChoice);
 		case 'object': {
-			const verb = verbs.find((item) => item.id === state.verb);
-			if (!verb) return [];
-			return verb.allowedObjects
+			// Preserve the curator's *preferred* order for auto-replacement.
+			// After eligible candidates, include other objects so the modal
+			// can explain why they are not offered for this verb.
+			const preferred = verbs.find((item) => item.id === state.verb)?.allowedObjects ?? [];
+			const ids = [
+				...preferred,
+				...objects.map((item) => item.id).filter((id) => !preferred.includes(id))
+			];
+			return ids
 				.map((id) => objects.find((item) => item.id === id))
 				.filter((item): item is DirectObject => item !== undefined)
 				.map(nounChoice);
@@ -262,20 +345,71 @@ export function optionsForBuilderSlot(state: BuilderState, slot: BuilderSlot): B
 	}
 }
 
-/** Search Arabic with/without ḥarakāt, Indonesian meaning, source lemma or wazan bab. */
+/** Fail-closed assessment shared by search UI, state mutation, and QA. */
+export function assessBuilderChoices(
+	state: BuilderState,
+	slot: BuilderSlot
+): BuilderChoiceAssessment[] {
+	if (slot === 'predicate' && !nouns.some((item) => item.id === state.subject)) return [];
+	const contract = contractForBuilderSlot(state, slot);
+	return candidatePool(state, slot).map((choice) => {
+		const base = evaluateSlotCandidate(contract, choice);
+		if (slot !== 'predicate' || !base.allowed) {
+			return { choice, compatibility: base };
+		}
+		const noun = nouns.find((item) => item.id === state.subject)!;
+		const agreement = evaluateAdjectiveAgreement({
+			head: { gender: noun.gender, number: 'singular', case: 'raf', definiteness: 'definite' },
+			adjective: choice.features,
+			relation: 'nominal-predicate'
+		});
+		return {
+			choice,
+			compatibility: agreement.allowed
+				? base
+				: {
+						allowed: false,
+						reasons: [...base.reasons, ...agreement.reasons],
+						allowedExplanation: agreement.allowedExplanation
+					}
+		};
+	});
+}
+
+export function optionsForBuilderSlot(state: BuilderState, slot: BuilderSlot): BuilderChoice[] {
+	return assessBuilderChoices(state, slot)
+		.filter((item) => item.compatibility.allowed)
+		.map((item) => item.choice);
+}
+
+/**
+ * Search over BOTH available and blocked curated entries: when a learner
+ * searches for an excluded word, retain its reason instead of silently hiding it.
+ */
+export function searchBuilderChoiceAssessments(
+	state: BuilderState,
+	slot: BuilderSlot,
+	query: string
+): BuilderChoiceAssessment[] {
+	const all = assessBuilderChoices(state, slot);
+	const normalized = normalizeArabicSearch(query);
+	if (!normalized) return all;
+	return all.filter(({ choice }) =>
+		[choice.arabic, choice.lemma, choice.gloss, choice.meaning, choice.bab ?? ''].some((text) =>
+			normalizeArabicSearch(text).includes(normalized)
+		)
+	);
+}
+
+/** Legacy usable-only API for consumers requiring selectable options. */
 export function searchBuilderChoices(
 	state: BuilderState,
 	slot: BuilderSlot,
 	query: string
 ): BuilderChoice[] {
-	const all = optionsForBuilderSlot(state, slot);
-	const normalized = normalizeArabicSearch(query);
-	if (!normalized) return all;
-	return all.filter((choice) =>
-		[choice.arabic, choice.lemma, choice.gloss, choice.meaning, choice.bab ?? ''].some((text) =>
-			normalizeArabicSearch(text).includes(normalized)
-		)
-	);
+	return searchBuilderChoiceAssessments(state, slot, query)
+		.filter((item) => item.compatibility.allowed)
+		.map((item) => item.choice);
 }
 
 export type SelectionResult = { state: BuilderState; resetObject: boolean; resetFrame: boolean };
@@ -433,6 +567,13 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 
 export function validateBuilderRegistry(): string[] {
 	const errors: string[] = [...validateVerbFrameRegistry()];
+	for (const slot of ['subject', 'predicate', 'verb', 'agent', 'object'] as const) {
+		const assessments = assessBuilderChoices(initialBuilderState, slot);
+		if (!assessments.some((item) => item.compatibility.allowed))
+			errors.push('No validated candidate for slot: ' + slot);
+		if (assessments.some((item) => item.compatibility.allowed && item.compatibility.reasons.length))
+			errors.push('Contradictory constraint result: ' + slot);
+	}
 	for (const noun of [...nouns, ...agents, ...objects]) {
 		try {
 			ensureNoun(noun.id);

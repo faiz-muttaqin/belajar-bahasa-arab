@@ -22,6 +22,12 @@
 
 D-03 menyediakan `verb-frames.ts`: pilihan māḍī, muḍāri‘ marfū‘, negasi `لَمْ` (majzūm), `لَنْ` (manṣūb), dan amr. **Tidak seluruh bentuk ada untuk setiap verba**; pilihan tanpa pasangan bentuk yang tercatat dinonaktifkan, dan jika pilihan lemma baru tidak mendukung frame sebelumnya, pilihan otomatis kembali ke māḍī dengan penjelasan. Mode perintah menghilangkan fā‘il eksplisit karena pelaku `أَنْتَ` tersirat. Sumber bentuk yang mendasari pilihan tercatat di [audit D-03](../data/dynamic-example-verb-inflection-audit.md). Ini pilot terbatas, belum konjugator umum atau penyelesaian D-03 penuh untuk seluruh dhamir dan verba mu‘tal.
 
+## Progres D-04a — validator kompatibilitas yang memberi alasan
+
+`src/lib/domain/grammar/grammar-constraints.ts` memperkenalkan kontrak per slot yang memeriksa kelas kata, data bentuk berharakat, kesesuaian i‘rab, gender, jumlah, ma‘rifah, mood/bentuk fi‘il dan kecocokan objek yang sudah dikurasi. Penilaiannya **fail-closed**: metadata hilang tidak berarti otomatis kompatibel. `evaluateAdjectiveAgreement` juga membedakan **na‘at** dan **khabar**, serta melindungi kasus jamak ghayr ‘āqil jika informasi animacy belum eksplisit.
+
+Pada pilot G-06, pilihan yang belum terkurasi tetap bisa ditemukan dan dibaca dalam modal, tetapi nonaktif dengan alasan yang menjelaskan _batas bukti contoh_ (bukan mengklaim kalimat selalu salah). D-04a belum menangani iḍāfah kompleks, klitik, maushul maupun hubungan antar klausa dan belum memasang UI ke G-01–G-05. [Audit D-04a](../data/dynamic-example-constraints-audit.md).
+
 ## Realisasi pilot G-06
 
 Halaman \`/kaidah/praktik/\` memasang **dua contoh dinamis** berbasis modul \`src/lib/domain/grammar/dynamic-examples.ts\` dan \`DynamicSentenceExample.svelte\`:
