@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
 	chooseBuilderWord,
+	chooseVerbFrame,
 	composeBuilderExample,
 	initialBuilderState,
 	optionsForBuilderSlot,
@@ -104,6 +105,51 @@ describe('G-06 dynamic example slots', () => {
 			'الطَّالِبُ',
 			'الْبَابَ'
 		]);
+	});
+
+	it('switches the same VSO actor between perfect and imperfect, with explicit case and mood', () => {
+		const present = chooseVerbFrame(initialBuilderState, 'present');
+		const example = composeBuilderExample('verbal', present);
+		expect(example.tokens.map((token) => token.arabic)).toEqual([
+			'يَكْتُبُ', 'الطَّالِبُ', 'الرِّسَالَةَ'
+		]);
+		expect(example.tokens[0]!.marker).toContain('marfū‘');
+		expect(example.tokens[1]!.marker).toBe('Rafa‘ · ḍamma');
+		expect(example.tokens[2]!.marker).toBe('Naṣb · fatḥa');
+	});
+
+	it('applies lam/lan operators as independent tokens, without treating mood as noun case', () => {
+		const negativePast = composeBuilderExample('verbal', chooseVerbFrame(initialBuilderState, 'lam'));
+		expect(negativePast.tokens.map((token) => token.arabic)).toEqual([
+			'لَمْ', 'يَكْتُبْ', 'الطَّالِبُ', 'الرِّسَالَةَ'
+		]);
+		expect(negativePast.translation).toContain('tidak menulis');
+		const negativeFuture = composeBuilderExample('verbal', chooseVerbFrame(initialBuilderState, 'lan'));
+		expect(negativeFuture.tokens.map((token) => token.arabic)).toEqual([
+			'لَنْ', 'يَكْتُبَ', 'الطَّالِبُ', 'الرِّسَالَةَ'
+		]);
+		expect(negativeFuture.translation).toContain('tidak akan menulis');
+	});
+
+	it('removes the explicit actor in imperative and preserves the selected compatible object', () => {
+		const state = chooseBuilderWord(initialBuilderState, 'verb', 'fiil-fataha').state;
+		const command = composeBuilderExample('verbal', chooseVerbFrame(state, 'imperative'));
+		expect(command.tokens.map((token) => token.arabic)).toEqual(['اِفْتَحْ', 'الْبَابَ']);
+		expect(command.tokens.some((token) => token.slot === 'agent')).toBe(false);
+		expect(command.translation).toBe('Bukalah pintu itu!');
+		expect(command.explanation).toContain('أَنْتَ');
+	});
+
+	it('rejects undocumented frames and resets incompatible form on replacing the verb', () => {
+		expect(() => chooseVerbFrame(initialBuilderState, 'imperative')).toThrow(
+			'Unavailable verbal frame'
+		);
+		const jussive = chooseVerbFrame(initialBuilderState, 'lam');
+		const result = chooseBuilderWord(jussive, 'verb', 'fiil-qaraa');
+		expect(result.resetFrame).toBe(true);
+		expect(result.state.verbFrame).toBe('past');
+		expect(result.resetObject).toBe(false);
+		expect(composeBuilderExample('verbal', result.state).tokens[0]!.arabic).toBe('قَرَأَ');
 	});
 
 	it('prevents incompatible verb/object combinations and arbitrary ids', () => {
