@@ -45,15 +45,19 @@ Read [`docs/arabic-learning-stack-guide-sveltekit.md`](./docs/arabic-learning-st
 - **Learning map (peta belajar):** design, decisions and the next task (RM-06) are in [`docs/plans/peta-belajar.md`](./docs/plans/peta-belajar.md) §10; the evidence is in the [comparison study](./docs/research/2026-11-15-studi-komparasi-peta-belajar.md).
 - Research basis: [`docs/arabic-learning-pedagogy-ux-research-reissued.md`](./docs/arabic-learning-pedagogy-ux-research-reissued.md). Design rules: [`docs/design/taste.md`](./docs/design/taste.md).
 
-## Quality checks before every PR
+## Quality checks and PR delivery (CI-first)
 
-Aikido scanning is disabled by the product owner. Do not run, require, or reintroduce Aikido in this repository's development or CI process. Keep the project checks below.
+Aikido scanning is disabled by the product owner. Do not run, require, or reintroduce Aikido in this repository's development or CI process.
 
-1. Summarize impact and every new dependency; link the relevant official API/adapter version docs.
-2. Run project-defined typecheck, lint, tests and `bun run build`; accurately report which ran and which did not.
-3. Verify all published routes actually output static HTML with readable lesson text and the correct metadata; test direct URLs with JS disabled.
-4. Check SvelteKit client-side navigation/back/forward, responsive viewports, light/dark/system, keyboard focus, and reduced motion.
-5. Test Arabic font rendering/bidi/harakat and audio on common mobile browsers for relevant UI changes.
+**Owner decision (16 November 2026):** Push implementation and open a PR promptly. Do **not** block PR creation behind long local `bun run verify`, Playwright E2E, static-build, or flow tests. Fast local checks are optional when convenient; state explicitly which checks ran. Use stacked PRs for related roadmap tasks and separate PRs for independent work.
+
+GitHub Actions [`Verify learning roadmap`](./.github/workflows/learning-roadmap-pr.yml) is the primary automated gate. It runs `bun run verify` on pull requests, including Svelte/TypeScript checks, Prettier/ESLint, Vitest and Playwright E2E/static build. Let CI execute while subsequent work proceeds. An assigned reviewer/fix agent must inspect failures, push corrections and rely on Actions to rerun; **do not merge with failing or unverified required checks**. Passing CI never substitutes for Arabic expert review.
+
+1. In every PR description, summarize scope, provenance, new dependencies and known verification gaps; link official API/adapter docs for changes that need them.
+2. Inspect GitHub Actions results before merge. Never claim a check passed when it was not executed.
+3. Verify published routes generate readable static HTML and proper metadata, including direct-URL and no-JavaScript E2E checks in CI; add focused tests for new routes.
+4. Review SvelteKit navigation/back/forward, responsive layouts, light/dark/system, keyboard focus and reduced motion when a UI change is relevant. Manual exploratory testing can be performed **during PR review**, not as a prerequisite to opening the PR.
+5. Test Arabic fonts, bidi, harakat and audio on real mobile browsers when relevant; record this as pending manual review if no suitable device is available.
 6. Ensure no server/database/auth/TTS endpoint has slipped into the MVP.
 
 ## Source of truth
