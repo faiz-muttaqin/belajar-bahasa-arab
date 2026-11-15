@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { LessonProgress, ProgressBackup } from './lessons.js';
-import { importProgressBackup, readProgressSnapshot, saveProgress } from './storage.js';
+import { importProgressBackup, readProgressSnapshot, saveProgress, saveAttempt } from './storage.js';
+import type { LearningAttempt } from '#lib/domain/roadmap/evidence.js';
 
 // TEST FIXTURE — NOT A LESSON. The browser runner uses its own isolated origin.
 const completed: LessonProgress = {
@@ -58,4 +59,58 @@ describe('progress transactions preserve every record in a batch', () => {
 			});
 		});
 	}
+});
+
+describe('RM-05 immutable attempt transactions', () => {
+	const answer: LearningAttempt = {
+		id: 'fixture-attempt-001',
+		itemId: 'u1-rabbi-meaning',
+		lessonId: 'lesson-u1-01',
+		contentRevision: 1,
+		competencyIds: ['CB-01'],
+		skill: 'meaning',
+		outcome: 'correct',
+		assisted: false,
+		selfAssessed: false,
+		seenWhileAuthoring: false,
+		at: 100
+	};
+
+	it('requests persistence eligibility only for the first newly saved answer', async () => {
+		expect(await saveAttempt(answer)).toEqual({ firstAnswer: true });
+		expect(await saveAttempt(answer)).toEqual({ firstAnswer: false });
+		expect((await readProgressSnapshot()).attempts).toEqual([answer]);
+	});
+
+	it('merges duplicates and preserves other stores in one transaction', async () => {
+		const backup: ProgressBackup = {
+			schemaVersion: 2,
+			lessons: [completed],
+			marks: [{ stepId: 'step-fixture', mark: 'skipped', at: 10 }],
+			attempts: [answer, answer]
+		};
+		await importProgressBackup(backup);
+		await importProgressBackup(backup);
+		expect(await readProgressSnapshot()).toEqual({
+			lessons: [completed],
+			marks: backup.marks,
+			attempts: [answer]
+		});
+	});
+
+	it('aborts an entire import on conflicting immutable answer IDs', async () => {
+		await saveAttempt(answer);
+		const conflict: ProgressBackup = {
+			schemaVersion: 2,
+			lessons: [completed],
+			marks: [{ stepId: 'step-fixture', mark: 'skipped', at: 10 }],
+			attempts: [{ ...answer, outcome: 'incorrect' }]
+		};
+		await expect(importProgressBackup(conflict)).rejects.toThrow();
+		expect(await readProgressSnapshot()).toEqual({
+			lessons: [],
+			marks: [],
+			attempts: [answer]
+		});
+	});
 });
