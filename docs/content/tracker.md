@@ -25,6 +25,10 @@ Status markers used below: ⬜ not started · 🟡 in progress · 🔵 waiting o
 
 Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan status tinjauan ada di [Pelajaran publik](./public-lessons.md). Setiap pelajaran berada di tahap 3.
 
+| Materi                   | Tahap | Tindakan berikutnya                                                                                                                                                                         |
+| ------------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| U1 · Latihan makna “-ku” | 3 🟡  | Tinjau alasan dan contoh transfer bersama pengajar bahasa Arab dan ustadz. Uji seberapa mudah pelajar mencoba soal baru sesudah membaca alasan, sesuai [roadmap](../curriculum/ROADMAP.md). |
+
 ## Foundations
 
 | ID   | Item                                                             | Stage / status | Owner          | Blocker / next action                                                                                                                                             |

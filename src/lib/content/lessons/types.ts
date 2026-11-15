@@ -35,6 +35,17 @@ type Exercise = {
 	answer: string;
 };
 
+export type MeaningQuestion = {
+	context: string;
+	arabic: string;
+	prompt: string;
+	choices: readonly [string, string, string];
+	correct: 0 | 1 | 2;
+	reason: string;
+};
+
+export type MeaningPractice = readonly [MeaningQuestion, MeaningQuestion];
+
 export type Lesson = {
 	id: string;
 	slug: string;
@@ -54,6 +65,7 @@ export type Lesson = {
 	patterns: readonly string[];
 	passage?: Passage;
 	analysis?: readonly AnalysisGroup[];
+	meaningPractice?: MeaningPractice;
 	exercises: readonly Exercise[];
 	related?: readonly { label: string; path: `${RelatedPage}#${string}` }[];
 };
@@ -87,6 +99,20 @@ export function validateLessons(lessons: readonly Lesson[]) {
 			lesson.references.some(({ href }) => !href.startsWith('https://'))
 		) {
 			throw new Error(`Incomplete lesson: ${lesson.id}`);
+		}
+
+		const practice = lesson.meaningPractice;
+		if (
+			practice &&
+			(practice[0].arabic === practice[1].arabic ||
+				practice.some(
+					({ arabic, context, prompt, choices, correct, reason }) =>
+						![arabic, context, prompt, reason, ...choices].every((text) => text.trim()) ||
+						new Set(choices).size !== choices.length ||
+						!choices[correct]
+				))
+		) {
+			throw new Error(`Invalid meaning practice: ${lesson.id}`);
 		}
 
 		for (const group of lesson.analysis ?? []) {

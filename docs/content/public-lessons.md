@@ -30,6 +30,8 @@ Tersedia sebagai HTML statis pada build website. Setiap halaman memuat teks Arab
 | lesson-u11-06 | [Rangkum gagasan utama](/belajar/rangkum-gagasan-dokumen/)         | CB-12, CB-22, CB-23, CB-24 · rangkum laporan empat paragraf sesuai bukti               |
 | lesson-u12-01 | [Uji membaca dokumen](/belajar/uji-membaca-dokumen/)               | CB-21, CB-24 · ringkas pengumuman baru dan tunjukkan bukti                             |
 
+Latihan makna pada pelajaran shalat melatih arti “-ku” dengan kata dari tasbih dan satu contoh dari pelajaran kata ganti melekat. Kedua soal memiliki alasan yang bisa dibuka pada HTML statis. Glos dan soal ditulis untuk proyek, mengikuti rujukan pelajaran, dan berstatus draf untuk ditinjau.
+
 ## Jalur fondasi Iqra
 
 | ID           | Pelajaran                                                 | Kompetensi                                                          |
