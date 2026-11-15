@@ -28,6 +28,12 @@ D-03 menyediakan `verb-frames.ts`: pilihan māḍī, muḍāri‘ marfū‘, neg
 
 Pada pilot G-06, pilihan yang belum terkurasi tetap bisa ditemukan dan dibaca dalam modal, tetapi nonaktif dengan alasan yang menjelaskan _batas bukti contoh_ (bukan mengklaim kalimat selalu salah). D-04a belum menangani iḍāfah kompleks, klitik, maushul maupun hubungan antar klausa dan belum memasang UI ke G-01–G-05. [Audit D-04a](../data/dynamic-example-constraints-audit.md).
 
+## Progres D-04b — hubungan frasa (branch terpisah dari PR #33)
+
+Validator baru untuk hubungan **iḍāfah**, huruf **jar–majrūr**, dhamir posesif sambung, dan kaitan **isim mawṣūl–ṣilah** menjaga agar pergantian sebagian token tidak menghasilkan rangkaian Arab yang belum dikurasi. Bentuk dan peran dikaitkan ke contoh G-03/G-05 serta referensi kata ganti yang sudah ada di proyek; **tidak** ada pembentuk sufiks atau parser umum. Kasus muḍāf mengikuti konteks, sedangkan muḍāf ilaih tetap jarr; token sambung seperti قَرَأْتُهُ harus utuh. Semua permukaan tetap *draft* untuk audit pengajar. Baca [audit D-04b](../data/dynamic-example-phrase-relations-audit.md).
+
+Bagian ini merupakan **fondasi domain**, belum mengaktifkan modal pengganti di seluruh G-01–G-05. Tahap sesudahnya adalah **D-05a** (rollout contoh frasa yang sudah punya kontrak), lalu D-05b/c dan D-06.
+
 ## Realisasi pilot G-06
 
 Halaman \`/kaidah/praktik/\` memasang **dua contoh dinamis** berbasis modul \`src/lib/domain/grammar/dynamic-examples.ts\` dan \`DynamicSentenceExample.svelte\`:
