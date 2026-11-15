@@ -1,4 +1,5 @@
 import type { StepMark } from '#lib/domain/roadmap/types.js';
+import { isLearningAttempt, type LearningAttempt } from '#lib/domain/roadmap/evidence.js';
 import {
 	mergeLessonProgress,
 	mergeStepMark,
@@ -7,10 +8,11 @@ import {
 } from './lessons.js';
 
 /** Database schema version is independent of the JSON backup version. */
-export const progressDatabaseVersion = 2;
+export const progressDatabaseVersion = 3;
 const databaseName = 'belajar-bahasa-arab-progres';
 const lessonsStore = 'lessons';
 const marksStore = 'marks';
+const attemptsStore = 'attempts';
 
 function openProgress() {
 	return new Promise<IDBDatabase>((resolve, reject) => {
@@ -23,6 +25,8 @@ function openProgress() {
 				database.createObjectStore(lessonsStore, { keyPath: 'lessonId' });
 			if (!database.objectStoreNames.contains(marksStore))
 				database.createObjectStore(marksStore, { keyPath: 'stepId' });
+			if (!database.objectStoreNames.contains(attemptsStore))
+				database.createObjectStore(attemptsStore, { keyPath: 'id' });
 		};
 		request.onblocked = () => {
 			blocked = true;
@@ -38,16 +42,17 @@ function openProgress() {
 	});
 }
 
-export type ProgressSnapshot = { lessons: LessonProgress[]; marks: StepMark[] };
+export type ProgressSnapshot = { lessons: LessonProgress[]; marks: StepMark[]; attempts: LearningAttempt[] };
 
 export async function readProgressSnapshot(): Promise<ProgressSnapshot> {
 	const database = await openProgress();
 	try {
 		return await new Promise((resolve, reject) => {
-			const transaction = database.transaction([lessonsStore, marksStore], 'readonly');
+			const transaction = database.transaction([lessonsStore, marksStore, attemptsStore], 'readonly');
+			const attempts = transaction.objectStore(attemptsStore).getAll();
 			const lessons = transaction.objectStore(lessonsStore).getAll();
 			const marks = transaction.objectStore(marksStore).getAll();
-			transaction.oncomplete = () => resolve({ lessons: lessons.result, marks: marks.result });
+			transaction.oncomplete = () => resolve({ lessons: lessons.result, marks: marks.result, attempts: attempts.result });
 			transaction.onabort = () => reject(transaction.error);
 			transaction.onerror = () => reject(transaction.error);
 		});
@@ -95,6 +100,18 @@ export async function saveStepMark(mark: StepMark): Promise<void> {
 			const store = transaction.objectStore(marksStore);
 			const request = store.get(mark.stepId);
 			request.onsuccess = () => store.put(mergeStepMark(request.result, mark));
+			for (const attempt of backup.attempts) {
+				if (!isLearningAttempt(attempt)) {
+					transaction.abort();
+					return;
+				}
+				const request = attemptStore.get(attempt.id);
+				request.onsuccess = () => {
+					if (!request.result) attemptStore.add(attempt);
+					else if (JSON.stringify(request.result) !== JSON.stringify(attempt))
+						transaction.abort();
+				};
+			}
 			transaction.oncomplete = () => resolve();
 			transaction.onabort = () => reject(transaction.error);
 			transaction.onerror = () => reject(transaction.error);
@@ -104,14 +121,45 @@ export async function saveStepMark(mark: StepMark): Promise<void> {
 	}
 }
 
-/** Atomic backup merge across both stores; never overwrite more recent local choices. */
+/** Append one immutable answer. Counting and insertion share a transaction across tabs. */
+export async function saveAttempt(attempt: LearningAttempt): Promise<{ firstAnswer: boolean }> {
+	if (!isLearningAttempt(attempt)) throw new Error('Catatan jawaban tidak valid.');
+	const database = await openProgress();
+	try {
+		return await new Promise((resolve, reject) => {
+			const tx = database.transaction(attemptsStore, 'readwrite');
+			const store = tx.objectStore(attemptsStore);
+			const count = store.count();
+			let firstAnswer = false;
+			const existing = store.get(attempt.id);
+			existing.onsuccess = () => {
+				if (existing.result) {
+					if (JSON.stringify(existing.result) !== JSON.stringify(attempt)) {
+						tx.abort();
+					}
+				} else {
+					store.add(attempt);
+					firstAnswer = count.result === 0;
+				}
+			};
+			tx.oncomplete = () => resolve({ firstAnswer });
+			tx.onabort = () => reject(tx.error ?? new Error('ID jawaban bentrok.'));
+			tx.onerror = () => reject(tx.error);
+		});
+	} finally {
+		database.close();
+	}
+}
+
+/** Atomic backup merge across all stores; never overwrite existing immutable answers. */
 export async function importProgressBackup(backup: ProgressBackup): Promise<void> {
 	const database = await openProgress();
 	try {
 		await new Promise<void>((resolve, reject) => {
-			const transaction = database.transaction([lessonsStore, marksStore], 'readwrite');
+			const transaction = database.transaction([lessonsStore, marksStore, attemptsStore], 'readwrite');
 			const lessonStore = transaction.objectStore(lessonsStore);
 			const markStore = transaction.objectStore(marksStore);
+			const attemptStore = transaction.objectStore(attemptsStore);
 			// Reads are queued before callback writes; preserve earlier merges in this batch.
 			const mergedLessons = new Map<string, LessonProgress>();
 			const mergedMarks = new Map<string, StepMark>();
