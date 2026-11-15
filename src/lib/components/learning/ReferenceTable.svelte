@@ -100,15 +100,7 @@
 					<th scope="col" class="w-12 py-3 ps-2"><span class="sr-only">Penjelasan</span></th>
 					{#each table.columns as column (column.key)}
 						<th scope="col" class="px-4 py-3 text-start text-sm font-semibold">
-							{#if table.id === 'tashrif-contoh' && isFormKey(column.key)}
-								<a
-									href={resolve(`rujukan/bentuk/${column.key}/`)}
-									class="inline-flex min-h-11 items-center text-primary underline underline-offset-4 hover:text-foreground"
-									>{column.label}</a
-								>
-							{:else}
-								{column.label}
-							{/if}
+{column.label}
 						</th>
 					{/each}
 				</tr>
@@ -150,6 +142,13 @@
 									>
 										Buka
 									</button>
+								{:else if table.id === 'tashrif-contoh' && column.key === 'form' && isFormKey(row.id)}
+									<a
+										id="{uid}-cell-{cellId}"
+										href={resolve(`rujukan/bentuk/${row.id}/`)}
+										class="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4 hover:text-foreground"
+										>{value}</a
+									>
 								{:else if column.lang === 'ar'}
 									<span
 										id="{uid}-cell-{cellId}"
