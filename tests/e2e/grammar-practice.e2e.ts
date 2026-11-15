@@ -57,7 +57,7 @@ test('verbal modal selects source sharaf entry and automatically fixes incompati
 	await expect(verbal.locator('[data-slot="verb"]')).toContainText('كَتَبَ');
 	await expect(verbal.locator('[data-slot="object"]')).toContainText('الرِّسَالَةَ');
 
-	await verbal.getByRole('button', { name: 'Ganti Fi‘il māḍī · orang ketiga maskulin' }).click();
+	await verbal.getByRole('button', { name: 'Ganti Fi‘il · pilih kata kerja' }).click();
 	await modal.getByRole('searchbox').fill('فتح');
 	await expect(modal.locator('[data-choice="fiil-fataha"]')).toContainText('Bab 3');
 	await modal.locator('[data-choice="fiil-fataha"]').click();
@@ -92,6 +92,58 @@ test('D-02 modal identifies per-word provenance while keeping current keyboard s
 	await page.keyboard.press('Escape');
 	await expect(modal).not.toBeVisible();
 	await expect(nominal.locator('[data-translation]')).toHaveText('Buku itu baru.');
+});
+
+test('D-03 changes real cited fi‘il surfaces and operator mood without inventing forms', async ({
+	page
+}) => {
+	await page.goto('/kaidah/praktik/');
+	const verbal = page.getByRole('region', { name: 'Contoh Arab interaktif verbal' });
+	const shape = verbal.getByRole('combobox', { name: 'Bentuk fi‘il' });
+	await expect(shape).toHaveValue('past');
+	await shape.selectOption('present');
+	await expect(verbal.locator('[data-slot="verb"]')).toContainText('يَكْتُبُ');
+	await expect(verbal.locator('[data-slot="verb"]')).toContainText('marfū‘');
+	await expect(verbal.locator('[data-slot="agent"]')).toContainText('الطَّالِبُ');
+
+	await shape.selectOption('lam');
+	await expect(verbal.locator('[data-slot="operator"]')).toContainText('لَمْ');
+	await expect(verbal.locator('[data-slot="verb"]')).toContainText('يَكْتُبْ');
+	await expect(verbal.locator('[data-translation]')).toContainText('tidak menulis');
+	await shape.selectOption('lan');
+	await expect(verbal.locator('[data-slot="operator"]')).toContainText('لَنْ');
+	await expect(verbal.locator('[data-slot="verb"]')).toContainText('يَكْتُبَ');
+	await expect(verbal.locator('[data-translation]')).toContainText('tidak akan menulis');
+
+	// Switching to a verb without those recorded moods resets the frame safely.
+	await verbal.getByRole('button', { name: 'Ganti Fi‘il · pilih kata kerja' }).click();
+	const modal = page.getByRole('dialog', { name: 'Cari pengganti kata' });
+	await modal.locator('[data-choice="fiil-qaraa"]').click();
+	await expect(shape).toHaveValue('past');
+	await expect(verbal.locator('[data-slot="verb"]')).toContainText('قَرَأَ');
+	await expect(verbal).toContainText('belum tersedia untuk lema baru');
+	await expect(shape.locator('option[value="lam"]')).toBeDisabled();
+
+	await shape.selectOption('present');
+	await expect(verbal.locator('[data-slot="verb"]')).toContainText('يَقْرَأُ');
+});
+
+test('D-03 imperative hides explicit agent, uses second-person subject and keeps object case', async ({
+	page
+}) => {
+	await page.goto('/kaidah/praktik/');
+	const verbal = page.getByRole('region', { name: 'Contoh Arab interaktif verbal' });
+	await verbal.getByRole('button', { name: 'Ganti Fi‘il · pilih kata kerja' }).click();
+	const modal = page.getByRole('dialog', { name: 'Cari pengganti kata' });
+	await modal.locator('[data-choice="fiil-fataha"]').click();
+	const shape = verbal.getByRole('combobox', { name: 'Bentuk fi‘il' });
+	await shape.selectOption('imperative');
+	await expect(verbal.locator('[data-slot="verb"]')).toContainText('اِفْتَحْ');
+	await expect(verbal.locator('[data-slot="agent"]')).toHaveCount(0);
+	await expect(verbal.locator('[data-slot="object"]')).toContainText('الْبَابَ');
+	await expect(verbal.locator('[data-translation]')).toHaveText('Bukalah pintu itu!');
+	await expect(verbal).toContainText('أَنْتَ');
+	await expect(shape.locator('option[value="lam"]')).toBeDisabled();
 });
 
 test.describe('G-06 prerender fallback with JavaScript disabled', () => {

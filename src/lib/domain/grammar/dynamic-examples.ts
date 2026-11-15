@@ -20,6 +20,7 @@ import {
 	type LexemeRecord,
 	type WordClass
 } from './lexeme-forms.js';
+import { resolveVerbFrame, validateVerbFrameRegistry, type VerbFrameId } from './verb-frames.js';
 
 export type BuilderMode = 'nominal' | 'verbal';
 export type BuilderSlot = 'subject' | 'predicate' | 'verb' | 'agent' | 'object';
@@ -29,6 +30,7 @@ export type BuilderState = {
 	subject: string;
 	predicate: string;
 	verb: string;
+	verbFrame: VerbFrameId;
 	agent: string;
 	object: string;
 };
@@ -49,7 +51,7 @@ export type BuilderChoice = {
 };
 
 export type BuilderToken = {
-	slot: BuilderSlot;
+	slot: BuilderSlot | 'operator';
 	arabic: string;
 	gloss: string;
 	role: string;
@@ -218,6 +220,7 @@ export const initialBuilderState: BuilderState = {
 	subject: 'msa-kitab',
 	predicate: 'msa-jadid',
 	verb: 'fiil-kataba',
+	verbFrame: 'past',
 	agent: 'msa-talib',
 	object: 'msa-risalah'
 };
@@ -230,7 +233,7 @@ export const builderSlots: Readonly<Record<BuilderMode, readonly BuilderSlot[]>>
 export const builderSlotLabels: Record<BuilderSlot, string> = {
 	subject: 'Mubtada · isim marfū‘',
 	predicate: 'Khabar · sifat marfū‘',
-	verb: 'Fi‘il māḍī · orang ketiga maskulin',
+	verb: 'Fi‘il · pilih kata kerja',
 	agent: 'Fā‘il · maskulin tunggal marfū‘',
 	object: 'Maf‘ūl bih · isim manṣūb'
 };
@@ -275,7 +278,15 @@ export function searchBuilderChoices(
 	);
 }
 
-export type SelectionResult = { state: BuilderState; resetObject: boolean };
+export type SelectionResult = { state: BuilderState; resetObject: boolean; resetFrame: boolean };
+
+/** Do not accept a frame unless the chosen verb has an explicit source-linked form. */
+export function chooseVerbFrame(state: BuilderState, frame: VerbFrameId): BuilderState {
+	if (!resolveVerbFrame(state.verb, frame)) {
+		throw new Error('Unavailable verbal frame: ' + state.verb + '/' + frame);
+	}
+	return { ...state, verbFrame: frame };
+}
 
 /** A selection must be present in the currently compatible, source-linked options. */
 export function chooseBuilderWord(
@@ -287,6 +298,11 @@ export function chooseBuilderWord(
 		throw new Error('Incompatible replacement: ' + slot + '/' + id);
 	}
 	const next = { ...state, [slot]: id };
+	let resetFrame = false;
+	if (slot === 'verb' && !resolveVerbFrame(next.verb, next.verbFrame)) {
+		next.verbFrame = 'past';
+		resetFrame = true;
+	}
 	let resetObject = false;
 	if (
 		slot === 'verb' &&
@@ -295,7 +311,7 @@ export function chooseBuilderWord(
 		next.object = optionsForBuilderSlot(next, 'object')[0]!.id;
 		resetObject = true;
 	}
-	return { state: next, resetObject };
+	return { state: next, resetObject, resetFrame };
 }
 
 function picked(state: BuilderState, slot: BuilderSlot): BuilderChoice {
@@ -340,22 +356,61 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 	const verb = picked(state, 'verb');
 	const agent = picked(state, 'agent');
 	const object = picked(state, 'object');
+	const resolved = resolveVerbFrame(state.verb, state.verbFrame);
+	if (!resolved) throw new Error('Verb frame is not available for this lexical entry');
+	const command = resolved.actor === 'implicit-second-masculine';
+	const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+	const translation =
+		state.verbFrame === 'imperative'
+			? 'Bukalah ' + object.gloss + '!'
+			: state.verbFrame === 'lam'
+				? capitalize(agent.gloss) +
+					' tidak ' +
+					verb.gloss +
+					' ' +
+					object.gloss +
+					' (pada waktu lampau).'
+				: state.verbFrame === 'lan'
+					? capitalize(agent.gloss) + ' tidak akan ' + verb.gloss + ' ' + object.gloss + '.'
+					: state.verbFrame === 'present'
+						? capitalize(agent.gloss) +
+							' ' +
+							verb.gloss +
+							' ' +
+							object.gloss +
+							' (konteks nonlampau).'
+						: capitalize(agent.gloss) + ' ' + verb.gloss + ' ' + object.gloss + '.';
 	return {
 		tokens: [
+			...(resolved.particle
+				? [
+						{
+							slot: 'operator' as const,
+							arabic: resolved.particle.arabic,
+							gloss: resolved.particle.gloss,
+							role: 'Harf naṣb / jazm',
+							marker: resolved.particle.marker
+						}
+					]
+				: []),
 			{
 				slot: 'verb',
-				arabic: verb.arabic,
-				gloss: verb.gloss,
-				role: 'Fi‘il māḍī',
-				marker: 'Bentuk tetap · orang ketiga maskulin'
+				arabic: resolved.form.text,
+				gloss: state.verbFrame === 'imperative' ? 'bukalah!' : verb.gloss,
+				role: command ? 'Fi‘il amr' : state.verbFrame === 'past' ? 'Fi‘il māḍī' : 'Fi‘il muḍāri‘',
+				marker: resolved.marker
 			},
-			{
-				slot: 'agent',
-				arabic: agent.arabic,
-				gloss: agent.gloss,
-				role: 'Fā‘il',
-				marker: 'Rafa‘ · ḍamma'
-			},
+			...(command
+				? []
+				: [
+						{
+							slot: 'agent' as const,
+							arabic: agent.arabic,
+							gloss: agent.gloss,
+							role: 'Fā‘il',
+							marker: 'Rafa‘ · ḍamma'
+						}
+					]),
 			{
 				slot: 'object',
 				arabic: object.arabic,
@@ -364,22 +419,20 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 				marker: 'Naṣb · fatḥa'
 			}
 		],
-		translation:
-			agent.gloss.charAt(0).toUpperCase() +
-			agent.gloss.slice(1) +
-			' ' +
-			verb.gloss +
-			' ' +
-			object.gloss +
-			'.',
+		translation,
 		explanation:
-			'Kalimat VSO memakai fi‘il māḍī maskulin tunggal; fā‘il marfū‘ dan objek manṣūb. Kata dipilih dari daftar kompatibilitas semantis yang terbatas.',
+			resolved.detail +
+			'. ' +
+			(command
+				? 'Pelaku أَنْتَ tersirat, sehingga kartu tidak menampilkan fā‘il eksplisit. '
+				: 'Fā‘il tunggal maskulin marfū‘ tetap disebutkan. ') +
+			'Pilihan objek mengikuti daftar kompatibilitas contoh yang terbatas; bentuk fi‘il dan mood tidak ditebak dari wazan.',
 		changedObject: false
 	};
 }
 
 export function validateBuilderRegistry(): string[] {
-	const errors: string[] = [];
+	const errors: string[] = [...validateVerbFrameRegistry()];
 	for (const noun of [...nouns, ...agents, ...objects]) {
 		try {
 			ensureNoun(noun.id);
@@ -397,6 +450,7 @@ export function validateBuilderRegistry(): string[] {
 	for (const verb of verbs) {
 		try {
 			verbChoice(verb);
+			if (!resolveVerbFrame(verb.id, 'past')) errors.push('Missing pilot past frame: ' + verb.id);
 		} catch {
 			errors.push('Missing verb source: ' + verb.id);
 		}

@@ -18,6 +18,10 @@
   - Label dan warna tidak boleh menggantikan penjelasan tekstual. Pencarian RTL tanpa harakat menggunakan \`normalizeArabicSearch\` yang sudah ada, plus kata kunci Indonesia. Jangan menjadikan hasil normalisasi sebagai identitas lema.
   - Hindari merender 8.000+ opsi sekaligus: search index dari \`searchSharaf\`/bulk catalog, _lazy-load_, virtualisasi/pagination bila perlu, cache offline IndexedDB sebagaimana rancangan proyek.
 
+## Progres D-03 — selector fi‘il berbukti (PR lanjutan D-02)
+
+D-03 menyediakan `verb-frames.ts`: pilihan māḍī, muḍāri‘ marfū‘, negasi `لَمْ` (majzūm), `لَنْ` (manṣūb), dan amr. **Tidak seluruh bentuk ada untuk setiap verba**; pilihan tanpa pasangan bentuk yang tercatat dinonaktifkan, dan jika pilihan lemma baru tidak mendukung frame sebelumnya, pilihan otomatis kembali ke māḍī dengan penjelasan. Mode perintah menghilangkan fā‘il eksplisit karena pelaku `أَنْتَ` tersirat. Sumber bentuk yang mendasari pilihan tercatat di [audit D-03](../data/dynamic-example-verb-inflection-audit.md). Ini pilot terbatas, belum konjugator umum atau penyelesaian D-03 penuh untuk seluruh dhamir dan verba mu‘tal.
+
 ## Realisasi pilot G-06
 
 Halaman \`/kaidah/praktik/\` memasang **dua contoh dinamis** berbasis modul \`src/lib/domain/grammar/dynamic-examples.ts\` dan \`DynamicSentenceExample.svelte\`:
