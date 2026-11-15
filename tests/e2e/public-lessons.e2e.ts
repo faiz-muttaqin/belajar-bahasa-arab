@@ -10,7 +10,13 @@ test('every lesson listed in the public catalogs has a static Arabic reader', as
 	for (const { route, first, last } of tracks) {
 		const catalog = await readFile(`build/${route}/index.html`, 'utf8');
 		const links = new RegExp(`href="[^"]*/${route}/([a-z0-9-]+)/"`, 'g');
-		const slugs = new Set(Array.from(catalog.matchAll(links), ([, slug]) => slug));
+		// Catalog navigation also links to stage checkpoints. Those are static exercises,
+		// not LessonReader pages, so keep this assertion scoped to lesson slugs.
+		const slugs = new Set(
+			Array.from(catalog.matchAll(links), ([, slug]) => slug).filter(
+				(slug) => !slug.startsWith('checkpoint-')
+			)
+		);
 		expect(slugs).toContain(first);
 		expect(slugs).toContain(last);
 
