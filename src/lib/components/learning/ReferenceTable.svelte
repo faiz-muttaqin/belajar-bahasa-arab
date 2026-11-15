@@ -100,7 +100,7 @@
 					<th scope="col" class="w-12 py-3 ps-2"><span class="sr-only">Penjelasan</span></th>
 					{#each table.columns as column (column.key)}
 						<th scope="col" class="px-4 py-3 text-start text-sm font-semibold">
-{column.label}
+							{column.label}
 						</th>
 					{/each}
 				</tr>

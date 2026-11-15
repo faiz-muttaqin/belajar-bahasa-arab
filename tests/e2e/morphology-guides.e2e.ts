@@ -33,12 +33,16 @@ test('F-16 matrix makes all 11 headings direct links to detail pages', async ({ 
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/maful\/$/);
 });
 
-test('F-16 fallback reference-table form row labels also navigate to the same detail', async ({ page }) => {
+test('F-16 fallback reference-table form row labels also navigate to the same detail', async ({
+	page
+}) => {
 	await page.goto('/rujukan/fiil/');
 	const section = page.getByText('Contoh per bab dan mode hafalan', { exact: true });
 	await section.click();
 	const details = page.locator('details').filter({ has: section });
-	await details.locator('tbody tr[id="tashrif-contoh-madhi"] a[href$="/rujukan/bentuk/madhi/"]').click();
+	await details
+		.locator('tbody tr[id="tashrif-contoh-madhi"] a[href$="/rujukan/bentuk/madhi/"]')
+		.click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/madhi\/$/);
 	await expect(page.getByText('كَتَبْتُ', { exact: true })).toBeVisible();
 });
