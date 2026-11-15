@@ -17,7 +17,7 @@ export type GrammaticalNumber = 'singular' | 'dual' | 'plural';
 export type Definiteness = 'definite' | 'indefinite';
 export type VerbAspect = 'perfect' | 'imperfect' | 'imperative';
 export type VerbVoice = 'active' | 'passive';
-export type ReviewState = 'draft' | 'linguist_reviewed' | 'approved';
+export type ReviewState = 'fixture' | 'draft' | 'linguist_reviewed' | 'approved';
 
 export type MorphFeatures = {
 	gender?: Gender;
