@@ -1,4 +1,4 @@
-name: Verify learning roadmap data
+name: Verify learning roadmap
 on:
   pull_request:
     paths:
@@ -6,6 +6,9 @@ on:
       - 'src/lib/content/roadmap*'
       - 'src/lib/content/lessons/index.ts'
       - 'src/lib/domain/roadmap/**'
+      - 'src/lib/components/learning/*Roadmap*.svelte'
+      - 'src/routes/belajar/+page*'
+      - 'tests/e2e/learning-roadmap.e2e.ts'
       - 'playwright.config.ts'
       - '.github/workflows/learning-roadmap-pr.yml'
 permissions:
