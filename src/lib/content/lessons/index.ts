@@ -25,7 +25,11 @@ validateLessons(lessons);
 validateRoadmap(roadmap, competencies, lessons, roadmapReferencePaths);
 for (const group of stage3CheckpointGroups) {
 	const lesson = lessons.find((item) => item.id === group.lessonId);
-	if (!lesson || lesson.revision !== group.contentRevision || !lesson.competencies.includes(group.competencyId))
+	if (
+		!lesson ||
+		lesson.revision !== group.contentRevision ||
+		!lesson.competencies.includes(group.competencyId)
+	)
 		throw new Error(`Invalid checkpoint lesson or competency: ${group.id}`);
 }
 export const evidenceItems = [

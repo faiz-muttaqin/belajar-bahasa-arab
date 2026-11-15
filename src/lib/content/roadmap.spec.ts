@@ -43,9 +43,15 @@ describe('RM-02 published lesson mapping', () => {
 				.filter((branch) => branch.status === 'planned')
 				.every((branch) => branch.links.length === 0)
 		).toBe(true);
-		expect(roadmap.stages.filter((stage) => stage.checkpoint.status === 'available')).toHaveLength(1);
+		expect(roadmap.stages.filter((stage) => stage.checkpoint.status === 'available')).toHaveLength(
+			1
+		);
 		expect(roadmap.stages[3]!.checkpoint.path).toBe('belajar/checkpoint-3/');
-		expect(roadmap.stages.filter((stage) => stage.number !== 3).every((stage) => stage.checkpoint.status === 'planned')).toBe(true);
+		expect(
+			roadmap.stages
+				.filter((stage) => stage.number !== 3)
+				.every((stage) => stage.checkpoint.status === 'planned')
+		).toBe(true);
 		for (const path of roadmapReferencePaths)
 			expect(existsSync(`src/routes/${path}+page.svelte`)).toBe(true);
 	});

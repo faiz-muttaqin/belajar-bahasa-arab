@@ -150,7 +150,12 @@
 				<p id="{id}-reason"><MixedText text={current.reason} /></p>
 				<p class="text-sm text-muted-foreground">Draf · bersumber, belum ditinjau ustadz.</p>
 				{#each current.sources as source (source.href)}
-					<a href={source.href} target="_blank" rel="noopener noreferrer" class="block text-sm text-primary underline">Sumber: {source.label}</a>
+					<a
+						href={source.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="block text-sm text-primary underline">Sumber: {source.label}</a
+					>
 				{/each}
 			</div>
 			{#if savingAnswer}
@@ -169,7 +174,9 @@
 					>
 				{/if}
 				{#if step < questions.length - 1}
-					<Button disabled={savingAnswer} onclick={() => openQuestion(step + 1)}>{step === 0 ? 'Coba contoh baru' : 'Soal berikutnya'}</Button>
+					<Button disabled={savingAnswer} onclick={() => openQuestion(step + 1)}
+						>{step === 0 ? 'Coba contoh baru' : 'Soal berikutnya'}</Button
+					>
 				{:else if correct}
 					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(0)}
 						>Ulangi latihan</Button
@@ -202,7 +209,12 @@
 						<p class="font-semibold">{question.choices[question.correct]}.</p>
 						<p><MixedText text={question.reason} /></p>
 						{#each question.sources as source (source.href)}
-							<a href={source.href} target="_blank" rel="noopener noreferrer" class="block text-sm text-primary underline">Sumber: {source.label}</a>
+							<a
+								href={source.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="block text-sm text-primary underline">Sumber: {source.label}</a
+							>
 						{/each}
 					</details>
 				</li>

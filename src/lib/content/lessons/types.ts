@@ -49,7 +49,11 @@ export type MeaningQuestion = {
 	correct: 0 | 1 | 2;
 	reason: string;
 	/** Per-item provenance, checked before publication under ADR-004 D-9. */
-	sources: readonly { label: string; href: string; usageType: 'independent-original' | 'adaptation' | 'verbatim' }[];
+	sources: readonly {
+		label: string;
+		href: string;
+		usageType: 'independent-original' | 'adaptation' | 'verbatim';
+	}[];
 };
 
 export type MeaningPractice = readonly [MeaningQuestion, MeaningQuestion, ...MeaningQuestion[]];
