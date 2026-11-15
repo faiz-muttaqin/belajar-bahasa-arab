@@ -13,10 +13,10 @@ test('RM-06 stage 2: checkpoint records answer and shows next of twenty', async 
 	await group.getByRole('button', { name: 'Coba contoh baru' }).click();
 	await expect(group).toContainText('Soal 2 dari 20');
 	await page.goto('/belajar/');
-	await page.getByRole('button', { name: 'Rincian langkah: Menunjuk dan bertanya' }).click();
-	await expect(page.getByRole('dialog').locator('[data-competency-level="CB-04"]')).toContainText(
-		'Bisa pada contoh baru'
-	);
+	const detail = page.getByRole('button', { name: 'Rincian langkah: Menunjuk dan bertanya' });
+	await detail.click();
+	const level = page.getByRole('dialog').locator('[data-competency-level="CB-04"]');
+	await expect(level).toContainText('Bisa pada contoh baru');
 });
 
 test('RM-06 stage 2 is still readable in static HTML without JS', async ({ page }) => {

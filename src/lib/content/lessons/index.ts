@@ -24,10 +24,7 @@ const lessons = [
 ];
 validateLessons(lessons);
 validateRoadmap(roadmap, competencies, lessons, roadmapReferencePaths);
-const publishedCheckpointGroups = [
-	...stage2CheckpointGroups,
-	...stage3CheckpointGroups
-];
+const publishedCheckpointGroups = [...stage2CheckpointGroups, ...stage3CheckpointGroups];
 for (const group of publishedCheckpointGroups) {
 	const lesson = lessons.find((item) => item.id === group.lessonId);
 	if (
