@@ -196,6 +196,11 @@ export type CuratedFrameForm = {
 	id: string;
 	surface: string;
 	features: MorphFeatures;
+	/**
+	 * Explicit POS override for a specific curated teaching frame ONLY. The
+	 * unannotated dictionary entry itself remains unclassified.
+	 */
+	frameWordClass?: WordClass;
 	/** Explain why this form may be used in this particular teaching frame. */
 	reason: string;
 };
@@ -225,10 +230,15 @@ export function withCuratedValency(
  * The input source status is never elevated: every constructed frame is draft.
  */
 export function curatedFrameSurface(input: CuratedFrameForm): WordSurface {
-	const { lexeme, id, surface, features, reason } = input;
+	const { lexeme, id, surface, features, reason, frameWordClass } = input;
 	if (!id.trim() || !surface.trim() || !reason.trim()) throw new Error('Incomplete curated form');
-	if (features.case && (lexeme.wordClass === 'verb' || features.mood))
-		throw new Error('Noun case cannot be mixed with verb mood or a verb');
+	if (
+		frameWordClass &&
+		(lexeme.wordClass !== 'expression' || frameWordClass === 'expression')
+	) throw new Error('Invalid curated POS override');
+	const usedClass = frameWordClass ?? lexeme.wordClass;
+	if (features.case && (!['noun', 'adjective'].includes(usedClass) || features.mood))
+		throw new Error('Noun case cannot be mixed with verb mood or a non-noun');
 	if (features.mood && (lexeme.wordClass !== 'verb' || features.aspect !== 'imperfect'))
 		throw new Error('Verb mood requires an explicitly imperfect verb');
 	if (features.aspect && lexeme.wordClass !== 'verb')
@@ -246,7 +256,7 @@ export function curatedFrameSurface(input: CuratedFrameForm): WordSurface {
 			'curated-example',
 			'draft',
 			lexeme.lemmaEvidence.sourceUrls,
-			reason + ' Bentuk ini masih menunggu tashih guru bahasa Arab.'
+			reason + (frameWordClass ? ' Kelas kata ditetapkan manual hanya pada bingkai ini.' : '') + ' Bentuk ini masih menunggu tashih guru bahasa Arab.'
 		)
 	};
 }
@@ -267,8 +277,10 @@ export function validateLexemeRecord(record: LexemeRecord): string[] {
 		if (form.evidence.sourceUrls.some((url) => !url.startsWith('https://')))
 			errors.push('Invalid source URL: ' + form.id);
 		const f = form.features;
-		if (f.case && (f.mood || record.wordClass === 'verb'))
+		if (f.case && (f.mood || !['noun', 'adjective'].includes(record.wordClass)))
 			errors.push('Case/mood mismatch: ' + form.id);
+		if ((f.aspect || f.voice || f.person) && record.wordClass !== 'verb')
+			errors.push('Verb features on non-verb: ' + form.id);
 		if (f.mood && (record.wordClass !== 'verb' || f.aspect !== 'imperfect'))
 			errors.push('Mood without imperfect verb: ' + form.id);
 	}
