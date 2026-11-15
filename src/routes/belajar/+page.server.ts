@@ -7,5 +7,12 @@ export function load() {
 	const lessons = [...lessonsFor('belajar'), ...lessonsFor('iqra')].map(
 		({ id, slug, track, title, goal, minutes }) => ({ id, slug, track, title, goal, minutes })
 	);
-	return { map: presentRoadmap(roadmap, competencies, lessons), start: firstMainLesson() };
+	return {
+		map: presentRoadmap(roadmap, competencies, lessons),
+		roadmap,
+		roadmapLessons: [...lessonsFor('belajar'), ...lessonsFor('iqra')].map(
+			({ id, revision, track, competencies }) => ({ id, revision, track, competencies })
+		),
+		start: firstMainLesson()
+	};
 }
