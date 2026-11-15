@@ -55,7 +55,8 @@ function stage(
 			id: `checkpoint-${number === 0 ? 'iqra' : number}`,
 			title: checkpointTitle,
 			competencyIds: checkpointCompetencies,
-			status: 'planned',
+			status: number === 3 ? 'available' : 'planned',
+			...(number === 3 ? { path: 'belajar/checkpoint-3/' as const } : {}),
 			sources,
 			reviewStatus: 'draft'
 		},

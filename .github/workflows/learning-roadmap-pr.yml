@@ -4,6 +4,13 @@ on:
     paths:
       - 'src/lib/content/competencies*'
       - 'src/lib/content/roadmap*'
+      - 'src/lib/content/checkpoints*'
+      - 'src/lib/content/lessons/u1-meaning-practice.ts'
+      - 'src/lib/content/lessons/types.ts'
+      - 'src/lib/components/learning/MeaningPractice.svelte'
+      - 'src/lib/components/learning/RoadmapStage.svelte'
+      - 'src/routes/belajar/checkpoint-3/**'
+      - 'tests/e2e/rm06-checkpoint.e2e.ts'
       - 'src/lib/content/lessons/index.ts'
       - 'src/lib/domain/roadmap/**'
       - 'src/lib/progress/**'
