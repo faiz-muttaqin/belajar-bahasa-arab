@@ -9,11 +9,12 @@
 	import { GRAMMAR_ROLE_LABELS } from '#lib/content/grammar-rules.js';
 
 	let { example }: { example: GrammarExample } = $props();
-	let selectedId = $state(example.id);
+	let selectedId = $state<string | null>(null);
+	let activeId = $derived(selectedId ?? example.id);
 	let hydrated = $state(false);
 	let notice = $state('');
-	let current = $derived(resolveInlineGrammarExample(example.id, selectedId) ?? example);
-	const editable = canEditInlineExample('grammar', example.id);
+	let current = $derived(resolveInlineGrammarExample(example.id, activeId) ?? example);
+	let editable = $derived(canEditInlineExample('grammar', example.id));
 
 	onMount(() => {
 		hydrated = true;
@@ -29,7 +30,7 @@
 	}
 
 	function reset() {
-		selectedId = example.id;
+		selectedId = null;
 		notice = 'Contoh dikembalikan ke bentuk awal.';
 	}
 
@@ -48,7 +49,7 @@
 <figure
 	class="min-w-0 rounded-2xl border bg-card p-4 sm:p-5"
 	data-inline-example={example.id}
-	data-inline-selected={selectedId}
+	data-inline-selected={activeId}
 >
 	<div
 		class="flex flex-wrap justify-start gap-3"
@@ -75,7 +76,7 @@
 					<InlineCuratedExamplePicker
 						source="grammar"
 						originalId={example.id}
-						{selectedId}
+						selectedId={activeId}
 						tokenIndex={i}
 						roleLabel={GRAMMAR_ROLE_LABELS[token.role]}
 						onSelect={select}
@@ -90,7 +91,7 @@
 		{#if editable && hydrated}
 			<div class="flex flex-wrap items-center justify-between gap-3 pt-2">
 				<p aria-live="polite" class="text-xs text-muted-foreground">{notice}</p>
-				{#if selectedId !== example.id}
+				{#if activeId !== example.id}
 					<button
 						type="button"
 						class="min-h-11 rounded-lg border px-3 text-xs font-semibold hover:bg-secondary"
