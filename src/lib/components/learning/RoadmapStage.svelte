@@ -41,7 +41,9 @@
 	<ol class="space-y-5 border-s-2 ps-4 sm:ps-6" aria-label={`Langkah ${stage.title}`}>
 		{#each stage.steps as step, index (step.id)}
 			{@const status = statusByStep[step.id]}
-			{@const existingMark = marks.find((item) => item.stepId === step.id && item.mark !== 'cleared')}
+			{@const existingMark = marks.find(
+				(item) => item.stepId === step.id && item.mark !== 'cleared'
+			)}
 			<li
 				id={step.id}
 				class="scroll-mt-24 rounded-2xl border bg-card p-4 sm:p-6"
@@ -61,7 +63,8 @@
 								: status === 'learning'
 									? '◐ Sedang dipelajari'
 									: '○ Belum dimulai'}
-						{#if currentStepId === step.id} · Anda di sini{/if}
+						{#if currentStepId === step.id}
+							· Anda di sini{/if}
 					</p>
 				{/if}
 				<ul class="mt-4 space-y-3" aria-label={`Pelajaran ${step.title}`}>
@@ -82,26 +85,32 @@
 					{/each}
 				</ul>
 				{#if onMark}
-					<div class="mt-4 flex flex-wrap gap-2 border-t pt-4" aria-label={`Tanda posisi: ${step.title}`}>
+					<div
+						class="mt-4 flex flex-wrap gap-2 border-t pt-4"
+						aria-label={`Tanda posisi: ${step.title}`}
+					>
 						<button
 							type="button"
 							onclick={() => onMark?.(step.id, 'learning')}
 							disabled={savingStepId !== undefined}
 							class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
-						>Sedang saya pelajari</button>
+							>Sedang saya pelajari</button
+						>
 						<button
 							type="button"
 							onclick={() => onMark?.(step.id, 'skipped')}
 							disabled={savingStepId !== undefined}
 							class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
-						>Saya sudah bisa, lewati</button>
+							>Saya sudah bisa, lewati</button
+						>
 						{#if existingMark}
 							<button
 								type="button"
 								onclick={() => onMark?.(step.id, 'cleared')}
 								disabled={savingStepId !== undefined}
 								class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
-							>Hapus tanda</button>
+								>Hapus tanda</button
+							>
 						{/if}
 					</div>
 				{/if}

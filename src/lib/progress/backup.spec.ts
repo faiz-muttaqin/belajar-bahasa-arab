@@ -34,9 +34,7 @@ describe('RM-04 backup schema and deterministic merge', () => {
 		const backup = parseProgressBackup(serializeProgress([completed], marks));
 		expect(backup.marks).toEqual([marks[1]]);
 		expect(stepStatus(first, lessons, backup.lessons, backup.marks)).toBe('completed');
-		expect(currentPosition(roadmap, lessons, backup.lessons, backup.marks)?.stepId).toBe(
-			'step-u2'
-		);
+		expect(currentPosition(roadmap, lessons, backup.lessons, backup.marks)?.stepId).toBe('step-u2');
 	});
 
 	it('keeps the latest mark even when importing older backups in either order', () => {
@@ -48,7 +46,8 @@ describe('RM-04 backup schema and deterministic merge', () => {
 		const clear = { stepId: first.id, mark: 'cleared' as const, at: 801 };
 		expect(mergeStepMarks([clear, next])).toEqual([clear]);
 		expect(mergeStepMark(old, { ...old, mark: 'cleared' })).toEqual({
-			...old, mark: 'cleared'
+			...old,
+			mark: 'cleared'
 		});
 	});
 
@@ -63,7 +62,12 @@ describe('RM-04 backup schema and deterministic merge', () => {
 		);
 		expect(parsed.lessons).toEqual([{ ...completed, lastOpenedAt: 150 }]);
 		for (const backup of [
-			{ schemaVersion: 2, lessons: [], marks: [{ stepId: 'step-u1', mark: 'invalid', at: 1 }], attempts: [] },
+			{
+				schemaVersion: 2,
+				lessons: [],
+				marks: [{ stepId: 'step-u1', mark: 'invalid', at: 1 }],
+				attempts: []
+			},
 			{ schemaVersion: 2, lessons: [], marks: [], attempts: [{ correct: true }] },
 			{ schemaVersion: 3, lessons: [] },
 			{ schemaVersion: 1, lessons: [{ lessonId: 'bad!', contentRevision: 1, lastOpenedAt: 1 }] }

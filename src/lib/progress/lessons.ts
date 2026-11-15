@@ -108,7 +108,10 @@ export type ProgressBackup = {
 	attempts: [];
 };
 
-export function serializeProgress(records: readonly LessonProgress[], marks: readonly StepMark[] = []) {
+export function serializeProgress(
+	records: readonly LessonProgress[],
+	marks: readonly StepMark[] = []
+) {
 	const backup: ProgressBackup = {
 		schemaVersion: progressVersion,
 		lessons: [...records].sort((a, b) => a.lessonId.localeCompare(b.lessonId)),

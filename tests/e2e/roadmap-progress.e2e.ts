@@ -7,7 +7,10 @@ test('RM-04 map marks persist, synchronize to other tabs and keep resume separat
 	await page.goto('/belajar/');
 	const first = page.locator('#step-u1');
 	await expect(first.locator('[data-step-status]')).toContainText('Belum dimulai');
-	await expect(page.getByRole('link', { name: 'Ke posisi saya' })).toHaveAttribute('href', '#step-u1');
+	await expect(page.getByRole('link', { name: 'Ke posisi saya' })).toHaveAttribute(
+		'href',
+		'#step-u1'
+	);
 
 	const secondTab = await context.newPage();
 	try {
@@ -64,8 +67,14 @@ test('RM-04 upgrades IndexedDB v1 in place and retains completed lessons', async
 					lastOpenedAt: 100,
 					completedRevision: 1
 				});
-				transaction.oncomplete = () => { database.close(); resolve(); };
-				transaction.onabort = () => { database.close(); reject(transaction.error); };
+				transaction.oncomplete = () => {
+					database.close();
+					resolve();
+				};
+				transaction.onabort = () => {
+					database.close();
+					reject(transaction.error);
+				};
 			};
 		});
 	});
@@ -126,7 +135,9 @@ test('RM-04 schema 1 import and latest-mark schema 2 import work across devices'
 		const input = otherPage.locator('input[type=file]');
 		const legacy = {
 			schemaVersion: 1,
-			lessons: [{ lessonId: 'lesson-u1-01', contentRevision: 1, lastOpenedAt: 100, completedRevision: 1 }]
+			lessons: [
+				{ lessonId: 'lesson-u1-01', contentRevision: 1, lastOpenedAt: 100, completedRevision: 1 }
+			]
 		};
 		await input.setInputFiles({
 			name: 'v1.json',
@@ -153,11 +164,15 @@ test('RM-04 schema 1 import and latest-mark schema 2 import work across devices'
 test('RM-04 disabled IndexedDB leaves static roadmap and lessons accessible', async ({ page }) => {
 	await page.addInitScript(() => {
 		Object.defineProperty(window, 'indexedDB', {
-			get: () => { throw new DOMException('Blocked', 'SecurityError'); }
+			get: () => {
+				throw new DOMException('Blocked', 'SecurityError');
+			}
 		});
 	});
 	await page.goto('/belajar/');
-	await expect(page.getByRole('status')).toContainText('Penyimpanan di perangkat ini tidak tersedia');
+	await expect(page.getByRole('status')).toContainText(
+		'Penyimpanan di perangkat ini tidak tersedia'
+	);
 	await expect(page.getByRole('button', { name: 'Saya sudah bisa, lewati' })).toHaveCount(0);
 	await expect(page.locator('[data-map-lesson]')).toHaveCount(29);
 	await page.locator('#step-u1 [data-map-lesson]').click();

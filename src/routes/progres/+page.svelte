@@ -24,7 +24,9 @@
 	);
 	let persistenceStatus = $state<'granted' | 'not-granted' | 'unsupported' | 'loading'>('loading');
 	onMount(() => {
-		void readPersistenceStatus().then((status) => { persistenceStatus = status; });
+		void readPersistenceStatus().then((status) => {
+			persistenceStatus = status;
+		});
 	});
 	let backupInput = $state<HTMLInputElement>();
 	let importing = $state(false);
@@ -79,13 +81,16 @@
 			<h2 id="posisi-peta" class="text-xl font-semibold">Posisi di peta belajar</h2>
 			{#if roadmapSummary.position}
 				<p>
-					Anda di <strong>Tahap {roadmapSummary.position.stageNumber} · langkah
-					{roadmapSummary.position.stepNumber} dari {roadmapSummary.position.stepCount}</strong>.
+					Anda di <strong
+						>Tahap {roadmapSummary.position.stageNumber} · langkah
+						{roadmapSummary.position.stepNumber} dari {roadmapSummary.position.stepCount}</strong
+					>.
 				</p>
 				<a
 					href={resolve(`belajar/#${roadmapSummary.position.stepId}`)}
 					class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4"
-				>Ke posisi saya</a>
+					>Ke posisi saya</a
+				>
 			{:else}
 				<p>Semua langkah jalur utama sudah selesai atau dilewati.</p>
 				<a href={resolve('belajar/')} class="font-medium text-primary underline">Lihat peta</a>
@@ -95,13 +100,14 @@
 					<li>
 						Tahap {data.roadmap.stages.find((item) => item.id === stage.stageId)?.number}:
 						{stage.counts.completed} dari {stage.totalSteps} langkah selesai
-						{#if stage.counts.skipped} · {stage.counts.skipped} dilewati{/if}
+						{#if stage.counts.skipped}
+							· {stage.counts.skipped} dilewati{/if}
 					</li>
 				{/each}
 			</ul>
 			<p class="text-base text-muted-foreground">
-				Hitungan ini adalah cakupan langkah, bukan nilai pemahaman. Iqra dan pendalaman
-				opsional tidak dihitung dalam jalur utama.
+				Hitungan ini adalah cakupan langkah, bukan nilai pemahaman. Iqra dan pendalaman opsional
+				tidak dihitung dalam jalur utama.
 			</p>
 		</section>
 	{/if}
@@ -175,7 +181,8 @@
 					<Button
 						variant="outline"
 						onclick={exportBackup}
-						disabled={(!progress.records.length && !progress.marks.length) || importing}>Ekspor progres</Button
+						disabled={(!progress.records.length && !progress.marks.length) || importing}
+						>Ekspor progres</Button
 					>
 					<Button variant="outline" onclick={() => backupInput?.click()} disabled={importing}
 						>Impor cadangan</Button

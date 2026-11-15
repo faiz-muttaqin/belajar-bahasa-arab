@@ -7,7 +7,11 @@
 	import { saveStepMark } from '#lib/progress/storage.js';
 	import RoadmapStage from './RoadmapStage.svelte';
 	import RoadmapStepDetails from './RoadmapStepDetails.svelte';
-	let { map, roadmap, lessons }: {
+	let {
+		map,
+		roadmap,
+		lessons
+	}: {
 		map: RoadmapView;
 		roadmap: Roadmap;
 		lessons: readonly RoadmapLesson[];
@@ -153,7 +157,8 @@
 				Anda di Tahap {summary.position.stageNumber} · langkah {summary.position.stepNumber}
 				dari {summary.position.stepCount}
 			</p>
-			<a class="inline-flex min-h-11 items-center text-primary underline underline-offset-4"
+			<a
+				class="inline-flex min-h-11 items-center text-primary underline underline-offset-4"
 				href={`#${summary.position.stepId}`}>Ke posisi saya</a
 			>
 		{:else}
