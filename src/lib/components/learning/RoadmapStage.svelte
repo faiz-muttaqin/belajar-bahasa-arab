@@ -187,7 +187,7 @@
 		<p class="text-base text-muted-foreground">Titik cek · {stage.checkpoint.status === 'available' ? 'Tersedia' : 'Direncanakan'}</p>
 		<p class="font-medium">{stage.checkpoint.title}</p>
 		{#if stage.checkpoint.path}
-			<a href={resolve(stage.checkpoint.path)} class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Mulai titik cek · 24 varian soal</a>
+			<a href={resolve(stage.checkpoint.path)} class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Mulai titik cek · {stage.checkpoint.questionCount ?? 'Beberapa'} varian soal</a>
 		{/if}
 		<RoadmapSources sources={stage.checkpoint.sources} />
 	</aside>

@@ -43,6 +43,8 @@ export type RoadmapCheckpoint = SourcedDraft & {
 	status: 'planned' | 'available';
 	/** Static checkpoint route only when published questions exist. */
 	path?: import('$app/types').Path;
+	/** Number of individually authored questions in the published checkpoint. */
+	questionCount?: number;
 };
 
 export type RoadmapStage = SourcedDraft & {

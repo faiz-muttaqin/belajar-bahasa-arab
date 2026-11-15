@@ -196,3 +196,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - **D-01–D-06 — 🟡 Feature roadmap:** [Dynamic examples berbasis slot](../plans/dynamic-example-slots.md); D-01 pilot di G-06, D-02–D-06 perlu metadata morfologi, validasi valensi/semantik, pemasangan pada G-01–G-05, dan progres IndexedDB; tindak lanjut [issue #24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24).
 
 - 16 November 2026: RM-06 pilot Tahap 3 menambahkan 24 item checkpoint bersumber dan memperluas latihan U1 ke 20 pertanyaan; verifikasi CI diserahkan kepada GitHub Actions pada PR, dengan audit bahasa tetap terpisah.
+
+- 16 November 2026: RM-06 ekspansi Tahap 2 (stacked sesudah PR #42): 40 butir checkpoint (20 CB-04 dan 20 CB-06), dengan label keterampilan meaning vs structure, sumber tiap soal, dan pemeriksaan otomatis GitHub Actions; materi draf masih memerlukan review bahasa.
