@@ -296,7 +296,7 @@ export function evaluateRelativeClause(input: {
 			message: 'Rangkaian isim mawṣūl dan ṣilah ini belum tercantum sebagai contoh utuh G-05.'
 		});
 	}
-	if (input.returnLink !== expectedReturn || input.returnLink === 'unknown') {
+	if (input.returnLink !== expectedReturn) {
 		reasons.push({
 			code: 'unverified-relative-return',
 			message: 'Hubungan subjek tersirat atau dhamir ‘ā’id yang kembali ke isim utama belum dibuktikan.'
