@@ -1,6 +1,8 @@
 import type { Lesson } from '#lib/content/lessons/types.js';
+import type { StepMark } from '#lib/domain/roadmap/types.js';
 
-export const progressVersion = 1;
+/** JSON backup schema, distinct from the IndexedDB database version. */
+export const progressVersion = 2;
 
 export type LessonProgress = {
 	lessonId: string;
@@ -25,6 +27,22 @@ export function mergeLessonProgress(
 		lastOpenedAt: Math.max(current?.lastOpenedAt ?? 0, incoming.lastOpenedAt),
 		completedRevision: completedRevision || undefined
 	};
+}
+
+/** A cleared mark is a tombstone: an older backup must not resurrect an erased choice. */
+export function mergeStepMark(current: StepMark | undefined, incoming: StepMark): StepMark {
+	if (!current) return incoming;
+	if (incoming.at !== current.at) return incoming.at > current.at ? incoming : current;
+	const priority = { learning: 0, skipped: 1, cleared: 2 };
+	return priority[incoming.mark] > priority[current.mark] ? incoming : current;
+}
+
+export function mergeStepMarks(marks: readonly StepMark[]): StepMark[] {
+	const merged = new Map<string, StepMark>();
+	for (const mark of marks) {
+		merged.set(mark.stepId, mergeStepMark(merged.get(mark.stepId), mark));
+	}
+	return [...merged.values()];
 }
 
 export function isLessonComplete(lesson: ProgressLesson, record: LessonProgress | undefined) {
@@ -56,7 +74,16 @@ export function summarizeProgress(
 function isPositiveInteger(value: unknown): value is number {
 	return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
 }
-
+function isStepMark(value: unknown): value is StepMark {
+	if (typeof value !== 'object' || value === null) return false;
+	const mark = value as Record<string, unknown>;
+	return (
+		typeof mark.stepId === 'string' &&
+		/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(mark.stepId) &&
+		(mark.mark === 'learning' || mark.mark === 'skipped' || mark.mark === 'cleared') &&
+		isPositiveInteger(mark.at)
+	);
+}
 function isLessonProgress(value: unknown): value is LessonProgress {
 	if (typeof value !== 'object' || value === null) return false;
 	const { lessonId, contentRevision, lastOpenedAt, completedRevision } = value as Record<
@@ -73,26 +100,55 @@ function isLessonProgress(value: unknown): value is LessonProgress {
 	);
 }
 
-export function serializeProgress(records: readonly LessonProgress[]) {
-	return JSON.stringify({ schemaVersion: progressVersion, lessons: records }, null, 2);
+export type ProgressBackup = {
+	schemaVersion: 2;
+	lessons: LessonProgress[];
+	marks: StepMark[];
+	/** Reserved for RM-05; RM-04 never fabricates practice evidence. */
+	attempts: [];
+};
+
+export function serializeProgress(
+	records: readonly LessonProgress[],
+	marks: readonly StepMark[] = []
+) {
+	const backup: ProgressBackup = {
+		schemaVersion: progressVersion,
+		lessons: [...records].sort((a, b) => a.lessonId.localeCompare(b.lessonId)),
+		marks: mergeStepMarks(marks).sort((a, b) => a.stepId.localeCompare(b.stepId)),
+		attempts: []
+	};
+	return JSON.stringify(backup, null, 2);
 }
 
-export function parseProgressBackup(json: string): LessonProgress[] {
+export function parseProgressBackup(json: string): ProgressBackup {
 	const data: unknown = JSON.parse(json);
+	if (typeof data !== 'object' || data === null) {
+		throw new Error('Format cadangan progres tidak didukung.');
+	}
+	const backup = data as Record<string, unknown>;
+	const legacy = backup.schemaVersion === 1;
+	const current = backup.schemaVersion === progressVersion;
 	if (
-		typeof data !== 'object' ||
-		data === null ||
-		!('schemaVersion' in data) ||
-		data.schemaVersion !== progressVersion ||
-		!('lessons' in data) ||
-		!Array.isArray(data.lessons) ||
-		!data.lessons.every(isLessonProgress)
+		(!legacy && !current) ||
+		!Array.isArray(backup.lessons) ||
+		!backup.lessons.every(isLessonProgress) ||
+		(current &&
+			(!Array.isArray(backup.marks) ||
+				!backup.marks.every(isStepMark) ||
+				!Array.isArray(backup.attempts) ||
+				backup.attempts.length !== 0))
 	) {
 		throw new Error('Format cadangan progres tidak didukung.');
 	}
 	const lessons = new Map<string, LessonProgress>();
-	for (const record of data.lessons) {
+	for (const record of backup.lessons as LessonProgress[]) {
 		lessons.set(record.lessonId, mergeLessonProgress(lessons.get(record.lessonId), record));
 	}
-	return [...lessons.values()];
+	return {
+		schemaVersion: 2,
+		lessons: [...lessons.values()],
+		marks: legacy ? [] : mergeStepMarks(backup.marks as StepMark[]),
+		attempts: []
+	};
 }

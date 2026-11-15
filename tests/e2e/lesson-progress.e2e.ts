@@ -70,8 +70,10 @@ test.describe('mobile lesson progress', () => {
 		const exported = await readFile(await download.path());
 		const backup = JSON.parse(exported.toString());
 		expect(backup).toMatchObject({
-			schemaVersion: 1,
-			lessons: [{ lessonId: 'lesson-u1-01', contentRevision: 1, completedRevision: 1 }]
+			schemaVersion: 2,
+			lessons: [{ lessonId: 'lesson-u1-01', contentRevision: 1, completedRevision: 1 }],
+			marks: [],
+			attempts: []
 		});
 
 		const fresh = await browser.newContext({ baseURL });

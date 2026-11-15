@@ -72,10 +72,10 @@ export type Roadmap = {
 
 export type RoadmapLesson = Pick<Lesson, 'id' | 'revision' | 'track' | 'competencies'>;
 
-/** Input contract only. IndexedDB marks are introduced separately in RM-04. */
+/** A cleared mark is retained as a tombstone for cross-device backup merging. */
 export type StepMark = {
 	stepId: string;
-	mark: 'learning' | 'skipped';
+	mark: 'learning' | 'skipped' | 'cleared';
 	at: number;
 };
 

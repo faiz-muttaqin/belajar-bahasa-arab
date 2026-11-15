@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { onMount } from 'svelte';
+	import { summarizeRoadmap } from '#lib/domain/roadmap/progress.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import EmptyState from '#lib/components/layout/EmptyState.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
@@ -9,19 +11,30 @@
 		serializeProgress,
 		summarizeProgress
 	} from '#lib/progress/lessons.js';
-	import { saveProgress } from '#lib/progress/storage.js';
+	import { importProgressBackup, readPersistenceStatus } from '#lib/progress/storage.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 	const progress = useProgress();
 	const summary = $derived(summarizeProgress(data.progressLessons, progress.records));
+	const roadmapSummary = $derived(
+		progress.status === 'ready'
+			? summarizeRoadmap(data.roadmap, data.roadmapLessons, progress.records, progress.marks)
+			: undefined
+	);
+	let persistenceStatus = $state<'granted' | 'not-granted' | 'unsupported' | 'loading'>('loading');
+	onMount(() => {
+		void readPersistenceStatus().then((status) => {
+			persistenceStatus = status;
+		});
+	});
 	let backupInput = $state<HTMLInputElement>();
 	let importing = $state(false);
 	let backupMessage = $state('');
 
 	function exportBackup() {
 		const url = URL.createObjectURL(
-			new Blob([serializeProgress(progress.records)], {
+			new Blob([serializeProgress(progress.records, progress.marks)], {
 				type: 'application/json'
 			})
 		);
@@ -40,8 +53,8 @@
 		importing = true;
 		backupMessage = '';
 		try {
-			const records = parseProgressBackup(await file.text());
-			await saveProgress(records);
+			const backup = parseProgressBackup(await file.text());
+			await importProgressBackup(backup);
 			notifyProgress();
 			backupMessage = 'Cadangan digabungkan dengan progres di browser ini.';
 		} catch {
@@ -63,7 +76,42 @@
 </PageIntro>
 
 <div class="mt-8 max-w-3xl space-y-8">
-	{#if progress.status === 'loading'}
+	{#if roadmapSummary}
+		<section class="space-y-4 rounded-2xl border p-4 sm:p-6" aria-labelledby="posisi-peta">
+			<h2 id="posisi-peta" class="text-xl font-semibold">Posisi di peta belajar</h2>
+			{#if roadmapSummary.position}
+				<p>
+					Anda di <strong
+						>Tahap {roadmapSummary.position.stageNumber} · langkah
+						{roadmapSummary.position.stepNumber} dari {roadmapSummary.position.stepCount}</strong
+					>.
+				</p>
+				<a
+					href={resolve(`belajar/#${roadmapSummary.position.stepId}`)}
+					class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4"
+					>Ke posisi saya</a
+				>
+			{:else}
+				<p>Semua langkah jalur utama sudah selesai atau dilewati.</p>
+				<a href={resolve('belajar/')} class="font-medium text-primary underline">Lihat peta</a>
+			{/if}
+			<ul class="space-y-2 text-base" aria-label="Cakupan langkah per tahap">
+				{#each roadmapSummary.stages.filter((stage) => !stage.optional) as stage (stage.stageId)}
+					<li>
+						Tahap {data.roadmap.stages.find((item) => item.id === stage.stageId)?.number}:
+						{stage.counts.completed} dari {stage.totalSteps} langkah selesai
+						{#if stage.counts.skipped}
+							· {stage.counts.skipped} dilewati{/if}
+					</li>
+				{/each}
+			</ul>
+			<p class="text-base text-muted-foreground">
+				Hitungan ini adalah cakupan langkah, bukan nilai pemahaman. Iqra dan pendalaman opsional
+				tidak dihitung dalam jalur utama.
+			</p>
+		</section>
+	{/if}
+	{#if progress.status === 'initial' || progress.status === 'loading'}
 		<p role="status">Memuat progres…</p>
 	{:else if progress.status === 'ready' && summary.recent.length}
 		<section
@@ -133,13 +181,23 @@
 					<Button
 						variant="outline"
 						onclick={exportBackup}
-						disabled={!progress.records.length || importing}>Ekspor progres</Button
+						disabled={(!progress.records.length && !progress.marks.length) || importing}
+						>Ekspor progres</Button
 					>
 					<Button variant="outline" onclick={() => backupInput?.click()} disabled={importing}
 						>Impor cadangan</Button
 					>
 				</div>
 				<p role="status" class="text-base">{backupMessage}</p>
+				<p class="text-base text-muted-foreground">
+					{persistenceStatus === 'granted'
+						? 'Penyimpanan persisten telah diberikan oleh browser.'
+						: persistenceStatus === 'not-granted'
+							? 'Penyimpanan belum dijamin persisten oleh browser. Simpan cadangan secara berkala.'
+							: persistenceStatus === 'unsupported'
+								? 'Status persistensi penyimpanan tidak tersedia di browser ini.'
+								: 'Memeriksa status penyimpanan…'}
+				</p>
 			</div>
 		</details>
 	{/if}
