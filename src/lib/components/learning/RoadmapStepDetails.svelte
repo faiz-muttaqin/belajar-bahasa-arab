@@ -1,9 +1,18 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import type { RoadmapStepView } from '#lib/domain/roadmap/presentation.js';
+	import { levelLabels, type CompetencyUnderstanding } from '#lib/domain/roadmap/evidence.js';
 	import MixedText from './MixedText.svelte';
 	import RoadmapSources from './RoadmapSources.svelte';
-	let { step, onFollowLink }: { step: RoadmapStepView; onFollowLink?: () => void } = $props();
+	let {
+		step,
+		onFollowLink,
+		understandingByCompetency
+	}: {
+		step: RoadmapStepView;
+		onFollowLink?: () => void;
+		understandingByCompetency?: Record<string, CompetencyUnderstanding>;
+	} = $props();
 </script>
 
 <div class="space-y-6">
@@ -11,8 +20,21 @@
 		<p class="font-semibold">Kemampuan terkait</p>
 		<ul class="space-y-3" aria-label="Tujuan langkah">
 			{#each step.competencies as competency (competency.id)}
+				{@const evidence = understandingByCompetency?.[competency.id]}
 				<li>
 					<p><MixedText text={competency.canDo} /></p>
+					{#if evidence}
+						<p class="mt-1 text-base text-muted-foreground" data-competency-level={competency.id}>
+							{#if evidence.level > 0}
+								<strong>{levelLabels[evidence.level]}</strong>
+								{#if evidence.selfAssessed} · menurut penilaian Anda{/if}
+							{:else if !evidence.hasPractice}
+								Belum ada latihan dengan jawaban untuk kemampuan ini.
+							{:else}
+								Belum dicoba.
+							{/if}
+						</p>
+					{/if}
 					{#if competency.home.planned}
 						<p class="mt-1 text-base text-muted-foreground">
 							Pendalaman {competency.home.title.toLowerCase()} masih direncanakan.
@@ -68,6 +90,12 @@
 				{/each}
 			</ul>
 		</div>
+	{/if}
+	{#if understandingByCompetency}
+		<p class="text-base text-muted-foreground">
+			Tingkat mencerminkan bukti latihan, bukan penyelesaian pelajaran. Tingkat “Tetap ingat”
+			baru tersedia sesudah ulangan terjadwal dikembangkan.
+		</p>
 	{/if}
 	<p class="text-base text-muted-foreground">Draf · bersumber, belum ditinjau ustadz.</p>
 	<RoadmapSources sources={step.sources} />
