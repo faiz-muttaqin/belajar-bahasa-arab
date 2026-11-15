@@ -11,6 +11,7 @@ import { sharafEntries } from '#lib/content/sharaf.js';
 import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
 import {
   curatedFrameSurface,
+  withCuratedValency,
   lexemeFromVocabulary,
   lexemeFromSharaf,
   validateLexemeRecord,
@@ -42,6 +43,8 @@ export type BuilderChoice = {
 	/** Morphology of the actual inserted word, not of its dictionary lemma. */
 	features: MorphFeatures;
 	evidence: SurfaceEvidence;
+	/** Curated compatibility for teaching frames; undefined for non-verbs. */
+	valency?: readonly string[];
 };
 
 export type BuilderToken = {
@@ -170,8 +173,9 @@ function nounChoice(item: NominalNoun | VerbAgent | DirectObject): BuilderChoice
 
 function verbChoice(item: VerbSelection): BuilderChoice {
 	const entry = sharaf(item.id);
+	const frameLexeme = withCuratedValency(lexemeFromSharaf(entry), item.allowedObjects);
 	const form = inFrame(
-		lexemeFromSharaf(entry), 'verb-past-third-masculine', entry.lemma,
+		frameLexeme, 'verb-past-third-masculine', entry.lemma,
 		{ aspect: 'perfect', voice: 'active', number: 'singular', person: 3, gender: 'masculine' },
 		'Fi‘il māḍī aktif orang ketiga maskulin tunggal dari lema yang telah disertakan dalam pilot.'
 	);
@@ -179,7 +183,8 @@ function verbChoice(item: VerbSelection): BuilderChoice {
 		id: item.id, arabic: entry.lemma, lemma: entry.lemma, gloss: item.gloss,
 		meaning: entry.meaning, source: 'sharaf',
 		bab: entry.bab ? 'Bab ' + entry.bab.number : undefined,
-		features: form.features, evidence: form.evidence
+		features: form.features, evidence: form.evidence,
+		valency: frameLexeme.valency.kind === 'transitive' ? frameLexeme.valency.exampleObjectIds : undefined
 	};
 }
 
