@@ -19,6 +19,8 @@ Komponen **GrammarExample** (G-01) dan **PhraseGloss** (G-03) kini memakai pemil
 | G-03 `naat-agreement`  | `indefinite-adjective`, `definite-adjective`, `feminine-adjective`, `nonhuman-plural` | Perhatikan ma‘rifah/nakirah serta bentuk feminin tunggal pada كُتُبٌ                                           |
 | G-03 `idafah-jar`      | `preposition-house` ⇄ `preposition-idafah`                                            | Frasa **فِي** + isim majrūr dibanding **فِي** + iḍāfah lengkap yang kedua isimnya majrūr karena sebab berbeda |
 
+**Tidak ada tombol palsu:** jika satu slot tetap sama pada semua variasi terkurasi (misalnya فِي) atau tidak punya alternatif (misalnya token ketiga yang hanya ada di satu bingkai), tombol Ganti kata disembunyikan. Pilih kata yang memang berubah, bukan partikel yang tetap.
+
 **Tidak otomatis aktif:** G-03 `idafah-door`, contoh dual/jamak yang belum mempunyai alternatif pasangan dalam korpus, serta contoh G-04/G-05. Kartu tersebut tetap statis. Keputusan ini lebih aman daripada mengarang perubahan i‘rab dari regex atau memutar 8k+ lema kamus di modal.
 
 ## Kontrak dan pemeriksaan
