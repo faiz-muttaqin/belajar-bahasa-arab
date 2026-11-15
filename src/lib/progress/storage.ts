@@ -100,18 +100,6 @@ export async function saveStepMark(mark: StepMark): Promise<void> {
 			const store = transaction.objectStore(marksStore);
 			const request = store.get(mark.stepId);
 			request.onsuccess = () => store.put(mergeStepMark(request.result, mark));
-			for (const attempt of backup.attempts) {
-				if (!isLearningAttempt(attempt)) {
-					transaction.abort();
-					return;
-				}
-				const request = attemptStore.get(attempt.id);
-				request.onsuccess = () => {
-					if (!request.result) attemptStore.add(attempt);
-					else if (JSON.stringify(request.result) !== JSON.stringify(attempt))
-						transaction.abort();
-				};
-			}
 			transaction.oncomplete = () => resolve();
 			transaction.onabort = () => reject(transaction.error);
 			transaction.onerror = () => reject(transaction.error);
@@ -182,6 +170,18 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 					markStore.put(next);
 				};
 			}
+			for (const attempt of backup.attempts) {
+				if (!isLearningAttempt(attempt)) {
+					transaction.abort();
+					return;
+				}
+				const request = attemptStore.get(attempt.id);
+				request.onsuccess = () => {
+					if (!request.result) attemptStore.add(attempt);
+					else if (JSON.stringify(request.result) !== JSON.stringify(attempt))
+						transaction.abort();
+				};
+			}
 			transaction.oncomplete = () => resolve();
 			transaction.onabort = () => reject(transaction.error);
 			transaction.onerror = () => reject(transaction.error);
@@ -200,7 +200,7 @@ export async function readPersistenceStatus(): Promise<'granted' | 'not-granted'
 	}
 }
 
-/** Do NOT call before RM-05 saves the first real answer. */
+/** Request only after the first real answer was committed, never when opening a lesson. */
 export async function requestPersistentStorage(): Promise<boolean> {
 	if (typeof navigator === 'undefined' || !navigator.storage?.persist) return false;
 	try {
