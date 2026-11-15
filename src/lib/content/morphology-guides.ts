@@ -134,7 +134,7 @@ export const morphologyGuides: Record<TashrifColumnKey, MorphologyGuide> = {
 		question: 'Apa beda “penulis” dan “yang ditulis”?',
 		distinction: 'Isim maf‘ūl adalah bentuk morfologi; maf‘ūl bih adalah fungsi objek dalam kalimat. Jangan menyamakannya.',
 		examples: [
-			{ arabic: 'كَتَبَ — مَكْتُوبٌ', gloss: 'menulis — yang ditulis / tertulis', observation: 'Mَفْعُول adalah pola umum pada sejumlah verba triliteral transitif.' },
+			{ arabic: 'كَتَبَ — مَكْتُوبٌ', gloss: 'menulis — yang ditulis / tertulis', observation: 'مَفْعُول adalah pola umum pada sejumlah verba triliteral transitif.' },
 			{ arabic: 'فَتَحَ — مَفْتُوحٌ', gloss: 'membuka — yang dibuka / terbuka', observation: 'Maknanya bisa dibaca sebagai keadaan hasil.' },
 			{ arabic: 'الْبَابُ مَفْتُوحٌ', gloss: 'Pintu itu terbuka.', observation: 'مَفْتُوحٌ berperan sebagai khabar; bukan objek kalimat.' }
 		],
@@ -158,7 +158,7 @@ export const morphologyGuides: Record<TashrifColumnKey, MorphologyGuide> = {
 		],
 		sections: [
 			{ heading: 'Pelaku dan bentuk sapaan', text: 'Dalam bentuk dasar yang diajarkan di sini, perintah ditujukan pada orang kedua tunggal maskulin. Paradigma Arab mempunyai bentuk sapaan lain untuk perempuan, jamak, atau dua orang.' },
-			{ heading: 'Hubungan dengan muḍāri‘', text: 'Pembentukan amr berkaitan dengan bentuk majzūm orang kedua, tetapi aturan hamzat waṣl, sukun dan huruf lemah memerlukan perhatian. Kُتُب dan أَكَل tidak mengikuti prosedur mekanis yang sama.' },
+			{ heading: 'Hubungan dengan muḍāri‘', text: 'Pembentukan amr berkaitan dengan bentuk majzūm orang kedua, tetapi aturan hamzat waṣl, sukun dan huruf lemah memerlukan perhatian. كُتُب dan أَكَل tidak mengikuti prosedur mekanis yang sama.' },
 			{ heading: 'Tidak semua perintah adalah fi‘il amr', text: 'Perintah juga bisa disampaikan dengan struktur lain, misalnya lām al-amr + muḍāri‘ majzūm. Hal ini berbeda dari bentuk fi‘il amr yang tampil pada tabel.' }
 		],
 		watchOut: ['Bentuk أَنْتَ tidak boleh ditambahkan sebagai fā‘il eksplisit bila konstruksinya tidak memerlukan itu.', 'Verba mu‘tal dan mahmūz memerlukan bentuk leksikal teruji.'],
