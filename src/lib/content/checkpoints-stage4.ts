@@ -69,10 +69,10 @@ const activePassiveItems: readonly Item[] = [
 		reason: 'كَتَبَ aktif; الطَّالِبُ adalah pelaku, الرِّسَالَةَ sasaran tindakan.'
 	},
 	{
-		id: 'pelajaran-ditulis',
+		id: 'jawaban-ditulis',
 		arabic: 'كُتِبَ الْجَوَابُ.',
 		prompt: 'Apa inti informasi kalimat?',
-		choices: ['Jawaban ditulis', 'Siswa menulis pelajaran', 'Guru membaca']
+		choices: ['Jawaban ditulis', 'Siswa menulis pelajaran', 'Guru membaca'],
 		correct: 0,
 		reason: 'كُتِبَ الْجَوَابُ berarti jawaban ditulis; penulis tidak disebut.'
 	},
