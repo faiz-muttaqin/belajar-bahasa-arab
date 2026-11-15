@@ -310,7 +310,7 @@ export const morphologyGuides: Record<TashrifColumnKey, MorphologyGuide> = {
 		sections: [
 			{
 				heading: 'Bentuk versus fungsi',
-				text: 'Mَكْتُوبٌ secara morfologi adalah isim maf‘ūl, tetapi bisa menjadi khabar atau sifat dalam frasa. Objek yang terkena tindakan dalam suatu kalimat disebut maf‘ūl bih, bukan otomatis isim maf‘ūl.'
+				text: 'مَكْتُوبٌ secara morfologi adalah isim maf‘ūl, tetapi bisa menjadi khabar atau sifat dalam frasa. Objek yang terkena tindakan dalam suatu kalimat disebut maf‘ūl bih, bukan otomatis isim maf‘ūl.'
 			},
 			{
 				heading: 'Kaitan dengan transitivitas',
