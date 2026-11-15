@@ -122,7 +122,7 @@ export function resolveVerbFrame(
 	if (!approvedForPilot[verbId]?.includes(frame)) return undefined;
 	const entry = lexicalVerb(verbId);
 	const surface = sourceForm(verbId, frame);
-	if (!entry || !surface) return undefined;
+	if (!entry || !entry.bab || !surface) return undefined;
 
 	const features: MorphFeatures =
 		frame === 'imperative'
