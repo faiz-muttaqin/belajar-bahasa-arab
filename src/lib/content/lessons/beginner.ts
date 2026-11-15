@@ -62,6 +62,8 @@ export const beginnerLessons: readonly Lesson[] = [
 		],
 		meaningPractice: [
 			{
+				id: 'u1-rabbi-meaning',
+				kind: 'guided',
 				context: 'Dari bacaan shalat',
 				arabic: 'رَبِّي',
 				prompt: 'Apa arti kata ini dalam bacaan shalat?',
@@ -70,6 +72,8 @@ export const beginnerLessons: readonly Lesson[] = [
 				reason: 'Bagian رَبّ berarti “Tuhan”. Huruf ي di akhir menambahkan makna “-ku”.'
 			},
 			{
+				id: 'u1-kitabi-transfer',
+				kind: 'transfer',
 				context: 'Contoh baru dari Arab sehari-hari',
 				arabic: 'كِتَابِي',
 				prompt: 'Apa arti kata ini?',
@@ -107,6 +111,10 @@ export const beginnerLessons: readonly Lesson[] = [
 		competencies: ['CB-03', 'CB-04'],
 		goal: 'Pilih pertanyaan sesuai yang ditunjuk, lalu jawab dengan satu kalimat sederhana.',
 		references: [madinah(1), madinah(2)],
+		selfChecks: [
+			{ id: 'u2-key-question', exerciseIndex: 0, competencyIds: ['CB-04'], skill: 'meaning' },
+			{ id: 'u2-student-question', exerciseIndex: 1, competencyIds: ['CB-04'], skill: 'meaning' }
+		],
 		intro:
 			'Bayangkan Anda sedang di ruang belajar. Ada benda yang belum Anda kenal dan seseorang yang baru masuk. Pertanyaan untuk keduanya berbeda.',
 		examples: [
@@ -158,6 +166,10 @@ export const beginnerLessons: readonly Lesson[] = [
 		competencies: ['CB-05', 'CB-06'],
 		goal: 'Kenali fungsi al- dan bedakan frasa penunjuk dari kalimat yang memberi informasi baru.',
 		references: [madinah(3), madinah(78, 2)],
+		selfChecks: [
+			{ id: 'u3-key-phrase', exerciseIndex: 0, competencyIds: ['CB-05'], skill: 'structure' },
+			{ id: 'u3-key-predicate', exerciseIndex: 1, competencyIds: ['CB-06'], skill: 'structure' }
+		],
 		intro:
 			'Saat seseorang berkata “buku catatan itu”, Anda dapat menghubungkannya dengan benda yang dimaksud dalam percakapan. Bahasa Arab bisa menandai hal itu pada kata bendanya.',
 		examples: [
