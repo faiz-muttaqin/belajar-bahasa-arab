@@ -22,7 +22,7 @@
 	} = $props();
 	const id = $props.id();
 	let interactive = $state(false);
-	let step = $state<0 | 1>(0);
+	let step = $state(0);
 	let selected = $state<number>();
 	let checked = $state(false);
 	let seenWhileAuthoring = $state(false);
@@ -31,7 +31,7 @@
 	let storageError = $state(false);
 	let prompt = $state<HTMLHeadingElement>();
 	let feedback = $state<HTMLParagraphElement>();
-	const current = $derived(questions[step]);
+	const current = $derived(questions[step]!);
 	const correct = $derived(selected === current.correct);
 
 	onMount(() => {
@@ -74,7 +74,7 @@
 		}
 	}
 
-	async function openQuestion(index: 0 | 1) {
+	async function openQuestion(index: number) {
 		step = index;
 		selected = undefined;
 		checked = false;
@@ -148,6 +148,10 @@
 					{current.choices[current.correct]}.
 				</p>
 				<p id="{id}-reason"><MixedText text={current.reason} /></p>
+				<p class="text-sm text-muted-foreground">Draf · bersumber, belum ditinjau ustadz.</p>
+				{#each current.sources as source (source.href)}
+					<a href={source.href} target="_blank" rel="noopener noreferrer" class="block text-sm text-primary underline">Sumber: {source.label}</a>
+				{/each}
 			</div>
 			{#if savingAnswer}
 				<p role="status" class="text-base text-muted-foreground">Menyimpan jawaban…</p>
@@ -164,8 +168,8 @@
 						>Coba lagi</Button
 					>
 				{/if}
-				{#if step === 0}
-					<Button disabled={savingAnswer} onclick={() => openQuestion(1)}>Coba contoh baru</Button>
+				{#if step < questions.length - 1}
+					<Button disabled={savingAnswer} onclick={() => openQuestion(step + 1)}>{step === 0 ? 'Coba contoh baru' : 'Soal berikutnya'}</Button>
 				{:else if correct}
 					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(0)}
 						>Ulangi latihan</Button
@@ -197,6 +201,9 @@
 						>
 						<p class="font-semibold">{question.choices[question.correct]}.</p>
 						<p><MixedText text={question.reason} /></p>
+						{#each question.sources as source (source.href)}
+							<a href={source.href} target="_blank" rel="noopener noreferrer" class="block text-sm text-primary underline">Sumber: {source.label}</a>
+						{/each}
 					</details>
 				</li>
 			{/each}

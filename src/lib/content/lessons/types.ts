@@ -48,9 +48,11 @@ export type MeaningQuestion = {
 	choices: readonly [string, string, string];
 	correct: 0 | 1 | 2;
 	reason: string;
+	/** Per-item provenance, checked before publication under ADR-004 D-9. */
+	sources: readonly { label: string; href: string; usageType: 'independent-original' | 'adaptation' | 'verbatim' }[];
 };
 
-export type MeaningPractice = readonly [MeaningQuestion, MeaningQuestion];
+export type MeaningPractice = readonly [MeaningQuestion, MeaningQuestion, ...MeaningQuestion[]];
 
 export type Lesson = {
 	id: string;
@@ -118,17 +120,19 @@ export function validateLessons(lessons: readonly Lesson[]) {
 		const practice = lesson.meaningPractice;
 		if (
 			practice &&
-			(practice[0].arabic === practice[1].arabic ||
-				practice[0].id === practice[1].id ||
+			(new Set(practice.map(({ id }) => id)).size !== practice.length ||
+				new Set(practice.map(({ arabic }) => arabic.normalize('NFC'))).size !== practice.length ||
 				practice.some(
 					({ id, kind }) =>
 						!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) || (kind !== 'guided' && kind !== 'transfer')
 				) ||
 				practice.some(
-					({ arabic, context, prompt, choices, correct, reason }) =>
+					({ arabic, context, prompt, choices, correct, reason, sources }) =>
 						![arabic, context, prompt, reason, ...choices].every((text) => text.trim()) ||
 						new Set(choices).size !== choices.length ||
-						!choices[correct]
+						!choices[correct] ||
+						!sources.length ||
+						sources.some((source) => !source.label.trim() || !source.href.startsWith('https://'))
 				))
 		) {
 			throw new Error(`Invalid meaning practice: ${lesson.id}`);
