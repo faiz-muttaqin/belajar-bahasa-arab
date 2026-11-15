@@ -52,6 +52,15 @@ export const wordClassesLesson: Lesson = {
 	intro:
 		'Mulai dari tiga jenis kata. Isim mencakup nama, sifat, dan kata ganti. Fi‘il menyatakan tindakan atau keadaan dengan bentuk verba. Harf seperti فِي (di dalam) atau لَمْ (penanda negasi lampau) menghubungkan atau mengubah makna kata lain. Setelah mengenali jenis katanya, cari peran kata itu di kalimat.',
 	examples: [],
+	analysisGlossary: [
+		'“Pintu” adalah satu ',
+		{ term: 'kalimah' },
+		' dan termasuk kelompok ',
+		{ term: 'isim' },
+		'. “Pintu itu terbuka” membentuk satu ',
+		{ term: 'jumlah' },
+		'.'
+	],
 	analysis: [
 		{
 			heading: 'Kalimat nominal dan frasa sifat',
