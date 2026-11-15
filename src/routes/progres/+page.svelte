@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { summarizeRoadmap } from '#lib/domain/roadmap/progress.js';
+	import { competencyUnderstanding, levelLabels, summarizeEvidence } from '#lib/domain/roadmap/evidence.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import EmptyState from '#lib/components/layout/EmptyState.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
@@ -22,6 +23,21 @@
 			? summarizeRoadmap(data.roadmap, data.roadmapLessons, progress.records, progress.marks)
 			: undefined
 	);
+	const understanding = $derived.by(() => {
+		if (progress.status !== 'ready') return undefined;
+		const stage = data.roadmap.stages.find(
+			(item) => item.id === roadmapSummary?.position?.stageId
+		);
+		const competencyIds = stage?.steps.flatMap((step) => step.primaryCompetencyIds) ?? [];
+		return {
+			stage,
+			counts: summarizeEvidence(competencyIds, progress.attempts, data.evidenceItems),
+			details: competencyIds.map((id) => ({
+				id,
+				result: competencyUnderstanding(id, progress.attempts, data.evidenceItems)
+			}))
+		};
+	});
 	let persistenceStatus = $state<'granted' | 'not-granted' | 'unsupported' | 'loading'>('loading');
 	onMount(() => {
 		void readPersistenceStatus().then((status) => {
@@ -34,7 +50,7 @@
 
 	function exportBackup() {
 		const url = URL.createObjectURL(
-			new Blob([serializeProgress(progress.records, progress.marks)], {
+			new Blob([serializeProgress(progress.records, progress.marks, progress.attempts)], {
 				type: 'application/json'
 			})
 		);
@@ -111,6 +127,44 @@
 			</p>
 		</section>
 	{/if}
+	{#if understanding}
+		<section class="space-y-3 rounded-2xl border p-4 sm:p-6" aria-labelledby="bukti-pemahaman">
+			<h2 id="bukti-pemahaman" class="text-xl font-semibold">Bukti pemahaman</h2>
+			{#if progress.attempts.length === 0}
+				<p>Belum ada jawaban latihan yang tersimpan.</p>
+			{:else}
+				<p>{progress.attempts.length} jawaban latihan tersimpan di perangkat ini.</p>
+			{/if}
+			{#if understanding.stage}
+				<p data-evidence-stage={understanding.stage.id}>
+					Di Tahap {understanding.stage.number}, {understanding.counts.counts[3]} dari
+					{understanding.counts.total} kemampuan tercatat
+					<strong>Bisa pada contoh baru</strong>.
+				</p>
+				<ul class="space-y-2 text-base">
+					{#each understanding.details as item (item.id)}
+						<li>
+							{data.roadmap.stages
+								.flatMap((stage) => stage.steps)
+								.flatMap((step) => step.primaryCompetencyIds.includes(item.id) ? [step.title] : [])[0]}
+							· {item.result.level > 0
+								? levelLabels[item.result.level]
+								: item.result.hasPractice
+									? 'Belum dicoba'
+									: 'Belum ada latihan dengan jawaban'}
+							{#if item.result.selfAssessed} · menurut penilaian Anda{/if}
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<p>Semua langkah sudah dilewati atau selesai. Lihat rincian bukti per langkah di peta.</p>
+			{/if}
+			<p class="text-base text-muted-foreground">
+				Status selesai atau dilewati tidak menambah tingkat. Tingkat 4 menunggu ulangan
+				terjadwal. Semua soal saat ini berstatus draf, belum ditinjau ustadz.
+			</p>
+		</section>
+	{/if}
 	{#if progress.status === 'initial' || progress.status === 'loading'}
 		<p role="status">Memuat progres…</p>
 	{:else if progress.status === 'ready' && summary.recent.length}
@@ -181,7 +235,7 @@
 					<Button
 						variant="outline"
 						onclick={exportBackup}
-						disabled={(!progress.records.length && !progress.marks.length) || importing}
+						disabled={(!progress.records.length && !progress.marks.length && !progress.attempts.length) || importing}
 						>Ekspor progres</Button
 					>
 					<Button variant="outline" onclick={() => backupInput?.click()} disabled={importing}
