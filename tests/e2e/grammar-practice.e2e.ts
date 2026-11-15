@@ -75,7 +75,9 @@ test('verbal modal selects source sharaf entry and automatically fixes incompati
 	await expect(modal).not.toBeVisible();
 });
 
-test('D-04a explains excluded objects, keeps disabled options visible and prevents invalid selection', async ({ page }) => {
+test('D-04a explains excluded objects, keeps disabled options visible and prevents invalid selection', async ({
+	page
+}) => {
 	await page.goto('/kaidah/praktik/');
 	const verbal = page.getByRole('region', { name: 'Contoh Arab interaktif verbal' });
 	const modal = page.getByRole('dialog', { name: 'Cari pengganti kata' });
@@ -106,7 +108,9 @@ test('D-04a explains excluded objects, keeps disabled options visible and preven
 	await expect(verbal.locator('[data-slot="object"]')).toContainText('الْكِتَابَ');
 });
 
-test('D-04a tells learners that nominal predicate stays indefinite despite definite subject', async ({ page }) => {
+test('D-04a tells learners that nominal predicate stays indefinite despite definite subject', async ({
+	page
+}) => {
 	await page.goto('/kaidah/praktik/');
 	const nominal = page.getByRole('region', { name: 'Contoh Arab interaktif nominal' });
 	const modal = page.getByRole('dialog', { name: 'Cari pengganti kata' });

@@ -69,8 +69,12 @@ describe('D-04a fail-closed replacement constraints', () => {
 		const contract: SlotContract = {
 			expectedClass: 'verb',
 			required: {
-				aspect: 'imperfect', mood: 'jussive', voice: 'active',
-				person: 3, gender: 'masculine', number: 'singular'
+				aspect: 'imperfect',
+				mood: 'jussive',
+				voice: 'active',
+				person: 3,
+				gender: 'masculine',
+				number: 'singular'
 			},
 			explanation: 'Contoh lam + muḍāri‘ majzūm.'
 		};
@@ -78,17 +82,28 @@ describe('D-04a fail-closed replacement constraints', () => {
 			id: 'fiil-kataba',
 			wordClass: 'verb',
 			features: {
-				aspect: 'imperfect', mood: 'indicative', voice: 'active',
-				person: 3, gender: 'masculine', number: 'singular'
+				aspect: 'imperfect',
+				mood: 'indicative',
+				voice: 'active',
+				person: 3,
+				gender: 'masculine',
+				number: 'singular'
 			},
 			evidence
 		};
-		expect(evaluateSlotCandidate(contract, verb).reasons.map((x) => x.code))
-			.toContain('feature-mismatch');
-		expect(evaluateSlotCandidate(contract, { ...verb, features: { ...verb.features, mood: 'jussive' } }).allowed)
-			.toBe(true);
-		expect(evaluateSlotCandidate(contract, { ...verb, features: { ...verb.features, mood: 'jussive', person: 2 } }).allowed)
-			.toBe(false);
+		expect(evaluateSlotCandidate(contract, verb).reasons.map((x) => x.code)).toContain(
+			'feature-mismatch'
+		);
+		expect(
+			evaluateSlotCandidate(contract, { ...verb, features: { ...verb.features, mood: 'jussive' } })
+				.allowed
+		).toBe(true);
+		expect(
+			evaluateSlotCandidate(contract, {
+				...verb,
+				features: { ...verb.features, mood: 'jussive', person: 2 }
+			}).allowed
+		).toBe(false);
 	});
 
 	it('rejects unsourced candidate and invalid evidence URL', () => {
@@ -119,47 +134,95 @@ describe('D-04a fail-closed replacement constraints', () => {
 		expect(excluded.reasons[0]!.code).toBe('unlisted-collocation');
 		expect(excluded.reasons[0]!.message).toContain('tidak berarti');
 		expect(evaluateSlotCandidate(contract, { ...other, id: 'msa-kitab' }).allowed).toBe(true);
-		expect(evaluateSlotCandidate({ ...contract, allowedLexemeIds: [] }, other).reasons[0]!.code)
-			.toBe('unverified-collocation');
+		expect(
+			evaluateSlotCandidate({ ...contract, allowedLexemeIds: [] }, other).reasons[0]!.code
+		).toBe('unverified-collocation');
 	});
 
 	it('requires agreement in na‘at, including definiteness and inherited noun case', () => {
-		const head = { gender: 'masculine' as const, number: 'singular' as const, case: 'jarr' as const, definiteness: 'definite' as const };
+		const head = {
+			gender: 'masculine' as const,
+			number: 'singular' as const,
+			case: 'jarr' as const,
+			definiteness: 'definite' as const
+		};
 		const adjective = { ...head };
-		expect(evaluateAdjectiveAgreement({ head, adjective, relation: 'attributive' }).allowed).toBe(true);
-		expect(evaluateAdjectiveAgreement({
-			head, adjective: { ...adjective, case: 'raf', definiteness: 'indefinite' },
-			relation: 'attributive'
-		}).reasons.filter((r) => r.code === 'feature-mismatch')).toHaveLength(2);
+		expect(evaluateAdjectiveAgreement({ head, adjective, relation: 'attributive' }).allowed).toBe(
+			true
+		);
+		expect(
+			evaluateAdjectiveAgreement({
+				head,
+				adjective: { ...adjective, case: 'raf', definiteness: 'indefinite' },
+				relation: 'attributive'
+			}).reasons.filter((r) => r.code === 'feature-mismatch')
+		).toHaveLength(2);
 	});
 
 	it('does not force a definite nominal subject and its indefinite predicate to match definiteness', () => {
 		const head = nominative.features;
-		const predicate = { gender: 'masculine' as const, number: 'singular' as const, case: 'raf' as const, definiteness: 'indefinite' as const };
-		expect(evaluateAdjectiveAgreement({ head, adjective: predicate, relation: 'nominal-predicate' }).allowed).toBe(true);
-		expect(evaluateAdjectiveAgreement({ head, adjective: { ...predicate, gender: 'feminine' }, relation: 'nominal-predicate' }).allowed).toBe(false);
+		const predicate = {
+			gender: 'masculine' as const,
+			number: 'singular' as const,
+			case: 'raf' as const,
+			definiteness: 'indefinite' as const
+		};
+		expect(
+			evaluateAdjectiveAgreement({ head, adjective: predicate, relation: 'nominal-predicate' })
+				.allowed
+		).toBe(true);
+		expect(
+			evaluateAdjectiveAgreement({
+				head,
+				adjective: { ...predicate, gender: 'feminine' },
+				relation: 'nominal-predicate'
+			}).allowed
+		).toBe(false);
 	});
 
 	it('checks non-human plural feminine singular only with explicit animacy and blocks unknown', () => {
-		const head = { gender: 'masculine' as const, number: 'plural' as const, case: 'raf' as const, definiteness: 'definite' as const };
-		const adjective = { gender: 'feminine' as const, number: 'singular' as const, case: 'raf' as const, definiteness: 'definite' as const };
-		expect(evaluateAdjectiveAgreement({
-			head, adjective, relation: 'attributive', pluralAnimacy: 'nonhuman'
-		}).allowed).toBe(true);
+		const head = {
+			gender: 'masculine' as const,
+			number: 'plural' as const,
+			case: 'raf' as const,
+			definiteness: 'definite' as const
+		};
+		const adjective = {
+			gender: 'feminine' as const,
+			number: 'singular' as const,
+			case: 'raf' as const,
+			definiteness: 'definite' as const
+		};
+		expect(
+			evaluateAdjectiveAgreement({
+				head,
+				adjective,
+				relation: 'attributive',
+				pluralAnimacy: 'nonhuman'
+			}).allowed
+		).toBe(true);
 		const unknown = evaluateAdjectiveAgreement({ head, adjective, relation: 'attributive' });
 		expect(unknown.allowed).toBe(false);
-		expect(unknown.reasons.some((reason) => reason.code === 'unverified-plural-agreement'))
-			.toBe(true);
-		expect(evaluateAdjectiveAgreement({
-			head, adjective, relation: 'attributive', pluralAnimacy: 'human'
-		}).allowed).toBe(false);
+		expect(unknown.reasons.some((reason) => reason.code === 'unverified-plural-agreement')).toBe(
+			true
+		);
+		expect(
+			evaluateAdjectiveAgreement({
+				head,
+				adjective,
+				relation: 'attributive',
+				pluralAnimacy: 'human'
+			}).allowed
+		).toBe(false);
 	});
 
 	it('cannot claim agreement when the head noun itself lacks morphology', () => {
-		expect(evaluateAdjectiveAgreement({
-			head: { number: 'singular' },
-			adjective: nominative.features,
-			relation: 'attributive'
-		}).reasons.some((reason) => reason.code === 'missing-feature')).toBe(true);
+		expect(
+			evaluateAdjectiveAgreement({
+				head: { number: 'singular' },
+				adjective: nominative.features,
+				relation: 'attributive'
+			}).reasons.some((reason) => reason.code === 'missing-feature')
+		).toBe(true);
 	});
 });

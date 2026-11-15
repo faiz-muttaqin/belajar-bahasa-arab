@@ -168,27 +168,28 @@ describe('G-06 dynamic example slots', () => {
 	it('D-04a explains excluded semantic candidates without exposing them as selectable choices', () => {
 		const opened = chooseBuilderWord(initialBuilderState, 'verb', 'fiil-fataha').state;
 		const decisions = assessBuilderChoices(opened, 'object');
-		expect(decisions.map(({ choice }) => choice.id)).toEqual([
-			'msa-risalah', 'msa-kitab', 'bab'
-		]);
-		expect(decisions.find(({ choice }) => choice.id === 'msa-risalah')?.compatibility)
-			.toMatchObject({
-				allowed: false,
-				reasons: [expect.objectContaining({ code: 'unlisted-collocation' })]
-			});
-		expect(decisions.find(({ choice }) => choice.id === 'bab')?.compatibility.allowed)
-			.toBe(true);
+		expect(decisions.map(({ choice }) => choice.id)).toEqual(['msa-risalah', 'msa-kitab', 'bab']);
+		expect(
+			decisions.find(({ choice }) => choice.id === 'msa-risalah')?.compatibility
+		).toMatchObject({
+			allowed: false,
+			reasons: [expect.objectContaining({ code: 'unlisted-collocation' })]
+		});
+		expect(decisions.find(({ choice }) => choice.id === 'bab')?.compatibility.allowed).toBe(true);
 		expect(searchBuilderChoiceAssessments(opened, 'object', 'رسالة')).toHaveLength(1);
 		expect(searchBuilderChoices(opened, 'object', 'رسالة')).toEqual([]);
-		expect(() => chooseBuilderWord(opened, 'object', 'msa-risalah'))
-			.toThrow('Incompatible replacement');
+		expect(() => chooseBuilderWord(opened, 'object', 'msa-risalah')).toThrow(
+			'Incompatible replacement'
+		);
 	});
 
 	it('D-04a contracts distinguish gender-dependent nominal khabar from object case', () => {
 		const initial = contractForBuilderSlot(initialBuilderState, 'predicate');
 		expect(initial.required).toMatchObject({
-			gender: 'masculine', number: 'singular',
-			definiteness: 'indefinite', case: 'raf'
+			gender: 'masculine',
+			number: 'singular',
+			definiteness: 'indefinite',
+			case: 'raf'
 		});
 		const feminine = chooseBuilderWord(initialBuilderState, 'subject', 'msa-madrasah').state;
 		expect(contractForBuilderSlot(feminine, 'predicate').required.gender).toBe('feminine');
@@ -199,7 +200,9 @@ describe('G-06 dynamic example slots', () => {
 		}
 		expect(contractForBuilderSlot(initialBuilderState, 'object').required.case).toBe('nasb');
 		expect(contractForBuilderSlot(initialBuilderState, 'agent').required).toMatchObject({
-			case: 'raf', gender: 'masculine', number: 'singular'
+			case: 'raf',
+			gender: 'masculine',
+			number: 'singular'
 		});
 	});
 

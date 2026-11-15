@@ -271,7 +271,12 @@ export function contractForBuilderSlot(state: BuilderState, slot: BuilderSlot): 
 			if (!noun) throw new Error('Subject has no audited morphology');
 			return {
 				expectedClass: 'adjective',
-				required: { case: 'raf', definiteness: 'indefinite', number: 'singular', gender: noun.gender },
+				required: {
+					case: 'raf',
+					definiteness: 'indefinite',
+					number: 'singular',
+					gender: noun.gender
+				},
 				explanation: 'Khabar mengikuti gender subjek tetapi tetap nakirah dan marfū‘; bukan na‘at.'
 			};
 		}
@@ -279,17 +284,23 @@ export function contractForBuilderSlot(state: BuilderState, slot: BuilderSlot): 
 			return {
 				expectedClass: 'verb',
 				required: {
-					aspect: 'perfect', voice: 'active',
-					person: 3, gender: 'masculine', number: 'singular'
+					aspect: 'perfect',
+					voice: 'active',
+					person: 3,
+					gender: 'masculine',
+					number: 'singular'
 				},
-				explanation: 'Pilihan lema fi‘il memakai bentuk dasar terkurasi; mode waktu disesuaikan kembali bila tidak tersedia.'
+				explanation:
+					'Pilihan lema fi‘il memakai bentuk dasar terkurasi; mode waktu disesuaikan kembali bila tidak tersedia.'
 			};
 		case 'agent':
 			return {
 				expectedClass: 'noun',
 				required: {
-					case: 'raf', definiteness: 'definite',
-					gender: 'masculine', number: 'singular'
+					case: 'raf',
+					definiteness: 'definite',
+					gender: 'masculine',
+					number: 'singular'
 				},
 				explanation: 'Fā‘il eksplisit pada contoh VSO ini tunggal maskulin dan marfū‘.'
 			};
@@ -299,7 +310,8 @@ export function contractForBuilderSlot(state: BuilderState, slot: BuilderSlot): 
 				required: { case: 'nasb', definiteness: 'definite', number: 'singular' },
 				requiresCollocation: true,
 				allowedLexemeIds: verbs.find((item) => item.id === state.verb)?.allowedObjects,
-				explanation: 'Maf‘ūl bih manṣūb; pasangan kata telah dikurasi khusus untuk contoh fi‘il ini.'
+				explanation:
+					'Maf‘ūl bih manṣūb; pasangan kata telah dikurasi khusus untuk contoh fi‘il ini.'
 			};
 	}
 }
@@ -324,7 +336,10 @@ function candidatePool(state: BuilderState, slot: BuilderSlot): BuilderChoice[] 
 }
 
 /** Fail-closed assessment shared by search UI, state mutation, and QA. */
-export function assessBuilderChoices(state: BuilderState, slot: BuilderSlot): BuilderChoiceAssessment[] {
+export function assessBuilderChoices(
+	state: BuilderState,
+	slot: BuilderSlot
+): BuilderChoiceAssessment[] {
 	if (slot === 'predicate' && !nouns.some((item) => item.id === state.subject)) return [];
 	const contract = contractForBuilderSlot(state, slot);
 	return candidatePool(state, slot).map((choice) => {
@@ -377,7 +392,11 @@ export function searchBuilderChoiceAssessments(
 }
 
 /** Legacy usable-only API for consumers requiring selectable options. */
-export function searchBuilderChoices(state: BuilderState, slot: BuilderSlot, query: string): BuilderChoice[] {
+export function searchBuilderChoices(
+	state: BuilderState,
+	slot: BuilderSlot,
+	query: string
+): BuilderChoice[] {
 	return searchBuilderChoiceAssessments(state, slot, query)
 		.filter((item) => item.compatibility.allowed)
 		.map((item) => item.choice);

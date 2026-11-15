@@ -26,7 +26,7 @@ D-03 menyediakan `verb-frames.ts`: pilihan māḍī, muḍāri‘ marfū‘, neg
 
 `src/lib/domain/grammar/grammar-constraints.ts` memperkenalkan kontrak per slot yang memeriksa kelas kata, data bentuk berharakat, kesesuaian i‘rab, gender, jumlah, ma‘rifah, mood/bentuk fi‘il dan kecocokan objek yang sudah dikurasi. Penilaiannya **fail-closed**: metadata hilang tidak berarti otomatis kompatibel. `evaluateAdjectiveAgreement` juga membedakan **na‘at** dan **khabar**, serta melindungi kasus jamak ghayr ‘āqil jika informasi animacy belum eksplisit.
 
-Pada pilot G-06, pilihan yang belum terkurasi tetap bisa ditemukan dan dibaca dalam modal, tetapi nonaktif dengan alasan yang menjelaskan *batas bukti contoh* (bukan mengklaim kalimat selalu salah). D-04a belum menangani iḍāfah kompleks, klitik, maushul maupun hubungan antar klausa dan belum memasang UI ke G-01–G-05. [Audit D-04a](../data/dynamic-example-constraints-audit.md).
+Pada pilot G-06, pilihan yang belum terkurasi tetap bisa ditemukan dan dibaca dalam modal, tetapi nonaktif dengan alasan yang menjelaskan _batas bukti contoh_ (bukan mengklaim kalimat selalu salah). D-04a belum menangani iḍāfah kompleks, klitik, maushul maupun hubungan antar klausa dan belum memasang UI ke G-01–G-05. [Audit D-04a](../data/dynamic-example-constraints-audit.md).
 
 ## Realisasi pilot G-06
 

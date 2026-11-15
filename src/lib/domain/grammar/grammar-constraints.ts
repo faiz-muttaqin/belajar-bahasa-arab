@@ -5,11 +5,7 @@
  * feature is NOT treated as compatible. Scope is a single audited teaching frame;
  * unlisted collocations mean "not curated for this example", not "ungrammatical".
  */
-import type {
-	MorphFeatures,
-	SurfaceEvidence,
-	WordClass
-} from './lexeme-forms.js';
+import type { MorphFeatures, SurfaceEvidence, WordClass } from './lexeme-forms.js';
 
 export type ConstraintCode =
 	| 'word-class'
@@ -57,7 +53,10 @@ const featureLabels: Readonly<Record<keyof MorphFeatures, string>> = {
 	person: 'dhamir pelaku'
 };
 
-function compareFeatures(required: Partial<MorphFeatures>, actual: MorphFeatures): ConstraintReason[] {
+function compareFeatures(
+	required: Partial<MorphFeatures>,
+	actual: MorphFeatures
+): ConstraintReason[] {
 	const reasons: ConstraintReason[] = [];
 	for (const key of Object.keys(required) as (keyof MorphFeatures)[]) {
 		const expected = required[key];
@@ -71,21 +70,34 @@ function compareFeatures(required: Partial<MorphFeatures>, actual: MorphFeatures
 		} else if (given !== expected) {
 			reasons.push({
 				code: 'feature-mismatch',
-				message: 'Bentuk ini memiliki ' + featureLabels[key] + ' = ' + given +
-					', sedangkan contoh memerlukan ' + expected + '.'
+				message:
+					'Bentuk ini memiliki ' +
+					featureLabels[key] +
+					' = ' +
+					given +
+					', sedangkan contoh memerlukan ' +
+					expected +
+					'.'
 			});
 		}
 	}
 	return reasons;
 }
 
-export function evaluateSlotCandidate(contract: SlotContract, candidate: SlotCandidate): ConstraintResult {
+export function evaluateSlotCandidate(
+	contract: SlotContract,
+	candidate: SlotCandidate
+): ConstraintResult {
 	const reasons: ConstraintReason[] = [];
 	if (candidate.wordClass !== contract.expectedClass) {
 		reasons.push({
 			code: 'word-class',
-			message: 'Posisi ini memerlukan kelas kata ' + contract.expectedClass +
-				', bukan ' + candidate.wordClass + '.'
+			message:
+				'Posisi ini memerlukan kelas kata ' +
+				contract.expectedClass +
+				', bukan ' +
+				candidate.wordClass +
+				'.'
 		});
 	}
 	if (
@@ -95,19 +107,22 @@ export function evaluateSlotCandidate(contract: SlotContract, candidate: SlotCan
 	) {
 		reasons.push({
 			code: 'unverified-surface',
-			message: 'Bentuk berharakat untuk posisi kalimat ini belum dikurasi dengan rujukan; lema kamus saja tidak cukup.'
+			message:
+				'Bentuk berharakat untuk posisi kalimat ini belum dikurasi dengan rujukan; lema kamus saja tidak cukup.'
 		});
 	}
 	reasons.push(...compareFeatures(contract.required, candidate.features));
 	if (contract.requiresCollocation && !contract.allowedLexemeIds?.length) {
 		reasons.push({
 			code: 'unverified-collocation',
-			message: 'Pasangan fi‘il dan objek untuk contoh ini belum memiliki daftar kecocokan yang dikurasi.'
+			message:
+				'Pasangan fi‘il dan objek untuk contoh ini belum memiliki daftar kecocokan yang dikurasi.'
 		});
 	} else if (contract.allowedLexemeIds && !contract.allowedLexemeIds.includes(candidate.id)) {
 		reasons.push({
 			code: 'unlisted-collocation',
-			message: 'Pasangan kata ini belum dikurasi untuk contoh tersebut. Ini tidak berarti susunannya selalu salah dalam bahasa Arab.'
+			message:
+				'Pasangan kata ini belum dikurasi untuk contoh tersebut. Ini tidak berarti susunannya selalu salah dalam bahasa Arab.'
 		});
 	}
 	return { allowed: reasons.length === 0, reasons, allowedExplanation: contract.explanation };
@@ -135,18 +150,20 @@ export function evaluateAdjectiveAgreement(input: {
 	if (head.gender === undefined || head.number === undefined) {
 		reasons.push({
 			code: 'missing-feature',
-			message: 'Gender atau jumlah isim utama belum diketahui sehingga kecocokan sifat tidak dapat dipastikan.'
+			message:
+				'Gender atau jumlah isim utama belum diketahui sehingga kecocokan sifat tidak dapat dipastikan.'
 		});
 	} else if (head.number === 'plural' && pluralAnimacy === 'unknown') {
 		reasons.push({
 			code: 'unverified-plural-agreement',
-			message: 'Jamak manusia dan bukan manusia dapat memakai pola kecocokan sifat berbeda; jenis jamaknya belum dicatat.'
+			message:
+				'Jamak manusia dan bukan manusia dapat memakai pola kecocokan sifat berbeda; jenis jamaknya belum dicatat.'
 		});
 	} else {
-		required.gender = head.number === 'plural' && pluralAnimacy === 'nonhuman'
-			? 'feminine' : head.gender;
-		required.number = head.number === 'plural' && pluralAnimacy === 'nonhuman'
-			? 'singular' : head.number;
+		required.gender =
+			head.number === 'plural' && pluralAnimacy === 'nonhuman' ? 'feminine' : head.gender;
+		required.number =
+			head.number === 'plural' && pluralAnimacy === 'nonhuman' ? 'singular' : head.number;
 	}
 
 	if (relation === 'attributive') {
@@ -169,8 +186,9 @@ export function evaluateAdjectiveAgreement(input: {
 	return {
 		allowed: reasons.length === 0,
 		reasons,
-		allowedExplanation: relation === 'attributive'
-			? 'Sifat mengikuti isim yang diterangkan pada gender, jumlah, i‘rab dan ma‘rifah/nakirah sesuai bingkai contoh.'
-			: 'Khabar mengikuti gender dan jumlah subjek; dalam contoh nominal ini khabar tetap nakirah dan marfū‘.'
+		allowedExplanation:
+			relation === 'attributive'
+				? 'Sifat mengikuti isim yang diterangkan pada gender, jumlah, i‘rab dan ma‘rifah/nakirah sesuai bingkai contoh.'
+				: 'Khabar mengikuti gender dan jumlah subjek; dalam contoh nominal ini khabar tetap nakirah dan marfū‘.'
 	};
 }

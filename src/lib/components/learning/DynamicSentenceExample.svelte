@@ -224,7 +224,8 @@
 						<p class="px-2 text-xs" data-reason={choice.id}>
 							{compatibility.allowed
 								? 'Bisa digunakan: ' + compatibility.allowedExplanation
-								: 'Belum bisa dipilih: ' + compatibility.reasons.map((item) => item.message).join(' ')}
+								: 'Belum bisa dipilih: ' +
+									compatibility.reasons.map((item) => item.message).join(' ')}
 						</p>
 						<div
 							class="mt-1 flex flex-wrap items-center justify-between gap-2 px-2 text-xs text-muted-foreground"
@@ -254,11 +255,9 @@
 				{/if}
 			</ul>
 			<p class="text-xs text-muted-foreground">
-				Kata yang cocok ditampilkan sebagai pilihan aktif. Kata yang belum cocok tetap terlihat dengan alasan, tetapi tidak bisa dipilih.
-				Tidak semua entri kamus boleh digunakan langsung. Buka <a
-					href={resolve('kosakata/')}
-					class="underline">kamus kosakata</a
-				>
+				Kata yang cocok ditampilkan sebagai pilihan aktif. Kata yang belum cocok tetap terlihat
+				dengan alasan, tetapi tidak bisa dipilih. Tidak semua entri kamus boleh digunakan langsung.
+				Buka <a href={resolve('kosakata/')} class="underline">kamus kosakata</a>
 				atau <a href={resolve('sharaf/')} class="underline">kamus sharaf dan wazan</a>
 				untuk daftar lebih luas.
 			</p>
