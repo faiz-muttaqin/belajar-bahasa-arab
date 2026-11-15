@@ -33,6 +33,32 @@ describe('G-06 dynamic example slots', () => {
 		}
 	});
 
+	it('exposes D-02 provenance and slot morphology without promoting draft to approved', () => {
+		const forms = [
+			...optionsForBuilderSlot(initialBuilderState, 'subject'),
+			...optionsForBuilderSlot(initialBuilderState, 'predicate'),
+			...optionsForBuilderSlot(initialBuilderState, 'verb'),
+			...optionsForBuilderSlot(initialBuilderState, 'agent'),
+			...optionsForBuilderSlot(initialBuilderState, 'object')
+		];
+		for (const form of forms) {
+			expect(form.evidence.kind).toBe('curated-example');
+			expect(form.evidence.reviewStatus).toBe('draft');
+			expect(form.evidence.sourceUrls.length).toBeGreaterThan(0);
+			expect(form.evidence.note).toContain('tashih');
+		}
+		expect(optionsForBuilderSlot(initialBuilderState, 'subject')[0]!.features).toEqual({
+			case: 'raf', number: 'singular', definiteness: 'definite', gender: 'masculine'
+		});
+		expect(optionsForBuilderSlot(initialBuilderState, 'verb')[0]!.features).toEqual({
+			aspect: 'perfect', voice: 'active', number: 'singular', person: 3, gender: 'masculine'
+		});
+		expect(optionsForBuilderSlot(initialBuilderState, 'verb')[0]!.valency).toEqual([
+			'msa-risalah', 'msa-kitab'
+		]);
+		expect(optionsForBuilderSlot(initialBuilderState, 'object')[0]!.features.case).toBe('nasb');
+	});
+
 	it('shows female adjectives when a feminine noun replaces the nominal subject', () => {
 		const next = chooseBuilderWord(initialBuilderState, 'subject', 'msa-madrasah').state;
 		const example = composeBuilderExample('nominal', next);
