@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
+	import MixedText from '#lib/components/learning/MixedText.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -35,8 +36,8 @@
 
 	<section class="rounded-2xl border bg-card p-5 sm:p-6" aria-labelledby="mulai">
 		<h2 id="mulai" class="text-xl font-semibold">Mulai dari pertanyaan ini</h2>
-		<p class="mt-2 text-lg">{guide.question}</p>
-		<p class="mt-3 border-s-4 border-primary ps-4">{guide.distinction}</p>
+		<p class="mt-2 text-lg"><MixedText text={guide.question} /></p>
+		<p class="mt-3 border-s-4 border-primary ps-4"><MixedText text={guide.distinction} /></p>
 	</section>
 
 	<nav aria-label="Bagian pembahasan" class="space-y-3">
@@ -80,7 +81,7 @@
 					<span class="text-xs font-semibold text-muted-foreground">Contoh {i + 1}</span>
 					<div class="mt-3"><ArabicText text={example.arabic} size="block" /></div>
 					<p class="mt-3 font-semibold">{example.gloss}</p>
-					<p class="mt-2 text-sm text-muted-foreground">{example.observation}</p>
+					<p class="mt-2 text-muted-foreground"><MixedText text={example.observation} /></p>
 				</li>
 			{/each}
 		</ol>
@@ -93,7 +94,7 @@
 			aria-labelledby={'pembahasan-judul-' + (i + 1)}
 		>
 			<h2 id={'pembahasan-judul-' + (i + 1)} class="text-xl font-semibold">{section.heading}</h2>
-			<p class="max-w-[75ch] leading-relaxed">{section.text}</p>
+			<p class="max-w-[75ch] leading-relaxed"><MixedText text={section.text} /></p>
 		</section>
 	{/each}
 
@@ -101,7 +102,7 @@
 		<h2 id="kesalahan-judul" class="text-xl font-semibold">Hal yang perlu diwaspadai</h2>
 		<ul class="list-disc space-y-2 ps-6">
 			{#each guide.watchOut as item (item)}
-				<li>{item}</li>
+				<li><MixedText text={item} /></li>
 			{/each}
 		</ul>
 	</section>

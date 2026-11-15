@@ -89,9 +89,9 @@
 				<h2 id="peta-jenis-title" class="text-2xl font-semibold">
 					Jenis-jenis {classification.id === 'isim' ? 'isim' : 'fi‘il'} secara lebih lengkap
 				</h2>
-				<p class="leading-relaxed">{classification.lead}</p>
-				<p class="border-s-4 border-primary ps-4 text-sm text-muted-foreground">
-					{classification.warning}
+				<p class="leading-relaxed"><MixedText text={classification.lead} /></p>
+				<p class="border-s-4 border-primary ps-4 text-muted-foreground">
+					<MixedText text={classification.warning} />
 				</p>
 			</div>
 			<nav aria-label="Kelompok pembahasan" class="flex flex-wrap gap-2">
@@ -106,14 +106,16 @@
 			{#each classification.axes as axis (axis.id)}
 				<section id={axis.id} class="scroll-mt-24 space-y-4" aria-labelledby={axis.id + '-heading'}>
 					<h3 id={axis.id + '-heading'} class="text-xl font-semibold">{axis.heading}</h3>
-					<p class="text-muted-foreground">{axis.intro}</p>
+					<p class="text-muted-foreground"><MixedText text={axis.intro} /></p>
 					<ul class="grid gap-3 sm:grid-cols-2">
 						{#each axis.entries as item (item.title)}
 							<li class="min-w-0 space-y-2 rounded-xl border bg-card p-4">
 								<h4 class="font-semibold">{item.title}</h4>
 								<ArabicText text={item.arabic} size="block" />
 								<p class="font-medium">{item.meaning}</p>
-								<p class="text-sm leading-relaxed text-muted-foreground">{item.explanation}</p>
+								<p class="leading-relaxed text-muted-foreground">
+									<MixedText text={item.explanation} />
+								</p>
 								{#if item.form}
 									<a
 										href={resolve(`rujukan/bentuk/${item.form}/`)}
@@ -124,8 +126,8 @@
 							</li>
 						{/each}
 					</ul>
-					{#if axis.note}<p class="rounded-xl bg-secondary p-4 text-sm text-secondary-foreground">
-							{axis.note}
+					{#if axis.note}<p class="rounded-xl bg-secondary p-4 text-secondary-foreground">
+							<MixedText text={axis.note} />
 						</p>{/if}
 				</section>
 			{/each}

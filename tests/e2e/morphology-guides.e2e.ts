@@ -86,6 +86,29 @@ test('F-16 separates three verb forms from prohibition, weak roots and voice', a
 test.describe('F-16 full reference remains readable without JavaScript', () => {
 	test.use({ javaScriptEnabled: false, viewport: { width: 375, height: 812 } });
 
+	for (const path of ['bentuk/amr', 'istilah/isim', 'istilah/fiil']) {
+		test(`isolates Arabic within Indonesian explanations at ${path}`, async ({ page }) => {
+			await page.goto(`/rujukan/${path}/`);
+			const unmarked = await page
+				.locator('[data-morphology-guide], [data-classification]')
+				.evaluate((element) => {
+					const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+					const missing: string[] = [];
+					while (walker.nextNode()) {
+						const node = walker.currentNode;
+						if (
+							/[\u0600-\u06ff]/u.test(node.textContent ?? '') &&
+							!node.parentElement?.closest('[lang="ar"][dir="rtl"]')
+						) {
+							missing.push(node.textContent ?? '');
+						}
+					}
+					return missing;
+				});
+			expect(unmarked).toEqual([]);
+		});
+	}
+
 	test('prerenders form content, in-page toc, sources and related links', async ({ page }) => {
 		await page.goto('/rujukan/bentuk/zaman/');
 		await expect(page.getByRole('heading', { level: 1, name: 'Isim zamān' })).toBeVisible();

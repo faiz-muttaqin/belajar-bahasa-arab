@@ -364,7 +364,7 @@ export const morphologyGuides: Record<TashrifColumnKey, MorphologyGuide> = {
 			},
 			{
 				heading: 'Hubungan dengan muḍāri‘',
-				text: 'Pembentukan amr berkaitan dengan bentuk majzūm orang kedua, tetapi aturan hamzat waṣl, sukun dan huruf lemah memerlukan perhatian. كُتُب dan أَكَل tidak mengikuti prosedur mekanis yang sama.'
+				text: 'Pembentukan amr berkaitan dengan bentuk majzūm orang kedua, tetapi aturan hamzat waṣl, sukun dan huruf lemah memerlukan perhatian. كَتَبَ dan أَكَلَ tidak mengikuti prosedur mekanis yang sama.'
 			},
 			{
 				heading: 'Tidak semua perintah adalah fi‘il amr',
