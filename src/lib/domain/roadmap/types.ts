@@ -40,7 +40,9 @@ export type RoadmapCheckpoint = SourcedDraft & {
 	id: string;
 	title: string;
 	competencyIds: readonly string[];
-	status: 'planned';
+	status: 'planned' | 'available';
+	/** Static checkpoint route only when published questions exist. */
+	path?: 'belajar/checkpoint-3/';
 };
 
 export type RoadmapStage = SourcedDraft & {

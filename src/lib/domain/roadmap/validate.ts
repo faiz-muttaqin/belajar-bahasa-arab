@@ -103,8 +103,15 @@ export function validateRoadmap(
 		identity(stage.checkpoint.id, 'checkpoint');
 		sourced(stage.checkpoint, stage.checkpoint.id);
 		references(stage.checkpoint.competencyIds, stage.checkpoint.id);
-		if (stage.checkpoint.status !== 'planned' || 'links' in stage.checkpoint)
-			issues.push(`Checkpoint must stay planned without links: ${stage.checkpoint.id}`);
+		if ('links' in stage.checkpoint)
+			issues.push(`Checkpoint has unsupported links: ${stage.checkpoint.id}`);
+		if (stage.checkpoint.status === 'planned' && stage.checkpoint.path)
+			issues.push(`Planned checkpoint must not link: ${stage.checkpoint.id}`);
+		if (
+			stage.checkpoint.status === 'available' &&
+			(stage.checkpoint.id !== 'checkpoint-3' || stage.checkpoint.path !== 'belajar/checkpoint-3/')
+		)
+			issues.push(`Unknown published checkpoint route: ${stage.checkpoint.id}`);
 	}
 	for (const branch of roadmap.branches) {
 		identity(branch.id, 'branch');

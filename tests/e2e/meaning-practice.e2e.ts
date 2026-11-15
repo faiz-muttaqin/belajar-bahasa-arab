@@ -41,8 +41,8 @@ test.describe('latihan makna di ponsel', () => {
 		await check.tap();
 		await expect(practice.getByText('Tepat. Bukuku.', { exact: true })).toBeVisible();
 		await expect(page.getByRole('button', { name: 'Tandai selesai' })).toBeEnabled();
-		await practice.getByRole('button', { name: 'Ulangi latihan' }).tap();
-		await expect(practice.getByText('رَبِّي', { exact: true })).toBeVisible();
+		await practice.getByRole('button', { name: 'Soal berikutnya' }).tap();
+		await expect(practice.getByText('اللَّهُ أَكْبَرُ', { exact: true })).toBeVisible();
 		await expect(check).toBeDisabled();
 	});
 });
@@ -55,13 +55,13 @@ test.describe('latihan makna tanpa JavaScript', () => {
 		const practice = page.getByRole('region', { name: 'Latihan makna' });
 		const reveal = practice.getByText('Lihat alasan', { exact: true });
 		const reason = practice.getByText(/di akhir menambahkan makna/);
-		await expect(reveal).toHaveCount(2);
+		await expect(reveal).toHaveCount(20);
 		await expect(reason.first()).toBeHidden();
 		await expect(reason.last()).toBeHidden();
 		await reveal.first().click();
 		await expect(reason.first()).toBeVisible();
 		await expect(reason.last()).toBeHidden();
-		await reveal.last().click();
+		await reveal.nth(1).click();
 		await expect(reason.last()).toBeVisible();
 		await expect(page.getByRole('link', { name: 'Pelajaran berikutnya' })).toBeVisible();
 	});

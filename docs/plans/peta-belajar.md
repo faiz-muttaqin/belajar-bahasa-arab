@@ -254,6 +254,13 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 
 **Sesudah RM-05:** RM-06 memperluas titik cek baru yang bersumber. Audit VP-01 pada [rencana visual](./visual-pembelajaran.md) dapat menyiapkan penjelajah peran kata; grafik posisi memakai RM-04 dan grafik bukti memakai RM-05. Warna disertai label, animasi dikendalikan pelajar dan tetap menghormati reduced motion.
 
+### Pilot RM-06: Tahap 3 (16 November 2026)
+
+- Titik cek Tahap 3 aktif di `/belajar/checkpoint-3/`, dengan **24 butir**: masing-masing delapan untuk CB-07 (rujukan kata ganti/lokasi), CB-09 (idhafah), dan CB-12 (akhiran pemilik). Seluruh teks merupakan susunan orisinal yang diadaptasikan sebagai pola latihan; sumber dicatat per soal dan masih berstatus `draft`.
+- Setiap jawaban menggunakan `recordLearningAnswer`, `EvidenceItem` dan tingkat RM-05, tanpa menandai pelajaran atau langkah selesai. Hasil impornya tetap menggunakan skema IndexedDB v3/schema cadangan 2. Setelah tanda “lewati” ditetapkan, tautan cek cepat muncul tanpa menghapus tanda.
+- Latihan makna U1 diperkaya menjadi 20 butir berbeda; komponen soal bukan lagi pasangan tetap dua soal. Jumlah latihan selanjutnya dinaikkan bertahap menjadi **20–50 butir per bank** menurut cakupan materi dan kemampuan memverifikasi sumber; jangan menambah soal duplikat untuk memenuhi angka.
+- Metode Tamyiz, Al-Bayan, dan utawi-iku **belum diklaim telah diaudit**. Tugas khusus “baca dan maknai” yang bergantung pada metode tersebut belum diterbitkan. Titik cek tahap lain masih berstatus direncanakan dan perlu bank bersumber sendiri.
+
 ## Sumber
 
 - [Studi komparasi 19 sistem belajar](../research/2026-11-15-studi-komparasi-peta-belajar.md), dengan sumber per sistem.

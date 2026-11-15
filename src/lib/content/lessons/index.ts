@@ -8,6 +8,7 @@ import { wordClassesLesson } from './word-classes.js';
 import type { ProgressLesson } from '#lib/progress/lessons.js';
 import { competencies } from '../competencies.js';
 import { collectEvidenceItems } from '../evidence.js';
+import { stage3CheckpointGroups, collectCheckpointEvidenceItems } from '../checkpoints.js';
 import { roadmap, roadmapReferencePaths } from '../roadmap.js';
 import { validateRoadmap } from '#lib/domain/roadmap/validate.js';
 
@@ -22,7 +23,21 @@ const lessons = [
 ];
 validateLessons(lessons);
 validateRoadmap(roadmap, competencies, lessons, roadmapReferencePaths);
-export const evidenceItems = collectEvidenceItems(lessons);
+for (const group of stage3CheckpointGroups) {
+	const lesson = lessons.find((item) => item.id === group.lessonId);
+	if (
+		!lesson ||
+		lesson.revision !== group.contentRevision ||
+		!lesson.competencies.includes(group.competencyId)
+	)
+		throw new Error(`Invalid checkpoint lesson or competency: ${group.id}`);
+}
+export const evidenceItems = [
+	...collectEvidenceItems(lessons),
+	...collectCheckpointEvidenceItems(stage3CheckpointGroups)
+];
+if (new Set(evidenceItems.map((item) => item.id)).size !== evidenceItems.length)
+	throw new Error('Duplicate evidence item across lessons and checkpoints');
 
 export function lessonsFor(track: LessonTrack) {
 	return lessons.filter((lesson) => lesson.track === track);

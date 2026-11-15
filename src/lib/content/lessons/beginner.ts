@@ -1,4 +1,5 @@
 import type { Lesson } from './types.js';
+import { u1MeaningQuestions } from './u1-meaning-practice.js';
 
 const madinah = (lesson: number, part = 1) => ({
 	label: `Madinah Arabic · Rujukan konsep, pelajaran ${lesson}`,
@@ -60,29 +61,7 @@ export const beginnerLessons: readonly Lesson[] = [
 			'Dalam kata untuk “Tuhanku”, akhiran bunyi i terkait dengan makna “-ku”. Pola kepemilikan serupa akan muncul lagi di pelajaran kata ganti melekat.',
 			'Glos di sini berfokus pada arti kata dan frasa dalam bacaan.'
 		],
-		meaningPractice: [
-			{
-				id: 'u1-rabbi-meaning',
-				kind: 'guided',
-				context: 'Dari bacaan shalat',
-				arabic: 'رَبِّي',
-				prompt: 'Apa arti kata ini dalam bacaan shalat?',
-				choices: ['Tuhan kalian', 'Tuhanku', 'Tuhan mereka'],
-				correct: 1,
-				reason: 'Bagian رَبّ berarti “Tuhan”. Huruf ي di akhir menambahkan makna “-ku”.'
-			},
-			{
-				id: 'u1-kitabi-transfer',
-				kind: 'transfer',
-				context: 'Contoh baru dari Arab sehari-hari',
-				arabic: 'كِتَابِي',
-				prompt: 'Apa arti kata ini?',
-				choices: ['Buku mereka', 'Buku kalian', 'Bukuku'],
-				correct: 2,
-				reason:
-					'Kata كِتَابٌ berarti “buku”. Seperti pada kata sebelumnya, huruf ي di akhir menambahkan makna “-ku”.'
-			}
-		],
+		meaningPractice: u1MeaningQuestions,
 		exercises: [
 			{
 				arabic: 'الْأَعْلَى',
