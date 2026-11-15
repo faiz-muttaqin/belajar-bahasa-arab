@@ -3,6 +3,7 @@
 	import InlineCuratedExamplePicker from './InlineCuratedExamplePicker.svelte';
 	import {
 		canEditInlineExample,
+		canEditInlineSlot,
 		resolveInlineGrammarExample
 	} from '#lib/domain/grammar/inline-curated-examples.js';
 	import type { GrammarExample, GrammarRole } from '#lib/content/grammar-rules.js';
@@ -72,7 +73,7 @@
 				<span lang="id" dir="ltr" class="max-w-40 text-xs text-muted-foreground">
 					{GRAMMAR_ROLE_LABELS[token.role]}
 				</span>
-				{#if editable}
+				{#if editable && canEditInlineSlot('grammar', example.id, i)}
 					<InlineCuratedExamplePicker
 						source="grammar"
 						originalId={example.id}
