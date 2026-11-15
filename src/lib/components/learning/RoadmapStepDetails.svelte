@@ -27,7 +27,8 @@
 						<p class="mt-1 text-base text-muted-foreground" data-competency-level={competency.id}>
 							{#if evidence.level > 0}
 								<strong>{levelLabels[evidence.level]}</strong>
-								{#if evidence.selfAssessed} · menurut penilaian Anda{/if}
+								{#if evidence.selfAssessed}
+									· menurut penilaian Anda{/if}
 							{:else if !evidence.hasPractice}
 								Belum ada latihan dengan jawaban untuk kemampuan ini.
 							{:else}
@@ -93,8 +94,8 @@
 	{/if}
 	{#if understandingByCompetency}
 		<p class="text-base text-muted-foreground">
-			Tingkat mencerminkan bukti latihan, bukan penyelesaian pelajaran. Tingkat “Tetap ingat”
-			baru tersedia sesudah ulangan terjadwal dikembangkan.
+			Tingkat mencerminkan bukti latihan, bukan penyelesaian pelajaran. Tingkat “Tetap ingat” baru
+			tersedia sesudah ulangan terjadwal dikembangkan.
 		</p>
 	{/if}
 	<p class="text-base text-muted-foreground">Draf · bersumber, belum ditinjau ustadz.</p>

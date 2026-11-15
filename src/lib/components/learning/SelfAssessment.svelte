@@ -46,7 +46,10 @@
 				evidenceItems
 			);
 			message = `${matches ? 'Menurut penilaian Anda' : 'Perlu diulang'} · ${result.changes
-				.map(({ change, label }) => `${change === 'up' ? 'Naik ke' : change === 'down' ? 'Turun ke' : 'Tetap'} ${label}`)
+				.map(
+					({ change, label }) =>
+						`${change === 'up' ? 'Naik ke' : change === 'down' ? 'Turun ke' : 'Tetap'} ${label}`
+				)
 				.join(' · ')}`;
 		} catch {
 			error = true;
@@ -59,9 +62,9 @@
 {#if ready}
 	<div class="mt-3 space-y-2 border-t pt-3" data-self-assessment={itemId}>
 		<p class="text-base text-muted-foreground">
-			Penilaian diri: bandingkan jawaban yang sudah Anda pikirkan sebelum membuka pembahasan.
-			Anggap belum cocok bila ragu atau perlu melihat pembahasan. Hasil ini bukan jawaban yang
-			diperiksa otomatis, dan tidak bisa mencapai tingkat contoh baru.
+			Penilaian diri: bandingkan jawaban yang sudah Anda pikirkan sebelum membuka pembahasan. Anggap
+			belum cocok bila ragu atau perlu melihat pembahasan. Hasil ini bukan jawaban yang diperiksa
+			otomatis, dan tidak bisa mencapai tingkat contoh baru.
 		</p>
 		<div class="flex flex-wrap gap-2">
 			<button
@@ -69,13 +72,15 @@
 				disabled={saving}
 				onclick={() => assess(true)}
 				class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
-			>Jawaban saya cocok</button>
+				>Jawaban saya cocok</button
+			>
 			<button
 				type="button"
 				disabled={saving}
 				onclick={() => assess(false)}
 				class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
-			>Belum cocok</button>
+				>Belum cocok</button
+			>
 		</div>
 		{#if saving}
 			<p role="status" class="text-base">Menyimpan penilaian…</p>

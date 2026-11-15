@@ -238,7 +238,7 @@
 					{stage}
 					onOpen={supportsDialog ? openStep : undefined}
 					statusByStep={statuses}
-						understandingByCompetency={understanding}
+					understandingByCompetency={understanding}
 					marks={progress.marks}
 					onMark={progress.status === 'ready' ? markStep : undefined}
 					{savingStepId}

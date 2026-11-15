@@ -24,12 +24,10 @@ test('RM-05 U1 answers are persisted, labelled and shared with the map and progr
 		await expect(other.locator('#step-u1 [data-step-understanding]')).toContainText(
 			'1 dari 1 kemampuan bisa pada contoh baru'
 		);
-		await other
-			.getByRole('button', { name: 'Rincian langkah: Kata inti shalat' })
-			.click();
-		await expect(other.getByRole('dialog').locator('[data-competency-level="CB-01"]')).toContainText(
-			'Bisa pada contoh baru'
-		);
+		await other.getByRole('button', { name: 'Rincian langkah: Kata inti shalat' }).click();
+		await expect(
+			other.getByRole('dialog').locator('[data-competency-level="CB-01"]')
+		).toContainText('Bisa pada contoh baru');
 		await other.goto('/progres/');
 		await expect(other.locator('[data-evidence-stage="stage-1"]')).toContainText(
 			'1 dari 1 kemampuan'
@@ -107,7 +105,9 @@ test('RM-05 exports and merges attempts across devices without duplicates', asyn
 	const backup = JSON.parse(bytes.toString());
 	expect(backup).toMatchObject({
 		schemaVersion: 2,
-		attempts: [{ itemId: 'u1-rabbi-meaning', lessonId: 'lesson-u1-01', skill: 'meaning', outcome: 'correct' }]
+		attempts: [
+			{ itemId: 'u1-rabbi-meaning', lessonId: 'lesson-u1-01', skill: 'meaning', outcome: 'correct' }
+		]
 	});
 	const other = await browser.newContext({ baseURL });
 	try {
@@ -116,7 +116,11 @@ test('RM-05 exports and merges attempts across devices without duplicates', asyn
 		await target.getByText('Cadangan progres', { exact: true }).click();
 		const input = target.locator('input[type=file]');
 		for (let repeat = 0; repeat < 2; repeat++) {
-			await input.setInputFiles({ name: 'backup.json', mimeType: 'application/json', buffer: bytes });
+			await input.setInputFiles({
+				name: 'backup.json',
+				mimeType: 'application/json',
+				buffer: bytes
+			});
 			await expect(target.getByText('1 jawaban latihan tersimpan')).toBeVisible();
 		}
 		await target.reload();
@@ -129,7 +133,9 @@ test('RM-05 exports and merges attempts across devices without duplicates', asyn
 test('RM-05 storage failure does not hide feedback or falsely claim saving', async ({ page }) => {
 	await page.addInitScript(() => {
 		Object.defineProperty(window, 'indexedDB', {
-			get: () => { throw new DOMException('Blocked', 'SecurityError'); }
+			get: () => {
+				throw new DOMException('Blocked', 'SecurityError');
+			}
 		});
 	});
 	await page.goto(first);

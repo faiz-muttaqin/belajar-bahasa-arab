@@ -42,17 +42,25 @@ function openProgress() {
 	});
 }
 
-export type ProgressSnapshot = { lessons: LessonProgress[]; marks: StepMark[]; attempts: LearningAttempt[] };
+export type ProgressSnapshot = {
+	lessons: LessonProgress[];
+	marks: StepMark[];
+	attempts: LearningAttempt[];
+};
 
 export async function readProgressSnapshot(): Promise<ProgressSnapshot> {
 	const database = await openProgress();
 	try {
 		return await new Promise((resolve, reject) => {
-			const transaction = database.transaction([lessonsStore, marksStore, attemptsStore], 'readonly');
+			const transaction = database.transaction(
+				[lessonsStore, marksStore, attemptsStore],
+				'readonly'
+			);
 			const attempts = transaction.objectStore(attemptsStore).getAll();
 			const lessons = transaction.objectStore(lessonsStore).getAll();
 			const marks = transaction.objectStore(marksStore).getAll();
-			transaction.oncomplete = () => resolve({ lessons: lessons.result, marks: marks.result, attempts: attempts.result });
+			transaction.oncomplete = () =>
+				resolve({ lessons: lessons.result, marks: marks.result, attempts: attempts.result });
 			transaction.onabort = () => reject(transaction.error);
 			transaction.onerror = () => reject(transaction.error);
 		});
@@ -144,7 +152,10 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 	const database = await openProgress();
 	try {
 		await new Promise<void>((resolve, reject) => {
-			const transaction = database.transaction([lessonsStore, marksStore, attemptsStore], 'readwrite');
+			const transaction = database.transaction(
+				[lessonsStore, marksStore, attemptsStore],
+				'readwrite'
+			);
 			const lessonStore = transaction.objectStore(lessonsStore);
 			const markStore = transaction.objectStore(marksStore);
 			const attemptStore = transaction.objectStore(attemptsStore);
@@ -178,8 +189,7 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 				const request = attemptStore.get(attempt.id);
 				request.onsuccess = () => {
 					if (!request.result) attemptStore.add(attempt);
-					else if (JSON.stringify(request.result) !== JSON.stringify(attempt))
-						transaction.abort();
+					else if (JSON.stringify(request.result) !== JSON.stringify(attempt)) transaction.abort();
 				};
 			}
 			transaction.oncomplete = () => resolve();

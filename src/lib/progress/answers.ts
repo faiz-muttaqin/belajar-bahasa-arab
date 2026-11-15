@@ -1,4 +1,9 @@
-import { competencyUnderstanding, levelLabels, type EvidenceItem, type LearningAttempt } from '#lib/domain/roadmap/evidence.js';
+import {
+	competencyUnderstanding,
+	levelLabels,
+	type EvidenceItem,
+	type LearningAttempt
+} from '#lib/domain/roadmap/evidence.js';
 import { notifyProgress } from './browser.svelte.js';
 import { readProgressSnapshot, requestPersistentStorage, saveAttempt } from './storage.js';
 

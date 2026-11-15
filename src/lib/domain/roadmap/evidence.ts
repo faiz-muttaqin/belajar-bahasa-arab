@@ -139,8 +139,7 @@ export function competencyUnderstanding(
 		if (attempt.selfAssessed) {
 			candidate = 2;
 		} else if (!attempt.assisted && attempt.skill !== 'recall') {
-			candidate =
-				item.kind === 'transfer' && firstAnswer && !attempt.seenWhileAuthoring ? 3 : 2;
+			candidate = item.kind === 'transfer' && firstAnswer && !attempt.seenWhileAuthoring ? 3 : 2;
 		}
 		if (candidate >= level) {
 			level = candidate;

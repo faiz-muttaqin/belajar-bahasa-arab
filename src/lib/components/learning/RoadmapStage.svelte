@@ -44,7 +44,9 @@
 	<ol class="space-y-5 border-s-2 ps-4 sm:ps-6" aria-label={`Langkah ${stage.title}`}>
 		{#each stage.steps as step, index (step.id)}
 			{@const status = statusByStep[step.id]}
-			{@const competence = step.primaryCompetencyIds.map((id) => understandingByCompetency?.[id]).filter((item) => item !== undefined)}
+			{@const competence = step.primaryCompetencyIds
+				.map((id) => understandingByCompetency?.[id])
+				.filter((item) => item !== undefined)}
 			{@const tested = competence.filter((item) => item.hasPractice)}
 			{@const newExampleCount = competence.filter((item) => item.level === 3).length}
 			{@const existingMark = marks.find(

@@ -22,7 +22,12 @@
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
 
 	type LessonLink = Pick<Lesson, 'title' | 'slug'>;
-	let { lesson, previous, next, evidenceItems }: {
+	let {
+		lesson,
+		previous,
+		next,
+		evidenceItems
+	}: {
 		lesson: Lesson;
 		previous?: LessonLink;
 		next?: LessonLink;

@@ -7,7 +7,13 @@
 	import ArabicText from './ArabicText.svelte';
 	import MixedText from './MixedText.svelte';
 
-	let { questions, lessonId, contentRevision, competencyIds, evidenceItems }: {
+	let {
+		questions,
+		lessonId,
+		contentRevision,
+		competencyIds,
+		evidenceItems
+	}: {
 		questions: MeaningPractice;
 		lessonId: string;
 		contentRevision: number;
@@ -56,7 +62,10 @@
 				evidenceItems
 			);
 			evidenceMessage = result.changes
-				.map(({ change, label }) => `${change === 'up' ? 'Naik ke' : change === 'down' ? 'Turun ke' : 'Tetap'} ${label}`)
+				.map(
+					({ change, label }) =>
+						`${change === 'up' ? 'Naik ke' : change === 'down' ? 'Turun ke' : 'Tetap'} ${label}`
+				)
 				.join(' · ');
 		} catch {
 			storageError = true;
@@ -151,12 +160,16 @@
 			{/if}
 			<div class="flex flex-wrap gap-2">
 				{#if !correct}
-					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(step)}>Coba lagi</Button>
+					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(step)}
+						>Coba lagi</Button
+					>
 				{/if}
 				{#if step === 0}
 					<Button disabled={savingAnswer} onclick={() => openQuestion(1)}>Coba contoh baru</Button>
 				{:else if correct}
-					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(0)}>Ulangi latihan</Button>
+					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(0)}
+						>Ulangi latihan</Button
+					>
 				{/if}
 			</div>
 		{:else}

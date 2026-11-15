@@ -42,7 +42,9 @@ describe('RM-05 competence evidence', () => {
 	it('records trying, wrong or dont-know as 1, without inferring understanding', () => {
 		expect(result('CB-01', [attempt('u1-rabbi-meaning', 'dont_know', 1)]).level).toBe(1);
 		expect(result('CB-01', [attempt('u1-rabbi-meaning', 'incorrect', 1)]).level).toBe(1);
-		expect(result('CB-01', [attempt('u1-rabbi-meaning', 'correct', 1, { assisted: true })]).level).toBe(1);
+		expect(
+			result('CB-01', [attempt('u1-rabbi-meaning', 'correct', 1, { assisted: true })]).level
+		).toBe(1);
 	});
 
 	it('guided answer gives 2; first unseen transfer gives 3', () => {
@@ -69,11 +71,12 @@ describe('RM-05 competence evidence', () => {
 
 	it('seen-while-authoring and assisted transfer cannot give 3', () => {
 		expect(
-			result('CB-01', [
-				attempt('u1-kitabi-transfer', 'correct', 1, { seenWhileAuthoring: true })
-			]).level
+			result('CB-01', [attempt('u1-kitabi-transfer', 'correct', 1, { seenWhileAuthoring: true })])
+				.level
 		).toBe(2);
-		expect(result('CB-01', [attempt('u1-kitabi-transfer', 'correct', 1, { assisted: true })]).level).toBe(1);
+		expect(
+			result('CB-01', [attempt('u1-kitabi-transfer', 'correct', 1, { assisted: true })]).level
+		).toBe(1);
 	});
 
 	it('self-assessment reaches at most 2 and stays explicitly labelled', () => {

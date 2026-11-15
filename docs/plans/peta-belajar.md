@@ -240,7 +240,7 @@ Tambahkan posisi personal di peta dan ringkasan `/progres/` sesuai §3.1, §3.3 
 ### Implementasi RM-05 (dalam PR)
 
 - Tambahkan IndexedDB v3 `attempts` berkey `id`, tetap mempertahankan store `lessons` dan `marks` milik RM-04; cadangan tetap schema 2 dengan `attempts` sungguhan dan impor idempoten. Impor dari schema 1/2 lama tidak mengarang bukti.
-- ID soal dibuat stabil dan dicatat di katalog; registry membedakan contoh pembelajaran, calon transfer, dan latihan penilaian diri. Kelayakan “baru” diputuskan dari riwayat jawaban dan catatan penulis, **bukan** boolean tersimpan. Soal yang dipensiunkan tidak dipakai sebagai bukti aktif. 
+- ID soal dibuat stabil dan dicatat di katalog; registry membedakan contoh pembelajaran, calon transfer, dan latihan penilaian diri. Kelayakan “baru” diputuskan dari riwayat jawaban dan catatan penulis, **bukan** boolean tersimpan. Soal yang dipensiunkan tidak dipakai sebagai bukti aktif.
 - `competencyUnderstanding` menghitung tingkat 0–3, penurunan satu tingkat karena jawaban salah tanpa bantuan pada soal berbeda, dan batas tingkat 2 bagi penilaian diri. `recall` tidak dapat menaikkan level 2 atau 3. Kebijakan ini tetap ambang produk awal, bukan rating CEFR.
 - Integrasi latihan makna U1 (dua jawaban otomatis) dan empat pemeriksaan diri bersumber dari latihan U2/U3. Soal penilaian diri berlabel jelas, tidak menciptakan teks Arab baru. `/belajar/` dan `/progres/` menampilkan bukti terpisah dari status langkah.
 - Helper permintaan persistensi hanya dipanggil **setelah jawaban pertama benar-benar tersimpan**. Safari/iOS/Android nyata, uji pelajar dan tinjauan ustadz tetap terpisah.

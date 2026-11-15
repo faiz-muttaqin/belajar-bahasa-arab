@@ -2,7 +2,11 @@
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { summarizeRoadmap } from '#lib/domain/roadmap/progress.js';
-	import { competencyUnderstanding, levelLabels, summarizeEvidence } from '#lib/domain/roadmap/evidence.js';
+	import {
+		competencyUnderstanding,
+		levelLabels,
+		summarizeEvidence
+	} from '#lib/domain/roadmap/evidence.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import EmptyState from '#lib/components/layout/EmptyState.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
@@ -25,9 +29,7 @@
 	);
 	const understanding = $derived.by(() => {
 		if (progress.status !== 'ready') return undefined;
-		const stage = data.roadmap.stages.find(
-			(item) => item.id === roadmapSummary?.position?.stageId
-		);
+		const stage = data.roadmap.stages.find((item) => item.id === roadmapSummary?.position?.stageId);
 		const competencyIds = stage?.steps.flatMap((step) => step.primaryCompetencyIds) ?? [];
 		return {
 			stage,
@@ -146,13 +148,16 @@
 						<li>
 							{data.roadmap.stages
 								.flatMap((stage) => stage.steps)
-								.flatMap((step) => step.primaryCompetencyIds.includes(item.id) ? [step.title] : [])[0]}
+								.flatMap((step) =>
+									step.primaryCompetencyIds.includes(item.id) ? [step.title] : []
+								)[0]}
 							· {item.result.level > 0
 								? levelLabels[item.result.level]
 								: item.result.hasPractice
 									? 'Belum dicoba'
 									: 'Belum ada latihan dengan jawaban'}
-							{#if item.result.selfAssessed} · menurut penilaian Anda{/if}
+							{#if item.result.selfAssessed}
+								· menurut penilaian Anda{/if}
 						</li>
 					{/each}
 				</ul>
@@ -160,8 +165,8 @@
 				<p>Semua langkah sudah dilewati atau selesai. Lihat rincian bukti per langkah di peta.</p>
 			{/if}
 			<p class="text-base text-muted-foreground">
-				Status selesai atau dilewati tidak menambah tingkat. Tingkat 4 menunggu ulangan
-				terjadwal. Semua soal saat ini berstatus draf, belum ditinjau ustadz.
+				Status selesai atau dilewati tidak menambah tingkat. Tingkat 4 menunggu ulangan terjadwal.
+				Semua soal saat ini berstatus draf, belum ditinjau ustadz.
 			</p>
 		</section>
 	{/if}
@@ -235,8 +240,10 @@
 					<Button
 						variant="outline"
 						onclick={exportBackup}
-						disabled={(!progress.records.length && !progress.marks.length && !progress.attempts.length) || importing}
-						>Ekspor progres</Button
+						disabled={(!progress.records.length &&
+							!progress.marks.length &&
+							!progress.attempts.length) ||
+							importing}>Ekspor progres</Button
 					>
 					<Button variant="outline" onclick={() => backupInput?.click()} disabled={importing}
 						>Impor cadangan</Button

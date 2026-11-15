@@ -120,9 +120,9 @@ export function validateLessons(lessons: readonly Lesson[]) {
 			practice &&
 			(practice[0].arabic === practice[1].arabic ||
 				practice[0].id === practice[1].id ||
-				practice.some(({ id, kind }) =>
-					!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) ||
-					(kind !== 'guided' && kind !== 'transfer')
+				practice.some(
+					({ id, kind }) =>
+						!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) || (kind !== 'guided' && kind !== 'transfer')
 				) ||
 				practice.some(
 					({ arabic, context, prompt, choices, correct, reason }) =>
@@ -144,8 +144,7 @@ export function validateLessons(lessons: readonly Lesson[]) {
 					!check.competencyIds.length ||
 					check.competencyIds.some((id) => !lesson.competencies.includes(id))
 			) ||
-			new Set(lesson.selfChecks?.map((item) => item.id)).size !==
-				(lesson.selfChecks?.length ?? 0)
+			new Set(lesson.selfChecks?.map((item) => item.id)).size !== (lesson.selfChecks?.length ?? 0)
 		) {
 			throw new Error(`Invalid self checks: ${lesson.id}`);
 		}
