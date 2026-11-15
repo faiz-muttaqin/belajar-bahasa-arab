@@ -75,7 +75,7 @@ export async function saveProgress(records: readonly LessonProgress[]) {
 			for (const record of records) {
 				const request = store.get(record.lessonId);
 				request.onsuccess = () => {
-					const next = mergeLessonProgress(request.result, record);
+					const next = mergeLessonProgress(merged.get(record.lessonId) ?? request.result, record);
 					merged.set(record.lessonId, next);
 					store.put(next);
 				};
@@ -112,13 +112,27 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 			const transaction = database.transaction([lessonsStore, marksStore], 'readwrite');
 			const lessonStore = transaction.objectStore(lessonsStore);
 			const markStore = transaction.objectStore(marksStore);
+			// Reads are queued before callback writes; preserve earlier merges in this batch.
+			const mergedLessons = new Map<string, LessonProgress>();
+			const mergedMarks = new Map<string, StepMark>();
 			for (const record of backup.lessons) {
 				const request = lessonStore.get(record.lessonId);
-				request.onsuccess = () => lessonStore.put(mergeLessonProgress(request.result, record));
+				request.onsuccess = () => {
+					const next = mergeLessonProgress(
+						mergedLessons.get(record.lessonId) ?? request.result,
+						record
+					);
+					mergedLessons.set(record.lessonId, next);
+					lessonStore.put(next);
+				};
 			}
 			for (const mark of backup.marks) {
 				const request = markStore.get(mark.stepId);
-				request.onsuccess = () => markStore.put(mergeStepMark(request.result, mark));
+				request.onsuccess = () => {
+					const next = mergeStepMark(mergedMarks.get(mark.stepId) ?? request.result, mark);
+					mergedMarks.set(mark.stepId, next);
+					markStore.put(next);
+				};
 			}
 			transaction.oncomplete = () => resolve();
 			transaction.onabort = () => reject(transaction.error);

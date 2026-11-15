@@ -1,5 +1,31 @@
 import { expect, test } from '@playwright/test';
 
+test('RM-04 optional Iqra marks and completion persist without changing the main position', async ({
+	page
+}) => {
+	await page.goto('/belajar/');
+	const foundation = page.locator('#step-a1');
+	const mainPosition = page.getByRole('link', { name: 'Ke posisi saya' });
+	await expect(foundation.locator('[data-step-status]')).toContainText('Belum dimulai');
+	await foundation.getByRole('button', { name: 'Sedang saya pelajari' }).click();
+	await expect(foundation.locator('[data-step-status]')).toContainText('Sedang dipelajari');
+	await expect(mainPosition).toHaveAttribute('href', '#step-u1');
+	await page.reload();
+	await expect(foundation.locator('[data-step-status]')).toContainText('Sedang dipelajari');
+	await foundation.getByRole('button', { name: 'Hapus tanda' }).click();
+	await expect(foundation.locator('[data-step-status]')).toContainText('Belum dimulai');
+	await foundation.locator('[data-map-lesson]').click();
+	await page.getByRole('button', { name: 'Tandai selesai', exact: true }).click();
+	await expect(page.getByRole('button', { name: 'Pelajaran selesai', exact: true })).toBeDisabled();
+	await page.goto('/belajar/');
+	await expect(foundation.locator('[data-step-status]')).toContainText('Selesai');
+	await expect(mainPosition).toHaveAttribute('href', '#step-u1');
+	await page.goto('/progres/');
+	const mainCoverage = page.getByRole('list', { name: 'Cakupan langkah per tahap' });
+	await expect(mainCoverage).toContainText(/Tahap 1:\s*0 dari 1 langkah selesai/);
+	await expect(mainCoverage).not.toContainText('Tahap 0');
+});
+
 test('RM-04 map marks persist, synchronize to other tabs and keep resume separate', async ({
 	page,
 	context

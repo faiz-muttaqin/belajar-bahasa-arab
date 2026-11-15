@@ -213,7 +213,14 @@
 				Jalur Iqra dapat dipakai kapan saja untuk melatih huruf, harakat dan kalimat pendek.
 			</p>
 			{#each optionalStages as stage (stage.id)}
-				<RoadmapStage {stage} onOpen={supportsDialog ? openStep : undefined} />
+				<RoadmapStage
+					{stage}
+					onOpen={supportsDialog ? openStep : undefined}
+					statusByStep={statuses}
+					marks={progress.marks}
+					onMark={progress.status === 'ready' ? markStep : undefined}
+					{savingStepId}
+				/>
 			{/each}
 		</section>
 	</div>
