@@ -3,6 +3,7 @@
 	import type { RoadmapReferencePath } from '#lib/content/roadmap.js';
 	import ArrowRight from '@lucide/svelte/icons/arrow-right';
 	import type { RoadmapStageView } from '#lib/domain/roadmap/presentation.js';
+	import type { CompetencyUnderstanding } from '#lib/domain/roadmap/evidence.js';
 	import type { StepMark, StepStatus } from '#lib/domain/roadmap/types.js';
 	import RoadmapStepDetails from './RoadmapStepDetails.svelte';
 	import RoadmapSources from './RoadmapSources.svelte';
@@ -10,6 +11,7 @@
 		stage,
 		onOpen,
 		statusByStep = {},
+		understandingByCompetency,
 		marks = [],
 		currentStepId,
 		onMark,
@@ -18,6 +20,7 @@
 		stage: RoadmapStageView;
 		onOpen?: (stepId: string, trigger: HTMLButtonElement) => void;
 		statusByStep?: Record<string, StepStatus>;
+		understandingByCompetency?: Record<string, CompetencyUnderstanding>;
 		marks?: readonly StepMark[];
 		currentStepId?: string;
 		onMark?: (stepId: string, mark: StepMark['mark']) => void;
@@ -41,6 +44,9 @@
 	<ol class="space-y-5 border-s-2 ps-4 sm:ps-6" aria-label={`Langkah ${stage.title}`}>
 		{#each stage.steps as step, index (step.id)}
 			{@const status = statusByStep[step.id]}
+			{@const competence = step.primaryCompetencyIds.map((id) => understandingByCompetency?.[id]).filter((item) => item !== undefined)}
+			{@const tested = competence.filter((item) => item.hasPractice)}
+			{@const newExampleCount = competence.filter((item) => item.level === 3).length}
 			{@const existingMark = marks.find(
 				(item) => item.stepId === step.id && item.mark !== 'cleared'
 			)}
@@ -65,6 +71,18 @@
 									: '○ Belum dimulai'}
 						{#if currentStepId === step.id}
 							· Anda di sini{/if}
+					</p>
+				{/if}
+				{#if understandingByCompetency}
+					<p class="mt-2 text-base text-muted-foreground" data-step-understanding={step.id}>
+						{#if !tested.length}
+							Belum ada latihan dengan jawaban di langkah ini.
+						{:else if !tested.some((item) => item.hasAttempts)}
+							Bukti pemahaman: belum dicoba.
+						{:else}
+							Bukti pemahaman: {newExampleCount} dari {step.primaryCompetencyIds.length}
+							kemampuan bisa pada contoh baru.
+						{/if}
 					</p>
 				{/if}
 				<ul class="mt-4 space-y-3" aria-label={`Pelajaran ${step.title}`}>
@@ -126,7 +144,7 @@
 				{:else}
 					<details class="mt-4 border-t pt-3">
 						<summary class="min-h-11 cursor-pointer font-medium">Tujuan dan rujukan</summary>
-						<div class="pt-3"><RoadmapStepDetails {step} /></div>
+						<div class="pt-3"><RoadmapStepDetails {step} {understandingByCompetency} /></div>
 					</details>
 				{/if}
 			</li>
