@@ -140,15 +140,12 @@ test('RM-05 storage failure does not hide feedback or falsely claim saving', asy
 	await expect(practice.getByRole('status')).toContainText('Jawaban belum tersimpan');
 });
 
-test('RM-05 self-check remains an ordinary readable disclosure without JavaScript', async ({
-	page
-}) => {
-	await page.addInitScript(() => {
-		Object.defineProperty(window, 'indexedDB', {
-			get: () => { throw new DOMException('Blocked', 'SecurityError'); }
-		});
+test.describe('RM-05 no-JavaScript fallback', () => {
+	test.use({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+	test('keeps sourced exercise text and disclosures fully readable', async ({ page }) => {
+		await page.goto(second);
+		await page.locator('#soal-1').getByText('Lihat pembahasan').click();
+		await expect(page.locator('#soal-1')).toContainText('مَا هَذَا');
+		await expect(page.getByRole('button', { name: 'Jawaban saya cocok' })).toHaveCount(0);
 	});
-	await page.goto(second);
-	await page.locator('#soal-1').getByText('Lihat pembahasan').click();
-	await expect(page.locator('#soal-1')).toContainText('مَا هَذَا');
 });
