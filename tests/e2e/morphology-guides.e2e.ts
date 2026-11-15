@@ -13,7 +13,7 @@ test('F-16 matrix makes all 11 headings direct links to detail pages', async ({ 
 	await links.locator('[href$="/rujukan/bentuk/fail/"]').click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/fail\/$/);
 	await expect(page.getByRole('heading', { level: 1, name: 'Isim fā‘il' })).toBeVisible();
-	await expect(page).toContainText('كَاتِبٌ');
+	await expect(page.locator('body')).toContainText('كَاتِبٌ');
 	await expect(page.getByText(/bukan otomatis peran fā‘il/).first()).toBeVisible();
 	await page.getByRole('link', { name: 'Isim maf‘ūl' }).click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/maful\/$/);
@@ -52,7 +52,7 @@ test('F-16 separates three verb forms from prohibition, weak roots and voice', a
 	await expect(guide).toContainText('Manṣūb');
 	await guide.getByRole('link', { name: 'Pelajari bentuk ini lebih lanjut' }).nth(3).click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/nahy\/$/);
-	await expect(page).toContainText('bukan kategori kala fi‘il keempat');
+	await expect(page.locator('body')).toContainText('bukan kategori kala fi‘il keempat');
 });
 
 test.describe('F-16 full reference remains readable without JavaScript', () => {
