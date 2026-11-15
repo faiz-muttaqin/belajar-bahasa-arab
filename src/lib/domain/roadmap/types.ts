@@ -42,7 +42,11 @@ export type RoadmapCheckpoint = SourcedDraft & {
 	competencyIds: readonly string[];
 	status: 'planned' | 'available';
 	/** Static checkpoint route only when published questions exist. */
-	path?: 'belajar/checkpoint-1/' | 'belajar/checkpoint-2/' | 'belajar/checkpoint-3/';
+	path?:
+		| 'belajar/checkpoint-1/'
+		| 'belajar/checkpoint-2/'
+		| 'belajar/checkpoint-3/'
+		| 'belajar/checkpoint-4/';
 	/** Number of individually authored questions in the published checkpoint. */
 	questionCount?: number;
 };
