@@ -55,7 +55,7 @@
 		dir="rtl"
 		aria-label="Contoh kata Arab, arti per kata, dan peran nahwu"
 	>
-		{#each current.tokens as token, i (`${current.id}-${i}`)}
+		{#each current.tokens as token, i (`${example.id}-${i}`)}
 			<div
 				class="flex max-w-full min-w-0 flex-col items-center gap-1 rounded-xl border px-3 py-2 text-center {roleColors[
 					token.role
