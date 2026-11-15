@@ -146,6 +146,51 @@ test('RM-05 storage failure does not hide feedback or falsely claim saving', asy
 	await expect(practice.getByRole('status')).toContainText('Jawaban belum tersimpan');
 });
 
+test('RM-05 upgrades an existing v2 database without losing completion or marks', async ({ page }) => {
+	await page.goto('/belajar/');
+	await page.evaluate(async () => {
+		const databaseName = 'belajar-bahasa-arab-progres';
+		await new Promise<void>((resolve, reject) => {
+			const request = indexedDB.deleteDatabase(databaseName);
+			request.onsuccess = () => resolve();
+			request.onerror = () => reject(request.error);
+			request.onblocked = () => reject(new Error('Existing database is blocked'));
+		});
+		await new Promise<void>((resolve, reject) => {
+			const request = indexedDB.open(databaseName, 2);
+			request.onupgradeneeded = () => {
+				request.result.createObjectStore('lessons', { keyPath: 'lessonId' });
+				request.result.createObjectStore('marks', { keyPath: 'stepId' });
+			};
+			request.onerror = () => reject(request.error);
+			request.onsuccess = () => {
+				const db = request.result;
+				const tx = db.transaction(['lessons', 'marks'], 'readwrite');
+				tx.objectStore('lessons').put({
+					lessonId: 'lesson-u1-01', contentRevision: 1, completedRevision: 1, lastOpenedAt: 100
+				});
+				tx.objectStore('marks').put({ stepId: 'step-u2', mark: 'skipped', at: 101 });
+				tx.oncomplete = () => { db.close(); resolve(); };
+				tx.onabort = () => { db.close(); reject(tx.error); };
+			};
+		});
+	});
+	await page.reload();
+	await expect(page.locator('#step-u1 [data-step-status]')).toContainText('Selesai');
+	await expect(page.locator('#step-u2 [data-step-status]')).toContainText('Dilewati');
+	await expect(page.getByRole('link', { name: 'Ke posisi saya' })).toHaveAttribute('href', '#step-u3-01');
+	const snapshot = await page.evaluate(() => new Promise<{ version: number; stores: string[] }>((resolve, reject) => {
+		const request = indexedDB.open('belajar-bahasa-arab-progres');
+		request.onerror = () => reject(request.error);
+		request.onsuccess = () => {
+			const db = request.result;
+			resolve({ version: db.version, stores: [...db.objectStoreNames] });
+			db.close();
+		};
+	}));
+	expect(snapshot).toEqual({ version: 3, stores: ['attempts', 'lessons', 'marks'] });
+});
+
 test.describe('RM-05 no-JavaScript fallback', () => {
 	test.use({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
 	test('keeps sourced exercise text and disclosures fully readable', async ({ page }) => {
