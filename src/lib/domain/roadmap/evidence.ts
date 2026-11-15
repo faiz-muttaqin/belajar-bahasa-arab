@@ -62,15 +62,33 @@ export function isLearningAttempt(value: unknown): value is LearningAttempt {
 	);
 }
 
+/** JSON property order and competency order carry no meaning in an answer record. */
+export function sameLearningAttempt(a: LearningAttempt, b: LearningAttempt): boolean {
+	return (
+		a.id === b.id &&
+		a.itemId === b.itemId &&
+		a.lessonId === b.lessonId &&
+		a.contentRevision === b.contentRevision &&
+		a.skill === b.skill &&
+		a.outcome === b.outcome &&
+		a.assisted === b.assisted &&
+		a.selfAssessed === b.selfAssessed &&
+		a.seenWhileAuthoring === b.seenWhileAuthoring &&
+		a.at === b.at &&
+		a.competencyIds.length === b.competencyIds.length &&
+		a.competencyIds.every((id) => b.competencyIds.includes(id))
+	);
+}
+
 /** Identical attempt IDs are idempotent. Conflicting IDs must never silently replace evidence. */
 export function mergeAttempts(records: readonly LearningAttempt[]): LearningAttempt[] {
 	const byId = new Map<string, LearningAttempt>();
 	for (const record of records) {
 		if (!isLearningAttempt(record)) throw new Error('Catatan jawaban tidak valid.');
 		const current = byId.get(record.id);
-		if (current && JSON.stringify(current) !== JSON.stringify(record))
+		if (current && !sameLearningAttempt(current, record))
 			throw new Error('ID jawaban sama memiliki isi berbeda.');
-		byId.set(record.id, record);
+		byId.set(record.id, current ?? record);
 	}
 	return [...byId.values()].sort((a, b) => a.at - b.at || a.id.localeCompare(b.id));
 }
@@ -138,12 +156,18 @@ export function competencyUnderstanding(
 			continue;
 		}
 		let candidate: UnderstandingLevel = 1;
-		if (attempt.selfAssessed) {
-			candidate = 2;
-		} else if (!attempt.assisted && attempt.skill !== 'recall') {
-			candidate = item.kind === 'transfer' && firstAnswer && !attempt.seenWhileAuthoring ? 3 : 2;
+		if (!attempt.assisted && attempt.skill !== 'recall') {
+			candidate =
+				!attempt.selfAssessed &&
+				item.kind === 'transfer' &&
+				firstAnswer &&
+				!attempt.seenWhileAuthoring
+					? 3
+					: 2;
 		}
 		if (candidate >= level) {
+			// Recovery starts a fresh evidence cycle; a later wrong answer can lower it again.
+			if (candidate > level) penalized.clear();
 			level = candidate;
 			sourceItemId = attempt.itemId;
 			sourceIsSelfAssessed = attempt.selfAssessed;

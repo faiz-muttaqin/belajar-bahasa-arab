@@ -12,6 +12,7 @@ on:
       - 'src/routes/progres/**'
       - 'tests/e2e/learning-roadmap.e2e.ts'
       - 'tests/e2e/roadmap-progress.e2e.ts'
+      - 'tests/e2e/rm05-evidence.e2e.ts'
       - 'playwright.config.ts'
       - '.github/workflows/learning-roadmap-pr.yml'
 permissions:

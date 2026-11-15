@@ -1,5 +1,9 @@
 import type { StepMark } from '#lib/domain/roadmap/types.js';
-import { isLearningAttempt, type LearningAttempt } from '#lib/domain/roadmap/evidence.js';
+import {
+	isLearningAttempt,
+	sameLearningAttempt,
+	type LearningAttempt
+} from '#lib/domain/roadmap/evidence.js';
 import {
 	mergeLessonProgress,
 	mergeStepMark,
@@ -130,7 +134,7 @@ export async function saveAttempt(attempt: LearningAttempt): Promise<{ firstAnsw
 			const existing = store.get(attempt.id);
 			existing.onsuccess = () => {
 				if (existing.result) {
-					if (JSON.stringify(existing.result) !== JSON.stringify(attempt)) {
+					if (!sameLearningAttempt(existing.result, attempt)) {
 						tx.abort();
 					}
 				} else {
@@ -156,6 +160,13 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 				[lessonsStore, marksStore, attemptsStore],
 				'readwrite'
 			);
+			// Register before validation can abort synchronously inside the batch loop.
+			transaction.oncomplete = () => resolve();
+			transaction.onabort = () =>
+				reject(
+					transaction.error ?? new Error('Cadangan bentrok atau catatan jawaban tidak valid.')
+				);
+			transaction.onerror = () => reject(transaction.error);
 			const lessonStore = transaction.objectStore(lessonsStore);
 			const markStore = transaction.objectStore(marksStore);
 			const attemptStore = transaction.objectStore(attemptsStore);
@@ -189,7 +200,7 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 				}
 				const pending = pendingAttempts.get(attempt.id);
 				if (pending) {
-					if (JSON.stringify(pending) !== JSON.stringify(attempt)) {
+					if (!sameLearningAttempt(pending, attempt)) {
 						transaction.abort();
 						return;
 					}
@@ -199,12 +210,9 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 				const request = attemptStore.get(attempt.id);
 				request.onsuccess = () => {
 					if (!request.result) attemptStore.add(attempt);
-					else if (JSON.stringify(request.result) !== JSON.stringify(attempt)) transaction.abort();
+					else if (!sameLearningAttempt(request.result, attempt)) transaction.abort();
 				};
 			}
-			transaction.oncomplete = () => resolve();
-			transaction.onabort = () => reject(transaction.error);
-			transaction.onerror = () => reject(transaction.error);
 		});
 	} finally {
 		database.close();

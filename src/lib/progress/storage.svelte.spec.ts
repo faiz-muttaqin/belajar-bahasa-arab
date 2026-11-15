@@ -103,6 +103,52 @@ describe('RM-05 immutable attempt transactions', () => {
 		});
 	});
 
+	it('accepts the same answer with reordered JSON properties in saves and imports', async () => {
+		const reordered = Object.fromEntries(Object.entries(answer).reverse()) as LearningAttempt;
+		await saveAttempt(answer);
+		expect(await saveAttempt(reordered)).toEqual({ firstAnswer: false });
+		await importProgressBackup({
+			schemaVersion: 2,
+			lessons: [completed],
+			marks: [],
+			attempts: [reordered, answer]
+		});
+		expect(await readProgressSnapshot()).toEqual({
+			lessons: [completed],
+			marks: [],
+			attempts: [answer]
+		});
+	});
+
+	for (const invalid of [false, true]) {
+		it(`rejects a bad batch promptly and rolls back every store (invalid=${invalid})`, async () => {
+			const malformed = invalid
+				? { ...answer, at: 0 }
+				: { ...answer, outcome: 'incorrect' as const };
+			const importing = importProgressBackup({
+				schemaVersion: 2,
+				lessons: [completed],
+				marks: [{ stepId: 'step-fixture', mark: 'skipped', at: 10 }],
+				attempts: [answer, malformed]
+			});
+			// Also catch a pending promise, without leaving a leaked connection between tests.
+			let timer: ReturnType<typeof setTimeout>;
+			const timeout = new Promise<string>((resolve) => {
+				timer = setTimeout(() => resolve('pending'), 500);
+			});
+			const outcome = await Promise.race([
+				importing.then(
+					() => 'resolved',
+					() => 'rejected'
+				),
+				timeout
+			]);
+			clearTimeout(timer!);
+			expect(outcome).toBe('rejected');
+			expect(await readProgressSnapshot()).toEqual({ lessons: [], marks: [], attempts: [] });
+		});
+	}
+
 	it('aborts an entire import on conflicting immutable answer IDs', async () => {
 		await saveAttempt(answer);
 		const conflict: ProgressBackup = {

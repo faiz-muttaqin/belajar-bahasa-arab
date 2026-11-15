@@ -10,6 +10,7 @@
 	import { Button } from '#lib/components/ui/button/index.js';
 	import EmptyState from '#lib/components/layout/EmptyState.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
+	import MixedText from '#lib/components/learning/MixedText.svelte';
 	import { notifyProgress, useProgress } from '#lib/progress/browser.svelte.js';
 	import {
 		parseProgressBackup,
@@ -36,6 +37,7 @@
 			counts: summarizeEvidence(competencyIds, progress.attempts, data.evidenceItems),
 			details: competencyIds.map((id) => ({
 				id,
+				label: data.competencies.find((competency) => competency.id === id)!.canDo,
 				result: competencyUnderstanding(id, progress.attempts, data.evidenceItems)
 			}))
 		};
@@ -145,12 +147,8 @@
 				</p>
 				<ul class="space-y-2 text-base">
 					{#each understanding.details as item (item.id)}
-						<li>
-							{data.roadmap.stages
-								.flatMap((stage) => stage.steps)
-								.flatMap((step) =>
-									step.primaryCompetencyIds.includes(item.id) ? [step.title] : []
-								)[0]}
+						<li data-competency-level={item.id}>
+							<MixedText text={item.label} />
 							· {item.result.level > 0
 								? levelLabels[item.result.level]
 								: item.result.hasPractice

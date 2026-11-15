@@ -5,6 +5,7 @@ import {
 	isLearningAttempt,
 	mergeAttempts,
 	summarizeEvidence,
+	type EvidenceItem,
 	type LearningAttempt
 } from './evidence.js';
 
@@ -98,6 +99,32 @@ describe('RM-05 competence evidence', () => {
 		expect(result('CB-04', [self, disagree]).level).toBe(2);
 	});
 
+	it('caps valid recall and assisted self-assessments at recognizing the item', () => {
+		// TEST FIXTURE — no recall item is currently published.
+		const self = attempt('u2-key-question', 'correct', 1);
+		const recallItems: EvidenceItem[] = [
+			{ ...evidenceItems.find((item) => item.id === self.itemId)!, skill: 'recall' }
+		];
+		expect(
+			competencyUnderstanding('CB-04', [{ ...self, skill: 'recall' }], recallItems).level
+		).toBe(1);
+		expect(result('CB-04', [{ ...self, assisted: true }]).level).toBe(1);
+	});
+
+	it('allows a fresh wrong answer to lower evidence again after recovery', () => {
+		const records = [
+			attempt('u1-kitabi-transfer', 'correct', 1),
+			attempt('u1-rabbi-meaning', 'incorrect', 2),
+			attempt('u1-rabbi-meaning', 'correct', 3),
+			attempt('u1-kitabi-transfer', 'incorrect', 4),
+			attempt('u1-rabbi-meaning', 'correct', 5)
+		];
+		expect(result('CB-01', records).level).toBe(2);
+		expect(result('CB-01', [...records, attempt('u1-kitabi-transfer', 'incorrect', 6)]).level).toBe(
+			1
+		);
+	});
+
 	it('wrong on a different item lowers exactly one level; repeated wrong on same item does not', () => {
 		const records = [
 			attempt('u1-kitabi-transfer', 'correct', 1),
@@ -118,5 +145,12 @@ describe('RM-05 competence evidence', () => {
 		expect(() => mergeAttempts([a, { ...a, outcome: 'incorrect' }])).toThrow('isi berbeda');
 		expect(result('CB-01', [{ ...a, itemId: 'retired-item' }]).level).toBe(0);
 		expect(result('CB-01', [{ ...a, competencyIds: ['CB-10'] }]).level).toBe(0);
+	});
+
+	it('merges semantically identical answers regardless of JSON property or competency order', () => {
+		const a = attempt('u1-rabbi-meaning', 'correct', 1, { competencyIds: ['CB-01', 'CB-03'] });
+		const reordered = Object.fromEntries(Object.entries(a).reverse()) as LearningAttempt;
+		reordered.competencyIds = [...a.competencyIds].reverse();
+		expect(mergeAttempts([a, reordered])).toHaveLength(1);
 	});
 });

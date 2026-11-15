@@ -83,6 +83,16 @@ test('RM-05 U2 self-check is labelled self-reported, never transfer evidence', a
 	await expect(page.getByRole('dialog').locator('[data-competency-level="CB-04"]')).toContainText(
 		'Paham pada contoh · menurut penilaian Anda'
 	);
+	await page.getByRole('dialog').getByRole('button', { name: 'Tutup', exact: true }).click();
+	await page.locator('#step-u1').getByRole('button', { name: 'Saya sudah bisa, lewati' }).click();
+	await expect(page.locator('#step-u1 [data-step-status]')).toContainText('Dilewati');
+	await page.goto('/progres/');
+	await expect(page.locator('[data-competency-level="CB-03"]')).toContainText(
+		'Saya bisa mengenali makna kata untuk benda di sekitar. · Belum ada latihan dengan jawaban'
+	);
+	await expect(page.locator('[data-competency-level="CB-04"]')).toContainText(
+		'Saya bisa memahami pertanyaan tentang benda atau orang yang ditunjuk. · Paham pada contoh'
+	);
 });
 
 test('RM-05 exports and merges attempts across devices without duplicates', async ({
@@ -132,6 +142,12 @@ test('RM-05 exports and merges attempts across devices without duplicates', asyn
 
 test('RM-05 storage failure does not hide feedback or falsely claim saving', async ({ page }) => {
 	await page.addInitScript(() => {
+		Object.defineProperty(navigator.storage, 'persist', {
+			value: async () => {
+				sessionStorage.setItem('fixture-persist-called', 'yes');
+				return true;
+			}
+		});
 		Object.defineProperty(window, 'indexedDB', {
 			get: () => {
 				throw new DOMException('Blocked', 'SecurityError');
@@ -144,6 +160,68 @@ test('RM-05 storage failure does not hide feedback or falsely claim saving', asy
 	await practice.getByRole('button', { name: 'Cek jawaban' }).click();
 	await expect(practice.getByText('Tepat. Tuhanku.', { exact: true })).toBeVisible();
 	await expect(practice.getByRole('status')).toContainText('Jawaban belum tersimpan');
+	expect(await page.evaluate(() => sessionStorage.getItem('fixture-persist-called'))).toBeNull();
+});
+
+test('RM-05 requests persistence once after commit and updates an already open map', async ({
+	page,
+	context
+}) => {
+	await page.addInitScript(() => {
+		Object.defineProperty(navigator.storage, 'persist', {
+			value: async () => {
+				const committed = await new Promise<number>((resolve, reject) => {
+					const request = indexedDB.open('belajar-bahasa-arab-progres');
+					request.onerror = () => reject(request.error);
+					request.onsuccess = () => {
+						const db = request.result;
+						const tx = db.transaction('attempts', 'readonly');
+						const count = tx.objectStore('attempts').count();
+						tx.oncomplete = () => {
+							db.close();
+							resolve(count.result);
+						};
+						tx.onabort = () => {
+							db.close();
+							reject(tx.error);
+						};
+					};
+				});
+				const counts: number[] = JSON.parse(
+					sessionStorage.getItem('fixture-persist-counts') ?? '[]'
+				);
+				sessionStorage.setItem('fixture-persist-counts', JSON.stringify([...counts, committed]));
+				return true;
+			}
+		});
+	});
+	await page.goto('/belajar/');
+	await expect(page.locator('#step-u1 [data-step-understanding]')).toContainText('belum dicoba');
+	await page.goto(first);
+	const practice = page.getByRole('region', { name: 'Latihan makna' });
+	await expect(practice.getByRole('button', { name: 'Belum tahu' })).toBeVisible();
+	expect(await page.evaluate(() => sessionStorage.getItem('fixture-persist-counts'))).toBeNull();
+	const other = await context.newPage();
+	try {
+		await other.goto('/belajar/');
+		await expect(other.locator('#step-u1 [data-step-understanding]')).toContainText('belum dicoba');
+		await other.getByRole('button', { name: 'Rincian langkah: Kata inti shalat' }).click();
+		const level = other.getByRole('dialog').locator('[data-competency-level="CB-01"]');
+		await practice.getByRole('radio', { name: 'Tuhanku', exact: true }).check();
+		await practice.getByRole('button', { name: 'Cek jawaban' }).click();
+		await expect(level).toContainText('Paham pada contoh');
+		await expect
+			.poll(() => page.evaluate(() => sessionStorage.getItem('fixture-persist-counts')))
+			.toBe('[1]');
+		await practice.getByRole('button', { name: 'Coba contoh baru' }).click();
+		await practice.getByRole('radio', { name: 'Bukuku', exact: true }).check();
+		await practice.getByRole('button', { name: 'Cek jawaban' }).click();
+		await expect(practice.getByRole('status')).toContainText('Bisa pada contoh baru');
+		await expect(level).toContainText('Bisa pada contoh baru');
+		expect(await page.evaluate(() => sessionStorage.getItem('fixture-persist-counts'))).toBe('[1]');
+	} finally {
+		await other.close();
+	}
 });
 
 test('RM-05 upgrades an existing v2 database without losing completion or marks', async ({
