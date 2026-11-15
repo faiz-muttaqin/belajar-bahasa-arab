@@ -9,6 +9,15 @@
 import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import { sharafEntries } from '#lib/content/sharaf.js';
 import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
+import {
+  curatedFrameSurface,
+  lexemeFromVocabulary,
+  lexemeFromSharaf,
+  validateLexemeRecord,
+  type MorphFeatures,
+  type SurfaceEvidence,
+  type LexemeRecord
+} from './lexeme-forms.js';
 
 export type BuilderMode = 'nominal' | 'verbal';
 export type BuilderSlot = 'subject' | 'predicate' | 'verb' | 'agent' | 'object';
@@ -30,6 +39,9 @@ export type BuilderChoice = {
 	meaning: string;
 	source: 'msa' | 'harian' | 'sharaf';
 	bab?: string;
+	/** Morphology of the actual inserted word, not of its dictionary lemma. */
+	features: MorphFeatures;
+	evidence: SurfaceEvidence;
 };
 
 export type BuilderToken = {
@@ -110,6 +122,17 @@ function ensureNoun(id: string) {
 	return entry;
 }
 
+function inFrame(
+  lexeme: LexemeRecord,
+  id: string,
+  surface: string,
+  features: MorphFeatures,
+  reason: string
+) {
+  if (validateLexemeRecord(lexeme).length) throw new Error('Invalid lexeme contract: ' + id);
+  return curatedFrameSurface({ lexeme, id, surface, features, reason });
+}
+
 function adjectiveChoice(id: string, gender: Gender): BuilderChoice {
 	const entry = vocab(id);
 	if (entry.msa?.wordClass !== 'adjective' || !entry.msa.feminine) {
@@ -117,38 +140,46 @@ function adjectiveChoice(id: string, gender: Gender): BuilderChoice {
 	}
 	const gloss = adjectives.find((item) => item.id === id)?.gloss;
 	if (!gloss) throw new Error('Adjective outside safe pilot list: ' + id);
+	const arabic = gender === 'feminine' ? entry.msa.feminine : entry.arabic;
+	const form = inFrame(
+		lexemeFromVocabulary(entry), 'predicate', arabic,
+		{ case: 'raf', number: 'singular', definiteness: 'indefinite', gender },
+		'Khabar sifat mufrad berstatus marfū‘; bentuk feminin diambil dari field msa.feminine.'
+	);
 	return {
-		id,
-		arabic: gender === 'feminine' ? entry.msa.feminine : entry.arabic,
-		lemma: entry.arabic,
-		gloss,
-		meaning: entry.meaning,
-		source: 'msa'
+		id, arabic, lemma: entry.arabic, gloss, meaning: entry.meaning,
+		source: 'msa', features: form.features, evidence: form.evidence
 	};
 }
 
 function nounChoice(item: NominalNoun | VerbAgent | DirectObject): BuilderChoice {
 	const entry = ensureNoun(item.id);
+	const caseName = 'raf' in item ? 'raf' : 'nasb';
+	const arabic = 'raf' in item ? item.raf : item.nasb;
+	const form = inFrame(
+		lexemeFromVocabulary(entry), caseName === 'raf' ? 'subject-or-agent' : 'object',
+		arabic, { case: caseName, number: 'singular', definiteness: 'definite' },
+		'Bentuk isim tunggal ber-ال untuk slot kaidah tertentu. Harakat akhir dipilih manual dari bingkai pengajaran.'
+	);
 	return {
-		id: item.id,
-		arabic: 'raf' in item ? item.raf : item.nasb,
-		lemma: entry.arabic,
-		gloss: item.gloss,
-		meaning: entry.meaning,
-		source: entry.collection === 'harian' ? 'harian' : 'msa'
+		id: item.id, arabic, lemma: entry.arabic, gloss: item.gloss,
+		meaning: entry.meaning, source: entry.collection === 'harian' ? 'harian' : 'msa',
+		features: form.features, evidence: form.evidence
 	};
 }
 
 function verbChoice(item: VerbSelection): BuilderChoice {
 	const entry = sharaf(item.id);
+	const form = inFrame(
+		lexemeFromSharaf(entry), 'verb-past-third-masculine', entry.lemma,
+		{ aspect: 'perfect', voice: 'active', number: 'singular', person: 3, gender: 'masculine' },
+		'Fi‘il māḍī aktif orang ketiga maskulin tunggal dari lema yang telah disertakan dalam pilot.'
+	);
 	return {
-		id: item.id,
-		arabic: entry.lemma,
-		lemma: entry.lemma,
-		gloss: item.gloss,
-		meaning: entry.meaning,
-		source: 'sharaf',
-		bab: entry.bab ? 'Bab ' + entry.bab.number : undefined
+		id: item.id, arabic: entry.lemma, lemma: entry.lemma, gloss: item.gloss,
+		meaning: entry.meaning, source: 'sharaf',
+		bab: entry.bab ? 'Bab ' + entry.bab.number : undefined,
+		features: form.features, evidence: form.evidence
 	};
 }
 
