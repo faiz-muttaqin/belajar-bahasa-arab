@@ -1,6 +1,6 @@
 # Peta belajar: posisi dan tingkat pemahaman
 
-**15 November 2026 · RM-03 selesai (peta statis) · Berikutnya RM-04 (posisi dan penyimpanan)**
+**15 November 2026 · RM-03 selesai · RM-04 dalam PR (posisi dan penyimpanan)**
 
 Pelajar perlu melihat tiga hal dalam satu halaman: jalur yang akan dilalui, posisinya sekarang, dan seberapa jauh ia sudah paham. Rencana ini meminjam pola peta dari [roadmap.sh](https://roadmap.sh/) dan menyesuaikannya untuk orang dewasa Indonesia yang belajar lewat ponsel, tanpa akun, dengan data yang hanya tersimpan di browser.
 
@@ -197,7 +197,7 @@ Diputuskan berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-
 
 Belum diriset: metode Tamyiz, Al-Bayan, dan anotasi utawi-iku. Riset dari sumbernya sebelum RM-06 menulis soal "baca dan maknai", lalu masukkan ke daftar tinjauan menyeluruh.
 
-## 10. Lanjutkan dari sini: RM-04
+## 10. RM-04: posisi dan penyimpanan
 
 **Status (15 November 2026).** RM-01 sampai RM-03 selesai. Data ada di `src/lib/content/competencies.ts` dan `roadmap.ts`; kontrak, validator dan fungsi posisi berada di `src/lib/domain/roadmap/`. Validator dipanggil bersama `validateLessons` saat katalog dibaca untuk build. RM-03 memakai data ini untuk peta di `/belajar/`, dengan 27 langkah, tautan 29 pelajaran, tujuan, prasyarat, sumber, cabang dan titik cek direncanakan. Tidak ada dependency atau perubahan IndexedDB baru.
 
@@ -216,6 +216,14 @@ Belum diriset: metode Tamyiz, Al-Bayan, dan anotasi utawi-iku. Riset dari sumber
 `presentRoadmap` membentuk data tampilan dari ID pelajaran dan kompetensi; judul, slug serta menit selalu berasal dari katalog. `LearningRoadmap`, `RoadmapStage`, `RoadmapStepDetails` dan `RoadmapSources` merender daftar tersebut. Enam tahap utama tampil lebih dahulu, lalu Iqra opsional. Anchor `#dasar` dan `#menengah` tetap berlaku.
 
 Rincian dibaca melalui disclosure HTML tanpa JS, lalu menjadi dialog native setelah dukungan browser terdeteksi. Escape/Tutup mengembalikan fokus ke pemicu; tautan prasyarat menutup dialog dan menuju langkah terkait. Di ponsel, navigasi dan legenda berada dalam disclosure ringkas; di desktop, keduanya ada di kolom kanan. Semua bahan peta berlabel draf dan sumbernya dapat dibuka. RM-03 belum memberi status pribadi atau angka penguasaan.
+
+### Implementasi RM-04 (dalam PR)
+
+- IndexedDB versi 2 memperbarui database yang sama secara inkremental, mempertahankan seluruh catatan `lessons` dari v1, dan menambah store `marks` berdasarkan `stepId`.
+- Cadangan JSON schema 2 memuat `lessons`, `marks`, dan `attempts: []` yang masih kosong. Impor menerima schema 1; satu transaksi menggabungkan pelajaran serta tanda terbaru. Pilihan `cleared` merupakan catatan penghapusan agar cadangan lama tidak mengembalikan tanda yang sudah dihapus.
+- `/belajar/` dan `/progres/` menggunakan `stepStatus`, `currentPosition` dan `summarizeRoadmap` yang sama. Posisi tidak dianggap bukti paham. Penanganan status loading/unavailable tetap menjaga tautan dan HTML awal tanpa JavaScript.
+- Helper pemeriksaan persistensi disiapkan, tetapi `navigator.storage.persist()` **tidak otomatis diminta** sebelum jawaban nyata pertama pada RM-05.
+- Regresi unit dan browser ditambah untuk migrasi v1, impor schema 1/2, tanda lintas tab, penyimpanan gagal dan pemisahan posisi dari riwayat pelajaran. Seluruh status build dan CI wajib diperiksa sebelum merge.
 
 ### Tujuan dan batas RM-04
 
