@@ -101,7 +101,11 @@
 					{#each table.columns as column (column.key)}
 						<th scope="col" class="px-4 py-3 text-start text-sm font-semibold">
 							{#if table.id === 'tashrif-contoh' && isFormKey(column.key)}
-								<a href={resolve(`rujukan/bentuk/${column.key}/`)} class="inline-flex min-h-11 items-center text-primary underline underline-offset-4 hover:text-foreground">{column.label}</a>
+								<a
+									href={resolve(`rujukan/bentuk/${column.key}/`)}
+									class="inline-flex min-h-11 items-center text-primary underline underline-offset-4 hover:text-foreground"
+									>{column.label}</a
+								>
 							{:else}
 								{column.label}
 							{/if}

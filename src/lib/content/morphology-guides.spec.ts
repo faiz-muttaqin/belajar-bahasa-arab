@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { tashrifColumns } from '#lib/domain/sharaf/matrix.js';
-import { morphologyGuides, morphologyGuideList, validateMorphologyGuides } from './morphology-guides.js';
+import {
+	morphologyGuides,
+	morphologyGuideList,
+	validateMorphologyGuides
+} from './morphology-guides.js';
 import { wordClassGuides, validateWordClassGuides } from './word-class-guides.js';
 
 describe('F-16 source-linked morphology guides', () => {
@@ -27,11 +31,16 @@ describe('F-16 source-linked morphology guides', () => {
 			expect(guide.reviewStatus).toBe('draft');
 			expect(guide.sections.length).toBeGreaterThanOrEqual(3);
 			expect(guide.examples.length).toBeGreaterThanOrEqual(2);
-			expect(guide.examples.every((example) =>
-				example.arabic.length > 0 && example.gloss.length > 0 && example.observation.length > 0
-			)).toBe(true);
+			expect(
+				guide.examples.every(
+					(example) =>
+						example.arabic.length > 0 && example.gloss.length > 0 && example.observation.length > 0
+				)
+			).toBe(true);
 			expect(guide.watchOut.length).toBeGreaterThan(0);
-			expect(guide.references.every((reference) => reference.url.startsWith('https://'))).toBe(true);
+			expect(guide.references.every((reference) => reference.url.startsWith('https://'))).toBe(
+				true
+			);
 		}
 	});
 
@@ -47,10 +56,17 @@ describe('F-16 source-linked morphology guides', () => {
 	it('models isim and fiil with independent classification axes', () => {
 		expect(validateWordClassGuides()).toEqual([]);
 		expect(wordClassGuides.isim.axes.map((axis) => axis.id)).toEqual([
-			'isim-makna', 'isim-asal', 'isim-ketetapan', 'isim-perubahan'
+			'isim-makna',
+			'isim-asal',
+			'isim-ketetapan',
+			'isim-perubahan'
 		]);
 		expect(wordClassGuides.fiil.axes.map((axis) => axis.id)).toEqual([
-			'fiil-bentuk', 'fiil-bab', 'fiil-kesehatan-akar', 'fiil-objek', 'fiil-mood'
+			'fiil-bentuk',
+			'fiil-bab',
+			'fiil-kesehatan-akar',
+			'fiil-objek',
+			'fiil-mood'
 		]);
 	});
 

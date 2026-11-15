@@ -35,8 +35,15 @@
 	<ReferenceSubnav current="isim" />
 	<aside class="space-y-2 rounded-xl border bg-card p-5">
 		<h2 class="text-lg font-semibold">Isim bukan hanya nama benda</h2>
-		<p class="text-muted-foreground">Kata sifat, kata ganti dan turunan dari fi‘il juga dapat berupa isim. Klasifikasinya tidak hanya satu daftar: ada asal kata, makna, ma‘rifah/nakirah, gender, jumlah dan i‘rab.</p>
-		<a href={resolve('rujukan/istilah/isim/#peta-jenis')} class="inline-flex min-h-11 items-center font-semibold text-primary underline">Baca klasifikasi isim dan contoh berharakat</a>
+		<p class="text-muted-foreground">
+			Kata sifat, kata ganti dan turunan dari fi‘il juga dapat berupa isim. Klasifikasinya tidak
+			hanya satu daftar: ada asal kata, makna, ma‘rifah/nakirah, gender, jumlah dan i‘rab.
+		</p>
+		<a
+			href={resolve('rujukan/istilah/isim/#peta-jenis')}
+			class="inline-flex min-h-11 items-center font-semibold text-primary underline"
+			>Baca klasifikasi isim dan contoh berharakat</a
+		>
 	</aside>
 	<SectionTabs items={toc.map(([table, label]) => ({ id: table.id, label }))} />
 

@@ -22,12 +22,28 @@
 <div class="mt-8 space-y-10">
 	<ReferenceSubnav current="fiil" />
 	<section aria-labelledby="pendalaman-bentuk" class="space-y-3">
-		<h2 id="pendalaman-bentuk" class="text-xl font-semibold">Mulai dari konsep, lalu pelajari setiap bentuk</h2>
-		<p class="max-w-[75ch] text-muted-foreground">Fi‘il māḍī, muḍāri‘ dan amr adalah bentuk kerja. Maṣdar, isim fā‘il, isim maf‘ūl, zaman, makan dan alat justru termasuk kategori isim. Tabel ini mempertemukan semuanya dalam satu keluarga akar, bukan menyatakan semuanya fi‘il.</p>
-		<a href={resolve('rujukan/istilah/fiil/#peta-jenis')} class="inline-flex min-h-11 items-center font-semibold text-primary underline">Pelajari jenis-jenis fi‘il dan pengelompokannya</a>
+		<h2 id="pendalaman-bentuk" class="text-xl font-semibold">
+			Mulai dari konsep, lalu pelajari setiap bentuk
+		</h2>
+		<p class="max-w-[75ch] text-muted-foreground">
+			Fi‘il māḍī, muḍāri‘ dan amr adalah bentuk kerja. Maṣdar, isim fā‘il, isim maf‘ūl, zaman, makan
+			dan alat justru termasuk kategori isim. Tabel ini mempertemukan semuanya dalam satu keluarga
+			akar, bukan menyatakan semuanya fi‘il.
+		</p>
+		<a
+			href={resolve('rujukan/istilah/fiil/#peta-jenis')}
+			class="inline-flex min-h-11 items-center font-semibold text-primary underline"
+			>Pelajari jenis-jenis fi‘il dan pengelompokannya</a
+		>
 		<ul class="flex flex-wrap gap-2" aria-label="Panduan setiap kolom tashrif">
 			{#each morphologyGuideList as guide (guide.key)}
-				<li><a href={resolve(`rujukan/bentuk/${guide.key}/`)} class="inline-flex min-h-11 items-center rounded-full border px-3 py-2 text-sm font-medium hover:bg-secondary">{guide.title}</a></li>
+				<li>
+					<a
+						href={resolve(`rujukan/bentuk/${guide.key}/`)}
+						class="inline-flex min-h-11 items-center rounded-full border px-3 py-2 text-sm font-medium hover:bg-secondary"
+						>{guide.title}</a
+					>
+				</li>
 			{/each}
 		</ul>
 	</section>
@@ -51,8 +67,8 @@
 		<h2 id="tashrif-heading" class="text-2xl font-semibold">{tashrifIstilahi.title}</h2>
 		<p class="max-w-[85ch] text-pretty">
 			Kenali 22 kelompok wazan dari <ArabicText text="فَعَلَ" /> sampai pola ruba’i mazid. Klik bab untuk
-			memilih contoh kata nyata dari glosarium; klik judul kolom untuk pelajaran mendalam, atau klik salah satu bentuk untuk melihat kaidahnya. Semua
-			sebelas bentuk tetap ada dan dapat digeser horizontal.
+			memilih contoh kata nyata dari glosarium; klik judul kolom untuk pelajaran mendalam, atau klik salah
+			satu bentuk untuk melihat kaidahnya. Semua sebelas bentuk tetap ada dan dapat digeser horizontal.
 		</p>
 		<TransposedTashrif />
 		<details class="space-y-4 rounded-xl border p-4">

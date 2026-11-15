@@ -1,6 +1,18 @@
 import { expect, test } from '@playwright/test';
 
-const columns = ['madhi', 'mudhari', 'mashdar', 'mimi', 'fail', 'maful', 'amr', 'nahy', 'zaman', 'makan', 'alah'] as const;
+const columns = [
+	'madhi',
+	'mudhari',
+	'mashdar',
+	'mimi',
+	'fail',
+	'maful',
+	'amr',
+	'nahy',
+	'zaman',
+	'makan',
+	'alah'
+] as const;
 
 test('F-16 matrix makes all 11 headings direct links to detail pages', async ({ page }) => {
 	await page.goto('/rujukan/fiil/');
@@ -29,14 +41,24 @@ test('F-16 fallback reference-table headers also navigate to the same detail', a
 	await expect(page.getByText('كَتَبْتُ', { exact: true })).toBeVisible();
 });
 
-test('F-16 detailed isim classification covers distinct axes and links to forms', async ({ page }) => {
+test('F-16 detailed isim classification covers distinct axes and links to forms', async ({
+	page
+}) => {
 	await page.goto('/rujukan/istilah/isim/');
 	const guide = page.locator('[data-classification="isim"]');
 	await expect(guide).toBeVisible();
-	await expect(guide.getByRole('heading', { name: '1. Berdasarkan arti dan jenis rujukan' })).toBeVisible();
-	await expect(guide.getByRole('heading', { name: '2. Berdasarkan asal dan pembentukan kata' })).toBeVisible();
-	await expect(guide.getByRole('heading', { name: '3. Berdasarkan ketentuan rujukan' })).toBeVisible();
-	await expect(guide.getByRole('heading', { name: '4. Berdasarkan gender, jumlah dan i‘rab' })).toBeVisible();
+	await expect(
+		guide.getByRole('heading', { name: '1. Berdasarkan arti dan jenis rujukan' })
+	).toBeVisible();
+	await expect(
+		guide.getByRole('heading', { name: '2. Berdasarkan asal dan pembentukan kata' })
+	).toBeVisible();
+	await expect(
+		guide.getByRole('heading', { name: '3. Berdasarkan ketentuan rujukan' })
+	).toBeVisible();
+	await expect(
+		guide.getByRole('heading', { name: '4. Berdasarkan gender, jumlah dan i‘rab' })
+	).toBeVisible();
 	await expect(guide).toContainText('Isim maf‘ūl');
 	await guide.getByRole('link', { name: 'Pelajari bentuk ini lebih lanjut' }).first().click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/mashdar\/$/);
@@ -83,7 +105,11 @@ test.describe('F-16 full reference remains readable without JavaScript', () => {
 	test('renders classification axes without requiring dialogs', async ({ page }) => {
 		await page.goto('/rujukan/istilah/isim/');
 		await expect(page.locator('[data-classification="isim"]')).toContainText('Isim tafḍīl');
-		await expect(page.locator('[data-classification="isim"]')).toContainText('Ma‘rifah melalui iḍāfah');
-		expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
+		await expect(page.locator('[data-classification="isim"]')).toContainText(
+			'Ma‘rifah melalui iḍāfah'
+		);
+		expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+			375
+		);
 	});
 });
