@@ -157,6 +157,7 @@
 						<button
 							type="button"
 							class="flex min-h-16 w-full flex-wrap items-center justify-between gap-3 rounded-xl border bg-background px-4 py-3 text-start hover:border-primary"
+							data-evidence={item.evidence.kind}
 							onclick={() => choose(item.id)}
 							data-choice={item.id}
 						>
@@ -169,6 +170,21 @@
 								{item.bab ? ' · ' + item.bab : ''}
 							</span>
 						</button>
+						<div
+							class="mt-1 flex flex-wrap items-center justify-between gap-2 px-2 text-xs text-muted-foreground"
+						>
+							<span>Bentuk contoh · draft (belum ditashih guru bahasa Arab)</span>
+							{#if item.evidence.sourceUrls[0]}
+								<!-- eslint-disable svelte/no-navigation-without-resolve -- external lexical reference URL -->
+								<a
+									href={item.evidence.sourceUrls[0]}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="underline hover:text-foreground">Rujukan lema</a
+								>
+								<!-- eslint-enable svelte/no-navigation-without-resolve -->
+							{/if}
+						</div>
 					</li>
 				{:else}
 					<li class="rounded-lg border border-dashed px-4 py-5 text-sm text-muted-foreground">

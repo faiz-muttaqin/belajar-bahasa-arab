@@ -75,6 +75,25 @@ test('verbal modal selects source sharaf entry and automatically fixes incompati
 	await expect(modal).not.toBeVisible();
 });
 
+test('D-02 modal identifies per-word provenance while keeping current keyboard selection', async ({
+	page
+}) => {
+	await page.goto('/kaidah/praktik/');
+	const nominal = page.getByRole('region', { name: 'Contoh Arab interaktif nominal' });
+	await nominal.getByRole('button', { name: 'Ganti Mubtada · isim marfū‘' }).click();
+	const modal = page.getByRole('dialog', { name: 'Cari pengganti kata' });
+	const selected = modal.locator('[data-choice="msa-kitab"]');
+	await expect(selected).toHaveAttribute('data-evidence', 'curated-example');
+	await expect(modal).toContainText('Bentuk contoh · draft');
+	await expect(modal.getByRole('link', { name: 'Rujukan lema' }).first()).toHaveAttribute(
+		'href',
+		/^https:\/\//
+	);
+	await page.keyboard.press('Escape');
+	await expect(modal).not.toBeVisible();
+	await expect(nominal.locator('[data-translation]')).toHaveText('Buku itu baru.');
+});
+
 test.describe('G-06 prerender fallback with JavaScript disabled', () => {
 	test.use({ javaScriptEnabled: false, viewport: { width: 375, height: 812 } });
 
