@@ -75,6 +75,51 @@ test('verbal modal selects source sharaf entry and automatically fixes incompati
 	await expect(modal).not.toBeVisible();
 });
 
+test('D-04a explains excluded objects, keeps disabled options visible and prevents invalid selection', async ({ page }) => {
+	await page.goto('/kaidah/praktik/');
+	const verbal = page.getByRole('region', { name: 'Contoh Arab interaktif verbal' });
+	const modal = page.getByRole('dialog', { name: 'Cari pengganti kata' });
+
+	await verbal.getByRole('button', { name: 'Ganti Fi‘il · pilih kata kerja' }).click();
+	await modal.locator('[data-choice="fiil-fataha"]').click();
+	await expect(verbal.locator('[data-slot="object"]')).toContainText('الْبَابَ');
+
+	await verbal.getByRole('button', { name: 'Ganti Maf‘ūl bih · isim manṣūb' }).click();
+	const allowed = modal.locator('[data-choice="msa-kitab"]');
+	const blocked = modal.locator('[data-blocked="msa-risalah"]');
+	await expect(allowed).toBeEnabled();
+	await expect(blocked).toBeDisabled();
+	await expect(modal.locator('[data-reason="msa-kitab"]')).toContainText('Bisa digunakan');
+	await expect(modal.locator('[data-reason="msa-risalah"]')).toContainText('belum dikurasi');
+	await expect(modal.locator('[data-reason="msa-risalah"]')).toContainText(
+		'tidak berarti susunannya selalu salah'
+	);
+	await modal.getByRole('searchbox').fill('رسالة');
+	await expect(blocked).toBeVisible();
+	await expect(modal.locator('[data-choice]')).toHaveCount(0);
+	await expect(modal).toContainText('Tidak ada kata yang cocok');
+	await expect(verbal.locator('[data-slot="object"]')).toContainText('الْبَابَ');
+
+	await modal.getByRole('searchbox').fill('كتاب');
+	await allowed.click();
+	await expect(modal).not.toBeVisible();
+	await expect(verbal.locator('[data-slot="object"]')).toContainText('الْكِتَابَ');
+});
+
+test('D-04a tells learners that nominal predicate stays indefinite despite definite subject', async ({ page }) => {
+	await page.goto('/kaidah/praktik/');
+	const nominal = page.getByRole('region', { name: 'Contoh Arab interaktif nominal' });
+	const modal = page.getByRole('dialog', { name: 'Cari pengganti kata' });
+	await nominal.getByRole('button', { name: 'Ganti Mubtada · isim marfū‘' }).click();
+	await modal.locator('[data-choice="msa-madrasah"]').click();
+	await expect(nominal).toContainText('Bentuk sifat otomatis mengikuti gender isim');
+	await nominal.getByRole('button', { name: 'Ganti Khabar · sifat marfū‘' }).click();
+	await expect(modal.locator('[data-reason="msa-jadid"]')).toContainText('tetap nakirah');
+	await expect(modal.locator('[data-choice="msa-jadid"]')).toBeEnabled();
+	await page.keyboard.press('Escape');
+	await expect(nominal.locator('[data-slot="predicate"]')).toContainText('جَدِيدَةٌ');
+});
+
 test('D-02 modal identifies per-word provenance while keeping current keyboard selection', async ({
 	page
 }) => {
