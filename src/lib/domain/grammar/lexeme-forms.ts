@@ -198,9 +198,27 @@ export type CuratedFrameForm = {
 	features: MorphFeatures;
 	/** Explain why this form may be used in this particular teaching frame. */
 	reason: string;
-	/** Explicitly curated semantic collocations, never inferred from POS. */
-	exampleObjects?: readonly string[];
 };
+
+/**
+ * Explicit object compatibility in ONE curated teaching frame. This is not an
+ * assertion that the verb can never take other objects or is always transitive.
+ */
+export function withCuratedValency(
+	lexeme: LexemeRecord,
+	objectIds: readonly string[]
+): LexemeRecord {
+	if (lexeme.wordClass !== 'verb' || !objectIds.length || objectIds.some((id) => !id.trim()))
+		throw new Error('Invalid curated verb/object frame');
+	return {
+		...lexeme,
+		valency: {
+			kind: 'transitive',
+			exampleObjectIds: [...new Set(objectIds)],
+			evidence: 'curated-frame'
+		}
+	};
+}
 
 /**
  * Only curated template forms can become choices in a grammar slot.
