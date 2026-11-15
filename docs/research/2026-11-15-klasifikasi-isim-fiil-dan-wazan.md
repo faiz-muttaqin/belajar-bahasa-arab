@@ -23,7 +23,7 @@
 
 1. **11 halaman tashrif:** \`madhi\`, \`mudhari\`, \`mashdar\`, \`mimi\`, \`fail\`, \`maful\`, \`amr\`, \`nahy\`, \`zaman\`, \`makan\`, \`alah\`. Setiap halaman memiliki definisi, pertanyaan awal, pembeda kategori, dua/tiga contoh Arab berharakat, penjelasan minimal tiga subbab, daftar salah-kaprah, dan rujukan.
 2. **Dua artikel klasifikasi:** Isim memiliki empat sumbu (makna/kelas kata, asal bentuk, ketentuan referen, gender/jumlah/i‘rab); fi‘il lima sumbu (waktu/fungsi, mujarrad/mazīd, jenis akar, transitivitas dan pasif, mood).
-3. **Navigasi:** header transposed maupun tabel fallback mengarah ke halaman permanen dan berfungsi tanpa JavaScript. Halaman jenis kata, halaman istilah, dan rujukan fi‘il saling bertaut.
+3. **Navigasi:** header transposed dan **label baris bentuk pada tabel fallback** mengarah ke halaman permanen dan berfungsi tanpa JavaScript. Halaman jenis kata, halaman istilah, dan rujukan fi‘il saling bertaut.
 4. **Batas pengetahuan:** status semua materi tetap \`draft\`; contoh tidak otomatis diberikan label “verified” hanya karena unit test berhasil.
 
 ## Sumber yang benar-benar diperiksa (sebagai pijakan kaidah)
@@ -37,7 +37,7 @@
 
 ## Checklist penerimaan dan kelanjutan
 
-- [x] 11 header matriks dan header tabel fallback mempunyai tautan bermakna.
+- [x] 11 header matriks dan label baris bentuk pada tabel fallback mempunyai tautan bermakna.
 - [x] 11 halaman penjelasan memiliki rute yang dapat diprerender.
 - [x] Artikel isim/fi‘il menjelaskan perbedaan sumbu klasifikasi dan memiliki tautan bentuk terkait.
 - [x] Unit test memastikan 11 slug identik dengan matriks, contoh dan sumber ada, serta status tetap draf.
