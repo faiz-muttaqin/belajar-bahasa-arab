@@ -175,13 +175,14 @@
 						>
 							<span>Permukaan kata: draft · dipilih untuk contoh ini, belum ditashih</span>
 							{#if item.evidence.sourceUrls[0]}
-								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external lexical reference -->
+								<!-- eslint-disable svelte/no-navigation-without-resolve -- external lexical reference URL -->
 								<a
 									href={item.evidence.sourceUrls[0]}
 									target="_blank"
 									rel="noopener noreferrer"
 									class="underline hover:text-foreground">Rujukan lema</a
 								>
+								<!-- eslint-enable svelte/no-navigation-without-resolve -->
 							{/if}
 						</div>
 					</li>
