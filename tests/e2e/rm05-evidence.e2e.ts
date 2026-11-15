@@ -73,7 +73,8 @@ test('RM-05 explicit author-seen checkbox prevents level 3', async ({ page }) =>
 
 test('RM-05 U2 self-check is labelled self-reported, never transfer evidence', async ({ page }) => {
 	await page.goto(second);
-	await page.locator('#soal-1').getByText('Lihat pembahasan').click();
+	await page.locator('[data-self-assessment="u2-key-question"]').waitFor({ state: 'attached' });
+	await page.locator('#soal-1').getByText('Lihat pembahasan', { exact: true }).click();
 	const selfCheck = page.locator('[data-self-assessment="u2-key-question"]');
 	await expect(selfCheck).toBeVisible();
 	await selfCheck.getByRole('button', { name: 'Jawaban saya cocok' }).click();
@@ -290,7 +291,7 @@ test.describe('RM-05 no-JavaScript fallback', () => {
 	test.use({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
 	test('keeps sourced exercise text and disclosures fully readable', async ({ page }) => {
 		await page.goto(second);
-		await page.locator('#soal-1').getByText('Lihat pembahasan').click();
+		await page.locator('#soal-1').getByText('Lihat pembahasan', { exact: true }).click();
 		await expect(page.locator('#soal-1')).toContainText('مَا هَذَا');
 		await expect(page.getByRole('button', { name: 'Jawaban saya cocok' })).toHaveCount(0);
 	});
