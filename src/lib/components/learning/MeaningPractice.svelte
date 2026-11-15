@@ -2,7 +2,7 @@
 	import { onMount, tick } from 'svelte';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import type { MeaningPractice } from '#lib/content/lessons/types.js';
-	import type { EvidenceItem } from '#lib/domain/roadmap/evidence.js';
+	import type { EvidenceItem, EvidenceSkill } from '#lib/domain/roadmap/evidence.js';
 	import { recordLearningAnswer } from '#lib/progress/answers.js';
 	import ArabicText from './ArabicText.svelte';
 	import MixedText from './MixedText.svelte';
@@ -12,12 +12,14 @@
 		lessonId,
 		contentRevision,
 		competencyIds,
+		skill = 'meaning',
 		evidenceItems
 	}: {
 		questions: MeaningPractice;
 		lessonId: string;
 		contentRevision: number;
 		competencyIds: readonly string[];
+		skill?: EvidenceSkill;
 		evidenceItems: readonly EvidenceItem[];
 	} = $props();
 	const id = $props.id();
@@ -53,7 +55,7 @@
 					lessonId,
 					contentRevision,
 					competencyIds: [...competencyIds],
-					skill: 'meaning',
+					skill,
 					outcome: choice === undefined ? 'dont_know' : correct ? 'correct' : 'incorrect',
 					assisted: false,
 					selfAssessed: false,

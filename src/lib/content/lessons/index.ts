@@ -9,6 +9,7 @@ import type { ProgressLesson } from '#lib/progress/lessons.js';
 import { competencies } from '../competencies.js';
 import { collectEvidenceItems } from '../evidence.js';
 import { stage3CheckpointGroups, collectCheckpointEvidenceItems } from '../checkpoints.js';
+import { stage2CheckpointGroups } from '../checkpoints-stage2.js';
 import { roadmap, roadmapReferencePaths } from '../roadmap.js';
 import { validateRoadmap } from '#lib/domain/roadmap/validate.js';
 
@@ -23,7 +24,8 @@ const lessons = [
 ];
 validateLessons(lessons);
 validateRoadmap(roadmap, competencies, lessons, roadmapReferencePaths);
-for (const group of stage3CheckpointGroups) {
+const publishedCheckpointGroups = [...stage2CheckpointGroups, ...stage3CheckpointGroups];
+for (const group of publishedCheckpointGroups) {
 	const lesson = lessons.find((item) => item.id === group.lessonId);
 	if (
 		!lesson ||
@@ -34,7 +36,7 @@ for (const group of stage3CheckpointGroups) {
 }
 export const evidenceItems = [
 	...collectEvidenceItems(lessons),
-	...collectCheckpointEvidenceItems(stage3CheckpointGroups)
+	...collectCheckpointEvidenceItems(publishedCheckpointGroups)
 ];
 if (new Set(evidenceItems.map((item) => item.id)).size !== evidenceItems.length)
 	throw new Error('Duplicate evidence item across lessons and checkpoints');

@@ -44,12 +44,15 @@ describe('RM-02 published lesson mapping', () => {
 				.every((branch) => branch.links.length === 0)
 		).toBe(true);
 		expect(roadmap.stages.filter((stage) => stage.checkpoint.status === 'available')).toHaveLength(
-			1
+			2
 		);
+		expect(roadmap.stages[2]!.checkpoint.path).toBe('belajar/checkpoint-2/');
+		expect(roadmap.stages[2]!.checkpoint.questionCount).toBe(40);
 		expect(roadmap.stages[3]!.checkpoint.path).toBe('belajar/checkpoint-3/');
+		expect(roadmap.stages[3]!.checkpoint.questionCount).toBe(24);
 		expect(
 			roadmap.stages
-				.filter((stage) => stage.number !== 3)
+				.filter((stage) => ![2, 3].includes(stage.number))
 				.every((stage) => stage.checkpoint.status === 'planned')
 		).toBe(true);
 		for (const path of roadmapReferencePaths)

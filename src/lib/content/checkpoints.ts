@@ -1,5 +1,5 @@
 import type { MeaningPractice, MeaningQuestion } from './lessons/types.js';
-import type { EvidenceItem } from '#lib/domain/roadmap/evidence.js';
+import type { EvidenceItem, EvidenceSkill } from '#lib/domain/roadmap/evidence.js';
 
 export type CheckpointGroup = {
 	id: string;
@@ -8,6 +8,8 @@ export type CheckpointGroup = {
 	/** Original lesson record provides a stable, published evidence owner. */
 	lessonId: string;
 	contentRevision: number;
+	/** Explicit skill preserves the separation between meaning and sentence structure. */
+	skill?: EvidenceSkill;
 	questions: MeaningPractice;
 };
 
@@ -322,7 +324,7 @@ export function collectCheckpointEvidenceItems(groups: readonly CheckpointGroup[
 				lessonId: group.lessonId,
 				competencyIds: [group.competencyId],
 				kind: 'transfer',
-				skill: 'meaning'
+				skill: group.skill ?? 'meaning'
 			});
 		}
 	}

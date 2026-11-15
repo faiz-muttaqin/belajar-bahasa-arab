@@ -254,6 +254,12 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 
 **Sesudah RM-05:** RM-06 memperluas titik cek baru yang bersumber. Audit VP-01 pada [rencana visual](./visual-pembelajaran.md) dapat menyiapkan penjelajah peran kata; grafik posisi memakai RM-04 dan grafik bukti memakai RM-05. Warna disertai label, animasi dikendalikan pelajar dan tetap menghormati reduced motion.
 
+### Ekspansi RM-06: Tahap 2 (16 November 2026)
+
+- Stacked PR di atas pilot RM-06 Tahap 3 menambahkan **40 soal transfer baru** dalam dua kelompok, masing-masing 20 butir: CB-04 (pertanyaan benda/orang) dan CB-06 (frasa vs kalimat lengkap). Butir berasal dari penyusunan mandiri berdasarkan Madinah Arabic pelajaran 2 bagian 1 dan pelajaran 58 bagian 1, dengan sumber masing-masing tercatat di data. Semua tetap `draft` untuk ditinjau.
+- Soal struktur mencatat `skill: structure`, bukan `meaning`; bukti tetap disimpan di IndexedDB yang sudah ada. Tahap 2 tersedia di `/belajar/checkpoint-2/`, dan tautan peta menggunakan jumlah soal yang benar per tahap.
+- Bank tahapan lain tetap `planned` hingga soal bersumbernya tersedia. Tidak mengubah aturan ambang tingkat pemahaman atau jadwal ulangan.
+
 ### Pilot RM-06: Tahap 3 (16 November 2026)
 
 - Titik cek Tahap 3 aktif di `/belajar/checkpoint-3/`, dengan **24 butir**: masing-masing delapan untuk CB-07 (rujukan kata ganti/lokasi), CB-09 (idhafah), dan CB-12 (akhiran pemilik). Seluruh teks merupakan susunan orisinal yang diadaptasikan sebagai pola latihan; sumber dicatat per soal dan masih berstatus `draft`.

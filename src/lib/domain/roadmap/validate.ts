@@ -105,13 +105,25 @@ export function validateRoadmap(
 		references(stage.checkpoint.competencyIds, stage.checkpoint.id);
 		if ('links' in stage.checkpoint)
 			issues.push(`Checkpoint has unsupported links: ${stage.checkpoint.id}`);
-		if (stage.checkpoint.status === 'planned' && stage.checkpoint.path)
-			issues.push(`Planned checkpoint must not link: ${stage.checkpoint.id}`);
+		if (
+			stage.checkpoint.status === 'planned' &&
+			(stage.checkpoint.path || stage.checkpoint.questionCount)
+		)
+			issues.push(`Planned checkpoint must not link or claim questions: ${stage.checkpoint.id}`);
+		const published = {
+			'checkpoint-2': { path: 'belajar/checkpoint-2/', count: 40 },
+			'checkpoint-3': { path: 'belajar/checkpoint-3/', count: 24 }
+		} as const;
 		if (
 			stage.checkpoint.status === 'available' &&
-			(stage.checkpoint.id !== 'checkpoint-3' || stage.checkpoint.path !== 'belajar/checkpoint-3/')
+			!(
+				stage.checkpoint.id in published &&
+				published[stage.checkpoint.id as keyof typeof published].path === stage.checkpoint.path &&
+				published[stage.checkpoint.id as keyof typeof published].count ===
+					stage.checkpoint.questionCount
+			)
 		)
-			issues.push(`Unknown published checkpoint route: ${stage.checkpoint.id}`);
+			issues.push(`Unknown published checkpoint route or count: ${stage.checkpoint.id}`);
 	}
 	for (const branch of roadmap.branches) {
 		identity(branch.id, 'branch');
