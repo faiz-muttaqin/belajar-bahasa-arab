@@ -6,12 +6,12 @@
 
 Bentuk isim berkasus benar belum tentu dapat disisipkan ke frasa yang lebih panjang tanpa memeriksa **hubungan antar-slot**. PR ini memperkenalkan modul **phrase-relation-constraints.ts**, melengkapi validator D-04a. Tidak ada aturan yang merangkai huruf atau menurunkan harakat secara otomatis.
 
-| API | Bukti yang diwajibkan | Fallback |
-| --- | --- | --- |
-| **evaluateIdafa** | Muḍāf dan muḍāf ilaih memiliki bentuk sumber; kasus muḍāf ditetapkan oleh konteks; muḍāf ilaih jarr; status construct dan ketiadaan al-/tanwin dinyatakan eksplisit; ejaan pasangan tercatat persis dalam fixture | Tolak dan jelaskan metadata atau pasangan belum dikurasi |
-| **evaluatePrepositionalPhrase** | Huruf jar dari pilot فِي/عَلَى, komplemen dengan kasus jarr, dan pasangan bentuk tercatat per contoh | Tidak mengubah kasus atau memasangkan awalan secara otomatis |
-| **resolveAttachedPossessive** | Host ID msa-kitab, suffix ID, dan **bentuk kata utuh** yang sama persis dengan tabel attachedPronouns | Tolak hasil penyambungan string yang tidak tercatat; tolak kasus yang belum dianotasi |
-| **evaluateRelativeClause** | Antecedent ma‘rifah mufrad, bentuk الَّذِي/الَّتِي sesuai gender, seluruh token ṣilah dan jenis dhamir kembali cocok dengan satu contoh G-05 | Tolak pergantian satu token yang merusak hubungan kalimat |
+| API                             | Bukti yang diwajibkan                                                                                                                                                                                             | Fallback                                                                              |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **evaluateIdafa**               | Muḍāf dan muḍāf ilaih memiliki bentuk sumber; kasus muḍāf ditetapkan oleh konteks; muḍāf ilaih jarr; status construct dan ketiadaan al-/tanwin dinyatakan eksplisit; ejaan pasangan tercatat persis dalam fixture | Tolak dan jelaskan metadata atau pasangan belum dikurasi                              |
+| **evaluatePrepositionalPhrase** | Huruf jar dari pilot فِي/عَلَى, komplemen dengan kasus jarr, dan pasangan bentuk tercatat per contoh                                                                                                                 | Tidak mengubah kasus atau memasangkan awalan secara otomatis                          |
+| **resolveAttachedPossessive**   | Host ID msa-kitab, suffix ID, dan **bentuk kata utuh** yang sama persis dengan tabel attachedPronouns                                                                                                             | Tolak hasil penyambungan string yang tidak tercatat; tolak kasus yang belum dianotasi |
+| **evaluateRelativeClause**      | Antecedent ma‘rifah mufrad, bentuk الَّذِي/الَّتِي sesuai gender, seluruh token ṣilah dan jenis dhamir kembali cocok dengan satu contoh G-05                                                                            | Tolak pergantian satu token yang merusak hubungan kalimat                             |
 
 ## Contoh yang diikat ke konten aktual
 
@@ -23,7 +23,7 @@ Bentuk isim berkasus benar belum tentu dapat disisipkan ke frasa yang lebih panj
 
 1. Muḍāf **tidak selalu marfū‘**. Pilihan kasusnya bergantung pada fungsi frasa dalam susunan yang lebih besar.
 2. Iḍāfah **tidak selalu bermakna kepemilikan**; pasangan tidak terdaftar berarti belum dikurasi untuk latihan, bukan salah secara universal.
-3. Dhamir ـهُ dalam قَرَأْتُهُ memiliki fungsi penghubung balik (*‘ā’id*) yang tidak bisa disamakan begitu saja dengan posesif pada كِتَابُهُ.
+3. Dhamir ـهُ dalam قَرَأْتُهُ memiliki fungsi penghubung balik (_‘ā’id_) yang tidak bisa disamakan begitu saja dengan posesif pada كِتَابُهُ.
 4. Saat kata kepala berubah, isim mawṣūl dan ṣilah belum bisa diubah dengan satu operasi; PR ini memblokir pergantian parsial yang tidak terbukti.
 5. Evaluator memerlukan metadata morfologi eksplisit dan sumber setiap token. Pengujian unit memeriksa kontrak dan fixture, **bukan** membuktikan keabsahan semua contoh bahasa Arab.
 

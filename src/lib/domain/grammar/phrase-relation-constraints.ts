@@ -118,7 +118,8 @@ export function evaluateIdafa(input: {
 	if (!matchingPair(input.allowedPairs, input.head, input.dependent)) {
 		reasons.push({
 			code: 'uncurated-relation',
-			message: 'Pasangan muḍāf–muḍāf ilaih belum dikurasi untuk contoh ini, bukan berarti selalu salah.'
+			message:
+				'Pasangan muḍāf–muḍāf ilaih belum dikurasi untuk contoh ini, bukan berarti selalu salah.'
 		});
 	}
 	return decision(
@@ -145,7 +146,8 @@ export function evaluatePrepositionalPhrase(input: {
 	if (!['فِي', 'عَلَى'].includes(input.preposition.text)) {
 		reasons.push({
 			code: 'unsupported-particle',
-			message: 'Huruf jar ini belum dipetakan dalam pilot; tidak akan disisipkan atau digabung otomatis.'
+			message:
+				'Huruf jar ini belum dipetakan dalam pilot; tidak akan disisipkan atau digabung otomatis.'
 		});
 	}
 	if (
@@ -191,16 +193,17 @@ export function resolveAttachedPossessive(input: {
 	if (input.hostId !== 'msa-kitab') {
 		reasons.push({
 			code: 'unattested-clitic',
-			message: 'Akhiran ini baru dicatat sebagai bentuk utuh pada كِتَاب; jangan disambung ke lema lain.'
+			message:
+				'Akhiran ini baru dicatat sebagai bentuk utuh pada كِتَاب; jangan disambung ke lema lain.'
 		});
 	}
 	const row = attachedPronouns.rows.find((item) => item.id === input.suffixId);
 	const matched = Boolean(
 		row &&
-			row.cells.example === input.surface &&
-			row.cells.arabic?.trim() &&
-			attachedPronouns.sources.length &&
-			attachedPronouns.sources.every((url) => url.startsWith('https://'))
+		row.cells.example === input.surface &&
+		row.cells.arabic?.trim() &&
+		attachedPronouns.sources.length &&
+		attachedPronouns.sources.every((url) => url.startsWith('https://'))
 	);
 	if (!matched) {
 		reasons.push({
@@ -211,7 +214,8 @@ export function resolveAttachedPossessive(input: {
 	if (input.requiredCase) {
 		reasons.push({
 			code: 'unsupported-clitic-context',
-			message: 'Tabel dhamir sambung belum memberi metadata i‘rab untuk bentuk ini; tidak boleh ditebak.'
+			message:
+				'Tabel dhamir sambung belum memberi metadata i‘rab untuk bentuk ini; tidak boleh ditebak.'
 		});
 	}
 	const assessment = decision(
@@ -258,9 +262,7 @@ export function evaluateRelativeClause(input: {
 				required: {
 					number: 'singular',
 					definiteness: 'definite',
-					...(input.antecedent.features.gender
-						? { gender: input.antecedent.features.gender }
-						: {})
+					...(input.antecedent.features.gender ? { gender: input.antecedent.features.gender } : {})
 				},
 				explanation: 'Isim mawṣūl mengikuti gender dan jumlah pada contoh ini.'
 			},
@@ -278,9 +280,11 @@ export function evaluateRelativeClause(input: {
 	const example = rule?.examples.find((item) => item.id === input.exampleId);
 	const main = example?.spans.find((span) => span.id === 'topic')?.tokens[0]?.arabic;
 	const connector = example?.spans.find((span) => span.id === 'relative')?.tokens[0]?.arabic;
-	const sila = example?.spans.find((span) => span.id === 'sila')?.tokens.map((token) => token.arabic);
-	const expectedReturn = input.exampleId === 'relative-object-return'
-		? 'explicit-object-suffix' : 'implicit-subject';
+	const sila = example?.spans
+		.find((span) => span.id === 'sila')
+		?.tokens.map((token) => token.arabic);
+	const expectedReturn =
+		input.exampleId === 'relative-object-return' ? 'explicit-object-suffix' : 'implicit-subject';
 	if (
 		!rule?.sources.length ||
 		!example ||
@@ -299,7 +303,8 @@ export function evaluateRelativeClause(input: {
 	if (input.returnLink !== expectedReturn) {
 		reasons.push({
 			code: 'unverified-relative-return',
-			message: 'Hubungan subjek tersirat atau dhamir ‘ā’id yang kembali ke isim utama belum dibuktikan.'
+			message:
+				'Hubungan subjek tersirat atau dhamir ‘ā’id yang kembali ke isim utama belum dibuktikan.'
 		});
 	}
 	return decision(

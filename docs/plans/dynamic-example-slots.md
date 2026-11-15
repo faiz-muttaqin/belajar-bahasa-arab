@@ -30,7 +30,7 @@ Pada pilot G-06, pilihan yang belum terkurasi tetap bisa ditemukan dan dibaca da
 
 ## Progres D-04b — hubungan frasa (branch terpisah dari PR #33)
 
-Validator baru untuk hubungan **iḍāfah**, huruf **jar–majrūr**, dhamir posesif sambung, dan kaitan **isim mawṣūl–ṣilah** menjaga agar pergantian sebagian token tidak menghasilkan rangkaian Arab yang belum dikurasi. Bentuk dan peran dikaitkan ke contoh G-03/G-05 serta referensi kata ganti yang sudah ada di proyek; **tidak** ada pembentuk sufiks atau parser umum. Kasus muḍāf mengikuti konteks, sedangkan muḍāf ilaih tetap jarr; token sambung seperti قَرَأْتُهُ harus utuh. Semua permukaan tetap *draft* untuk audit pengajar. Baca [audit D-04b](../data/dynamic-example-phrase-relations-audit.md).
+Validator baru untuk hubungan **iḍāfah**, huruf **jar–majrūr**, dhamir posesif sambung, dan kaitan **isim mawṣūl–ṣilah** menjaga agar pergantian sebagian token tidak menghasilkan rangkaian Arab yang belum dikurasi. Bentuk dan peran dikaitkan ke contoh G-03/G-05 serta referensi kata ganti yang sudah ada di proyek; **tidak** ada pembentuk sufiks atau parser umum. Kasus muḍāf mengikuti konteks, sedangkan muḍāf ilaih tetap jarr; token sambung seperti قَرَأْتُهُ harus utuh. Semua permukaan tetap _draft_ untuk audit pengajar. Baca [audit D-04b](../data/dynamic-example-phrase-relations-audit.md).
 
 Bagian ini merupakan **fondasi domain**, belum mengaktifkan modal pengganti di seluruh G-01–G-05. Tahap sesudahnya adalah **D-05a** (rollout contoh frasa yang sudah punya kontrak), lalu D-05b/c dan D-06.
 
