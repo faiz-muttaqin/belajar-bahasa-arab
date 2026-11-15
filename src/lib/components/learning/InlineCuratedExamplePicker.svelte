@@ -24,7 +24,7 @@
 	let hydrated = $state(false);
 	let query = $state('');
 	let pickerDialog: HTMLDialogElement;
-	let trigger: HTMLButtonElement;
+	let trigger = $state<HTMLButtonElement | undefined>(undefined);
 	let results = $derived(searchInlineExampleChoices(source, originalId, tokenIndex, query));
 
 	onMount(() => {
