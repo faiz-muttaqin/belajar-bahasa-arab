@@ -12,12 +12,12 @@ import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
 import {
 	evaluateAdjectiveAgreement,
 	evaluateSlotCandidate,
-	type ConstraintReason
-} from './grammar-constraints.js';
+	} from './grammar-constraints.js';
 import {
 	evaluateIdafa,
 	evaluatePrepositionalPhrase,
-	type RelationWord
+	type RelationWord,
+	type RelationReason
 } from './phrase-relation-constraints.js';
 import type { MorphFeatures, WordClass } from './lexeme-forms.js';
 
@@ -216,7 +216,7 @@ export type InlineExampleAssessment = {
 	glosses: readonly string[];
 	translation: string;
 	allowed: boolean;
-	reasons: readonly ConstraintReason[];
+	reasons: readonly RelationReason[];
 	sourceUrls: readonly string[];
 	/** Relation-specific summary, not approval of a new synthetic phrase. */
 	explanation: string;
@@ -226,7 +226,7 @@ export type InlineExampleAssessment = {
 export function assessInlineFrame(frame: InlineFrameSpec): InlineExampleAssessment {
 	const { example, sources } = sourced(frame);
 	const tokens = example?.tokens ?? [];
-	const reasons: ConstraintReason[] = [];
+	const reasons: RelationReason[] = [];
 	if (
 		!example || !sources.length || !sources.every((url) => url.startsWith('https://')) ||
 		frame.arabic.length !== tokens.length ||
