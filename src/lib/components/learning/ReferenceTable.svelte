@@ -1,5 +1,7 @@
 <script lang="ts">
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
+	import { resolve } from '$app/paths';
+	import { tashrifColumns, type TashrifColumnKey } from '#lib/domain/sharaf/matrix.js';
 	import { tick } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import type { ReferenceTableData } from '#lib/domain/reference/table.js';
@@ -21,6 +23,10 @@
 
 	let hideable = $derived(table.columns.filter((c) => c.hideable));
 	let hiddenLabel = $derived(table.columns.find((c) => c.key === hiddenKey)?.label ?? '');
+
+	function isFormKey(key: string): key is TashrifColumnKey {
+		return tashrifColumns.some((column) => column.key === key);
+	}
 
 	function chooseHidden(key: string) {
 		hiddenKey = key;
@@ -93,7 +99,9 @@
 				<tr class="border-b">
 					<th scope="col" class="w-12 py-3 ps-2"><span class="sr-only">Penjelasan</span></th>
 					{#each table.columns as column (column.key)}
-						<th scope="col" class="px-4 py-3 text-start text-sm font-semibold">{column.label}</th>
+						<th scope="col" class="px-4 py-3 text-start text-sm font-semibold">
+							{column.label}
+						</th>
 					{/each}
 				</tr>
 			</thead>
@@ -134,6 +142,13 @@
 									>
 										Buka
 									</button>
+								{:else if table.id === 'tashrif-contoh' && column.key === 'form' && isFormKey(row.id)}
+									<a
+										id="{uid}-cell-{cellId}"
+										href={resolve(`rujukan/bentuk/${row.id}/`)}
+										class="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4 hover:text-foreground"
+										>{value}</a
+									>
 								{:else if column.lang === 'ar'}
 									<span
 										id="{uid}-cell-{cellId}"

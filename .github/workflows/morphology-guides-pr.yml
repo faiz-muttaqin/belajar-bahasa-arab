@@ -1,0 +1,27 @@
+name: Verify morphology guide and taxonomy pages
+on:
+  pull_request:
+    paths:
+      - 'src/lib/content/morphology-guides*'
+      - 'src/lib/content/word-class-guides.ts'
+      - 'src/lib/components/learning/TransposedTashrif.svelte'
+      - 'src/lib/components/learning/ReferenceTable.svelte'
+      - 'src/routes/rujukan/**'
+      - 'tests/e2e/morphology-guides.e2e.ts'
+      - '.github/workflows/morphology-guides-pr.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - run: bun run browsers:install
+      - run: bun run verify
