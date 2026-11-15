@@ -80,7 +80,8 @@ test('D-05a G-03 updates the complete jar–idafa frame without guessing a decle
 }) => {
 	await page.goto('/kaidah/frasa/');
 	const jar = page.locator('figure[data-inline-example="preposition-house"]');
-	await jar.getByRole('button', { name: /Ganti Huruf jar/ }).click();
+	await expect(jar.getByRole('button', { name: /Ganti Huruf jar/ })).toHaveCount(0);
+	await jar.getByRole('button', { name: /Ganti Isim majrūr/ }).click();
 	const modal = page.getByRole('dialog', { name: 'Pilih variasi contoh' });
 	await modal.locator('[data-inline-choice="preposition-idafah"]').click();
 	await expect(jar.locator('[data-irab="jarr"]')).toHaveCount(2);
