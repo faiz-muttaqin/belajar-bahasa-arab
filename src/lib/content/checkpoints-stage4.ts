@@ -70,11 +70,11 @@ const activePassiveItems: readonly Item[] = [
 	},
 	{
 		id: 'pelajaran-ditulis',
-		arabic: 'كُتِبَ الدَّرْسُ.',
+		arabic: 'كُتِبَ الْجَوَابُ.',
 		prompt: 'Apa inti informasi kalimat?',
-		choices: ['Pelajaran ditulis', 'Siswa menulis pelajaran', 'Guru membaca'],
+		choices: ['Jawaban ditulis', 'Siswa menulis pelajaran', 'Guru membaca']
 		correct: 0,
-		reason: 'كُتِبَ bermakna ditulis; penulis tidak disebut.'
+		reason: 'كُتِبَ الْجَوَابُ berarti jawaban ditulis; penulis tidak disebut.'
 	},
 	{
 		id: 'anak-memecahkan',
