@@ -8,9 +8,7 @@ describe('RM-06 checkpoint Tahap 4', () => {
 		expect(stage4CheckpointGroups.map((group) => group.questions.length)).toEqual([20, 20]);
 		const questions = stage4CheckpointGroups.flatMap((group) => group.questions);
 		expect(new Set(questions.map((question) => question.id)).size).toBe(40);
-		expect(new Set(questions.map((question) => question.arabic.normalize('NFC'))).size).toBe(
-			40
-		);
+		expect(new Set(questions.map((question) => question.arabic.normalize('NFC'))).size).toBe(40);
 		for (const question of questions) {
 			expect(question.kind).toBe('transfer');
 			expect(question.choices).toHaveLength(3);

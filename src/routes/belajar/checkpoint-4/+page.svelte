@@ -23,13 +23,13 @@
 		<p class="font-medium text-primary">Titik cek · Tahap 4</p>
 		<h1 class="text-3xl font-bold">Siapa melakukan apa dan kapan?</h1>
 		<p class="max-w-[65ch] text-muted-foreground">
-			Latih pemahaman pelaku dan sasaran tindakan, perbedaan kalimat aktif dan pasif,
-			serta negasi kejadian lampau, nonlampau, dan masa depan. Ada 40 soal berbeda
-			dari contoh pelajaran; setiap soal memiliki pembahasan dan sumber.
+			Latih pemahaman pelaku dan sasaran tindakan, perbedaan kalimat aktif dan pasif, serta negasi
+			kejadian lampau, nonlampau, dan masa depan. Ada 40 soal berbeda dari contoh pelajaran; setiap
+			soal memiliki pembahasan dan sumber.
 		</p>
 		<p class="text-base text-muted-foreground">
-			Draf · bersumber, belum ditinjau ustadz. Jawaban adalah bukti latihan
-			yang terpisah dari tanda posisi dan penyelesaian pelajaran.
+			Draf · bersumber, belum ditinjau ustadz. Jawaban adalah bukti latihan yang terpisah dari tanda
+			posisi dan penyelesaian pelajaran.
 		</p>
 	</header>
 	{#each stage4CheckpointGroups as group (group.id)}

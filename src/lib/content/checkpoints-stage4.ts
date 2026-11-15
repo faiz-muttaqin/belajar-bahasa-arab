@@ -258,7 +258,11 @@ const negationItems: readonly Item[] = [
 		id: 'lam-kelas',
 		arabic: 'لَمْ يَدْخُلْ سَامِي الْفَصْلَ أَمْسِ.',
 		prompt: 'Apa arti kalimat ini?',
-		choices: ['Sami tidak masuk kelas kemarin', 'Sami tidak akan masuk besok', 'Sami selalu masuk kelas'],
+		choices: [
+			'Sami tidak masuk kelas kemarin',
+			'Sami tidak akan masuk besok',
+			'Sami selalu masuk kelas'
+		],
 		correct: 0,
 		reason: 'لَمْ + bentuk mudhari‘ menjelaskan aksi lampau yang tidak terjadi.'
 	},
@@ -282,7 +286,11 @@ const negationItems: readonly Item[] = [
 		id: 'lan-bacaan',
 		arabic: 'لَنْ يَقْرَأَ الطَّالِبُ الدَّرْسَ غَدًا.',
 		prompt: 'Pernyataan yang tepat ialah ...',
-		choices: ['Siswa tidak akan membaca pelajaran besok', 'Siswa tidak membaca kemarin', 'Guru tidak akan menulis'],
+		choices: [
+			'Siswa tidak akan membaca pelajaran besok',
+			'Siswa tidak membaca kemarin',
+			'Guru tidak akan menulis'
+		],
 		correct: 0,
 		reason: 'لَنْ menolak kejadian masa depan, bukan menceritakan masa lampau.'
 	},
@@ -354,7 +362,11 @@ const negationItems: readonly Item[] = [
 		id: 'la-kelas',
 		arabic: 'لَا يَدْخُلُ الطَّالِبُ الْفَصْلَ لَيْلًا.',
 		prompt: 'Pernyataan yang sesuai adalah ...',
-		choices: ['Siswa tidak masuk kelas pada malam hari', 'Siswa tidak masuk kemarin', 'Siswa akan masuk besok'],
+		choices: [
+			'Siswa tidak masuk kelas pada malam hari',
+			'Siswa tidak masuk kemarin',
+			'Siswa akan masuk besok'
+		],
 		correct: 0,
 		reason: 'لَا dengan fi‘il mudhari‘ menegasikan tindakan nonlampau.'
 	},
@@ -377,7 +389,11 @@ export const stage4CheckpointGroups: readonly CheckpointGroup[] = [
 		lessonId: 'lesson-u9-04',
 		contentRevision: 1,
 		skill: 'structure',
-		questions: makeQuestions(activePassiveItems, activePassiveSource, 'Titik cek Tahap 4 · pelaku dan tindakan')
+		questions: makeQuestions(
+			activePassiveItems,
+			activePassiveSource,
+			'Titik cek Tahap 4 · pelaku dan tindakan'
+		)
 	},
 	{
 		id: 'negasi-waktu',
