@@ -1,39 +1,13 @@
 name: Verify learning roadmap
 on:
-  # Stacked PRs are also verified directly when their head branch changes.
-  push:
-    branches:
-      - 'feat/rm06-*'
-    paths:
-      - 'src/**'
-      - 'tests/**'
-      - '.github/workflows/learning-roadmap-pr.yml'
   pull_request:
-    paths:
-      - 'src/lib/content/competencies*'
-      - 'src/lib/content/roadmap*'
-      - 'src/lib/content/checkpoints*'
-      - 'src/routes/belajar/checkpoint-2/**'
-      - 'tests/e2e/rm06-checkpoint-stage2.e2e.ts'
-      - 'src/lib/content/lessons/u1-meaning-practice.ts'
-      - 'src/lib/content/lessons/types.ts'
-      - 'src/lib/components/learning/MeaningPractice.svelte'
-      - 'src/lib/components/learning/RoadmapStage.svelte'
-      - 'src/routes/belajar/checkpoint-3/**'
-      - 'tests/e2e/rm06-checkpoint.e2e.ts'
-      - 'src/lib/content/lessons/index.ts'
-      - 'src/lib/domain/roadmap/**'
-      - 'src/lib/progress/**'
-      - 'src/lib/components/learning/*Roadmap*.svelte'
-      - 'src/routes/belajar/+page*'
-      - 'src/routes/progres/**'
-      - 'tests/e2e/learning-roadmap.e2e.ts'
-      - 'tests/e2e/roadmap-progress.e2e.ts'
-      - 'tests/e2e/rm05-evidence.e2e.ts'
-      - 'playwright.config.ts'
-      - '.github/workflows/learning-roadmap-pr.yml'
+    types: [opened, reopened, synchronize, ready_for_review, edited]
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: learning-roadmap-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
