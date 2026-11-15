@@ -14,7 +14,7 @@ test('every lesson listed in the public catalogs has a static Arabic reader', as
 		// not LessonReader pages, so keep this assertion scoped to lesson slugs.
 		const slugs = new Set(
 			Array.from(catalog.matchAll(links), ([, slug]) => slug).filter(
-				(slug) => !slug.startsWith('checkpoint-')
+				(slug): slug is string => typeof slug === 'string' && !slug.startsWith('checkpoint-')
 			)
 		);
 		expect(slugs).toContain(first);
