@@ -237,7 +237,7 @@ export const builderSlots: Readonly<Record<BuilderMode, readonly BuilderSlot[]>>
 export const builderSlotLabels: Record<BuilderSlot, string> = {
 	subject: 'Mubtada · isim marfū‘',
 	predicate: 'Khabar · sifat marfū‘',
-	verb: 'Fi‘il māḍī · orang ketiga maskulin',
+	verb: 'Fi‘il · pilih kata kerja',
 	agent: 'Fā‘il · maskulin tunggal marfū‘',
 	object: 'Maf‘ūl bih · isim manṣūb'
 };
