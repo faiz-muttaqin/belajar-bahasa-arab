@@ -19,7 +19,7 @@
 	const summary = $derived(summarizeProgress(data.progressLessons, progress.records));
 	const roadmapSummary = $derived(
 		progress.status === 'ready'
-			? summarizeRoadmap(data.roadmap, data.progressLessons, progress.records, progress.marks)
+			? summarizeRoadmap(data.roadmap, data.roadmapLessons, progress.records, progress.marks)
 			: undefined
 	);
 	let persistenceStatus = $state<'granted' | 'not-granted' | 'unsupported' | 'loading'>('loading');
