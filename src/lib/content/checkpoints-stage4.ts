@@ -26,7 +26,9 @@ function makeQuestions(
 	source: MeaningQuestion['sources'][number],
 	context: string
 ): MeaningPractice {
-	return items.map((item) => ({
+	const first = items[0];
+	if (!first) throw new Error('Checkpoint group cannot be empty');
+	const toQuestion = (item: Item): MeaningQuestion => ({
 		id: `rm06-stage4-${item.id}`,
 		kind: 'transfer',
 		context,
@@ -36,7 +38,8 @@ function makeQuestions(
 		correct: item.correct,
 		reason: item.reason,
 		sources: [source]
-	}));
+	});
+	return [toQuestion(first), ...items.slice(1).map(toQuestion)];
 }
 
 const activePassiveItems: readonly Item[] = [
