@@ -17,11 +17,13 @@ test('RM-06 stage 4 shows two 20-item transfer sets and saves evidence', async (
 	await time.getByRole('radio', { name: 'Kemarin' }).check();
 	await time.getByRole('button', { name: 'Cek jawaban' }).click();
 	await expect(time.getByRole('status')).toContainText('Naik ke Bisa pada contoh baru');
-	await page.goto('/progres/');
-	await expect(page.locator('[data-competency-level="CB-14"]')).toContainText(
+	await page.goto('/belajar/');
+	await page.getByRole('button', { name: 'Rincian langkah: Pelaku, tindakan dan waktu' }).click();
+	const detail = page.getByRole('dialog');
+	await expect(detail.locator('[data-competency-level="CB-14"]')).toContainText(
 		'Bisa pada contoh baru'
 	);
-	await expect(page.locator('[data-competency-level="CB-15"]')).toContainText(
+	await expect(detail.locator('[data-competency-level="CB-15"]')).toContainText(
 		'Bisa pada contoh baru'
 	);
 });
