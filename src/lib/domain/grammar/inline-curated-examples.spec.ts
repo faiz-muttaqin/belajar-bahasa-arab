@@ -33,22 +33,26 @@ describe('D-05a inline edit registry — source and morphology', () => {
 	});
 
 	it('keeps G-01 noun–adjective replacement inside two complete authored frames', () => {
-		expect(resolveInlineGrammarExample('sifat-nakirah', 'sifat-nakirah')?.translation)
-			.toBe('Sebuah buku baru.');
+		expect(resolveInlineGrammarExample('sifat-nakirah', 'sifat-nakirah')?.translation).toBe(
+			'Sebuah buku baru.'
+		);
 		const selected = resolveInlineGrammarExample('sifat-nakirah', 'sifat-feminin')!;
 		expect(selected.tokens.map((token) => token.arabic)).toEqual(['مَدْرَسَةٌ', 'كَبِيرَةٌ']);
 		expect(selected.tokens.map((token) => token.role)).toEqual(['manut', 'nat']);
 		expect(selected.translation).toBe('Sebuah sekolah besar.');
-		expect(searchInlineExampleChoices('grammar', 'sifat-nakirah', 1, 'besar').map((x) => x.id))
-			.toEqual(['sifat-feminin']);
+		expect(
+			searchInlineExampleChoices('grammar', 'sifat-nakirah', 1, 'besar').map((x) => x.id)
+		).toEqual(['sifat-feminin']);
 	});
 
 	it('does not treat a khabar as definite attributive adjective', () => {
 		const selected = resolveInlineGrammarExample('khabar-buku', 'khabar-sekolah')!;
 		expect(selected.tokens.map((t) => t.arabic)).toEqual(['الْمَدْرَسَةُ', 'كَبِيرَةٌ']);
-		expect(searchInlineExampleChoices('grammar', 'khabar-buku', 0, '').every(
-			(item) => item.explanation.includes('nakirah')
-		)).toBe(true);
+		expect(
+			searchInlineExampleChoices('grammar', 'khabar-buku', 0, '').every((item) =>
+				item.explanation.includes('nakirah')
+			)
+		).toBe(true);
 		const frame = curatedInlineFrame('grammar', 'khabar-buku')!;
 		const changed = assessInlineFrame({
 			...frame,
@@ -62,23 +66,25 @@ describe('D-05a inline edit registry — source and morphology', () => {
 		const selected = resolveInlineGrammarExample('idafah-buku', 'idafah-pintu')!;
 		expect(selected.tokens.map((t) => t.arabic)).toEqual(['بَابُ', 'الْبَيْتِ']);
 		expect(selected.translation).toBe('Pintu rumah itu.');
-		expect(searchInlineExampleChoices('grammar', 'idafah-buku', 1, 'rumah').map((x) => x.id))
-			.toEqual(['idafah-pintu']);
+		expect(
+			searchInlineExampleChoices('grammar', 'idafah-buku', 1, 'rumah').map((x) => x.id)
+		).toEqual(['idafah-pintu']);
 		const frame = curatedInlineFrame('grammar', 'idafah-pintu')!;
 		const wrong = assessInlineFrame({
-			...frame, features: [
-				frame.features[0]!, { ...frame.features[1], case: 'nasb' }
-			]
+			...frame,
+			features: [frame.features[0]!, { ...frame.features[1], case: 'nasb' }]
 		});
 		expect(wrong.allowed).toBe(false);
 		expect(wrong.reasons.map((x) => x.code)).toContain('feature-mismatch');
 	});
 
 	it('searches Arabic without harakat and Indonesian text within one local frame family', () => {
-		expect(searchInlineExampleChoices('grammar', 'sifat-nakirah', 0, 'مدرسة')
-			.map((item) => item.id)).toEqual(['sifat-feminin']);
-		expect(searchInlineExampleChoices('grammar', 'sifat-nakirah', 0, 'sekolah')
-			.map((item) => item.id)).toEqual(['sifat-feminin']);
+		expect(
+			searchInlineExampleChoices('grammar', 'sifat-nakirah', 0, 'مدرسة').map((item) => item.id)
+		).toEqual(['sifat-feminin']);
+		expect(
+			searchInlineExampleChoices('grammar', 'sifat-nakirah', 0, 'sekolah').map((item) => item.id)
+		).toEqual(['sifat-feminin']);
 		expect(searchInlineExampleChoices('grammar', 'sifat-nakirah', 0, 'xyz')).toEqual([]);
 	});
 
@@ -86,8 +92,7 @@ describe('D-05a inline edit registry — source and morphology', () => {
 		expect(resolveInlineGrammarExample('sifat-nakirah', 'idafah-pintu')).toBeUndefined();
 		expect(resolveInlineGrammarExample('khabar-buku', 'sifat-feminin')).toBeUndefined();
 		expect(resolveInlineGrammarExample('sifat-nakirah', 'hacked')).toBeUndefined();
-		expect(resolveInlinePhraseExample('indefinite-adjective', 'preposition-house'))
-			.toBeUndefined();
+		expect(resolveInlinePhraseExample('indefinite-adjective', 'preposition-house')).toBeUndefined();
 		expect(canEditInlineExample('grammar', 'nonexistent')).toBe(false);
 		expect(canEditInlineExample('phrase', 'case-object')).toBe(false);
 	});
@@ -95,7 +100,8 @@ describe('D-05a inline edit registry — source and morphology', () => {
 	it('rejects stale spellings even if the lexical metadata is unchanged', () => {
 		const frame = curatedInlineFrame('grammar', 'sifat-feminin')!;
 		const denied = assessInlineFrame({
-			...frame, arabic: ['مَدْرَسَةٌ', 'كَبِيرٌ']
+			...frame,
+			arabic: ['مَدْرَسَةٌ', 'كَبِيرٌ']
 		});
 		expect(denied.allowed).toBe(false);
 		expect(denied.reasons.map((x) => x.code)).toContain('unverified-surface');
@@ -104,22 +110,31 @@ describe('D-05a inline edit registry — source and morphology', () => {
 	it('rejects incomplete slot metadata instead of inferring gender from the script', () => {
 		const frame = curatedInlineFrame('grammar', 'sifat-feminin')!;
 		const denied = assessInlineFrame({
-			...frame, features: [
-				{ ...frame.features[0], gender: undefined },
-				frame.features[1]!
-			]
+			...frame,
+			features: [{ ...frame.features[0], gender: undefined }, frame.features[1]!]
 		});
 		expect(denied.allowed).toBe(false);
 		expect(denied.reasons.map((x) => x.code)).toContain('missing-feature');
 	});
 
 	it('only approved pilot example IDs gain interactive controls', () => {
-		for (const id of ['sifat-nakirah', 'sifat-feminin', 'khabar-buku', 'khabar-sekolah',
-			'idafah-buku', 'idafah-pintu']) {
+		for (const id of [
+			'sifat-nakirah',
+			'sifat-feminin',
+			'khabar-buku',
+			'khabar-sekolah',
+			'idafah-buku',
+			'idafah-pintu'
+		]) {
 			expect(canEditInlineExample('grammar', id)).toBe(true);
 		}
-		for (const id of ['case-subject', 'case-object', 'dual-object',
-			'preposition-idafah', 'feminine-adjective']) {
+		for (const id of [
+			'case-subject',
+			'case-object',
+			'dual-object',
+			'preposition-idafah',
+			'feminine-adjective'
+		]) {
 			expect(canEditInlineExample('phrase', id)).toBe(
 				id === 'preposition-idafah' || id === 'feminine-adjective'
 			);
@@ -133,14 +148,14 @@ describe('D-05a G-03 source-linked phrase and case contracts', () => {
 		expect(selected.tokens.map((token) => token.arabic)).toEqual(['الْكِتَابُ']);
 		expect(selected.translation).toBe('Buku itu.');
 		expect(selected.tokens[0]!.irab).toBe('raf');
-		expect(resolveInlinePhraseExample('definite-book', 'indefinite-book')!.tokens[0]!.arabic)
-			.toBe('كِتَابٌ');
+		expect(resolveInlinePhraseExample('definite-book', 'indefinite-book')!.tokens[0]!.arabic).toBe(
+			'كِتَابٌ'
+		);
 	});
 
 	it('preserves the grammar distinction between adjective and nominal predicate', () => {
 		const adjective = resolveInlinePhraseExample('indefinite-adjective', 'definite-adjective')!;
-		expect(adjective.tokens.map((token) => token.arabic))
-			.toEqual(['الْكِتَابُ', 'الْجَدِيدُ']);
+		expect(adjective.tokens.map((token) => token.arabic)).toEqual(['الْكِتَابُ', 'الْجَدِيدُ']);
 		expect(adjective.translation).toBe('Buku baru itu.');
 		expect(adjective.tokens.every((token) => token.irab === 'raf')).toBe(true);
 	});
@@ -150,12 +165,12 @@ describe('D-05a G-03 source-linked phrase and case contracts', () => {
 		expect(plural.tokens.map((token) => token.arabic)).toEqual(['كُتُبٌ', 'جَدِيدَةٌ']);
 		expect(plural.tokens[1]!.role).toContain('feminin tunggal');
 		const spec = curatedInlineFrame('phrase', 'nonhuman-plural')!;
-		expect(assessInlineFrame({ ...spec, pluralAnimacy: undefined }).reasons.map((x) => x.code))
-			.toContain('unverified-plural-agreement');
+		expect(
+			assessInlineFrame({ ...spec, pluralAnimacy: undefined }).reasons.map((x) => x.code)
+		).toContain('unverified-plural-agreement');
 		const wrong = assessInlineFrame({
-			...spec, features: [
-				spec.features[0]!, { ...spec.features[1], number: 'plural' }
-			]
+			...spec,
+			features: [spec.features[0]!, { ...spec.features[1], number: 'plural' }]
 		});
 		expect(wrong.allowed).toBe(false);
 	});
@@ -169,9 +184,8 @@ describe('D-05a G-03 source-linked phrase and case contracts', () => {
 		expect(nested.tokens[2]!.irab).toBe('jarr');
 		const frame = curatedInlineFrame('phrase', 'preposition-idafah')!;
 		const invalid = assessInlineFrame({
-			...frame, features: [
-				frame.features[0]!, { ...frame.features[1], case: 'raf' }, frame.features[2]!
-			]
+			...frame,
+			features: [frame.features[0]!, { ...frame.features[1], case: 'raf' }, frame.features[2]!]
 		});
 		expect(invalid.allowed).toBe(false);
 		expect(invalid.reasons.map((x) => x.code)).toContain('feature-mismatch');

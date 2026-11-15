@@ -9,10 +9,7 @@
 import { grammarRules, type GrammarExample } from '#lib/content/grammar-rules.js';
 import { phraseRules, type PhraseExample } from '#lib/content/phrase-rules.js';
 import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
-import {
-	evaluateAdjectiveAgreement,
-	evaluateSlotCandidate,
-	} from './grammar-constraints.js';
+import { evaluateAdjectiveAgreement, evaluateSlotCandidate } from './grammar-constraints.js';
 import {
 	evaluateIdafa,
 	evaluatePrepositionalPhrase,
@@ -44,9 +41,13 @@ export type InlineFrameSpec = {
  */
 const frames: readonly InlineFrameSpec[] = [
 	{
-		source: 'grammar', ruleId: 'nat-manut', exampleId: 'sifat-nakirah',
-		family: 'g01-naat', kind: 'naat',
-		arabic: ['كِتَابٌ', 'جَدِيدٌ'], lexemeIds: ['msa-kitab', 'msa-jadid'],
+		source: 'grammar',
+		ruleId: 'nat-manut',
+		exampleId: 'sifat-nakirah',
+		family: 'g01-naat',
+		kind: 'naat',
+		arabic: ['كِتَابٌ', 'جَدِيدٌ'],
+		lexemeIds: ['msa-kitab', 'msa-jadid'],
 		classes: ['noun', 'adjective'],
 		features: [
 			{ gender: 'masculine', number: 'singular', case: 'raf', definiteness: 'indefinite' },
@@ -54,9 +55,13 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'grammar', ruleId: 'nat-manut', exampleId: 'sifat-feminin',
-		family: 'g01-naat', kind: 'naat',
-		arabic: ['مَدْرَسَةٌ', 'كَبِيرَةٌ'], lexemeIds: ['msa-madrasah', 'msa-kabir'],
+		source: 'grammar',
+		ruleId: 'nat-manut',
+		exampleId: 'sifat-feminin',
+		family: 'g01-naat',
+		kind: 'naat',
+		arabic: ['مَدْرَسَةٌ', 'كَبِيرَةٌ'],
+		lexemeIds: ['msa-madrasah', 'msa-kabir'],
 		classes: ['noun', 'adjective'],
 		features: [
 			{ gender: 'feminine', number: 'singular', case: 'raf', definiteness: 'indefinite' },
@@ -64,9 +69,13 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'grammar', ruleId: 'mubtada-khabar', exampleId: 'khabar-buku',
-		family: 'g01-khabar', kind: 'khabar',
-		arabic: ['الْكِتَابُ', 'جَدِيدٌ'], lexemeIds: ['msa-kitab', 'msa-jadid'],
+		source: 'grammar',
+		ruleId: 'mubtada-khabar',
+		exampleId: 'khabar-buku',
+		family: 'g01-khabar',
+		kind: 'khabar',
+		arabic: ['الْكِتَابُ', 'جَدِيدٌ'],
+		lexemeIds: ['msa-kitab', 'msa-jadid'],
 		classes: ['noun', 'adjective'],
 		features: [
 			{ gender: 'masculine', number: 'singular', case: 'raf', definiteness: 'definite' },
@@ -74,9 +83,13 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'grammar', ruleId: 'mubtada-khabar', exampleId: 'khabar-sekolah',
-		family: 'g01-khabar', kind: 'khabar',
-		arabic: ['الْمَدْرَسَةُ', 'كَبِيرَةٌ'], lexemeIds: ['msa-madrasah', 'msa-kabir'],
+		source: 'grammar',
+		ruleId: 'mubtada-khabar',
+		exampleId: 'khabar-sekolah',
+		family: 'g01-khabar',
+		kind: 'khabar',
+		arabic: ['الْمَدْرَسَةُ', 'كَبِيرَةٌ'],
+		lexemeIds: ['msa-madrasah', 'msa-kabir'],
 		classes: ['noun', 'adjective'],
 		features: [
 			{ gender: 'feminine', number: 'singular', case: 'raf', definiteness: 'definite' },
@@ -84,9 +97,13 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'grammar', ruleId: 'idafah', exampleId: 'idafah-buku',
-		family: 'g01-idafa', kind: 'idafa',
-		arabic: ['كِتَابُ', 'الطَّالِبِ'], lexemeIds: ['msa-kitab', 'msa-talib'],
+		source: 'grammar',
+		ruleId: 'idafah',
+		exampleId: 'idafah-buku',
+		family: 'g01-idafa',
+		kind: 'idafa',
+		arabic: ['كِتَابُ', 'الطَّالِبِ'],
+		lexemeIds: ['msa-kitab', 'msa-talib'],
 		classes: ['noun', 'noun'],
 		features: [
 			{ number: 'singular', case: 'raf' },
@@ -94,9 +111,13 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'grammar', ruleId: 'idafah', exampleId: 'idafah-pintu',
-		family: 'g01-idafa', kind: 'idafa',
-		arabic: ['بَابُ', 'الْبَيْتِ'], lexemeIds: ['bab', 'msa-bayt'],
+		source: 'grammar',
+		ruleId: 'idafah',
+		exampleId: 'idafah-pintu',
+		family: 'g01-idafa',
+		kind: 'idafa',
+		arabic: ['بَابُ', 'الْبَيْتِ'],
+		lexemeIds: ['bab', 'msa-bayt'],
 		classes: ['noun', 'noun'],
 		features: [
 			{ number: 'singular', case: 'raf' },
@@ -104,21 +125,35 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'phrase', ruleId: 'marifah-nakirah', exampleId: 'indefinite-book',
-		family: 'g03-definiteness', kind: 'definiteness',
-		arabic: ['كِتَابٌ'], lexemeIds: ['msa-kitab'], classes: ['noun'],
+		source: 'phrase',
+		ruleId: 'marifah-nakirah',
+		exampleId: 'indefinite-book',
+		family: 'g03-definiteness',
+		kind: 'definiteness',
+		arabic: ['كِتَابٌ'],
+		lexemeIds: ['msa-kitab'],
+		classes: ['noun'],
 		features: [{ number: 'singular', case: 'raf', definiteness: 'indefinite' }]
 	},
 	{
-		source: 'phrase', ruleId: 'marifah-nakirah', exampleId: 'definite-book',
-		family: 'g03-definiteness', kind: 'definiteness',
-		arabic: ['الْكِتَابُ'], lexemeIds: ['msa-kitab'], classes: ['noun'],
+		source: 'phrase',
+		ruleId: 'marifah-nakirah',
+		exampleId: 'definite-book',
+		family: 'g03-definiteness',
+		kind: 'definiteness',
+		arabic: ['الْكِتَابُ'],
+		lexemeIds: ['msa-kitab'],
+		classes: ['noun'],
 		features: [{ number: 'singular', case: 'raf', definiteness: 'definite' }]
 	},
 	{
-		source: 'phrase', ruleId: 'naat-agreement', exampleId: 'indefinite-adjective',
-		family: 'g03-naat', kind: 'naat',
-		arabic: ['كِتَابٌ', 'جَدِيدٌ'], lexemeIds: ['msa-kitab', 'msa-jadid'],
+		source: 'phrase',
+		ruleId: 'naat-agreement',
+		exampleId: 'indefinite-adjective',
+		family: 'g03-naat',
+		kind: 'naat',
+		arabic: ['كِتَابٌ', 'جَدِيدٌ'],
+		lexemeIds: ['msa-kitab', 'msa-jadid'],
 		classes: ['noun', 'adjective'],
 		features: [
 			{ gender: 'masculine', number: 'singular', case: 'raf', definiteness: 'indefinite' },
@@ -126,9 +161,13 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'phrase', ruleId: 'naat-agreement', exampleId: 'definite-adjective',
-		family: 'g03-naat', kind: 'naat',
-		arabic: ['الْكِتَابُ', 'الْجَدِيدُ'], lexemeIds: ['msa-kitab', 'msa-jadid'],
+		source: 'phrase',
+		ruleId: 'naat-agreement',
+		exampleId: 'definite-adjective',
+		family: 'g03-naat',
+		kind: 'naat',
+		arabic: ['الْكِتَابُ', 'الْجَدِيدُ'],
+		lexemeIds: ['msa-kitab', 'msa-jadid'],
 		classes: ['noun', 'adjective'],
 		features: [
 			{ gender: 'masculine', number: 'singular', case: 'raf', definiteness: 'definite' },
@@ -136,9 +175,13 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'phrase', ruleId: 'naat-agreement', exampleId: 'feminine-adjective',
-		family: 'g03-naat', kind: 'naat',
-		arabic: ['مَدْرَسَةٌ', 'كَبِيرَةٌ'], lexemeIds: ['msa-madrasah', 'msa-kabir'],
+		source: 'phrase',
+		ruleId: 'naat-agreement',
+		exampleId: 'feminine-adjective',
+		family: 'g03-naat',
+		kind: 'naat',
+		arabic: ['مَدْرَسَةٌ', 'كَبِيرَةٌ'],
+		lexemeIds: ['msa-madrasah', 'msa-kabir'],
 		classes: ['noun', 'adjective'],
 		features: [
 			{ gender: 'feminine', number: 'singular', case: 'raf', definiteness: 'indefinite' },
@@ -146,25 +189,37 @@ const frames: readonly InlineFrameSpec[] = [
 		]
 	},
 	{
-		source: 'phrase', ruleId: 'naat-agreement', exampleId: 'nonhuman-plural',
-		family: 'g03-naat', kind: 'naat',
-		arabic: ['كُتُبٌ', 'جَدِيدَةٌ'], lexemeIds: ['msa-kitab', 'msa-jadid'],
-		classes: ['noun', 'adjective'], pluralAnimacy: 'nonhuman',
+		source: 'phrase',
+		ruleId: 'naat-agreement',
+		exampleId: 'nonhuman-plural',
+		family: 'g03-naat',
+		kind: 'naat',
+		arabic: ['كُتُبٌ', 'جَدِيدَةٌ'],
+		lexemeIds: ['msa-kitab', 'msa-jadid'],
+		classes: ['noun', 'adjective'],
+		pluralAnimacy: 'nonhuman',
 		features: [
 			{ gender: 'masculine', number: 'plural', case: 'raf', definiteness: 'indefinite' },
 			{ gender: 'feminine', number: 'singular', case: 'raf', definiteness: 'indefinite' }
 		]
 	},
 	{
-		source: 'phrase', ruleId: 'idafah-jar', exampleId: 'preposition-house',
-		family: 'g03-jar', kind: 'preposition',
-		arabic: ['فِي', 'الْبَيْتِ'], lexemeIds: ['fi', 'msa-bayt'],
+		source: 'phrase',
+		ruleId: 'idafah-jar',
+		exampleId: 'preposition-house',
+		family: 'g03-jar',
+		kind: 'preposition',
+		arabic: ['فِي', 'الْبَيْتِ'],
+		lexemeIds: ['fi', 'msa-bayt'],
 		classes: ['particle', 'noun'],
 		features: [{}, { number: 'singular', case: 'jarr', definiteness: 'definite' }]
 	},
 	{
-		source: 'phrase', ruleId: 'idafah-jar', exampleId: 'preposition-idafah',
-		family: 'g03-jar', kind: 'preposition',
+		source: 'phrase',
+		ruleId: 'idafah-jar',
+		exampleId: 'preposition-idafah',
+		family: 'g03-jar',
+		kind: 'preposition',
 		arabic: ['فِي', 'كِتَابِ', 'الطَّالِبِ'],
 		lexemeIds: ['fi', 'msa-kitab', 'msa-talib'],
 		classes: ['particle', 'noun', 'noun'],
@@ -177,23 +232,27 @@ const frames: readonly InlineFrameSpec[] = [
 ];
 
 function findGrammarExample(frame: InlineFrameSpec): GrammarExample | undefined {
-	return grammarRules.find((rule) => rule.id === frame.ruleId)?.examples.find((example) => example.id === frame.exampleId);
+	return grammarRules
+		.find((rule) => rule.id === frame.ruleId)
+		?.examples.find((example) => example.id === frame.exampleId);
 }
 
 function findPhraseExample(frame: InlineFrameSpec): PhraseExample | undefined {
-	return phraseRules.find((rule) => rule.id === frame.ruleId)?.examples.find((example) => example.id === frame.exampleId);
+	return phraseRules
+		.find((rule) => rule.id === frame.ruleId)
+		?.examples.find((example) => example.id === frame.exampleId);
 }
 
 function sourced(frame: InlineFrameSpec) {
-	const grammar = frame.source === 'grammar'
-		? grammarRules.find((rule) => rule.id === frame.ruleId)
-		: undefined;
-	const phrase = frame.source === 'phrase'
-		? phraseRules.find((rule) => rule.id === frame.ruleId)
-		: undefined;
-	const example = grammar?.examples.find((item) => item.id === frame.exampleId)
-		?? phrase?.examples.find((item) => item.id === frame.exampleId);
-	const sources = grammar?.sources.map((item) => item.url) ?? phrase?.sources.map((item) => item.url) ?? [];
+	const grammar =
+		frame.source === 'grammar' ? grammarRules.find((rule) => rule.id === frame.ruleId) : undefined;
+	const phrase =
+		frame.source === 'phrase' ? phraseRules.find((rule) => rule.id === frame.ruleId) : undefined;
+	const example =
+		grammar?.examples.find((item) => item.id === frame.exampleId) ??
+		phrase?.examples.find((item) => item.id === frame.exampleId);
+	const sources =
+		grammar?.sources.map((item) => item.url) ?? phrase?.sources.map((item) => item.url) ?? [];
 	return { example, sources };
 }
 
@@ -204,8 +263,10 @@ function word(frame: InlineFrameSpec, index: number, sourceUrls: readonly string
 		wordClass: frame.classes[index]!,
 		features: frame.features[index]!,
 		evidence: {
-			kind: 'curated-example', reviewStatus: 'draft',
-			sourceUrls, note: 'Bentuk contoh dari teks kurikulum saat ini; menunggu tashih pengajar.'
+			kind: 'curated-example',
+			reviewStatus: 'draft',
+			sourceUrls,
+			note: 'Bentuk contoh dari teks kurikulum saat ini; menunggu tashih pengajar.'
 		}
 	};
 }
@@ -228,7 +289,9 @@ export function assessInlineFrame(frame: InlineFrameSpec): InlineExampleAssessme
 	const tokens = example?.tokens ?? [];
 	const reasons: RelationReason[] = [];
 	if (
-		!example || !sources.length || !sources.every((url) => url.startsWith('https://')) ||
+		!example ||
+		!sources.length ||
+		!sources.every((url) => url.startsWith('https://')) ||
 		frame.arabic.length !== tokens.length ||
 		frame.lexemeIds.length !== tokens.length ||
 		frame.classes.length !== tokens.length ||
@@ -237,22 +300,31 @@ export function assessInlineFrame(frame: InlineFrameSpec): InlineExampleAssessme
 	) {
 		reasons.push({
 			code: 'unverified-surface',
-			message: 'Bentuk contoh berubah atau data per-slot belum lengkap; pilihan ini perlu audit ulang.'
+			message:
+				'Bentuk contoh berubah atau data per-slot belum lengkap; pilihan ini perlu audit ulang.'
 		});
 	}
 	const words = frame.arabic.map((_, index) => word(frame, index, sources));
 	for (const item of words) {
 		reasons.push(
-			...evaluateSlotCandidate({
-				expectedClass: item.wordClass,
-				required: item.features,
-				explanation: 'Bentuk lengkap harus ada di contoh sumber.'
-			}, item).reasons
+			...evaluateSlotCandidate(
+				{
+					expectedClass: item.wordClass,
+					required: item.features,
+					explanation: 'Bentuk lengkap harus ada di contoh sumber.'
+				},
+				item
+			).reasons
 		);
 	}
-	let explanation = 'Pilihan menggunakan seluruh contoh yang telah dicatat, bukan merangkai bentuk baru.';
+	let explanation =
+		'Pilihan menggunakan seluruh contoh yang telah dicatat, bukan merangkai bentuk baru.';
 	if (frame.kind === 'naat' || frame.kind === 'khabar') {
-		if (words.length !== 2 || words[0]?.wordClass !== 'noun' || words[1]?.wordClass !== 'adjective') {
+		if (
+			words.length !== 2 ||
+			words[0]?.wordClass !== 'noun' ||
+			words[1]?.wordClass !== 'adjective'
+		) {
 			reasons.push({ code: 'word-class', message: 'Pasangan isim dan sifat belum terverifikasi.' });
 		} else {
 			const relation = evaluateAdjectiveAgreement({
@@ -269,45 +341,74 @@ export function assessInlineFrame(frame: InlineFrameSpec): InlineExampleAssessme
 			reasons.push({ code: 'unverified-surface', message: 'Iḍāfah memerlukan dua isim utuh.' });
 		} else {
 			const relation = evaluateIdafa({
-				head: words[0]!, dependent: words[1]!,
+				head: words[0]!,
+				dependent: words[1]!,
 				headCase: 'raf',
-				construct: 'construct', headHasArticle: false, headHasTanwin: false,
-				allowedPairs: [{
-					headId: words[0]!.id, headText: words[0]!.text,
-					dependentId: words[1]!.id, dependentText: words[1]!.text
-				}]
+				construct: 'construct',
+				headHasArticle: false,
+				headHasTanwin: false,
+				allowedPairs: [
+					{
+						headId: words[0]!.id,
+						headText: words[0]!.text,
+						dependentId: words[1]!.id,
+						dependentText: words[1]!.text
+					}
+				]
 			});
 			reasons.push(...relation.reasons);
 			explanation = relation.explanation;
 		}
 	} else if (frame.kind === 'preposition') {
 		if (words.length !== 2 && words.length !== 3) {
-			reasons.push({ code: 'unverified-surface', message: 'Susunan jar pilot belum terverifikasi.' });
+			reasons.push({
+				code: 'unverified-surface',
+				message: 'Susunan jar pilot belum terverifikasi.'
+			});
 		} else {
 			const prepositional = evaluatePrepositionalPhrase({
-				preposition: words[0]!, complement: words[1]!,
-				allowedPairs: [{ particle: words[0]!.text, complementId: words[1]!.id, complementText: words[1]!.text }]
+				preposition: words[0]!,
+				complement: words[1]!,
+				allowedPairs: [
+					{ particle: words[0]!.text, complementId: words[1]!.id, complementText: words[1]!.text }
+				]
 			});
 			reasons.push(...prepositional.reasons);
 			explanation = prepositional.explanation;
 			if (words.length === 3) {
 				const nested = evaluateIdafa({
-					head: words[1]!, dependent: words[2]!, headCase: 'jarr',
-					construct: 'construct', headHasArticle: false, headHasTanwin: false,
-					allowedPairs: [{
-						headId: words[1]!.id, headText: words[1]!.text,
-						dependentId: words[2]!.id, dependentText: words[2]!.text
-					}]
+					head: words[1]!,
+					dependent: words[2]!,
+					headCase: 'jarr',
+					construct: 'construct',
+					headHasArticle: false,
+					headHasTanwin: false,
+					allowedPairs: [
+						{
+							headId: words[1]!.id,
+							headText: words[1]!.text,
+							dependentId: words[2]!.id,
+							dependentText: words[2]!.text
+						}
+					]
 				});
 				reasons.push(...nested.reasons);
 			}
 		}
 	} else if (frame.kind === 'definiteness') {
-		if (words.length !== 1 || words[0]?.features.case !== 'raf'
-			|| !words[0]?.features.definiteness || words[0]?.features.number !== 'singular') {
-			reasons.push({ code: 'missing-feature', message: 'Kasus atau ma‘rifah/nakirah isim belum diketahui.' });
+		if (
+			words.length !== 1 ||
+			words[0]?.features.case !== 'raf' ||
+			!words[0]?.features.definiteness ||
+			words[0]?.features.number !== 'singular'
+		) {
+			reasons.push({
+				code: 'missing-feature',
+				message: 'Kasus atau ma‘rifah/nakirah isim belum diketahui.'
+			});
 		}
-		explanation = 'Satu lema dengan bentuk ma‘rifah atau nakirah yang sudah tertulis pada contoh G-03.';
+		explanation =
+			'Satu lema dengan bentuk ma‘rifah atau nakirah yang sudah tertulis pada contoh G-03.';
 	}
 	return {
 		id: frame.exampleId,
@@ -322,7 +423,10 @@ export function assessInlineFrame(frame: InlineFrameSpec): InlineExampleAssessme
 }
 
 /** Stable registry lookup for audit and regression checks. */
-export function curatedInlineFrame(source: InlineExampleSource, id: string): InlineFrameSpec | undefined {
+export function curatedInlineFrame(
+	source: InlineExampleSource,
+	id: string
+): InlineFrameSpec | undefined {
 	return frames.find((frame) => frame.source === source && frame.exampleId === id);
 }
 
@@ -347,11 +451,13 @@ export function searchInlineExampleChoices(
 	return framesFor(source, originalId)
 		.filter((frame) => tokenIndex >= 0 && tokenIndex < frame.arabic.length)
 		.map(assessInlineFrame)
-		.filter((item) => !normalized || [
-			...item.surfaces,
-			...item.glosses,
-			item.translation
-		].some((text) => normalizeArabicSearch(text).includes(normalized)));
+		.filter(
+			(item) =>
+				!normalized ||
+				[...item.surfaces, ...item.glosses, item.translation].some((text) =>
+					normalizeArabicSearch(text).includes(normalized)
+				)
+		);
 }
 
 /** Never accept a frame from a different source/family or an unvalidated item. */

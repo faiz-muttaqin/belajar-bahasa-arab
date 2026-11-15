@@ -10,14 +10,14 @@ Komponen **GrammarExample** (G-01) dan **PhraseGloss** (G-03) kini memakai pemil
 
 ## Daftar contoh yang dapat berubah
 
-| Halaman | Family dan sumber yang telah ditulis | Batas perubahan |
-| --- | --- | --- |
-| G-01 `nat-manut` | `sifat-nakirah` ⇄ `sifat-feminin` | Satu pasangan man‘ūt + na‘at (buku baru ⇄ sekolah besar) |
-| G-01 `mubtada-khabar` | `khabar-buku` ⇄ `khabar-sekolah` | Khabar nakirah meskipun mubtada ma‘rifah |
-| G-01 `idafah` | `idafah-buku` ⇄ `idafah-pintu` | Muḍāf dan muḍāf ilaih harus diganti sebagai **pasangan terkurasi** |
-| G-03 `marifah-nakirah` | `indefinite-book` ⇄ `definite-book` | Lema buku; bentuk marfū‘ nakirah vs ma‘rifah yang sudah ditulis |
-| G-03 `naat-agreement` | `indefinite-adjective`, `definite-adjective`, `feminine-adjective`, `nonhuman-plural` | Perhatikan ma‘rifah/nakirah serta bentuk feminin tunggal pada كُتُبٌ |
-| G-03 `idafah-jar` | `preposition-house` ⇄ `preposition-idafah` | Frasa **فِي** + isim majrūr dibanding **فِي** + iḍāfah lengkap yang kedua isimnya majrūr karena sebab berbeda |
+| Halaman                | Family dan sumber yang telah ditulis                                                  | Batas perubahan                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| G-01 `nat-manut`       | `sifat-nakirah` ⇄ `sifat-feminin`                                                     | Satu pasangan man‘ūt + na‘at (buku baru ⇄ sekolah besar)                                                    |
+| G-01 `mubtada-khabar`  | `khabar-buku` ⇄ `khabar-sekolah`                                                      | Khabar nakirah meskipun mubtada ma‘rifah                                                                    |
+| G-01 `idafah`          | `idafah-buku` ⇄ `idafah-pintu`                                                        | Muḍāf dan muḍāf ilaih harus diganti sebagai **pasangan terkurasi**                                          |
+| G-03 `marifah-nakirah` | `indefinite-book` ⇄ `definite-book`                                                   | Lema buku; bentuk marfū‘ nakirah vs ma‘rifah yang sudah ditulis                                             |
+| G-03 `naat-agreement`  | `indefinite-adjective`, `definite-adjective`, `feminine-adjective`, `nonhuman-plural` | Perhatikan ma‘rifah/nakirah serta bentuk feminin tunggal pada كُتُبٌ                                           |
+| G-03 `idafah-jar`      | `preposition-house` ⇄ `preposition-idafah`                                            | Frasa **فِي** + isim majrūr dibanding **فِي** + iḍāfah lengkap yang kedua isimnya majrūr karena sebab berbeda |
 
 **Tidak otomatis aktif:** G-03 `idafah-door`, contoh dual/jamak yang belum mempunyai alternatif pasangan dalam korpus, serta contoh G-04/G-05. Kartu tersebut tetap statis. Keputusan ini lebih aman daripada mengarang perubahan i‘rab dari regex atau memutar 8k+ lema kamus di modal.
 
@@ -32,7 +32,7 @@ Komponen **GrammarExample** (G-01) dan **PhraseGloss** (G-03) kini memakai pemil
 
 ## Tahap berikutnya
 
-**D-05b** dapat memperkenalkan `templateId/slotId` bersama untuk G-04 dan subset G-05 yang punya data pasangan klausa, kemudian D-05c mengaudit aksesibilitas dan variasi bahasa. Untuk frame yang tidak memiliki alternatif lengkap, lebih baik *contoh statis* daripada membuka selector palsu.
+**D-05b** dapat memperkenalkan `templateId/slotId` bersama untuk G-04 dan subset G-05 yang punya data pasangan klausa, kemudian D-05c mengaudit aksesibilitas dan variasi bahasa. Untuk frame yang tidak memiliki alternatif lengkap, lebih baik _contoh statis_ daripada membuka selector palsu.
 
 **D-06** terpisah: progres/hasil latihan berbasis IndexedDB existing, pencarian lazy katalog besar, dan audit offline/assistive-technology. Tidak ada klaim audio/speech assessment atau penerbitan konten approved.
 

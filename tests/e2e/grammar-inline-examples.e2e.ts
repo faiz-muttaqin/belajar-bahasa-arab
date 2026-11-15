@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-test('D-05a G-01 changes a sourced noun–adjective pair and restores it locally', async ({ page }) => {
+test('D-05a G-01 changes a sourced noun–adjective pair and restores it locally', async ({
+	page
+}) => {
 	await page.goto('/kaidah/');
 	const first = page.locator('figure[data-inline-example="sifat-nakirah"]');
 	const neighbor = page.locator('figure[data-inline-example="sifat-feminin"]');
@@ -73,7 +75,9 @@ test('D-05a G-03 demonstrates definite and nonhuman plural adjective frames', as
 	await expect(naat.locator('[data-irab="raf"]')).toHaveCount(2);
 });
 
-test('D-05a G-03 updates the complete jar–idafa frame without guessing a declension', async ({ page }) => {
+test('D-05a G-03 updates the complete jar–idafa frame without guessing a declension', async ({
+	page
+}) => {
 	await page.goto('/kaidah/frasa/');
 	const jar = page.locator('figure[data-inline-example="preposition-house"]');
 	await jar.getByRole('button', { name: /Ganti Huruf jar/ }).click();
@@ -94,7 +98,9 @@ test('D-05a G-03 updates the complete jar–idafa frame without guessing a decle
 	await expect(jar).toContainText('الْبَيْتِ');
 });
 
-test('D-05a only enables the audited cards, and search never crosses families', async ({ page }) => {
+test('D-05a only enables the audited cards, and search never crosses families', async ({
+	page
+}) => {
 	await page.goto('/kaidah/frasa/');
 	const staticCase = page.locator('figure[data-inline-example="case-object"]');
 	await expect(staticCase).toContainText('الطَّالِبَ');
@@ -126,7 +132,9 @@ test.describe('D-05a static-first examples with JavaScript disabled', () => {
 		expect(size.scroll).toBeLessThanOrEqual(size.client);
 	});
 
-	test('keeps G-03 original vowel marks, glossary and exercises without editing', async ({ page }) => {
+	test('keeps G-03 original vowel marks, glossary and exercises without editing', async ({
+		page
+	}) => {
 		await page.goto('/kaidah/frasa/');
 		const naat = page.locator('figure[data-inline-example="indefinite-adjective"]');
 		await expect(naat).toContainText('جَدِيدٌ');

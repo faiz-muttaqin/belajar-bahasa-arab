@@ -140,8 +140,8 @@
 			{/each}
 		</ul>
 		<p class="text-xs text-muted-foreground">
-			Perubahan hanya berlaku di kartu ini sampai halaman dimuat ulang. Gunakan Reset untuk
-			kembali ke contoh awal.
+			Perubahan hanya berlaku di kartu ini sampai halaman dimuat ulang. Gunakan Reset untuk kembali
+			ke contoh awal.
 		</p>
 	</div>
 </dialog>
