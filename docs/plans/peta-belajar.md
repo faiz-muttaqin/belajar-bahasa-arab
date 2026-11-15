@@ -273,6 +273,12 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 - Latihan makna U1 diperkaya menjadi 20 butir berbeda; komponen soal bukan lagi pasangan tetap dua soal. Jumlah latihan selanjutnya dinaikkan bertahap menjadi **20–50 butir per bank** menurut cakupan materi dan kemampuan memverifikasi sumber; jangan menambah soal duplikat untuk memenuhi angka.
 - Metode Tamyiz, Al-Bayan, dan utawi-iku **belum diklaim telah diaudit**. Tugas khusus “baca dan maknai” yang bergantung pada metode tersebut belum diterbitkan. Titik cek tahap lain masih berstatus direncanakan dan perlu bank bersumber sendiri.
 
+### Ekspansi RM-06: Tahap 4 (16 November 2026)
+
+- Checkpoint **40 butir orisinal** di `/belajar/checkpoint-4/`: 20 untuk CB-14 (pelaku, tindakan, bentuk aktif/pasif) dan 20 untuk CB-15 (cakupan negasi dan waktu). Seluruh soal baru disusun dari pola Madinah Arabic [pelajaran 34 bagian 1](https://madinaharabic.com/free-content/grammar/lesson-34/part-1) dan [pelajaran 31 bagian 7](https://madinaharabic.com/free-content/grammar/lesson-31/part-7), bukan menyalin soal sumber.
+- Setiap butir punya ID stabil, harakat, opsi pilihan, pembahasan, dan provenance; klasifikasi bukti `structure` untuk CB-14 dan `meaning` untuk CB-15. Bukti tetap memakai IndexedDB dan tingkat RM-05 tanpa tanda kelulusan.
+- Semua masih **draf, belum ditinjau ustadz**. Setelah tahap ini, titik cek Iqra opsional, Tahap 5 dan Tahap 6 masih belum tersedia. Audit metode khusus Tamyiz/Al-Bayan/utawi-iku dan RM-07 tetap agenda terpisah.
+
 ## Sumber
 
 - [Studi komparasi 19 sistem belajar](../research/2026-11-15-studi-komparasi-peta-belajar.md), dengan sumber per sistem.
