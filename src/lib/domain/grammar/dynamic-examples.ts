@@ -63,8 +63,8 @@ export type BuiltExample = {
 };
 
 type NominalNoun = { id: string; raf: string; gloss: string; gender: Gender };
-type VerbAgent = { id: string; raf: string; gloss: string };
-type DirectObject = { id: string; nasb: string; gloss: string };
+type VerbAgent = { id: string; raf: string; gloss: string; gender: 'masculine' };
+type DirectObject = { id: string; nasb: string; gloss: string; gender: Gender };
 type VerbSelection = { id: string; gloss: string; allowedObjects: readonly string[] };
 
 const nouns: readonly NominalNoun[] = [
@@ -82,15 +82,15 @@ const adjectives = [
 ] as const;
 
 const agents: readonly VerbAgent[] = [
-	{ id: 'msa-talib', raf: 'الطَّالِبُ', gloss: 'murid itu' },
-	{ id: 'msa-ustadh', raf: 'الْأُسْتَاذُ', gloss: 'guru itu' },
-	{ id: 'msa-walad', raf: 'الْوَلَدُ', gloss: 'anak laki-laki itu' }
+	{ id: 'msa-talib', raf: 'الطَّالِبُ', gloss: 'murid itu', gender: 'masculine' },
+	{ id: 'msa-ustadh', raf: 'الْأُسْتَاذُ', gloss: 'guru itu', gender: 'masculine' },
+	{ id: 'msa-walad', raf: 'الْوَلَدُ', gloss: 'anak laki-laki itu', gender: 'masculine' }
 ];
 
 const objects: readonly DirectObject[] = [
-	{ id: 'msa-risalah', nasb: 'الرِّسَالَةَ', gloss: 'surat itu' },
-	{ id: 'msa-kitab', nasb: 'الْكِتَابَ', gloss: 'buku itu' },
-	{ id: 'bab', nasb: 'الْبَابَ', gloss: 'pintu itu' }
+	{ id: 'msa-risalah', nasb: 'الرِّسَالَةَ', gloss: 'surat itu', gender: 'feminine' },
+	{ id: 'msa-kitab', nasb: 'الْكِتَابَ', gloss: 'buku itu', gender: 'masculine' },
+	{ id: 'bab', nasb: 'الْبَابَ', gloss: 'pintu itu', gender: 'masculine' }
 ];
 
 const verbs: readonly VerbSelection[] = [
@@ -161,7 +161,7 @@ function nounChoice(item: NominalNoun | VerbAgent | DirectObject): BuilderChoice
 	const arabic = 'raf' in item ? item.raf : item.nasb;
 	const form = inFrame(
 		lexemeFromVocabulary(entry), caseName === 'raf' ? 'subject-or-agent' : 'object',
-		arabic, { case: caseName, number: 'singular', definiteness: 'definite' },
+		arabic, { case: caseName, number: 'singular', definiteness: 'definite', gender: item.gender },
 		'Bentuk isim tunggal ber-ال untuk slot kaidah tertentu. Harakat akhir dipilih manual dari bingkai pengajaran.'
 	);
 	return {
