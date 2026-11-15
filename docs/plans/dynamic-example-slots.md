@@ -29,6 +29,10 @@ Halaman \`/kaidah/praktik/\` memasang **dua contoh dinamis** berbasis modul \`sr
 
 Data pilot terhubung ke ID kamus nyata. Karena dataset leksikal belum menyediakan valensi dan morphological synthesis berkualitas teacher-reviewed, **daftar pemilihan adalah subset terkurasi**, bukan filter otomatis untuk semua kata yang kebetulan satu POS. Modal menawarkan pencarian Arab/Indonesia dan menampilkan bab sharaf bila ada; tautan ke kamus lengkap tetap tersedia. Objek diganti otomatis bila fi‘il baru tak kompatibel dan pengguna diberi notifikasi. Versi pilot **tidak menyimpan skor atau pilihan ke IndexedDB**; ini prioritas lanjutan, bukan klaim fungsional saat ini.
 
+## Progres D-02 (PR setelah G-06)
+
+Kontrak `LexemeRecord`, `WordSurface`, `MorphFeatures`, `SurfaceEvidence`, dan valensi konteks sudah ditambahkan di `src/lib/domain/grammar/lexeme-forms.ts`. Adapter MSA/kosakata dan sharaf memisahkan lema dengan bentuk yang dinyatakan eksplisit; data tabel wazan tetap aturan/pola, bukan hasil infleksi bebas. Pilot G-06 menggunakan kontrak ini untuk mengaitkan setiap kandidat pengganti dengan metadata kasus/aspek, sumber lema, dan status `draft`. Rincian dan batas cakupan ada di [audit D-02](../data/dynamic-example-lexeme-audit.md). Integrasi menyeluruh, generator terbatas, dan pengganti pada semua G-01–G-05 masih tahap berikutnya.
+
 ## Roadmap kelanjutan (D-01 s.d. D-06)
 
 1. **D-01 — Renderer terpakai ulang (pilot, PR G-06):** komponen slot dengan modal native keyboard-accessible, filter pencarian Arab/Indonesia, default prerender, reset dan undo/change notice; unit/E2E dan mobile tanpa JS.
