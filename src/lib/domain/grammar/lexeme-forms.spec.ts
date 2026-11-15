@@ -54,8 +54,7 @@ describe('D-02 lexical records and word-form provenance', () => {
 		const written = verb('fiil-kataba');
 		expect(written.wordClass).toBe('verb');
 		expect(written.bab).toBe(1);
-		expect(written.forms.find((form) => form.features.aspect === 'imperfect')?.text)
-			.toBe('يَكْتُبُ');
+		expect(written.forms.find((form) => form.features.aspect === 'imperfect')?.text).toBe('يَكْتُبُ');
 		expect(written.forms[0]!.features).toEqual({});
 		expect(written.valency.kind).toBe('unknown');
 		expect(validateLexemeRecord(written)).toEqual([]);
@@ -63,15 +62,9 @@ describe('D-02 lexical records and word-form provenance', () => {
 
 	it('supports sourced MSA and sharaf searching without merging ambiguous unvowelled lemmas', () => {
 		const records = [msa('msa-kitab'), msa('msa-madrasah'), verb('fiil-kataba')];
-		expect(searchLexemeRecords(records, 'مدرسة').map((item) => item.id)).toEqual([
-			'msa-madrasah'
-		]);
-		expect(searchLexemeRecords(records, 'menulis').map((item) => item.id)).toEqual([
-			'fiil-kataba'
-		]);
-		expect(searchLexemeRecords(records, 'كتب').map((item) => item.id)).toEqual([
-			'fiil-kataba'
-		]);
+		expect(searchLexemeRecords(records, 'مدرسة').map((item) => item.id)).toEqual(['msa-madrasah']);
+		expect(searchLexemeRecords(records, 'menulis').map((item) => item.id)).toEqual(['fiil-kataba']);
+		expect(searchLexemeRecords(records, 'كتب').map((item) => item.id)).toEqual(['fiil-kataba']);
 		expect(searchLexemeRecords(records, '').length).toBe(3);
 	});
 
@@ -116,20 +109,29 @@ describe('D-02 lexical records and word-form provenance', () => {
 		const kataba = verb('fiil-kataba');
 		expect(() =>
 			curatedFrameSurface({
-				lexeme: kataba, id: 'wrong-case', surface: 'كَتَبَ', features: { case: 'raf' },
+				lexeme: kataba,
+				id: 'wrong-case',
+				surface: 'كَتَبَ',
+				features: { case: 'raf' },
 				reason: 'Invalid assignment'
 			})
 		).toThrow('Noun case');
 		expect(() =>
 			curatedFrameSurface({
-				lexeme: book, id: 'wrong-mood', surface: 'كِتَابٌ', features: { mood: 'jussive' },
+				lexeme: book,
+				id: 'wrong-mood',
+				surface: 'كِتَابٌ',
+				features: { mood: 'jussive' },
 				reason: 'Invalid assignment'
 			})
 		).toThrow('Verb mood');
 		expect(() =>
 			curatedFrameSurface({
-				lexeme: kataba, id: 'wrong-aspect', surface: 'يَكْتُبْ',
-				features: { mood: 'jussive', aspect: 'perfect' }, reason: 'Invalid assignment'
+				lexeme: kataba,
+				id: 'wrong-aspect',
+				surface: 'يَكْتُبْ',
+				features: { mood: 'jussive', aspect: 'perfect' },
+				reason: 'Invalid assignment'
 			})
 		).toThrow('Verb mood');
 

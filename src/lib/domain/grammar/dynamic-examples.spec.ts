@@ -48,13 +48,21 @@ describe('G-06 dynamic example slots', () => {
 			expect(form.evidence.note).toContain('tashih');
 		}
 		expect(optionsForBuilderSlot(initialBuilderState, 'subject')[0]!.features).toEqual({
-			case: 'raf', number: 'singular', definiteness: 'definite', gender: 'masculine'
+			case: 'raf',
+			number: 'singular',
+			definiteness: 'definite',
+			gender: 'masculine'
 		});
 		expect(optionsForBuilderSlot(initialBuilderState, 'verb')[0]!.features).toEqual({
-			aspect: 'perfect', voice: 'active', number: 'singular', person: 3, gender: 'masculine'
+			aspect: 'perfect',
+			voice: 'active',
+			number: 'singular',
+			person: 3,
+			gender: 'masculine'
 		});
 		expect(optionsForBuilderSlot(initialBuilderState, 'verb')[0]!.valency).toEqual([
-			'msa-risalah', 'msa-kitab'
+			'msa-risalah',
+			'msa-kitab'
 		]);
 		expect(optionsForBuilderSlot(initialBuilderState, 'object')[0]!.features.case).toBe('nasb');
 	});

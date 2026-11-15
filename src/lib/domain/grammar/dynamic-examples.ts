@@ -10,14 +10,14 @@ import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import { sharafEntries } from '#lib/content/sharaf.js';
 import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
 import {
-  curatedFrameSurface,
-  withCuratedValency,
-  lexemeFromVocabulary,
-  lexemeFromSharaf,
-  validateLexemeRecord,
-  type MorphFeatures,
-  type SurfaceEvidence,
-  type LexemeRecord
+	curatedFrameSurface,
+	withCuratedValency,
+	lexemeFromVocabulary,
+	lexemeFromSharaf,
+	validateLexemeRecord,
+	type MorphFeatures,
+	type SurfaceEvidence,
+	type LexemeRecord
 } from './lexeme-forms.js';
 
 export type BuilderMode = 'nominal' | 'verbal';
@@ -126,14 +126,14 @@ function ensureNoun(id: string) {
 }
 
 function inFrame(
-  lexeme: LexemeRecord,
-  id: string,
-  surface: string,
-  features: MorphFeatures,
-  reason: string
+	lexeme: LexemeRecord,
+	id: string,
+	surface: string,
+	features: MorphFeatures,
+	reason: string
 ) {
-  if (validateLexemeRecord(lexeme).length) throw new Error('Invalid lexeme contract: ' + id);
-  return curatedFrameSurface({ lexeme, id, surface, features, reason });
+	if (validateLexemeRecord(lexeme).length) throw new Error('Invalid lexeme contract: ' + id);
+	return curatedFrameSurface({ lexeme, id, surface, features, reason });
 }
 
 function adjectiveChoice(id: string, gender: Gender): BuilderChoice {
@@ -145,13 +145,21 @@ function adjectiveChoice(id: string, gender: Gender): BuilderChoice {
 	if (!gloss) throw new Error('Adjective outside safe pilot list: ' + id);
 	const arabic = gender === 'feminine' ? entry.msa.feminine : entry.arabic;
 	const form = inFrame(
-		lexemeFromVocabulary(entry), 'predicate', arabic,
+		lexemeFromVocabulary(entry),
+		'predicate',
+		arabic,
 		{ case: 'raf', number: 'singular', definiteness: 'indefinite', gender },
 		'Khabar sifat mufrad berstatus marfū‘; bentuk feminin diambil dari field msa.feminine.'
 	);
 	return {
-		id, arabic, lemma: entry.arabic, gloss, meaning: entry.meaning,
-		source: 'msa', features: form.features, evidence: form.evidence
+		id,
+		arabic,
+		lemma: entry.arabic,
+		gloss,
+		meaning: entry.meaning,
+		source: 'msa',
+		features: form.features,
+		evidence: form.evidence
 	};
 }
 
@@ -160,14 +168,21 @@ function nounChoice(item: NominalNoun | VerbAgent | DirectObject): BuilderChoice
 	const caseName = 'raf' in item ? 'raf' : 'nasb';
 	const arabic = 'raf' in item ? item.raf : item.nasb;
 	const form = inFrame(
-		lexemeFromVocabulary(entry), caseName === 'raf' ? 'subject-or-agent' : 'object',
-		arabic, { case: caseName, number: 'singular', definiteness: 'definite', gender: item.gender },
+		lexemeFromVocabulary(entry),
+		caseName === 'raf' ? 'subject-or-agent' : 'object',
+		arabic,
+		{ case: caseName, number: 'singular', definiteness: 'definite', gender: item.gender },
 		'Bentuk isim tunggal ber-ال untuk slot kaidah tertentu. Harakat akhir dipilih manual dari bingkai pengajaran.'
 	);
 	return {
-		id: item.id, arabic, lemma: entry.arabic, gloss: item.gloss,
-		meaning: entry.meaning, source: entry.collection === 'harian' ? 'harian' : 'msa',
-		features: form.features, evidence: form.evidence
+		id: item.id,
+		arabic,
+		lemma: entry.arabic,
+		gloss: item.gloss,
+		meaning: entry.meaning,
+		source: entry.collection === 'harian' ? 'harian' : 'msa',
+		features: form.features,
+		evidence: form.evidence
 	};
 }
 
@@ -175,16 +190,24 @@ function verbChoice(item: VerbSelection): BuilderChoice {
 	const entry = sharaf(item.id);
 	const frameLexeme = withCuratedValency(lexemeFromSharaf(entry), item.allowedObjects);
 	const form = inFrame(
-		frameLexeme, 'verb-past-third-masculine', entry.lemma,
+		frameLexeme,
+		'verb-past-third-masculine',
+		entry.lemma,
 		{ aspect: 'perfect', voice: 'active', number: 'singular', person: 3, gender: 'masculine' },
 		'Fi‘il māḍī aktif orang ketiga maskulin tunggal dari lema yang telah disertakan dalam pilot.'
 	);
 	return {
-		id: item.id, arabic: entry.lemma, lemma: entry.lemma, gloss: item.gloss,
-		meaning: entry.meaning, source: 'sharaf',
+		id: item.id,
+		arabic: entry.lemma,
+		lemma: entry.lemma,
+		gloss: item.gloss,
+		meaning: entry.meaning,
+		source: 'sharaf',
 		bab: entry.bab ? 'Bab ' + entry.bab.number : undefined,
-		features: form.features, evidence: form.evidence,
-		valency: frameLexeme.valency.kind === 'transitive' ? frameLexeme.valency.exampleObjectIds : undefined
+		features: form.features,
+		evidence: form.evidence,
+		valency:
+			frameLexeme.valency.kind === 'transitive' ? frameLexeme.valency.exampleObjectIds : undefined
 	};
 }
 

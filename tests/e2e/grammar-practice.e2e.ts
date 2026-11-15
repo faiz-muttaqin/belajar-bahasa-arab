@@ -75,7 +75,9 @@ test('verbal modal selects source sharaf entry and automatically fixes incompati
 	await expect(modal).not.toBeVisible();
 });
 
-test('D-02 modal identifies per-word provenance while keeping current keyboard selection', async ({ page }) => {
+test('D-02 modal identifies per-word provenance while keeping current keyboard selection', async ({
+	page
+}) => {
 	await page.goto('/kaidah/praktik/');
 	const nominal = page.getByRole('region', { name: 'Contoh Arab interaktif nominal' });
 	await nominal.getByRole('button', { name: 'Ganti Mubtada · isim marfū‘' }).click();

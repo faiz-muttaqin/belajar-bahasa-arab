@@ -257,8 +257,7 @@ export function validateLexemeRecord(record: LexemeRecord): string[] {
 		errors.push('Missing lexeme identity or gloss');
 	if (!record.forms.length || record.forms[0]?.text !== record.lemma)
 		errors.push('Missing exact lemma form');
-	if (!record.lemmaEvidence.sourceUrls.length)
-		errors.push('Missing lexical source');
+	if (!record.lemmaEvidence.sourceUrls.length) errors.push('Missing lexical source');
 	const ids = new Set<string>();
 	for (const form of record.forms) {
 		if (ids.has(form.id)) errors.push('Duplicate form id: ' + form.id);
@@ -278,12 +277,19 @@ export function validateLexemeRecord(record: LexemeRecord): string[] {
 	return errors;
 }
 
-export function searchLexemeRecords(records: readonly LexemeRecord[], query: string): LexemeRecord[] {
+export function searchLexemeRecords(
+	records: readonly LexemeRecord[],
+	query: string
+): LexemeRecord[] {
 	const normalized = normalizeArabicSearch(query);
 	if (!normalized) return [...records];
 	return records.filter((record) =>
-		[record.lemma, record.meaning, record.root ?? '', record.bab ? String(record.bab) : '',
-			...record.forms.map((form) => form.text)]
-			.some((value) => normalizeArabicSearch(value).includes(normalized))
+		[
+			record.lemma,
+			record.meaning,
+			record.root ?? '',
+			record.bab ? String(record.bab) : '',
+			...record.forms.map((form) => form.text)
+		].some((value) => normalizeArabicSearch(value).includes(normalized))
 	);
 }
