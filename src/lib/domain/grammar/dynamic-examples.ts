@@ -328,10 +328,20 @@ function candidatePool(state: BuilderState, slot: BuilderSlot): BuilderChoice[] 
 			return verbs.map(verbChoice);
 		case 'agent':
 			return agents.map(nounChoice);
-		case 'object':
-			// Keep candidates outside the semantic frame so the UI can EXPLAIN
-			// why a familiar object cannot be selected here.
-			return objects.map(nounChoice);
+		case 'object': {
+			// Preserve the curator's *preferred* order for auto-replacement.
+			// After eligible candidates, include other objects so the modal
+			// can explain why they are not offered for this verb.
+			const preferred = verbs.find((item) => item.id === state.verb)?.allowedObjects ?? [];
+			const ids = [
+				...preferred,
+				...objects.map((item) => item.id).filter((id) => !preferred.includes(id))
+			];
+			return ids
+				.map((id) => objects.find((item) => item.id === id))
+				.filter((item): item is DirectObject => item !== undefined)
+				.map(nounChoice);
+		}
 	}
 }
 
