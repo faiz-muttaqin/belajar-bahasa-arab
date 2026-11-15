@@ -71,7 +71,10 @@ describe('D-03 curated verb inflection and frame compatibility', () => {
 		expect(command.form.text).toBe('اِفْتَحْ');
 		expect(command.actor).toBe('implicit-second-masculine');
 		expect(command.form.features).toMatchObject({
-			aspect: 'imperative', person: 2, gender: 'masculine', number: 'singular'
+			aspect: 'imperative',
+			person: 2,
+			gender: 'masculine',
+			number: 'singular'
 		});
 		expect(command.form.features.mood).toBeUndefined();
 		expect(command.particle).toBeUndefined();
@@ -83,7 +86,10 @@ describe('D-03 curated verb inflection and frame compatibility', () => {
 		expect(resolveVerbFrame('fiil-kataba', 'imperative')).toBeUndefined();
 		expect(resolveVerbFrame('fiil-qala', 'present')).toBeUndefined();
 		expect(resolveVerbFrame('bulk-unknown', 'past')).toBeUndefined();
-		expect(verbFrameOptions('fiil-qaraa').filter((item) => item.available).map((item) => item.id))
-			.toEqual(['past', 'present']);
+		expect(
+			verbFrameOptions('fiil-qaraa')
+				.filter((item) => item.available)
+				.map((item) => item.id)
+		).toEqual(['past', 'present']);
 	});
 });

@@ -20,11 +20,7 @@ import {
 	type LexemeRecord,
 	type WordClass
 } from './lexeme-forms.js';
-import {
-	resolveVerbFrame,
-	validateVerbFrameRegistry,
-	type VerbFrameId
-} from './verb-frames.js';
+import { resolveVerbFrame, validateVerbFrameRegistry, type VerbFrameId } from './verb-frames.js';
 
 export type BuilderMode = 'nominal' | 'verbal';
 export type BuilderSlot = 'subject' | 'predicate' | 'verb' | 'agent' | 'object';
@@ -368,22 +364,34 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 		state.verbFrame === 'imperative'
 			? 'Bukalah ' + object.gloss + '!'
 			: state.verbFrame === 'lam'
-				? capitalize(agent.gloss) + ' tidak ' + verb.gloss + ' ' + object.gloss + ' (pada waktu lampau).'
+				? capitalize(agent.gloss) +
+					' tidak ' +
+					verb.gloss +
+					' ' +
+					object.gloss +
+					' (pada waktu lampau).'
 				: state.verbFrame === 'lan'
 					? capitalize(agent.gloss) + ' tidak akan ' + verb.gloss + ' ' + object.gloss + '.'
 					: state.verbFrame === 'present'
-						? capitalize(agent.gloss) + ' ' + verb.gloss + ' ' + object.gloss + ' (konteks nonlampau).'
+						? capitalize(agent.gloss) +
+							' ' +
+							verb.gloss +
+							' ' +
+							object.gloss +
+							' (konteks nonlampau).'
 						: capitalize(agent.gloss) + ' ' + verb.gloss + ' ' + object.gloss + '.';
 	return {
 		tokens: [
 			...(resolved.particle
-				? [{
-						slot: 'operator' as const,
-						arabic: resolved.particle.arabic,
-						gloss: resolved.particle.gloss,
-						role: 'Harf naṣb / jazm',
-						marker: resolved.particle.marker
-					}]
+				? [
+						{
+							slot: 'operator' as const,
+							arabic: resolved.particle.arabic,
+							gloss: resolved.particle.gloss,
+							role: 'Harf naṣb / jazm',
+							marker: resolved.particle.marker
+						}
+					]
 				: []),
 			{
 				slot: 'verb',
@@ -394,13 +402,15 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 			},
 			...(command
 				? []
-				: [{
-						slot: 'agent' as const,
-						arabic: agent.arabic,
-						gloss: agent.gloss,
-						role: 'Fā‘il',
-						marker: 'Rafa‘ · ḍamma'
-					}]),
+				: [
+						{
+							slot: 'agent' as const,
+							arabic: agent.arabic,
+							gloss: agent.gloss,
+							role: 'Fā‘il',
+							marker: 'Rafa‘ · ḍamma'
+						}
+					]),
 			{
 				slot: 'object',
 				arabic: object.arabic,
@@ -410,7 +420,9 @@ export function composeBuilderExample(mode: BuilderMode, state: BuilderState): B
 			}
 		],
 		translation,
-		explanation: resolved.detail + '. ' +
+		explanation:
+			resolved.detail +
+			'. ' +
 			(command
 				? 'Pelaku أَنْتَ tersirat, sehingga kartu tidak menampilkan fā‘il eksplisit. '
 				: 'Fā‘il tunggal maskulin marfū‘ tetap disebutkan. ') +

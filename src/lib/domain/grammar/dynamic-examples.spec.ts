@@ -110,23 +110,33 @@ describe('G-06 dynamic example slots', () => {
 	it('switches the same VSO actor between perfect and imperfect, with explicit case and mood', () => {
 		const present = chooseVerbFrame(initialBuilderState, 'present');
 		const example = composeBuilderExample('verbal', present);
-		expect(example.tokens.map((token) => token.arabic)).toEqual([
-			'يَكْتُبُ', 'الطَّالِبُ', 'الرِّسَالَةَ'
-		]);
+		expect(example.tokens.map((token) => token.arabic)).toEqual(['يَكْتُبُ', 'الطَّالِبُ', 'الرِّسَالَةَ']);
 		expect(example.tokens[0]!.marker).toContain('marfū‘');
 		expect(example.tokens[1]!.marker).toBe('Rafa‘ · ḍamma');
 		expect(example.tokens[2]!.marker).toBe('Naṣb · fatḥa');
 	});
 
 	it('applies lam/lan operators as independent tokens, without treating mood as noun case', () => {
-		const negativePast = composeBuilderExample('verbal', chooseVerbFrame(initialBuilderState, 'lam'));
+		const negativePast = composeBuilderExample(
+			'verbal',
+			chooseVerbFrame(initialBuilderState, 'lam')
+		);
 		expect(negativePast.tokens.map((token) => token.arabic)).toEqual([
-			'لَمْ', 'يَكْتُبْ', 'الطَّالِبُ', 'الرِّسَالَةَ'
+			'لَمْ',
+			'يَكْتُبْ',
+			'الطَّالِبُ',
+			'الرِّسَالَةَ'
 		]);
 		expect(negativePast.translation).toContain('tidak menulis');
-		const negativeFuture = composeBuilderExample('verbal', chooseVerbFrame(initialBuilderState, 'lan'));
+		const negativeFuture = composeBuilderExample(
+			'verbal',
+			chooseVerbFrame(initialBuilderState, 'lan')
+		);
 		expect(negativeFuture.tokens.map((token) => token.arabic)).toEqual([
-			'لَنْ', 'يَكْتُبَ', 'الطَّالِبُ', 'الرِّسَالَةَ'
+			'لَنْ',
+			'يَكْتُبَ',
+			'الطَّالِبُ',
+			'الرِّسَالَةَ'
 		]);
 		expect(negativeFuture.translation).toContain('tidak akan menulis');
 	});

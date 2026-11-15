@@ -43,8 +43,12 @@
 		const result = chooseBuilderWord(selection, activeSlot, id);
 		selection = result.state;
 		const changes = [
-			result.resetObject ? 'Objek otomatis disesuaikan karena tidak cocok dengan fi‘il yang dipilih.' : '',
-			result.resetFrame ? 'Bentuk fi‘il kembali ke māḍī: bentuk sebelumnya belum tersedia untuk lema baru.' : ''
+			result.resetObject
+				? 'Objek otomatis disesuaikan karena tidak cocok dengan fi‘il yang dipilih.'
+				: '',
+			result.resetFrame
+				? 'Bentuk fi‘il kembali ke māḍī: bentuk sebelumnya belum tersedia untuk lema baru.'
+				: ''
 		].filter(Boolean);
 		notice = changes.length
 			? changes.join(' ')
@@ -112,8 +116,8 @@
 				<p class="text-sm">Bentuk awal: fi‘il māḍī (lampau).</p>
 			{/if}
 			<p class="text-xs text-muted-foreground">
-				Opsi yang belum memiliki bentuk tertulis dalam referensi dinonaktifkan.
-				Bentuk amr memakai pelaku tersirat أَنْتَ, bukan fā‘il eksplisit.
+				Opsi yang belum memiliki bentuk tertulis dalam referensi dinonaktifkan. Bentuk amr memakai
+				pelaku tersirat أَنْتَ, bukan fā‘il eksplisit.
 			</p>
 		</div>
 	{/if}

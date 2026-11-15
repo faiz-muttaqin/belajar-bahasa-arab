@@ -6,11 +6,11 @@
 
 \`src/lib/domain/grammar/verb-frames.ts\` adalah **selector bentuk terkurasi**, bukan konjugator atau mesin yang menebak semua ṣīghah. Ia menerima ID lema dan frame pilihan, mengembalikan \`WordSurface\` berfitur eksplisit atau \`undefined\` bila belum ada rujukan. Bentuk yang tidak tersedia dibuat **disabled**, bukan dihasilkan lewat mengganti harakat akhir.
 
-| Lema fi‘il | Māḍī | Muḍāri‘ marfū‘ | \`لَمْ\` + majzūm | \`لَنْ\` + manṣūb | Amr orang kedua |
-|---|---|---|---|---|---|
-| \`fiil-kataba\` كَتَبَ | كَتَبَ | يَكْتُبُ | لَمْ يَكْتُبْ | لَنْ يَكْتُبَ | **Belum tersedia** |
-| \`fiil-qaraa\` قَرَأَ | قَرَأَ | يَقْرَأُ | **Belum tersedia** | **Belum tersedia** | **Belum tersedia** |
-| \`fiil-fataha\` فَتَحَ | فَتَحَ | يَفْتَحُ | **Belum tersedia** | **Belum tersedia** | اِفْتَحْ |
+| Lema fi‘il          | Māḍī | Muḍāri‘ marfū‘ | \`لَمْ\` + majzūm    | \`لَنْ\` + manṣūb    | Amr orang kedua    |
+| ------------------- | ---- | -------------- | ------------------ | ------------------ | ------------------ |
+| \`fiil-kataba\` كَتَبَ | كَتَبَ  | يَكْتُبُ           | لَمْ يَكْتُبْ            | لَنْ يَكْتُبَ            | **Belum tersedia** |
+| \`fiil-qaraa\` قَرَأَ  | قَرَأَ  | يَقْرَأُ           | **Belum tersedia** | **Belum tersedia** | **Belum tersedia** |
+| \`fiil-fataha\` فَتَحَ | فَتَحَ  | يَفْتَحُ           | **Belum tersedia** | **Belum tersedia** | اِفْتَحْ               |
 
 Sumber yang **dipakai** dalam repo:
 
@@ -31,7 +31,7 @@ Sumber yang **dipakai** dalam repo:
 ## Belum dilakukan
 
 - Dhamir lengkap (seluruh orang/gender/jumlah), fi‘il mu‘tal/mahmūz bertashrif penuh, plural/dual, pasif, nāhī, klitik pronomina, dan tanda jazm/nashab selain 3ms belum cukup bukti bentuk untuk dibuka secara umum.
-- Terjemahan Indonesia untuk imperfect bersifat terbuka terhadap konteks; selector memberi label \`nonlampau\` dan tidak otomatis menyatakan *sedang* / *akan* tanpa konteks.
+- Terjemahan Indonesia untuk imperfect bersifat terbuka terhadap konteks; selector memberi label \`nonlampau\` dan tidak otomatis menyatakan _sedang_ / _akan_ tanpa konteks.
 - Layanan generator umum / NLP, menyulap 22 pola wazan menjadi ribuan konjugasi, atau menampilkan hasil inference tanpa review tidak termasuk scope.
 - Rollout ke semua kartu materi G-01–G-05 butuh D-04 / D-05 (constraint agreement, slot i‘rab, klitik, dan semantic roles). Penyimpanan progres menunggu D-06.
 

@@ -74,11 +74,10 @@
 	</div>
 	<p class="text-sm text-muted-foreground">
 		Ini pilot dengan lema sumber MSA/kamus sharaf proyek dan bentuk yang sudah ditetapkan untuk
-		contoh ini. Fi‘il verbal kini mendukung sebagian bentuk māḍī, muḍāri‘, لَمْ, لَنْ,
-		dan amr berdasarkan contoh atau data tashrif yang tercatat, dengan opsi tidak tersedia
-		dinonaktifkan. Bentuk biasa tetap menggunakan fā‘il maskulin tunggal; amr
-		memakai pelaku tersirat orang kedua. Objek dibatasi berdasarkan kecocokan makna,
-		bukan hasil konjugasi otomatis untuk seluruh kamus.
+		contoh ini. Fi‘il verbal kini mendukung sebagian bentuk māḍī, muḍāri‘, لَمْ, لَنْ, dan amr
+		berdasarkan contoh atau data tashrif yang tercatat, dengan opsi tidak tersedia dinonaktifkan.
+		Bentuk biasa tetap menggunakan fā‘il maskulin tunggal; amr memakai pelaku tersirat orang kedua.
+		Objek dibatasi berdasarkan kecocokan makna, bukan hasil konjugasi otomatis untuk seluruh kamus.
 	</p>
 	<nav aria-label="Kamus terkait" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
 		<a href={resolve('kosakata/')} class="text-primary underline">Kamus MSA</a>

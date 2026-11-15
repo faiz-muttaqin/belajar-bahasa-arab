@@ -94,7 +94,9 @@ test('D-02 modal identifies per-word provenance while keeping current keyboard s
 	await expect(nominal.locator('[data-translation]')).toHaveText('Buku itu baru.');
 });
 
-test('D-03 changes real cited fi‘il surfaces and operator mood without inventing forms', async ({ page }) => {
+test('D-03 changes real cited fi‘il surfaces and operator mood without inventing forms', async ({
+	page
+}) => {
 	await page.goto('/kaidah/praktik/');
 	const verbal = page.getByRole('region', { name: 'Contoh Arab interaktif verbal' });
 	const shape = verbal.getByRole('combobox', { name: 'Bentuk fi‘il' });
@@ -126,7 +128,9 @@ test('D-03 changes real cited fi‘il surfaces and operator mood without inventi
 	await expect(verbal.locator('[data-slot="verb"]')).toContainText('يَقْرَأُ');
 });
 
-test('D-03 imperative hides explicit agent, uses second-person subject and keeps object case', async ({ page }) => {
+test('D-03 imperative hides explicit agent, uses second-person subject and keeps object case', async ({
+	page
+}) => {
 	await page.goto('/kaidah/praktik/');
 	const verbal = page.getByRole('region', { name: 'Contoh Arab interaktif verbal' });
 	await verbal.getByRole('button', { name: 'Ganti Fi‘il · pilih kata kerja' }).click();

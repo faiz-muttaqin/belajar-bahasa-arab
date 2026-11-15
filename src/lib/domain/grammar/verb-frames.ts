@@ -101,43 +101,54 @@ function sourceForm(verbId: string, frame: VerbFrameId): string | undefined {
 	if (!entry) return undefined;
 
 	if (frame === 'past') return entry.lemma;
-	if (frame === 'present')
-		return entry.forms.find((form) => form.label === 'mudhari')?.value;
-	if (frame === 'imperative')
-		return entry.forms.find((form) => form.label === 'amr')?.value;
+	if (frame === 'present') return entry.forms.find((form) => form.label === 'mudhari')?.value;
+	if (frame === 'imperative') return entry.forms.find((form) => form.label === 'amr')?.value;
 
 	// G-04 contains exactly one audited-for-structure draft illustration of
 	// these operators. NEVER use that one sample to infer forms for other verbs.
 	if (verbId !== 'fiil-kataba') return undefined;
 	const illustration = sentenceRules
 		.find((rule) => rule.id === 'negation')
-		?.examples.find((example) => example.id === (frame === 'lam' ? 'negation-lam' : 'negation-lan'));
+		?.examples.find(
+			(example) => example.id === (frame === 'lam' ? 'negation-lam' : 'negation-lan')
+		);
 	return illustration?.tokens.find((token) => token.role === 'verb')?.arabic;
 }
 
-export function resolveVerbFrame(verbId: string, frame: VerbFrameId): ResolvedVerbFrame | undefined {
+export function resolveVerbFrame(
+	verbId: string,
+	frame: VerbFrameId
+): ResolvedVerbFrame | undefined {
 	if (!approvedForPilot[verbId]?.includes(frame)) return undefined;
 	const entry = lexicalVerb(verbId);
 	const surface = sourceForm(verbId, frame);
 	if (!entry || !surface) return undefined;
 
-	const features: MorphFeatures = frame === 'imperative'
-		? { aspect: 'imperative', voice: 'active', person: 2, gender: 'masculine', number: 'singular' }
-		: frame === 'past'
-			? { aspect: 'perfect', voice: 'active', person: 3, gender: 'masculine', number: 'singular' }
-			: {
-					aspect: 'imperfect',
+	const features: MorphFeatures =
+		frame === 'imperative'
+			? {
+					aspect: 'imperative',
 					voice: 'active',
-					person: 3,
+					person: 2,
 					gender: 'masculine',
-					number: 'singular',
-					mood: frame === 'present' ? 'indicative' : frame === 'lam' ? 'jussive' : 'subjunctive'
-				};
+					number: 'singular'
+				}
+			: frame === 'past'
+				? { aspect: 'perfect', voice: 'active', person: 3, gender: 'masculine', number: 'singular' }
+				: {
+						aspect: 'imperfect',
+						voice: 'active',
+						person: 3,
+						gender: 'masculine',
+						number: 'singular',
+						mood: frame === 'present' ? 'indicative' : frame === 'lam' ? 'jussive' : 'subjunctive'
+					};
 	const annotation = frameAnnotations[frame];
 
-	const meaningEvidence = frame === 'lam' || frame === 'lan'
-		? 'Token operator + fi‘il diambil dari contoh G-04 yang masih draft.'
-		: 'Bentuk ditemukan secara eksplisit pada indeks sharaf proyek; analisis orang/mood khusus untuk frame pilot ini.';
+	const meaningEvidence =
+		frame === 'lam' || frame === 'lan'
+			? 'Token operator + fi‘il diambil dari contoh G-04 yang masih draft.'
+			: 'Bentuk ditemukan secara eksplisit pada indeks sharaf proyek; analisis orang/mood khusus untuk frame pilot ini.';
 
 	const form = curatedFrameSurface({
 		lexeme: lexemeFromSharaf(entry),
@@ -151,7 +162,9 @@ export function resolveVerbFrame(verbId: string, frame: VerbFrameId): ResolvedVe
 		if (!rule?.sources.length) return undefined;
 		form.evidence = {
 			...form.evidence,
-			sourceUrls: [...new Set([...form.evidence.sourceUrls, ...rule.sources.map((source) => source.url)])],
+			sourceUrls: [
+				...new Set([...form.evidence.sourceUrls, ...rule.sources.map((source) => source.url)])
+			],
 			note: form.evidence.note + ' Kaidah perubahan mood merujuk G-04.'
 		};
 	}
@@ -175,7 +188,10 @@ export function validateVerbFrameRegistry(): string[] {
 	const errors: string[] = [];
 	const expected: Readonly<Record<string, Partial<Record<VerbFrameId, string>>>> = {
 		'fiil-kataba': {
-			past: 'كَتَبَ', present: 'يَكْتُبُ', lam: 'يَكْتُبْ', lan: 'يَكْتُبَ'
+			past: 'كَتَبَ',
+			present: 'يَكْتُبُ',
+			lam: 'يَكْتُبْ',
+			lan: 'يَكْتُبَ'
 		},
 		'fiil-qaraa': { past: 'قَرَأَ', present: 'يَقْرَأُ' },
 		'fiil-fataha': { past: 'فَتَحَ', present: 'يَفْتَحُ', imperative: 'اِفْتَحْ' }
