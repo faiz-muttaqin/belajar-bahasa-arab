@@ -25,7 +25,7 @@ Pilot latihan makna pada [pelajaran shalat](../content/public-lessons.md#jalur-u
 
 Untuk pendalaman, mulai [pilot glosarium istilah Arab](../plans/glosarium-istilah-arab.md) dari pelajaran jenis kata. Bantuan singkat tersedia dari istilah di dalam contoh. Rujukan lengkap memuat pembagian, analogi Indonesia, contoh, dan ilustrasi hubungan antarkonsep.
 
-Pelajar perlu melihat posisinya pada jalur dan tingkat pemahamannya. [Rencana peta belajar](../plans/peta-belajar.md) (RM-01 sampai RM-07) menyusun pelajaran yang ada ke dalam enam tahap dengan cabang opsional, dan memisahkan status posisi dari bukti pemahaman. RM-02 sampai RM-04 memakai data progres yang sudah ada. RM-05 menunggu perluasan latihan makna di atas.
+Pelajar perlu melihat posisinya pada jalur dan tingkat pemahamannya. [Rencana peta belajar](../plans/peta-belajar.md) (RM-01 sampai RM-08), berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-peta-belajar.md), menyusun pelajaran yang ada ke dalam enam tahap dengan cabang opsional, dan memisahkan status posisi dari bukti pemahaman. RM-02 sampai RM-04 memakai data progres yang sudah ada. RM-05 menunggu perluasan latihan makna di atas, dan fitur ulangan menunggu F-09.
 
 ## Jalur yang dilalui pelajar
 
