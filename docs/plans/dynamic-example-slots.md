@@ -28,11 +28,19 @@ D-03 menyediakan `verb-frames.ts`: pilihan māḍī, muḍāri‘ marfū‘, neg
 
 Pada pilot G-06, pilihan yang belum terkurasi tetap bisa ditemukan dan dibaca dalam modal, tetapi nonaktif dengan alasan yang menjelaskan _batas bukti contoh_ (bukan mengklaim kalimat selalu salah). D-04a belum menangani iḍāfah kompleks, klitik, maushul maupun hubungan antar klausa dan belum memasang UI ke G-01–G-05. [Audit D-04a](../data/dynamic-example-constraints-audit.md).
 
-## Progres D-04b — hubungan frasa (branch terpisah dari PR #33)
+## Progres D-04b — hubungan frasa (merged PR #34)
 
 Validator baru untuk hubungan **iḍāfah**, huruf **jar–majrūr**, dhamir posesif sambung, dan kaitan **isim mawṣūl–ṣilah** menjaga agar pergantian sebagian token tidak menghasilkan rangkaian Arab yang belum dikurasi. Bentuk dan peran dikaitkan ke contoh G-03/G-05 serta referensi kata ganti yang sudah ada di proyek; **tidak** ada pembentuk sufiks atau parser umum. Kasus muḍāf mengikuti konteks, sedangkan muḍāf ilaih tetap jarr; token sambung seperti قَرَأْتُهُ harus utuh. Semua permukaan tetap _draft_ untuk audit pengajar. Baca [audit D-04b](../data/dynamic-example-phrase-relations-audit.md).
 
-Bagian ini merupakan **fondasi domain**, belum mengaktifkan modal pengganti di seluruh G-01–G-05. Tahap sesudahnya adalah **D-05a** (rollout contoh frasa yang sudah punya kontrak), lalu D-05b/c dan D-06.
+Bagian D-04b merupakan **fondasi domain**; UI penggantian contoh dalam G-01/G-03 baru dimulai melalui D-05a. Tahap selanjutnya D-05b/c dan D-06.
+
+## D-05a — Penggantian kata langsung pada G-01/G-03 (PR lanjutan D-04b)
+
+`GrammarExample.svelte` serta `PhraseGloss.svelte` sekarang dapat menampilkan pemilih variasi di **kartu contoh aslinya** untuk subset yang mempunyai **pasangan lengkap** dan kontrak eksplisit: na‘at–man‘ūt, mubtada–khabar, iḍāfah G-01, ma‘rifah/nakirah, na‘at G-03 dan jar–iḍāfah. Pemilihan pada sebuah kata mengganti satu **bingkai sumber lengkap** beserta token, glos, arti dan penjelasannya; tidak menyusun bentuk baru dari lema.
+
+Komponen dialog dipakai ulang, mencari Arab/Indonesia, berstatus `draft`, bisa ditutup Escape dan di-reset. Tanpa JavaScript bentuk awal dari sumber kurikulum tetap ada di prerender. G-03 `idafah-door`, bentuk dua/jamak lain dan G-04/G-05 **tetap statis** sampai ada pilihan yang terkurasi. [Audit D-05a](../data/dynamic-inline-examples-audit.md).
+
+**Selanjutnya:** D-05b/c (contoh kalimat/klausa sesuai bukti dan audit semantik), lalu D-06 (progres latihan, cache dan pencarian besar). Fitur glosarium dan roadmap pembelajar pasca-Iqra tetap dikerjakan independen.
 
 ## Realisasi pilot G-06
 
