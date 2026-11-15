@@ -21,6 +21,10 @@ Hasil awal yang dituju adalah memahami informasi penting dalam teks baru yang pe
 
 Percakapan dan bacaan dapat dikembangkan sejajar setelah latihan makna pertama siap. Proyek contoh dinamis G-06 dan D-02–D-06 memiliki [roadmap teknis sendiri](../plans/dynamic-example-slots.md). Enam pekerjaan di atas dapat diselesaikan dengan cakupan kamus dan pola yang dibutuhkan tiap tugas.
 
+Pilot latihan makna pada [pelajaran shalat](../content/public-lessons.md#jalur-utama) memakai satu pola, “-ku”. Pelajar memilih arti kata dari bacaan, melihat alasan, lalu menerapkan pola yang sama pada kata dari Arab sehari-hari. Unit “ini apa/siapa” menjadi tahap berikutnya.
+
+Untuk pendalaman, mulai [pilot glosarium istilah Arab](../plans/glosarium-istilah-arab.md) dari pelajaran jenis kata. Bantuan singkat tersedia dari istilah di dalam contoh. Rujukan lengkap memuat pembagian, analogi Indonesia, contoh, dan ilustrasi hubungan antarkonsep.
+
 ## Jalur yang dilalui pelajar
 
 | Tahap                          | Hasil yang bisa diamati                                                                                                                          | Materi awal dan tugas berikutnya                                                                                                                                                                     |

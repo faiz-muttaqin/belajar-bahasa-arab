@@ -15,6 +15,7 @@
 	import AudioPlayButton from './AudioPlayButton.svelte';
 	import SpeechSettings from './SpeechSettings.svelte';
 	import MixedText from './MixedText.svelte';
+	import MeaningPractice from './MeaningPractice.svelte';
 	import SentenceBreakdown from './SentenceBreakdown.svelte';
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
 
@@ -99,7 +100,17 @@
 	{/if}
 
 	<article class="space-y-12">
-		<p class="max-w-[68ch] text-pretty">{lesson.intro}</p>
+		<div class="space-y-2">
+			<p class="max-w-[68ch] text-pretty">{lesson.intro}</p>
+			{#if lesson.meaningPractice}
+				<a
+					href="#latihan"
+					class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4"
+				>
+					Coba latihan makna
+				</a>
+			{/if}
+		</div>
 
 		{#if lesson.analysis?.length && !lesson.passage}
 			<SentenceBreakdown groups={lesson.analysis} />
@@ -228,6 +239,10 @@
 
 		<section id="latihan" aria-labelledby="latihan-heading" class="scroll-mt-24 space-y-4">
 			<h2 id="latihan-heading" class="text-2xl font-semibold">Latihan pemahaman</h2>
+			{#if lesson.meaningPractice}
+				<MeaningPractice questions={lesson.meaningPractice} />
+				<h3 class="text-xl font-semibold">Latihan mandiri</h3>
+			{/if}
 			<p class="text-muted-foreground">
 				Jawab dalam hati atau tulis di kertas, lalu buka pembahasan.
 			</p>

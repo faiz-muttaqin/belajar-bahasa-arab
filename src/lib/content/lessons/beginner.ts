@@ -60,6 +60,25 @@ export const beginnerLessons: readonly Lesson[] = [
 			'Dalam kata untuk “Tuhanku”, akhiran bunyi i terkait dengan makna “-ku”. Pola kepemilikan serupa akan muncul lagi di pelajaran kata ganti melekat.',
 			'Glos di sini berfokus pada arti kata dan frasa dalam bacaan.'
 		],
+		meaningPractice: [
+			{
+				context: 'Dari bacaan shalat',
+				arabic: 'رَبِّي',
+				prompt: 'Apa arti kata ini dalam bacaan shalat?',
+				choices: ['Tuhan kalian', 'Tuhanku', 'Tuhan mereka'],
+				correct: 1,
+				reason: 'Bagian رَبّ berarti “Tuhan”. Huruf ي di akhir menambahkan makna “-ku”.'
+			},
+			{
+				context: 'Contoh baru dari Arab sehari-hari',
+				arabic: 'كِتَابِي',
+				prompt: 'Apa arti kata ini?',
+				choices: ['Buku mereka', 'Buku kalian', 'Bukuku'],
+				correct: 2,
+				reason:
+					'Kata كِتَابٌ berarti “buku”. Seperti pada kata sebelumnya, huruf ي di akhir menambahkan makna “-ku”.'
+			}
+		],
 		exercises: [
 			{
 				arabic: 'الْأَعْلَى',
