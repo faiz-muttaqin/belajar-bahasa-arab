@@ -1,5 +1,6 @@
 import type { Path } from '$app/types';
 import type { GlossaryText } from '#lib/content/grammar-glossary.js';
+import type { EvidenceSkill } from '#lib/domain/roadmap/evidence.js';
 
 /** Pages lessons link to. Kept narrow: see SectionPath in navigation.ts for why. */
 type RelatedPage =
@@ -37,6 +38,10 @@ type Exercise = {
 };
 
 export type MeaningQuestion = {
+	/** Stable across content revisions, never derived from array position. */
+	id: string;
+	/** A transfer candidate only counts as new on its first answered attempt. */
+	kind: 'guided' | 'transfer';
 	context: string;
 	arabic: string;
 	prompt: string;
@@ -68,6 +73,13 @@ export type Lesson = {
 	analysis?: readonly AnalysisGroup[];
 	analysisGlossary?: GlossaryText;
 	meaningPractice?: MeaningPractice;
+	/** Explicit, source-backed self-check subset of the existing exercises. */
+	selfChecks?: readonly {
+		id: string;
+		exerciseIndex: number;
+		competencyIds: readonly string[];
+		skill: EvidenceSkill;
+	}[];
 	exercises: readonly Exercise[];
 	related?: readonly { label: string; path: `${RelatedPage}#${string}` }[];
 };
@@ -107,6 +119,11 @@ export function validateLessons(lessons: readonly Lesson[]) {
 		if (
 			practice &&
 			(practice[0].arabic === practice[1].arabic ||
+				practice[0].id === practice[1].id ||
+				practice.some(({ id, kind }) =>
+					!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) ||
+					(kind !== 'guided' && kind !== 'transfer')
+				) ||
 				practice.some(
 					({ arabic, context, prompt, choices, correct, reason }) =>
 						![arabic, context, prompt, reason, ...choices].every((text) => text.trim()) ||
@@ -115,6 +132,22 @@ export function validateLessons(lessons: readonly Lesson[]) {
 				))
 		) {
 			throw new Error(`Invalid meaning practice: ${lesson.id}`);
+		}
+
+		if (
+			lesson.selfChecks?.some(
+				(check) =>
+					!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(check.id) ||
+					!Number.isSafeInteger(check.exerciseIndex) ||
+					check.exerciseIndex < 0 ||
+					check.exerciseIndex >= lesson.exercises.length ||
+					!check.competencyIds.length ||
+					check.competencyIds.some((id) => !lesson.competencies.includes(id))
+			) ||
+			new Set(lesson.selfChecks?.map((item) => item.id)).size !==
+				(lesson.selfChecks?.length ?? 0)
+		) {
+			throw new Error(`Invalid self checks: ${lesson.id}`);
 		}
 
 		for (const group of lesson.analysis ?? []) {
