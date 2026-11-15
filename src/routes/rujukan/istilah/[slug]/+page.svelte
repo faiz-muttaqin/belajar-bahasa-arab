@@ -136,7 +136,7 @@
 				<ul class="mt-3 list-disc space-y-2 ps-5">
 					{#each classification.references as source (source.url)}
 						<li>
-							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external academic/grammar references -->
+							<!-- eslint-disable svelte/no-navigation-without-resolve -- external academic/grammar references -->
 							<a
 								href={source.url}
 								class="break-words text-primary underline"
@@ -145,6 +145,7 @@
 							>
 						</li>
 					{/each}
+			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</ul>
 				<p class="mt-3 text-sm text-muted-foreground">
 					Contoh asli untuk situs ini, tetapi belum mendapat tashih pengajar bahasa Arab.
