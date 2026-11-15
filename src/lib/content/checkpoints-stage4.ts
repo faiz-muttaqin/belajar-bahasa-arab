@@ -27,7 +27,8 @@ function makeQuestions(
 	context: string
 ): MeaningPractice {
 	const first = items[0];
-	if (!first) throw new Error('Checkpoint group cannot be empty');
+	const second = items[1];
+	if (!first || !second) throw new Error('Checkpoint group requires at least two questions');
 	const toQuestion = (item: Item): MeaningQuestion => ({
 		id: `rm06-stage4-${item.id}`,
 		kind: 'transfer',
@@ -39,7 +40,7 @@ function makeQuestions(
 		reason: item.reason,
 		sources: [source]
 	});
-	return [toQuestion(first), ...items.slice(1).map(toQuestion)];
+	return [toQuestion(first), toQuestion(second), ...items.slice(2).map(toQuestion)];
 }
 
 const activePassiveItems: readonly Item[] = [
