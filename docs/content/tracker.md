@@ -57,6 +57,8 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 
 Unit order is a hypothesis to be validated by a teacher and 5 to 10 learners.
 
+See the [post-Iqra learning roadmap](../curriculum/ROADMAP.md) for the delivery order and acceptance criteria for onboarding, reading and basic conversation.
+
 | ID  | Unit (proposed)     | Can-do goal (draft)                                       | Stage | Sources                              | Reviewer | Next action                                                                                                                    |
 | --- | ------------------- | --------------------------------------------------------- | ----- | ------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | B0  | Kesiapan & bunyi    | Distinguish sounds/writing; find meaning of simple words  | 1 🟡  | §5.2                                 | —        | Pick sound contrasts hard for Indonesian speakers.                                                                             |
