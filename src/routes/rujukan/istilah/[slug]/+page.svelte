@@ -26,7 +26,9 @@
 	</PageIntro>
 
 	{#if term.note}
-		<p class="rounded-xl bg-secondary p-4 text-secondary-foreground">{term.note}</p>
+		<p class="rounded-xl bg-secondary p-4 text-secondary-foreground">
+			<MixedText text={term.note} />
+		</p>
 	{/if}
 
 	<section aria-labelledby="contoh" class="space-y-2">
@@ -36,30 +38,28 @@
 		<p><MixedText text={term.example.explanation} /></p>
 	</section>
 
-	{#if term.roles}
-		<figure aria-labelledby="jenis-dan-tugas" class="space-y-3 border-y py-5">
-			<figcaption id="jenis-dan-tugas" class="text-xl font-semibold">
-				Jenis dan tugas kata
+	{#if term.illustration}
+		<figure aria-labelledby="ilustrasi-istilah" class="space-y-3 border-y py-5">
+			<figcaption id="ilustrasi-istilah" class="text-xl font-semibold">
+				{term.illustration.heading}
 			</figcaption>
-			<ol dir="rtl" class="grid gap-3 sm:grid-cols-2">
-				{#each term.roles as word (word.arabic)}
+			<ol dir="rtl" class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,12rem),1fr))] gap-3">
+				{#each term.illustration.words as word (word.arabic)}
 					<li dir="ltr" class="space-y-1 rounded-xl bg-secondary p-4 text-secondary-foreground">
 						<ArabicText text={word.arabic} size="block" />
 						<p class="font-medium">{word.meaning}</p>
 						<dl class="mt-2 space-y-1 border-t pt-2">
-							<div class="flex flex-wrap gap-x-2">
-								<dt class="font-semibold">Jenis kata</dt>
-								<dd>{word.kind}</dd>
-							</div>
-							<div class="flex flex-wrap gap-x-2">
-								<dt class="font-semibold">Tugas</dt>
-								<dd>{word.role}</dd>
-							</div>
+							{#each word.labels as item (item.label)}
+								<div class="flex flex-wrap gap-x-2">
+									<dt class="font-semibold">{item.label}</dt>
+									<dd>{item.value}</dd>
+								</div>
+							{/each}
 						</dl>
 					</li>
 				{/each}
 			</ol>
-			<p>Kedua kata termasuk isim. Dalam jumlah ini, masing-masing punya tugas berbeda.</p>
+			<p>{term.illustration.explanation}</p>
 		</figure>
 	{/if}
 

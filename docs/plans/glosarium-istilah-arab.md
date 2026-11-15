@@ -1,6 +1,6 @@
 # Glosarium istilah Arab untuk pelajar pasca-Iqra
 
-**15 November 2026 · Pilot tiga istilah**
+**15 November 2026 · Pilot dan perluasan**
 
 Di halaman Bedah per kata, pelajar dapat menemukan _isim_, _nahwu_, _sharaf_, dan beberapa istilah baru dalam satu contoh. Ia perlu tahu apa yang perlu dilihat pada contoh tersebut sebelum memutuskan apakah ingin mempelajari kaidahnya. Mulai dari pelajaran “Isim, fi‘il, dan harf”. [Temuan PR #28](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/28) · [Audit UX](../research/2026-11-15-ux-pasca-iqra.md).
 
@@ -42,5 +42,5 @@ Untuk pilot, pakai satu ilustrasi berlabel yang membandingkan bentuk kata dengan
 ## Tahap pengembangan
 
 - **Pilot.** Tiga tautan tersedia di bagian Bedah per kata pelajaran “Isim, fi‘il, dan harf”. Dialog dan halaman statis `/rujukan/istilah/[slug]/` memakai data entri yang sama. Halaman Jumlah menampilkan ilustrasi jenis dan tugas kata. Definisi, analogi, dan contoh berstatus draf untuk tinjauan pengajar.
-- **Perluasan.** Setelah uji pelajar, tambahkan _fi‘il_, _harf_, _nahwu_, dan _sharaf_. Pakai entri yang sama dari Kaidah, Jenis kata, dan pelajaran terkait. Tambahkan ilustrasi serta rincian teknis dari pertanyaan yang muncul saat pilot.
+- **Perluasan.** Uji live tiga istilah awal mencakup buka-tutup dialog, fokus, posisi baca, dan halaman rujukan pada Chromium Android serta WebKit iPhone. Empat entri berikutnya adalah _fi‘il_, _harf_, _nahwu_, dan _sharaf_, dengan tautan sesuai konteks dari pelajaran jenis kata dan Kaidah. Semuanya tersedia dari indeks Jenis kata. Ilustrasi Sharaf membandingkan tiga bentuk dari akar ك ت ب.
 - **Uji penerimaan.** Saat membaca contoh, pelajar dapat menemukan arti _isim_ dalam satu tindakan, menjelaskan perbedaan _kalimah_ dan “kalimat” dengan contoh, lalu kembali tepat ke contoh semula. Gunakan tugas uji tanpa menyebut label tombol. Ulangi tanpa JavaScript untuk memeriksa tautan rujukan statis.

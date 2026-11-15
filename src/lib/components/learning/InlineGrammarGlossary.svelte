@@ -72,11 +72,11 @@
 	aria-labelledby="{id}-heading"
 	aria-describedby="{id}-definition"
 	onclose={returnFocus}
-	class="m-auto max-h-[85dvh] w-[min(92vw,32rem)] overflow-y-auto overscroll-contain rounded-2xl border bg-card p-0 text-card-foreground backdrop:bg-black/45"
+	class="m-auto w-[min(92vw,32rem)] overflow-hidden rounded-2xl border bg-card p-0 text-card-foreground backdrop:bg-black/45"
 >
 	{#if term}
-		<div class="space-y-4 p-5 sm:p-6">
-			<div class="flex items-start justify-between gap-3">
+		<div class="flex max-h-[85dvh] flex-col">
+			<div class="flex shrink-0 items-start justify-between gap-3 px-5 pt-5 pb-3 sm:px-6">
 				<h2 id="{id}-heading" class="flex flex-wrap items-baseline gap-x-3 text-2xl font-semibold">
 					{term.title}<ArabicText text={term.arabic} />
 				</h2>
@@ -84,16 +84,27 @@
 					<Button type="submit" variant="outline">Tutup</Button>
 				</form>
 			</div>
-			<p id="{id}-definition">{term.definition}</p>
-			{#if term.note}
-				<p class="text-base text-muted-foreground">{term.note}</p>
-			{/if}
-			<div class="space-y-1 border-t pt-3">
-				<ArabicText text={term.example.arabic} size="block" />
-				<p class="font-medium">{term.example.meaning}</p>
-				<p class="text-muted-foreground"><MixedText text={term.example.explanation} /></p>
+			<!-- Keep a keyboard target for scrolling when the example is taller than the available space. -->
+			<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+			<div
+				role="region"
+				aria-label="Penjelasan dan contoh"
+				tabindex="0"
+				class="min-h-0 space-y-3 overflow-y-auto overscroll-contain px-5 pb-3 focus-visible:outline-offset-[-2px] sm:px-6"
+			>
+				<p id="{id}-definition">{term.definition}</p>
+				{#if term.note}
+					<p class="text-base text-muted-foreground"><MixedText text={term.note} /></p>
+				{/if}
+				<div class="space-y-1 border-t pt-3">
+					<ArabicText text={term.example.arabic} size="block" />
+					<p class="font-medium">{term.example.meaning}</p>
+					<p class="text-muted-foreground"><MixedText text={term.example.explanation} /></p>
+				</div>
 			</div>
-			<Button href={resolve(`rujukan/istilah/${term.id}/`)}>Baca penjelasan lengkap</Button>
+			<div class="shrink-0 border-t px-5 py-3 sm:px-6">
+				<Button href={resolve(`rujukan/istilah/${term.id}/`)}>Baca penjelasan lengkap</Button>
+			</div>
 		</div>
 	{/if}
 </dialog>
