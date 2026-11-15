@@ -321,6 +321,11 @@ export function assessInlineFrame(frame: InlineFrameSpec): InlineExampleAssessme
 	};
 }
 
+/** Stable registry lookup for audit and regression checks. */
+export function curatedInlineFrame(source: InlineExampleSource, id: string): InlineFrameSpec | undefined {
+	return frames.find((frame) => frame.source === source && frame.exampleId === id);
+}
+
 function framesFor(source: InlineExampleSource, originalId: string): readonly InlineFrameSpec[] {
 	const base = frames.find((frame) => frame.source === source && frame.exampleId === originalId);
 	if (!base) return [];
