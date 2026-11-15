@@ -145,7 +145,7 @@
 							>
 						</li>
 					{/each}
-			<!-- eslint-enable svelte/no-navigation-without-resolve -->
+					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</ul>
 				<p class="mt-3 text-sm text-muted-foreground">
 					Contoh asli untuk situs ini, tetapi belum mendapat tashih pengajar bahasa Arab.
