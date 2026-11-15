@@ -162,7 +162,7 @@ Urutan disusun untuk pemilik sebagai pengguna utama: posisi dulu, lalu bukti, da
 
 | ID    | Isi                                                                                                                       | Selesai ketika                                                                                                                                                                                                                                                                                                                                               |
 | ----- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| RM-01 | Rencana ini, studi komparasi, dan pembaruan tautan di ROADMAP serta tracker                                               | Pemilik menyetujui keputusan §9.                                                                                                                                                                                                                                                                                                                             |
+| RM-01 | Rencana ini, studi komparasi, dan pembaruan tautan di ROADMAP serta tracker                                               | Selesai 15 November 2026. Keputusan §9 disetujui; lanjut ke §10.                                                                                                                                                                                                                                                                                             |
 | RM-02 | Data kompetensi, data peta, fungsi domain, validator                                                                      | Semua 29 pelajaran terpetakan; validator gagal pada pelajaran tanpa langkah, ID kompetensi yang tidak dikenal, dan urutan yang melawan prasyarat `hard`; uji unit lulus. Tidak ada perubahan UI.                                                                                                                                                             |
 | RM-03 | Peta statis di `/belajar/` dan dialog detail                                                                              | HTML statis memuat semua tahap dan tautan; tanpa JS tetap terbaca; tanpa geser horizontal pada 320, 390 dan 1440 px; tema terang dan gelap; fokus keyboard kembali ke kartu setelah dialog ditutup; uji E2E dan no-JS. Peta langsung publik dengan label draf.                                                                                               |
 | RM-04 | Status posisi, tanda manual, "Anda di sini", ringkasan di `/progres/`, IndexedDB v2 (`marks`), impor gabung, `persist()`  | Setelah U1 selesai dan halaman dimuat ulang, Tahap 1 tercatat selesai dan "Anda di sini" pindah ke Tahap 2; membuka ulang U1 tidak memindahkan penanda mundur; tanda "lewati" bertahan dan ikut ekspor-impor; dua cadangan dari perangkat berbeda tergabung; cadangan schema 1 tetap bisa diimpor.                                                           |
@@ -187,6 +187,31 @@ Diputuskan berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-
 10. **Diagram desktop.** Ditunda.
 
 Pertanyaan yang tersisa untuk ustadz peninjau: apakah metode Tamyiz, Al-Bayan, atau anotasi utawi-iku perlu memengaruhi bentuk soal "baca dan maknai" di titik cek.
+
+## 10. Lanjutkan dari sini: RM-02
+
+**Status (15 November 2026).** RM-01 selesai: rencana ini dan [studi komparasi](../research/2026-11-15-studi-komparasi-peta-belajar.md) sudah di `main`, dan keputusan §9 disetujui pemilik. Pekerjaan berikutnya RM-02. Belum ada kode peta sama sekali.
+
+**Tujuan RM-02.** Jadikan peta belajar sebagai data bertipe yang tervalidasi, supaya RM-03 (UI) dan RM-04 (posisi) tinggal membaca data dan fungsi yang sudah diuji. **Tidak ada perubahan UI, route, atau penyimpanan di PR ini.**
+
+**Yang dibuat:**
+
+1. `src/lib/content/competencies.ts`: semua node dari [graf kompetensi §2](../curriculum/COMPETENCY_GRAPH.md#2-nodes) (CA-01 sampai CA-06, CB-01 sampai CB-21, CR-01 sampai CR-03), ditambah CB-22 sampai CB-24 dari bagian "Cakupan bacaan tingkat menengah". Isi per node: `id`, `track`, `titleId`, `canDo`, `prerequisites` (`id`, `strength`: `hard` / `soft` / `optional`), `reviewStatus: 'draft'`. Kalimat `canDo` ditulis ulang dari kolom can-do unit (graf §3) atau tabel pelajaran di [public-lessons](../content/public-lessons.md). Jangan mengarang konten Arab baru.
+2. `src/lib/content/roadmap.ts`: tahap, langkah, cabang, dan titik cek sesuai tabel §4. Setiap langkah punya `id` stabil (contoh `step-u4-u8`), `title`, `canDo`, `lessonIds` (ID pelajaran, bukan slug), dan `competencyIds`. Setiap kompetensi punya satu tempat utama (langkah atau cabang). Pelajaran boleh merujuk kompetensi yang tempat utamanya di langkah lain, misalnya U9-03 di Tahap 4 merujuk CB-20 yang ada di cabang Percakapan. Cabang Pendalaman menautkan path yang sudah ada (`kaidah/…`, `rujukan/`, `kosakata/`). Cabang Percakapan dan titik cek berstatus `planned`, tanpa tautan.
+3. `src/lib/domain/roadmap/`: fungsi murni tanpa Svelte dan tanpa IndexedDB. `stepStatus(step, lessons, lessonProgress, marks)` dan `currentPosition(roadmap, …)` mengikuti §3.1. `summarizeRoadmap(…)` mengembalikan hitungan per tahap (§3.3). Pakai tipe `LessonProgress` dari `src/lib/progress/lessons.ts`. `marks` cukup berupa tipe input untuk sekarang, karena store-nya dibuat di RM-04. `competencyLevel` belum dibuat; itu bagian RM-05.
+4. Validator `validateRoadmap(...)` dipanggil saat build, di tempat yang sama dengan `validateLessons` dipanggil (`src/lib/content/lessons/index.ts`). Validator gagal bila:
+   - pelajaran publik (`iqra` dan `belajar`, saat ini 29) tidak ada di tepat satu langkah;
+   - ID kompetensi di pelajaran atau di langkah tidak ada di `competencies.ts`;
+   - ID langkah atau tahap ganda;
+   - urutan langkah melawan prasyarat `hard`, yaitu prasyarat ada di langkah yang lebih belakang (invarian I-5; saat ini hanya di Fondasi CA-02 sampai CA-06);
+   - cabang `planned` punya tautan.
+5. Uji unit `*.spec.ts` di sebelah setiap file: data sungguhan lolos validator, setiap aturan validator gagal pada fixture rusak, dan kasus §3.1 (`Belum dimulai`, `Sedang dipelajari`, `Selesai` pada revisi kini dan tidak pada revisi lama, `Dilewati`). Uji juga dua aturan "Anda di sini": membuka ulang U1 tidak memindahkan posisi mundur, dan tanda "Sedang saya pelajari" yang terbaru menang.
+
+**Selesai ketika:** `bun run check`, `bun run lint`, `bun run test:unit`, dan `bun run build` lulus. Tidak ada perubahan pada `src/routes/`. Baris F-15 di [tracker](../content/tracker.md) dan baris RM-02 di §8 diperbarui. Ringkasan PR menyebut jumlah pelajaran, langkah, dan kompetensi yang terpetakan.
+
+**Jangan:** menambah dependency; membuat route atau komponen; menyentuh IndexedDB atau `progressVersion`; mengubah isi pelajaran; memakai slug sebagai ID; menampilkan persen atau level CEFR di teks mana pun.
+
+**Sesudah RM-02:** RM-03 membangun peta statis di `/belajar/` dari data ini (§5), lalu RM-04 menambahkan posisi dan store `marks`. Urutan lengkap ada di §8.
 
 ## Sumber
 
