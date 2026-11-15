@@ -55,14 +55,16 @@ function stage(
 			id: `checkpoint-${number === 0 ? 'iqra' : number}`,
 			title: checkpointTitle,
 			competencyIds: checkpointCompetencies,
-			status: [1, 2, 3].includes(number) ? 'available' : 'planned',
+			status: [1, 2, 3, 4].includes(number) ? 'available' : 'planned',
 			...(number === 1
 				? { path: 'belajar/checkpoint-1/' as const, questionCount: 20 }
 				: number === 2
 					? { path: 'belajar/checkpoint-2/' as const, questionCount: 40 }
 					: number === 3
 						? { path: 'belajar/checkpoint-3/' as const, questionCount: 24 }
-						: {}),
+						: number === 4
+							? { path: 'belajar/checkpoint-4/' as const, questionCount: 40 }
+							: {}),
 			sources,
 			reviewStatus: 'draft'
 		},
