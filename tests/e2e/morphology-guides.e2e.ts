@@ -20,9 +20,9 @@ test('F-16 matrix makes all 11 headings direct links to detail pages', async ({ 
 	const links = table.locator('thead th a[href*="/rujukan/bentuk/"]');
 	await expect(links).toHaveCount(11);
 	for (const key of columns) {
-		await expect(links.locator('[href$="/rujukan/bentuk/' + key + '/"]')).toHaveCount(1);
+		await expect(table.locator('thead th a[href$="/rujukan/bentuk/' + key + '/"]')).toHaveCount(1);
 	}
-	await links.locator('[href$="/rujukan/bentuk/fail/"]').click();
+	await table.locator('thead th a[href$="/rujukan/bentuk/fail/"]').click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/fail\/$/);
 	await expect(page.getByRole('heading', { level: 1, name: 'Isim fā‘il' })).toBeVisible();
 	await expect(page.locator('body')).toContainText('كَاتِبٌ');
@@ -33,12 +33,12 @@ test('F-16 matrix makes all 11 headings direct links to detail pages', async ({ 
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/maful\/$/);
 });
 
-test('F-16 fallback reference-table headers also navigate to the same detail', async ({ page }) => {
+test('F-16 fallback reference-table form row labels also navigate to the same detail', async ({ page }) => {
 	await page.goto('/rujukan/fiil/');
 	const section = page.getByText('Contoh per bab dan mode hafalan', { exact: true });
 	await section.click();
 	const details = page.locator('details').filter({ has: section });
-	await details.getByRole('link', { name: 'Fi‘il madhi' }).click();
+	await details.locator('tbody tr[id="tashrif-contoh-madhi"] a[href$="/rujukan/bentuk/madhi/"]').click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/madhi\/$/);
 	await expect(page.getByText('كَتَبْتُ', { exact: true })).toBeVisible();
 });
@@ -86,7 +86,7 @@ test.describe('F-16 full reference remains readable without JavaScript', () => {
 		await page.goto('/rujukan/bentuk/zaman/');
 		await expect(page.getByRole('heading', { level: 1, name: 'Isim zamān' })).toBeVisible();
 		await expect(page.getByText('مَوْعِدٌ', { exact: true })).toBeVisible();
-		await expect(page.getByRole('link', { name: 'Isim makān' })).toBeVisible();
+		await expect(page.getByRole('link', { name: 'Isim makān', exact: true })).toBeVisible();
 		await expect(page.getByText('Sumber untuk audit dan penjelasan lanjut')).toBeVisible();
 		const size = await page.evaluate(() => ({
 			width: document.documentElement.clientWidth,
