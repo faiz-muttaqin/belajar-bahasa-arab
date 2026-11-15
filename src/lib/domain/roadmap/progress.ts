@@ -33,7 +33,7 @@ export function stepStatus(
 ): StepStatus {
 	// An explicit choice also allows revisiting a previously completed step.
 	const mark = latestMarks(marks).get(step.id);
-	if (mark) return mark.mark;
+	if (mark && mark.mark !== 'cleared') return mark.mark;
 	const byLesson = new Map(lessons.map((lesson) => [lesson.id, lesson]));
 	const byProgress = new Map(lessonProgress.map((record) => [record.lessonId, record]));
 	if (
