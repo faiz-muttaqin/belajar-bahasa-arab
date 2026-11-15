@@ -4,6 +4,7 @@ import { phraseRules } from '#lib/content/phrase-rules.js';
 import {
 	assessInlineFrame,
 	canEditInlineExample,
+	canEditInlineSlot,
 	curatedInlineFrame,
 	resolveInlineGrammarExample,
 	resolveInlinePhraseExample,
@@ -115,6 +116,15 @@ describe('D-05a inline edit registry — source and morphology', () => {
 		});
 		expect(denied.allowed).toBe(false);
 		expect(denied.reasons.map((x) => x.code)).toContain('missing-feature');
+	});
+
+	it('shows edit buttons only for slots with a different supported surface', () => {
+		expect(canEditInlineSlot('grammar', 'sifat-nakirah', 0)).toBe(true);
+		expect(canEditInlineSlot('grammar', 'sifat-nakirah', 1)).toBe(true);
+		expect(canEditInlineSlot('phrase', 'preposition-house', 0)).toBe(false);
+		expect(canEditInlineSlot('phrase', 'preposition-house', 1)).toBe(true);
+		expect(canEditInlineSlot('phrase', 'preposition-idafah', 2)).toBe(false);
+		expect(canEditInlineSlot('phrase', 'case-object', 0)).toBe(false);
 	});
 
 	it('only approved pilot example IDs gain interactive controls', () => {
