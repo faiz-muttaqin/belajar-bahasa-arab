@@ -232,10 +232,8 @@ export function withCuratedValency(
 export function curatedFrameSurface(input: CuratedFrameForm): WordSurface {
 	const { lexeme, id, surface, features, reason, frameWordClass } = input;
 	if (!id.trim() || !surface.trim() || !reason.trim()) throw new Error('Incomplete curated form');
-	if (
-		frameWordClass &&
-		(lexeme.wordClass !== 'expression' || frameWordClass === 'expression')
-	) throw new Error('Invalid curated POS override');
+	if (frameWordClass && (lexeme.wordClass !== 'expression' || frameWordClass === 'expression'))
+		throw new Error('Invalid curated POS override');
 	const usedClass = frameWordClass ?? lexeme.wordClass;
 	if (features.case && (!['noun', 'adjective'].includes(usedClass) || features.mood))
 		throw new Error('Noun case cannot be mixed with verb mood or a non-noun');
@@ -256,7 +254,9 @@ export function curatedFrameSurface(input: CuratedFrameForm): WordSurface {
 			'curated-example',
 			'draft',
 			lexeme.lemmaEvidence.sourceUrls,
-			reason + (frameWordClass ? ' Kelas kata ditetapkan manual hanya pada bingkai ini.' : '') + ' Bentuk ini masih menunggu tashih guru bahasa Arab.'
+			reason +
+				(frameWordClass ? ' Kelas kata ditetapkan manual hanya pada bingkai ini.' : '') +
+				' Bentuk ini masih menunggu tashih guru bahasa Arab.'
 		)
 	};
 }
