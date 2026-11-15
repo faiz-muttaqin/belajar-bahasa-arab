@@ -62,7 +62,7 @@ test.describe('public lesson reader without JavaScript', () => {
 
 	test('shows word formation and grammar before the full translation', async ({ page }) => {
 		await page.goto('/belajar/');
-		await page.getByRole('link', { name: 'Mulai dari isim, fi‘il, dan harf' }).click();
+		await page.getByRole('link', { name: 'Bedah isim, fi‘il, dan harf' }).click();
 		await expect(page).toHaveURL(/\/belajar\/isim-fiil-harf\/#bedah-kalimat$/);
 		const analysis = page.getByRole('region', { name: 'Bedah per kata' });
 		await expect(analysis.getByText('Isim', { exact: true }).first()).toBeVisible();

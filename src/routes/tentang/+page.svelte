@@ -42,8 +42,8 @@
 		</p>
 		<p>
 			Tidak ada akun dan tidak ada server untuk data Anda. Pengaturan disimpan di browser, dan
-			progres belajar akan disimpan di penyimpanan lokal browser (IndexedDB). Data ini tidak
-			berpindah antarperangkat dan bisa hilang jika data situs dihapus.
+			progres pelajaran tersimpan di IndexedDB pada browser ini. Data bisa hilang jika data situs
+			dihapus. Cadangan progres dapat diekspor dan diimpor dari halaman Progres.
 		</p>
 	</section>
 

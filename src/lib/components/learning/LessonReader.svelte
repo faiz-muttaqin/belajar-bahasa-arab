@@ -8,6 +8,9 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { LESSON_LICENSE, type Lesson } from '#lib/content/lessons/types.js';
+	import { notifyProgress } from '#lib/progress/browser.svelte.js';
+	import { isLessonComplete } from '#lib/progress/lessons.js';
+	import { saveProgress } from '#lib/progress/storage.js';
 	import ArabicText from './ArabicText.svelte';
 	import AudioPlayButton from './AudioPlayButton.svelte';
 	import SpeechSettings from './SpeechSettings.svelte';
@@ -21,9 +24,42 @@
 
 	let showHarakat = $state(true);
 	let interactive = $state(false);
+	let completed = $state(false);
+	let saving = $state(false);
+	let storageError = $state(false);
+	let openedAt: number;
+	let opening: Promise<void>;
+
+	async function saveLesson(complete: boolean) {
+		try {
+			const records = await saveProgress([
+				{
+					lessonId: lesson.id,
+					contentRevision: lesson.revision,
+					lastOpenedAt: openedAt,
+					completedRevision: complete ? lesson.revision : undefined
+				}
+			]);
+			completed = isLessonComplete(lesson, records.get(lesson.id));
+			storageError = false;
+			notifyProgress();
+		} catch {
+			storageError = true;
+		}
+	}
+
 	onMount(() => {
+		openedAt = Date.now();
+		opening = saveLesson(false);
 		interactive = true;
 	});
+
+	async function markComplete() {
+		saving = true;
+		await opening;
+		await saveLesson(true);
+		saving = false;
+	}
 
 	const register = {
 		msa: 'Arab standar',
@@ -245,6 +281,23 @@
 				</li>
 			{/each}
 		</ul>
+	{/if}
+
+	{#if interactive}
+		<div class="space-y-2">
+			<Button variant="outline" disabled={saving || completed} onclick={markComplete}>
+				{saving ? 'Menyimpan…' : completed ? 'Pelajaran selesai' : 'Tandai selesai'}
+			</Button>
+			{#if storageError}
+				<p role="status" class="text-base text-muted-foreground">
+					Progres belum tersimpan. Coba lagi atau lanjutkan membaca.
+				</p>
+			{:else if completed}
+				<p role="status" class="text-base text-muted-foreground">
+					Progres tersimpan di browser ini.
+				</p>
+			{/if}
+		</div>
 	{/if}
 
 	<nav aria-label="Urutan pelajaran" class="flex flex-wrap justify-between gap-3 border-t pt-6">

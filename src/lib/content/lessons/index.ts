@@ -5,6 +5,7 @@ import { sentenceReadingLessons } from './sentence-reading.js';
 import { intermediateLessons } from './intermediate.js';
 import { validateLessons, type LessonSummary, type LessonTrack } from './types.js';
 import { wordClassesLesson } from './word-classes.js';
+import type { ProgressLesson } from '#lib/progress/lessons.js';
 
 const lessons = [
 	...foundationLessons,
@@ -30,4 +31,21 @@ export function lessonSummaries(track: LessonTrack): LessonSummary[] {
 		minutes,
 		level
 	}));
+}
+
+export function firstMainLesson() {
+	const lesson = lessons.find((lesson) => lesson.track === 'belajar');
+	if (!lesson) throw new Error('Jalur utama membutuhkan satu pelajaran pembuka.');
+	return { slug: lesson.slug, title: lesson.title };
+}
+
+export function lessonProgressData() {
+	const progressLessons: ProgressLesson[] = lessons.map(({ id, revision, slug, title, track }) => ({
+		id,
+		revision,
+		slug,
+		title,
+		track
+	}));
+	return { progressLessons, startSlug: firstMainLesson().slug };
 }

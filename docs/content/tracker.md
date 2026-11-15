@@ -2,7 +2,7 @@
 
 Single place to see what content exists, what blocks it, and what to do next. Update the row (and the "Updated" date) whenever an item moves stage. Agents: read [AGENTS.md](../../AGENTS.md) and the [research doc](../arabic-learning-pedagogy-ux-research-reissued.md) first; never move an item past **Draft** without a named human reviewer.
 
-**Updated:** 14 November 2026
+**Updated:** 15 November 2026
 
 ## Pipeline
 
@@ -35,7 +35,7 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 | F-04 | Lesson content schema (lesson, example, concept, can-do)         | ✅             | content        | Typed lesson catalog with stable IDs, revision, source links, exercises and review status.                                                                        |
 | F-05 | Lesson page template (one reference lesson, focus mode)          | ✅             | content        | Shared static reader with Arabic direction, passage disclosures, feedback and links between lessons.                                                              |
 | F-06 | Build-time content validator (sources, review status, audio IDs) | 🟡             | content        | Lesson identity, source links and approval validated. Audio asset validation remains pending.                                                                     |
-| F-07 | Progress, bookmarks, review queue in IndexedDB + export/import   | ⬜             | —              | Guide §5; schema version and migration from the start.                                                                                                            |
+| F-07 | Progress, bookmarks, review queue in IndexedDB + export/import   | 🟡             | P0             | Implementasi P0 menyimpan progres pelajaran berdasarkan ID dan revisi dengan cadangan JSON berversi. Bookmark dan antrean ulasan masih direncanakan.              |
 | F-08 | Audio browser (klik, ulang, laju, suara Arab, errors)            | 🟡             | browser TTS PR | Web Speech API opsional pada pelajaran/kosakata/sharaf; pengujian browser dengan mock, QA suara Arab nyata masih diperlukan (bukan audio guru yang direview).     |
 | F-09 | Spaced-repetition scheduler (client-side)                        | ⬜             | —              | Use ts-fsrs (MIT), desired retention 0.90, default params; rating map wrong=Again, correct=Good, fast=Easy. Spike: browser bundle despite node>=24 engines field. |
 | F-10 | Tashrif tertransposisi + kamus sharaf + cache browser            | 🟡             | sharaf PR #2   | CI + E2E lulus pada PR #2. Tinjauan guru bahasa Arab dan audit lisensi dataset wajib sebelum ekspansi.                                                            |

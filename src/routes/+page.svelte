@@ -16,6 +16,21 @@
 	import UserX from '@lucide/svelte/icons/user-x';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
+	import { useProgress } from '#lib/progress/browser.svelte.js';
+	import { summarizeProgress } from '#lib/progress/lessons.js';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+	const progress = useProgress();
+	const summary = $derived(summarizeProgress(data.progressLessons, progress.records));
+	const start = $derived(resolve(`belajar/${data.startSlug}/`));
+	const primaryHref = $derived(
+		summary.resume
+			? resolve(`${summary.resume.track}/${summary.resume.slug}/`)
+			: summary.recent.length
+				? resolve('belajar/')
+				: start
+	);
 
 	// Learning cycle from the research doc (§1), one short line each.
 	const steps: { title: string; text: string; icon: Component }[] = [
@@ -41,14 +56,30 @@
 				<p>Baca contohnya, pahami maknanya, lalu coba jelaskan dengan kata-kata Anda sendiri.</p>
 			{/snippet}
 		</PageIntro>
-		<div class="flex flex-col gap-4 sm:flex-row sm:items-center">
-			<Button href={resolve('belajar/')} size="lg">
-				Mulai belajar
+		<div class="grid gap-x-4 gap-y-2 sm:grid-cols-[max-content_max-content] sm:items-center">
+			<Button
+				href={primaryHref}
+				size="lg"
+				aria-describedby={summary.resume ? 'lanjut-judul' : undefined}
+			>
+				{summary.resume
+					? 'Lanjut belajar'
+					: summary.recent.length
+						? 'Lihat daftar pelajaran'
+						: 'Mulai belajar'}
 				<ArrowRight aria-hidden="true" />
 			</Button>
+			{#if summary.resume}
+				<p
+					id="lanjut-judul"
+					class="text-center text-base text-muted-foreground sm:col-span-2 sm:row-start-2 sm:text-start"
+				>
+					{summary.resume.title}
+				</p>
+			{/if}
 			<a
 				href={resolve('iqra/')}
-				class="inline-flex min-h-11 items-center justify-center font-medium text-primary underline decoration-1 underline-offset-4 hover:decoration-2 sm:justify-start"
+				class="inline-flex min-h-11 items-center justify-center font-medium text-primary underline decoration-1 underline-offset-4 hover:decoration-2 sm:col-start-2 sm:row-start-1 sm:justify-start"
 			>
 				Belum bisa baca tulisan Arab?
 			</a>
@@ -60,7 +91,9 @@
 			</li>
 			<li class="inline-flex items-center gap-2">
 				<Smartphone class="size-5 text-primary" aria-hidden="true" />
-				Data tersimpan di perangkat Anda
+				{progress.status === 'unavailable'
+					? 'Penyimpanan progres tidak tersedia'
+					: 'Progres hanya tersimpan di browser ini'}
 			</li>
 		</ul>
 	</div>
@@ -104,7 +137,7 @@
 	<ul class="mt-8 grid gap-4 md:grid-cols-2">
 		<li>
 			<a
-				href={resolve('belajar/')}
+				href={start}
 				class="group flex h-full gap-4 rounded-2xl border bg-card p-6 transition-colors hover:border-primary"
 			>
 				<span
