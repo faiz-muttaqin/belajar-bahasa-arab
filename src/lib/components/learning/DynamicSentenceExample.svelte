@@ -173,7 +173,7 @@
 						<div
 							class="mt-1 flex flex-wrap items-center justify-between gap-2 px-2 text-xs text-muted-foreground"
 						>
-							<span>Permukaan kata: draft · dipilih untuk contoh ini, belum ditashih</span>
+							<span>Bentuk contoh · draft (belum ditashih guru bahasa Arab)</span>
 							{#if item.evidence.sourceUrls[0]}
 								<!-- eslint-disable svelte/no-navigation-without-resolve -- external lexical reference URL -->
 								<a
