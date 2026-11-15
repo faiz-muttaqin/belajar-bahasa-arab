@@ -48,7 +48,9 @@ export function isLearningAttempt(value: unknown): value is LearningAttempt {
 		positive(attempt.at) &&
 		Array.isArray(attempt.competencyIds) &&
 		attempt.competencyIds.length > 0 &&
-		attempt.competencyIds.every((id: unknown) => typeof id === 'string' && /^[A-Z]{2}-[0-9]{2}$/.test(id)) &&
+		attempt.competencyIds.every(
+			(id: unknown) => typeof id === 'string' && /^[A-Z]{2}-[0-9]{2}$/.test(id)
+		) &&
 		new Set(attempt.competencyIds).size === attempt.competencyIds.length &&
 		typeof attempt.skill === 'string' &&
 		skills.includes(attempt.skill) &&

@@ -1,6 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { LessonProgress, ProgressBackup } from './lessons.js';
-import { importProgressBackup, readProgressSnapshot, saveProgress, saveAttempt } from './storage.js';
+import {
+	importProgressBackup,
+	readProgressSnapshot,
+	saveProgress,
+	saveAttempt
+} from './storage.js';
 import type { LearningAttempt } from '#lib/domain/roadmap/evidence.js';
 
 // TEST FIXTURE — NOT A LESSON. The browser runner uses its own isolated origin.
