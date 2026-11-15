@@ -103,7 +103,6 @@
 			{#each guide.watchOut as item (item)}
 				<li>{item}</li>
 			{/each}
-			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 		</ul>
 	</section>
 
@@ -139,6 +138,7 @@
 					>
 				</li>
 			{/each}
+			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 		</ul>
 		<p class="mt-3 text-sm text-muted-foreground">
 			Sumber mendukung kaidah umum; setiap contoh, arti dan pemakaian bentuk di sini masih
