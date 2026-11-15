@@ -76,3 +76,7 @@ Kontrak `LexemeRecord`, `WordSurface`, `MorphFeatures`, `SurfaceEvidence`, dan v
 - Jangan mengubah tracker tahap G-01–G-05 menjadi linguistic-reviewed hanya karena UI interaktif berfungsi.
 
 **Relasi roadmap:** \`docs/plans/nahwu-sharaf-knowledge-map.md\`, [issue G-06 #19](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/19), [data verifikasi kata MSA](../data/msa-common.md), [research protocol](../research/2026-11-14-source-based-verification.md).
+
+## Visual peran kata dan perubahan
+
+[VP-01–VP-03](./visual-pembelajaran.md) memakai anotasi serta pasangan sumber yang sama dengan D-05 untuk menghubungkan kata terpilih, peran nahwu, glos, alasan akhir kata dan kata dependennya. Sorotan/animasi mengikuti perubahan satu bingkai utuh; lapisan jenis kata, bentuk sharaf dan peran sintaksis dipilih terpisah. Tidak menambah generator atau penyimpanan progres kedua. Semua informasi tetap tersedia tanpa JS dan gerak.

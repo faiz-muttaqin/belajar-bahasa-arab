@@ -53,3 +53,7 @@ Prioritaskan klaim yang berpotensi menyesatkan: jamak taksir tidak selalu tak be
 Mulai dari **pilot modal search dua pola kalimat** di G-06, pengguna dapat mengetuk slot kata dan memilih lema terkurasi dari kamus MSA dan tabel fi‘il sharaf. Pencocokan **tidak cukup berdasarkan jenis kata**; harus mempertimbangkan i‘rab, gender, jumlah, tashrif, pelaku/objek dan valensi semantik. Teks contoh dan terjemahan diperbarui tanpa merusak HTML statis untuk pengguna tanpa JavaScript.
 
 Pemetaan kontrak dan lanjutan D-02–D-06 ada dalam [rencana Dynamic Examples](./dynamic-example-slots.md), ditelusuri lewat [GitHub issue #24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24). Sampai morphological engine dan korpus diperiksa, opsi modal dibatasi pada pasangan kata **yang sudah dianotasi**; bukan semua lema dictionary. Penyimpanan percobaan/progres belajar ke IndexedDB tetap tahap lanjutan.
+
+## Peran kata dan visual pembelajaran
+
+[Rencana visual VP-01–VP-05](./visual-pembelajaran.md) memperluas label/warna existing menjadi penjelajah kata dan hubungan sintaksis yang dapat diketuk, dengan alasan i‘rab, animasi perubahan bertahap, mode tanpa warna dan fallback HTML. Contoh tetap dari data terkurasi D-05; tidak ada parser bebas. Peta prasyarat memakai 33 kompetensi dari RM-02, bukan graf kedua.
