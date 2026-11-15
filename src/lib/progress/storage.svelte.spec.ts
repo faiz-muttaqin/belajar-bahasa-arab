@@ -53,7 +53,8 @@ describe('progress transactions preserve every record in a batch', () => {
 			await importProgressBackup(backup);
 			expect(await readProgressSnapshot()).toEqual({
 				lessons: [{ ...reopened, completedRevision: 2 }],
-				marks: [{ stepId: 'step-fixture', mark: 'cleared', at: 300 }]
+				marks: [{ stepId: 'step-fixture', mark: 'cleared', at: 300 }],
+				attempts: []
 			});
 		});
 	}
