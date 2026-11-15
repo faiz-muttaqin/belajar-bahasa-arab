@@ -181,11 +181,21 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 					markStore.put(next);
 				};
 			}
+			const pendingAttempts = new Map<string, LearningAttempt>();
 			for (const attempt of backup.attempts) {
 				if (!isLearningAttempt(attempt)) {
 					transaction.abort();
 					return;
 				}
+				const pending = pendingAttempts.get(attempt.id);
+				if (pending) {
+					if (JSON.stringify(pending) !== JSON.stringify(attempt)) {
+						transaction.abort();
+						return;
+					}
+					continue;
+				}
+				pendingAttempts.set(attempt.id, attempt);
 				const request = attemptStore.get(attempt.id);
 				request.onsuccess = () => {
 					if (!request.result) attemptStore.add(attempt);
