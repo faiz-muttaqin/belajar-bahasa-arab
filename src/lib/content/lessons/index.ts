@@ -11,6 +11,7 @@ import { collectEvidenceItems } from '../evidence.js';
 import { stage3CheckpointGroups, collectCheckpointEvidenceItems } from '../checkpoints.js';
 import { stage2CheckpointGroups } from '../checkpoints-stage2.js';
 import { stage1CheckpointGroups } from '../checkpoints-stage1.js';
+import { stage4CheckpointGroups } from '../checkpoints-stage4.js';
 import { roadmap, roadmapReferencePaths } from '../roadmap.js';
 import { validateRoadmap } from '#lib/domain/roadmap/validate.js';
 
@@ -28,7 +29,8 @@ validateRoadmap(roadmap, competencies, lessons, roadmapReferencePaths);
 const publishedCheckpointGroups = [
 	...stage1CheckpointGroups,
 	...stage2CheckpointGroups,
-	...stage3CheckpointGroups
+	...stage3CheckpointGroups,
+	...stage4CheckpointGroups
 ];
 for (const group of publishedCheckpointGroups) {
 	const lesson = lessons.find((item) => item.id === group.lessonId);
