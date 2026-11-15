@@ -135,7 +135,7 @@ describe('D-02 lexical records and word-form provenance', () => {
 
 		const broken: LexemeRecord = {
 			...book,
-			forms: [{ ...book.forms[0]!, id: 'bad', features: { mood: 'jussive' } }]
+			forms: [{ ...book.forms[0]!, id: 'bad', text: 'بَيْتٌ', features: { mood: 'jussive' } }]
 		};
 		expect(validateLexemeRecord(broken)).toContain('Missing exact lemma form');
 		expect(validateLexemeRecord(broken)).toContain('Mood without imperfect verb: bad');
