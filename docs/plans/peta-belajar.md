@@ -197,7 +197,7 @@ Diputuskan berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-
 
 Belum diriset: metode Tamyiz, Al-Bayan, dan anotasi utawi-iku. Riset dari sumbernya sebelum RM-06 menulis soal "baca dan maknai", lalu masukkan ke daftar tinjauan menyeluruh.
 
-## 10. Lanjutkan dari sini: RM-05
+## 10. RM-05 — bukti pemahaman (dalam PR)
 
 **Status (15 November 2026).** RM-01 sampai RM-04 selesai. Data ada di `src/lib/content/competencies.ts` dan `roadmap.ts`; kontrak, validator dan fungsi posisi berada di `src/lib/domain/roadmap/`. Validator dipanggil bersama `validateLessons` saat katalog dibaca untuk build. RM-03 memakai data ini untuk peta di `/belajar/`, dengan 27 langkah, tautan 29 pelajaran, tujuan, prasyarat, sumber, cabang dan titik cek direncanakan. RM-04 menambahkan store `marks`, migrasi IndexedDB v2 dan cadangan schema 2 tanpa dependency baru.
 
@@ -236,6 +236,15 @@ Tambahkan posisi personal di peta dan ringkasan `/progres/` sesuai §3.1, §3.3 
 5. Ekspor/impor schema 2 menggabungkan catatan pelajaran dan mengambil tanda terbaru per `stepId`; schema 1 tetap dapat diimpor. Kontrak cadangan menyiapkan `attempts` untuk RM-05, tanpa membuat bukti atau jawaban tiruan. Dua cadangan dari perangkat berbeda harus bisa digabungkan; duplikat tidak menggandakan catatan.
 6. Siapkan pembacaan status persistensi dan helper `navigator.storage.persist()`. Waktu pemanggilan tetap setelah jawaban pertama disimpan (§6, RM-05), bukan saat pengguna sekadar membuka peta.
 7. Uji migrasi dengan data versi 1, reload, tab lain, cadangan schema 1/2, penyimpanan gagal dan revisi pelajaran berubah. Setelah U1 selesai, posisi menuju Tahap 2; membuka ulang U1 tidak memindahkannya ke belakang; tanda manual terbaru tetap menang dan dapat dihapus. Jalankan seluruh gate proyek dan perbarui F-15 serta baris RM-04 di §8.
+
+### Implementasi RM-05 (dalam PR)
+
+- Tambahkan IndexedDB v3 `attempts` berkey `id`, tetap mempertahankan store `lessons` dan `marks` milik RM-04; cadangan tetap schema 2 dengan `attempts` sungguhan dan impor idempoten. Impor dari schema 1/2 lama tidak mengarang bukti.
+- ID soal dibuat stabil dan dicatat di katalog; registry membedakan contoh pembelajaran, calon transfer, dan latihan penilaian diri. Kelayakan “baru” diputuskan dari riwayat jawaban dan catatan penulis, **bukan** boolean tersimpan. Soal yang dipensiunkan tidak dipakai sebagai bukti aktif. 
+- `competencyUnderstanding` menghitung tingkat 0–3, penurunan satu tingkat karena jawaban salah tanpa bantuan pada soal berbeda, dan batas tingkat 2 bagi penilaian diri. `recall` tidak dapat menaikkan level 2 atau 3. Kebijakan ini tetap ambang produk awal, bukan rating CEFR.
+- Integrasi latihan makna U1 (dua jawaban otomatis) dan empat pemeriksaan diri bersumber dari latihan U2/U3. Soal penilaian diri berlabel jelas, tidak menciptakan teks Arab baru. `/belajar/` dan `/progres/` menampilkan bukti terpisah dari status langkah.
+- Helper permintaan persistensi hanya dipanggil **setelah jawaban pertama benar-benar tersimpan**. Safari/iOS/Android nyata, uji pelajar dan tinjauan ustadz tetap terpisah.
+- Tes unit dan E2E mencakup contoh ulang, pernah dilihat saat menulis, penilaian diri, perubahan tingkat, migrasi dan cadangan, kegagalan storage, static fallback. CI harus lulus sebelum merge.
 
 ### Tugas berikutnya: RM-05
 
