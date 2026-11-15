@@ -6,6 +6,7 @@
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { groupStyle } from '#lib/components/learning/reference-group-style.js';
 	import { groupOfTable, referenceGroups } from '#lib/content/reference-groups.js';
+	import { grammarTermList } from '#lib/content/grammar-glossary.js';
 
 	// Old links used one long page with section anchors: send them to the new page.
 	onMount(() => {
@@ -53,6 +54,24 @@
 		</li>
 	{/each}
 </ul>
+
+<section
+	id="istilah-dasar"
+	aria-labelledby="istilah-heading"
+	class="mt-8 scroll-mt-24 border-t pt-5"
+>
+	<h2 id="istilah-heading" class="text-xl font-semibold">Istilah dasar</h2>
+	<ul class="mt-2 flex flex-wrap gap-x-6">
+		{#each grammarTermList as term (term.id)}
+			<li>
+				<a
+					class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4"
+					href={resolve(`rujukan/istilah/${term.id}/`)}>{term.title}</a
+				>
+			</li>
+		{/each}
+	</ul>
+</section>
 
 <aside class="mt-8 max-w-3xl rounded-xl border bg-card p-5">
 	<h2 class="font-semibold">Dari jenis kata ke susunan kalimat</h2>

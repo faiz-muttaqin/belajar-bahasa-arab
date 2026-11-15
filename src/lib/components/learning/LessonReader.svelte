@@ -113,7 +113,7 @@
 		</div>
 
 		{#if lesson.analysis?.length && !lesson.passage}
-			<SentenceBreakdown groups={lesson.analysis} />
+			<SentenceBreakdown groups={lesson.analysis} glossary={lesson.analysisGlossary} />
 		{/if}
 
 		{#if lesson.examples.length}

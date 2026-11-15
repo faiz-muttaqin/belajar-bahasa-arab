@@ -1,4 +1,5 @@
 import type { Path } from '$app/types';
+import type { GlossaryText } from '#lib/content/grammar-glossary.js';
 
 /** Pages lessons link to. Kept narrow: see SectionPath in navigation.ts for why. */
 type RelatedPage =
@@ -65,6 +66,7 @@ export type Lesson = {
 	patterns: readonly string[];
 	passage?: Passage;
 	analysis?: readonly AnalysisGroup[];
+	analysisGlossary?: GlossaryText;
 	meaningPractice?: MeaningPractice;
 	exercises: readonly Exercise[];
 	related?: readonly { label: string; path: `${RelatedPage}#${string}` }[];

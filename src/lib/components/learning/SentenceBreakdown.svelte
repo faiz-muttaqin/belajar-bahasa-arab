@@ -1,15 +1,21 @@
 <script lang="ts">
 	import { analyzedText, type AnalysisGroup } from '#lib/content/lessons/analysis.js';
+	import type { GlossaryText } from '#lib/content/grammar-glossary.js';
 	import ArabicText from './ArabicText.svelte';
 	import AudioPlayButton from './AudioPlayButton.svelte';
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
 	import MixedText from './MixedText.svelte';
+	import InlineGrammarGlossary from './InlineGrammarGlossary.svelte';
 
-	let { groups }: { groups: readonly AnalysisGroup[] } = $props();
+	let { groups, glossary }: { groups: readonly AnalysisGroup[]; glossary?: GlossaryText } =
+		$props();
 </script>
 
 <section id="bedah-kalimat" aria-labelledby="bedah-heading" class="scroll-mt-24 space-y-4">
 	<h2 id="bedah-heading" class="text-2xl font-semibold">Bedah per kata</h2>
+	{#if glossary}
+		<InlineGrammarGlossary text={glossary} />
+	{/if}
 	<p class="text-pretty text-muted-foreground">
 		Sharaf menjelaskan bentuk kata. Nahwu menjelaskan tugas kata di kalimat dan alasan harakat
 		akhirnya.
