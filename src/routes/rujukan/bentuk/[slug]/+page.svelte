@@ -103,6 +103,7 @@
 			{#each guide.watchOut as item (item)}
 				<li>{item}</li>
 			{/each}
+			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 		</ul>
 	</section>
 
@@ -129,7 +130,7 @@
 		<ul class="mt-3 list-disc space-y-3 ps-5">
 			{#each guide.references as source (source.url)}
 				<li>
-					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external grammar source -->
+					<!-- eslint-disable svelte/no-navigation-without-resolve -- external grammar source -->
 					<a
 						href={source.url}
 						target="_blank"
