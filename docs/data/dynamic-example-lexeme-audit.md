@@ -31,7 +31,7 @@ Data kamus MSA/harian (\`VocabularyItem\`) memuat lema dan, pada sebagian entri,
 - Semua opsi pada \`dynamic-examples.ts\` sekarang mempunyai \`features\` dan \`evidence\`, berasal dari adapter kamus. Bentuk **الْكِتَابُ** dari lema **كِتَابٌ** diberi tag \`case: raf\` dan \`definiteness: definite\`, tetapi selalu diberi status \`curated-example/draft\`.
 - Sifat **جَدِيدَةٌ** memakai metadata feminin eksplisit dari kamus MSA dan konteks khabar, bukan pola otomatis untuk semua adjektiva.
 - Fi‘il **كَتَبَ** diberi fitur \`aspect: perfect\`, \`person: 3\`, \`gender: masculine\`, \`number: singular\`, \`voice: active\` **hanya untuk bingkai yang disediakan**. Tidak menegaskan bentuk lain tanpa data.
-- Objek **الرِّسَالَةَ** dan **الْبَابَ** berasal dari daftar objek kompatibel per fi‘il dalam pilot. \`withCuratedValency\` menandai contoh collocation, **bukan** klaim bahwa verba selalu memerlukan objek atau hanya dapat menerima objek itu.
+- Objek **الرِّسَالَةَ** dan **الْبَابَ** berasal dari daftar objek kompatibel per fi‘il dalam pilot. **بَابٌ** belum memiliki kelas kata eksplisit pada koleksi harian; hanya dalam frame ini diberikan override manual `frameWordClass: noun` berstatus draft. Entri kamus aslinya tidak diubah. \`withCuratedValency\` menandai contoh collocation, **bukan** klaim bahwa verba selalu memerlukan objek atau hanya dapat menerima objek itu.
 - Modal menampilkan status bentuk \`draft\` dan sumber **lema**. Sumber kamus yang ditampilkan tidak otomatis memverifikasi seluruh infleksi baru.
 - Tidak ada perubahan SSR/static fallback, penambahan paket/backend, ataupun pemuatan seluruh 8.000+ verba ke UI.
 
