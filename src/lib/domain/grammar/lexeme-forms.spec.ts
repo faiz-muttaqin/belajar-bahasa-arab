@@ -64,7 +64,7 @@ describe('D-02 lexical records and word-form provenance', () => {
 		const records = [msa('msa-kitab'), msa('msa-madrasah'), verb('fiil-kataba')];
 		expect(searchLexemeRecords(records, 'مدرسة').map((item) => item.id)).toEqual(['msa-madrasah']);
 		expect(searchLexemeRecords(records, 'menulis').map((item) => item.id)).toEqual(['fiil-kataba']);
-		expect(searchLexemeRecords(records, 'كتب').map((item) => item.id)).toEqual(['fiil-kataba']);
+		expect(searchLexemeRecords(records, 'كتب').map((item) => item.id)).toEqual(['msa-kitab', 'fiil-kataba']);
 		expect(searchLexemeRecords(records, '').length).toBe(3);
 	});
 
