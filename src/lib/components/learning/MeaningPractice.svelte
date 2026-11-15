@@ -153,7 +153,7 @@
 					<a
 						href={source.href}
 						target="_blank"
-						rel="noopener noreferrer"
+						rel="external noopener noreferrer"
 						class="block text-sm text-primary underline">Sumber: {source.label}</a
 					>
 				{/each}
@@ -212,7 +212,7 @@
 							<a
 								href={source.href}
 								target="_blank"
-								rel="noopener noreferrer"
+								rel="external noopener noreferrer"
 								class="block text-sm text-primary underline">Sumber: {source.label}</a
 							>
 						{/each}
