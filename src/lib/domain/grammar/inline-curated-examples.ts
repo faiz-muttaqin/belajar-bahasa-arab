@@ -441,6 +441,19 @@ export function canEditInlineExample(source: InlineExampleSource, id: string): b
 	return options.length > 1 && options.some((frame) => assessInlineFrame(frame).allowed);
 }
 
+/** Do not offer a misleading Ganti button when no alternate surface exists at this position. */
+export function canEditInlineSlot(
+	source: InlineExampleSource,
+	originalId: string,
+	tokenIndex: number
+): boolean {
+	const alternatives = framesFor(source, originalId)
+		.filter((frame) => tokenIndex >= 0 && tokenIndex < frame.arabic.length)
+		.filter((frame) => assessInlineFrame(frame).allowed)
+		.map((frame) => frame.arabic[tokenIndex]);
+	return new Set(alternatives).size > 1;
+}
+
 export function searchInlineExampleChoices(
 	source: InlineExampleSource,
 	originalId: string,
