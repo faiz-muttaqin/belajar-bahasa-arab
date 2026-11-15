@@ -29,5 +29,5 @@ test('RM-06 stage 1 works without JavaScript, showing published Arabic text and 
 	await page.goto('/belajar/checkpoint-1/');
 	await expect(page.getByRole('heading', { name: 'Kenali makna pada kata baru' })).toBeVisible();
 	await expect(page.getByText('صَدِيقِي')).toBeVisible();
-	await expect(page.getByText('بَلَدِي')).toBeVisible();
+	await expect(page.getByText('بَلَدِي', { exact: true }).first()).toBeVisible();
 });
