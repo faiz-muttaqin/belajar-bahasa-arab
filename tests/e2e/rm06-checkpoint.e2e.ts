@@ -14,8 +14,9 @@ test('RM-06 stage 3 checkpoint is reachable and publishes 24 distinct questions'
 	await expect(group.getByRole('status')).toContainText('Naik ke Bisa pada contoh baru');
 	await group.getByRole('button', { name: 'Coba contoh baru' }).click();
 	await expect(group).toContainText('Soal 2 dari 8');
-	await page.goto('/progres/');
-	await expect(page.locator('[data-competency-level="CB-07"]')).toContainText(
+	await page.goto('/belajar/');
+	await page.getByRole('button', { name: 'Rincian langkah: Kata ganti dan lokasi' }).click();
+	await expect(page.getByRole('dialog').locator('[data-competency-level="CB-07"]')).toContainText(
 		'Bisa pada contoh baru'
 	);
 });
