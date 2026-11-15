@@ -5,7 +5,7 @@ import { readProgressSnapshot, requestPersistentStorage, saveAttempt } from './s
 export type AnswerInput = Omit<LearningAttempt, 'id' | 'at'>;
 
 /** Records only an explicit learner action. Never called on lesson open, mark done, or reveal. */
-export async function recordLearningAnswer(input: AnswerInput, item: EvidenceItem) {
+export async function recordLearningAnswer(input: AnswerInput, items: readonly EvidenceItem[]) {
 	const previous = await readProgressSnapshot();
 	const attempt: LearningAttempt = { ...input, id: crypto.randomUUID(), at: Date.now() };
 	const { firstAnswer } = await saveAttempt(attempt);
@@ -13,8 +13,8 @@ export async function recordLearningAnswer(input: AnswerInput, item: EvidenceIte
 	notifyProgress();
 	if (firstAnswer) void requestPersistentStorage();
 	const changes = input.competencyIds.map((competencyId) => {
-		const before = competencyUnderstanding(competencyId, previous.attempts, [item]);
-		const after = competencyUnderstanding(competencyId, current.attempts, [item]);
+		const before = competencyUnderstanding(competencyId, previous.attempts, items);
+		const after = competencyUnderstanding(competencyId, current.attempts, items);
 		return {
 			competencyId,
 			before: before.level,
