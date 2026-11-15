@@ -10,6 +10,7 @@ import { competencies } from '../competencies.js';
 import { collectEvidenceItems } from '../evidence.js';
 import { stage3CheckpointGroups, collectCheckpointEvidenceItems } from '../checkpoints.js';
 import { stage2CheckpointGroups } from '../checkpoints-stage2.js';
+import { stage1CheckpointGroups } from '../checkpoints-stage1.js';
 import { roadmap, roadmapReferencePaths } from '../roadmap.js';
 import { validateRoadmap } from '#lib/domain/roadmap/validate.js';
 
@@ -24,7 +25,11 @@ const lessons = [
 ];
 validateLessons(lessons);
 validateRoadmap(roadmap, competencies, lessons, roadmapReferencePaths);
-const publishedCheckpointGroups = [...stage2CheckpointGroups, ...stage3CheckpointGroups];
+const publishedCheckpointGroups = [
+	...stage1CheckpointGroups,
+	...stage2CheckpointGroups,
+	...stage3CheckpointGroups
+];
 for (const group of publishedCheckpointGroups) {
 	const lesson = lessons.find((item) => item.id === group.lessonId);
 	if (!lesson || lesson.revision !== group.contentRevision || !lesson.competencies.includes(group.competencyId))

@@ -5,6 +5,8 @@ on:
       - 'src/lib/content/competencies*'
       - 'src/lib/content/roadmap*'
       - 'src/lib/content/checkpoints*'
+      - 'src/routes/belajar/checkpoint-1/**'
+      - 'tests/e2e/rm06-checkpoint-stage1.e2e.ts'
       - 'src/routes/belajar/checkpoint-2/**'
       - 'tests/e2e/rm06-checkpoint-stage2.e2e.ts'
       - 'src/lib/content/lessons/u1-meaning-practice.ts'
@@ -41,7 +43,7 @@ jobs:
           bun-version: '1.4.4'
       - run: bun install --frozen-lockfile
       - name: Commit Prettier normalization on the PR branch (temporary)
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository && (github.event.pull_request.number == 42 || github.event.pull_request.number == 43) }}
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository && (github.event.pull_request.number == 42 || github.event.pull_request.number == 43 || github.event.pull_request.number == 44) }}
         env:
           PR_BRANCH: ${{ github.head_ref }}
         run: |

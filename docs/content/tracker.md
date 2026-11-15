@@ -198,3 +198,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 16 November 2026: RM-06 pilot Tahap 3 menambahkan 24 item checkpoint bersumber dan memperluas latihan U1 ke 20 pertanyaan; verifikasi CI diserahkan kepada GitHub Actions pada PR, dengan audit bahasa tetap terpisah.
 
 - 16 November 2026: RM-06 ekspansi Tahap 2 (stacked sesudah PR #42): 40 butir checkpoint (20 CB-04 dan 20 CB-06), dengan label keterampilan meaning vs structure, sumber tiap soal, dan pemeriksaan otomatis GitHub Actions; materi draf masih memerlukan review bahasa.
+
+- 16 November 2026: RM-06 Tahap 1 menyediakan bank 20 soal transfer akhiran -ku bersumber (CB-01), terpisah dari soal materi U1, sebagai PR bertingkat setelah Tahap 2.

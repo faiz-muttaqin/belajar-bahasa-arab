@@ -108,6 +108,7 @@ export function validateRoadmap(
 		if (stage.checkpoint.status === 'planned' && (stage.checkpoint.path || stage.checkpoint.questionCount))
 			issues.push(`Planned checkpoint must not link or claim questions: ${stage.checkpoint.id}`);
 		const published = {
+			'checkpoint-1': { path: 'belajar/checkpoint-1/', count: 20 },
 			'checkpoint-2': { path: 'belajar/checkpoint-2/', count: 40 },
 			'checkpoint-3': { path: 'belajar/checkpoint-3/', count: 24 }
 		} as const;

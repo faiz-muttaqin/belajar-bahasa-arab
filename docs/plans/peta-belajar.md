@@ -254,6 +254,12 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 
 **Sesudah RM-05:** RM-06 memperluas titik cek baru yang bersumber. Audit VP-01 pada [rencana visual](./visual-pembelajaran.md) dapat menyiapkan penjelajah peran kata; grafik posisi memakai RM-04 dan grafik bukti memakai RM-05. Warna disertai label, animasi dikendalikan pelajar dan tetap menghormati reduced motion.
 
+### Ekspansi RM-06: Tahap 1 (16 November 2026)
+
+- PR bertingkat berikutnya menambahkan **20 soal transfer asli** dengan stimulus baru untuk CB-01, berbeda dari 20 soal yang sudah tersedia di materi U1. Fokusnya mengenali akhiran posesif orang pertama tunggal dari pola `رَبِّي` pada contoh kosakata MSA baru, bukan mengarang bacaan shalat baru.
+- Semua butir diberi rujukan eksplisit Madinah Arabic Lesson 47 Part 2 tentang pronomina posesif; tidak menyalin latihan pihak ketiga. Soal tetap berlabel draf untuk tinjauan bahasa Arab.
+- Titik cek Tahap 1 tersedia di `/belajar/checkpoint-1/`; bukti jawaban tetap terpisah dari tanda selesai dan memakai aturan penilaian tingkat 0–3 yang sudah ada. Tidak ada dependency baru.
+
 ### Ekspansi RM-06: Tahap 2 (16 November 2026)
 
 - Stacked PR di atas pilot RM-06 Tahap 3 menambahkan **40 soal transfer baru** dalam dua kelompok, masing-masing 20 butir: CB-04 (pertanyaan benda/orang) dan CB-06 (frasa vs kalimat lengkap). Butir berasal dari penyusunan mandiri berdasarkan Madinah Arabic pelajaran 2 bagian 1 dan pelajaran 58 bagian 1, dengan sumber masing-masing tercatat di data. Semua tetap `draft` untuk ditinjau.
