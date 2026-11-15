@@ -26,7 +26,7 @@ test('F-16 matrix makes all 11 headings direct links to detail pages', async ({ 
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/fail\/$/);
 	await expect(page.getByRole('heading', { level: 1, name: 'Isim fā‘il' })).toBeVisible();
 	await expect(page.locator('body')).toContainText('كَاتِبٌ');
-	await expect(page.getByText(/bukan otomatis peran fā‘il/).first()).toBeVisible();
+	await expect(page.getByRole('heading', { name: 'Isim fā‘il berbeda dari subjek nahwu' })).toBeVisible();
 	await page.getByRole('link', { name: 'Isim maf‘ūl' }).click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/maful\/$/);
 });
