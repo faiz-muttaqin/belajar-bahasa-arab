@@ -31,7 +31,8 @@
 		hydrated = true;
 	});
 
-	function openPicker(slot: BuilderSlot, event: MouseEvent) {
+	function openPicker(slot: BuilderSlot | 'operator', event: MouseEvent) {
+		if (slot === 'operator') return;
 		activeSlot = slot;
 		query = '';
 		previousTrigger =
