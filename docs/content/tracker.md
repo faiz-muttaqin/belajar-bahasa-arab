@@ -48,6 +48,7 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 | F-12 | Sorotan baris, isi contoh per kelompok, dan padanan Indonesia    | 🟡             | Sharaf         | Glos terkait bentuk ditulis proyek. Contoh أَكَلَ mencatat rujukan lema, perubahan bunyi, dan fungsi bentuk.                                                         |
 | F-13 | Sampel leksikon staging + indeks pencarian dan cache browser     | 🟡             | sharaf PR baru | 17 record verba dan 3 kata tugas dari fixture berjejak sumber; 6 kandidat akar tidak diimpor. Perlu verifikasi leksikal dan lisensi sebelum impor penuh.          |
 | F-14 | Impor 7.938 kata kerja lengkap + caching IndexedDB v2            | 🟡             | sharaf PR baru | Qutrub/Arramooz dideduplikasi; 596 record stopwords disimpan. 22 bab tetap; bentuk dan terjemahan belum diverifikasi di luar contoh yang ada.                     |
+| F-15 | Peta belajar: posisi di jalur dan tingkat pemahaman              | ⬜             | —              | Rencana RM-01 sampai RM-07 di [peta belajar](../plans/peta-belajar.md). Menunggu keputusan lokasi halaman dan label tingkat. Bergantung pada F-07 dan F-09.       |
 
 ## Audio
 
@@ -161,6 +162,8 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 | 5 to 10 test learners (3 profiles, §10.2)                                                 | product owner | ⬜     |
 
 ## Changelog
+
+- 15 November 2026: F-15 menambahkan rencana peta belajar seperti roadmap.sh, dengan status posisi dan lima tingkat pemahaman yang terpisah.
 
 - 14 November 2026: V-06 menambahkan 157 kandidat kosakata umum MSA (benda, sifat, sapaan dan istilah modern) dalam katalog statis, disertai review status draft dan rencana pengajaran frasa; RS-01 diperbarui dengan sumber/lembaga kandidat, tanpa klaim frekuensi.
 
