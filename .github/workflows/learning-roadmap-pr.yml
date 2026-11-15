@@ -1,5 +1,13 @@
 name: Verify learning roadmap
 on:
+  # Stacked PRs are also verified directly when their head branch changes.
+  push:
+    branches:
+      - 'feat/rm06-*'
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - '.github/workflows/learning-roadmap-pr.yml'
   pull_request:
     paths:
       - 'src/lib/content/competencies*'
