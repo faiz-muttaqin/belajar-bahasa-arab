@@ -104,6 +104,24 @@ describe('D-02 lexical records and word-form provenance', () => {
 		);
 	});
 
+	it('requires an explicit per-frame POS override for untyped everyday vocabulary', () => {
+		const doorEntry = publishedVocabulary('harian').find((item) => item.id === 'bab')!;
+		const door = lexemeFromVocabulary(doorEntry);
+		expect(door.wordClass).toBe('expression');
+		const args = {
+			lexeme: door,
+			id: 'direct-object',
+			surface: 'الْبَابَ',
+			features: { case: 'nasb' as const, definiteness: 'definite' as const },
+			reason: 'Manual object frame from existing sample'
+		};
+		expect(() => curatedFrameSurface(args)).toThrow('Noun case');
+		const correct = curatedFrameSurface({ ...args, frameWordClass: 'noun' });
+		expect(correct.evidence.kind).toBe('curated-example');
+		expect(correct.evidence.note).toContain('Kelas kata ditetapkan manual');
+		expect(correct.evidence.reviewStatus).toBe('draft');
+	});
+
 	it('rejects invalid case, mood and type combinations instead of synthesizing forms', () => {
 		const book = msa('msa-kitab');
 		const kataba = verb('fiil-kataba');
