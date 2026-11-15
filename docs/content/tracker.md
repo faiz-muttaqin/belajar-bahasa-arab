@@ -163,6 +163,7 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 
 ## Changelog
 
+- 15 November 2026: ADR-004 D-9 dicatat. Materi disusun dari sumber dan dipakai sebagai `draft`, lalu ditinjau ustadz sekali secara menyeluruh saat jalur siap.
 - 15 November 2026: F-15 menambahkan rencana peta belajar seperti roadmap.sh, dengan status posisi dan lima tingkat pemahaman yang terpisah, plus studi komparasi 19 sistem belajar sebagai dasar keputusan.
 
 - 14 November 2026: V-06 menambahkan 157 kandidat kosakata umum MSA (benda, sifat, sapaan dan istilah modern) dalam katalog statis, disertai review status draft dan rencana pengajaran frasa; RS-01 diperbarui dengan sumber/lembaga kandidat, tanpa klaim frekuensi.

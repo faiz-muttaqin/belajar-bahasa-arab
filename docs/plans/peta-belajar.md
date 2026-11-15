@@ -4,7 +4,7 @@
 
 Pelajar perlu melihat tiga hal dalam satu halaman: jalur yang akan dilalui, posisinya sekarang, dan seberapa jauh ia sudah paham. Rencana ini meminjam pola peta dari [roadmap.sh](https://roadmap.sh/) dan menyesuaikannya untuk orang dewasa Indonesia yang belajar lewat ponsel, tanpa akun, dengan data yang hanya tersimpan di browser.
 
-Rencana ini tidak membuat kurikulum baru. Isi peta diambil dari [graf kompetensi](../curriculum/COMPETENCY_GRAPH.md), [roadmap pasca-Iqra](../curriculum/ROADMAP.md), dan [daftar pelajaran publik](../content/public-lessons.md). Semua kompetensi dan urutan masih berstatus draf dan menunggu tinjauan guru (ADR-004 D-7).
+Rencana ini tidak membuat kurikulum baru. Isi peta diambil dari [graf kompetensi](../curriculum/COMPETENCY_GRAPH.md), [roadmap pasca-Iqra](../curriculum/ROADMAP.md), dan [daftar pelajaran publik](../content/public-lessons.md). Semua kompetensi, urutan, dan soal disusun dari riset dan sumber yang dicatat, berstatus `draft`, dan boleh dipakai. Tinjauan ustadz dilakukan sekali secara menyeluruh saat jalur sudah siap dari awal sampai akhir ([ADR-004 D-9](../decisions/0004-content-decisions.md#d-9-sumber-dulu-tinjauan-ustadz-di-akhir)).
 
 ## 1. Yang sudah ada
 
@@ -69,7 +69,7 @@ Ambang di bawah adalah kebijakan produk awal, bukan angka ilmiah. Uji dan sesuai
 
 Aturan tambahan:
 
-- **Contoh baru dihitung saat dijawab, bukan ditetapkan di data.** Sebuah jawaban dihitung sebagai contoh baru hanya bila belum ada jawaban sebelumnya untuk `itemId` itu. Mengulang pelajaran tidak menaikkan ke tingkat 3. Pemilik juga dapat menandai soal "sudah saya lihat saat menulis atau meninjau", dan soal itu dibatasi sampai tingkat 2. Untuk bukti tingkat 3 bagi pemilik, utamakan soal titik cek yang ditulis atau dipilih ustadz peninjau, atau bacaan pendek yang belum pernah dibaca.
+- **Contoh baru dihitung saat dijawab, bukan ditetapkan di data.** Sebuah jawaban dihitung sebagai contoh baru hanya bila belum ada jawaban sebelumnya untuk `itemId` itu. Mengulang pelajaran tidak menaikkan ke tingkat 3. Pemilik juga dapat menandai soal "sudah saya lihat saat menulis atau meninjau", dan soal itu dibatasi sampai tingkat 2. Untuk bukti tingkat 3 bagi pemilik, utamakan soal titik cek baru yang ditulis dari sumber tanpa dilihat lagi sebelum dijawab, atau bacaan pendek bersumber yang belum pernah dibaca.
 - **Penilaian diri** ("Jawaban saya cocok dengan pembahasan") paling tinggi tingkat 2, ditampilkan dengan keterangan "menurut penilaian Anda", dan disertai kalimat "Anggap belum cocok bila Anda ragu atau perlu melihat pembahasan".
 - **Hasil cek kesiapan** (store `placementRuns` dari ONBOARDING §6) dibaca dengan batas tingkat 2 (O-9).
 - **Segi kemampuan.** Setiap jawaban punya `skill` (`decoding`, `meaning`, `structure`, `listening`, `recall`), sama dengan `placementRuns`. Jawaban `recall` (hafalan, misalnya mode hafalan tabel) boleh mendukung tingkat 4 tetapi tidak pernah menaikkan ke tingkat 2 atau 3.
@@ -115,11 +115,11 @@ Catatan untuk peninjau:
 
 **Ponsel (utama).** Satu kolom. Tiap tahap adalah judul dengan satu kalimat "Setelah tahap ini Anda bisa …". Langkah tampil sebagai kartu bertanda garis vertikal, berisi judul langkah dan pelajarannya, perkiraan menit, status dalam teks dan ikon, serta tingkat pemahaman ringkas. Cabang opsional ada di bawah tahap terkait sebagai kartu bergaris putus-putus. Penanda "Anda di sini" tampil di atas kartu dan ada tombol "Ke posisi saya".
 
-**Legenda.** "Jalur utama", "Opsional", "Direncanakan", "Urutan tidak ketat", dan "Draf, belum ditinjau".
+**Legenda.** "Jalur utama", "Opsional", "Direncanakan", "Urutan tidak ketat", dan "Draf · bersumber, belum ditinjau ustadz". Setiap langkah dan soal bisa membuka daftar sumbernya.
 
 **Detail langkah.** Ketuk kartu untuk membuka dialog bawaan berisi: yang akan Anda bisa, pelajaran (tautan), kompetensi beserta tingkatnya, prasyarat yang disarankan, rujukan terkait, dan tombol "Sedang saya pelajari", "Saya sudah bisa, lewati", serta "Hapus tanda". Satu baris menjelaskan tingkat yang belum muncul: "Tingkat berikutnya muncul setelah ulangan terjadwal tersedia." Istilah Arab (misalnya iḍāfah) hanya muncul di dialog, dalam `lang="ar"` bila ditulis dengan huruf Arab.
 
-**Titik cek dan cek cepat.** Satu format dengan cek kesiapan di ONBOARDING §3: ada pilihan "Belum tahu", umpan balik setiap soal, tanpa skor berjalan, tanpa batas waktu, tanpa waktu tunggu untuk mengulang. Aturannya ditulis sebagai aturan bukti, bukan nilai lulus: "4 dari 5 benar pada soal baru: kemampuan ini tercatat Bisa pada contoh baru. Kurang dari itu: tidak ada yang turun, coba lagi kapan saja." Tidak memakai kata lulus, gagal, atau nilai. Sesudahnya tampil semua soal dengan jawaban pelajar dan kunci, dikelompokkan per kompetensi. Cek cepat setelah "lewati" memakai soal titik cek langkah itu dan baru tersedia bila soalnya sudah ditinjau.
+**Titik cek dan cek cepat.** Satu format dengan cek kesiapan di ONBOARDING §3: ada pilihan "Belum tahu", umpan balik setiap soal, tanpa skor berjalan, tanpa batas waktu, tanpa waktu tunggu untuk mengulang. Aturannya ditulis sebagai aturan bukti, bukan nilai lulus: "4 dari 5 benar pada soal baru: kemampuan ini tercatat Bisa pada contoh baru. Kurang dari itu: tidak ada yang turun, coba lagi kapan saja." Tidak memakai kata lulus, gagal, atau nilai. Sesudahnya tampil semua soal dengan jawaban pelajar dan kunci, dikelompokkan per kompetensi. Cek cepat setelah "lewati" memakai soal titik cek langkah itu dan tersedia begitu soal bersumber untuk langkah itu ada.
 
 **Ulangan.** Antrean ulangan dan set "Ulangi kesalahan" berada di `/latihan/` (ONBOARDING §7). Peta dan `/progres/` paling banyak menampilkan satu baris tenang "Ulangan menunggu: N" yang menautkan ke `/latihan/`. Soal cek kesiapan tidak pernah masuk ulangan.
 
@@ -167,7 +167,7 @@ Urutan disusun untuk pemilik sebagai pengguna utama: posisi dulu, lalu bukti, da
 | RM-03 | Peta statis di `/belajar/` dan dialog detail                                                                              | HTML statis memuat semua tahap dan tautan; tanpa JS tetap terbaca; tanpa geser horizontal pada 320, 390 dan 1440 px; tema terang dan gelap; fokus keyboard kembali ke kartu setelah dialog ditutup; uji E2E dan no-JS. Peta langsung publik dengan label draf.                                                                                               |
 | RM-04 | Status posisi, tanda manual, "Anda di sini", ringkasan di `/progres/`, IndexedDB v2 (`marks`), impor gabung, `persist()`  | Setelah U1 selesai dan halaman dimuat ulang, Tahap 1 tercatat selesai dan "Anda di sini" pindah ke Tahap 2; membuka ulang U1 tidak memindahkan penanda mundur; tanda "lewati" bertahan dan ikut ekspor-impor; dua cadangan dari perangkat berbeda tergabung; cadangan schema 1 tetap bisa diimpor.                                                           |
 | RM-05 | Simpan jawaban latihan dan tampilkan tingkat 0 sampai 3                                                                   | Jawaban `MeaningPractice` tersimpan dengan `skill`; jawaban kedua pada soal yang sama tidak dihitung contoh baru; soal "sudah saya lihat" dibatasi tingkat 2; penilaian diri berlabel dan dibatasi tingkat 2; ringkasan naik, tetap, turun tampil; uji unit untuk setiap aturan §3.2.                                                                        |
-| RM-06 | Titik cek per tahap dengan soal baru, mulai dari Tahap 3; cek cepat setelah "lewati"                                      | Soal titik cek ditulis, ditinjau (G-REVIEW), dan tidak muncul di pelajaran; minimal dua varian soal baru per kompetensi. Sampai ditinjau, titik cek tampil sebagai "Direncanakan". Kalimat aturan mengikuti §5 tanpa kata lulus atau gagal.                                                                                                                  |
+| RM-06 | Titik cek per tahap dengan soal baru, mulai dari Tahap 3; cek cepat setelah "lewati"                                      | Soal titik cek ditulis dari sumber yang dicatat per soal (D-9), tidak muncul di pelajaran, minimal dua varian soal baru per kompetensi, dan langsung dipakai sebagai bukti dengan label draf. Titik cek tanpa soal tampil sebagai "Direncanakan". Kalimat aturan mengikuti §5 tanpa kata lulus atau gagal.                                                   |
 | RM-07 | Uji pakai: pemilik selama dua minggu, lalu 5 sampai 8 pelajar sasaran (bersama pilot RS-08)                               | Pemilik mencatat hambatan harian. Tugas peserta: "Anda sudah sampai mana?", "Apa yang sebaiknya dipelajari berikutnya?", "Kemampuan mana yang sudah Anda kuasai?", "Mana yang perlu diulang?". Bandingkan nama "Tetap ingat" dengan "Melekat", dan label kartu "lancar / perlu diulang" dengan nama tingkat. Minimal 4 dari 5 peserta menjawab tanpa arahan. |
 | RM-08 | Ulangan setelah F-09: tingkat 4, "Ulangan menunggu: N", set "Ulangi kesalahan" dan "Latih yang belum kuat" di `/latihan/` | Dimulai bila F-09 sudah ada dan tahap yang sudah dicapai pemilik punya minimal 3 soal berjawaban per kompetensi. Jadwal hanya dari FSRS. Soal cek kesiapan tidak masuk ulangan.                                                                                                                                                                              |
 
@@ -176,9 +176,9 @@ Urutan disusun untuk pemilik sebagai pengguna utama: posisi dulu, lalu bukti, da
 Diputuskan berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-peta-belajar.md#4-keputusan-dan-alasannya), dengan pemilik sebagai pengguna utama. Semuanya masih bisa diubah setelah RM-07.
 
 1. **Lokasi.** `/belajar/` menjadi peta. Tidak ada menu baru.
-2. **Lewati.** "Saya sudah bisa, lewati" boleh tanpa cek. Ini hanya tanda posisi ("Dilewati, belum ada bukti") dan bisa dihapus kapan saja. Cek cepat ditawarkan bila soal yang sudah ditinjau tersedia (RM-06).
+2. **Lewati.** "Saya sudah bisa, lewati" boleh tanpa cek. Ini hanya tanda posisi ("Dilewati, belum ada bukti") dan bisa dihapus kapan saja. Cek cepat ditawarkan begitu soal bersumber untuk langkah itu tersedia (RM-06).
 3. **Tingkat.** Data menyimpan tingkat 0 sampai 4. Tingkat 0 tanpa lencana. RM-05 merilis tingkat 1 sampai 3. Tingkat 4 ("Tetap ingat", nama sementara) menunggu F-09. Tingkat turun hanya karena jawaban salah.
-4. **Tinjauan.** RM-03 terbit dengan label "Draf, belum ditinjau" dan "Urutan tidak ketat". Begitu digabung, peta langsung terlihat publik, dan dua label itu satu-satunya pengaman. Ini diterima untuk situs yang utamanya dipakai pemilik. Soal titik cek tetap butuh tinjauan (G-REVIEW) sebelum dihitung sebagai bukti.
+4. **Sumber dan tinjauan.** Semua isi peta dan soal disusun dari riset dan sumber yang dicatat, lalu langsung dipakai dengan label "Draf · bersumber, belum ditinjau ustadz" ([ADR-004 D-9](../decisions/0004-content-decisions.md#d-9-sumber-dulu-tinjauan-ustadz-di-akhir)). Hasil latihan pada soal draf tetap dihitung sebagai bukti. Tinjauan ustadz dilakukan sekali secara menyeluruh saat jalur siap dari awal sampai akhir, memakai daftar sumber per butir. Butir tanpa sumber tidak terbit.
 5. **Bukti.** Tanda posisi, penilaian diri, dan jawaban adalah tiga sumber terpisah. Hanya jawaban pada soal baru yang memberi tingkat 3.
 6. **Ringkasan.** Hitungan dalam kalimat. Tanpa persen, CEFR, atau angka cakupan Al-Qur'an.
 7. **Motivasi.** Tanpa streak, XP, liga, konfeti, atau maskot. Pakai ringkasan naik, tetap, turun dan baris "Tahap selesai".
@@ -186,7 +186,7 @@ Diputuskan berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-
 9. **Salinan lokal.** Peta mencakup pelajaran publik sekarang. Cabang "Salinan lokal" ditambahkan di browser saat `/pustaka/` ada.
 10. **Diagram desktop.** Ditunda.
 
-Pertanyaan yang tersisa untuk ustadz peninjau: apakah metode Tamyiz, Al-Bayan, atau anotasi utawi-iku perlu memengaruhi bentuk soal "baca dan maknai" di titik cek.
+Belum diriset: metode Tamyiz, Al-Bayan, dan anotasi utawi-iku. Riset dari sumbernya sebelum RM-06 menulis soal "baca dan maknai", lalu masukkan ke daftar tinjauan menyeluruh.
 
 ## 10. Lanjutkan dari sini: RM-02
 
@@ -196,7 +196,7 @@ Pertanyaan yang tersisa untuk ustadz peninjau: apakah metode Tamyiz, Al-Bayan, a
 
 **Yang dibuat:**
 
-1. `src/lib/content/competencies.ts`: semua node dari [graf kompetensi §2](../curriculum/COMPETENCY_GRAPH.md#2-nodes) (CA-01 sampai CA-06, CB-01 sampai CB-21, CR-01 sampai CR-03), ditambah CB-22 sampai CB-24 dari bagian "Cakupan bacaan tingkat menengah". Isi per node: `id`, `track`, `titleId`, `canDo`, `prerequisites` (`id`, `strength`: `hard` / `soft` / `optional`), `reviewStatus: 'draft'`. Kalimat `canDo` ditulis ulang dari kolom can-do unit (graf §3) atau tabel pelajaran di [public-lessons](../content/public-lessons.md). Jangan mengarang konten Arab baru.
+1. `src/lib/content/competencies.ts`: semua node dari [graf kompetensi §2](../curriculum/COMPETENCY_GRAPH.md#2-nodes) (CA-01 sampai CA-06, CB-01 sampai CB-21, CR-01 sampai CR-03), ditambah CB-22 sampai CB-24 dari bagian "Cakupan bacaan tingkat menengah". Isi per node: `id`, `track`, `titleId`, `canDo`, `prerequisites` (`id`, `strength`: `hard` / `soft` / `optional`), `sources` (minimal satu tautan atau rujukan halaman, misalnya baris di graf kompetensi, dokumen riset, atau kurikulum yang dibandingkan), `reviewStatus: 'draft'`. Kalimat `canDo` ditulis ulang dari kolom can-do unit (graf §3) atau tabel pelajaran di [public-lessons](../content/public-lessons.md). Jangan mengarang konten Arab baru.
 2. `src/lib/content/roadmap.ts`: tahap, langkah, cabang, dan titik cek sesuai tabel §4. Setiap langkah punya `id` stabil (contoh `step-u4-u8`), `title`, `canDo`, `lessonIds` (ID pelajaran, bukan slug), dan `competencyIds`. Setiap kompetensi punya satu tempat utama (langkah atau cabang). Pelajaran boleh merujuk kompetensi yang tempat utamanya di langkah lain, misalnya U9-03 di Tahap 4 merujuk CB-20 yang ada di cabang Percakapan. Cabang Pendalaman menautkan path yang sudah ada (`kaidah/…`, `rujukan/`, `kosakata/`). Cabang Percakapan dan titik cek berstatus `planned`, tanpa tautan.
 3. `src/lib/domain/roadmap/`: fungsi murni tanpa Svelte dan tanpa IndexedDB. `stepStatus(step, lessons, lessonProgress, marks)` dan `currentPosition(roadmap, …)` mengikuti §3.1. `summarizeRoadmap(…)` mengembalikan hitungan per tahap (§3.3). Pakai tipe `LessonProgress` dari `src/lib/progress/lessons.ts`. `marks` cukup berupa tipe input untuk sekarang, karena store-nya dibuat di RM-04. `competencyLevel` belum dibuat; itu bagian RM-05.
 4. Validator `validateRoadmap(...)` dipanggil saat build, di tempat yang sama dengan `validateLessons` dipanggil (`src/lib/content/lessons/index.ts`). Validator gagal bila:
@@ -204,7 +204,8 @@ Pertanyaan yang tersisa untuk ustadz peninjau: apakah metode Tamyiz, Al-Bayan, a
    - ID kompetensi di pelajaran atau di langkah tidak ada di `competencies.ts`;
    - ID langkah atau tahap ganda;
    - urutan langkah melawan prasyarat `hard`, yaitu prasyarat ada di langkah yang lebih belakang (invarian I-5; saat ini hanya di Fondasi CA-02 sampai CA-06);
-   - cabang `planned` punya tautan.
+   - cabang `planned` punya tautan;
+   - kompetensi atau langkah tidak punya sumber (ADR-004 D-9).
 5. Uji unit `*.spec.ts` di sebelah setiap file: data sungguhan lolos validator, setiap aturan validator gagal pada fixture rusak, dan kasus §3.1 (`Belum dimulai`, `Sedang dipelajari`, `Selesai` pada revisi kini dan tidak pada revisi lama, `Dilewati`). Uji juga dua aturan "Anda di sini": membuka ulang U1 tidak memindahkan posisi mundur, dan tanda "Sedang saya pelajari" yang terbaru menang.
 
 **Selesai ketika:** `bun run check`, `bun run lint`, `bun run test:unit`, dan `bun run build` lulus. Tidak ada perubahan pada `src/routes/`. Baris F-15 di [tracker](../content/tracker.md) dan baris RM-02 di §8 diperbarui. Ringkasan PR menyebut jumlah pelajaran, langkah, dan kompetensi yang terpetakan.

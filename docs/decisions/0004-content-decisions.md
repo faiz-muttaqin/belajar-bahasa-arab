@@ -1,4 +1,4 @@
-# ADR-004: Content decisions D-1 to D-8
+# ADR-004: Content decisions D-1 to D-9
 
 **Status:** accepted by the product owner, 14 November 2026
 **Context:** [curriculum re-research](../research/2026-11-14-riset-ulang-kurikulum.md) §7 and [content tracker](../content/tracker.md). Licensing and regulatory points are background, not legal advice; confirm with an IP or legal adviser before launch.
@@ -60,6 +60,18 @@ The product owner's intent: open, non-commercial, educational reuse. A non-comme
 Disetujui pemilik produk pada 14 November 2026. Pelajaran, glos kosakata, dan tabel rujukan yang ditulis proyek boleh masuk ke build publik dengan sumber yang dicatat. Status tinjauan disimpan di data internal. Pengajar dapat meninjau dan memperbaiki materi secara bertahap. Jalur utama berfokus pada pemahaman makna, struktur kalimat, paragraf, dan dokumen pendek hingga tingkat menengah. Lihat [cakupan pelajaran dan bukti penilaian](../content/public-lessons.md).
 
 Gunakan urutan konsep dari Madinah Arabic dan tradisi sharaf yang sudah ada. Buat contoh dan bacaan berbahasa Arab serta pembahasan Indonesia untuk melatih pemahaman kalimat dan paragraf. Materi berstatus `approved`, audio, karya pihak ketiga, serta teks dan terjemahan Al-Qur’an tetap mengikuti pemeriksaan di atas. Bacaan tingkat mahir disiapkan dengan pendampingan pengajar.
+
+## D-9 Sumber dulu, tinjauan ustadz di akhir
+
+Disetujui pemilik produk pada 15 November 2026. Materi disusun berdasarkan riset dan sumber pembelajaran yang dicatat. Tinjauan ustadz atau pengajar dilakukan sekali secara menyeluruh, setelah jalur benar-benar siap dari awal sampai akhir. Tinjauan tidak dilakukan per butir sebelum butir itu boleh dipakai.
+
+- **Boleh dibuat dan dipakai sebagai `draft`:** pelajaran, soal latihan, soal titik cek, urutan tahap, kalimat "saya bisa", serta varian bacaan shalat yang ditampilkan berdampingan (D-5), asalkan setiap butir mencatat sumbernya. Sumber bisa berupa kitab atau buku, kamus, korpus, situs resmi, atau dokumen riset proyek. Hasil latihan pada butir `draft` tetap dihitung sebagai bukti pemahaman.
+- **Sumber harus bisa diperiksa:** tautan atau rujukan halaman, plus jenis penggunaan (kutipan, adaptasi, atau tulisan sendiri berdasarkan sumber). Butir tanpa sumber tidak boleh terbit.
+- **Label di layar:** "Draf · bersumber, belum ditinjau ustadz" atau versi yang lebih pendek. Pelajar dan pemilik bisa membuka sumbernya.
+- **Tinjauan menyeluruh:** sebelum jalur dipromosikan sebagai `approved`, pengajar dan ustadz meninjau dari ujung ke ujung, memakai daftar sumber per butir. Status `approved` tetap memerlukan catatan tinjauan (D-7).
+- **Tidak berubah:** lisensi dan izin (D-1, D-2, D-3), larangan menampilkan surah utuh sebelum soal tashih terjawab, dan rekaman audio. Ini aturan hukum atau kualitas suara, bukan soal kehati-hatian konten.
+
+D-9 melonggarkan D-5 (varian bacaan) dan gerbang `G-REVIEW` di [graf kompetensi](../curriculum/COMPETENCY_GRAPH.md#4-activity-gates) untuk butir `draft`.
 
 ## Consequences
 

@@ -78,7 +78,7 @@ Ringkasan keputusan dicatat di [rencana peta belajar §9](../plans/peta-belajar.
 
 ## 5. Yang belum diriset
 
-- Metode Tamyiz, Al-Bayan, dan anotasi utawi-iku (makna gandul) yang dikenal pelajar pesantren. Bisa memengaruhi cara menampilkan i'rab dan bentuk butir "baca dan maknai". Tanyakan ke ustadz peninjau sebelum dipakai.
+- Metode Tamyiz, Al-Bayan, dan anotasi utawi-iku (makna gandul) yang dikenal pelajar pesantren. Bisa memengaruhi cara menampilkan i'rab dan bentuk butir "baca dan maknai". Riset dari sumbernya sebelum RM-06; tinjauan ustadz mengikuti ADR-004 D-9.
 - Kriteria kenaikan jilid Iqra (halaman EBTA) dan ujian Amtsilati di pesantren induknya. Perlu buku cetak atau sumber primer.
 - Kurikulum madrasah yang berlaku sekarang. Periksa di JDIH Kemenag sebelum dikutip.
 - Fitur roadmap.sh untuk pengguna yang login dan cara kerja "Jump here" Duolingo. Keduanya tidak dipakai sebagai bukti.
