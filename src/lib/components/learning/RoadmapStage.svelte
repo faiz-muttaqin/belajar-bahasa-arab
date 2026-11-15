@@ -3,13 +3,26 @@
 	import type { RoadmapReferencePath } from '#lib/content/roadmap.js';
 	import ArrowRight from '@lucide/svelte/icons/arrow-right';
 	import type { RoadmapStageView } from '#lib/domain/roadmap/presentation.js';
+	import type { StepMark, StepStatus } from '#lib/domain/roadmap/types.js';
 	import RoadmapStepDetails from './RoadmapStepDetails.svelte';
 	import RoadmapSources from './RoadmapSources.svelte';
 	let {
 		stage,
-		onOpen
-	}: { stage: RoadmapStageView; onOpen?: (stepId: string, trigger: HTMLButtonElement) => void } =
-		$props();
+		onOpen,
+		statusByStep = {},
+		marks = [],
+		currentStepId,
+		onMark,
+		savingStepId
+	}: {
+		stage: RoadmapStageView;
+		onOpen?: (stepId: string, trigger: HTMLButtonElement) => void;
+		statusByStep?: Record<string, StepStatus>;
+		marks?: readonly StepMark[];
+		currentStepId?: string;
+		onMark?: (stepId: string, mark: StepMark['mark']) => void;
+		savingStepId?: string;
+	} = $props();
 </script>
 
 <section
@@ -27,15 +40,30 @@
 	</header>
 	<ol class="space-y-5 border-s-2 ps-4 sm:ps-6" aria-label={`Langkah ${stage.title}`}>
 		{#each stage.steps as step, index (step.id)}
+			{@const status = statusByStep[step.id]}
+			{@const existingMark = marks.find((item) => item.stepId === step.id && item.mark !== 'cleared')}
 			<li
 				id={step.id}
 				class="scroll-mt-24 rounded-2xl border bg-card p-4 sm:p-6"
 				data-roadmap-step={step.id}
+				data-current-step={currentStepId === step.id ? 'true' : undefined}
 			>
 				<p class="text-base text-muted-foreground">
 					Langkah {index + 1} dari {stage.steps.length} · ± {step.minutes} menit
 				</p>
 				<h4 class="mt-1 text-xl font-semibold">{step.title}</h4>
+				{#if status}
+					<p class="mt-2 text-base font-medium" data-step-status={status}>
+						{status === 'completed'
+							? '✓ Selesai'
+							: status === 'skipped'
+								? '↗ Dilewati, belum ada bukti'
+								: status === 'learning'
+									? '◐ Sedang dipelajari'
+									: '○ Belum dimulai'}
+						{#if currentStepId === step.id} · Anda di sini{/if}
+					</p>
+				{/if}
 				<ul class="mt-4 space-y-3" aria-label={`Pelajaran ${step.title}`}>
 					{#each step.lessons as lesson (lesson.id)}
 						<li>
@@ -53,6 +81,30 @@
 						</li>
 					{/each}
 				</ul>
+				{#if onMark}
+					<div class="mt-4 flex flex-wrap gap-2 border-t pt-4" aria-label={`Tanda posisi: ${step.title}`}>
+						<button
+							type="button"
+							onclick={() => onMark?.(step.id, 'learning')}
+							disabled={savingStepId !== undefined}
+							class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
+						>Sedang saya pelajari</button>
+						<button
+							type="button"
+							onclick={() => onMark?.(step.id, 'skipped')}
+							disabled={savingStepId !== undefined}
+							class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
+						>Saya sudah bisa, lewati</button>
+						{#if existingMark}
+							<button
+								type="button"
+								onclick={() => onMark?.(step.id, 'cleared')}
+								disabled={savingStepId !== undefined}
+								class="min-h-11 rounded-lg border px-3 text-base font-medium hover:bg-secondary disabled:opacity-60"
+							>Hapus tanda</button>
+						{/if}
+					</div>
+				{/if}
 				{#if onOpen}
 					<button
 						type="button"
