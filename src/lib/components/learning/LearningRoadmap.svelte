@@ -1,9 +1,50 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import type { RoadmapView } from '#lib/domain/roadmap/presentation.js';
+	import type { Roadmap, RoadmapLesson, StepMark, StepStatus } from '#lib/domain/roadmap/types.js';
+	import { stepStatus, summarizeRoadmap } from '#lib/domain/roadmap/progress.js';
+	import { notifyProgress, useProgress } from '#lib/progress/browser.svelte.js';
+	import { saveStepMark } from '#lib/progress/storage.js';
 	import RoadmapStage from './RoadmapStage.svelte';
 	import RoadmapStepDetails from './RoadmapStepDetails.svelte';
-	let { map }: { map: RoadmapView } = $props();
+	let { map, roadmap, lessons }: {
+		map: RoadmapView;
+		roadmap: Roadmap;
+		lessons: readonly RoadmapLesson[];
+	} = $props();
+	const progress = useProgress();
+	const summary = $derived(
+		progress.status === 'ready'
+			? summarizeRoadmap(roadmap, lessons, progress.records, progress.marks)
+			: undefined
+	);
+	const statuses = $derived.by(() => {
+		const result: Record<string, StepStatus> = {};
+		if (progress.status !== 'ready') return result;
+		for (const stage of roadmap.stages) {
+			for (const step of stage.steps) {
+				result[step.id] = stepStatus(step, lessons, progress.records, progress.marks);
+			}
+		}
+		return result;
+	});
+	let savingStepId = $state<string>();
+	let saveError = $state('');
+	async function markStep(stepId: string, mark: StepMark['mark']) {
+		if (savingStepId || progress.status !== 'ready') return;
+		savingStepId = stepId;
+		saveError = '';
+		try {
+			const previous = progress.marks.find((item) => item.stepId === stepId);
+			const at = Math.max(Date.now(), (previous?.at ?? 0) + 1);
+			await saveStepMark({ stepId, mark, at });
+			notifyProgress();
+		} catch {
+			saveError = 'Tanda belum tersimpan. Anda tetap dapat membuka pelajaran.';
+		} finally {
+			savingStepId = undefined;
+		}
+	}
 	const uid = $props.id();
 	let dialog = $state<HTMLDialogElement>();
 	let supportsDialog = $state(false);
@@ -98,6 +139,33 @@
 	</div>
 {/snippet}
 
+{#if progress.status === 'initial' || progress.status === 'loading'}
+	<p class="mt-6 text-base text-muted-foreground" role="status">Memuat posisi belajar…</p>
+{:else if progress.status === 'unavailable'}
+	<p class="mt-6 text-base text-muted-foreground" role="status">
+		Penyimpanan di perangkat ini tidak tersedia. Semua pelajaran dan rujukan tetap bisa dibuka,
+		tetapi tanda posisi tidak tersimpan.
+	</p>
+{:else if summary}
+	<div class="mt-6 space-y-2 rounded-xl border bg-secondary p-4" aria-label="Posisi belajar">
+		{#if summary.position}
+			<p class="font-medium">
+				Anda di Tahap {summary.position.stageNumber} · langkah {summary.position.stepNumber}
+				dari {summary.position.stepCount}
+			</p>
+			<a class="inline-flex min-h-11 items-center text-primary underline underline-offset-4"
+				href={`#${summary.position.stepId}`}>Ke posisi saya</a
+			>
+		{:else}
+			<p class="font-medium">Seluruh langkah jalur utama sudah selesai atau dilewati.</p>
+		{/if}
+		<p class="text-base text-muted-foreground">
+			Status langkah adalah penanda posisi, bukan bukti memahami bahasa Arab.
+		</p>
+	</div>
+{/if}
+{#if saveError}<p role="status" class="mt-3 text-base">{saveError}</p>{/if}
+
 <div
 	class="mt-10 grid min-w-0 gap-10 xl:grid-cols-[minmax(0,1fr)_18rem] xl:gap-14"
 	data-learning-roadmap
@@ -118,7 +186,15 @@
 			>
 				<h2 class="border-b pb-3 text-2xl font-semibold">{group.level}</h2>
 				{#each group.stages as stage (stage.id)}
-					<RoadmapStage {stage} onOpen={supportsDialog ? openStep : undefined} />
+					<RoadmapStage
+						{stage}
+						onOpen={supportsDialog ? openStep : undefined}
+						statusByStep={statuses}
+						marks={progress.marks}
+						currentStepId={summary?.position?.stepId}
+						onMark={progress.status === 'ready' ? markStep : undefined}
+						{savingStepId}
+					/>
 				{/each}
 			</section>
 		{/each}
