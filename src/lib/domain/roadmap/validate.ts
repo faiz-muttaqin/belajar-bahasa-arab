@@ -112,9 +112,9 @@ export function validateRoadmap(
 			'checkpoint-3': { path: 'belajar/checkpoint-3/', count: 24 }
 		} as const;
 		if (stage.checkpoint.status === 'available' &&
-			!Object.values(published).some((value) =>
-				stage.checkpoint.path === value.path && stage.checkpoint.questionCount === value.count
-			))
+			!(stage.checkpoint.id in published &&
+				published[stage.checkpoint.id as keyof typeof published].path === stage.checkpoint.path &&
+				published[stage.checkpoint.id as keyof typeof published].count === stage.checkpoint.questionCount))
 			issues.push(`Unknown published checkpoint route or count: ${stage.checkpoint.id}`);
 	}
 	for (const branch of roadmap.branches) {

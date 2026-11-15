@@ -256,9 +256,9 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 
 ### Ekspansi RM-06: Tahap 2 (16 November 2026)
 
-- Stacked PR di atas pilot RM-06 Tahap 3 menambahkan **40 soal transfer baru** dalam dua kelompok, masing-masing 20 butir: CB-04 (pertanyaan benda/orang) dan CB-06 (frasa vs kalimat lengkap). Butir berasal dari penyusunan mandiri berdasarkan Madinah Arabic pelajaran 1 bagian 3 dan pelajaran 58 bagian 1, dengan sumber masing-masing tercatat di data. Semua tetap \`draft\` untuk ditinjau.
-- Soal struktur mencatat \`skill: structure\`, bukan \`meaning\`; bukti tetap disimpan di IndexedDB yang sudah ada. Tahap 2 tersedia di \`/belajar/checkpoint-2/\`, dan tautan peta menggunakan jumlah soal yang benar per tahap.
-- Bank tahapan lain tetap \`planned\` hingga soal bersumbernya tersedia. Tidak mengubah aturan ambang tingkat pemahaman atau jadwal ulangan.
+- Stacked PR di atas pilot RM-06 Tahap 3 menambahkan **40 soal transfer baru** dalam dua kelompok, masing-masing 20 butir: CB-04 (pertanyaan benda/orang) dan CB-06 (frasa vs kalimat lengkap). Butir berasal dari penyusunan mandiri berdasarkan Madinah Arabic pelajaran 2 bagian 1 dan pelajaran 58 bagian 1, dengan sumber masing-masing tercatat di data. Semua tetap `draft` untuk ditinjau.
+- Soal struktur mencatat `skill: structure`, bukan `meaning`; bukti tetap disimpan di IndexedDB yang sudah ada. Tahap 2 tersedia di `/belajar/checkpoint-2/`, dan tautan peta menggunakan jumlah soal yang benar per tahap.
+- Bank tahapan lain tetap `planned` hingga soal bersumbernya tersedia. Tidak mengubah aturan ambang tingkat pemahaman atau jadwal ulangan.
 
 ### Pilot RM-06: Tahap 3 (16 November 2026)
 

@@ -8,8 +8,8 @@ import type { CheckpointGroup } from './checkpoints.js';
  */
 const sources = {
   tanya: {
-    label: 'Madinah Arabic · Lesson 1 Part 3 (bertanya tentang benda/orang)',
-    href: 'https://madinaharabic.com/free-content/grammar/lesson-1/part-3',
+    label: 'Madinah Arabic · Lesson 2 Part 1 (mā/man dan kata tunjuk)',
+    href: 'https://madinaharabic.com/free-content/grammar/lesson-2/part-1',
     usageType: 'independent-original'
   },
   jumlah: {
