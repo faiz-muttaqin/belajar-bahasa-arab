@@ -42,7 +42,7 @@
 
 Why lesson 1 can come first for everyone: U1 (CB-01) has no prerequisite and is designed listen-first, so a non-reader still gets a first success (see the [U1 lesson brief](./lesson-briefs/u1-l01-kata-inti-shalat.md)). "First success" is the research doc's design metric (§4.2): sound, text and meaning linked, with understandable feedback, in one short session. It is not an empirical claim.
 
-**Dependency:** lesson 1 cannot ship until its clips pass `G-AUDIO` (tracker A-01, A-02) and its items pass `G-REVIEW` (D-7, ustadz). Until then `/` keeps the current links to `/belajar/` and `/iqra/`.
+**P0 entry:** `/` opens the existing text-first U1 lesson. Iqra remains available as an optional route. The proposed audio-first and placement activities depend on `G-AUDIO` (tracker A-01, A-02) and `G-REVIEW` (D-7, ustadz).
 
 ## 3. Optional placement check
 
