@@ -1,6 +1,7 @@
 import { onMount } from 'svelte';
 import { readProgressSnapshot } from './storage.js';
 import type { StepMark } from '#lib/domain/roadmap/types.js';
+import type { LearningAttempt } from '#lib/domain/roadmap/evidence.js';
 import type { LessonProgress } from './lessons.js';
 
 const progressEvent = 'belajar-bahasa-arab:progres';
@@ -23,6 +24,7 @@ export function notifyProgress() {
 export function useProgress() {
 	let records = $state.raw<LessonProgress[]>([]);
 	let marks = $state.raw<StepMark[]>([]);
+	let attempts = $state.raw<LearningAttempt[]>([]);
 	let status = $state<'initial' | 'loading' | 'ready' | 'unavailable'>('initial');
 
 	onMount(() => {
@@ -35,6 +37,7 @@ export function useProgress() {
 				if (!active || request !== sequence) return;
 				records = next.lessons;
 				marks = next.marks;
+				attempts = next.attempts;
 				status = 'ready';
 			} catch {
 				if (active && request === sequence) status = 'unavailable';
@@ -65,6 +68,9 @@ export function useProgress() {
 		},
 		get marks() {
 			return marks;
+		},
+		get attempts() {
+			return attempts;
 		},
 		get status() {
 			return status;
