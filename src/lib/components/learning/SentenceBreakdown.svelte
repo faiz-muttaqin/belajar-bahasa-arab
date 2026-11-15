@@ -15,11 +15,23 @@
 	<h2 id="bedah-heading" class="text-2xl font-semibold">Bedah per kata</h2>
 	{#if glossary}
 		<InlineGrammarGlossary text={glossary} />
+		<div class="text-muted-foreground">
+			<InlineGrammarGlossary
+				text={[
+					'Bentuk kata dibahas dalam ',
+					{ term: 'sharaf' },
+					'. Tugas kata dan perubahan harakat akhir dibahas dalam ',
+					{ term: 'nahwu' },
+					'.'
+				]}
+			/>
+		</div>
+	{:else}
+		<p class="text-pretty text-muted-foreground">
+			Sharaf menjelaskan bentuk kata. Nahwu menjelaskan tugas kata di kalimat dan alasan harakat
+			akhirnya.
+		</p>
 	{/if}
-	<p class="text-pretty text-muted-foreground">
-		Sharaf menjelaskan bentuk kata. Nahwu menjelaskan tugas kata di kalimat dan alasan harakat
-		akhirnya.
-	</p>
 
 	{#each groups as group, g (group.heading)}
 		<details open={g === 0} class="rounded-xl border bg-card px-4 sm:px-5">
@@ -27,6 +39,9 @@
 				{group.heading}
 			</summary>
 			<div class="space-y-6 border-t pb-5">
+				{#if group.glossary}
+					<div class="pt-4"><InlineGrammarGlossary text={group.glossary} /></div>
+				{/if}
 				{#each group.sentences as sentence, i (i)}
 					<div class="space-y-3 pt-4">
 						<div class="text-start text-xl">

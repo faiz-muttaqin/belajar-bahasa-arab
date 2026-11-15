@@ -3,6 +3,7 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import GrammarExample from '#lib/components/learning/GrammarExample.svelte';
+	import InlineGrammarGlossary from '#lib/components/learning/InlineGrammarGlossary.svelte';
 	import { grammarRules } from '#lib/content/grammar-rules.js';
 </script>
 
@@ -20,11 +21,17 @@
 </PageIntro>
 
 <div class="mt-8 max-w-4xl space-y-3">
-	<p class="text-muted-foreground">
-		Peta ini menghubungkan <strong>nahwu</strong> (fungsi kata dalam susunan) dengan
-		<strong>sharaf</strong> (perubahan bentuk kata). Contoh di sini berstatus draft dan ditulis khusus
-		untuk website; sumber kaidah dicantumkan di tiap topik.
-	</p>
+	<div class="text-muted-foreground">
+		<InlineGrammarGlossary
+			text={[
+				'Peta ini menghubungkan ',
+				{ term: 'nahwu' },
+				' (fungsi kata dalam susunan) dengan ',
+				{ term: 'sharaf' },
+				' (perubahan bentuk kata). Contoh berstatus draf. Sumber kaidah tersedia di setiap topik.'
+			]}
+		/>
+	</div>
 	<nav aria-label="Pilih kaidah" class="flex flex-wrap gap-2">
 		{#each grammarRules as rule (rule.id)}
 			<a

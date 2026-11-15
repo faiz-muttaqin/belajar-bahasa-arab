@@ -96,6 +96,11 @@ export const wordClassesLesson: Lesson = {
 		},
 		{
 			heading: 'Kalimat verbal aktif dan pasif',
+			glossary: [
+				'“Membuka” dan “dibuka” adalah contoh ',
+				{ term: 'fiil' },
+				'. Perhatikan bagian kata yang berubah.'
+			],
 			sentences: [
 				{
 					words: [
@@ -144,6 +149,11 @@ export const wordClassesLesson: Lesson = {
 		},
 		{
 			heading: 'Harf dan pengaruhnya pada kata sesudahnya',
+			glossary: [
+				'Kata فِي (“di dalam”) adalah ',
+				{ term: 'harf' },
+				'. Perhatikan harakat kata sesudahnya.'
+			],
 			sentences: [
 				{
 					words: [

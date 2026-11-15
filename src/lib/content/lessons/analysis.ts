@@ -1,3 +1,5 @@
+import type { GlossaryText } from '#lib/content/grammar-glossary.js';
+
 export type Word = readonly [
 	arabic: string,
 	meaning: string,
@@ -21,6 +23,7 @@ export type SentenceAnalysis = {
 
 export type AnalysisGroup = {
 	heading: string;
+	glossary?: GlossaryText;
 	sentences: readonly SentenceAnalysis[];
 	comparison?: string;
 };
