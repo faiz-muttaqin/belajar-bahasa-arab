@@ -2,15 +2,33 @@
 	import { onMount, tick } from 'svelte';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import type { MeaningPractice } from '#lib/content/lessons/types.js';
+	import type { EvidenceItem } from '#lib/domain/roadmap/evidence.js';
+	import { recordLearningAnswer } from '#lib/progress/answers.js';
 	import ArabicText from './ArabicText.svelte';
 	import MixedText from './MixedText.svelte';
 
-	let { questions }: { questions: MeaningPractice } = $props();
+	let {
+		questions,
+		lessonId,
+		contentRevision,
+		competencyIds,
+		evidenceItems
+	}: {
+		questions: MeaningPractice;
+		lessonId: string;
+		contentRevision: number;
+		competencyIds: readonly string[];
+		evidenceItems: readonly EvidenceItem[];
+	} = $props();
 	const id = $props.id();
 	let interactive = $state(false);
 	let step = $state<0 | 1>(0);
 	let selected = $state<number>();
 	let checked = $state(false);
+	let seenWhileAuthoring = $state(false);
+	let savingAnswer = $state(false);
+	let evidenceMessage = $state('');
+	let storageError = $state(false);
 	let prompt = $state<HTMLHeadingElement>();
 	let feedback = $state<HTMLParagraphElement>();
 	const current = $derived(questions[step]);
@@ -25,12 +43,44 @@
 		checked = true;
 		await tick();
 		feedback?.focus();
+		savingAnswer = true;
+		evidenceMessage = '';
+		storageError = false;
+		try {
+			const result = await recordLearningAnswer(
+				{
+					itemId: current.id,
+					lessonId,
+					contentRevision,
+					competencyIds: [...competencyIds],
+					skill: 'meaning',
+					outcome: choice === undefined ? 'dont_know' : correct ? 'correct' : 'incorrect',
+					assisted: false,
+					selfAssessed: false,
+					seenWhileAuthoring
+				},
+				evidenceItems
+			);
+			evidenceMessage = result.changes
+				.map(
+					({ change, label }) =>
+						`${change === 'up' ? 'Naik ke' : change === 'down' ? 'Turun ke' : 'Tetap'} ${label}`
+				)
+				.join(' · ');
+		} catch {
+			storageError = true;
+		} finally {
+			savingAnswer = false;
+		}
 	}
 
 	async function openQuestion(index: 0 | 1) {
 		step = index;
 		selected = undefined;
 		checked = false;
+		seenWhileAuthoring = false;
+		evidenceMessage = '';
+		storageError = false;
 		await tick();
 		prompt?.focus();
 	}
@@ -58,6 +108,17 @@
 			<div id="{id}-word"><ArabicText text={current.arabic} size="block" /></div>
 		</div>
 
+		{#if current.kind === 'transfer'}
+			<label class="flex items-start gap-3 text-base text-muted-foreground">
+				<input
+					type="checkbox"
+					bind:checked={seenWhileAuthoring}
+					disabled={checked}
+					class="mt-1 size-5 accent-primary"
+				/>
+				Saya sudah melihat soal ini saat menyusun atau meninjau materi.
+			</label>
+		{/if}
 		<fieldset disabled={checked} aria-labelledby="{id}-prompt" class="space-y-2">
 			{#each current.choices as choice, index (choice)}
 				<label
@@ -88,14 +149,27 @@
 				</p>
 				<p id="{id}-reason"><MixedText text={current.reason} /></p>
 			</div>
+			{#if savingAnswer}
+				<p role="status" class="text-base text-muted-foreground">Menyimpan jawaban…</p>
+			{:else if storageError}
+				<p role="status" class="text-base text-muted-foreground">
+					Jawaban belum tersimpan. Pembahasan tetap dapat dibaca.
+				</p>
+			{:else if evidenceMessage}
+				<p role="status" class="text-base text-muted-foreground">{evidenceMessage}</p>
+			{/if}
 			<div class="flex flex-wrap gap-2">
 				{#if !correct}
-					<Button variant="outline" onclick={() => openQuestion(step)}>Coba lagi</Button>
+					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(step)}
+						>Coba lagi</Button
+					>
 				{/if}
 				{#if step === 0}
-					<Button onclick={() => openQuestion(1)}>Coba contoh baru</Button>
+					<Button disabled={savingAnswer} onclick={() => openQuestion(1)}>Coba contoh baru</Button>
 				{:else if correct}
-					<Button variant="outline" onclick={() => openQuestion(0)}>Ulangi latihan</Button>
+					<Button variant="outline" disabled={savingAnswer} onclick={() => openQuestion(0)}
+						>Ulangi latihan</Button
+					>
 				{/if}
 			</div>
 		{:else}

@@ -122,7 +122,7 @@ test('RM-04 upgrades IndexedDB v1 in place and retains completed lessons', async
 				};
 			})
 	);
-	expect(snapshot).toEqual({ version: 2, stores: ['lessons', 'marks'] });
+	expect(snapshot).toEqual({ version: 3, stores: ['attempts', 'lessons', 'marks'] });
 	await page.goto('/progres/');
 	await expect(page.getByRole('link', { name: 'Lanjut belajar' })).toHaveAttribute(
 		'href',

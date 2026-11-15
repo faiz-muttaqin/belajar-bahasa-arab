@@ -1,6 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { LessonProgress, ProgressBackup } from './lessons.js';
-import { importProgressBackup, readProgressSnapshot, saveProgress } from './storage.js';
+import {
+	importProgressBackup,
+	readProgressSnapshot,
+	saveProgress,
+	saveAttempt
+} from './storage.js';
+import type { LearningAttempt } from '#lib/domain/roadmap/evidence.js';
 
 // TEST FIXTURE — NOT A LESSON. The browser runner uses its own isolated origin.
 const completed: LessonProgress = {
@@ -53,8 +59,109 @@ describe('progress transactions preserve every record in a batch', () => {
 			await importProgressBackup(backup);
 			expect(await readProgressSnapshot()).toEqual({
 				lessons: [{ ...reopened, completedRevision: 2 }],
-				marks: [{ stepId: 'step-fixture', mark: 'cleared', at: 300 }]
+				marks: [{ stepId: 'step-fixture', mark: 'cleared', at: 300 }],
+				attempts: []
 			});
 		});
 	}
+});
+
+describe('RM-05 immutable attempt transactions', () => {
+	const answer: LearningAttempt = {
+		id: 'fixture-attempt-001',
+		itemId: 'u1-rabbi-meaning',
+		lessonId: 'lesson-u1-01',
+		contentRevision: 1,
+		competencyIds: ['CB-01'],
+		skill: 'meaning',
+		outcome: 'correct',
+		assisted: false,
+		selfAssessed: false,
+		seenWhileAuthoring: false,
+		at: 100
+	};
+
+	it('requests persistence eligibility only for the first newly saved answer', async () => {
+		expect(await saveAttempt(answer)).toEqual({ firstAnswer: true });
+		expect(await saveAttempt(answer)).toEqual({ firstAnswer: false });
+		expect((await readProgressSnapshot()).attempts).toEqual([answer]);
+	});
+
+	it('merges duplicates and preserves other stores in one transaction', async () => {
+		const backup: ProgressBackup = {
+			schemaVersion: 2,
+			lessons: [completed],
+			marks: [{ stepId: 'step-fixture', mark: 'skipped', at: 10 }],
+			attempts: [answer, answer]
+		};
+		await importProgressBackup(backup);
+		await importProgressBackup(backup);
+		expect(await readProgressSnapshot()).toEqual({
+			lessons: [completed],
+			marks: backup.marks,
+			attempts: [answer]
+		});
+	});
+
+	it('accepts the same answer with reordered JSON properties in saves and imports', async () => {
+		const reordered = Object.fromEntries(Object.entries(answer).reverse()) as LearningAttempt;
+		await saveAttempt(answer);
+		expect(await saveAttempt(reordered)).toEqual({ firstAnswer: false });
+		await importProgressBackup({
+			schemaVersion: 2,
+			lessons: [completed],
+			marks: [],
+			attempts: [reordered, answer]
+		});
+		expect(await readProgressSnapshot()).toEqual({
+			lessons: [completed],
+			marks: [],
+			attempts: [answer]
+		});
+	});
+
+	for (const invalid of [false, true]) {
+		it(`rejects a bad batch promptly and rolls back every store (invalid=${invalid})`, async () => {
+			const malformed = invalid
+				? { ...answer, at: 0 }
+				: { ...answer, outcome: 'incorrect' as const };
+			const importing = importProgressBackup({
+				schemaVersion: 2,
+				lessons: [completed],
+				marks: [{ stepId: 'step-fixture', mark: 'skipped', at: 10 }],
+				attempts: [answer, malformed]
+			});
+			// Also catch a pending promise, without leaving a leaked connection between tests.
+			let timer: ReturnType<typeof setTimeout>;
+			const timeout = new Promise<string>((resolve) => {
+				timer = setTimeout(() => resolve('pending'), 500);
+			});
+			const outcome = await Promise.race([
+				importing.then(
+					() => 'resolved',
+					() => 'rejected'
+				),
+				timeout
+			]);
+			clearTimeout(timer!);
+			expect(outcome).toBe('rejected');
+			expect(await readProgressSnapshot()).toEqual({ lessons: [], marks: [], attempts: [] });
+		});
+	}
+
+	it('aborts an entire import on conflicting immutable answer IDs', async () => {
+		await saveAttempt(answer);
+		const conflict: ProgressBackup = {
+			schemaVersion: 2,
+			lessons: [completed],
+			marks: [{ stepId: 'step-fixture', mark: 'skipped', at: 10 }],
+			attempts: [{ ...answer, outcome: 'incorrect' }]
+		};
+		await expect(importProgressBackup(conflict)).rejects.toThrow();
+		expect(await readProgressSnapshot()).toEqual({
+			lessons: [],
+			marks: [],
+			attempts: [answer]
+		});
+	});
 });

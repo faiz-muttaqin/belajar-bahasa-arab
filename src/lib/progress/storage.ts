@@ -1,5 +1,10 @@
 import type { StepMark } from '#lib/domain/roadmap/types.js';
 import {
+	isLearningAttempt,
+	sameLearningAttempt,
+	type LearningAttempt
+} from '#lib/domain/roadmap/evidence.js';
+import {
 	mergeLessonProgress,
 	mergeStepMark,
 	type LessonProgress,
@@ -7,10 +12,11 @@ import {
 } from './lessons.js';
 
 /** Database schema version is independent of the JSON backup version. */
-export const progressDatabaseVersion = 2;
+export const progressDatabaseVersion = 3;
 const databaseName = 'belajar-bahasa-arab-progres';
 const lessonsStore = 'lessons';
 const marksStore = 'marks';
+const attemptsStore = 'attempts';
 
 function openProgress() {
 	return new Promise<IDBDatabase>((resolve, reject) => {
@@ -23,6 +29,8 @@ function openProgress() {
 				database.createObjectStore(lessonsStore, { keyPath: 'lessonId' });
 			if (!database.objectStoreNames.contains(marksStore))
 				database.createObjectStore(marksStore, { keyPath: 'stepId' });
+			if (!database.objectStoreNames.contains(attemptsStore))
+				database.createObjectStore(attemptsStore, { keyPath: 'id' });
 		};
 		request.onblocked = () => {
 			blocked = true;
@@ -38,16 +46,25 @@ function openProgress() {
 	});
 }
 
-export type ProgressSnapshot = { lessons: LessonProgress[]; marks: StepMark[] };
+export type ProgressSnapshot = {
+	lessons: LessonProgress[];
+	marks: StepMark[];
+	attempts: LearningAttempt[];
+};
 
 export async function readProgressSnapshot(): Promise<ProgressSnapshot> {
 	const database = await openProgress();
 	try {
 		return await new Promise((resolve, reject) => {
-			const transaction = database.transaction([lessonsStore, marksStore], 'readonly');
+			const transaction = database.transaction(
+				[lessonsStore, marksStore, attemptsStore],
+				'readonly'
+			);
+			const attempts = transaction.objectStore(attemptsStore).getAll();
 			const lessons = transaction.objectStore(lessonsStore).getAll();
 			const marks = transaction.objectStore(marksStore).getAll();
-			transaction.oncomplete = () => resolve({ lessons: lessons.result, marks: marks.result });
+			transaction.oncomplete = () =>
+				resolve({ lessons: lessons.result, marks: marks.result, attempts: attempts.result });
 			transaction.onabort = () => reject(transaction.error);
 			transaction.onerror = () => reject(transaction.error);
 		});
@@ -104,14 +121,55 @@ export async function saveStepMark(mark: StepMark): Promise<void> {
 	}
 }
 
-/** Atomic backup merge across both stores; never overwrite more recent local choices. */
+/** Append one immutable answer. Counting and insertion share a transaction across tabs. */
+export async function saveAttempt(attempt: LearningAttempt): Promise<{ firstAnswer: boolean }> {
+	if (!isLearningAttempt(attempt)) throw new Error('Catatan jawaban tidak valid.');
+	const database = await openProgress();
+	try {
+		return await new Promise((resolve, reject) => {
+			const tx = database.transaction(attemptsStore, 'readwrite');
+			const store = tx.objectStore(attemptsStore);
+			const count = store.count();
+			let firstAnswer = false;
+			const existing = store.get(attempt.id);
+			existing.onsuccess = () => {
+				if (existing.result) {
+					if (!sameLearningAttempt(existing.result, attempt)) {
+						tx.abort();
+					}
+				} else {
+					store.add(attempt);
+					firstAnswer = count.result === 0;
+				}
+			};
+			tx.oncomplete = () => resolve({ firstAnswer });
+			tx.onabort = () => reject(tx.error ?? new Error('ID jawaban bentrok.'));
+			tx.onerror = () => reject(tx.error);
+		});
+	} finally {
+		database.close();
+	}
+}
+
+/** Atomic backup merge across all stores; never overwrite existing immutable answers. */
 export async function importProgressBackup(backup: ProgressBackup): Promise<void> {
 	const database = await openProgress();
 	try {
 		await new Promise<void>((resolve, reject) => {
-			const transaction = database.transaction([lessonsStore, marksStore], 'readwrite');
+			const transaction = database.transaction(
+				[lessonsStore, marksStore, attemptsStore],
+				'readwrite'
+			);
+			// Register before validation can abort synchronously inside the batch loop.
+			transaction.oncomplete = () => resolve();
+			transaction.onabort = () =>
+				reject(
+					transaction.error ?? new Error('Cadangan bentrok atau catatan jawaban tidak valid.')
+				);
+			transaction.onerror = () => reject(transaction.error);
 			const lessonStore = transaction.objectStore(lessonsStore);
 			const markStore = transaction.objectStore(marksStore);
+			const attemptStore = transaction.objectStore(attemptsStore);
 			// Reads are queued before callback writes; preserve earlier merges in this batch.
 			const mergedLessons = new Map<string, LessonProgress>();
 			const mergedMarks = new Map<string, StepMark>();
@@ -134,9 +192,27 @@ export async function importProgressBackup(backup: ProgressBackup): Promise<void
 					markStore.put(next);
 				};
 			}
-			transaction.oncomplete = () => resolve();
-			transaction.onabort = () => reject(transaction.error);
-			transaction.onerror = () => reject(transaction.error);
+			const pendingAttempts = new Map<string, LearningAttempt>();
+			for (const attempt of backup.attempts) {
+				if (!isLearningAttempt(attempt)) {
+					transaction.abort();
+					return;
+				}
+				const pending = pendingAttempts.get(attempt.id);
+				if (pending) {
+					if (!sameLearningAttempt(pending, attempt)) {
+						transaction.abort();
+						return;
+					}
+					continue;
+				}
+				pendingAttempts.set(attempt.id, attempt);
+				const request = attemptStore.get(attempt.id);
+				request.onsuccess = () => {
+					if (!request.result) attemptStore.add(attempt);
+					else if (!sameLearningAttempt(request.result, attempt)) transaction.abort();
+				};
+			}
 		});
 	} finally {
 		database.close();
@@ -152,7 +228,7 @@ export async function readPersistenceStatus(): Promise<'granted' | 'not-granted'
 	}
 }
 
-/** Do NOT call before RM-05 saves the first real answer. */
+/** Request only after the first real answer was committed, never when opening a lesson. */
 export async function requestPersistentStorage(): Promise<boolean> {
 	if (typeof navigator === 'undefined' || !navigator.storage?.persist) return false;
 	try {

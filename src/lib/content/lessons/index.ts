@@ -7,6 +7,7 @@ import { validateLessons, type LessonSummary, type LessonTrack } from './types.j
 import { wordClassesLesson } from './word-classes.js';
 import type { ProgressLesson } from '#lib/progress/lessons.js';
 import { competencies } from '../competencies.js';
+import { collectEvidenceItems } from '../evidence.js';
 import { roadmap, roadmapReferencePaths } from '../roadmap.js';
 import { validateRoadmap } from '#lib/domain/roadmap/validate.js';
 
@@ -21,6 +22,7 @@ const lessons = [
 ];
 validateLessons(lessons);
 validateRoadmap(roadmap, competencies, lessons, roadmapReferencePaths);
+export const evidenceItems = collectEvidenceItems(lessons);
 
 export function lessonsFor(track: LessonTrack) {
 	return lessons.filter((lesson) => lesson.track === track);

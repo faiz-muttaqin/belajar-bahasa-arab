@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { lessonsFor } from './index.js';
+import { lessonsFor, evidenceItems } from './index.js';
 import type { LessonTrack } from './types.js';
 
 export function lessonPages(track: LessonTrack) {
@@ -17,6 +17,7 @@ export function lessonPages(track: LessonTrack) {
 
 			return {
 				lesson,
+				evidenceItems,
 				previous: previous && { title: previous.title, slug: previous.slug },
 				next: next && { title: next.title, slug: next.slug }
 			};

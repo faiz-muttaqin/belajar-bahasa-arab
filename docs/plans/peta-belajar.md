@@ -1,6 +1,6 @@
 # Peta belajar: posisi dan tingkat pemahaman
 
-**15 November 2026 · RM-04 selesai (posisi dan penyimpanan) · Berikutnya RM-05 (bukti jawaban)**
+**15 November 2026 · RM-05 selesai (bukti jawaban) · Berikutnya RM-06 (titik cek baru bersumber)**
 
 Pelajar perlu melihat tiga hal dalam satu halaman: jalur yang akan dilalui, posisinya sekarang, dan seberapa jauh ia sudah paham. Rencana ini meminjam pola peta dari [roadmap.sh](https://roadmap.sh/) dan menyesuaikannya untuk orang dewasa Indonesia yang belajar lewat ponsel, tanpa akun, dengan data yang hanya tersimpan di browser.
 
@@ -163,7 +163,7 @@ Catatan untuk peninjau:
 | [Tracker](../content/tracker.md)                             | Baris F-15 untuk peta belajar. F-07 (progres) dan F-09 (ulangan terjadwal, ts-fsrs) menjadi dependensi.                                                    |
 | G-06 di [peta nahwu–sharaf](./nahwu-sharaf-knowledge-map.md) | Memakai data prasyarat dari RM-02, bukan graf sendiri.                                                                                                     |
 
-Urutan terhadap ROADMAP: P0 · 1 dan P0 · 2 sudah berjalan (#30), pilot P1 · 3 ada di U1 (#31). RM-02 dan RM-03 selesai. RM-04 memakai data dan UI yang sudah ada untuk menambahkan posisi personal. Sebelum RM-05, tambahkan input jawaban ke lebih banyak pelajaran (ROADMAP P1 · 3), karena sekarang hanya U1 yang punya soal dengan jawaban.
+Urutan terhadap ROADMAP: P0 · 1 dan P0 · 2 sudah berjalan (#30), pilot P1 · 3 ada di U1 (#31). RM-02 dan RM-03 selesai. RM-04 memakai data dan UI yang sudah ada untuk menambahkan posisi personal. RM-05 menyimpan jawaban otomatis U1 dan menambahkan penilaian diri pada empat latihan bersumber U2/U3 (ROADMAP P1 · 3). RM-06 memperluas soal transfer dan titik cek.
 
 ## 8. Tahapan PR
 
@@ -175,7 +175,7 @@ Urutan disusun untuk pemilik sebagai pengguna utama: posisi dulu, lalu bukti, da
 | RM-02 | Data kompetensi, data peta, fungsi domain, validator                                                                      | Selesai 15 November 2026: 29 pelajaran, 27 langkah, 33 kompetensi; validator dan domain diuji. Tidak ada perubahan UI. Berikutnya RM-03.                                                                                                                                                                                                                     |
 | RM-03 | Peta statis di `/belajar/` dan dialog detail                                                                              | Selesai 15 November 2026: tujuh tahap, 27 langkah dan 29 tautan pelajaran dalam HTML; dialog keyboard dan disclosure tanpa JS. Tautan #dasar/#menengah dipertahankan. Berikutnya RM-04.                                                                                                                                                                      |
 | RM-04 | Status posisi, tanda manual, "Anda di sini", ringkasan di `/progres/`, IndexedDB v2 (`marks`), impor gabung, `persist()`  | Selesai 15 November 2026: migrasi v1/v2, posisi dan tanda tersimpan, cadangan schema 1/2 tergabung, catatan penghapusan bertahan. Iqra tetap terpisah dari posisi dan hitungan jalur utama. Berikutnya RM-05.                                                                                                                                                |
-| RM-05 | Simpan jawaban latihan dan tampilkan tingkat 0 sampai 3                                                                   | Jawaban `MeaningPractice` tersimpan dengan `skill`; jawaban kedua pada soal yang sama tidak dihitung contoh baru; soal "sudah saya lihat" dibatasi tingkat 2; penilaian diri berlabel dan dibatasi tingkat 2; ringkasan naik, tetap, turun tampil; uji unit untuk setiap aturan §3.2.                                                                        |
+| RM-05 | Simpan jawaban latihan dan tampilkan tingkat 0 sampai 3                                                                   | Selesai 15 November 2026: jawaban `MeaningPractice` tersimpan dengan `skill`; jawaban kedua pada soal yang sama tidak dihitung contoh baru; soal "sudah saya lihat" dibatasi tingkat 2; penilaian diri berlabel dan dibatasi tingkat 2; ringkasan naik, tetap, turun tampil; uji unit untuk setiap aturan §3.2.                                              |
 | RM-06 | Titik cek per tahap dengan soal baru, mulai dari Tahap 3; cek cepat setelah "lewati"                                      | Soal titik cek ditulis dari sumber yang dicatat per soal (D-9), tidak muncul di pelajaran, minimal dua varian soal baru per kompetensi, dan langsung dipakai sebagai bukti dengan label draf. Titik cek tanpa soal tampil sebagai "Direncanakan". Kalimat aturan mengikuti §5 tanpa kata lulus atau gagal.                                                   |
 | RM-07 | Uji pakai: pemilik selama dua minggu, lalu 5 sampai 8 pelajar sasaran (bersama pilot RS-08)                               | Pemilik mencatat hambatan harian. Tugas peserta: "Anda sudah sampai mana?", "Apa yang sebaiknya dipelajari berikutnya?", "Kemampuan mana yang sudah Anda kuasai?", "Mana yang perlu diulang?". Bandingkan nama "Tetap ingat" dengan "Melekat", dan label kartu "lancar / perlu diulang" dengan nama tingkat. Minimal 4 dari 5 peserta menjawab tanpa arahan. |
 | RM-08 | Ulangan setelah F-09: tingkat 4, "Ulangan menunggu: N", set "Ulangi kesalahan" dan "Latih yang belum kuat" di `/latihan/` | Dimulai bila F-09 sudah ada dan tahap yang sudah dicapai pemilik punya minimal 3 soal berjawaban per kompetensi. Jadwal hanya dari FSRS. Soal cek kesiapan tidak masuk ulangan.                                                                                                                                                                              |
@@ -197,9 +197,9 @@ Diputuskan berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-
 
 Belum diriset: metode Tamyiz, Al-Bayan, dan anotasi utawi-iku. Riset dari sumbernya sebelum RM-06 menulis soal "baca dan maknai", lalu masukkan ke daftar tinjauan menyeluruh.
 
-## 10. Lanjutkan dari sini: RM-05
+## 10. Lanjutkan dari sini: RM-06
 
-**Status (15 November 2026).** RM-01 sampai RM-04 selesai. Data ada di `src/lib/content/competencies.ts` dan `roadmap.ts`; kontrak, validator dan fungsi posisi berada di `src/lib/domain/roadmap/`. Validator dipanggil bersama `validateLessons` saat katalog dibaca untuk build. RM-03 memakai data ini untuk peta di `/belajar/`, dengan 27 langkah, tautan 29 pelajaran, tujuan, prasyarat, sumber, cabang dan titik cek direncanakan. RM-04 menambahkan store `marks`, migrasi IndexedDB v2 dan cadangan schema 2 tanpa dependency baru.
+**Status (15 November 2026).** RM-01 sampai RM-05 selesai. Data ada di `src/lib/content/competencies.ts` dan `roadmap.ts`; kontrak, validator dan fungsi posisi berada di `src/lib/domain/roadmap/`. Validator dipanggil bersama `validateLessons` saat katalog dibaca untuk build. RM-03 memakai data ini untuk peta di `/belajar/`, dengan 27 langkah, tautan 29 pelajaran, tujuan, prasyarat, sumber, cabang dan titik cek direncanakan. RM-04 menambahkan store `marks`, migrasi IndexedDB v2 dan cadangan schema 2 tanpa dependency baru.
 
 ### Kontrak yang sudah tersedia
 
@@ -209,13 +209,13 @@ Belum diriset: metode Tamyiz, Al-Bayan, dan anotasi utawi-iku. Riset dari sumber
 - **Sumber:** node, langkah, tahap, cabang dan titik cek mencatat sumber serta jenis penggunaan `independent-original`, berstatus `draft`. Tidak menulis materi Arab baru.
 - **Domain:** `stepStatus`, `currentPosition`, `summarizeRoadmap`. Posisi default mengikuti jalur utama; Iqra dipilih eksplisit. Semua pelajaran wajib harus selesai pada revisi kini. Tanda manual terbaru mengungguli status pelajaran; membuka ulang pelajaran selesai tidak menggeser posisi ke belakang tanpa tanda manual.
 - **Build menolak:** pelajaran hilang/ganda, ID tak dikenal/ganda, sumber kosong/tidak sah, tempat utama kompetensi hilang/ganda, siklus prasyarat, prasyarat hard terbalik/tanpa alasan, tautan cabang direncanakan dan route rujukan yang tidak dikenal. Tautan Pendalaman juga diperiksa terhadap tipe route Kit dan berkas halaman nyata.
-- `StepMark` sudah tersimpan di IndexedDB v2; nilai `cleared` mempertahankan catatan penghapusan untuk impor gabung. Cadangan schema 2 tetap menerima schema 1. `attempts` masih kosong; bukti jawaban menjadi RM-05.
+- `StepMark` sudah tersimpan di IndexedDB v2; nilai `cleared` mempertahankan catatan penghapusan untuk impor gabung. Cadangan schema 2 tetap menerima schema 1. `attempts` kini tersimpan di IndexedDB v3 dan cadangan schema 2, dengan merge idempoten menurut isi kontrak dan ID jawaban.
 
 ### UI yang sudah tersedia
 
 `presentRoadmap` membentuk data tampilan dari ID pelajaran dan kompetensi; judul, slug serta menit selalu berasal dari katalog. `LearningRoadmap`, `RoadmapStage`, `RoadmapStepDetails` dan `RoadmapSources` merender daftar tersebut. Enam tahap utama tampil lebih dahulu, lalu Iqra opsional. Anchor `#dasar` dan `#menengah` tetap berlaku.
 
-Rincian dibaca melalui disclosure HTML tanpa JS, lalu menjadi dialog native setelah dukungan browser terdeteksi. Escape/Tutup mengembalikan fokus ke pemicu; tautan prasyarat menutup dialog dan menuju langkah terkait. Di ponsel, navigasi dan legenda berada dalam disclosure ringkas; di desktop, keduanya ada di kolom kanan. Semua bahan peta berlabel draf dan sumbernya dapat dibuka. RM-04 menambahkan status posisi dan kontrol tanda untuk jalur utama serta Iqra opsional. Bukti pemahaman menunggu jawaban RM-05.
+Rincian dibaca melalui disclosure HTML tanpa JS, lalu menjadi dialog native setelah dukungan browser terdeteksi. Escape/Tutup mengembalikan fokus ke pemicu; tautan prasyarat menutup dialog dan menuju langkah terkait. Di ponsel, navigasi dan legenda berada dalam disclosure ringkas; di desktop, keduanya ada di kolom kanan. Semua bahan peta berlabel draf dan sumbernya dapat dibuka. RM-04 menambahkan status posisi dan kontrol tanda untuk jalur utama serta Iqra opsional. RM-05 menambahkan bukti pemahaman 0–3 dari jawaban nyata, terpisah dari posisi.
 
 ### Implementasi RM-04
 
@@ -237,13 +237,22 @@ Tambahkan posisi personal di peta dan ringkasan `/progres/` sesuai §3.1, §3.3 
 6. Siapkan pembacaan status persistensi dan helper `navigator.storage.persist()`. Waktu pemanggilan tetap setelah jawaban pertama disimpan (§6, RM-05), bukan saat pengguna sekadar membuka peta.
 7. Uji migrasi dengan data versi 1, reload, tab lain, cadangan schema 1/2, penyimpanan gagal dan revisi pelajaran berubah. Setelah U1 selesai, posisi menuju Tahap 2; membuka ulang U1 tidak memindahkannya ke belakang; tanda manual terbaru tetap menang dan dapat dihapus. Jalankan seluruh gate proyek dan perbarui F-15 serta baris RM-04 di §8.
 
-### Tugas berikutnya: RM-05
+### Implementasi RM-05
 
-Simpan jawaban latihan dan tampilkan tingkat 0–3 sesuai §3.2 dan kontrak `attempts` §6. Tambahkan input jawaban pada lebih banyak latihan yang sudah bersumber (ROADMAP P1 · 3); jangan mengarang butir baru tanpa sumber. Gunakan ID soal dan revisi yang stabil, simpan segi kemampuan dan apakah bantuan atau penilaian diri dipakai. Impor/cadangan tetap mempertahankan seluruh catatan pelajaran dan tanda dari RM-04.
+- Tambahkan IndexedDB v3 `attempts` berkey `id`, tetap mempertahankan store `lessons` dan `marks` milik RM-04; cadangan tetap schema 2 dengan `attempts` sungguhan dan impor idempoten. Impor dari schema 1/2 lama tidak mengarang bukti.
+- ID soal dibuat stabil dan dicatat di katalog; registry membedakan contoh pembelajaran, calon transfer, dan latihan penilaian diri. Kelayakan “baru” diputuskan dari riwayat jawaban dan catatan penulis, **bukan** boolean tersimpan. Soal yang dipensiunkan tidak dipakai sebagai bukti aktif.
+- `competencyUnderstanding` menghitung tingkat 0–3, penurunan satu tingkat karena jawaban salah tanpa bantuan pada soal berbeda, dan batas tingkat 2 bagi penilaian diri. `recall` tidak dapat menaikkan level 2 atau 3. Kebijakan ini tetap ambang produk awal, bukan rating CEFR.
+- Integrasi latihan makna U1 (dua jawaban otomatis) dan empat pemeriksaan diri bersumber dari latihan U2/U3. Soal penilaian diri berlabel jelas, tidak menciptakan teks Arab baru. `/belajar/` dan `/progres/` menampilkan bukti terpisah dari status langkah.
+- Helper permintaan persistensi hanya dipanggil **setelah jawaban pertama benar-benar tersimpan**. Safari/iOS/Android nyata, uji pelajar dan tinjauan ustadz tetap terpisah.
+- Tes unit dan E2E mencakup contoh ulang, pernah dilihat saat menulis, penilaian diri, perubahan tingkat, migrasi dan cadangan, kegagalan storage, static fallback, persistensi sesudah commit pertama dan pembaruan peta antartab. Review menambahkan regresi konflik dalam batch, urutan properti JSON, batas bantuan/hafalan dan penurunan sesudah pemahaman pulih. Ringkasan memakai tujuan tiap kompetensi agar kemampuan berbeda dalam satu langkah tidak berlabel sama. Tidak ada dependency baru.
 
-Uji bahwa soal yang sama tidak dihitung sebagai contoh baru saat diulang, soal yang sudah dilihat penulis dan penilaian diri dibatasi tingkat 2, serta hafalan tidak memberi tingkat pemahaman 2/3. Panggil helper persistensi hanya sesudah jawaban nyata pertama berhasil disimpan. Riwayat penyelesaian dan penanda posisi tetap terpisah dari bukti pemahaman.
+### Tugas berikutnya: RM-06
 
-**Sesudah RM-04:** RM-05 menyimpan jawaban dan menampilkan bukti pemahaman. Audit VP-01 pada [rencana visual](./visual-pembelajaran.md) dapat menyiapkan penjelajah peran kata tanpa menunggu perubahan kurikulum; grafik posisi mengikuti RM-04, sedangkan grafik bukti menunggu RM-05.
+Bangun titik cek per tahap sesuai §4, §5 dan baris RM-06 di §8, mulai dari Tahap 3. Riset Tamyiz, Al-Bayan dan anotasi utawi-iku dari sumbernya sebelum menulis tugas “baca dan maknai”; catat sumber, izin penggunaan dan revisi per soal sesuai ADR-004 D-9. Sediakan minimal dua varian soal baru per kompetensi tanpa menampilkan soal titik cek di pelajaran. Butir tanpa sumber tidak boleh diterbitkan; titik cek yang belum punya soal tetap berlabel “Direncanakan”.
+
+Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` RM-05; jangan membuat rumus tingkat baru. Kelanjutan meliputi cek cepat sesudah “lewati”, feedback naik/tetap/turun per kompetensi, serta pengujian contoh baru, bantuan, penilaian diri, hafalan, impor dan migrasi. Riwayat penyelesaian, tanda posisi dan bukti tetap terpisah. Ulangan terjadwal/tingkat 4 menunggu RM-08 dan F-09.
+
+**Sesudah RM-05:** RM-06 memperluas titik cek baru yang bersumber. Audit VP-01 pada [rencana visual](./visual-pembelajaran.md) dapat menyiapkan penjelajah peran kata; grafik posisi memakai RM-04 dan grafik bukti memakai RM-05. Warna disertai label, animasi dikendalikan pelajar dan tetap menghormati reduced motion.
 
 ## Sumber
 

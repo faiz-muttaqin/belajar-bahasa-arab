@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import type { RoadmapView } from '#lib/domain/roadmap/presentation.js';
+	import {
+		competencyUnderstanding,
+		type EvidenceItem,
+		type CompetencyUnderstanding
+	} from '#lib/domain/roadmap/evidence.js';
 	import type { Roadmap, RoadmapLesson, StepMark, StepStatus } from '#lib/domain/roadmap/types.js';
 	import { stepStatus, summarizeRoadmap } from '#lib/domain/roadmap/progress.js';
 	import { notifyProgress, useProgress } from '#lib/progress/browser.svelte.js';
@@ -10,11 +15,13 @@
 	let {
 		map,
 		roadmap,
-		lessons
+		lessons,
+		evidenceItems
 	}: {
 		map: RoadmapView;
 		roadmap: Roadmap;
 		lessons: readonly RoadmapLesson[];
+		evidenceItems: readonly EvidenceItem[];
 	} = $props();
 	const progress = useProgress();
 	const summary = $derived(
@@ -22,6 +29,19 @@
 			? summarizeRoadmap(roadmap, lessons, progress.records, progress.marks)
 			: undefined
 	);
+	const understanding = $derived.by(() => {
+		if (progress.status !== 'ready') return undefined;
+		const values: Record<string, CompetencyUnderstanding> = {};
+		for (const stage of roadmap.stages) {
+			for (const step of stage.steps) {
+				for (const id of step.competencyIds) {
+					if (!(id in values))
+						values[id] = competencyUnderstanding(id, progress.attempts, evidenceItems);
+				}
+			}
+		}
+		return values;
+	});
 	const statuses = $derived.by(() => {
 		const result: Record<string, StepStatus> = {};
 		if (progress.status !== 'ready') return result;
@@ -195,6 +215,7 @@
 						{stage}
 						onOpen={supportsDialog ? openStep : undefined}
 						statusByStep={statuses}
+						understandingByCompetency={understanding}
 						marks={progress.marks}
 						currentStepId={summary?.position?.stepId}
 						onMark={progress.status === 'ready' ? markStep : undefined}
@@ -217,6 +238,7 @@
 					{stage}
 					onOpen={supportsDialog ? openStep : undefined}
 					statusByStep={statuses}
+					understandingByCompetency={understanding}
 					marks={progress.marks}
 					onMark={progress.status === 'ready' ? markStep : undefined}
 					{savingStepId}
@@ -241,6 +263,10 @@
 				>
 			</form>
 		</div>
-		<RoadmapStepDetails step={selected} onFollowLink={followLink} />
+		<RoadmapStepDetails
+			step={selected}
+			onFollowLink={followLink}
+			understandingByCompetency={understanding}
+		/>
 	{/if}
 </dialog>

@@ -1,5 +1,10 @@
 import type { Lesson } from '#lib/content/lessons/types.js';
 import type { StepMark } from '#lib/domain/roadmap/types.js';
+import {
+	isLearningAttempt,
+	mergeAttempts,
+	type LearningAttempt
+} from '#lib/domain/roadmap/evidence.js';
 
 /** JSON backup schema, distinct from the IndexedDB database version. */
 export const progressVersion = 2;
@@ -104,19 +109,20 @@ export type ProgressBackup = {
 	schemaVersion: 2;
 	lessons: LessonProgress[];
 	marks: StepMark[];
-	/** Reserved for RM-05; RM-04 never fabricates practice evidence. */
-	attempts: [];
+	/** Recorded, deduplicated local answers; no answer text is exported. */
+	attempts: LearningAttempt[];
 };
 
 export function serializeProgress(
 	records: readonly LessonProgress[],
-	marks: readonly StepMark[] = []
+	marks: readonly StepMark[] = [],
+	attempts: readonly LearningAttempt[] = []
 ) {
 	const backup: ProgressBackup = {
 		schemaVersion: progressVersion,
 		lessons: [...records].sort((a, b) => a.lessonId.localeCompare(b.lessonId)),
 		marks: mergeStepMarks(marks).sort((a, b) => a.stepId.localeCompare(b.stepId)),
-		attempts: []
+		attempts: mergeAttempts(attempts)
 	};
 	return JSON.stringify(backup, null, 2);
 }
@@ -137,7 +143,7 @@ export function parseProgressBackup(json: string): ProgressBackup {
 			(!Array.isArray(backup.marks) ||
 				!backup.marks.every(isStepMark) ||
 				!Array.isArray(backup.attempts) ||
-				backup.attempts.length !== 0))
+				!backup.attempts.every(isLearningAttempt)))
 	) {
 		throw new Error('Format cadangan progres tidak didukung.');
 	}
@@ -149,6 +155,6 @@ export function parseProgressBackup(json: string): ProgressBackup {
 		schemaVersion: 2,
 		lessons: [...lessons.values()],
 		marks: legacy ? [] : mergeStepMarks(backup.marks as StepMark[]),
-		attempts: []
+		attempts: legacy ? [] : mergeAttempts(backup.attempts as LearningAttempt[])
 	};
 }

@@ -8,6 +8,7 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { LESSON_LICENSE, type Lesson } from '#lib/content/lessons/types.js';
+	import type { EvidenceItem } from '#lib/domain/roadmap/evidence.js';
 	import { notifyProgress } from '#lib/progress/browser.svelte.js';
 	import { isLessonComplete } from '#lib/progress/lessons.js';
 	import { saveProgress } from '#lib/progress/storage.js';
@@ -16,12 +17,22 @@
 	import SpeechSettings from './SpeechSettings.svelte';
 	import MixedText from './MixedText.svelte';
 	import MeaningPractice from './MeaningPractice.svelte';
+	import SelfAssessment from './SelfAssessment.svelte';
 	import SentenceBreakdown from './SentenceBreakdown.svelte';
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
 
 	type LessonLink = Pick<Lesson, 'title' | 'slug'>;
-	let { lesson, previous, next }: { lesson: Lesson; previous?: LessonLink; next?: LessonLink } =
-		$props();
+	let {
+		lesson,
+		previous,
+		next,
+		evidenceItems
+	}: {
+		lesson: Lesson;
+		previous?: LessonLink;
+		next?: LessonLink;
+		evidenceItems: readonly EvidenceItem[];
+	} = $props();
 
 	let showHarakat = $state(true);
 	let interactive = $state(false);
@@ -240,7 +251,13 @@
 		<section id="latihan" aria-labelledby="latihan-heading" class="scroll-mt-24 space-y-4">
 			<h2 id="latihan-heading" class="text-2xl font-semibold">Latihan pemahaman</h2>
 			{#if lesson.meaningPractice}
-				<MeaningPractice questions={lesson.meaningPractice} />
+				<MeaningPractice
+					questions={lesson.meaningPractice}
+					lessonId={lesson.id}
+					contentRevision={lesson.revision}
+					competencyIds={lesson.competencies}
+					{evidenceItems}
+				/>
 				<h3 class="text-xl font-semibold">Latihan mandiri</h3>
 			{/if}
 			<p class="text-muted-foreground">
@@ -250,6 +267,7 @@
 				class="grid list-decimal grid-cols-[repeat(auto-fill,minmax(min(100%,25rem),1fr))] gap-x-10 gap-y-5 ps-6"
 			>
 				{#each lesson.exercises as exercise, i (i)}
+					{@const check = lesson.selfChecks?.find((item) => item.exerciseIndex === i)}
 					<li
 						id={`soal-${i + 1}`}
 						class="scroll-mt-24 space-y-2 rounded-xl border bg-card px-4 py-3"
@@ -266,6 +284,16 @@
 								Lihat pembahasan
 							</summary>
 							<p class="pb-2 text-pretty"><MixedText text={exercise.answer} /></p>
+							{#if check}
+								<SelfAssessment
+									itemId={check.id}
+									lessonId={lesson.id}
+									contentRevision={lesson.revision}
+									competencyIds={check.competencyIds}
+									skill={check.skill}
+									{evidenceItems}
+								/>
+							{/if}
 						</details>
 					</li>
 				{/each}
