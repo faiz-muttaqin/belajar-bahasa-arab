@@ -112,7 +112,7 @@
 			{#each data.related as item (item.key)}
 				<li>
 					<a
-						href={resolve(('rujukan/bentuk/' + item.key + '/') as 'rujukan/bentuk/madhi/')}
+						href={resolve(`rujukan/bentuk/${item.key}/`)}
 						class="inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 font-medium text-primary hover:bg-secondary"
 					>
 						{item.title}
