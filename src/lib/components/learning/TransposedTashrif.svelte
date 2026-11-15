@@ -234,7 +234,7 @@
 
 	<p class="text-sm text-muted-foreground">
 		{visibleGroups.length} bab · 11 bentuk dari kanan ke kiri. Klik bab di kolom kiri untuk memilih kata,
-		atau klik sel untuk melihat penjelasan perubahan. Geser tabel ke samping untuk melihat seluruh bentuk.
+		klik judul kolom untuk materi lengkap, atau klik sel untuk penjelasan perubahan. Geser tabel ke samping untuk melihat seluruh bentuk.
 	</p>
 	{#if family !== 'all'}
 		<p class="text-sm text-muted-foreground">Isi contoh berlaku untuk kelompok yang ditampilkan.</p>
@@ -271,7 +271,15 @@
 							id={`tashrif-istilahi-${column.key}`}
 							scope="col"
 							class="min-w-36 scroll-mt-24 scroll-ml-36 px-3 py-3 text-center text-xs font-semibold text-secondary-foreground sm:scroll-ml-48"
-							>{column.label}</th
+							>
+							<a
+								href={resolve(`rujukan/bentuk/${column.key}/`)}
+								class="inline-flex min-h-11 items-center justify-center rounded-lg px-2 py-1 text-primary underline underline-offset-4 hover:bg-card focus-visible:outline-2 focus-visible:outline-ring"
+								aria-label={`Pelajari ${column.label} lebih lanjut`}
+							>
+								{column.label}
+							</a>
+						</th
 						>
 					{/each}
 				</tr>
