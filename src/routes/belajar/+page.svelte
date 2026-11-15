@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { Button } from '#lib/components/ui/button/index.js';
-	import LessonList from '#lib/components/learning/LessonList.svelte';
+	import LearningRoadmap from '#lib/components/learning/LearningRoadmap.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import type { PageProps } from './$types';
 
@@ -9,21 +9,24 @@
 </script>
 
 <PageIntro
-	title="Belajar"
+	title="Peta belajar"
 	section="belajar"
-	description="Belajar memahami bahasa Arab setelah Iqra, mulai dari makna kata dan pola kalimat hingga gagasan utama dan struktur dokumen."
+	description="Peta belajar bahasa Arab setelah Iqra: enam tahap dari makna kata hingga dokumen pendek, dengan pelajaran, tujuan, prasyarat dan sumber yang dapat dibuka."
 >
 	{#snippet lead()}
 		<p>Dari kata yang akrab hingga membaca kalimat, paragraf, dan dokumen pendek.</p>
+		<p class="text-base">Draf · bersumber, belum ditinjau ustadz.</p>
 	{/snippet}
 </PageIntro>
 
 <div class="mt-6">
 	<Button href={resolve(`belajar/${data.start.slug}/`)}>Mulai belajar</Button>
-	<p class="mt-2 text-base text-muted-foreground">{data.start.title}</p>
+	<p class="mt-2 text-base text-muted-foreground">
+		{data.map.mainLessons} pelajaran jalur utama · Mulai dari {data.start.title.toLowerCase()}.
+	</p>
 </div>
 
-<LessonList track="belajar" lessons={data.lessons} />
+<LearningRoadmap map={data.map} />
 
 <aside class="mt-8 space-y-2 border-t pt-6">
 	<h2 class="text-lg font-semibold">Pendalaman</h2>

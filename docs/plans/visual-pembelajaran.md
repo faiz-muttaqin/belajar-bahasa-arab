@@ -8,7 +8,7 @@ Visual membantu pelajar menjawab pertanyaan konkret: kata ini bertugas sebagai a
 
 - G-01 sampai G-05 sudah memiliki glos, warna dan label peran. D-05a sudah mengganti sebagian contoh G-01/G-03 dengan bingkai sumber yang utuh. [Rencana dinamis](./dynamic-example-slots.md).
 - Pelajaran dan bacaan sudah memiliki bedah per kata; belum ada penjelajah peran yang terhubung langsung dengan kata pada seluruh teks. [Daftar materi](../content/public-lessons.md#bedah-per-kata).
-- RM-02 menyiapkan 33 kompetensi, 29 pelajaran dan 27 langkah sebagai dasar data peta. RM-03 membangun peta statis; RM-04 menyimpan posisi; RM-05 menyimpan bukti jawaban. [Peta belajar](./peta-belajar.md).
+- RM-02 menyiapkan 33 kompetensi, 29 pelajaran dan 27 langkah sebagai dasar data peta. RM-03 sudah membangun peta statis; RM-04 menyimpan posisi; RM-05 menyimpan bukti jawaban. [Peta belajar](./peta-belajar.md).
 - F-16 sudah menyediakan panduan 11 bentuk tashrif dan klasifikasi isim/fi‘il lewat PR #37. Bentuk kata dan tugasnya dalam kalimat tetap dijelaskan sebagai dimensi berbeda.
 
 | ID    | Pekerjaan                                                            | Ketergantungan                             | Selesai ketika                                                                                                                                                                                                        |
@@ -19,7 +19,7 @@ Visual membantu pelajar menjawab pertanyaan konkret: kata ini bertugas sebagai a
 | VP-04 | Grafik cakupan per tahap dan ringkasan bukti                         | RM-04 untuk posisi; RM-05 untuk bukti      | Grafik memakai hitungan dan penyebut dari katalog, disertai teks/tabel. Membuka atau menyelesaikan pelajaran tidak menaikkan tingkat pemahaman. Tanpa rekaman jawaban tampil “Belum ada bukti latihan”.               |
 | VP-05 | Pengayaan materi dan uji pemahaman                                   | VP-02/03; RM-06 untuk soal titik cek       | Contoh pembanding, pengecualian dan soal transfer baru mencatat sumber per butir. Pemilik lalu peserta RM-07 membandingkan pemahaman dengan dan tanpa bantuan visual. Hasil dicatat, bukan diasumsikan dari animasi.  |
 
-RM-02 tetap perubahan data saja. Tugas implementasi berikutnya adalah RM-03; VP-01 dapat diaudit sesudahnya sebelum memperluas UI peran kata. RM-04 dan RM-05 tetap memakai penyimpanan yang direncanakan, tanpa schema progres kedua.
+RM-02 tetap perubahan data saja. RM-03 selesai; tugas implementasi berikutnya adalah RM-04. VP-01 dapat diaudit sekarang sebelum memperluas UI peran kata. RM-04 dan RM-05 tetap memakai penyimpanan yang direncanakan, tanpa schema progres kedua.
 
 ## 2. Ketuk kata untuk memahami posisinya
 

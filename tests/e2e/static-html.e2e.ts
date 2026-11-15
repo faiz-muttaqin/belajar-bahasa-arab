@@ -6,7 +6,7 @@ import { expect, test } from '@playwright/test';
 
 const routes = [
 	{ path: '/', file: 'index.html', h1: 'Pahami bahasa Arab dari kata hingga paragraf' },
-	{ path: '/belajar/', file: 'belajar/index.html', h1: 'Belajar' },
+	{ path: '/belajar/', file: 'belajar/index.html', h1: 'Peta belajar' },
 	{
 		path: '/belajar/bedah-kalimat-bacaan/',
 		file: 'belajar/bedah-kalimat-bacaan/index.html',
@@ -103,11 +103,12 @@ test('the site fills the desktop area beside the navigation', async ({ page }) =
 	}
 
 	await page.goto('/belajar/');
-	const lessons = page.getByRole('region', { name: 'Dasar', exact: true }).getByRole('link');
-	const first = await lessons.nth(0).boundingBox();
-	const second = await lessons.nth(1).boundingBox();
-	expect(first?.y).toBe(second?.y);
-	expect(second!.x).toBeGreaterThan(first!.x);
+	await expect(page.getByRole('navigation', { name: 'Tahap peta belajar' })).toBeVisible();
+	const stages = page.locator('[data-roadmap-stage]');
+	await expect(stages).toHaveCount(7);
+	const guide = await page.getByRole('navigation', { name: 'Tahap peta belajar' }).boundingBox();
+	const first = await stages.first().boundingBox();
+	expect(guide!.x).toBeGreaterThan(first!.x + first!.width);
 });
 
 test('prerendered pages mark the current section without JavaScript', async () => {

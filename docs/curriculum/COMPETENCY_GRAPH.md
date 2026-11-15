@@ -247,7 +247,7 @@ The `CA05 -.-> CB01` arrow stands for the track-level assumption in §1, not a n
 
 ## 6. Graph invariants
 
-**Implementasi RM-02:** `src/lib/content/competencies.ts` menyimpan graf dan perluasan bacaan; validator `src/lib/domain/roadmap/validate.ts` berjalan bersama validasi pelajaran pada build. Uji unit menjaga kesetaraan ID dan edge dengan dokumen ini. Cakupan gerbang RM-02 dirinci di [peta belajar §10](../plans/peta-belajar.md#10-lanjutkan-dari-sini-rm-03); aturan perilaku UI dan audit manusia tetap pekerjaan terpisah.
+**Implementasi RM-02:** `src/lib/content/competencies.ts` menyimpan graf dan perluasan bacaan; validator `src/lib/domain/roadmap/validate.ts` berjalan bersama validasi pelajaran pada build. Uji unit menjaga kesetaraan ID dan edge dengan dokumen ini. Cakupan gerbang RM-02 dirinci di [peta belajar §10](../plans/peta-belajar.md#10-lanjutkan-dari-sini-rm-04); aturan perilaku UI dan audit manusia tetap pekerjaan terpisah.
 
 To be enforced by the build-time validator (tracker F-06) once the graph is data. All invariants hold for the edges in §2 and §7: checked on 14 November 2026 with a throwaway script (30 nodes, 48 edges: 4 hard, 40 soft, 4 optional; no cycle; no edge points backwards in the unit order; no hard edge inside Jalur B; entry nodes CA-01, CA-02, CB-01, CB-03).
 

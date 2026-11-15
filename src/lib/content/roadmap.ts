@@ -76,6 +76,7 @@ const referenceLinks = [
 	{ path: 'kosakata/', label: 'Kosakata' }
 ] as const satisfies readonly { path: Path; label: string }[];
 export const roadmapReferencePaths = referenceLinks.map((link) => link.path);
+export type RoadmapReferencePath = (typeof roadmapReferencePaths)[number];
 
 export const roadmap: Roadmap = {
 	stages: [
