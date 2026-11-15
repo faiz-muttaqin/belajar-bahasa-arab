@@ -3,6 +3,7 @@
 	import InlineCuratedExamplePicker from './InlineCuratedExamplePicker.svelte';
 	import {
 		canEditInlineExample,
+		canEditInlineSlot,
 		resolveInlinePhraseExample
 	} from '#lib/domain/grammar/inline-curated-examples.js';
 	import type { IrabCase, PhraseExample } from '#lib/content/phrase-rules.js';
@@ -67,7 +68,7 @@
 						{IRAB_CASE_LABELS[token.irab]} · {token.marker}
 					</span>
 				{/if}
-				{#if editable}
+				{#if editable && canEditInlineSlot('phrase', example.id, i)}
 					<InlineCuratedExamplePicker
 						source="phrase"
 						originalId={example.id}
