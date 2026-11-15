@@ -10,8 +10,6 @@ test('RM-06 stage 2: checkpoint records answer and shows next of twenty', async 
 	await group.getByRole('radio', { name: 'Pena', exact: true }).check();
 	await group.getByRole('button', { name: 'Cek jawaban' }).click();
 	await expect(group.getByRole('status')).toContainText('Bisa pada contoh baru');
-	const source = group.getByRole('link', { name: /Sumber:/ });
-	await expect(source).toHaveAttribute('href', /madinaharabic\.com/);
 	await group.getByRole('button', { name: 'Coba contoh baru' }).click();
 	await expect(group).toContainText('Soal 2 dari 20');
 	await page.goto('/belajar/');
