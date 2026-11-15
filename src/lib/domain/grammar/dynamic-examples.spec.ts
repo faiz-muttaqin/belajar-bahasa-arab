@@ -168,7 +168,7 @@ describe('G-06 dynamic example slots', () => {
 	it('D-04a explains excluded semantic candidates without exposing them as selectable choices', () => {
 		const opened = chooseBuilderWord(initialBuilderState, 'verb', 'fiil-fataha').state;
 		const decisions = assessBuilderChoices(opened, 'object');
-		expect(decisions.map(({ choice }) => choice.id)).toEqual(['msa-risalah', 'msa-kitab', 'bab']);
+		expect(decisions.map(({ choice }) => choice.id)).toEqual(['bab', 'msa-kitab', 'msa-risalah']);
 		expect(
 			decisions.find(({ choice }) => choice.id === 'msa-risalah')?.compatibility
 		).toMatchObject({
