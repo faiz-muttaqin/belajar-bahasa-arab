@@ -26,7 +26,7 @@
 	</p>
 </div>
 
-<LearningRoadmap map={data.map} />
+<LearningRoadmap map={data.map} roadmap={data.roadmap} lessons={data.roadmapLessons} />
 
 <aside class="mt-8 space-y-2 border-t pt-6">
 	<h2 class="text-lg font-semibold">Pendalaman</h2>
