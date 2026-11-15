@@ -51,7 +51,7 @@
 		dir="rtl"
 		aria-label="Susunan Arab dan terjemahan di bawah setiap kata, dengan label i‘rab"
 	>
-		{#each current.tokens as token, i (current.id + '-' + i)}
+		{#each current.tokens as token, i (example.id + '-' + i)}
 			<div
 				data-irab={token.irab ?? 'none'}
 				class="flex max-w-full min-w-0 flex-col items-center gap-1 rounded-xl border px-3 py-3 text-center {token.irab
