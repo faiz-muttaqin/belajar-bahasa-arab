@@ -17,7 +17,8 @@ import {
 	validateLexemeRecord,
 	type MorphFeatures,
 	type SurfaceEvidence,
-	type LexemeRecord
+	type LexemeRecord,
+	type WordClass
 } from './lexeme-forms.js';
 
 export type BuilderMode = 'nominal' | 'verbal';
@@ -130,10 +131,11 @@ function inFrame(
 	id: string,
 	surface: string,
 	features: MorphFeatures,
-	reason: string
+	reason: string,
+	frameWordClass?: WordClass
 ) {
 	if (validateLexemeRecord(lexeme).length) throw new Error('Invalid lexeme contract: ' + id);
-	return curatedFrameSurface({ lexeme, id, surface, features, reason });
+	return curatedFrameSurface({ lexeme, id, surface, features, reason, frameWordClass });
 }
 
 function adjectiveChoice(id: string, gender: Gender): BuilderChoice {
@@ -172,7 +174,8 @@ function nounChoice(item: NominalNoun | VerbAgent | DirectObject): BuilderChoice
 		caseName === 'raf' ? 'subject-or-agent' : 'object',
 		arabic,
 		{ case: caseName, number: 'singular', definiteness: 'definite', gender: item.gender },
-		'Bentuk isim tunggal ber-ال untuk slot kaidah tertentu. Harakat akhir dipilih manual dari bingkai pengajaran.'
+		'Bentuk isim tunggal ber-ال untuk slot kaidah tertentu. Harakat akhir dipilih manual dari bingkai pengajaran.',
+		entry.id === 'bab' ? 'noun' : undefined
 	);
 	return {
 		id: item.id,
