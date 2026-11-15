@@ -7,7 +7,7 @@
 		chooseVerbFrame,
 		composeBuilderExample,
 		initialBuilderState,
-		searchBuilderChoices,
+		searchBuilderChoiceAssessments,
 		type BuilderMode,
 		type BuilderSlot,
 		type BuilderState
@@ -24,7 +24,8 @@
 	let previousTrigger: HTMLButtonElement | undefined;
 
 	let example = $derived(composeBuilderExample(mode, selection));
-	let results = $derived(searchBuilderChoices(selection, activeSlot, query));
+	let results = $derived(searchBuilderChoiceAssessments(selection, activeSlot, query));
+	let hasSelectable = $derived(results.some((item) => item.compatibility.allowed));
 	let availableFrames = $derived(verbFrameOptions(selection.verb));
 
 	onMount(() => {
@@ -49,6 +50,9 @@
 				: '',
 			result.resetFrame
 				? 'Bentuk fi‘il kembali ke māḍī: bentuk sebelumnya belum tersedia untuk lema baru.'
+				: '',
+			activeSlot === 'subject'
+				? 'Bentuk sifat otomatis mengikuti gender isim; khabar tetap nakirah.'
 				: ''
 		].filter(Boolean);
 		notice = changes.length
@@ -197,32 +201,39 @@
 			</label>
 
 			<ul class="max-h-72 space-y-2 overflow-y-auto" aria-label="Hasil pilihan kamus">
-				{#each results as item (item.id)}
-					<li>
+				{#each results as { choice, compatibility } (choice.id)}
+					<li class="rounded-xl border bg-background p-2">
 						<button
 							type="button"
-							class="flex min-h-16 w-full flex-wrap items-center justify-between gap-3 rounded-xl border bg-background px-4 py-3 text-start hover:border-primary"
-							data-evidence={item.evidence.kind}
-							onclick={() => choose(item.id)}
-							data-choice={item.id}
+							disabled={!compatibility.allowed}
+							class="flex min-h-16 w-full flex-wrap items-center justify-between gap-3 rounded-lg px-2 py-2 text-start enabled:hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-65"
+							data-evidence={choice.evidence.kind}
+							data-choice={compatibility.allowed ? choice.id : undefined}
+							data-blocked={compatibility.allowed ? undefined : choice.id}
+							onclick={() => choose(choice.id)}
 						>
 							<span class="flex flex-col items-start">
-								<span lang="ar" dir="rtl" class="text-2xl leading-[1.8]">{item.arabic}</span>
-								<span class="text-sm font-medium">{item.gloss}</span>
+								<span lang="ar" dir="rtl" class="text-2xl leading-[1.8]">{choice.arabic}</span>
+								<span class="text-sm font-medium">{choice.gloss}</span>
 							</span>
 							<span class="max-w-44 text-xs text-muted-foreground">
-								{item.source === 'sharaf' ? 'Kamus sharaf' : 'Kosakata MSA'}
-								{item.bab ? ' · ' + item.bab : ''}
+								{choice.source === 'sharaf' ? 'Kamus sharaf' : 'Kosakata MSA'}
+								{choice.bab ? ' · ' + choice.bab : ''}
 							</span>
 						</button>
+						<p class="px-2 text-xs" data-reason={choice.id}>
+							{compatibility.allowed
+								? 'Bisa digunakan: ' + compatibility.allowedExplanation
+								: 'Belum bisa dipilih: ' + compatibility.reasons.map((item) => item.message).join(' ')}
+						</p>
 						<div
 							class="mt-1 flex flex-wrap items-center justify-between gap-2 px-2 text-xs text-muted-foreground"
 						>
 							<span>Bentuk contoh · draft (belum ditashih guru bahasa Arab)</span>
-							{#if item.evidence.sourceUrls[0]}
+							{#if choice.evidence.sourceUrls[0]}
 								<!-- eslint-disable svelte/no-navigation-without-resolve -- external lexical reference URL -->
 								<a
-									href={item.evidence.sourceUrls[0]}
+									href={choice.evidence.sourceUrls[0]}
 									target="_blank"
 									rel="noopener noreferrer"
 									class="underline hover:text-foreground">Rujukan lema</a
@@ -236,9 +247,14 @@
 						Tidak ada kata yang cocok sekaligus memenuhi aturan contoh ini.
 					</li>
 				{/each}
+				{#if results.length > 0 && !hasSelectable}
+					<li class="rounded-lg border border-dashed px-4 py-3 text-sm text-muted-foreground">
+						Tidak ada kata yang cocok untuk dipilih dalam contoh ini; lihat alasan di atas.
+					</li>
+				{/if}
 			</ul>
 			<p class="text-xs text-muted-foreground">
-				Pencarian dibatasi pada pengganti yang sudah memiliki bentuk, i‘rab, dan konteks kompatibel.
+				Kata yang cocok ditampilkan sebagai pilihan aktif. Kata yang belum cocok tetap terlihat dengan alasan, tetapi tidak bisa dipilih.
 				Tidak semua entri kamus boleh digunakan langsung. Buka <a
 					href={resolve('kosakata/')}
 					class="underline">kamus kosakata</a
