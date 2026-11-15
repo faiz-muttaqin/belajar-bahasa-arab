@@ -2,7 +2,7 @@
 
 Single place to see what content exists, what blocks it, and what to do next. Update the row (and the "Updated" date) whenever an item moves stage. Agents: read [AGENTS.md](../../AGENTS.md) and the [research doc](../arabic-learning-pedagogy-ux-research-reissued.md) first; never move an item past **Draft** without a named human reviewer.
 
-**Updated:** 15 November 2026
+**Updated:** 16 November 2026
 
 ## Pipeline
 
@@ -200,3 +200,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 16 November 2026: RM-06 ekspansi Tahap 2 (stacked sesudah PR #42): 40 butir checkpoint (20 CB-04 dan 20 CB-06), dengan label keterampilan meaning vs structure, sumber tiap soal, dan pemeriksaan otomatis GitHub Actions; materi draf masih memerlukan review bahasa.
 
 - 16 November 2026: RM-06 Tahap 1 menyediakan bank 20 soal transfer akhiran -ku bersumber (CB-01), terpisah dari soal materi U1, sebagai PR bertingkat setelah Tahap 2.
+
+- 16 November 2026: RM-06 Tahap 4 (PR bertingkat setelah Tahap 1) menambah 40 butir transfer orisinal, masing-masing 20 untuk CB-14 (pelaku, aktif/pasif) dan CB-15 (negasi, waktu). Rujukan Madinah Arabic pelajaran 34 bagian 1 dan 31 bagian 7 dicatat per soal; status draf menunggu tinjauan bahasa, CI dijalankan melalui GitHub Actions.
