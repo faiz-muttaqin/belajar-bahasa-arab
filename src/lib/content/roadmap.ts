@@ -61,8 +61,8 @@ function stage(
 				: number === 2
 					? { path: 'belajar/checkpoint-2/' as const, questionCount: 40 }
 					: number === 3
-					? { path: 'belajar/checkpoint-3/' as const, questionCount: 24 }
-					: {}),
+						? { path: 'belajar/checkpoint-3/' as const, questionCount: 24 }
+						: {}),
 			sources,
 			reviewStatus: 'draft'
 		},
