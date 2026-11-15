@@ -88,7 +88,7 @@ test('D-05a G-03 updates the complete jar–idafa frame without guessing a decle
 	await expect(jar).toContainText('الطَّالِبِ');
 	await expect(jar.locator('[data-inline-translation]')).toHaveText('Di dalam buku murid itu.');
 
-	await jar.getByRole('button', { name: /Ganti Muḍāf/ }).click();
+	await jar.getByRole('button', { name: 'Ganti Muḍāf', exact: true }).click();
 	await expect(modal.locator('[data-inline-choice="preposition-house"]')).toBeEnabled();
 	await page.keyboard.press('Escape');
 	await expect(modal).not.toBeVisible();
