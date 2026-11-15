@@ -6,7 +6,7 @@ Pelajar sasaran adalah orang dewasa penutur bahasa Indonesia, minimal lulusan SM
 
 Hasil awal yang dituju adalah memahami informasi penting dalam teks baru yang pendek dan berharakat, serta mampu melakukan percakapan singkat dalam Arab standar dengan lawan bicara yang berbicara pelan. Bacaan shalat menyediakan konteks awal yang akrab. Latihan percakapan memakai situasi sehari-hari dan menyebut ragam bahasanya. Gunakan deskriptor membaca dan interaksi lisan CEFR A1 untuk memilih tugas. Penyetaraan tingkat memerlukan uji tersendiri. [CEFR Companion Volume, hlm. 54 dan 72](https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4).
 
-[Audit UX dan bukti browser](../research/2026-11-15-ux-pasca-iqra.md) · [Spesifikasi onboarding](./ONBOARDING_SPEC.md) · [Graf kompetensi](./COMPETENCY_GRAPH.md) · [Pelacak konten](../content/tracker.md)
+[Audit UX dan bukti browser](../research/2026-11-15-ux-pasca-iqra.md) · [Spesifikasi onboarding](./ONBOARDING_SPEC.md) · [Graf kompetensi](./COMPETENCY_GRAPH.md) · [Peta belajar](../plans/peta-belajar.md) · [Pelacak konten](../content/tracker.md)
 
 ## Urutan pengerjaan
 
@@ -25,7 +25,11 @@ Pilot latihan makna pada [pelajaran shalat](../content/public-lessons.md#jalur-u
 
 Untuk pendalaman, mulai [pilot glosarium istilah Arab](../plans/glosarium-istilah-arab.md) dari pelajaran jenis kata. Bantuan singkat tersedia dari istilah di dalam contoh. Rujukan lengkap memuat pembagian, analogi Indonesia, contoh, dan ilustrasi hubungan antarkonsep.
 
+Pelajar perlu melihat posisinya pada jalur dan tingkat pemahamannya. [Rencana peta belajar](../plans/peta-belajar.md) (RM-01 sampai RM-08), berdasarkan [studi komparasi](../research/2026-11-15-studi-komparasi-peta-belajar.md), menyusun pelajaran yang ada ke dalam enam tahap dengan cabang opsional, dan memisahkan status posisi dari bukti pemahaman. RM-02 sampai RM-04 memakai data progres yang sudah ada. RM-05 menunggu perluasan latihan makna di atas, dan fitur ulangan menunggu F-09.
+
 ## Jalur yang dilalui pelajar
+
+Kelima tahap di bawah adalah hasil belajar. Di peta belajar, tahap ini menjadi titik cek di akhir tahap berbasis unit.
 
 | Tahap                          | Hasil yang bisa diamati                                                                                                                          | Materi awal dan tugas berikutnya                                                                                                                                                                     |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
