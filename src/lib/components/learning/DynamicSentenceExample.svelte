@@ -43,7 +43,7 @@
 		const result = chooseBuilderWord(selection, activeSlot, id);
 		selection = result.state;
 		const changes = [
-			result.resetObject ? 'Objek disesuaikan dengan fi‘il yang dipilih.' : '',
+			result.resetObject ? 'Objek otomatis disesuaikan karena tidak cocok dengan fi‘il yang dipilih.' : '',
 			result.resetFrame ? 'Bentuk fi‘il kembali ke māḍī: bentuk sebelumnya belum tersedia untuk lema baru.' : ''
 		].filter(Boolean);
 		notice = changes.length
