@@ -44,7 +44,7 @@ test('F-16 fallback reference-table form row labels also navigate to the same de
 		.locator('tbody tr[id="tashrif-contoh-madhi"] a[href$="/rujukan/bentuk/madhi/"]')
 		.click();
 	await expect(page).toHaveURL(/\/rujukan\/bentuk\/madhi\/$/);
-	await expect(page.getByText('كَتَبْتُ', { exact: true })).toBeVisible();
+	await expect(page.locator('#contoh-bentuk').getByText('كَتَبْتُ', { exact: true })).toBeVisible();
 });
 
 test('F-16 detailed isim classification covers distinct axes and links to forms', async ({
