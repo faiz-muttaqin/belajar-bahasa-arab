@@ -1,4 +1,4 @@
-import type { LessonProgress } from '#lib/progress/lessons.js';
+import { mergeStepMark, type LessonProgress } from '#lib/progress/lessons.js';
 import type { LessonTrack } from '#lib/content/lessons/types.js';
 import type {
 	Roadmap,
@@ -14,11 +14,7 @@ function latestMarks(marks: readonly StepMark[]) {
 	for (const mark of marks) {
 		if (!Number.isSafeInteger(mark.at) || mark.at <= 0) continue;
 		const previous = latest.get(mark.stepId);
-		if (
-			!previous ||
-			mark.at > previous.at ||
-			(mark.at === previous.at && mark.mark > previous.mark)
-		) {
+		if (!previous || mergeStepMark(previous, mark) === mark) {
 			latest.set(mark.stepId, mark);
 		}
 	}
