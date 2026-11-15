@@ -4,6 +4,7 @@
 	import {
 		builderSlotLabels,
 		chooseBuilderWord,
+		chooseVerbFrame,
 		composeBuilderExample,
 		initialBuilderState,
 		searchBuilderChoices,
@@ -11,6 +12,7 @@
 		type BuilderSlot,
 		type BuilderState
 	} from '#lib/domain/grammar/dynamic-examples.js';
+	import { verbFrameOptions, type VerbFrameId } from '#lib/domain/grammar/verb-frames.js';
 
 	let { mode }: { mode: BuilderMode } = $props();
 	let selection: BuilderState = $state({ ...initialBuilderState });
@@ -23,6 +25,7 @@
 
 	let example = $derived(composeBuilderExample(mode, selection));
 	let results = $derived(searchBuilderChoices(selection, activeSlot, query));
+	let availableFrames = $derived(verbFrameOptions(selection.verb));
 
 	onMount(() => {
 		hydrated = true;
@@ -39,10 +42,19 @@
 	function choose(id: string) {
 		const result = chooseBuilderWord(selection, activeSlot, id);
 		selection = result.state;
-		notice = result.resetObject
-			? 'Objek otomatis disesuaikan karena tidak cocok dengan fi‘il yang dipilih.'
+		const changes = [
+			result.resetObject ? 'Objek disesuaikan dengan fi‘il yang dipilih.' : '',
+			result.resetFrame ? 'Bentuk fi‘il kembali ke māḍī: bentuk sebelumnya belum tersedia untuk lema baru.' : ''
+		].filter(Boolean);
+		notice = changes.length
+			? changes.join(' ')
 			: 'Contoh diperbarui. Perhatikan harakat dan arti setiap kata.';
 		pickerDialog.close();
+	}
+
+	function setFrame(frame: VerbFrameId) {
+		selection = chooseVerbFrame(selection, frame);
+		notice = 'Bentuk fi‘il diperbarui. Perhatikan pengaruh partikel, mood dan pelaku.';
 	}
 
 	function reset() {
@@ -78,6 +90,34 @@
 		{/if}
 	</div>
 
+	{#if mode === 'verbal'}
+		<div class="space-y-2 rounded-xl border bg-secondary/45 p-3">
+			{#if hydrated}
+				<label class="block space-y-2">
+					<span class="text-sm font-semibold">Pilih bentuk fi‘il dan konteks i‘rab</span>
+					<select
+						aria-label="Bentuk fi‘il"
+						value={selection.verbFrame}
+						onchange={(event) => setFrame(event.currentTarget.value as VerbFrameId)}
+						class="min-h-12 w-full rounded-lg border bg-background px-3 text-sm"
+					>
+						{#each availableFrames as frame (frame.id)}
+							<option value={frame.id} disabled={!frame.available}>
+								{frame.label}{frame.available ? '' : ' · belum tersedia untuk fi‘il ini'}
+							</option>
+						{/each}
+					</select>
+				</label>
+			{:else}
+				<p class="text-sm">Bentuk awal: fi‘il māḍī (lampau).</p>
+			{/if}
+			<p class="text-xs text-muted-foreground">
+				Opsi yang belum memiliki bentuk tertulis dalam referensi dinonaktifkan.
+				Bentuk amr memakai pelaku tersirat أَنْتَ, bukan fā‘il eksplisit.
+			</p>
+		</div>
+	{/if}
+
 	<figure class="space-y-4">
 		<div
 			dir="rtl"
@@ -93,7 +133,7 @@
 					<span lang="id" dir="ltr" class="text-sm font-semibold">{token.gloss}</span>
 					<span lang="id" dir="ltr" class="text-xs text-muted-foreground">{token.role}</span>
 					<span lang="id" dir="ltr" class="text-xs text-muted-foreground">{token.marker}</span>
-					{#if hydrated}
+					{#if hydrated && token.slot !== 'operator'}
 						<button
 							type="button"
 							class="mt-2 min-h-11 rounded-lg border border-primary/40 bg-background px-3 text-xs font-semibold text-primary hover:bg-accent"
