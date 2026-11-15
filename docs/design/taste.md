@@ -21,7 +21,7 @@ Sources: research digest of the local UI/UX skills (`frontend-design-direction`,
 - Panels are allowed for grouping, but quietly: `rounded-2xl`, `bg-card` with a 1 px border or a soft `bg-secondary` fill, no shadows, never a card inside a card. Use them for step tiles, start-point choices, collections, vocabulary cards and empty states.
 - Keep copy short: one-sentence leads, one or two sentences per empty state, about six words per tile line. Space separates sections (`mt-16` to `mt-24`).
 - Icon markers: one icon per section (`section-icons.ts`) shown in the tab bar, menu and above each H1; icons in tinted rounded squares (`bg-secondary text-primary`). Icons never carry meaning alone; a text label is always present.
-- Colour: one accent (`primary`, teal) for actions, active states and markers. Secondary panels use `secondary`. A chart colour may tint an icon (e.g. amber `chart-3` for "harian") but never text.
+- Colour: one accent (`primary`, teal) for actions, active states and markers. Secondary panels use `secondary`. A chart colour may tint an icon (e.g. amber `chart-3` for "harian"). A limited teaching exception allows semantic colours on annotated Arabic words and their role labels; pair every colour with text or shape, offer a neutral mode, and audit contrast in both themes. See [visual learning plan](../plans/visual-pembelajaran.md).
 - Desktop (`lg` and up): sticky 64 px header with visible text links; Beranda is the wordmark. Active link: `aria-current="page"` plus underline.
 - Mobile: header with wordmark and a "Menu" button (Sheet listing every section with a one-line summary), plus a bottom tab bar with exactly five labelled destinations: Beranda, Belajar, Latihan, Kosakata, Progres. Lesson and exercise pages will hide the tab bar (focus mode).
 - Footer is a restrained single-row status and privacy note, not another navigation menu; one optional link to the About/sources page.
@@ -56,7 +56,7 @@ Sources: research digest of the local UI/UX skills (`frontend-design-direction`,
 
 ## Avoid
 
-Gradients, glass, blobs, gradient text, emoji icons, shadows on panels, more than one accent hue for text, pastel badge washes, marketing sections before learning content, streaks/XP/hearts/confetti, autoplaying audio, tutorial carousels, centring everything, pure black dark surfaces, semi-transparent focus rings.
+Gradients, glass, blobs, gradient text, emoji icons, shadows on panels, multiple decorative accent hues for text (semantic teaching colours follow the exception above), pastel badge washes, marketing sections before learning content, streaks/XP/hearts/confetti, autoplaying audio, tutorial carousels, centring everything, pure black dark surfaces, semi-transparent focus rings.
 
 ## Open questions
 

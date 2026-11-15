@@ -1,6 +1,6 @@
 # Competency graph (initial)
 
-> **Status: HYPOTHESIS, PENDING TEACHER REVIEW. DRAFT — NOT LINGUISTICALLY REVIEWED.** The whole graph (nodes, edges, units, outcomes) is a proposal for an Arabic teacher and an ustadz to review ([ADR-004 D-7](../decisions/0004-content-decisions.md#d-7-reviewers)) and for 5 to 10 learners to test. Nothing here is publishable content.
+> **Status: HYPOTHESIS, PENDING TEACHER REVIEW. DRAFT — NOT LINGUISTICALLY REVIEWED.** The whole graph (nodes, edges, units, outcomes) is a proposal for an Arabic teacher and an ustadz to review ([ADR-004 D-7](../decisions/0004-content-decisions.md#d-7-reviewers)) and for 5 to 10 learners to test. Source-linked items may now ship as `draft` under [ADR-004 D-9](../decisions/0004-content-decisions.md#d-9-sumber-dulu-tinjauan-ustadz-di-akhir); `approved` still requires the end-to-end human review.
 > **Date:** 14 November 2026.
 > **Derived from:** [CURRICULUM_COMPARISON.md](../research/CURRICULUM_COMPARISON.md) (field-level evidence for every node), [ADR-004 D-4](../decisions/0004-content-decisions.md#d-4-first-units-of-the-main-path), the [main research doc](../arabic-learning-pedagogy-ux-research-reissued.md) §5, §6.1 and §6.2, and the [content tracker](../content/tracker.md).
 > **Modelling credit:** the idea of prerequisite strengths, track-level "assumes" and keeping the path separate from the graph is inspired by OpenLanguageKit (`curriculum/SCHEMA.en.md`, `curriculum/check.py` at SHA `036c313f788a7a7880df80d1c299617fecc588a7`, CC BY-NC 4.0). Inspiration only: no text, data or code was copied, and our definitions are written independently (background, not legal advice).
@@ -110,7 +110,7 @@ Unit order follows ADR-004 D-4. Can-do goals are drafts; outcomes and evidence p
 | CB-23 | Menulis gagasan utama satu paragraf dan memilih satu detail yang mendukungnya.                | CB-22                     |
 | CB-24 | Menjelaskan fungsi setiap paragraf, melacak rujukan antarpagraf dan merangkum dokumen pendek. | CB-12, CB-22, CB-23       |
 
-CB-21 tetap menjadi kompetensi transfer. Uji akhir memberi pengumuman baru agar pelajar bisa menerapkan CB-24 pada jenis dokumen yang berbeda. Ketiga node di atas adalah perluasan kasus bacaan dan belum termasuk hitungan grafik awal pada §6. [Daftar pelajaran](../content/public-lessons.md).
+CB-21 tetap menjadi kompetensi transfer. Uji akhir memberi pengumuman baru agar pelajar bisa menerapkan CB-24 pada jenis dokumen yang berbeda. Ketiga node di atas adalah perluasan kasus bacaan. RM-02 memasukkannya dalam data bertipe: total 33 kompetensi dan 55 prasyarat (4 hard, 47 soft, 4 optional); hitungan 30 node pada §6 adalah snapshot awal. [Daftar pelajaran](../content/public-lessons.md).
 
 ## 4. Activity gates
 
@@ -246,6 +246,8 @@ flowchart TD
 The `CA05 -.-> CB01` arrow stands for the track-level assumption in §1, not a node prerequisite. It is excluded from the counts and checks in §6.
 
 ## 6. Graph invariants
+
+**Implementasi RM-02:** `src/lib/content/competencies.ts` menyimpan graf dan perluasan bacaan; validator `src/lib/domain/roadmap/validate.ts` berjalan bersama validasi pelajaran pada build. Uji unit menjaga kesetaraan ID dan edge dengan dokumen ini. Cakupan gerbang RM-02 dirinci di [peta belajar §10](../plans/peta-belajar.md#10-lanjutkan-dari-sini-rm-03); aturan perilaku UI dan audit manusia tetap pekerjaan terpisah.
 
 To be enforced by the build-time validator (tracker F-06) once the graph is data. All invariants hold for the edges in §2 and §7: checked on 14 November 2026 with a throwaway script (30 nodes, 48 edges: 4 hard, 40 soft, 4 optional; no cycle; no edge points backwards in the unit order; no hard edge inside Jalur B; entry nodes CA-01, CA-02, CB-01, CB-03).
 
