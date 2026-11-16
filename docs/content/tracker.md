@@ -202,3 +202,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 16 November 2026: RM-06 Tahap 1 menyediakan bank 20 soal transfer akhiran -ku bersumber (CB-01), terpisah dari soal materi U1, sebagai PR bertingkat setelah Tahap 2.
 
 - 16 November 2026: RM-06 Tahap 4 (PR bertingkat setelah Tahap 1) menambah 40 butir transfer orisinal, masing-masing 20 untuk CB-14 (pelaku, aktif/pasif) dan CB-15 (negasi, waktu). Rujukan Madinah Arabic pelajaran 34 bagian 1 dan 31 bagian 7 dicatat per soal; status draf menunggu tinjauan bahasa, CI dijalankan melalui GitHub Actions.
+
+- 16 November 2026: RM-06 Tahap 5 (PR lanjutan dari #45) menambah 60 stimulus dan soal transfer orisinal: masing-masing 20 untuk CB-22 (hubungan antarkalimat), CB-23 (gagasan utama) dan CB-24 (struktur/ringkasan dokumen). Semua disertai pembahasan dan rujukan metodologi CoE/Al Jazeera, serta tetap draf menunggu tashih bahasa Arab. CI lengkap diserahkan kepada GitHub Actions. Berikutnya Tahap 6, Iqra opsional dan RM-07.

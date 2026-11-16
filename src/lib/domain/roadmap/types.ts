@@ -46,7 +46,8 @@ export type RoadmapCheckpoint = SourcedDraft & {
 		| 'belajar/checkpoint-1/'
 		| 'belajar/checkpoint-2/'
 		| 'belajar/checkpoint-3/'
-		| 'belajar/checkpoint-4/';
+		| 'belajar/checkpoint-4/'
+		| 'belajar/checkpoint-5/';
 	/** Number of individually authored questions in the published checkpoint. */
 	questionCount?: number;
 };
