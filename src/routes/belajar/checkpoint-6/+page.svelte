@@ -23,13 +23,13 @@
 		<p class="font-medium text-primary">Titik cek · Tahap 6</p>
 		<h1 class="text-3xl font-bold">Uji pemahaman dokumen baru</h1>
 		<p class="max-w-[65ch] text-muted-foreground">
-			Baca pengumuman dan dokumen pendek baru. Temukan fakta yang benar-benar tertulis,
-			pisahkan dugaan dari bukti, lacak rujukan, lalu pilih ringkasan paling tepat. Ada 40
-			butir orisinal, masing-masing 20 pada dua kemampuan.
+			Baca pengumuman dan dokumen pendek baru. Temukan fakta yang benar-benar tertulis, pisahkan
+			dugaan dari bukti, lacak rujukan, lalu pilih ringkasan paling tepat. Ada 40 butir orisinal,
+			masing-masing 20 pada dua kemampuan.
 		</p>
 		<p class="text-base text-muted-foreground">
-			Draf · bersumber pada metodologi pemahaman bacaan dan belum ditinjau ustadz. Jawaban
-			menjadi bukti pemahaman, bukan kelulusan otomatis atau penyelesaian pelajaran.
+			Draf · bersumber pada metodologi pemahaman bacaan dan belum ditinjau ustadz. Jawaban menjadi
+			bukti pemahaman, bukan kelulusan otomatis atau penyelesaian pelajaran.
 		</p>
 	</header>
 

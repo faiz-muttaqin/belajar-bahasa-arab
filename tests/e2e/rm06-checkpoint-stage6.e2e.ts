@@ -2,12 +2,21 @@ import { expect, test } from '@playwright/test';
 
 test('RM-06 Stage 6 answers support both independent reading evidence skills', async ({ page }) => {
 	await page.goto('/belajar/');
-	await page.locator('#stage-6').getByRole('link', { name: /mulai titik cek/i }).click();
+	await page
+		.locator('#stage-6')
+		.getByRole('link', { name: /mulai titik cek/i })
+		.click();
 	await expect(page.getByRole('heading', { name: 'Uji pemahaman dokumen baru' })).toBeVisible();
 
 	const scenarios = [
-		{ section: '#integrasi-dokumen', answer: 'Kunjungan keluarga gratis Jumat, Sabtu belum dijelaskan' },
-		{ section: '#ringkas-dokumen', answer: 'Kelas dipindahkan ke aula kedua karena aula pertama terpakai' }
+		{
+			section: '#integrasi-dokumen',
+			answer: 'Kunjungan keluarga gratis Jumat, Sabtu belum dijelaskan'
+		},
+		{
+			section: '#ringkas-dokumen',
+			answer: 'Kelas dipindahkan ke aula kedua karena aula pertama terpakai'
+		}
 	] as const;
 
 	for (const { section, answer } of scenarios) {
@@ -31,12 +40,18 @@ test('RM-06 Stage 6 answers support both independent reading evidence skills', a
 	);
 });
 
-test('RM-06 Stage 6 publishes directly readable static Arabic without JavaScript', async ({ page }) => {
+test('RM-06 Stage 6 publishes directly readable static Arabic without JavaScript', async ({
+	page
+}) => {
 	await page.route('**/*', (route) =>
 		route.request().resourceType() === 'script' ? route.abort() : route.continue()
 	);
 	await page.goto('/belajar/checkpoint-6/');
 	await expect(page.getByRole('heading', { name: 'Uji pemahaman dokumen baru' })).toBeVisible();
-	await expect(page.getByText('أَعْلَنَ الْمَتْحَفُ أَنَّ زِيَارَةَ الْأُسَرِ سَتَكُونُ مَجَّانِيَّةً', { exact: false }).first()).toBeVisible();
-	await expect(page.getByText('أَرَادَ الْمُدَرِّسُ اسْتِخْدَامَ الْقَاعَةِ الْأُولَى.', { exact: false }).first()).toBeVisible();
+	await expect(
+		page.getByText('أَعْلَنَ الْمَتْحَفُ أَنَّ زِيَارَةَ الْأُسَرِ سَتَكُونُ مَجَّانِيَّةً', { exact: false }).first()
+	).toBeVisible();
+	await expect(
+		page.getByText('أَرَادَ الْمُدَرِّسُ اسْتِخْدَامَ الْقَاعَةِ الْأُولَى.', { exact: false }).first()
+	).toBeVisible();
 });
