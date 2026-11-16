@@ -51,7 +51,7 @@ describe('RM-02 published lesson mapping', () => {
 		expect(roadmap.stages[2]!.checkpoint.path).toBe('belajar/checkpoint-2/');
 		expect(roadmap.stages[2]!.checkpoint.questionCount).toBe(40);
 		expect(roadmap.stages[3]!.checkpoint.path).toBe('belajar/checkpoint-3/');
-		expect(roadmap.stages[3]!.checkpoint.questionCount).toBe(24);
+		expect(roadmap.stages[3]!.checkpoint.questionCount).toBe(60);
 		expect(roadmap.stages[4]!.checkpoint.path).toBe('belajar/checkpoint-4/');
 		expect(roadmap.stages[4]!.checkpoint.questionCount).toBe(40);
 		expect(roadmap.stages[5]!.checkpoint.path).toBe('belajar/checkpoint-5/');

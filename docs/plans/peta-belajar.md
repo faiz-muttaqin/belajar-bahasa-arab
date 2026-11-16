@@ -294,6 +294,12 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 - **Masih draf untuk tinjauan bahasa Arab oleh ustadz/penutur ahli.** CI meliputi statis/no-JS, validator jumlah, typecheck, lint, unit test dan Playwright E2E; pemeriksaan penggunaan manusia dan kualitas isi tetap terpisah.
 - Semua checkpoint **jalur utama Tahap 1–6** sekarang memiliki bank (20, 40, 24, 40, 60, 40). Pekerjaan RM-06 tersisa: checkpoint Iqra opsional, audit beberapa bank yang kurang dari target 20 variasi dan audit metode Tamyiz/Al-Bayan/utawi-iku. Sesudahnya RM-07 menguji kemudahan penggunaan dan cakupan pemahaman.
 
+### Pengayaan RM-06: Tahap 3 (16 November 2026)
+
+- Bank Titik Cek Tahap 3 di `/belajar/checkpoint-3/` dinaikkan dari **24 menjadi 60 butir**, menambahkan **12 soal orisinal** per CB-07 (lokasi dan rujukan kata ganti), CB-09 (iḍāfah dengan benda/konteks baru), dan CB-12 (dhamir sambung orang pertama, kedua, ketiga, tunggal/jamak). Masing-masing kelompok kini berisi **20 soal baru berbeda**, bukan hasil pengacakan opsi.
+- Soal lama mempertahankan seluruh `itemId` agar riwayat jawaban IndexedDB tidak rusak. Tambahan memakai ID `rm06-stage3-more-*`, harakat, pembahasan, dan rujukan gramatikal Madinah Arabic/Book 1 yang dicatat pada setiap butir; tetap `draft` untuk pemeriksaan pengajar bahasa Arab.
+- Penyesuaian mempertahankan kontrak bukti RM-05 dan menambah pemeriksaan 60 ID/stimulus unik, hitungan roadmap yang tepat, dan E2E prarender/tanpa-JavaScript. Tidak ada skema, paket, atau fitur server baru.
+
 ## Sumber
 
 - [Studi komparasi 19 sistem belajar](../research/2026-11-15-studi-komparasi-peta-belajar.md), dengan sumber per sistem.
