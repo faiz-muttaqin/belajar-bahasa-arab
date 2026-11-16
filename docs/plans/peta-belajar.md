@@ -287,6 +287,13 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 - Materi Arab dan pemilihan jawaban masih **draf untuk tashih ustadz/pengajar**. CI otomatis memeriksa ID, keterbacaan HTML statis/no-JS, lint/typecheck/unit/E2E. Review lingustik manual dan uji pengguna tetap terpisah.
 - **Berikutnya:** lengkapi titik cek Tahap 6 untuk CB-21 dan CB-24 (20–50 variasi per bank bila cukup terverifikasi), titik cek jalur Iqra opsional, baru audit RM-07. Rencana Tamyiz, Al-Bayan, dan utawi-iku tetap memerlukan audit sumber sebelum digunakan untuk klaim khusus.
 
+
+### Pengayaan RM-06: Tahap 3 (16 November 2026)
+
+- Bank Titik Cek Tahap 3 di `/belajar/checkpoint-3/` dinaikkan dari **24 menjadi 60 butir**, menambahkan **12 soal orisinal** per CB-07 (lokasi dan rujukan kata ganti), CB-09 (iḍāfah dengan benda/konteks baru), dan CB-12 (dhamir sambung orang pertama, kedua, ketiga, tunggal/jamak). Masing-masing kelompok kini berisi **20 soal baru berbeda**, bukan hasil pengacakan opsi.
+- Soal lama mempertahankan seluruh `itemId` agar riwayat jawaban IndexedDB tidak rusak. Tambahan memakai ID `rm06-stage3-more-*`, harakat, pembahasan, dan rujukan gramatikal Madinah Arabic/Book 1 yang dicatat pada setiap butir; tetap `draft` untuk pemeriksaan pengajar bahasa Arab.
+- Penyesuaian mempertahankan kontrak bukti RM-05 dan menambah pemeriksaan 60 ID/stimulus unik, hitungan roadmap yang tepat, dan E2E prarender/tanpa-JavaScript. Tidak ada skema, paket, atau fitur server baru.
+
 ## Sumber
 
 - [Studi komparasi 19 sistem belajar](../research/2026-11-15-studi-komparasi-peta-belajar.md), dengan sumber per sistem.
