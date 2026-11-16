@@ -115,7 +115,8 @@ export function validateRoadmap(
 			'checkpoint-2': { path: 'belajar/checkpoint-2/', count: 40 },
 			'checkpoint-3': { path: 'belajar/checkpoint-3/', count: 24 },
 			'checkpoint-4': { path: 'belajar/checkpoint-4/', count: 40 },
-			'checkpoint-5': { path: 'belajar/checkpoint-5/', count: 60 }
+			'checkpoint-5': { path: 'belajar/checkpoint-5/', count: 60 },
+			'checkpoint-6': { path: 'belajar/checkpoint-6/', count: 40 }
 		} as const;
 		if (
 			stage.checkpoint.status === 'available' &&
