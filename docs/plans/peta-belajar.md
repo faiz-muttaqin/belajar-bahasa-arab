@@ -279,7 +279,6 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 - Setiap butir punya ID stabil, harakat, opsi pilihan, pembahasan, dan provenance; klasifikasi bukti `structure` untuk CB-14 dan `meaning` untuk CB-15. Bukti tetap memakai IndexedDB dan tingkat RM-05 tanpa tanda kelulusan.
 - Semua masih **draf, belum ditinjau ustadz**. Setelah tahap ini, titik cek Iqra opsional, Tahap 5 dan Tahap 6 masih belum tersedia. Audit metode khusus Tamyiz/Al-Bayan/utawi-iku dan RM-07 tetap agenda terpisah.
 
-
 ### Ekspansi RM-06: Tahap 5 (16 November 2026)
 
 - Titik cek Tahap 5 tersedia pada `/belajar/checkpoint-5/` dengan **60 teks/soal transfer orisinal**, tiga kelompok masing-masing **20**: CB-22 (hubungan antarbagian: sebab/akibat/urutan/kontras), CB-23 (gagasan utama paragraf vs detail), dan CB-24 (struktur dokumen, rujukan, hasil, batas inferensi). Tiap stimulus Arab berbeda dan soal tidak dibentuk dengan pengacakan opsi.
