@@ -9,7 +9,7 @@
 	<title>Titik cek Tahap 3 · Belajar Bahasa Arab</title>
 	<meta
 		name="description"
-		content="Latihan pemahaman kata ganti, lokasi, idhafah dan kepemilikan: 24 varian dengan pembahasan."
+		content="Latihan pemahaman kata ganti, lokasi, idhafah dan kepemilikan: 60 varian dengan pembahasan."
 	/>
 </svelte:head>
 
@@ -23,7 +23,7 @@
 		<p class="font-medium text-primary">Titik cek · Tahap 3</p>
 		<h1 class="text-3xl font-bold">Tempat, milik dan kata ganti</h1>
 		<p class="max-w-[65ch] text-muted-foreground">
-			Ada 24 soal berbeda, dibagi menjadi tiga kelompok. Coba tanpa membuka rujukan terlebih dahulu.
+			Ada 60 soal berbeda, dibagi menjadi tiga kelompok. Coba tanpa membuka rujukan terlebih dahulu.
 			Hasil tiap jawaban dapat menaikkan, mempertahankan atau menurunkan bukti pemahaman; tidak
 			mengubah status selesai maupun tanda posisi. Anda boleh mengerjakan sebagian dan melanjutkan
 			lain waktu.
