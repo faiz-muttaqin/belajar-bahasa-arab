@@ -1,5 +1,6 @@
 import type { MeaningPractice, MeaningQuestion } from './lessons/types.js';
 import type { EvidenceItem, EvidenceSkill } from '#lib/domain/roadmap/evidence.js';
+import { locationExtras, idafahExtras, possessiveExtras } from './checkpoints-stage3-expansion.js';
 
 export type CheckpointGroup = {
 	id: string;
@@ -54,7 +55,7 @@ function question(
 	};
 }
 
-/** Stage 3 pilot: 24 source-backed variants; eight per target competency. */
+/** Stage 3: 60 independent sourced variants; twenty per target competency. */
 export const stage3CheckpointGroups: readonly CheckpointGroup[] = [
 	{
 		id: 'lokasi',
@@ -134,7 +135,8 @@ export const stage3CheckpointGroups: readonly CheckpointGroup[] = [
 				1,
 				'هِيَ merujuk ke الْحَقِيبَةُ; جَدِيدَةٌ memberi kabar tentang tas.',
 				'lokasi'
-			)
+			),
+			...locationExtras
 		]
 	},
 	{
@@ -215,7 +217,8 @@ export const stage3CheckpointGroups: readonly CheckpointGroup[] = [
 				1,
 				'Kata kedua الْغُرْفَةِ menjelaskan pintu yang dimaksud.',
 				'idafah'
-			)
+			),
+			...idafahExtras
 		]
 	},
 	{
@@ -296,7 +299,8 @@ export const stage3CheckpointGroups: readonly CheckpointGroup[] = [
 				1,
 				"مِفْتَاحٌ adalah kunci, dan ي menandai 'milikku'.",
 				'pronoun'
-			)
+			),
+			...possessiveExtras
 		]
 	}
 ];
