@@ -205,4 +205,6 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 
 - 16 November 2026: RM-06 Tahap 5 (PR lanjutan dari #45) menambah 60 stimulus dan soal transfer orisinal: masing-masing 20 untuk CB-22 (hubungan antarkalimat), CB-23 (gagasan utama) dan CB-24 (struktur/ringkasan dokumen). Semua disertai pembahasan dan rujukan metodologi CoE/Al Jazeera, serta tetap draf menunggu tashih bahasa Arab. CI lengkap diserahkan kepada GitHub Actions. Berikutnya Tahap 6, Iqra opsional dan RM-07.
 
+- 16 November 2026: RM-06 Tahap 6 (terpisah sesudah Tahap 5) menambahkan 40 latihan bacaan dokumen MSA baru: 20 CB-21 dan 20 CB-24, dengan sumber metodologi dan bukti meaning/structure. Jalur utama memiliki 20 + 40 + 24 + 40 + 60 + 40 = 224 soal. Semua materi draf menunggu tashih pengajar. Pekerjaan berikutnya checkpoint Iqra opsional, audit bank yang kurang dari 20 variasi, dan RM-07.
+
 - 16 November 2026: Pengayaan RM-06 Tahap 3: 36 butir transfer baru (12 CB-07, 12 CB-09, 12 CB-12) meningkatkan total checkpoint Tahap 3 dari 24 menjadi 60 (20 per bank). Bukti lama dan ID tetap dipertahankan, tambahan tetap berstatus draf bersumber dan menunggu tinjauan ahli. Total jalur utama setelah pengayaan: 260 soal checkpoint (20+40+60+40+60+40).
