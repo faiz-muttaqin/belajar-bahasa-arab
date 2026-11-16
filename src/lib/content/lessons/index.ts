@@ -13,6 +13,7 @@ import { stage2CheckpointGroups } from '../checkpoints-stage2.js';
 import { stage1CheckpointGroups } from '../checkpoints-stage1.js';
 import { stage4CheckpointGroups } from '../checkpoints-stage4.js';
 import { stage5CheckpointGroups } from '../checkpoints-stage5.js';
+import { stage6CheckpointGroups } from '../checkpoints-stage6.js';
 import { roadmap, roadmapReferencePaths } from '../roadmap.js';
 import { validateRoadmap } from '#lib/domain/roadmap/validate.js';
 
@@ -32,7 +33,8 @@ const publishedCheckpointGroups = [
 	...stage2CheckpointGroups,
 	...stage3CheckpointGroups,
 	...stage4CheckpointGroups,
-	...stage5CheckpointGroups
+	...stage5CheckpointGroups,
+	...stage6CheckpointGroups
 ];
 for (const group of publishedCheckpointGroups) {
 	const lesson = lessons.find((item) => item.id === group.lessonId);
