@@ -28,8 +28,8 @@
 			dokumen. Baca teks Arab terlebih dahulu sebelum memilih jawaban.
 		</p>
 		<p class="text-base text-muted-foreground">
-			Draf · bersumber pada metodologi pemahaman bacaan dan disusun orisinal, belum ditinjau
-			ustadz. Jawaban tersimpan sebagai bukti belajar; tidak otomatis menyelesaikan pelajaran.
+			Draf · bersumber pada metodologi pemahaman bacaan dan disusun orisinal, belum ditinjau ustadz.
+			Jawaban tersimpan sebagai bukti belajar; tidak otomatis menyelesaikan pelajaran.
 		</p>
 	</header>
 

@@ -70,7 +70,11 @@ export const relationItems: readonly ReadingItem[] = [
 		id: 'hind-berkas',
 		arabic: 'جَمَعَتْ هِنْدٌ الْأَوْرَاقَ قَبْلَ أَنْ تُغْلِقَ الْمَكْتَبَ.',
 		prompt: 'Bagaimana urutan tindakan Hind?',
-		choices: ['Menutup kantor lalu mengumpulkan kertas', 'Membaca surat lalu pulang', 'Mengumpulkan kertas sebelum menutup kantor'],
+		choices: [
+			'Menutup kantor lalu mengumpulkan kertas',
+			'Membaca surat lalu pulang',
+			'Mengumpulkan kertas sebelum menutup kantor'
+		],
 		correct: 2,
 		reason: 'قَبْلَ أَنْ menyatakan bahwa mengumpulkan berkas mendahului menutup kantor.'
 	},
@@ -104,7 +108,8 @@ export const relationItems: readonly ReadingItem[] = [
 		prompt: 'Apa yang dibedakan oleh أَمَّا?',
 		choices: ['Barang yang dibawa dua orang', 'Waktu kunjungan', 'Tempat belajar'],
 		correct: 0,
-		reason: 'أَمَّا membedakan Fatimah yang membawa buku dengan saudara laki-lakinya yang membawa buku catatan.'
+		reason:
+			'أَمَّا membedakan Fatimah yang membawa buku dengan saudara laki-lakinya yang membawa buku catatan.'
 	},
 	{
 		id: 'pintu-pengunjung',
@@ -150,7 +155,11 @@ export const relationItems: readonly ReadingItem[] = [
 		id: 'pengumuman-jam',
 		arabic: 'قَالَ الْمُدِيرُ إِنَّ الْمَكْتَبَةَ سَتُفْتَحُ غَدًا، لَكِنَّهُ لَمْ يَذْكُرِ السَّاعَةَ.',
 		prompt: 'Kesimpulan manakah yang benar dari kedua bagian?',
-		choices: ['Hari pembukaan diketahui, jamnya belum', 'Perpustakaan dibuka pukul delapan', 'Perpustakaan tidak jadi dibuka'],
+		choices: [
+			'Hari pembukaan diketahui, jamnya belum',
+			'Perpustakaan dibuka pukul delapan',
+			'Perpustakaan tidak jadi dibuka'
+		],
 		correct: 0,
 		reason: 'Disebut besok, tetapi jam pembukaan tidak disampaikan.'
 	},
