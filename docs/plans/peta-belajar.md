@@ -287,6 +287,13 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 - Materi Arab dan pemilihan jawaban masih **draf untuk tashih ustadz/pengajar**. CI otomatis memeriksa ID, keterbacaan HTML statis/no-JS, lint/typecheck/unit/E2E. Review lingustik manual dan uji pengguna tetap terpisah.
 - **Berikutnya:** lengkapi titik cek Tahap 6 untuk CB-21 dan CB-24 (20–50 variasi per bank bila cukup terverifikasi), titik cek jalur Iqra opsional, baru audit RM-07. Rencana Tamyiz, Al-Bayan, dan utawi-iku tetap memerlukan audit sumber sebelum digunakan untuk klaim khusus.
 
+### Ekspansi RM-06: Tahap 6 (16 November 2026)
+
+- Titik cek Tahap 6 tersedia di `/belajar/checkpoint-6/`, dengan **40 soal transfer berbentuk pengumuman/dokumen MSA orisinal**, masing-masing 20 untuk CB-21 (pemahaman situasi dan batas inferensi) serta CB-24 (ringkasan, hubungan bagian dan rujukan). Materi tidak menduplikasi stimulus dari Tahap 5.
+- Semua butir punya ID stabil, teks Arab baru, pilihan, penjelasan, dan dua sumber metodologi yang telah diperiksa: [Council of Europe — reading comprehension](https://www.coe.int/en/web/common-european-framework-reference-languages/reading-comprehension) dan [Al Jazeera Learning Arabic](https://learning.aljazeera.net/en/pages/about-us). Tidak menyalin materi atau latihan eksternal. CB-21 memakai bukti `meaning`, CB-24 memakai `structure`; keduanya direkam sebagai bukti pada pelajaran `lesson-u12-01`, bukan tanda kelulusan.
+- **Masih draf untuk tinjauan bahasa Arab oleh ustadz/penutur ahli.** CI meliputi statis/no-JS, validator jumlah, typecheck, lint, unit test dan Playwright E2E; pemeriksaan penggunaan manusia dan kualitas isi tetap terpisah.
+- Semua checkpoint **jalur utama Tahap 1–6** sekarang memiliki bank (20, 40, 24, 40, 60, 40). Pekerjaan RM-06 tersisa: checkpoint Iqra opsional, audit beberapa bank yang kurang dari target 20 variasi dan audit metode Tamyiz/Al-Bayan/utawi-iku. Sesudahnya RM-07 menguji kemudahan penggunaan dan cakupan pemahaman.
+
 ## Sumber
 
 - [Studi komparasi 19 sistem belajar](../research/2026-11-15-studi-komparasi-peta-belajar.md), dengan sumber per sistem.
