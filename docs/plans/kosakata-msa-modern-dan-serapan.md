@@ -7,6 +7,7 @@
 Pengguna yang telah bisa membaca Arab berharakat perlu memahami kata sehari-hari yang muncul dalam berita, dokumen, formulir, pendidikan, teknologi dan komunikasi formal berbahasa Modern Standard Arabic (MSA). Hubungkan kata dengan bacaan dan pelajaran nahwu–sharaf yang sudah ada; jangan membangun kamus atau kurikulum kedua. MSA merupakan ragam Fuṣḥā modern, bukan bahasa terpisah dari Classical Arabic (CA). Banyak kata umum dan kaidah dipakai keduanya; keberadaan di MSA **tidak** berarti kata itu baru atau dipinjam.
 
 Pembagian yang perlu dijaga:
+
 - **Serapan / loanword**: leksem yang dipinjam dari bahasa lain dan disesuaikan dalam Arab; contoh awal `إِنْتَرْنِت` (internet). Arah bahasa sumber dan kronologi memerlukan bukti etimologis per lema.
 - **Istilah modern bentukan Arab**: kata yang dibuat dari akar/pola Arab; `حَاسُوب` dari ح س ب merupakan contoh kandidat yang telah tercatat, **bukan** serapan hanya karena merujuk teknologi.
 - **Frasa/terjemahan istilah**: gabungan kata Arab seperti `هَاتِفٌ ذَكِيٌّ`; berbeda dari satu lema serapan dan tetap mengikuti kaidah kesesuaian sintaksis.
@@ -27,6 +28,7 @@ Konteks contoh: orang membaca pesan jadwal, mencari alamat, membuka situs, atau 
 ## Kontrak data dan audit
 
 Gunakan entri `VocabularyItem` / `MsaLexicalInfo` yang sudah ada dan ID stabil. `formation` hanya klaim jenis pembentukan; **jangan** menggantikannya dengan register, POS atau status bukti. Pengembangan metadata (setelah ADR/schema review):
+
 - `etymology`: asal bahasa, bentuk asal (jika bisa diverifikasi), jenis peminjaman, tahap adaptasi/ejaan Arab, rujukan lema spesifik, tanggal cek, catatan konflik dan status verifikasi **per klaim**.
 - `usage`: sense MSA, konteks, register (formal/colloquial), wilayah bila relevan, alternatif padanan; bedakan contoh karya sendiri dari kutipan korpus.
 - `historicalEvidence`: ada/tidaknya attestation CA dengan rujukan dan kronologi eksplisit. **Tidak ditemukan di korpus** bukan bukti tidak pernah ada.
@@ -35,6 +37,7 @@ Gunakan entri `VocabularyItem` / `MsaLexicalInfo` yang sudah ada dan ID stabil. 
 Gunakan protokol [source-based verification](../research/2026-11-14-source-based-verification.md) dan pekerjaan [audit 157 lema](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13). Hindari indeks kamus sebagai bukti etimologi lema; catat entry-specific URL + apa yang didukung. Kaikki/Wiktionary yang bersumber sama bukan dua bukti independen. Materi terbuka dengan label *draft* sebelum peninjauan sesuai ADR-004 D-9. Jangan impor konten sumber yang lisensinya belum lolos; makna/soal ditulis independen.
 
 Rujukan awal (untuk diaudit, bukan lisensi impor otomatis):
+
 - [Wiktionary entry: إنترنت](https://en.wiktionary.org/wiki/إنترنت)
 - [Wiktionary entry: حاسوب](https://en.wiktionary.org/wiki/حاسوب)
 - [Wiktionary entry: هاتف ذكي](https://en.wiktionary.org/wiki/هاتف_ذكي)
