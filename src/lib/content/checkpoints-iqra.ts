@@ -37,7 +37,7 @@ const items: readonly (IqraSelfCheckItem & { group: string })[] = [
 		id: 'iqra-check-03',
 		arabic: 'مَاءٌ بَارِدٌ',
 		focus: 'Amati pemanjangan a dan hamzah.',
-		check: 'Mَاءٌ ditulis dengan alif pemanjang sebelum hamzah; بَارِدٌ juga memiliki ā pada ba.'
+		check: 'مَاءٌ ditulis dengan alif pemanjang sebelum hamzah; بَارِدٌ juga memiliki ā pada ba.'
 	},
 	{
 		group: 'vowels',
