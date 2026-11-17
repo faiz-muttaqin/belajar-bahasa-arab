@@ -55,8 +55,10 @@ function stage(
 			id: `checkpoint-${number === 0 ? 'iqra' : number}`,
 			title: checkpointTitle,
 			competencyIds: checkpointCompetencies,
-			status: [1, 2, 3, 4, 5, 6].includes(number) ? 'available' : 'planned',
-			...(number === 1
+			status: 'available',
+			...(number === 0
+				? { path: 'belajar/checkpoint-iqra/' as const, questionCount: 20 }
+				: number === 1
 				? { path: 'belajar/checkpoint-1/' as const, questionCount: 20 }
 				: number === 2
 					? { path: 'belajar/checkpoint-2/' as const, questionCount: 40 }
