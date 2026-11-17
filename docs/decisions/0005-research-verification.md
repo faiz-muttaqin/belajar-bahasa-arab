@@ -25,6 +25,10 @@ The gate `validateResearchAudit` rejects non-specific URLs, missing evidence and
 - [Madinah Arabic grammar](https://madinaharabic.com/free-content/grammar) and [Al Jazeera Arabic](https://learning.aljazeera.net/en/pages/about-us) are reference-only because free access does not supply reuse permission. Never copy their examples or exercises.
 - Avoid LibreTexts chapters that mirror MSU publications with a conflicting CC BY-NC licence until the original authors' grant is clarified.
 
+## Important limitation
+
+The five pilot audits are intentionally incomplete. An evidence record asserts what was checked, but does not prove that the researcher read the right sense or verified the complete published example. Promote only after independent claim-level review and conflict resolution.
+
 ## Extension sequence
 
 1. Audit every field for the five pilot lemmas including original examples and register, noting independent corroboration and conflicting variants.
