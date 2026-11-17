@@ -43,6 +43,7 @@ export type RoadmapCheckpoint = SourcedDraft & {
 	status: 'planned' | 'available';
 	/** Static checkpoint route only when published questions exist. */
 	path?:
+		| 'belajar/checkpoint-iqra/'
 		| 'belajar/checkpoint-1/'
 		| 'belajar/checkpoint-2/'
 		| 'belajar/checkpoint-3/'

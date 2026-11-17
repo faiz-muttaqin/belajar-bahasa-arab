@@ -300,6 +300,10 @@ Gunakan kontrak `EvidenceItem`, `LearningAttempt` dan `competencyUnderstanding` 
 - Soal lama mempertahankan seluruh `itemId` agar riwayat jawaban IndexedDB tidak rusak. Tambahan memakai ID `rm06-stage3-more-*`, harakat, pembahasan, dan rujukan gramatikal Madinah Arabic/Book 1 yang dicatat pada setiap butir; tetap `draft` untuk pemeriksaan pengajar bahasa Arab.
 - Penyesuaian mempertahankan kontrak bukti RM-05 dan menambah pemeriksaan 60 ID/stimulus unik, hitungan roadmap yang tepat, dan E2E prarender/tanpa-JavaScript. Tidak ada skema, paket, atau fitur server baru.
 
+### RM-06 · Iqra opsional: cek mandiri (17 November 2026)
+
+Titik cek `/belajar/checkpoint-iqra/` menyediakan 20 bacaan Arab baru (5 per tema) dengan petunjuk yang dapat dibuka, termasuk tanpa JavaScript. **Tidak dinilai otomatis dan tidak disimpan sebagai bukti memahami/membaca** karena teks/opsi jawaban tidak bisa mengukur pelafalan. Pengujian lisan dengan pendengar nyata serta audit kebahasaan tetap menjadi pekerjaan berikutnya. Detail dan rencana IQA-02–05 dalam [spesifikasi cek mandiri Iqra](./iqra-reading-selfcheck.md). Berikutnya RM-07 uji pakai.
+
 ## Sumber
 
 - [Studi komparasi 19 sistem belajar](../research/2026-11-15-studi-komparasi-peta-belajar.md), dengan sumber per sistem.

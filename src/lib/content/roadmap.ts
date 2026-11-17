@@ -55,20 +55,22 @@ function stage(
 			id: `checkpoint-${number === 0 ? 'iqra' : number}`,
 			title: checkpointTitle,
 			competencyIds: checkpointCompetencies,
-			status: [1, 2, 3, 4, 5, 6].includes(number) ? 'available' : 'planned',
-			...(number === 1
-				? { path: 'belajar/checkpoint-1/' as const, questionCount: 20 }
-				: number === 2
-					? { path: 'belajar/checkpoint-2/' as const, questionCount: 40 }
-					: number === 3
-						? { path: 'belajar/checkpoint-3/' as const, questionCount: 60 }
-						: number === 4
-							? { path: 'belajar/checkpoint-4/' as const, questionCount: 40 }
-							: number === 5
-								? { path: 'belajar/checkpoint-5/' as const, questionCount: 60 }
-								: number === 6
-									? { path: 'belajar/checkpoint-6/' as const, questionCount: 40 }
-									: {}),
+			status: 'available',
+			...(number === 0
+				? { path: 'belajar/checkpoint-iqra/' as const, questionCount: 20 }
+				: number === 1
+					? { path: 'belajar/checkpoint-1/' as const, questionCount: 20 }
+					: number === 2
+						? { path: 'belajar/checkpoint-2/' as const, questionCount: 40 }
+						: number === 3
+							? { path: 'belajar/checkpoint-3/' as const, questionCount: 60 }
+							: number === 4
+								? { path: 'belajar/checkpoint-4/' as const, questionCount: 40 }
+								: number === 5
+									? { path: 'belajar/checkpoint-5/' as const, questionCount: 60 }
+									: number === 6
+										? { path: 'belajar/checkpoint-6/' as const, questionCount: 40 }
+										: {}),
 			sources,
 			reviewStatus: 'draft'
 		},
