@@ -165,6 +165,11 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 | Target focus: Fusha general vs Qur'anic understanding vs conversation (research doc §12F) | product owner | 🔵     |
 | 5 to 10 test learners (3 profiles, §10.2)                                                 | product owner | ⬜     |
 
+## Sumber terbuka · L-02 Nisbah (17 November 2026)
+
+- **L-02 — 🟡 Draft pembelajaran:** halaman `/kaidah/nisbah/` menjelaskan hubungan nisbah, bentuk maskulin/feminin dan perbedaan na‘at–khabar, dengan 20 stimulus baru dan pembahasan Indonesia. Referensi utama bab tata bahasa LibreTexts CC BY 4.0, serta referensi hanya-baca Madinah dan lema Wiktionary; tidak ada salinan kursus/buku. [Riset dan batas](../plans/nisbah-formal-msa.md).
+- Bukti sumber kaidah tidak setara dengan audit kebenaran setiap contoh; audit linguistik per kalimat, latihan pada pelajar dan klaim capaian masih pekerjaan berikutnya.
+
 ## Changelog
 
 - 15 November 2026: RM-05 menyimpan bukti jawaban 0–3 di IndexedDB v3, memperluas penilaian diri U2/U3 dan menjaga cadangan schema 1/2. Review memperbaiki impor batch yang menggantung, konflik JSON palsu, batas bantuan/hafalan dan penurunan sesudah pulih; berikutnya RM-06.
