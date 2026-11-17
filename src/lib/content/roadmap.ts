@@ -87,6 +87,7 @@ const referenceLinks = [
 	{ path: 'kaidah/kalimat/', label: 'Kalimat' },
 	{ path: 'kaidah/klausa/', label: 'Klausa' },
 	{ path: 'kaidah/praktik/', label: 'Praktik kaidah' },
+	{ path: 'kaidah/nisbah/', label: 'Nisbah · istilah formal' },
 	{ path: 'rujukan/', label: 'Jenis kata' },
 	{ path: 'kosakata/', label: 'Kosakata' }
 ] as const satisfies readonly { path: Path; label: string }[];

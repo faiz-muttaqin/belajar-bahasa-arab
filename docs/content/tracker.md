@@ -145,6 +145,11 @@ See the [post-Iqra learning roadmap](../curriculum/ROADMAP.md) for the delivery 
 | RS-13 | Daftar kata kerja 22 wazan dari Wiktionary (2.788 Form I + 4.479 mazid dan ruba'i, transliterasi, mudhari, mashdar, arti Inggris, terjemahan Indonesia oleh Claude, pembanding Google) | 🟡 draft, belum ditinjau     | [wiktionary-verbs](../data/wiktionary-verbs.md). Tidak bergantung pada PR #6.                                                                                                                                                                                                                                                                                                                                    |
 | RS-14 | Arti 5.005 kata kerja Qutrub/Arramooz tanpa data Wiktionary dari pengetahuan model (Sonnet 5.5, Fable 5.2), dengan verba kontrol                                                       | 🟡 draft, tidak diverifikasi | [model-recall](../data/model-recall.md). Ketepatan 86% pada kontrol; lebih rendah pada kata langka.                                                                                                                                                                                                                                                                                                              |
 
+## Sumber terbuka · L-02 Nisbah (17 November 2026)
+
+- **L-02 — 🟡 Draft pembelajaran:** halaman `/kaidah/nisbah/` menjelaskan hubungan nisbah, bentuk maskulin/feminin dan perbedaan na‘at–khabar, dengan 20 stimulus baru dan pembahasan Indonesia. Referensi utama bab tata bahasa LibreTexts CC BY 4.0, serta referensi hanya-baca Madinah dan lema Wiktionary; tidak ada salinan kursus/buku. [Riset dan batas](../plans/nisbah-formal-msa.md).
+- Bukti sumber kaidah tidak setara dengan audit kebenaran setiap contoh; audit linguistik per kalimat, latihan pada pelajar dan klaim capaian masih pekerjaan berikutnya.
+
 ## Nahwu–sharaf knowledge map
 
 Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.md). Pelajaran existing tetap sumber isi; halaman baru merangkum hubungan antaraturan dan memberi penanda peran.

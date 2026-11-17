@@ -82,6 +82,19 @@
 	<ReferenceSection table={adjectiveAgreement} />
 
 	<aside class="rounded-xl border bg-card p-5">
+		<h2 class="text-lg font-semibold">Nisbah dalam istilah resmi dan digital</h2>
+		<p class="mt-2 text-muted-foreground">
+			Pelajari bentuk nisbah maskulin/feminin pada bahasa Arab modern melalui contoh baru untuk
+			membaca berita, dokumen, dan korespondensi formal.
+		</p>
+		<a
+			href={resolve('kaidah/nisbah/')}
+			class="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline"
+		>
+			Buka pembahasan dan 20 latihan nisbah
+		</a>
+	</aside>
+	<aside class="rounded-xl border bg-card p-5">
 		<h2 class="text-lg font-semibold">Dari tabel isim ke i‘rab</h2>
 		<p class="mt-2 text-muted-foreground">
 			Lihat perbedaan ma‘rifah dan nakirah, bagaimana na‘at mengikuti man‘ūt, serta bagaimana rafa‘,

@@ -87,6 +87,17 @@
 		>
 	</a>
 	<a
+		href={resolve('kaidah/nisbah/')}
+		aria-label="Baca istilah formal dengan sifat nisbah"
+		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
+	>
+		<span class="text-xs font-semibold text-muted-foreground">Materi bersumber · MSA</span>
+		<strong class="group-hover:text-primary">Nisbah dan istilah formal</strong>
+		<span class="text-sm text-muted-foreground"
+			>Resmi, digital, medis; 20 contoh dan pembahasan.</span
+		>
+	</a>
+	<a
 		href={resolve('kaidah/praktik/')}
 		aria-label="Praktik interaktif dan contoh dinamis"
 		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
