@@ -44,3 +44,13 @@ Untuk pilot, pakai satu ilustrasi berlabel yang membandingkan bentuk kata dengan
 - **Pilot.** Tiga tautan tersedia di bagian Bedah per kata pelajaran “Isim, fi‘il, dan harf”. Dialog dan halaman statis `/rujukan/istilah/[slug]/` memakai data entri yang sama. Halaman Jumlah menampilkan ilustrasi jenis dan tugas kata. Definisi, analogi, dan contoh berstatus draf untuk tinjauan pengajar.
 - **Perluasan.** Uji live tiga istilah awal mencakup buka-tutup dialog, fokus, posisi baca, dan halaman rujukan pada Chromium Android serta WebKit iPhone. Empat entri berikutnya adalah _fi‘il_, _harf_, _nahwu_, dan _sharaf_, dengan tautan sesuai konteks dari pelajaran jenis kata dan Kaidah. Semuanya tersedia dari indeks Jenis kata. Ilustrasi Sharaf membandingkan tiga bentuk dari akar ك ت ب.
 - **Uji penerimaan.** Saat membaca contoh, pelajar dapat menemukan arti _isim_ dalam satu tindakan, menjelaskan perbedaan _kalimah_ dan “kalimat” dengan contoh, lalu kembali tepat ke contoh semula. Gunakan tugas uji tanpa menyebut label tombol. Ulangi tanpa JavaScript untuk memeriksa tautan rujukan statis.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/content/grammar-glossary.ts`, `src/routes/rujukan/istilah/[slug]/+page.svelte`, `tests/e2e/grammar-glossary.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** Pilot dialog/halaman ada; uji pengguna nyata, mobile WebKit/Android, pembaca layar dan semua tautan konteks belum dibuktikan.
+
+**Tindak lanjut:** [issue #52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
