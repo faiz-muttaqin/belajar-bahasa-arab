@@ -22,7 +22,8 @@ const items: readonly (IqraSelfCheckItem & { group: string })[] = [
 		id: 'iqra-check-01',
 		arabic: 'بَابٌ صَغِيرٌ',
 		focus: 'Perhatikan vokal panjang setelah ba dan bunyi tanwin pada dua kata.',
-		check: 'Vokal panjang pada بَابٌ berasal dari fathah + alif. Baca harakat akhir saat menyambung; jangan samakan dengan berhenti.'
+		check:
+			'Vokal panjang pada بَابٌ berasal dari fathah + alif. Baca harakat akhir saat menyambung; jangan samakan dengan berhenti.'
 	},
 	{
 		group: 'vowels',
@@ -50,7 +51,8 @@ const items: readonly (IqraSelfCheckItem & { group: string })[] = [
 		id: 'iqra-check-05',
 		arabic: 'كِتَابٌ مُفِيدٌ',
 		focus: 'Tunjukkan alif dan ya yang memanjangkan vokal.',
-		check: 'كِتَابٌ memiliki ā dan مُفِيدٌ memiliki ī. Jangan memanjangkan kasrah pada ka di kata pertama.'
+		check:
+			'كِتَابٌ memiliki ā dan مُفِيدٌ memiliki ī. Jangan memanjangkan kasrah pada ka di kata pertama.'
 	},
 	{
 		group: 'shadda',
@@ -78,7 +80,8 @@ const items: readonly (IqraSelfCheckItem & { group: string })[] = [
 		id: 'iqra-check-09',
 		arabic: 'وَلَدٌ سَعِيدٌ',
 		focus: 'Tandai di mana tanwin dibaca saat kata disambung.',
-		check: 'Dammatain pada وَلَدٌ dan سَعِيدٌ berbunyi -un saat dibaca sambung, dengan ketentuan waqaf berbeda.'
+		check:
+			'Dammatain pada وَلَدٌ dan سَعِيدٌ berbunyi -un saat dibaca sambung, dengan ketentuan waqaf berbeda.'
 	},
 	{
 		group: 'shadda',
@@ -127,21 +130,24 @@ const items: readonly (IqraSelfCheckItem & { group: string })[] = [
 		id: 'iqra-check-16',
 		arabic: 'الْمَاءُ عَلَى الطَّاوِلَةِ.',
 		focus: 'Baca satu kalimat penuh dan perhatikan peralihan antarkata.',
-		check: 'Dalam الْمَاءُ, lam awalan terdengar; dalam الطَّاوِلَةِ ta setelah al- dirangkap. Jangan menghilangkan hamzah pada مَاء.'
+		check:
+			'Dalam الْمَاءُ, lam awalan terdengar; dalam الطَّاوِلَةِ ta setelah al- dirangkap. Jangan menghilangkan hamzah pada مَاء.'
 	},
 	{
 		group: 'sentence',
 		id: 'iqra-check-17',
 		arabic: 'هَذَا الْقَلَمُ جَدِيدٌ.',
 		focus: 'Kenali kelompok kata tanpa mengeja setiap huruf.',
-		check: 'Baca هَذَا sebagai satu kata. Lam pada الْقَلَمُ terdengar. Pada berhenti akhir kalimat, tanwin berbeda dari bacaan sambung.'
+		check:
+			'Baca هَذَا sebagai satu kata. Lam pada الْقَلَمُ terdengar. Pada berhenti akhir kalimat, tanwin berbeda dari bacaan sambung.'
 	},
 	{
 		group: 'sentence',
 		id: 'iqra-check-18',
 		arabic: 'تَقْرَأُ الْبِنْتُ كِتَابًا.',
 		focus: 'Perhatikan sukun, hamzah dan akhir kata terakhir.',
-		check: 'Qaf pada تَقْرَأُ bersukun, hamzah tetap dibaca; lam pada الْبِنْتُ terdengar. Fathatain pada كِتَابًا berubah cara baca saat berhenti.'
+		check:
+			'Qaf pada تَقْرَأُ bersukun, hamzah tetap dibaca; lam pada الْبِنْتُ terdengar. Fathatain pada كِتَابًا berubah cara baca saat berhenti.'
 	},
 	{
 		group: 'sentence',
@@ -155,15 +161,37 @@ const items: readonly (IqraSelfCheckItem & { group: string })[] = [
 		id: 'iqra-check-20',
 		arabic: 'الْمُدَرِّسُ فِي الْغُرْفَةِ.',
 		focus: 'Tandai satu tasydid dan satu vokal panjang.',
-		check: 'Ra pada الْمُدَرِّسُ bertanda tasydid; فِي mengandung vokal ī panjang. Lam awalan pada kata pertama dan terakhir terdengar.'
+		check:
+			'Ra pada الْمُدَرِّسُ bertanda tasydid; فِي mengandung vokal ī panjang. Lam awalan pada kata pertama dan terakhir terdengar.'
 	}
 ];
 
 export const iqraSelfCheckGroups: readonly IqraSelfCheckGroup[] = [
-	{ id: 'vowels', title: 'Vokal dan sukun', items: items.filter((item) => item.group === 'vowels') },
-	{ id: 'shadda', title: 'Tasydid dan tanwin', items: items.filter((item) => item.group === 'shadda') },
-	{ id: 'article', title: 'Alif-lam syamsiyyah dan qamariyyah', items: items.filter((item) => item.group === 'article') },
-	{ id: 'sentence', title: 'Baca kalimat berharakat', items: items.filter((item) => item.group === 'sentence') }
+	{
+		id: 'vowels',
+		title: 'Vokal dan sukun',
+		items: items.filter((item) => item.group === 'vowels')
+	},
+	{
+		id: 'shadda',
+		title: 'Tasydid dan tanwin',
+		items: items.filter((item) => item.group === 'shadda')
+	},
+	{
+		id: 'article',
+		title: 'Alif-lam syamsiyyah dan qamariyyah',
+		items: items.filter((item) => item.group === 'article')
+	},
+	{
+		id: 'sentence',
+		title: 'Baca kalimat berharakat',
+		items: items.filter((item) => item.group === 'sentence')
+	}
 ];
 
-export const iqraSelfCheckSources = [{ label: 'W3C · Arabic layout requirements (tulisan dan harakat)', href: 'https://www.w3.org/TR/alreq/' }] as const;
+export const iqraSelfCheckSources = [
+	{
+		label: 'W3C · Arabic layout requirements (tulisan dan harakat)',
+		href: 'https://www.w3.org/TR/alreq/'
+	}
+] as const;
