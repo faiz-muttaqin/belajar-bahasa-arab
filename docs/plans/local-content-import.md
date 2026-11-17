@@ -103,3 +103,13 @@ Lesson bodies are a small block model (`heading`, `paragraph`, `list`, `table`, 
   dev? Current plan: always present, empty when there is no local content.
 - Tajweed lessons are fully Arabic and the grammar and vocab sources are English. Keep as is
   (current plan) or add Indonesian later via reviewed translation?
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: DEFERRED**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/domain/local-content/types.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun; jangan sebut shipped.
+
+**Tindak lanjut:** Ditunda; perlu keputusan pemilik sebelum mulai. Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.

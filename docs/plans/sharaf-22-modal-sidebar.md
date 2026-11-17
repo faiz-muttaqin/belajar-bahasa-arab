@@ -64,3 +64,13 @@ serta kualitas entri dan bentuk ganda.
   desktop, katalog JSON, dan HTML tanpa JavaScript.
 - Pemeriksaan manual tambahan: font/harakat pada perangkat nyata, dialog
   keyboard focus dan aksesibilitas, terutama pada layar sempit.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/content/sharaf.ts`, `src/lib/components/learning/TransposedTashrif.svelte`, `tests/e2e/sharaf-matrix.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** Matriks, kamus dan navigasi prototipe ditemukan; integrasi bentuk tak beraturan, audit 22 pola per sumber/lemma, hak guna dan validasi pengguna belum lengkap.
+
+**Tindak lanjut:** [issue #15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.

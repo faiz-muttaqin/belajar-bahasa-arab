@@ -80,3 +80,13 @@ Semua materi baru boleh dipakai sebagai draf bersumber menurut D-9. Tinjauan ust
 - Uji harakat bertumpuk, shadda, sukun dan hamza pada beberapa ukuran; utamakan kata utuh dan periksa sambungan pada perangkat Android serta Safari iOS saat tersedia.
 - Uji navigasi SvelteKit, back/forward dan fokus setelah panel ditutup. Pemilihan contoh memperbarui glos, terjemahan dan relasi secara bersamaan sesuai data terkurasi.
 - Uji soal baru tanpa warna atau sorotan sesudah latihan berbantuan. Catat apakah pelajar dapat menjelaskan peran dan alasan, bukan hanya mengingat warnanya.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PLANNED**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/components/learning/SentenceBreakdown.svelte`, `src/lib/domain/roadmap/presentation.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** VP-01–05 belum selesai sebagai paket: ID relasi/bukti, word-role explorer interaktif, mode tanpa warna, animasi bertahap, grafik capaian dan uji pengguna.
+
+**Tindak lanjut:** [issue #52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.

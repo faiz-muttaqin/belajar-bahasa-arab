@@ -80,3 +80,13 @@ Kontrak `LexemeRecord`, `WordSurface`, `MorphFeatures`, `SurfaceEvidence`, dan v
 ## Visual peran kata dan perubahan
 
 [VP-01–VP-03](./visual-pembelajaran.md) memakai anotasi serta pasangan sumber yang sama dengan D-05 untuk menghubungkan kata terpilih, peran nahwu, glos, alasan akhir kata dan kata dependennya. Sorotan/animasi mengikuti perubahan satu bingkai utuh; lapisan jenis kata, bentuk sharaf dan peran sintaksis dipilih terpisah. Tidak menambah generator atau penyimpanan progres kedua. Semua informasi tetap tersedia tanpa JS dan gerak.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/domain/grammar/lexeme-forms.ts`, `src/lib/components/learning/InlineCuratedExamplePicker.svelte`, `tests/e2e/grammar-inline-examples.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** D-05b/c: G-04/G-05, bentuk verba mu‘tal/pronomina lain, D-06 bukti progres; cakupan semua kartu belum tercapai.
+
+**Tindak lanjut:** [issue #24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
