@@ -1,0 +1,46 @@
+# Audit penyelesaian seluruh dokumen plan — 17 November 2026
+
+> Audit berbasis kondisi `main`, bukan status merged PR. **Keberadaan route dan CI hijau membuktikan perubahan kode, bukan validitas kaidah Arab, lisensi setiap aset, atau capaian pembelajar.** Matriks machine-readable untuk konsistensi: [`implementation-status.json`](./implementation-status.json).
+
+## Makna status
+
+- **Implemented**: seluruh acceptance criteria, termasuk bukti QA manual yang diwajibkan, telah dicatat.
+- **Partial**: terdapat implementasi pilot, tetapi deliverable/QA yang ditetapkan dalam plan masih terbuka.
+- **Planned**: spesifikasi atau komponen terkait tersedia, tetapi deliverable yang dimaksud belum dikirim.
+- **Deferred**: secara eksplisit ditunda dan tidak boleh dianggap siap produksi.
+
+## Matriks 11 plan dan gap
+
+| Dokumen | Status aktual | Bukti kode/tes (bukan bukti kualitas isi) | Kriteria belum terpenuhi | Pelacakan |
+| --- | --- | --- | --- | --- |
+| [dynamic-example-slots.md](./dynamic-example-slots.md) | **partial** | `src/lib/domain/grammar/lexeme-forms.ts`, `src/lib/components/learning/InlineCuratedExamplePicker.svelte`, `tests/e2e/grammar-inline-examples.e2e.ts` | D-05b/c: G-04/G-05, bentuk verba mu‘tal/pronomina lain, D-06 bukti progres; cakupan semua kartu belum tercapai | [#24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24) |
+| [glosarium-istilah-arab.md](./glosarium-istilah-arab.md) | **partial** | `src/lib/content/grammar-glossary.ts`, `src/routes/rujukan/istilah/[slug]/+page.svelte`, `tests/e2e/grammar-glossary.e2e.ts` | Pilot dialog/halaman ada; uji pengguna nyata, mobile WebKit/Android, pembaca layar dan semua tautan konteks belum dibuktikan | [#52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52) |
+| [iqra-reading-selfcheck.md](./iqra-reading-selfcheck.md) | **partial** | `src/lib/content/checkpoints-iqra.ts`, `src/routes/belajar/checkpoint-iqra/+page.svelte`, `tests/e2e/rm06-checkpoint-iqra.e2e.ts` | IQA-02–05: audit 20 bacaan, pelafalan oleh pendengar, audio terizin dan asesmen lisan kredibel; tidak ada skor otomatis | [#52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52) |
+| [kosakata-msa-modern-dan-serapan.md](./kosakata-msa-modern-dan-serapan.md) | **partial** | `src/lib/components/learning/VocabCard.svelte`, `src/lib/content/msa-research.ts`, `tests/e2e/msa-vocabulary.e2e.ts` | LM-02–05: sisa 152 lema belum punya audit klaim, kategori etimologi lain, bacaan dokumen kontekstual, uji pengguna; metadata leksikal penuh belum selesai | [#13](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13) |
+| [local-content-import.md](./local-content-import.md) | **deferred** | `src/lib/domain/local-content/types.ts` | RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun; jangan sebut shipped | Ditunda |
+| [nahwu-sharaf-knowledge-map.md](./nahwu-sharaf-knowledge-map.md) | **partial** | `src/routes/kaidah/+page.svelte`, `src/routes/kaidah/sharaf/+page.svelte`, `src/routes/kaidah/praktik/+page.svelte` | G-01–05 punya halaman pilot tetapi belum menjamin seluruh cakupan kitab/edge cases; G-06 komposisi/adaptasi, bukti per kaidah dan uji pengguna belum lengkap | [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15), [#16](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/16), [#17](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/17), [#18](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/18), [#19](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/19) |
+| [nisbah-formal-msa.md](./nisbah-formal-msa.md) | **partial** | `src/lib/content/nisbah-lessons.ts`, `src/routes/kaidah/nisbah/+page.svelte`, `tests/e2e/nisbah-lessons.e2e.ts` | L-02 baru 20 contoh draf; verifikasi kaidah dan i‘rab per kalimat, perbedaan register dan uji pembelajar belum selesai | [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55) |
+| [peta-belajar.md](./peta-belajar.md) | **partial** | `src/lib/content/roadmap.ts`, `src/lib/content/checkpoints.ts`, `src/routes/belajar/checkpoint-iqra/+page.svelte`, `tests/e2e/learning-roadmap.e2e.ts` | RM-01–06 fitur inti terpasang, tapi RM-07 uji 5–8 pembelajar, audit metode Tamyiz/Al-Bayan, IQA-02–05 dan kualitas soal tetap terbuka; §10 masih menyebut RM-06 sebagai berikutnya | [#52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52) |
+| [sharaf-22-modal-sidebar.md](./sharaf-22-modal-sidebar.md) | **partial** | `src/lib/content/sharaf.ts`, `src/lib/components/learning/TransposedTashrif.svelte`, `tests/e2e/sharaf-matrix.e2e.ts` | Matriks, kamus dan navigasi prototipe ditemukan; integrasi bentuk tak beraturan, audit 22 pola per sumber/lemma, hak guna dan validasi pengguna belum lengkap | [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15) |
+| [sharaf-lexicon-search.md](./sharaf-lexicon-search.md) | **partial** | `src/routes/sharaf/+page.svelte`, `src/lib/catalog/sync.svelte.ts`, `tests/e2e/sharaf-full-import.e2e.ts` | Pencarian dan katalog tersedia, bukan bukti seluruh kamus tervalidasi; audit dataset, pipeline & checksum, morfologi multi-analisis, sumber dan lisensi belum selesai | [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15) |
+| [visual-pembelajaran.md](./visual-pembelajaran.md) | **planned** | `src/lib/components/learning/SentenceBreakdown.svelte`, `src/lib/domain/roadmap/presentation.ts` | VP-01–05 belum selesai sebagai paket: ID relasi/bukti, word-role explorer interaktif, mode tanpa warna, animasi bertahap, grafik capaian dan uji pengguna | [#52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52) |
+
+## Aturan merge dan pengisian status
+
+1. Setiap PR dengan scope plan wajib menyebut **sub-deliverable** (mis. LM-01, bukan LM-01–05), bukti implementasi yang benar-benar ada, serta acceptance criteria yang masih tertunda. `Merged` tidak boleh disamakan dengan `done`.
+2. Bila PR hanya pilot, plan induk tetap **partial** walaupun salah satu checklist subtask dapat ditandai selesai. Kriteria yang tidak diuji secara manual tetap berstatus terbuka.
+3. Saat PR berikutnya mengubah suatu plan, perbarui `implementation-status.json` dan dokumen ini. Jangan memindahkan plan ke `implemented` tanpa seluruh acceptance criteria ditunjukkan melalui tes/bukti aktual.
+4. Test `src/lib/content/plan-implementation-audit.spec.ts` memastikan daftar 11 file plan tetap terinventaris dan path bukti tetap ada. **Tes ini tidak memeriksa kebenaran semantik klaim status**; reviewer tetap perlu mengevaluasi diff dan bukti.
+5. Jika suatu plan memiliki judul lama seperti “Tugas berikutnya: RM-06”, perlakukan bagian itu sebagai *catatan historis*. Sumber status terbaru adalah matriks ini dan issue terbuka.
+
+## Lanjutkan pekerjaan
+
+- **OER-01–06 [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55)**: crosswalk sumber berlisensi per halaman, lalu masdar, isim fā‘il dan bacaan dokumen MSA dengan contoh/latihan mandiri.
+- **LM-02 [#13](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13)**: audit 152 lema tersisa; `research_verified` tidak otomatis berubah hanya karena memiliki URL.
+- **RM-07 [#52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52)**: uji pelajar nyata dan asesmen yang relevan, tidak bisa digantikan CI.
+- **D-05b/c dan G-06 [#24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24)**: rollout dynamic examples berlandas bentuk yang telah diverifikasi.
+- **VP-01–05**: buat issue implementasi eksplisit bila mulai dikerjakan, jangan tandai selesai hanya karena ada komponen SentenceBreakdown.
+
+## Batas audit
+
+Ini audit status atas 11 dokumen `docs/plans/` di `main` pada tanggal tersebut, bukan audit semua issue/PR historis atau telaah akurasi 100% butir konten. Tanda `partial` bukan penilaian bahwa pilot gagal, melainkan bahwa **seluruh plan belum selesai**.
