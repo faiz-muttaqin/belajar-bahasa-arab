@@ -12,14 +12,14 @@ Pembagian yang perlu dijaga:
 - **Istilah modern bentukan Arab**: kata yang dibuat dari akar/pola Arab; `حَاسُوب` dari ح س ب merupakan contoh kandidat yang telah tercatat, **bukan** serapan hanya karena merujuk teknologi.
 - **Frasa/terjemahan istilah**: gabungan kata Arab seperti `هَاتِفٌ ذَكِيٌّ`; berbeda dari satu lema serapan dan tetap mengikuti kaidah kesesuaian sintaksis.
 - **Kata warisan atau bersama**: kata yang digunakan dalam CA maupun MSA, misalnya `كِتَاب`; jangan diberi label «khusus klasik» atau «modern» tanpa analisis korpus.
-- **Pemakaian baru atas kata lama**: perlu label relasi *sense*, bukan mengubah semua bentuk kata menjadi kategori serapan.
+- **Pemakaian baru atas kata lama**: perlu label relasi _sense_, bukan mengubah semua bentuk kata menjadi kategori serapan.
 - **Varian dialek**: jangan memasukkannya ke MSA formal tanpa bukti register. Modul ‘Āmmiyyah tetap terpisah.
 
 Tidak semua kata asing modern masuk Fuṣḥā; sebagian mempunyai lebih dari satu padanan baku, ejaan berbeda atau ragam negara. Catat alternatif tanpa mengklaim satu bentuk sebagai satu-satunya bentuk resmi.
 
 ## Pengalaman belajar dan penanda
 
-Untuk kartu kosakata yang `msa.formation === 'loanword'`, tampilkan **label teks kecil “Serapan · draf”** dekat kata. Label harus terbaca tanpa hover, bekerja di ponsel dan tanpa JavaScript, serta tidak mengganti warna/border seluruh kartu. Detail yang sudah ada menjelaskan «Kata serapan; jangan memaksakan akar tsulatsi». Penanda mencerminkan anotasi *draft* saat ini, **bukan sertifikasi etimologi**. Untuk item tanpa metadata, **jangan** menampilkan «bukan serapan»; ketiadaan informasi tidak membuktikan asal kata.
+Untuk kartu kosakata yang `msa.formation === 'loanword'`, tampilkan **label teks kecil “Serapan · draf”** dekat kata. Label harus terbaca tanpa hover, bekerja di ponsel dan tanpa JavaScript, serta tidak mengganti warna/border seluruh kartu. Detail yang sudah ada menjelaskan «Kata serapan; jangan memaksakan akar tsulatsi». Penanda mencerminkan anotasi _draft_ saat ini, **bukan sertifikasi etimologi**. Untuk item tanpa metadata, **jangan** menampilkan «bukan serapan»; ketiadaan informasi tidak membuktikan asal kata.
 
 Ekspansi berikutnya: saat bukti per-lema sudah lolos gate research, label ringkas dapat membedakan **Serapan**, **Bentukan Arab**, **Gabungan kata**, dan **Makna modern**, semuanya menggunakan teks + penjelasan di detail kata. Penanda dapat dipilih pada filter «Asal/pembentukan», tetapi jangan menambah filter kosong sebelum dataset cukup. Tautan per kelas menuju halaman pembelajaran tentang perbedaan CA/MSA/‘Āmmiyyah. Untuk etimologi yang diperdebatkan, tampilkan «Belum pasti» dan beberapa rujukan yang menjelaskan perbedaan.
 
@@ -34,7 +34,7 @@ Gunakan entri `VocabularyItem` / `MsaLexicalInfo` yang sudah ada dan ID stabil. 
 - `historicalEvidence`: ada/tidaknya attestation CA dengan rujukan dan kronologi eksplisit. **Tidak ditemukan di korpus** bukan bukti tidak pernah ada.
 - `morphology`: plural, gender, akar/wazan hanya bila didukung. Serapan bisa mengalami morfologi Arab, jadi label «serapan» **tidak otomatis berarti tidak bisa ditashrif**.
 
-Gunakan protokol [source-based verification](../research/2026-11-14-source-based-verification.md) dan pekerjaan [audit 157 lema](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13). Hindari indeks kamus sebagai bukti etimologi lema; catat entry-specific URL + apa yang didukung. Kaikki/Wiktionary yang bersumber sama bukan dua bukti independen. Materi terbuka dengan label *draft* sebelum peninjauan sesuai ADR-004 D-9. Jangan impor konten sumber yang lisensinya belum lolos; makna/soal ditulis independen.
+Gunakan protokol [source-based verification](../research/2026-11-14-source-based-verification.md) dan pekerjaan [audit 157 lema](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13). Hindari indeks kamus sebagai bukti etimologi lema; catat entry-specific URL + apa yang didukung. Kaikki/Wiktionary yang bersumber sama bukan dua bukti independen. Materi terbuka dengan label _draft_ sebelum peninjauan sesuai ADR-004 D-9. Jangan impor konten sumber yang lisensinya belum lolos; makna/soal ditulis independen.
 
 Rujukan awal (untuk diaudit, bukan lisensi impor otomatis):
 
@@ -46,7 +46,7 @@ Rujukan awal (untuk diaudit, bukan lisensi impor otomatis):
 
 ## Tahapan delivery
 
-1. **LM-01 · Penanda aman (pilot).** Badge teks untuk item `formation: loanword` yang *sudah* memiliki anotasi; jelaskan draft dan no-JS; regression test untuk internet vs hasub. Tidak menambah lemma atau mengubah status review.
+1. **LM-01 · Penanda aman (pilot).** Badge teks untuk item `formation: loanword` yang _sudah_ memiliki anotasi; jelaskan draft dan no-JS; regression test untuk internet vs hasub. Tidak menambah lemma atau mengubah status review.
 2. **LM-02 · Audit leksikal.** Reuse issue #13: audit setiap klaim pada 157 starter entries, terutama kata teknologi, sumber asal, adaptasi dan alternatif; tabel bukti, ketidakpastian dan revisi, tanpa memalsukan akar.
 3. **LM-03 · Kosakata dokumen/harian.** Tambah batch kecil kata yang sudah dibuktikan dari pengumuman, formulir, berita, pendidikan, layanan publik dan teknologi; dedup per (lemma, POS, sense, register). Pilih cakupan berdasarkan tugas membaca, bukan mengarang angka frekuensi.
 4. **LM-04 · Pemakaian di teks.** Hubungkan kartu ke paragraf/formulir MSA, pilihan kata lintas CA–MSA, glos, pembahasan dan ≥20 variasi latihan bermakna per bank yang sudah diterbitkan; gate lisensi, audit kebahasaan dan static HTML.
