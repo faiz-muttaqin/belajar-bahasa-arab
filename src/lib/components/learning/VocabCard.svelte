@@ -41,6 +41,12 @@
 		</span>
 	{/if}
 
+	{#if item.collection === 'msa' && item.msa?.formation === 'loanword'}
+		<p class="mt-3 self-start text-xs font-medium text-muted-foreground">
+			<span class="inline-flex rounded-full border px-2 py-1">Serapan · draf</span>
+		</p>
+	{/if}
+
 	<div class="mt-4 flex items-start justify-between gap-2">
 		<p lang="ar" dir="rtl" class="min-w-0 arabic-word">{item.arabic}</p>
 		<AudioPlayButton text={item.arabic} label="Dengarkan kata Arab" compact />
