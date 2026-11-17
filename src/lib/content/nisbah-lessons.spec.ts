@@ -24,8 +24,8 @@ describe('L-02 MSA nisbah lesson', () => {
 		expect(validateNisbahTasks([duplicate, ...nisbahTasks.slice(1)])).toContain(
 			'Duplicate ID: nis-02'
 		);
-		expect(validateNisbahTasks([{ ...nisbahTasks[0]!, answer: '' }, ...nisbahTasks.slice(1)])).toContain(
-			'Missing practice content: nis-01'
-		);
+		expect(
+			validateNisbahTasks([{ ...nisbahTasks[0]!, answer: '' }, ...nisbahTasks.slice(1)])
+		).toContain('Missing practice content: nis-01');
 	});
 });

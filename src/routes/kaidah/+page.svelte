@@ -93,7 +93,9 @@
 	>
 		<span class="text-xs font-semibold text-muted-foreground">Materi bersumber · MSA</span>
 		<strong class="group-hover:text-primary">Nisbah dan istilah formal</strong>
-		<span class="text-sm text-muted-foreground">Resmi, digital, medis; 20 contoh dan pembahasan.</span>
+		<span class="text-sm text-muted-foreground"
+			>Resmi, digital, medis; 20 contoh dan pembahasan.</span
+		>
 	</a>
 	<a
 		href={resolve('kaidah/praktik/')}
