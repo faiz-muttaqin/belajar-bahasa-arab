@@ -73,6 +73,10 @@ Disetujui pemilik produk pada 15 November 2026. Materi disusun berdasarkan riset
 
 D-9 melonggarkan D-5 (varian bacaan) dan gerbang `G-REVIEW` di [graf kompetensi](../curriculum/COMPETENCY_GRAPH.md#4-activity-gates) untuk butir `draft`.
 
+## D-7 amendment (17 November 2026)
+
+For ordinary MSA vocabulary, the owner selected a research-based alternative to mandatory teacher approval. [ADR-005](./0005-research-verification.md) provides the stricter claim-level gate and is authoritative **only for this ordinary MSA scope**. All specialist gates for Qur'anic material, prayer, audio, reuse permission and regulatory tashih remain in force. Earlier D-9 drafts are not silently promoted.
+
 ## Consequences
 
 - Tracker items V-01 (still needs an MSA source, RS-01), V-03, V-04 and V-05 are unblocked or re-scoped as noted in the tracker.
