@@ -29,3 +29,13 @@ Latihan ini adalah penerapan mandiri berdasarkan rujukan gramatika dan lema, buk
 - Perluas ke korespondensi surat resmi, formulir, berita pendek dan deskripsi layanan menggunakan paragraf original dengan 20–50 variasi bermakna per bank latihan yang sudah mapan.
 - Uji kemampuan membedakan frasa atributif, kalimat nominal dan bentuk feminin pada pembelajar nyata (RM-07).
 - Hindari latihan yang hanya mengacak urutan pilihan; variasi harus mengubah informasi/keputusan yang diperlukan.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/content/nisbah-lessons.ts`, `src/routes/kaidah/nisbah/+page.svelte`, `tests/e2e/nisbah-lessons.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** L-02 baru 20 contoh draf; verifikasi kaidah dan i‘rab per kalimat, perbedaan register dan uji pembelajar belum selesai.
+
+**Tindak lanjut:** [issue #55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
