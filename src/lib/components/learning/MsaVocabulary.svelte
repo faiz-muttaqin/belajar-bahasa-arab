@@ -65,6 +65,9 @@
 		<p class="text-muted-foreground">
 			Benda, sifat, sapaan, waktu, alam, dan istilah modern dalam bahasa Arab baku. Ini daftar
 			belajar tematik, bukan urutan berdasarkan frekuensi.
+			Penanda “Serapan · draf” hanya muncul untuk kata yang sudah diberi anotasi awal;
+			kata tanpa penanda belum tentu berasal dari bahasa Arab. Rincian pembentukan dan
+			sumber tersedia pada kartu.
 		</p>
 	</header>
 
