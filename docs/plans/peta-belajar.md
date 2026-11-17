@@ -310,3 +310,13 @@ Titik cek `/belajar/checkpoint-iqra/` menyediakan 20 bacaan Arab baru (5 per tem
 - [roadmap.sh, Frontend Developer](https://roadmap.sh/frontend), diamati 15 November 2026 di browser desktop dan emulasi 375 × 812.
 - [CEFR Companion Volume](https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4): bentuk kalimat "saya bisa" dan penilaian per keterampilan. Level tidak ditampilkan (O-8).
 - Riset pedagogi proyek §6.1 dan §6.2, [graf kompetensi](../curriculum/COMPETENCY_GRAPH.md), [spesifikasi onboarding](../curriculum/ONBOARDING_SPEC.md) §1, §3, §6 dan §7, [rencana impor lokal](./local-content-import.md).
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/content/roadmap.ts`, `src/lib/content/checkpoints.ts`, `src/routes/belajar/checkpoint-iqra/+page.svelte`, `tests/e2e/learning-roadmap.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** RM-01–06 fitur inti terpasang, tapi RM-07 uji 5–8 pembelajar, audit metode Tamyiz/Al-Bayan, IQA-02–05 dan kualitas soal tetap terbuka; §10 masih menyebut RM-06 sebagai berikutnya.
+
+**Tindak lanjut:** [issue #52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
