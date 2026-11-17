@@ -60,3 +60,13 @@ Periksa lisensi **per dataset, versi dan file**, serta kesesuaiannya dengan ADR-
 Pengujian otomatis ditambahkan untuk normalisasi harakat, pencarian madhi/mudhari/akar, pengelompokan akar lintas kelas kata, filter partikel, dan pemisahan babSelection/formBehavior.
 
 **CI GitHub Actions sukses** pada [run 43563230556](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/43563230556): `bun run check`, `bun run lint`, `bun run test:unit --run`, `bun run build`, dan tes Playwright khusus tabel. Kode belum mendapat tinjauan akademis guru bahasa Arab; uji aksesibilitas manual, perangkat mobile nyata, dan audit lisensi masih diperlukan sebelum dianggap final.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/routes/sharaf/+page.svelte`, `src/lib/catalog/sync.svelte.ts`, `tests/e2e/sharaf-full-import.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** Pencarian dan katalog tersedia, bukan bukti seluruh kamus tervalidasi; audit dataset, pipeline & checksum, morfologi multi-analisis, sumber dan lisensi belum selesai.
+
+**Tindak lanjut:** [issue #15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
