@@ -188,10 +188,13 @@
 														<li>
 															{claim.assertion}
 															<span class="text-muted-foreground">
-																 · {claim.section} · {claim.checkedOn}
+																· {claim.section} · {claim.checkedOn}
 															</span>
 															<!-- eslint-disable svelte/no-navigation-without-resolve -- external research source -->
-															<a href={claim.sourceUrl} class="ms-2 text-primary underline underline-offset-4">
+															<a
+																href={claim.sourceUrl}
+																class="ms-2 text-primary underline underline-offset-4"
+															>
 																Lihat sumber
 															</a>
 															<!-- eslint-enable svelte/no-navigation-without-resolve -->

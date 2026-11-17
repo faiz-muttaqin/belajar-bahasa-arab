@@ -5,7 +5,11 @@
  */
 import type { ReviewStatus } from '#lib/domain/reference/table.js';
 import { hasApprovingReview, type ReviewRecord, type ReviewerRole } from '#lib/domain/review.js';
-import { validateResearchAudit, type ResearchAudit, type ResearchField } from '#lib/domain/research/evidence.js';
+import {
+	validateResearchAudit,
+	type ResearchAudit,
+	type ResearchField
+} from '#lib/domain/research/evidence.js';
 
 /** Collections shown on /kosakata/. Qur'anic/classical words are labelled separately (§3.3). */
 export type VocabularyCollectionId = 'harian' | 'quran' | 'shalat' | 'msa';

@@ -37,7 +37,11 @@ function isSpecificSource(raw: string): boolean {
 			return false;
 		}
 		const path = decodeURIComponent(url.pathname).replace(/\/$/, '');
-		if (/^\/(dictionary\/Arabic\/index\.html|wiki\/(Wiktionary:Copyrights|Main_Page)|en\/courses|free-content\/grammar)$/iu.test(path)) {
+		if (
+			/^\/(dictionary\/Arabic\/index\.html|wiki\/(Wiktionary:Copyrights|Main_Page)|en\/courses|free-content\/grammar)$/iu.test(
+				path
+			)
+		) {
 			return false;
 		}
 		return path.split('/').filter(Boolean).length >= 2;
@@ -56,11 +60,13 @@ export function validateResearchAudit(
 	if (!audit.claims.length) issues.push('Research audit contains no claims');
 	for (const claim of audit.claims) {
 		if (!RESEARCH_FIELDS.includes(claim.field)) issues.push('Unknown evidence field');
-		if (!required.includes(claim.field)) issues.push(`Research claim outside vocabulary fields: ${claim.field}`);
+		if (!required.includes(claim.field))
+			issues.push(`Research claim outside vocabulary fields: ${claim.field}`);
 		if (!claim.assertion.trim() || !claim.section.trim()) {
 			issues.push(`Missing assertion or source section for ${claim.field}`);
 		}
-		if (!isSpecificSource(claim.sourceUrl)) issues.push(`Non-specific source URL for ${claim.field}`);
+		if (!isSpecificSource(claim.sourceUrl))
+			issues.push(`Non-specific source URL for ${claim.field}`);
 		if (!/^\d{4}-\d{2}-\d{2}$/.test(claim.checkedOn) || Number.isNaN(Date.parse(claim.checkedOn))) {
 			issues.push(`Invalid research date for ${claim.field}`);
 		}
@@ -80,7 +86,9 @@ export function supportedResearchFields(audit: ResearchAudit): ResearchField[] {
 	const disputed = new Set(
 		audit.claims.filter((claim) => claim.outcome !== 'supports').map((claim) => claim.field)
 	);
-	return [...new Set(audit.claims.filter((claim) => claim.outcome === 'supports').map((claim) => claim.field))].filter(
-		(field) => !disputed.has(field)
-	);
+	return [
+		...new Set(
+			audit.claims.filter((claim) => claim.outcome === 'supports').map((claim) => claim.field)
+		)
+	].filter((field) => !disputed.has(field));
 }

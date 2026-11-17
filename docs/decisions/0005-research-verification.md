@@ -21,7 +21,7 @@ The gate `validateResearchAudit` rejects non-specific URLs, missing evidence and
 ## Source usage / licensing
 
 - Five checked lexemes: [Wiktionary Arabic entries](https://en.wiktionary.org/wiki/Wiktionary:Copyrights), CC BY-SA 4.0 / GFDL, used to cross-check lexical facts, not as copied prose; author/entry link, source section and date are stored on each claim.
-- [LibreTexts Introduction to Arabic II · grammar](https://human.libretexts.org/Bookshelves/Languages/Arabic/Introduction_to_Arabic_II_(Hanaa_Alkassas_Layla_Bahar_Al-Aloom_and_Samira_Murtada)/01:_Myself_and_My_Family/1.06:_Grammar_(1)), licensed CC BY 4.0: suitable basis for independently authored lessons about the definite article, nisbah, and interrogatives.
+- [LibreTexts Introduction to Arabic II · grammar](<https://human.libretexts.org/Bookshelves/Languages/Arabic/Introduction_to_Arabic_II_(Hanaa_Alkassas_Layla_Bahar_Al-Aloom_and_Samira_Murtada)/01:_Myself_and_My_Family/1.06:_Grammar_(1)>), licensed CC BY 4.0: suitable basis for independently authored lessons about the definite article, nisbah, and interrogatives.
 - [Madinah Arabic grammar](https://madinaharabic.com/free-content/grammar) and [Al Jazeera Arabic](https://learning.aljazeera.net/en/pages/about-us) are reference-only because free access does not supply reuse permission. Never copy their examples or exercises.
 - Avoid LibreTexts chapters that mirror MSU publications with a conflicting CC BY-NC licence until the original authors' grant is clarified.
 

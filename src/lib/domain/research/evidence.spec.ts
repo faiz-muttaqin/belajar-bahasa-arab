@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { msaVocabulary } from '#lib/content/msa-vocabulary.js';
-import { isPublishableVocab, requiredResearchFields, validateVocab } from '#lib/domain/vocabulary/types.js';
 import {
-	supportedResearchFields,
-	validateResearchAudit,
-	type ResearchAudit
-} from './evidence.js';
+	isPublishableVocab,
+	requiredResearchFields,
+	validateVocab
+} from '#lib/domain/vocabulary/types.js';
+import { supportedResearchFields, validateResearchAudit, type ResearchAudit } from './evidence.js';
 
 const example = msaVocabulary.find((item) => item.id === 'msa-hasub')!;
 const fields = requiredResearchFields(example);
@@ -41,7 +41,9 @@ describe('research evidence gate for general MSA', () => {
 
 	it('fails closed on missing fields, glossary homepages and conflicts', () => {
 		const missing: ResearchAudit = { status: 'research_verified', claims: sources.slice(1) };
-		expect(validateResearchAudit(missing, fields)).toContain('Missing positive evidence for arabic');
+		expect(validateResearchAudit(missing, fields)).toContain(
+			'Missing positive evidence for arabic'
+		);
 		const generic: ResearchAudit = {
 			status: 'research_verified',
 			claims: sources.map((claim) =>
@@ -55,7 +57,9 @@ describe('research evidence gate for general MSA', () => {
 			status: 'research_verified',
 			claims: [...sources, { ...sources[0]!, outcome: 'conflicts' }]
 		};
-		expect(validateResearchAudit(conflict, fields)).toContain('Unresolved research conflict for arabic');
+		expect(validateResearchAudit(conflict, fields)).toContain(
+			'Unresolved research conflict for arabic'
+		);
 	});
 
 	it('does not promote partial or unsourced evidence through the research gate', () => {

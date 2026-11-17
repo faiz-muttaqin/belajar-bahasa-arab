@@ -7,12 +7,7 @@ import type { ResearchAudit, ResearchField } from '#lib/domain/research/evidence
  * Reviewed against the Arabic sections on 2026-11-17, not dialect-only sections.
  */
 const wiktionary = (lemma: string) => `https://en.wiktionary.org/wiki/${lemma}`;
-function claim(
-	field: ResearchField,
-	assertion: string,
-	lemma: string,
-	section: string
-) {
+function claim(field: ResearchField, assertion: string, lemma: string, section: string) {
 	return {
 		field,
 		assertion,
@@ -38,9 +33,19 @@ export const msaResearchAudits: Readonly<Record<string, ResearchAudit>> = {
 		status: 'partial',
 		claims: [
 			claim('arabic', 'Lema اِمْرَأَة tercatat.', 'امرأة', 'Noun'),
-			claim('meaning', 'Salah satu maknanya adalah perempuan dewasa.', 'امرأة', 'Noun, sense woman'),
+			claim(
+				'meaning',
+				'Salah satu maknanya adalah perempuan dewasa.',
+				'امرأة',
+				'Noun, sense woman'
+			),
 			claim('wordClass', 'Lema termasuk nomina.', 'امرأة', 'Noun'),
-			claim('plural', 'نِسَاء salah satu bentuk jamak; ada alternatif lain.', 'امرأة', 'Noun, plurals')
+			claim(
+				'plural',
+				'نِسَاء salah satu bentuk jamak; ada alternatif lain.',
+				'امرأة',
+				'Noun, plurals'
+			)
 		]
 	},
 	saghir: {
@@ -61,13 +66,23 @@ export const msaResearchAudits: Readonly<Record<string, ResearchAudit>> = {
 			claim('wordClass', 'Lema termasuk nomina.', 'حاسوب', 'Noun'),
 			claim('root', 'Akar ح س ب tercatat.', 'حاسوب', 'Root'),
 			claim('plural', 'Jamak حَوَاسِيب tercatat.', 'حاسوب', 'Noun, plural'),
-			claim('formation', 'Istilah alat dibentuk dari akar Arab, bukan sekadar transliterasi.', 'حاسوب', 'Etymology')
+			claim(
+				'formation',
+				'Istilah alat dibentuk dari akar Arab, bukan sekadar transliterasi.',
+				'حاسوب',
+				'Etymology'
+			)
 		]
 	},
 	internet: {
 		status: 'partial',
 		claims: [
-			claim('arabic', 'إِنْتَرْنِت termasuk varian vokalisasi lema.', 'إنترنت', 'Noun, alternative forms'),
+			claim(
+				'arabic',
+				'إِنْتَرْنِت termasuk varian vokalisasi lema.',
+				'إنترنت',
+				'Noun, alternative forms'
+			),
 			claim('meaning', 'Lema menunjuk pada internet.', 'إنترنت', 'Noun, sense Internet'),
 			claim('wordClass', 'Lema termasuk nomina.', 'إنترنت', 'Noun'),
 			claim('formation', 'Istilah dipinjam dari bahasa Inggris.', 'إنترنت', 'Etymology')
