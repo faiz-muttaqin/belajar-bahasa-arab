@@ -53,3 +53,13 @@ Rujukan awal (untuk diaudit, bukan lisensi impor otomatis):
 5. **LM-05 · Uji pembelajar.** Periksa apakah label dipahami tanpa tooltip/hover, mobile 375px, pembaca layar dan no-JS; bandingkan keberhasilan memahami teks baru dengan/ tanpa penjelasan etimologi. Jangan menilai kemampuan membaca dari arti kata serapan saja.
 
 **Di luar cakupan PR pilot:** menambah 157 entri tanpa audit, mengklaim kata non-serapan = klasik, menyamakan MSA dengan ‘Āmmiyyah, atau menambah API/backend/penyimpanan baru.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/components/learning/VocabCard.svelte`, `src/lib/content/msa-research.ts`, `tests/e2e/msa-vocabulary.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** LM-02–05: sisa 152 lema belum punya audit klaim, kategori etimologi lain, bacaan dokumen kontekstual, uji pengguna; metadata leksikal penuh belum selesai.
+
+**Tindak lanjut:** [issue #13](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
