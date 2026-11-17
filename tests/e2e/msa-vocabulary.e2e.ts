@@ -63,6 +63,8 @@ test('deep links and original phrase examples remain in static HTML with JavaScr
 	await expect(page.locator('#kata-msa-kitab')).toBeVisible();
 	await expect(page.locator('#kata-msa-kitab')).toContainText('كِتَابٌ جَدِيدٌ');
 	await expect(page.locator('#kata-msa-internet')).toContainText('Kata serapan');
+	await expect(page.locator('#kata-msa-internet')).toContainText('Serapan · draf');
+	await expect(page.locator('#kata-msa-hasub')).not.toContainText('Serapan · draf');
 });
 
 test.describe('static MSA vocabulary without JavaScript', () => {
