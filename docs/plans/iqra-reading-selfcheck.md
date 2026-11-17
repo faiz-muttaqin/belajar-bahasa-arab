@@ -26,3 +26,13 @@ Kemampuan CA-05 adalah **membaca teks pendek berharakat**, bukan sekadar memilih
 5. Lanjut **RM-07** uji UX/pembelajar sasaran, termasuk label checkpoint mandiri, kegagalan storage dan navigasi.
 
 Pilot ini sengaja tidak merilis 20 soal pilihan ganda yang tampak “lulus” tetapi tidak mengukur kemampuan membaca.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/lib/content/checkpoints-iqra.ts`, `src/routes/belajar/checkpoint-iqra/+page.svelte`, `tests/e2e/rm06-checkpoint-iqra.e2e.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** IQA-02–05: audit 20 bacaan, pelafalan oleh pendengar, audio terizin dan asesmen lisan kredibel; tidak ada skor otomatis.
+
+**Tindak lanjut:** [issue #52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
