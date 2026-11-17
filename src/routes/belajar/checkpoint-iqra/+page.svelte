@@ -62,7 +62,9 @@
 		<ul class="list-disc space-y-2 ps-5">
 			{#each iqraSelfCheckSources as source (source.href)}
 				<li>
+					<!-- eslint-disable svelte/no-navigation-without-resolve -- external source -->
 					<a class="text-primary underline underline-offset-4" href={source.href}>{source.label}</a>
+					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</li>
 			{/each}
 		</ul>
