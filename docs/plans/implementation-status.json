@@ -1,131 +1,129 @@
 {
-  "checkedOn": "2026-11-17",
-  "mainAssessment": "Routes/tests and merged work found; this is repository evidence, not proof of pedagogical or linguistic correctness.",
-  "states": {
-    "implemented": "All explicit acceptance criteria verified by code, tests, and any required manual evidence",
-    "partial": "Some implementation exists; outstanding acceptance criteria remain",
-    "planned": "Design/references exist but target capability is not delivered",
-    "deferred": "Explicitly postponed; no delivery claim"
-  },
-  "plans": [
-    {
-      "file": "dynamic-example-slots.md",
-      "status": "partial",
-      "evidence": [
-        "src/lib/domain/grammar/lexeme-forms.ts",
-        "src/lib/components/learning/InlineCuratedExamplePicker.svelte",
-        "tests/e2e/grammar-inline-examples.e2e.ts"
-      ],
-      "remaining": "D-05b/c: G-04/G-05, bentuk verba mu‘tal/pronomina lain, D-06 bukti progres; cakupan semua kartu belum tercapai",
-      "next": "#24"
-    },
-    {
-      "file": "glosarium-istilah-arab.md",
-      "status": "partial",
-      "evidence": [
-        "src/lib/content/grammar-glossary.ts",
-        "src/routes/rujukan/istilah/[slug]/+page.svelte",
-        "tests/e2e/grammar-glossary.e2e.ts"
-      ],
-      "remaining": "Pilot dialog/halaman ada; uji pengguna nyata, mobile WebKit/Android, pembaca layar dan semua tautan konteks belum dibuktikan",
-      "next": "#52"
-    },
-    {
-      "file": "iqra-reading-selfcheck.md",
-      "status": "partial",
-      "evidence": [
-        "src/lib/content/checkpoints-iqra.ts",
-        "src/routes/belajar/checkpoint-iqra/+page.svelte",
-        "tests/e2e/rm06-checkpoint-iqra.e2e.ts"
-      ],
-      "remaining": "IQA-02–05: audit 20 bacaan, pelafalan oleh pendengar, audio terizin dan asesmen lisan kredibel; tidak ada skor otomatis",
-      "next": "#52"
-    },
-    {
-      "file": "kosakata-msa-modern-dan-serapan.md",
-      "status": "partial",
-      "evidence": [
-        "src/lib/components/learning/VocabCard.svelte",
-        "src/lib/content/msa-research.ts",
-        "tests/e2e/msa-vocabulary.e2e.ts"
-      ],
-      "remaining": "LM-02–05: sisa 152 lema belum punya audit klaim, kategori etimologi lain, bacaan dokumen kontekstual, uji pengguna; metadata leksikal penuh belum selesai",
-      "next": "#13"
-    },
-    {
-      "file": "local-content-import.md",
-      "status": "deferred",
-      "evidence": [
-        "src/lib/domain/local-content/types.ts"
-      ],
-      "remaining": "RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun; jangan sebut shipped",
-      "next": "deferred"
-    },
-    {
-      "file": "nahwu-sharaf-knowledge-map.md",
-      "status": "partial",
-      "evidence": [
-        "src/routes/kaidah/+page.svelte",
-        "src/routes/kaidah/sharaf/+page.svelte",
-        "src/routes/kaidah/praktik/+page.svelte"
-      ],
-      "remaining": "G-01–05 punya halaman pilot tetapi belum menjamin seluruh cakupan kitab/edge cases; G-06 komposisi/adaptasi, bukti per kaidah dan uji pengguna belum lengkap",
-      "next": "#15 #16 #17 #18 #19"
-    },
-    {
-      "file": "nisbah-formal-msa.md",
-      "status": "partial",
-      "evidence": [
-        "src/lib/content/nisbah-lessons.ts",
-        "src/routes/kaidah/nisbah/+page.svelte",
-        "tests/e2e/nisbah-lessons.e2e.ts"
-      ],
-      "remaining": "L-02 baru 20 contoh draf; verifikasi kaidah dan i‘rab per kalimat, perbedaan register dan uji pembelajar belum selesai",
-      "next": "#55"
-    },
-    {
-      "file": "peta-belajar.md",
-      "status": "partial",
-      "evidence": [
-        "src/lib/content/roadmap.ts",
-        "src/lib/content/checkpoints.ts",
-        "src/routes/belajar/checkpoint-iqra/+page.svelte",
-        "tests/e2e/learning-roadmap.e2e.ts"
-      ],
-      "remaining": "RM-01–06 fitur inti terpasang, tapi RM-07 uji 5–8 pembelajar, audit metode Tamyiz/Al-Bayan, IQA-02–05 dan kualitas soal tetap terbuka; §10 masih menyebut RM-06 sebagai berikutnya",
-      "next": "#52"
-    },
-    {
-      "file": "sharaf-22-modal-sidebar.md",
-      "status": "partial",
-      "evidence": [
-        "src/lib/content/sharaf.ts",
-        "src/lib/components/learning/TransposedTashrif.svelte",
-        "tests/e2e/sharaf-matrix.e2e.ts"
-      ],
-      "remaining": "Matriks, kamus dan navigasi prototipe ditemukan; integrasi bentuk tak beraturan, audit 22 pola per sumber/lemma, hak guna dan validasi pengguna belum lengkap",
-      "next": "#15"
-    },
-    {
-      "file": "sharaf-lexicon-search.md",
-      "status": "partial",
-      "evidence": [
-        "src/routes/sharaf/+page.svelte",
-        "src/lib/catalog/sync.svelte.ts",
-        "tests/e2e/sharaf-full-import.e2e.ts"
-      ],
-      "remaining": "Pencarian dan katalog tersedia, bukan bukti seluruh kamus tervalidasi; audit dataset, pipeline & checksum, morfologi multi-analisis, sumber dan lisensi belum selesai",
-      "next": "#15"
-    },
-    {
-      "file": "visual-pembelajaran.md",
-      "status": "planned",
-      "evidence": [
-        "src/lib/components/learning/SentenceBreakdown.svelte",
-        "src/lib/domain/roadmap/presentation.ts"
-      ],
-      "remaining": "VP-01–05 belum selesai sebagai paket: ID relasi/bukti, word-role explorer interaktif, mode tanpa warna, animasi bertahap, grafik capaian dan uji pengguna",
-      "next": "#52"
-    }
-  ]
+	"checkedOn": "2026-11-17",
+	"mainAssessment": "Routes/tests and merged work found; this is repository evidence, not proof of pedagogical or linguistic correctness.",
+	"states": {
+		"implemented": "All explicit acceptance criteria verified by code, tests, and any required manual evidence",
+		"partial": "Some implementation exists; outstanding acceptance criteria remain",
+		"planned": "Design/references exist but target capability is not delivered",
+		"deferred": "Explicitly postponed; no delivery claim"
+	},
+	"plans": [
+		{
+			"file": "dynamic-example-slots.md",
+			"status": "partial",
+			"evidence": [
+				"src/lib/domain/grammar/lexeme-forms.ts",
+				"src/lib/components/learning/InlineCuratedExamplePicker.svelte",
+				"tests/e2e/grammar-inline-examples.e2e.ts"
+			],
+			"remaining": "D-05b/c: G-04/G-05, bentuk verba mu‘tal/pronomina lain, D-06 bukti progres; cakupan semua kartu belum tercapai",
+			"next": "#24"
+		},
+		{
+			"file": "glosarium-istilah-arab.md",
+			"status": "partial",
+			"evidence": [
+				"src/lib/content/grammar-glossary.ts",
+				"src/routes/rujukan/istilah/[slug]/+page.svelte",
+				"tests/e2e/grammar-glossary.e2e.ts"
+			],
+			"remaining": "Pilot dialog/halaman ada; uji pengguna nyata, mobile WebKit/Android, pembaca layar dan semua tautan konteks belum dibuktikan",
+			"next": "#52"
+		},
+		{
+			"file": "iqra-reading-selfcheck.md",
+			"status": "partial",
+			"evidence": [
+				"src/lib/content/checkpoints-iqra.ts",
+				"src/routes/belajar/checkpoint-iqra/+page.svelte",
+				"tests/e2e/rm06-checkpoint-iqra.e2e.ts"
+			],
+			"remaining": "IQA-02–05: audit 20 bacaan, pelafalan oleh pendengar, audio terizin dan asesmen lisan kredibel; tidak ada skor otomatis",
+			"next": "#52"
+		},
+		{
+			"file": "kosakata-msa-modern-dan-serapan.md",
+			"status": "partial",
+			"evidence": [
+				"src/lib/components/learning/VocabCard.svelte",
+				"src/lib/content/msa-research.ts",
+				"tests/e2e/msa-vocabulary.e2e.ts"
+			],
+			"remaining": "LM-02–05: sisa 152 lema belum punya audit klaim, kategori etimologi lain, bacaan dokumen kontekstual, uji pengguna; metadata leksikal penuh belum selesai",
+			"next": "#13"
+		},
+		{
+			"file": "local-content-import.md",
+			"status": "deferred",
+			"evidence": ["src/lib/domain/local-content/types.ts"],
+			"remaining": "RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun; jangan sebut shipped",
+			"next": "deferred"
+		},
+		{
+			"file": "nahwu-sharaf-knowledge-map.md",
+			"status": "partial",
+			"evidence": [
+				"src/routes/kaidah/+page.svelte",
+				"src/routes/kaidah/sharaf/+page.svelte",
+				"src/routes/kaidah/praktik/+page.svelte"
+			],
+			"remaining": "G-01–05 punya halaman pilot tetapi belum menjamin seluruh cakupan kitab/edge cases; G-06 komposisi/adaptasi, bukti per kaidah dan uji pengguna belum lengkap",
+			"next": "#15 #16 #17 #18 #19"
+		},
+		{
+			"file": "nisbah-formal-msa.md",
+			"status": "partial",
+			"evidence": [
+				"src/lib/content/nisbah-lessons.ts",
+				"src/routes/kaidah/nisbah/+page.svelte",
+				"tests/e2e/nisbah-lessons.e2e.ts"
+			],
+			"remaining": "L-02 baru 20 contoh draf; verifikasi kaidah dan i‘rab per kalimat, perbedaan register dan uji pembelajar belum selesai",
+			"next": "#55"
+		},
+		{
+			"file": "peta-belajar.md",
+			"status": "partial",
+			"evidence": [
+				"src/lib/content/roadmap.ts",
+				"src/lib/content/checkpoints.ts",
+				"src/routes/belajar/checkpoint-iqra/+page.svelte",
+				"tests/e2e/learning-roadmap.e2e.ts"
+			],
+			"remaining": "RM-01–06 fitur inti terpasang, tapi RM-07 uji 5–8 pembelajar, audit metode Tamyiz/Al-Bayan, IQA-02–05 dan kualitas soal tetap terbuka; §10 masih menyebut RM-06 sebagai berikutnya",
+			"next": "#52"
+		},
+		{
+			"file": "sharaf-22-modal-sidebar.md",
+			"status": "partial",
+			"evidence": [
+				"src/lib/content/sharaf.ts",
+				"src/lib/components/learning/TransposedTashrif.svelte",
+				"tests/e2e/sharaf-matrix.e2e.ts"
+			],
+			"remaining": "Matriks, kamus dan navigasi prototipe ditemukan; integrasi bentuk tak beraturan, audit 22 pola per sumber/lemma, hak guna dan validasi pengguna belum lengkap",
+			"next": "#15"
+		},
+		{
+			"file": "sharaf-lexicon-search.md",
+			"status": "partial",
+			"evidence": [
+				"src/routes/sharaf/+page.svelte",
+				"src/lib/catalog/sync.svelte.ts",
+				"tests/e2e/sharaf-full-import.e2e.ts"
+			],
+			"remaining": "Pencarian dan katalog tersedia, bukan bukti seluruh kamus tervalidasi; audit dataset, pipeline & checksum, morfologi multi-analisis, sumber dan lisensi belum selesai",
+			"next": "#15"
+		},
+		{
+			"file": "visual-pembelajaran.md",
+			"status": "planned",
+			"evidence": [
+				"src/lib/components/learning/SentenceBreakdown.svelte",
+				"src/lib/domain/roadmap/presentation.ts"
+			],
+			"remaining": "VP-01–05 belum selesai sebagai paket: ID relasi/bukti, word-role explorer interaktif, mode tanpa warna, animasi bertahap, grafik capaian dan uji pengguna",
+			"next": "#52"
+		}
+	]
 }
