@@ -5,6 +5,7 @@ import {
 	type MsaTopic,
 	type VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
+import { msaResearchAudits } from './msa-research.js';
 
 /**
  * First-party Indonesian glosses and a deliberately SMALL MSA starter set.
@@ -285,6 +286,7 @@ export const msaVocabulary: readonly VocabularyItem[] = Object.entries(seeds).fl
 							: kind === 'adjective' || grouping === 'time'
 								? 'abstract'
 								: 'concrete',
+					research: msaResearchAudits[slug],
 					sources: [
 						specificSource[slug] ?? (grouping === 'social' ? msaPhrasebook : mainLexicon),
 						wiktionaryCopyright
