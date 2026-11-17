@@ -16,6 +16,10 @@ Pelajar pasca-Iqra membaca frasa seperti `مَلَفٌّ رَقْمِيٌّ` dan
 - Konten tersedia di HTML statis dan disclosure `details` dapat dibuka tanpa JavaScript, termasuk 375px, RTL dan fokus keyboard.
 - Jangan mengklaim **linguist-reviewed**, tingkat CEFR, atau akurasi tata bahasa otomatis dari penyertaan daftar sumber. `draft` tetap dipakai sampai audit aturan/kasus/kolokasi terhadap sumber memadai.
 
+## Catatan kejujuran pembelajaran
+
+Latihan ini adalah penerapan mandiri berdasarkan rujukan gramatika dan lema, bukan kutipan teks sumber dan bukan hasil audit linguistik penuh. CI menguji struktur, aksesibilitas dasar dan navigasi; keberhasilan membaca teks baru oleh peserta tetap harus diuji secara terpisah.
+
 ## Pekerjaan selanjutnya
 - Tambah anotasi bukti **per kaidah dan per kalimat**, bukan hanya lemma/asal kata; bandingkan dengan bab nahwu lain.
 - Perluas ke korespondensi surat resmi, formulir, berita pendek dan deskripsi layanan menggunakan paragraf original dengan 20–50 variasi bermakna per bank latihan yang sudah mapan.
