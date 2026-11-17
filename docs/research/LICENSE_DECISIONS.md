@@ -1,5 +1,7 @@
 # Licence decisions for curriculum sources
 
+> **Historical audit (13 November):** the human review statements below describe ADR-004 D-7 at the time. [ADR-005](../decisions/0005-research-verification.md) now permits a separate full-coverage research evidence gate for **ordinary MSA vocabulary only**. Reuse permissions and specialist religious/audio checks are unchanged.
+>
 > **This is background analysis, not legal advice.** It records how we read each source's licence against our own accepted content licence so the team can act consistently. Before any third-party material ships, confirm the reading with an IP or legal adviser, and ask the rights holder where something is unclear.
 > **Audit time:** 2026-11-13T17:24Z, at the pinned SHAs in [SOURCE_INVENTORY.md](./SOURCE_INVENTORY.md). Re-check LICENSE and NOTICE at a new SHA before relying on anything here.
 > **Imported materials: 0.** The verdicts say what _could_ be done later under conditions. Today every source is used for ideas only.
