@@ -73,6 +73,17 @@
 </div>
 
 <aside class="mt-14 max-w-4xl space-y-4 rounded-2xl border bg-card p-5">
+	<h2 class="text-xl font-semibold">Lanjut: maṣdar dalam bacaan formal</h2>
+	<p class="text-muted-foreground">
+		Latihan mengenali lima pasangan fi‘il–maṣdar berbukti kamus dan 20 stimulus konteks MSA. Semua
+		contoh tetap draf sampai pemeriksaan kalimat lengkap.
+	</p>
+	<a
+		href={resolve('kaidah/masdar/')}
+		class="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
+		aria-label="Pelajari maṣdar dalam dokumen formal">Pelajari maṣdar dalam dokumen formal</a
+	>
+	<div class="border-t pt-4"></div>
 	<h2 class="text-xl font-semibold">Lanjutkan ke 22 kelompok wazan</h2>
 	<p class="text-muted-foreground">
 		Contoh di atas memakai fi‘il tsulātsī mujarrad ṣaḥīḥ (كَتَبَ) agar prinsipnya mudah dibandingkan.

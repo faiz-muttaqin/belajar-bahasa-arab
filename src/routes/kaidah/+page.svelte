@@ -87,6 +87,15 @@
 		>
 	</a>
 	<a
+		href={resolve('kaidah/masdar/')}
+		aria-label="Pelajari maṣdar dan nama kegiatan"
+		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
+	>
+		<span class="text-xs font-semibold text-muted-foreground">G-02 · OER-02 · sharaf</span>
+		<strong class="group-hover:text-primary">Maṣdar untuk memahami dokumen</strong>
+		<span class="text-sm text-muted-foreground">Lima pasangan fi‘il–maṣdar, 20 bacaan draf.</span>
+	</a>
+	<a
 		href={resolve('kaidah/nisbah/')}
 		aria-label="Baca istilah formal dengan sifat nisbah"
 		class="group flex min-h-32 flex-col gap-2 rounded-xl border bg-card p-4 hover:border-primary"
