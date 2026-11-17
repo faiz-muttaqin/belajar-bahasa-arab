@@ -165,6 +165,12 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 | Target focus: Fusha general vs Qur'anic understanding vs conversation (research doc §12F) | product owner | 🔵     |
 | 5 to 10 test learners (3 profiles, §10.2)                                                 | product owner | ⬜     |
 
+## Research-verified MSA pilot (17 November 2026)
+
+- **R-VERIFY-01 — 🟡 Audit parsial:** five existing MSA lemmas (`kitab`, `imraah`, `saghir`, `hasub`, `internet`) have per-field checked references; the remaining 152 starter items have no field-level audit.
+- **R-VERIFY-02 — ✅ Gate implemented:** ADR-005 permits source-based completion of ordinary MSA lexical claims; missing evidence, generic source URLs and unresolved conflicts block `research_verified`. Religious and audio gates stay unchanged. This is not proof that every source assertion is linguistically sound.
+- **R-VERIFY-03 — ⬜ Next:** check register, nuance, every original example and alternative forms for each starter; add explicit grammar rule evidence to new lessons and audit user comprehension. [Issue #13](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13) tracks full completion.
+
 ## Changelog
 
 - 15 November 2026: RM-05 menyimpan bukti jawaban 0–3 di IndexedDB v3, memperluas penilaian diri U2/U3 dan menjaga cadangan schema 1/2. Review memperbaiki impor batch yang menggantung, konflik JSON palsu, batas bantuan/hafalan dan penurunan sesudah pulih; berikutnya RM-06.

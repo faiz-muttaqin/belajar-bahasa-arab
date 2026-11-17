@@ -9,6 +9,7 @@
 		type MsaTopic
 	} from '#lib/domain/vocabulary/types.js';
 	import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
+	import { supportedResearchFields } from '#lib/domain/research/evidence.js';
 
 	let { hafalan }: { hafalan: boolean } = $props();
 
@@ -173,6 +174,34 @@
 											<p class="text-muted-foreground">
 												Gabungan beberapa kata; periksa strukturnya sebagai frasa.
 											</p>
+										{/if}
+										{#if item.research}
+											<details class="border-t pt-2">
+												<summary class="min-h-11 cursor-pointer py-2 font-medium">
+													Bukti pustaka · {supportedResearchFields(item.research).length} klaim
+												</summary>
+												<p class="text-muted-foreground">
+													Verifikasi sebagian, bukan persetujuan seluruh lema atau contoh.
+												</p>
+												<ul class="mt-2 list-disc space-y-2 ps-5">
+													{#each item.research.claims as claim (claim.field)}
+														<li>
+															{claim.assertion}
+															<span class="text-muted-foreground">
+																· {claim.section} · {claim.checkedOn}
+															</span>
+															<!-- eslint-disable svelte/no-navigation-without-resolve -- external research source -->
+															<a
+																href={claim.sourceUrl}
+																class="ms-2 text-primary underline underline-offset-4"
+															>
+																Lihat sumber
+															</a>
+															<!-- eslint-enable svelte/no-navigation-without-resolve -->
+														</li>
+													{/each}
+												</ul>
+											</details>
 										{/if}
 										{#if item.msa?.example}
 											<div class="space-y-1 border-t pt-2">

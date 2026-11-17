@@ -63,6 +63,11 @@ test('deep links and original phrase examples remain in static HTML with JavaScr
 	await expect(page.locator('#kata-msa-kitab')).toBeVisible();
 	await expect(page.locator('#kata-msa-kitab')).toContainText('كِتَابٌ جَدِيدٌ');
 	await expect(page.locator('#kata-msa-internet')).toContainText('Kata serapan');
+	const research = page.locator('#kata-msa-hasub details');
+	await expect(research).toContainText('Bukti pustaka · 6 klaim');
+	await research.locator('summary').click();
+	await expect(research).toContainText('Verifikasi sebagian');
+	await expect(research.getByRole('link', { name: 'Lihat sumber' })).toHaveCount(6);
 	await expect(page.locator('#kata-msa-internet')).toContainText('Serapan · draf');
 	await expect(page.locator('#kata-msa-hasub')).not.toContainText('Serapan · draf');
 });
