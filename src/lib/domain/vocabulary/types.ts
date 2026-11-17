@@ -5,6 +5,7 @@
  */
 import type { ReviewStatus } from '#lib/domain/reference/table.js';
 import { hasApprovingReview, type ReviewRecord, type ReviewerRole } from '#lib/domain/review.js';
+import { validateResearchAudit, type ResearchAudit, type ResearchField } from '#lib/domain/research/evidence.js';
 
 /** Collections shown on /kosakata/. Qur'anic/classical words are labelled separately (§3.3). */
 export type VocabularyCollectionId = 'harian' | 'quran' | 'shalat' | 'msa';
@@ -114,6 +115,8 @@ export type VocabularyItem = {
 	quranFrequency?: QuranFrequency;
 	verbReference?: VerbReference;
 	msa?: MsaLexicalInfo;
+	/** Claim-specific non-religious research. Never substitutes for Qur'an, shalat or audio review. */
+	research?: ResearchAudit;
 };
 
 export const COLLECTION_LABELS: Record<VocabularyCollectionId, string> = {
@@ -130,6 +133,17 @@ export const REQUIRED_REVIEWER: Record<VocabularyCollectionId, ReviewerRole> = {
 	shalat: 'ustadz',
 	msa: 'arabic_teacher'
 };
+
+/** All substantial displayed lexical fields must be checked to approve the complete entry. */
+export function requiredResearchFields(item: VocabularyItem): ResearchField[] {
+	const fields: ResearchField[] = ['arabic', 'meaning', 'wordClass', 'register'];
+	if (item.msa?.root) fields.push('root');
+	if (item.msa?.plural) fields.push('plural');
+	if (item.msa?.feminine) fields.push('feminine');
+	if (item.msa?.formation) fields.push('formation');
+	if (item.msa?.example) fields.push('example');
+	return fields;
+}
 
 export type VocabIssue = { id: string; message: string };
 
@@ -165,6 +179,15 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 			if (item.msa.attestation !== 'curated-draft') add('Unexpected MSA attestation status');
 		}
 	} else if (item.msa) add('MSA metadata outside the MSA collection');
+	if (item.research) {
+		if (item.collection !== 'msa' || item.register !== 'msa') {
+			add('Research approval path only supports ordinary MSA vocabulary');
+		} else {
+			for (const message of validateResearchAudit(item.research, requiredResearchFields(item))) {
+				add(message);
+			}
+		}
+	}
 	if (item.quranFrequency) {
 		const freq = item.quranFrequency;
 		if (item.collection !== 'quran') add('Only Qur’anic entries can carry Quran frequency');
@@ -179,10 +202,13 @@ export function validateVocab(item: VocabularyItem): VocabIssue[] {
 }
 
 export function isPublishableVocab(item: VocabularyItem): boolean {
-	return (
+	if (item.sources.length === 0 || validateVocab(item).length !== 0) return false;
+	const humanApproved =
 		item.reviewStatus === 'approved' &&
-		item.sources.length > 0 &&
-		validateVocab(item).length === 0 &&
-		hasApprovingReview(item.reviews, REQUIRED_REVIEWER[item.collection])
-	);
+		hasApprovingReview(item.reviews, REQUIRED_REVIEWER[item.collection]);
+	const researchApproved =
+		item.collection === 'msa' &&
+		item.reviewStatus === 'draft' &&
+		item.research?.status === 'research_verified';
+	return humanApproved || researchApproved;
 }
