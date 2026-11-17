@@ -57,3 +57,13 @@ Pemetaan kontrak dan lanjutan D-02–D-06 ada dalam [rencana Dynamic Examples](.
 ## Peran kata dan visual pembelajaran
 
 [Rencana visual VP-01–VP-05](./visual-pembelajaran.md) memperluas label/warna existing menjadi penjelajah kata dan hubungan sintaksis yang dapat diketuk, dengan alasan i‘rab, animasi perubahan bertahap, mode tanpa warna dan fallback HTML. Contoh tetap dari data terkurasi D-05; tidak ada parser bebas. Peta prasyarat memakai 33 kompetensi dari RM-02, bukan graf kedua.
+
+## Catatan implementasi terverifikasi — 17 November 2026
+
+**Status plan keseluruhan: PARTIAL**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+
+**Sudah terlihat di kode:** `src/routes/kaidah/+page.svelte`, `src/routes/kaidah/sharaf/+page.svelte`, `src/routes/kaidah/praktik/+page.svelte`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
+
+**Belum terpenuhi:** G-01–05 punya halaman pilot tetapi belum menjamin seluruh cakupan kitab/edge cases; G-06 komposisi/adaptasi, bukti per kaidah dan uji pengguna belum lengkap.
+
+**Tindak lanjut:** [issue #15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15), [issue #16](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/16), [issue #17](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/17), [issue #18](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/18), [issue #19](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/19). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
