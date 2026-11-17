@@ -44,8 +44,10 @@ describe('RM-02 published lesson mapping', () => {
 				.every((branch) => branch.links.length === 0)
 		).toBe(true);
 		expect(roadmap.stages.filter((stage) => stage.checkpoint.status === 'available')).toHaveLength(
-			6
+			7
 		);
+		expect(roadmap.stages[0]!.checkpoint.path).toBe('belajar/checkpoint-iqra/');
+		expect(roadmap.stages[0]!.checkpoint.questionCount).toBe(20);
 		expect(roadmap.stages[1]!.checkpoint.path).toBe('belajar/checkpoint-1/');
 		expect(roadmap.stages[1]!.checkpoint.questionCount).toBe(20);
 		expect(roadmap.stages[2]!.checkpoint.path).toBe('belajar/checkpoint-2/');
@@ -58,11 +60,7 @@ describe('RM-02 published lesson mapping', () => {
 		expect(roadmap.stages[5]!.checkpoint.questionCount).toBe(60);
 		expect(roadmap.stages[6]!.checkpoint.path).toBe('belajar/checkpoint-6/');
 		expect(roadmap.stages[6]!.checkpoint.questionCount).toBe(40);
-		expect(
-			roadmap.stages
-				.filter((stage) => ![1, 2, 3, 4, 5, 6].includes(stage.number))
-				.every((stage) => stage.checkpoint.status === 'planned')
-		).toBe(true);
+		expect(roadmap.stages.every((stage) => stage.checkpoint.status === 'available')).toBe(true);
 		for (const path of roadmapReferencePaths)
 			expect(existsSync(`src/routes/${path}+page.svelte`)).toBe(true);
 	});
