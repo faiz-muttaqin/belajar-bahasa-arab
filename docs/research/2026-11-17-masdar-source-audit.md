@@ -4,7 +4,7 @@
 
 ## Pembuktian sumber dan lisensi
 
-- [Elementary Arabic (Mohamed & Issa), bab 5.2 Grammar](https://human.libretexts.org/Bookshelves/Languages/Arabic/Elementary_Arabic_(Mohamed_and_Issa)/05:_Hobbies_and_Sports/5.02:_Grammar) menyatakan lisensi **CC BY 4.0 pada halaman** (pemeriksaan tanggal 2026-11-17), dan menjelaskan verbal noun (maṣdar) serta perbedaannya dari fi‘il. Penulis yang tercantum Ayman Mohamed dan Sadam Issa, Michigan State University Libraries. Tidak menyalin isi latihan, audio, H5P, atau contoh halaman.
+- [Elementary Arabic (Mohamed & Issa), bab 5.2 Grammar](<https://human.libretexts.org/Bookshelves/Languages/Arabic/Elementary_Arabic_(Mohamed_and_Issa)/05:_Hobbies_and_Sports/5.02:_Grammar>) menyatakan lisensi **CC BY 4.0 pada halaman** (pemeriksaan tanggal 2026-11-17), dan menjelaskan verbal noun (maṣdar) serta perbedaannya dari fi‘il. Penulis yang tercantum Ayman Mohamed dan Sadam Issa, Michigan State University Libraries. Tidak menyalin isi latihan, audio, H5P, atau contoh halaman.
 - Kamus untuk setiap pasangan, hanya klaim pasangan fi‘il–maṣdar: [كَتَبَ](https://en.wiktionary.org/wiki/كتب), [قَرَأَ](https://en.wiktionary.org/wiki/قرأ), [دَرَسَ](https://en.wiktionary.org/wiki/درس), [اِسْتَعْمَلَ](https://en.wiktionary.org/wiki/استعمل), [اِجْتَمَعَ](https://en.wiktionary.org/wiki/اجتمع). Semua di bagian Arabic dari Wiktionary; materi Wiktionary CC BY-SA 4.0/GFDL. Tautan sumber spesifik disimpan di data.
 - Referensi tambahan untuk variasi Form I: [Wiktionary كَتَبَ](https://en.wiktionary.org/wiki/كتب) mencantumkan beberapa maṣdar; jangan memaksakan satu maṣdar per akar. [Riset verifikasi proyek](../research/2026-11-14-source-based-verification.md).
 

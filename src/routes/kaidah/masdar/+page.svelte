@@ -24,17 +24,21 @@
 </svelte:head>
 
 <main class="mx-auto max-w-5xl space-y-10 px-4 py-8 sm:px-6">
-	<a href={resolve('kaidah/sharaf/')} class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Kembali ke pembahasan sharaf</a>
+	<a
+		href={resolve('kaidah/sharaf/')}
+		class="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4"
+		>Kembali ke pembahasan sharaf</a
+	>
 	<header class="max-w-3xl space-y-3">
 		<p class="text-sm font-semibold text-primary">G-02 · OER-02 · pendalaman sharaf</p>
 		<h1 class="text-3xl font-bold">Maṣdar: dari perbuatan menjadi nama kegiatan</h1>
 		<p>
-			Bahasa Arab baku sering menggunakan nama kegiatan pada judul, jadwal, dan dokumen.
-			Pelajari bedanya dengan fi‘il, lalu baca 20 contoh berharakat yang ditulis mandiri.
+			Bahasa Arab baku sering menggunakan nama kegiatan pada judul, jadwal, dan dokumen. Pelajari
+			bedanya dengan fi‘il, lalu baca 20 contoh berharakat yang ditulis mandiri.
 		</p>
 		<p class="text-sm text-muted-foreground">
-			Semua contoh masih draf. Kamus mendukung pasangan kata, sedangkan kebenaran seluruh
-			kalimat dan pembahasan belum diklaim selesai diaudit. Latihan ini cek mandiri tanpa skor.
+			Semua contoh masih draf. Kamus mendukung pasangan kata, sedangkan kebenaran seluruh kalimat
+			dan pembahasan belum diklaim selesai diaudit. Latihan ini cek mandiri tanpa skor.
 		</p>
 	</header>
 
@@ -70,10 +74,15 @@
 			{#each masdarLexemes as lexeme (lexeme.id)}
 				<li class="min-w-0 space-y-2 rounded-xl border bg-card p-4">
 					<p class="text-sm text-muted-foreground">Fi‘il māḍī / muḍāri‘ / maṣdar · draf</p>
-					<p lang="ar" dir="rtl" class="arabic-word text-right">{lexeme.verb} · {lexeme.present} · {lexeme.masdar}</p>
+					<p lang="ar" dir="rtl" class="arabic-word text-right">
+						{lexeme.verb} · {lexeme.present} · {lexeme.masdar}
+					</p>
 					<p>{lexeme.meaning}</p>
 					<!-- eslint-disable svelte/no-navigation-without-resolve -- external entry -->
-					<a class="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4" href={lexeme.source}>Periksa pasangan pada entri kamus</a>
+					<a
+						class="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4"
+						href={lexeme.source}>Periksa pasangan pada entri kamus</a
+					>
 					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</li>
 			{/each}
@@ -83,8 +92,8 @@
 	<section id="latihan-masdar" class="scroll-mt-24 space-y-4">
 		<h2 class="text-2xl font-semibold">Latihan menerapkan makna dalam 20 bacaan</h2>
 		<p class="max-w-3xl text-muted-foreground">
-			Baca sebelum membuka jawaban. Tugasnya berubah dari mengenali kata kerja, memahami
-			peran maṣdar hingga membedakan frasa dan kalimat. Pengacakan opsi bukan variasi soal.
+			Baca sebelum membuka jawaban. Tugasnya berubah dari mengenali kata kerja, memahami peran
+			maṣdar hingga membedakan frasa dan kalimat. Pengacakan opsi bukan variasi soal.
 		</p>
 		<ol class="grid gap-4 md:grid-cols-2">
 			{#each masdarTasks as task, index (task.id)}
@@ -102,7 +111,11 @@
 						<p class="mt-2">{task.answer}</p>
 						{#if source}
 							<!-- eslint-disable svelte/no-navigation-without-resolve -- external lexeme source -->
-							<a href={source.source} class="mt-2 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Periksa lema sumber</a>
+							<a
+								href={source.source}
+								class="mt-2 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4"
+								>Periksa lema sumber</a
+							>
 							<!-- eslint-enable svelte/no-navigation-without-resolve -->
 						{/if}
 					</details>
@@ -114,10 +127,14 @@
 	<aside class="max-w-3xl space-y-2 border-t pt-4">
 		<h2 class="text-lg font-semibold">Status penelitian</h2>
 		<p>
-			Halaman ini mengajarkan satu bagian G-02. Masih dibutuhkan audit per kalimat dan
-			perluasan ke masdar pola mazīd, bentuk mu‘tal, sinonim makna, serta bacaan dokumen
-			yang lebih panjang. Lihat roadmap OER-01–06 pada issue #55.
+			Halaman ini mengajarkan satu bagian G-02. Masih dibutuhkan audit per kalimat dan perluasan ke
+			masdar pola mazīd, bentuk mu‘tal, sinonim makna, serta bacaan dokumen yang lebih panjang.
+			Lihat roadmap OER-01–06 pada issue #55.
 		</p>
-		<a href={resolve('kaidah/sharaf/')} class="inline-flex min-h-11 items-center text-primary underline underline-offset-4">Kembali ke sharaf</a>
+		<a
+			href={resolve('kaidah/sharaf/')}
+			class="inline-flex min-h-11 items-center text-primary underline underline-offset-4"
+			>Kembali ke sharaf</a
+		>
 	</aside>
 </main>
