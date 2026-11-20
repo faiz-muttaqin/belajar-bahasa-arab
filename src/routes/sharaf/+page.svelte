@@ -5,7 +5,14 @@
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import AudioPlayButton from '#lib/components/learning/AudioPlayButton.svelte';
 	import SpeechSettings from '#lib/components/learning/SpeechSettings.svelte';
-	import { catalogState, bulkSharafState, prepareBulkSharaf } from '#lib/catalog/sync.svelte.js';
+	import {
+		catalogState,
+		bulkSharafState,
+		prepareBulkSharaf,
+		enrichmentState,
+		prepareEnrichment
+	} from '#lib/catalog/sync.svelte.js';
+	import { mergeEnrichment } from '#lib/domain/sharaf/enrichment.js';
 	import { mergeBulkSharaf } from '#lib/domain/sharaf/bulk.js';
 	import { sharafEntries } from '#lib/content/sharaf.js';
 	import { tashrifColumns } from '#lib/domain/sharaf/matrix.js';
@@ -16,7 +23,10 @@
 	let visible = $state(48);
 	let targetId = $state('');
 	let entries = $derived(
-		mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data)
+		mergeEnrichment(
+			mergeBulkSharaf(catalogState.catalog?.sharaf ?? sharafEntries, bulkSharafState.data),
+			enrichmentState.data
+		)
 	);
 	let results = $derived(searchSharaf(entries, query, filter));
 	let shown = $derived.by(() => {
@@ -27,6 +37,7 @@
 
 	onMount(() => {
 		void prepareBulkSharaf();
+		void prepareEnrichment();
 		targetId = decodeURIComponent(location.hash.slice(1));
 	});
 	$effect(() => {

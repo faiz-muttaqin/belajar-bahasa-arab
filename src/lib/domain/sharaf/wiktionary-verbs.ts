@@ -26,7 +26,8 @@ export type WiktionaryVerb = {
 };
 
 /** Indonesian meanings, kept apart from the source data so provenance stays clear. */
-export type VerbTranslation = { idGlosses: string[]; uncertain?: boolean };
+export type GlossAudit = { source: string; note?: string };
+export type VerbTranslation = { idGlosses: string[]; uncertain?: boolean; audit?: GlossAudit };
 
 export type BabInfo = {
 	slug: string;
@@ -157,7 +158,10 @@ export function toRows(
 		set('nonPast', v.nonPast);
 		set('masdar', v.verbalNouns.join(comma));
 		set('participles', [v.activeParticiple, v.passiveParticiple].filter(Boolean).join(comma));
-		set('idFull', idGlosses.join('; '));
+		const audit = translations[v.id]?.audit;
+		set(audit ? 'auditedGloss' : 'idFull', idGlosses.join('; '));
+		set('auditSource', audit?.source);
+		set('auditNote', audit?.note);
 		set('en', v.en.join('; '));
 		set('google', google[v.id]);
 		set('type', v.transitive ? 'Transitif (membutuhkan objek)' : undefined);
@@ -179,10 +183,12 @@ export type RecallVerb = {
 	description: string;
 	confidence: 'high' | 'medium' | 'low' | 'none';
 	model: string;
+	audit?: GlossAudit;
 };
 
 const confidenceLabel = { high: 'tinggi', medium: 'sedang', low: 'rendah', none: '-' } as const;
 const modelLabel: Record<string, string> = {
+	codex: 'Codex',
 	'fable-5.2': 'Claude Fable 5.2',
 	'sonnet-5.5': 'Claude Sonnet 5.5'
 };
@@ -211,6 +217,11 @@ export function toRecallRows(verbs: readonly RecallVerb[]): ReferenceTableData['
 		if (v.kind !== 'tidak_diketahui') {
 			cells.confidence = confidenceLabel[v.confidence];
 			cells.model = modelLabel[v.model] ?? v.model;
+		}
+		if (v.audit) {
+			cells.badge = 'draf kamus';
+			cells.auditSource = v.audit.source;
+			if (v.audit.note) cells.auditNote = v.audit.note;
 		}
 		if (v.code) cells.code = v.code;
 		return { id: v.id, cells };

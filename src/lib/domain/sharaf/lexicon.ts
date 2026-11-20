@@ -33,7 +33,8 @@ export type SharafEntry = {
 	 * Where `meaning` comes from when it is not hand-written: a Wiktionary English gloss, a
 	 * Claude translation of it, a model-recalled meaning or description, or unknown.
 	 */
-	meaningSource?: 'wiktionary' | 'terjemahan' | 'model' | 'deskripsi-model' | 'belum-diketahui';
+	meaningSource?:
+		'wiktionary' | 'terjemahan' | 'draf-kamus' | 'model' | 'deskripsi-model' | 'belum-diketahui';
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {

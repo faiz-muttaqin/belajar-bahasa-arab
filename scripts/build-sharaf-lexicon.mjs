@@ -51,6 +51,18 @@ for (const [source, rows] of [
 	}
 }
 
+const glosses = new Map(
+	readFileSync('data/arabic-stopwords-id.tsv', 'utf8')
+		.trimEnd()
+		.split(/\r?\n/)
+		.slice(1)
+		.map((line) => {
+			const [id, lemma, meaning, source, note = ''] = line.split('\t');
+			if (!lemma || !meaning || !source?.startsWith('https://'))
+				throw new Error('Incomplete gloss: ' + id);
+			return [Number(id), { lemma, meaning, source, note }];
+		})
+);
 const types = {};
 const words = [];
 for (const [i, line] of read('arabicstopwords-classified.tsv').split(/\r?\n/).entries()) {
@@ -58,15 +70,24 @@ for (const [i, line] of read('arabicstopwords-classified.tsv').split(/\r?\n/).en
 	const values = line.split('\t');
 	if (values.length < 4) throw new Error('Malformed function word at line ' + (i + 1));
 	types[values[2]] = (types[values[2]] || 0) + 1;
-	words.push([values[1], values[0], values[2], values[3], i + 1]);
+	const row = [values[1], values[0], values[2], values[3], i + 1];
+	if (['حرف', 'اسم', 'ضمير', 'اسم فعل'].includes(values[2])) {
+		const gloss = glosses.get(i + 1);
+		if (!gloss || gloss.lemma !== values[1]) throw new Error('Unmatched gloss at line ' + (i + 1));
+		row.push(gloss.meaning, gloss.source, gloss.note);
+		glosses.delete(i + 1);
+	}
+	words.push(row);
 }
+
+if (glosses.size) throw new Error('Unmatched stopword gloss rows');
 
 const verbs = [...all.values()].sort(
 	(a, b) => a[2] - b[2] || a[0].localeCompare(b[0], 'ar') || a[1].localeCompare(b[1], 'ar')
 );
 const data = {
 	schema: 1,
-	revision: 'q400bdc3-a-d5ff8ffe-sf72f8b',
+	revision: 'q400bdc3-a-d5ff8ffe-sf72f8b-id1',
 	license: 'GPL-2.0',
 	licenseFile: 'data/sharaf-upstream/GPL-2.0.txt',
 	sources: {

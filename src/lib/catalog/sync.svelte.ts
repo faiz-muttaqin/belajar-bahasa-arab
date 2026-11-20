@@ -3,6 +3,7 @@ import { readCatalog, saveCatalog, readBulkSharafCache, saveBulkSharafCache } fr
 import { prepareSharafSearchIndex } from '#lib/domain/sharaf/lexicon.js';
 import {
 	BULK_SHARAF_PATH,
+	BULK_SHARAF_REVISION,
 	isBulkSharafLexicon,
 	mergeBulkSharaf,
 	type BulkSharafLexicon
@@ -156,6 +157,7 @@ async function syncBulkSharaf() {
 			BULK_SHARAF_PATH.slice('data/'.length),
 			new URL(resolve(CATALOG_PATH), location.href)
 		);
+		bulkUrl.searchParams.set('rev', BULK_SHARAF_REVISION);
 		const response = await fetch(bulkUrl, {
 			cache: 'force-cache',
 			signal: AbortSignal.timeout(30_000)

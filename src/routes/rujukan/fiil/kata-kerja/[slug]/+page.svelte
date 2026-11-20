@@ -34,9 +34,14 @@
 		columns: [],
 		rows: data.recall.rows
 	});
+	const auditDetails = [
+		{ key: 'auditNote', label: 'Pemakaian dan catatan peninjauan', lang: 'id' },
+		{ key: 'auditSource', label: 'Sumber padanan', lang: 'link' }
+	] as const;
 	const recallDetails = [
+		...auditDetails,
 		{ key: 'root', label: 'Akar', lang: 'ar' },
-		{ key: 'meaningsFull', label: 'Arti (dari pengetahuan model, belum diverifikasi)', lang: 'id' },
+		{ key: 'meaningsFull', label: 'Padanan Indonesia (belum diverifikasi)', lang: 'id' },
 		{
 			key: 'description',
 			label: 'Deskripsi (bukan padanan, dari pengetahuan model, belum diverifikasi)',
@@ -49,6 +54,8 @@
 		{ key: 'src', label: 'Sumber daftar kata', lang: 'id' }
 	] as const;
 	const details = [
+		{ key: 'auditedGloss', label: 'Padanan Indonesia (draf kamus oleh Codex)', lang: 'id' },
+		...auditDetails,
 		{ key: 'tr', label: 'Transliterasi (Wiktionary)', lang: 'id' },
 		{ key: 'nonPast', label: 'Mudhari‘', lang: 'ar' },
 		{ key: 'masdar', label: 'Mashdar', lang: 'ar' },
@@ -84,8 +91,9 @@
 	<ReferenceSubnav current="fiil" />
 	<p class="max-w-[65ch] rounded-xl bg-accent p-4 text-accent-foreground">
 		<span class="font-semibold">Perhatikan.</span> Transliterasi, mudhari, mashdar, dan arti Inggris
-		diambil apa adanya dari Wiktionary. Arti Indonesia adalah terjemahan dari arti Inggris itu dan
-		belum ditinjau guru. Google Translate hanya pembanding dan sering keliru pada kata kerja.
+		diambil apa adanya dari Wiktionary. Padanan Indonesia berasal dari glos Inggris, lema varian
+		atau kamus Arab yang tercantum pada rincian kata. Padanan ini menunggu tinjauan pengajar. Google
+		Translate hanya pembanding dan sering keliru pada kata kerja.
 		{data.translated.toLocaleString('id')} dari {data.total.toLocaleString('id')} kata sudah punya arti
 		Indonesia.
 	</p>
@@ -115,13 +123,13 @@
 			</h2>
 			<p class="max-w-[65ch] rounded-xl bg-accent p-4 text-accent-foreground">
 				<span class="font-semibold">Belum diverifikasi.</span>
-				{data.recall.rows.length.toLocaleString('id')} kata kerja ini hanya ada di daftar kata Qutrub
-				dan Arramooz, tanpa arti, transliterasi, mudhari, atau mashdar. Arti Indonesia berasal dari pengetahuan
-				model Claude, bukan dari kamus: {data.recall.counts.padanan.toLocaleString('id')}
-				padanan, {data.recall.counts.deskripsi.toLocaleString('id')} deskripsi, dan
-				{data.recall.counts.unknown.toLocaleString('id')} yang artinya belum diketahui. Pada uji dengan
-				kata yang jawabannya diketahui, sekitar 86% benar; pada kata langka angkanya diperkirakan lebih
-				rendah. Daftar kata tersebut berlisensi GPLv2.
+				{data.recall.rows.length.toLocaleString('id')} kata kerja berasal dari daftar morfologi Qutrub
+				dan Arramooz. Rincian tiap kata mencantumkan asal artinya. Ada {data.recall.counts.padanan.toLocaleString(
+					'id'
+				)} padanan,
+				{data.recall.counts.deskripsi.toLocaleString('id')} deskripsi, dan
+				{data.recall.counts.unknown.toLocaleString('id')} entri yang masih memerlukan penelusuran. Daftar
+				kata tersebut berlisensi GPLv2.
 			</p>
 			<details class="rounded-xl border p-4">
 				<summary class="min-h-11 cursor-pointer py-2 font-semibold text-primary">

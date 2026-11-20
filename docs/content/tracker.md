@@ -30,6 +30,10 @@ Daftar setiap pelajaran, ID stabil, kompetensi, bahan bacaan, rujukan, dan statu
 | U1 · Latihan makna “-ku”     | 3 🟡  | Tinjau alasan dan contoh transfer bersama pengajar bahasa Arab dan ustadz. Uji seberapa mudah pelajar mencoba soal baru sesudah membaca alasan, sesuai [roadmap](../curriculum/ROADMAP.md).                               |
 | U3 · Glosarium istilah dasar | 3 🟡  | Tinjau isim, kalimah, jumlah, fi‘il, harf, nahwu, dan sharaf bersama pengajar. Uji apakah pelajar dapat menjelaskan beda kalimah dan kalimat lalu kembali ke contoh. [Rencana pilot](../plans/glosarium-istilah-arab.md). |
 
+## Kamus Arab–Indonesia
+
+Draf padanan verba, varian, dan kata tugas menunggu peninjauan model independen dan pengajar bahasa Arab. [Progres, data sumber dan kasus prioritas](../data/audit-arti-arab-indonesia.md).
+
 ## Foundations
 
 | ID   | Item                                                             | Stage / status | Owner          | Blocker / next action                                                                                                                                                                                                                                                                                                                                                                                        |

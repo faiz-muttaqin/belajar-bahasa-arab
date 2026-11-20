@@ -12,7 +12,7 @@
 	 * focus return are built in) with the example and notes. A switch hides the meanings to
 	 * practise recall. Without JavaScript the example is printed under each tile.
 	 */
-	type Detail = { key: string; label: string; lang: 'ar' | 'id' };
+	type Detail = { key: string; label: string; lang: 'ar' | 'id' | 'link' };
 	type Group = { title: string; ids: readonly string[] };
 
 	let {
@@ -184,7 +184,14 @@
 				{#if selected.cells[detail.key]}
 					<div>
 						<h3 class="text-sm font-semibold text-muted-foreground">{detail.label}</h3>
-						{#if detail.lang === 'ar'}
+						{#if detail.lang === 'link'}
+							<a
+								class="text-primary underline"
+								href={selected.cells[detail.key]}
+								target="_blank"
+								rel="noreferrer">Buka rujukan arti</a
+							>
+						{:else if detail.lang === 'ar'}
 							<ArabicText text={selected.cells[detail.key] ?? ''} />
 						{:else}
 							<p class="text-pretty">{selected.cells[detail.key]}</p>

@@ -7,7 +7,7 @@ import type { SharafEntry } from './lexicon.js';
  * data/sharaf-upstream/. See docs/data/sharaf-full-import.md.
  */
 export const BULK_SHARAF_PATH = 'data/sharaf-lexicon-v1.json';
-export const BULK_SHARAF_REVISION = 'q400bdc3-a-d5ff8ffe-sf72f8b';
+export const BULK_SHARAF_REVISION = 'q400bdc3-a-d5ff8ffe-sf72f8b-id1';
 export const BULK_SHARAF_GLOSS_MISSING = 'Arti Indonesia belum tersedia';
 
 type BulkVerb = [
@@ -25,7 +25,10 @@ type BulkFunctionWord = [
 	unvocalized: string,
 	sourceType: string,
 	sourceClass: string,
-	sourceLine: number
+	sourceLine: number,
+	meaning?: string,
+	source?: string,
+	note?: string
 ];
 
 export type BulkSharafLexicon = {
@@ -76,7 +79,8 @@ export function isBulkSharafLexicon(value: unknown): value is BulkSharafLexicon 
 	return data.words.every(
 		(row) =>
 			Array.isArray(row) &&
-			row.length === 5 &&
+			(row.length === 5 ||
+				(row.length === 8 && row.slice(5).every((value) => typeof value === 'string'))) &&
 			row.slice(0, 4).every((value) => typeof value === 'string') &&
 			Number.isInteger(row[4])
 	);
@@ -114,11 +118,15 @@ export function mergeBulkSharaf(
 				])
 			)
 	);
-	const wordKeys = new Set(
-		firstParty
-			.filter((entry) => entry.partOfSpeech !== 'verb')
-			.map((entry) => entry.lemma.normalize('NFC'))
+	const wordKeys = new Set<string>();
+	const stagedWords = new Map(
+		rows.flatMap((entry, index) =>
+			entry.id.startsWith('ar-function-') && entry.meaning === BULK_SHARAF_GLOSS_MISSING
+				? [[entry.lemma.normalize('NFC'), index] as const]
+				: []
+		)
 	);
+
 	for (const [lemma, root, bab, qTrans, aTrans, qIds, aIds] of bulk.verbs) {
 		const key = JSON.stringify([lemma, root, bab]);
 		if (verbKeys.has(key)) continue;
@@ -155,23 +163,32 @@ export function mergeBulkSharaf(
 	// Original labels matter: an Arabic pronoun (ضمير) is an ism, not a fi'il.
 	// Some stopwords files also contain conjugated auxiliaries or alphabet signs;
 	// these are kept in the raw archive but not misclassified in the glossary.
-	for (const [lemma, , type, originalClass, line] of bulk.words) {
+	for (const [lemma, , type, originalClass, line, meaning, source, note] of bulk.words) {
 		const partOfSpeech =
 			type === 'حرف' ? 'particle' : ['اسم', 'ضمير', 'اسم فعل'].includes(type) ? 'noun' : undefined;
-		if (!partOfSpeech || wordKeys.has(lemma.normalize('NFC'))) continue;
-		wordKeys.add(lemma.normalize('NFC'));
-		rows.push({
-			id: `bulk-stopwords-${line}`,
+		if (!partOfSpeech) continue;
+		const wordKey = JSON.stringify([lemma.normalize('NFC'), type, originalClass, meaning]);
+		if (wordKeys.has(wordKey)) continue;
+		wordKeys.add(wordKey);
+		const stagedIndex = stagedWords.get(lemma.normalize('NFC'));
+		const draft: SharafEntry = {
+			id: stagedIndex === undefined ? `bulk-stopwords-${line}` : rows[stagedIndex]!.id,
 			lemma,
-			meaning: BULK_SHARAF_GLOSS_MISSING,
+			meaning: meaning ?? BULK_SHARAF_GLOSS_MISSING,
+			meaningSource: meaning ? 'draf-kamus' : undefined,
 			partOfSpeech,
 			forms: [],
 			babSelection: 'not-applicable',
-			formBehavior: 'unverified',
-			explanation: `Kelas kata menurut Arabic Stopwords: ${type} / ${originalClass}. Baris sumber ${line}. Tidak mempunyai nomor bab tashrif verba.`,
-			sources: [stopwordsUrl],
+			formBehavior: stagedIndex === undefined ? 'unverified' : rows[stagedIndex]!.formBehavior,
+			explanation: `Kelas kata menurut Arabic Stopwords: ${type} / ${originalClass}. Baris sumber ${line}. Draf arti Indonesia menunggu tinjauan.${note ? ' ' + note : ''}`,
+			sources: source ? [stopwordsUrl, source] : [stopwordsUrl],
 			reviewStatus: 'draft'
-		});
+		};
+		if (stagedIndex === undefined) rows.push(draft);
+		else {
+			rows[stagedIndex] = draft;
+			stagedWords.delete(lemma.normalize('NFC'));
+		}
 	}
 
 	let byBulk = mergedCache.get(firstParty);

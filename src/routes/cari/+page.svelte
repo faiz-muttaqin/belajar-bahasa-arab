@@ -11,8 +11,11 @@
 		catalogState,
 		bulkSharafState,
 		prepareCatalog,
-		prepareBulkSharaf
+		prepareBulkSharaf,
+		enrichmentState,
+		prepareEnrichment
 	} from '#lib/catalog/sync.svelte.js';
+	import { mergeEnrichment } from '#lib/domain/sharaf/enrichment.js';
 	import { mergeBulkSharaf } from '#lib/domain/sharaf/bulk.js';
 	import {
 		hasArabic,
@@ -28,7 +31,10 @@
 	let visible = $state(20);
 	const options = Object.entries(searchKinds) as [SearchKind, string][];
 	let allSharaf = $derived(
-		mergeBulkSharaf(catalogState.catalog?.sharaf ?? [], bulkSharafState.data)
+		mergeEnrichment(
+			mergeBulkSharaf(catalogState.catalog?.sharaf ?? [], bulkSharafState.data),
+			enrichmentState.data
+		)
 	);
 	let index = $derived(catalogState.catalog ? indexCatalog(catalogState.catalog, allSharaf) : []);
 	let results = $derived(searchCatalog(index, query, category === 'all' ? undefined : category));
@@ -40,6 +46,7 @@
 		if (selected) category = selected[0];
 		void prepareCatalog();
 		void prepareBulkSharaf();
+		void prepareEnrichment();
 	});
 </script>
 
