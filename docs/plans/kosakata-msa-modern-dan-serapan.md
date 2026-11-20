@@ -67,3 +67,7 @@ Rujukan awal (untuk diaudit, bukan lisensi impor otomatis):
 ## P6 / LM-03 — batch 1 (20 November 2026)
 
 Menambahkan delapan entri draf dengan 31 klaim parsial (bentuk, makna, POS; tujuh juga jenis pembentukan) dari bagian Arabic pada halaman lema Wiktionary. Lima istilah media/teknologi dan tiga dokumen/administrasi; jumlah katalog 165, dengan 13 audit parsial. Register, koroborasi independen, audit 152 lema awal yang belum diperiksa, dedup silang katalog, LM-04 dan LM-05 tetap terbuka. Tidak ada promosi research_verified, impor definisi, atau klaim frekuensi.
+
+## P6 / LM-03 — batch 2 (20 November 2026)
+
+Tambah 18 nomina dengan makna terpilih: delapan dokumen/administrasi, lima pendidikan dan lima layanan publik/pemerintahan. Ada 72 klaim parsial baru (54 lema, makna dan POS; 17 jamak; satu serapan Italia). Bentuk kasus nominatif merupakan editorial; register dan bukti independen belum diperiksa. Jamak موعد tidak diterbitkan karena bentuk pada sumber perlu diperiksa lagi. Jumlah katalog 183 entri, 31 audit parsial, 12 tema. LM-02 masih punya 152 lema awal yang belum diaudit; LM-04/05, dedup lintas katalog dan ekspansi domain lain tetap terbuka.
