@@ -39,8 +39,8 @@
 
 <p class="mt-4 text-sm text-muted-foreground">
 	Indeks awal keluarga ك ت ب; belum kamus lengkap. Semua entri masih draf. Sebagian register belum
-	ditentukan, dan hubungan akar tidak berarti maknanya sama. Rujukan: kontributor English
-	Wiktionary (CC BY-SA 4.0 / GFDL); glos Indonesia ditulis untuk proyek ini.
+	ditentukan, dan hubungan akar tidak berarti maknanya sama. Rujukan: kontributor English Wiktionary
+	(CC BY-SA 4.0 / GFDL); glos Indonesia ditulis untuk proyek ini.
 </p>
 <section class="mt-8 space-y-4" aria-label="Cari kamus">
 	<label for="dictionary-query" class="block font-medium">Lema, akar, bentuk, atau arti</label>
@@ -49,13 +49,13 @@
 		type="search"
 		dir="auto"
 		bind:value={query}
-		class="min-h-12 w-full rounded-xl border bg-card px-4"
+		class="bg-card min-h-12 w-full rounded-xl border px-4"
 		placeholder="كتب, kantor, buku"
 	/>
 	<div class="flex flex-wrap gap-4">
 		<label class="flex flex-col gap-1 text-sm">
 			Kelas kata
-			<select bind:value={pos} class="min-h-11 rounded-lg border bg-card px-3">
+			<select bind:value={pos} class="bg-card min-h-11 rounded-lg border px-3">
 				<option value="all">Semua</option>
 				<option value="noun">Nomina</option>
 				<option value="verb">Fi’il</option>
@@ -63,7 +63,7 @@
 		</label>
 		<label class="flex flex-col gap-1 text-sm">
 			Register
-			<select bind:value={register} class="min-h-11 rounded-lg border bg-card px-3">
+			<select bind:value={register} class="bg-card min-h-11 rounded-lg border px-3">
 				<option value="all">Semua</option>
 				<option value="msa">MSA</option>
 				<option value="classical">Klasik</option>
@@ -80,7 +80,7 @@
 		<p>Tidak ada dalam pilot ini. Coba kata lain atau hapus filter.</p>
 	{/if}
 	{#each results as entry (entry.id)}
-		<article id={entry.id} class="scroll-mt-24 rounded-xl border bg-card p-5">
+		<article id={entry.id} class="bg-card scroll-mt-24 rounded-xl border p-5">
 			<h3 class="text-xl font-semibold"><ArabicText text={entry.lemma} size="block" /></h3>
 			<p class="text-sm text-muted-foreground">
 				{labels[entry.pos]} · Draf{entry.bab ? ' · Bab ' + entry.bab.number : ''}
