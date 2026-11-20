@@ -61,7 +61,9 @@ describe('P5 reviewed integration (synthetic P4 snapshot)', () => {
 	});
 
 	it('rejects dialects, ambiguous records and unsupported MSA promotion', () => {
-		expect(() => adaptP4Snapshot({ ...snapshot, entries: [{ ...row, bucket: 'dialect' }] }, [decision])).toThrow();
+		expect(() =>
+			adaptP4Snapshot({ ...snapshot, entries: [{ ...row, bucket: 'dialect' }] }, [decision])
+		).toThrow();
 		expect(() => adaptP4Snapshot({ ...snapshot, entries: [row, row] }, [decision])).toThrow();
 		expect(() => adaptP4Snapshot(snapshot, [{ ...decision, register: 'msa' }])).toThrow();
 	});
@@ -81,8 +83,12 @@ describe('P5 reviewed integration (synthetic P4 snapshot)', () => {
 		const separate = adaptP4Snapshot(snapshot, [{ ...decision, entryId: 'other-book' }]);
 		const result = reconcileDictionary(dictionaryPilot, separate);
 		expect(result).toHaveLength(6);
-		expect(duplicateCandidates(result).some((group) => group.ids.includes('other-book'))).toBe(true);
+		expect(duplicateCandidates(result).some((group) => group.ids.includes('other-book'))).toBe(
+			true
+		);
 		const conflict = adaptP4Snapshot(snapshot, [{ ...decision, glossId: 'notebook' }]);
-		expect(() => reconcileDictionary(dictionaryPilot, conflict)).toThrow('Unresolved sense conflict');
+		expect(() => reconcileDictionary(dictionaryPilot, conflict)).toThrow(
+			'Unresolved sense conflict'
+		);
 	});
 });

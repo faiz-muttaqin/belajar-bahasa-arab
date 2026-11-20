@@ -22,10 +22,9 @@ function add(index: Map<string, Set<number>>, key: string, shard: number) {
 
 function serialize(index: Map<string, Set<number>>) {
 	return Object.fromEntries(
-		[...index].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)).map(([key, ids]) => [
-			key,
-			[...ids].sort((a, b) => a - b)
-		])
+		[...index]
+			.sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+			.map(([key, ids]) => [key, [...ids].sort((a, b) => a - b)])
 	);
 }
 
@@ -37,8 +36,13 @@ export function buildDictionaryShards(
 ) {
 	const issues = validateDictionary(entries);
 	if (issues.length) throw new Error(issues.join('\n'));
-	if (!/^[a-f0-9]{16,64}$/.test(revision) || !Number.isSafeInteger(shardSize) || shardSize < 1 ||
-		shardSize > 512) throw new Error('Invalid shard configuration');
+	if (
+		!/^[a-f0-9]{16,64}$/.test(revision) ||
+		!Number.isSafeInteger(shardSize) ||
+		shardSize < 1 ||
+		shardSize > 512
+	)
+		throw new Error('Invalid shard configuration');
 	const ordered = [...entries].sort((a, b) => {
 		const x = normalizeArabicSearch(a.lemma);
 		const y = normalizeArabicSearch(b.lemma);
@@ -84,7 +88,7 @@ export function buildDictionaryShards(
 export function selectDictionaryShards(manifest: DictionaryManifest, query: string): number[] {
 	const key = normalizeArabicSearch(query).slice(0, 3);
 	if (!key) return [];
-	return Object.hasOwn(manifest.prefix, key) ? manifest.prefix[key] ?? [] : [];
+	return Object.hasOwn(manifest.prefix, key) ? (manifest.prefix[key] ?? []) : [];
 }
 
 /** Loader caches successful and in-flight requests; errors are retryable. */
@@ -93,16 +97,25 @@ export function createDictionaryLoader(read: (path: string) => Promise<unknown>)
 	const cache = new Map<number, Promise<DictionaryEntry[]>>();
 	function getManifest() {
 		if (!manifestPromise) {
-			manifestPromise = read('manifest-v1.json').then((raw) => {
-				const value = raw as DictionaryManifest;
-				if (!value || value.schema !== 1 || !/^[a-f0-9]{16,64}$/.test(value.revision) ||
-					!Number.isSafeInteger(value.shardCount) || value.shardCount < 0 ||
-					!value.prefix || !value.roots) throw new Error('Invalid dictionary manifest');
-				return value;
-			}).catch((error: unknown) => {
-				manifestPromise = undefined;
-				throw error;
-			});
+			manifestPromise = read('manifest-v1.json')
+				.then((raw) => {
+					const value = raw as DictionaryManifest;
+					if (
+						!value ||
+						value.schema !== 1 ||
+						!/^[a-f0-9]{16,64}$/.test(value.revision) ||
+						!Number.isSafeInteger(value.shardCount) ||
+						value.shardCount < 0 ||
+						!value.prefix ||
+						!value.roots
+					)
+						throw new Error('Invalid dictionary manifest');
+					return value;
+				})
+				.catch((error: unknown) => {
+					manifestPromise = undefined;
+					throw error;
+				});
 		}
 		return manifestPromise;
 	}
@@ -111,13 +124,15 @@ export function createDictionaryLoader(read: (path: string) => Promise<unknown>)
 			throw new Error('Invalid dictionary shard ID');
 		let pending = cache.get(id);
 		if (!pending) {
-			pending = read(manifest.revision + '-' + id + '.json').then((raw) => {
-				if (!Array.isArray(raw)) throw new Error('Invalid dictionary shard');
-				return raw as DictionaryEntry[];
-			}).catch((error: unknown) => {
-				cache.delete(id);
-				throw error;
-			});
+			pending = read(manifest.revision + '-' + id + '.json')
+				.then((raw) => {
+					if (!Array.isArray(raw)) throw new Error('Invalid dictionary shard');
+					return raw as DictionaryEntry[];
+				})
+				.catch((error: unknown) => {
+					cache.delete(id);
+					throw error;
+				});
 			cache.set(id, pending);
 		}
 		return pending;

@@ -67,20 +67,31 @@ function validSourceUrl(sourceId: ComparisonEvidence['sourceId'], raw: string): 
 		const url = new URL(raw);
 		if (url.protocol !== 'https:' || url.username || url.password) return false;
 		if (sourceId === 'wiktionary')
-			return url.hostname === 'en.wiktionary.org' && /^\/wiki\/.+/.test(url.pathname) &&
-				url.hash === '#Arabic';
+			return (
+				url.hostname === 'en.wiktionary.org' &&
+				/^\/wiki\/.+/.test(url.pathname) &&
+				url.hash === '#Arabic'
+			);
 		if (sourceId === 'lane')
-			return url.hostname === 'www.arabic-english-dictionary.com' &&
-				url.pathname.startsWith('/content/') && url.pathname.length > 9;
-		return sourceId === 'wasit' && url.hostname === 'www.arabicacademy.gov.eg' && url.pathname.length > 5;
+			return (
+				url.hostname === 'www.arabic-english-dictionary.com' &&
+				url.pathname.startsWith('/content/') &&
+				url.pathname.length > 9
+			);
+		return (
+			sourceId === 'wasit' && url.hostname === 'www.arabicacademy.gov.eg' && url.pathname.length > 5
+		);
 	} catch {
 		return false;
 	}
 }
 
 function validDate(value: string): boolean {
-	return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) &&
-		new Date(value).toISOString().slice(0, 10) === value;
+	return (
+		/^\d{4}-\d{2}-\d{2}$/.test(value) &&
+		!Number.isNaN(Date.parse(value)) &&
+		new Date(value).toISOString().slice(0, 10) === value
+	);
 }
 
 function validEvidence(evidence: Evidence): boolean {
@@ -92,7 +103,10 @@ function validEvidence(evidence: Evidence): boolean {
 	);
 }
 
-export function validateDictionary(entries: readonly DictionaryEntry[], knownIds: ReadonlySet<string> = new Set()): string[] {
+export function validateDictionary(
+	entries: readonly DictionaryEntry[],
+	knownIds: ReadonlySet<string> = new Set()
+): string[] {
 	const errors: string[] = [];
 	const ids = new Set(entries.map((entry) => entry.id));
 	if (ids.size !== entries.length) errors.push('Duplicate entry ID');
@@ -110,15 +124,31 @@ export function validateDictionary(entries: readonly DictionaryEntry[], knownIds
 				if (!validEvidence(evidence)) fail('Invalid supporting evidence');
 			}
 			for (const comparison of sense.comparisons ?? []) {
-				if (!validSourceUrl(comparison.sourceId, comparison.url) || !comparison.locator.trim() ||
-					!validDate(comparison.checkedOn) || !['supports', 'partial', 'conflicts', 'not-found'].includes(comparison.outcome))
+				if (
+					!validSourceUrl(comparison.sourceId, comparison.url) ||
+					!comparison.locator.trim() ||
+					!validDate(comparison.checkedOn) ||
+					!['supports', 'partial', 'conflicts', 'not-found'].includes(comparison.outcome)
+				)
 					fail('Invalid comparison evidence');
 			}
 			for (const origin of sense.upstream ?? []) {
-				if (origin.sourceId !== 'wiktionary' || !validDate(origin.snapshot) ||
-					![origin.sha256, origin.lemmaId, origin.senseId].every((id) => /^[a-f0-9]{64}$/.test(id)) ||
-					!origin.pos.trim() || !origin.locations.length || origin.locations.some((loc) =>
-						!Number.isSafeInteger(loc.line) || loc.line < 1 || !Number.isSafeInteger(loc.senseIndex) || loc.senseIndex < 1))
+				if (
+					origin.sourceId !== 'wiktionary' ||
+					!validDate(origin.snapshot) ||
+					![origin.sha256, origin.lemmaId, origin.senseId].every((id) =>
+						/^[a-f0-9]{64}$/.test(id)
+					) ||
+					!origin.pos.trim() ||
+					!origin.locations.length ||
+					origin.locations.some(
+						(loc) =>
+							!Number.isSafeInteger(loc.line) ||
+							loc.line < 1 ||
+							!Number.isSafeInteger(loc.senseIndex) ||
+							loc.senseIndex < 1
+					)
+				)
 					fail('Invalid snapshot provenance');
 			}
 		}

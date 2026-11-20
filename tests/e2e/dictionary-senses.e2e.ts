@@ -29,8 +29,8 @@ test('dictionary requests the generated manifest only after search', async ({ pa
 	await page.goto('/sharaf/kamus/');
 	await expect(page.getByRole('heading', { name: '5 lema' })).toBeVisible();
 	expect(requested).toBe(false);
-	const manifest = page.waitForResponse((response) =>
-		response.url().includes('/dictionary-generated/manifest-v1.json') && response.ok()
+	const manifest = page.waitForResponse(
+		(response) => response.url().includes('/dictionary-generated/manifest-v1.json') && response.ok()
 	);
 	await page.getByRole('searchbox').fill('kantor');
 	await manifest;

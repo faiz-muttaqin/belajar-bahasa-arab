@@ -12,4 +12,11 @@ mkdirSync(output, { recursive: true });
 for (const [id, shard] of shards.entries())
 	writeFileSync(output + '/' + revision + '-' + id + '.json', JSON.stringify(shard) + '\n');
 writeFileSync(output + '/manifest-v1.json', JSON.stringify(manifest) + '\n');
-console.log('Dictionary index:', manifest.total, 'lemmas;', manifest.shardCount, 'shards; revision', revision);
+console.log(
+	'Dictionary index:',
+	manifest.total,
+	'lemmas;',
+	manifest.shardCount,
+	'shards; revision',
+	revision
+);

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
+	import { CATALOG_PATH } from '#lib/catalog/types.js';
 	import { createDictionaryLoader } from '#lib/domain/dictionary/shards.js';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
@@ -19,7 +20,14 @@
 	let loadFailed = $state(false);
 	let loading = $state(false);
 	const loader = createDictionaryLoader(async (path) => {
-		const response = await fetch(base + '/data/dictionary-generated/' + path);
+		const url = new URL(
+			'dictionary-generated/' + path,
+			new URL(resolve(CATALOG_PATH), location.href)
+		);
+		const response = await fetch(url, {
+			cache: path === 'manifest-v1.json' ? 'no-cache' : 'default',
+			signal: AbortSignal.timeout(15_000)
+		});
 		if (!response.ok) throw new Error('Dictionary asset unavailable');
 		return response.json();
 	});
@@ -33,13 +41,17 @@
 		loadFailed = false;
 		loading = !!requested.trim();
 		if (requested.trim()) {
-			void loader.search(requested).then((entries) => {
-				if (current) loaded = entries;
-			}).catch(() => {
-				if (current) loadFailed = true;
-			}).finally(() => {
-				if (current) loading = false;
-			});
+			void loader
+				.search(requested)
+				.then((entries) => {
+					if (current) loaded = entries;
+				})
+				.catch(() => {
+					if (current) loadFailed = true;
+				})
+				.finally(() => {
+					if (current) loading = false;
+				});
 		}
 		return () => {
 			current = false;
@@ -111,7 +123,9 @@
 	{#if loading}
 		<p class="text-sm text-muted-foreground" role="status">Memuat indeks kamus…</p>
 	{:else if loadFailed}
-		<p class="text-sm text-muted-foreground" role="status">Indeks belum tersedia; menampilkan pilot lokal.</p>
+		<p class="text-sm text-muted-foreground" role="status">
+			Indeks belum tersedia; menampilkan pilot lokal.
+		</p>
 	{/if}
 	{#if results.length === 0}
 		<p>Tidak ada dalam pilot ini. Coba kata lain atau hapus filter.</p>

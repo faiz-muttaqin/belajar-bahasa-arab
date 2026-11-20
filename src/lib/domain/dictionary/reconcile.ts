@@ -1,8 +1,9 @@
 import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
 import { validateDictionary, type DictionaryEntry, type DictionarySense } from './senses.js';
 
-const unique = <T>(items: readonly T[]): T[] =>
-	[...new Map(items.map((item) => [JSON.stringify(item), item])).values()];
+const unique = <T>(items: readonly T[]): T[] => [
+	...new Map(items.map((item) => [JSON.stringify(item), item])).values()
+];
 
 /** Proposals only. No automatic merge by Arabic spelling, root or translated gloss. */
 export function duplicateCandidates(entries: readonly DictionaryEntry[]) {
@@ -19,9 +20,12 @@ export function duplicateCandidates(entries: readonly DictionaryEntry[]) {
 }
 
 function mergeSense(old: DictionarySense, next: DictionarySense): DictionarySense {
-	if (old.glossId !== next.glossId || old.register !== next.register ||
+	if (
+		old.glossId !== next.glossId ||
+		old.register !== next.register ||
 		(next.definitionId && old.definitionId !== next.definitionId) ||
-		(next.example && JSON.stringify(old.example) !== JSON.stringify(next.example)))
+		(next.example && JSON.stringify(old.example) !== JSON.stringify(next.example))
+	)
 		throw new Error('Unresolved sense conflict: ' + old.id);
 	return {
 		...old,
@@ -40,7 +44,10 @@ export function reconcileDictionary(
 	existing: readonly DictionaryEntry[],
 	incoming: readonly DictionaryEntry[]
 ): DictionaryEntry[] {
-	const errors = [...validateDictionary(existing), ...validateDictionary(incoming, new Set(existing.map((entry) => entry.id)))];
+	const errors = [
+		...validateDictionary(existing),
+		...validateDictionary(incoming, new Set(existing.map((entry) => entry.id)))
+	];
 	if (errors.length) throw new Error(errors.join('\n'));
 	const entries = new Map(existing.map((entry) => [entry.id, entry]));
 	const incomingIds = new Set<string>();
@@ -54,9 +61,11 @@ export function reconcileDictionary(
 		}
 		if (old.lemma.normalize('NFC') !== next.lemma.normalize('NFC') || old.pos !== next.pos)
 			throw new Error('Unresolved lemma conflict: ' + next.id);
-		if ((old.root && next.root && old.root.ar !== next.root.ar) ||
+		if (
+			(old.root && next.root && old.root.ar !== next.root.ar) ||
 			(old.gender && next.gender && old.gender.value !== next.gender.value) ||
-			(old.bab && next.bab && old.bab.number !== next.bab.number))
+			(old.bab && next.bab && old.bab.number !== next.bab.number)
+		)
 			throw new Error('Unresolved morphology conflict: ' + next.id);
 		const senses = new Map(old.senses.map((sense) => [sense.id, sense]));
 		for (const sense of next.senses) {
@@ -81,7 +90,7 @@ export function reconcileDictionary(
 				for (const [key, owner] of [
 					['lemma:' + source.lemmaId, entry.id],
 					['sense:' + source.senseId, entry.id + ':' + sense.id]
-				]) {
+				] as const) {
 					const previous = aliases.get(key);
 					if (previous && previous !== owner) throw new Error('Source identity conflict: ' + key);
 					aliases.set(key, owner);

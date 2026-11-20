@@ -10,8 +10,14 @@ describe('P5 sharded search', () => {
 		expect(shards).toHaveLength(5);
 		for (const query of ['كتب', 'كُتُب', 'مَكَاتِب', 'kantor', 'tulis', 'perpus', 'x']) {
 			const selected = selectDictionaryShards(manifest, query).flatMap((id) => shards[id] ?? []);
-			const ids = searchDictionary(selected, query).map((entry) => entry.id).sort();
-			expect(ids).toEqual(searchDictionary(dictionaryPilot, query).map((entry) => entry.id).sort());
+			const ids = searchDictionary(selected, query)
+				.map((entry) => entry.id)
+				.sort();
+			expect(ids).toEqual(
+				searchDictionary(dictionaryPilot, query)
+					.map((entry) => entry.id)
+					.sort()
+			);
 		}
 	});
 	it('loads only on search, caches requests and completes attested root families', async () => {
