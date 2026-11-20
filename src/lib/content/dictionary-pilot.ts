@@ -68,7 +68,16 @@ export const dictionaryPilot: readonly DictionaryEntry[] = [
 			sense('مكتب', 'office', 'kantor', 'Noun, office'),
 			{
 				...sense('مكتب', 'school', 'sekolah dasar tradisional', 'Noun, historical school'),
-				register: 'historical'
+				register: 'historical',
+				comparisons: [
+					{
+						sourceId: 'lane',
+						url: 'https://www.arabic-english-dictionary.com/content/22_k/023_ktb',
+						locator: 'كتب > مَكْتَب, historical place of learning to write',
+						checkedOn: '2026-11-20',
+						outcome: 'supports'
+					}
+				]
 			}
 		],
 		forms: [form('مكتب', 'مَكَاتِب', 'plural', 'Noun, headword plural')],

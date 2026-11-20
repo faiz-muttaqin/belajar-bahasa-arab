@@ -40,7 +40,7 @@ export function reconcileDictionary(
 	existing: readonly DictionaryEntry[],
 	incoming: readonly DictionaryEntry[]
 ): DictionaryEntry[] {
-	const errors = validateDictionary(existing);
+	const errors = [...validateDictionary(existing), ...validateDictionary(incoming, new Set(existing.map((entry) => entry.id)))];
 	if (errors.length) throw new Error(errors.join('\n'));
 	const entries = new Map(existing.map((entry) => [entry.id, entry]));
 	const incomingIds = new Set<string>();

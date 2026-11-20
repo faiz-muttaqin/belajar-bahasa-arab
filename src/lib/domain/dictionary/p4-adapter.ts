@@ -76,7 +76,7 @@ export function adaptP4Snapshot(snapshot: P4Snapshot, decisions: readonly P4Deci
 		seen.add(key);
 		const row = matches[0]!;
 		const pos = Object.hasOwn(POS, row.pos) ? POS[row.pos] : undefined;
-		if (row.bucket !== 'candidate' || !pos || row.canonical.length > 1 || !row.glosses.length ||
+		if (row.bucket !== 'candidate' || !pos || row.canonical.length !== 1 || row.canonical[0] !== row.ar || !row.glosses.length ||
 			!row.provenance.length) throw new Error('Ineligible P4 candidate: ' + key);
 		// A missing source tag is not proof of MSA. Require an independent audit to promote it.
 		if ((row.register === 'unspecified' && decision.register !== 'unspecified') ||

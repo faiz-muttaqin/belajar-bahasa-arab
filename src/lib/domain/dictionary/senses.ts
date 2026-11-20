@@ -72,7 +72,7 @@ function validSourceUrl(sourceId: ComparisonEvidence['sourceId'], raw: string): 
 		if (sourceId === 'lane')
 			return url.hostname === 'www.arabic-english-dictionary.com' &&
 				url.pathname.startsWith('/content/') && url.pathname.length > 9;
-		return url.hostname === 'www.arabicacademy.gov.eg' && url.pathname.length > 5;
+		return sourceId === 'wasit' && url.hostname === 'www.arabicacademy.gov.eg' && url.pathname.length > 5;
 	} catch {
 		return false;
 	}
@@ -92,7 +92,7 @@ function validEvidence(evidence: Evidence): boolean {
 	);
 }
 
-export function validateDictionary(entries: readonly DictionaryEntry[]): string[] {
+export function validateDictionary(entries: readonly DictionaryEntry[], knownIds: ReadonlySet<string> = new Set()): string[] {
 	const errors: string[] = [];
 	const ids = new Set(entries.map((entry) => entry.id));
 	if (ids.size !== entries.length) errors.push('Duplicate entry ID');
@@ -139,7 +139,7 @@ export function validateDictionary(entries: readonly DictionaryEntry[]): string[
 		}
 		for (const relation of entry.relations ?? []) {
 			if (
-				!ids.has(relation.targetId) ||
+				(!ids.has(relation.targetId) && !knownIds.has(relation.targetId)) ||
 				relation.targetId === entry.id ||
 				!validEvidence(relation.evidence)
 			)
