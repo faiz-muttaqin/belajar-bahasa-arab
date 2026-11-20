@@ -350,9 +350,10 @@
 					<fieldset class="space-y-2">
 						<legend class="text-sm font-medium">Huruf Arab</legend>
 						<p class="text-sm text-muted-foreground">
-							Bandingkan bentuk harakat (tanda baca vokal) pada setiap huruf.
+							Bandingkan bentuk harakat (tanda baca vokal) pada setiap huruf, termasuk ukuran kecil
+						untuk tabel dan kamus.
 						</p>
-						<div class="grid gap-2 sm:grid-cols-3">
+						<div class="grid gap-2 sm:grid-cols-2">
 							{#each Object.entries(ARABIC_FONTS) as [id, font] (id)}
 								<label
 									class="flex cursor-pointer flex-col gap-1 rounded-lg border border-border bg-card p-3 has-checked:border-primary has-checked:ring-2 has-checked:ring-primary has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ring"
@@ -371,6 +372,8 @@
 										{font.label}
 									</span>
 									<span class="text-right text-3xl"><ArabicSpecimen family={font.stack} /></span>
+									<span class="text-right text-sm"><ArabicSpecimen family={font.stack} /></span>
+									<span class="text-right text-lg"><ArabicSpecimen family={font.stack} /></span>
 								</label>
 							{/each}
 						</div>
