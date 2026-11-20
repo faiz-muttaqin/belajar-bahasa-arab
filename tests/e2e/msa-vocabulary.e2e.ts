@@ -10,7 +10,7 @@ test('MSA collection is independently selectable without changing Quran and pray
 
 	const section = page.locator('#msa');
 	await expect(section.getByRole('heading', { name: 'Kosakata umum MSA' })).toBeVisible();
-	await expect(section.locator('li[id^="kata-msa-"]')).toHaveCount(183);
+	await expect(section.locator('li[id^="kata-msa-"]')).toHaveCount(200);
 	await expect(page.getByRole('heading', { name: 'Kosakata Al-Qur’an' })).toHaveCount(0);
 	await expect(page.getByRole('heading', { name: 'Kosakata bacaan shalat' })).toHaveCount(0);
 	await filters.getByRole('button', { name: /^All/ }).click();
@@ -29,7 +29,7 @@ test('word class and semantic topic filters keep adjectives separate from nouns'
 
 	await section.getByRole('button', { name: 'Isim · kata sifat' }).click();
 	await expect(section.locator('li[id^="kata-msa-"]')).toHaveCount(34);
-	await expect(section.getByText(/34 dari 183 kata cocok/)).toBeVisible();
+	await expect(section.getByText(/34 dari 200 kata cocok/)).toBeVisible();
 	await section.getByRole('button', { name: 'Sifat dan keadaan' }).click();
 	await expect(section.locator('#kata-msa-saghir')).toBeVisible();
 	await expect(section.locator('#kata-msa-kitab')).toHaveCount(0);
@@ -58,6 +58,10 @@ test('searches Arabic without harakat, Indonesian meaning and recorded plural', 
 	await expect(section.locator('#kata-msa-wathiqah')).toBeVisible();
 	await input.fill('kurikulum');
 	await expect(section.locator('#kata-msa-manhaj')).toBeVisible();
+	await input.fill('رواتب');
+	await expect(section.locator('#kata-msa-ratib')).toBeVisible();
+	await input.fill('investasi');
+	await expect(section.locator('#kata-msa-istithmar')).toBeVisible();
 });
 
 test('deep links and original phrase examples remain in static HTML with JavaScript off', async ({
@@ -78,16 +82,17 @@ test('deep links and original phrase examples remain in static HTML with JavaScr
 
 test.describe('static MSA vocabulary without JavaScript', () => {
 	test.use({ javaScriptEnabled: false, viewport: { width: 375, height: 812 } });
-	test('renders all 183 entries on initial response and avoids horizontal overflow', async ({
+	test('renders all 200 entries on initial response and avoids horizontal overflow', async ({
 		page
 	}) => {
 		await page.goto('/kosakata/#kata-msa-imraah');
-		await expect(page.locator('#msa li[id^="kata-msa-"]')).toHaveCount(183);
+		await expect(page.locator('#msa li[id^="kata-msa-"]')).toHaveCount(200);
 		await expect(page.locator('#kata-msa-imraah')).toContainText('نِسَاءٌ');
 		await expect(page.locator('#kata-msa-kamera')).toContainText('Serapan · draf');
 		await expect(page.locator('#kata-msa-jawaz-safar')).toContainText('paspor');
 		await expect(page.locator('#kata-msa-faturah')).toContainText('Serapan · draf');
 		await expect(page.locator('#kata-msa-wathiqah')).toContainText('وَثَائِقُ');
+		await expect(page.locator('#kata-msa-aqd')).toContainText('kontrak');
 		const sizes = await page.evaluate(() => ({
 			page: document.documentElement.scrollWidth,
 			viewport: document.documentElement.clientWidth
