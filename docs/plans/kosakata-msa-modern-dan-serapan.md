@@ -75,3 +75,7 @@ Tambah 18 nomina dengan makna terpilih: delapan dokumen/administrasi, lima pendi
 ## P6 / LM-03 — batch 3 (20 November 2026)
 
 Tambah 17 nomina: 13 bisnis/ekonomi dan empat pekerjaan/profesi. Ada 66 klaim parsial baru (51 lema, arti dan POS; 15 jamak) dengan locator sense yang lebih spesifik untuk homograf seperti عقد dan ربح. Jumlah katalog 200 entri, 48 audit parsial, 14 tema. مبيعات tidak dimasukkan karena halaman sumber tidak berhasil diakses; jamak اقتصاد dan إيراد tidak diisi karena tidak tercatat pada bagian yang diperiksa. Register, sumber independen, audit 152 lema awal, dedup lintas katalog, LM-04/05 dan ekspansi skala besar tetap terbuka.
+
+## P6 — batch 3–8, PR #69
+
+Batch 3–5 menambah 40 entri (total 223); batch 6–8 menambahkan antrean audit, pilot korpus dan rekonsiliasi kandidat. Lihat [status dan reproduksi P6](../data/p6-msa-expansion.md). LM-02 tetap partial: 152 starter masih membutuhkan audit klaim. LM-03 partial; LM-04/05 dan integrasi sense P5 belum selesai. Tidak ada klaim verifikasi penuh.

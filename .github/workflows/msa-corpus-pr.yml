@@ -32,6 +32,7 @@ jobs:
             https://raw.githubusercontent.com/UniversalDependencies/UD_Arabic-PUD/r2.17/ar_pud-ud-test.conllu \
             -o /tmp/pud.conllu
           node scripts/p6-msa-corpus.mjs /tmp/pud.conllu /tmp/p6/corpus.json
+      - run: bun scripts/p6-msa-reconcile.mjs /tmp/p6/corpus.json /tmp/p6/reconcile.json
       - uses: actions/upload-artifact@v4
         with:
           name: p6-review-candidates
