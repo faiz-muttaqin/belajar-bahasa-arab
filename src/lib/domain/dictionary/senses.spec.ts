@@ -10,7 +10,9 @@ describe('P5 dictionary pilot', () => {
 	});
 
 	it('matches Indonesian glosses and explicit Arabic forms', () => {
-		expect(searchDictionary(dictionaryPilot, 'kantor').map((entry) => entry.id)).toEqual(['maktab']);
+		expect(searchDictionary(dictionaryPilot, 'kantor').map((entry) => entry.id)).toEqual([
+			'maktab'
+		]);
 		expect(searchDictionary(dictionaryPilot, 'كُتُب')[0]?.id).toBe('kitab');
 		expect(searchDictionary(dictionaryPilot, 'كتب')).toHaveLength(5);
 	});
