@@ -20,3 +20,8 @@ Status: riset dan rencana, 20 November 2026. Target bukan klaim jumlah yang suda
 ## Gerbang kualitas
 
 Jangan membuat arti berdasarkan pola atau akar saja. Setiap sense memiliki sumber dan locator, status draft, serta lisensi yang sesuai. Cakupan bukan akurasi. Ikuti ADR-004/005 dan audit kutipan kumulatif.
+
+## Progres implementasi lanjutan
+
+- Pemisahan sumber pembanding pada hasil pengayaan dan tampilan kamus sharaf: implementasi serta uji regresi di PR lanjutan; CI belum terverifikasi. Langkah ini menghindari klaim bukti yang keliru saat perluasan kamus dilakukan.
+- Audit 537 verba kosong, ekstraksi Lane lengkap, penambahan nomina serta penghitungan lema/sense unik tetap terbuka. Tidak ada klaim ekspansi selesai.

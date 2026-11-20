@@ -207,6 +207,18 @@
 								</li>
 							{/each}
 						</ul>
+						{#if entry.comparisonSources?.length}
+							<p class="mt-3 font-medium">Tautan pembanding</p>
+							<p class="text-muted-foreground">Bukan bukti utama arti kata ini.</p>
+							<ul class="mt-2 space-y-1">
+								{#each entry.comparisonSources as source (source)}
+									<li>
+										<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external comparison -->
+										<a href={source} class="break-all underline">{source}</a>
+									</li>
+								{/each}
+							</ul>
+						{/if}
 					</details>
 				</li>
 			{/each}

@@ -2,7 +2,7 @@
 
 Single place to see what content exists, what blocks it, and what to do next. Update the row (and the "Updated" date) whenever an item moves stage. Agents: read [AGENTS.md](../../AGENTS.md) and the [research doc](../arabic-learning-pedagogy-ux-research-reissued.md) first; never move an item past **Draft** without a named human reviewer.
 
-**Updated:** 16 November 2026
+**Updated:** 20 November 2026
 
 ## Pipeline
 
@@ -233,5 +233,7 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 16 November 2026: RM-06 Tahap 6 (terpisah sesudah Tahap 5) menambahkan 40 latihan bacaan dokumen MSA baru: 20 CB-21 dan 20 CB-24, dengan sumber metodologi dan bukti meaning/structure. Jalur utama memiliki 20 + 40 + 24 + 40 + 60 + 40 = 224 soal. Semua materi draf menunggu tashih pengajar. Pekerjaan berikutnya checkpoint Iqra opsional, audit bank yang kurang dari 20 variasi, dan RM-07.
 
 - 16 November 2026: Pengayaan RM-06 Tahap 3: 36 butir transfer baru (12 CB-07, 12 CB-09, 12 CB-12) meningkatkan total checkpoint Tahap 3 dari 24 menjadi 60 (20 per bank). Bukti lama dan ID tetap dipertahankan, tambahan tetap berstatus draf bersumber dan menunggu tinjauan ahli. Total jalur utama setelah pengayaan: 260 soal checkpoint (20+40+60+40+60+40).
+
+- 20 November 2026: P4 — [ekstraktor nonverba Wiktionary](../data/p4-nonverbs.md) draft; fixture sintetis dan kontrak tersedia. Ekstraksi dump nyata, jumlah lema/sense dan audit register masih pending; tidak mengubah status V-06 atau mengklaim konten baru siap terbit.
 
 - 20 November 2026: V-06 / P6 LM-03 batch 1 menambahkan delapan entri MSA draf dengan sumber lema spesifik dan audit parsial. Total 165 entri, 13 audit parsial. Stage 3 tetap; register, audit sisa 152 lema awal, dedup silang dan uji pengguna belum tuntas.

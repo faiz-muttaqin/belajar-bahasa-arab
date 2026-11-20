@@ -28,6 +28,8 @@ export type SharafEntry = {
 	formBehavior: FormBehavior;
 	explanation: string;
 	sources: readonly string[];
+	/** Links for comparison, not evidence for the claimed meaning. */
+	comparisonSources?: readonly string[];
 	reviewStatus: 'draft' | 'linguist_reviewed' | 'approved';
 	/**
 	 * Where `meaning` comes from when it is not hand-written: a Wiktionary English gloss, a
