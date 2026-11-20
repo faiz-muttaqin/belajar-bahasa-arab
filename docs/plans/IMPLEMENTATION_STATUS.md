@@ -9,7 +9,7 @@
 - **Planned**: spesifikasi atau komponen terkait tersedia, tetapi deliverable yang dimaksud belum dikirim.
 - **Deferred**: secara eksplisit ditunda dan tidak boleh dianggap siap produksi.
 
-## Matriks 11 plan dan gap
+## Matriks 11 plan awal dan gap
 
 | Dokumen                                                                    | Status aktual | Bukti kode/tes (bukan bukti kualitas isi)                                                                                                                                                                                                        | Kriteria belum terpenuhi                                                                                                                                                                                                            | Pelacakan                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -25,12 +25,16 @@
 | [sharaf-lexicon-search.md](./sharaf-lexicon-search.md)                     | **partial**   | `src/routes/sharaf/+page.svelte`, `src/lib/catalog/sync.svelte.ts`, `tests/e2e/sharaf-full-import.e2e.ts`                                                                                                                                        | Pencarian dan katalog tersedia, bukan bukti seluruh kamus tervalidasi; audit dataset, pipeline & checksum, morfologi multi-analisis, sumber dan lisensi belum selesai                                                               | [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15)                                                                                                                                                                                                                                                                                                                                                                    |
 | [visual-pembelajaran.md](./visual-pembelajaran.md)                         | **planned**   | `src/lib/components/learning/SentenceBreakdown.svelte`, `src/lib/domain/roadmap/presentation.ts`                                                                                                                                                 | VP-01–05 belum selesai sebagai paket: ID relasi/bukti, word-role explorer interaktif, mode tanpa warna, animasi bertahap, grafik capaian dan uji pengguna                                                                           | [#52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52)                                                                                                                                                                                                                                                                                                                                                                    |
 
+### Plan tambahan — 20 November 2026
+
+- [p7-dictionary-expansion.md](./p7-dictionary-expansion.md) — **partial** — `.github/workflows/p7-nonverb-pr.yml`, `scripts/p7-snapshot-report.py`, `docs/data/p4-nonverbs.md` — P7.1 snapshot berhasil; audit lisensi/register dan P7.2–8 belum selesai — [#70](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/70)
+
 ## Aturan merge dan pengisian status
 
 1. Setiap PR dengan scope plan wajib menyebut **sub-deliverable** (mis. LM-01, bukan LM-01–05), bukti implementasi yang benar-benar ada, serta acceptance criteria yang masih tertunda. `Merged` tidak boleh disamakan dengan `done`.
 2. Bila PR hanya pilot, plan induk tetap **partial** walaupun salah satu checklist subtask dapat ditandai selesai. Kriteria yang tidak diuji secara manual tetap berstatus terbuka.
 3. Saat PR berikutnya mengubah suatu plan, perbarui `implementation-status.json` dan dokumen ini. Jangan memindahkan plan ke `implemented` tanpa seluruh acceptance criteria ditunjukkan melalui tes/bukti aktual.
-4. Test `src/lib/content/plan-implementation-audit.spec.ts` memastikan daftar 11 file plan tetap terinventaris dan path bukti tetap ada. **Tes ini tidak memeriksa kebenaran semantik klaim status**; reviewer tetap perlu mengevaluasi diff dan bukti.
+4. Test `src/lib/content/plan-implementation-audit.spec.ts` memastikan daftar seluruh file plan tetap terinventaris dan path bukti tetap ada. **Tes ini tidak memeriksa kebenaran semantik klaim status**; reviewer tetap perlu mengevaluasi diff dan bukti.
 5. Jika suatu plan memiliki judul lama seperti “Tugas berikutnya: RM-06”, perlakukan bagian itu sebagai _catatan historis_. Sumber status terbaru adalah matriks ini dan issue terbuka.
 
 ## Lanjutkan pekerjaan
@@ -43,7 +47,7 @@
 
 ## Batas audit
 
-Ini audit status atas 11 dokumen `docs/plans/` di `main` pada tanggal tersebut, bukan audit semua issue/PR historis atau telaah akurasi 100% butir konten. Tanda `partial` bukan penilaian bahwa pilot gagal, melainkan bahwa **seluruh plan belum selesai**.
+Audit awal mencakup 11 dokumen `docs/plans/` di `main` pada tanggal tersebut, bukan audit semua issue/PR historis atau telaah akurasi 100% butir konten. Tanda `partial` bukan penilaian bahwa pilot gagal, melainkan bahwa **seluruh plan belum selesai**.
 
 ### Pembaruan terarah — 20 November 2026
 
