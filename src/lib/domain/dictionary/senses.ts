@@ -5,15 +5,35 @@ export type DictionaryPos =
 	'noun' | 'adjective' | 'verb' | 'adverb' | 'pronoun' | 'particle' | 'expression' | 'other';
 export type DictionaryRegister = 'msa' | 'classical' | 'historical' | 'unspecified';
 export type Evidence = {
-	sourceId: 'wiktionary';
+	sourceId: 'wiktionary' | 'lane';
 	url: string;
 	locator: string;
 	checkedOn: string;
+};
+export type ComparisonEvidence = {
+	sourceId: 'lane' | 'wasit' | 'wiktionary';
+	url: string;
+	locator: string;
+	checkedOn: string;
+	outcome: 'supports' | 'partial' | 'conflicts' | 'not-found';
+};
+export type SnapshotIdentity = {
+	sourceId: 'wiktionary';
+	snapshot: string;
+	sha256: string;
+	lemmaId: string;
+	senseId: string;
+	pos: string;
+	tags: readonly string[];
+	locations: readonly { line: number; senseIndex: number }[];
 };
 export type DictionarySense = {
 	id: string;
 	glossId: string;
 	definitionId?: string;
+	upstream?: readonly SnapshotIdentity[];
+	supportingEvidence?: readonly Evidence[];
+	comparisons?: readonly ComparisonEvidence[];
 	register: DictionaryRegister;
 	evidence: Evidence;
 	example?: { ar: string; id: string; status: 'draft'; origin: 'original' };
@@ -42,12 +62,33 @@ export type DictionaryEntry = {
 	reviewStatus: 'draft';
 };
 
+function validSourceUrl(sourceId: ComparisonEvidence['sourceId'], raw: string): boolean {
+	try {
+		const url = new URL(raw);
+		if (url.protocol !== 'https:' || url.username || url.password) return false;
+		if (sourceId === 'wiktionary')
+			return url.hostname === 'en.wiktionary.org' && /^\/wiki\/.+/.test(url.pathname) &&
+				url.hash === '#Arabic';
+		if (sourceId === 'lane')
+			return url.hostname === 'www.arabic-english-dictionary.com' &&
+				url.pathname.startsWith('/content/') && url.pathname.length > 9;
+		return url.hostname === 'www.arabicacademy.gov.eg' && url.pathname.length > 5;
+	} catch {
+		return false;
+	}
+}
+
+function validDate(value: string): boolean {
+	return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) &&
+		new Date(value).toISOString().slice(0, 10) === value;
+}
+
 function validEvidence(evidence: Evidence): boolean {
 	return (
-		evidence.sourceId === 'wiktionary' &&
-		/^https:\/\/en\.wiktionary\.org\/wiki\/.+#Arabic$/.test(evidence.url) &&
+		(evidence.sourceId === 'wiktionary' || evidence.sourceId === 'lane') &&
+		validSourceUrl(evidence.sourceId, evidence.url) &&
 		!!evidence.locator.trim() &&
-		/^\d{4}-\d{2}-\d{2}$/.test(evidence.checkedOn)
+		validDate(evidence.checkedOn)
 	);
 }
 
@@ -65,6 +106,21 @@ export function validateDictionary(entries: readonly DictionaryEntry[]): string[
 		for (const sense of entry.senses) {
 			if (!sense.id || !sense.glossId.trim() || !validEvidence(sense.evidence))
 				fail('Missing sense evidence');
+			for (const evidence of sense.supportingEvidence ?? []) {
+				if (!validEvidence(evidence)) fail('Invalid supporting evidence');
+			}
+			for (const comparison of sense.comparisons ?? []) {
+				if (!validSourceUrl(comparison.sourceId, comparison.url) || !comparison.locator.trim() ||
+					!validDate(comparison.checkedOn) || !['supports', 'partial', 'conflicts', 'not-found'].includes(comparison.outcome))
+					fail('Invalid comparison evidence');
+			}
+			for (const origin of sense.upstream ?? []) {
+				if (origin.sourceId !== 'wiktionary' || !validDate(origin.snapshot) ||
+					![origin.sha256, origin.lemmaId, origin.senseId].every((id) => /^[a-f0-9]{64}$/.test(id)) ||
+					!origin.pos.trim() || !origin.locations.length || origin.locations.some((loc) =>
+						!Number.isSafeInteger(loc.line) || loc.line < 1 || !Number.isSafeInteger(loc.senseIndex) || loc.senseIndex < 1))
+					fail('Invalid snapshot provenance');
+			}
 		}
 		if (entry.root && (!entry.root.ar.trim() || !validEvidence(entry.root.evidence)))
 			fail('Missing root evidence');
