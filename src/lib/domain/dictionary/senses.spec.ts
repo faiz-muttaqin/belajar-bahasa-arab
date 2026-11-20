@@ -10,9 +10,7 @@ describe('P5 dictionary pilot', () => {
 	});
 
 	it('matches Indonesian glosses and explicit Arabic forms', () => {
-		expect(searchDictionary(dictionaryPilot, 'kantor').map((entry) => entry.id)).toEqual([
-			'maktab'
-		]);
+		expect(searchDictionary(dictionaryPilot, 'kantor').map((entry) => entry.id)).toEqual(['maktab']);
 		expect(searchDictionary(dictionaryPilot, 'كُتُب')[0]?.id).toBe('kitab');
 		expect(searchDictionary(dictionaryPilot, 'كتب')).toHaveLength(5);
 	});
@@ -30,7 +28,9 @@ describe('P5 dictionary pilot', () => {
 		const entry = dictionaryPilot[0]!;
 		expect(rootFamily(dictionaryPilot, entry)).toHaveLength(4);
 		expect(rootFamily(dictionaryPilot, { ...entry, root: undefined })).toEqual([]);
-		expect(validateDictionary([dictionaryPilot[4]!])).toContain('kitabah: Invalid lexical relation');
+		expect(validateDictionary([dictionaryPilot[4]!])).toContain(
+			'kitabah: Invalid lexical relation'
+		);
 	});
 
 	it('does not treat rule-generated forms as attested search words', () => {
@@ -41,7 +41,12 @@ describe('P5 dictionary pilot', () => {
 					{
 						...entry,
 						forms: [
-							{ ar: 'غير موجود', kind: 'other', origin: 'rule-generated', evidence: entry.evidence }
+							{
+								ar: 'غير موجود',
+								kind: 'other',
+								origin: 'rule-generated',
+								evidence: entry.evidence
+							}
 						]
 					}
 				],
