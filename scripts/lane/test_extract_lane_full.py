@@ -44,6 +44,18 @@ class ExtractionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Duplicate entry locator"):
             extract_document(FIXTURE, "a.xml", roots, entries, ids, counts)
 
+    def test_missing_and_repeated_ids_in_same_file(self):
+        data = FIXTURE.replace(b'id="n2"', b'id="n1"').replace(b'id="n3"', b"")
+        roots, entries, counts = StringIO(), StringIO(), Counter()
+        extract_document(data, "fixture.xml", roots, entries, set(), counts)
+        root = json.loads(roots.getvalue())
+        rows = list(map(json.loads, entries.getvalue().splitlines()))
+        self.assertEqual(len({r["locator"] for r in rows}), 5)
+        self.assertEqual(counts["entries_without_source_id"], 1)
+        self.assertEqual(counts["repeated_source_ids"], 1)
+        self.assertIsNone(rows[3]["id"])
+        self.assertEqual(root["entry_locators"], [r["locator"] for r in rows[1:]])
+
     def test_refuse_dtd(self):
         with self.assertRaisesRegex(ValueError, "DTD"):
             extract_document(b'<!DOCTYPE test><test/>', "fixture.xml", StringIO(), StringIO(), set(), Counter())

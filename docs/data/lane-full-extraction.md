@@ -30,7 +30,7 @@ browser. Jalankan kembali untuk reproduksi setelah artefak kedaluwarsa.
 ## Kontrak P3
 
 - `roots.jsonl`: satu baris per artikel akar (`div2 type="root"`), termasuk
-  seluruh XML artikel, urutan dalam berkas, akar asli, key pencarian dan daftar ID.
+  seluruh XML artikel, urutan dalam berkas, akar asli, key pencarian, daftar ID dan locator entri.
 - `entries.jsonl`: satu baris per `entryFree`, termasuk entri di luar artikel
   akar, ID asli, locator, relasi artikel akar, atribut key/type, daftar itype
   dan orth asli, teks untuk pencarian dan XML entri. Beberapa artikel Form I
@@ -39,11 +39,13 @@ browser. Jalankan kembali untuk reproduksi setelah artefak kedaluwarsa.
 - `manifest.json`: revisi, lisensi, manifest input, hitungan aktual dan SHA-256 output.
 - `ATTRIBUTION.txt`: atribusi, lisensi dan catatan transformasi.
 
-Locator entri adalah path XML relatif sumber ditambah ID asli; locator akar
-menggunakan ordinal artikel dalam berkas pada revisi yang dipatok.
+Locator entri adalah path XML relatif sumber ditambah ordinal `#entry-N`;
+locator akar menggunakan ordinal `#root-N` pada revisi yang dipatok. ID asli
+adalah metadata nullable, bukan identitas primer: sumber u$0.xml memuat entri
+tanpa ID. Semua entri tersebut dipertahankan dan dihitung terpisah.
 ID sumber dapat berulang lintas berkas: misalnya u_0.xml dan ua0.xml sama-sama
 memuat n13600. Semua rekaman dipertahankan; manifest menghitung ID berbeda dan
-pengulangan ID. P3 harus memakai locator, bukan ID global, dan meninjau duplikat
+pengulangan ID, serta jumlah entri tanpa ID. P3 harus memakai locator, bukan ID global, dan meninjau duplikat
 sebelum menghitung lema. Key
 pencarian akar hanya menghapus harakat, tatwil, dan spasi; tidak menyatukan
 hamzah, alif atau ya. XML diserialisasi ulang (bukan byte asli); teks pencarian
