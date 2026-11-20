@@ -152,20 +152,3 @@ if (process.argv.includes('--check')) {
 	writeFileSync(output, serialized);
 	console.log('Wrote normalized static lexicon:', data.totals);
 }
-
-// TEMP P5 formatting diagnostic (remove before merge).
-if (process.env.CI && process.argv.includes('--check')) {
-	const prettier = await import('prettier');
-	for (const file of [
-		'src/lib/domain/dictionary/senses.spec.ts',
-		'src/lib/domain/dictionary/senses.ts',
-		'src/routes/sharaf/kamus/+page.svelte'
-	]) {
-		const options = await prettier.resolveConfig(file);
-		const formatted = await prettier.format(readFileSync(file, 'utf8'), {
-			...options,
-			filepath: file
-		});
-		console.log('P5_FORMAT ' + file + ' ' + JSON.stringify(formatted));
-	}
-}
