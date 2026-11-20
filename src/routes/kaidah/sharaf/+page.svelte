@@ -83,6 +83,17 @@
 		class="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
 		aria-label="Pelajari maṣdar dalam dokumen formal">Pelajari maṣdar dalam dokumen formal</a
 	>
+	<div class="space-y-2 border-t pt-4">
+		<h2 class="text-xl font-semibold">Lanjut: isim fā‘il dan isim maf‘ūl</h2>
+		<p class="text-muted-foreground">
+			Bandingkan enam pasangan bentuk aktif dan pasif, termasuk akar ajwaf, dengan 24 latihan.
+		</p>
+		<a
+			href={resolve('kaidah/participle/')}
+			class="inline-flex min-h-11 items-center font-semibold text-primary underline"
+			>Pelajari isim fā‘il dan isim maf‘ūl</a
+		>
+	</div>
 	<div class="border-t pt-4"></div>
 	<h2 class="text-xl font-semibold">Lanjutkan ke 22 kelompok wazan</h2>
 	<p class="text-muted-foreground">
