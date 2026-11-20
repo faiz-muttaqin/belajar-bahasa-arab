@@ -64,10 +64,7 @@ function formsFrom([, , , nonPast, masdar, fail, maful]: WiktionaryTuple): Shara
 }
 
 function auditExplanation(audit: GlossAudit): string {
-	return [
-		'Padanan Indonesia disusun oleh Codex dengan rujukan kamus dan menunggu peninjauan.',
-		audit.note
-	]
+	return ['Padanan Indonesia disusun dengan rujukan kamus dan menunggu peninjauan.', audit.note]
 		.filter(Boolean)
 		.join(' ');
 }

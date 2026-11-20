@@ -36,7 +36,12 @@
 	});
 	const auditDetails = [
 		{ key: 'auditNote', label: 'Pemakaian dan catatan peninjauan', lang: 'id' },
-		{ key: 'auditSource', label: 'Sumber padanan', lang: 'link' }
+		{ key: 'auditSource', label: 'Sumber padanan', lang: 'link' },
+		{
+			key: 'auditCompare',
+			label: 'Tautan pembanding (sumber utama disebut di catatan)',
+			lang: 'link'
+		}
 	] as const;
 	const recallDetails = [
 		...auditDetails,
@@ -44,7 +49,7 @@
 		{ key: 'meaningsFull', label: 'Padanan Indonesia (belum diverifikasi)', lang: 'id' },
 		{
 			key: 'description',
-			label: 'Deskripsi (bukan padanan, dari pengetahuan model, belum diverifikasi)',
+			label: 'Deskripsi (bukan padanan, belum diverifikasi)',
 			lang: 'id'
 		},
 		{ key: 'unknown', label: 'Keterangan', lang: 'id' },

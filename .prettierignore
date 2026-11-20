@@ -15,3 +15,4 @@ bun.lockb
 # Generated data (see docs/data/wiktionary-verbs.md)
 /data/wiktionary/
 /data/recall/
+/data/third-party/**/*.json

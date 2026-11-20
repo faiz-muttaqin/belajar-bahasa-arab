@@ -26,7 +26,21 @@ export type WiktionaryVerb = {
 };
 
 /** Indonesian meanings, kept apart from the source data so provenance stays clear. */
-export type GlossAudit = { source: string; note?: string };
+export type GlossAudit = {
+	source: string;
+	note?: string;
+	/** Entry id in data/sources/registry.json. */
+	sourceId?: string;
+	/** 'pembanding' when the link only helps comparison and the main source is named in the note. */
+	sourceRole?: 'utama' | 'pembanding';
+	/** Entry id in data/third-party/lane/form-i.json for the same root. */
+	lane?: string;
+};
+
+/** Cell key for an audit link: the main source, or a comparison link only. */
+export function auditLinkKey(audit: GlossAudit) {
+	return audit.sourceRole === 'pembanding' ? 'auditCompare' : 'auditSource';
+}
 export type VerbTranslation = { idGlosses: string[]; uncertain?: boolean; audit?: GlossAudit };
 
 export type BabInfo = {
@@ -160,7 +174,7 @@ export function toRows(
 		set('participles', [v.activeParticiple, v.passiveParticiple].filter(Boolean).join(comma));
 		const audit = translations[v.id]?.audit;
 		set(audit ? 'auditedGloss' : 'idFull', idGlosses.join('; '));
-		set('auditSource', audit?.source);
+		if (audit) set(auditLinkKey(audit), audit.source);
 		set('auditNote', audit?.note);
 		set('en', v.en.join('; '));
 		set('google', google[v.id]);
@@ -220,7 +234,7 @@ export function toRecallRows(verbs: readonly RecallVerb[]): ReferenceTableData['
 		}
 		if (v.audit) {
 			cells.badge = 'draf kamus';
-			cells.auditSource = v.audit.source;
+			cells[auditLinkKey(v.audit)] = v.audit.source;
 			if (v.audit.note) cells.auditNote = v.audit.note;
 		}
 		if (v.code) cells.code = v.code;

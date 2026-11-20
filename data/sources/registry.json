@@ -1,0 +1,156 @@
+{
+	"schema": 1,
+	"note": "Every source used for dictionary content. copyrightStatus and usage decide what may enter the public repository; see docs/data/copyright-policy.md. scripts/check-sources.mjs enforces the rules.",
+	"sources": [
+		{
+			"id": "lane",
+			"title": "An Arabic-English Lexicon",
+			"author": "Edward William Lane",
+			"edition": "Perseus Digital Library digitization with Alpheios corrections",
+			"publicationYear": 1863,
+			"url": "https://github.com/alpheios-project/lan",
+			"copyrightStatus": "open-license",
+			"license": "CC BY-SA 3.0 US",
+			"usage": "verbatim",
+			"path": "data/third-party/lane"
+		},
+		{
+			"id": "wiktionary",
+			"title": "English Wiktionary, Arabic entries (kaikki.org extract)",
+			"url": "https://kaikki.org/dictionary/Arabic/",
+			"copyrightStatus": "open-license",
+			"license": "CC BY-SA 4.0 and GFDL",
+			"usage": "verbatim",
+			"path": "data/wiktionary"
+		},
+		{
+			"id": "qutrub-arramooz",
+			"title": "Qutrub, Arramooz and Arabic Stopwords word lists",
+			"author": "Taha Zerrouki",
+			"url": "https://github.com/linuxscout/arramooz",
+			"copyrightStatus": "open-license",
+			"license": "GPL-2.0",
+			"usage": "verbatim",
+			"path": "data/sharaf-upstream"
+		},
+		{
+			"id": "lisan",
+			"title": "Lisān al-ʿArab",
+			"author": "Ibn Manẓūr (d. 711 H / 1311)",
+			"url": "https://ejtaal.net/aa/",
+			"copyrightStatus": "public-domain",
+			"usage": "quotation",
+			"caveat": "The original text is public domain, but the digital copy used so far comes from a local database of unknown origin. Import full text only from a digital edition with clear terms (for example OpenITI, CC BY-NC-SA 4.0, whose NonCommercial term must be checked against the project licence first)."
+		},
+		{
+			"id": "wasit",
+			"title": "Al-Muʿjam al-Wasīṭ",
+			"author": "Majmaʿ al-Lugha al-ʿArabiyya, Cairo",
+			"edition": "4th edition, 2004",
+			"url": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/",
+			"copyrightStatus": "unknown",
+			"usage": "quotation",
+			"caveat": "No verified redistribution permission. Early editions (1960-1962) may have expired under Egyptian Law 82/2002, but the 4th edition has revisions; not checked by a legal adviser."
+		},
+		{
+			"id": "mujamul_muhith",
+			"title": "Al-Muʿjam al-Muḥīṭ (as named in the local database)",
+			"url": "https://ejtaal.net/aa/",
+			"copyrightStatus": "unknown",
+			"usage": "quotation",
+			"caveat": "Identity of this dictionary is not confirmed. Do not treat it as al-Qāmūs al-Muḥīṭ or Muḥīṭ al-Muḥīṭ. Links to ejtaal.net are comparison links only."
+		},
+		{
+			"id": "mujamul_muashiroh",
+			"title": "Muʿjam al-Lugha al-ʿArabiyya al-Muʿāṣira",
+			"author": "Aḥmad Mukhtār ʿUmar",
+			"publicationYear": 2008,
+			"url": "https://ketabonline.com/ar/books/3519",
+			"copyrightStatus": "copyrighted",
+			"usage": "quotation"
+		},
+		{
+			"id": "ghani",
+			"title": "Al-Ghanī",
+			"author": "ʿAbd al-Ghanī Abū al-ʿAzm",
+			"url": "https://ejtaal.net/aa/",
+			"copyrightStatus": "copyrighted",
+			"usage": "quotation",
+			"caveat": "Links to ejtaal.net are comparison links only; the dictionary is named in the audit note."
+		},
+		{
+			"id": "hanswehr",
+			"title": "A Dictionary of Modern Written Arabic",
+			"author": "Hans Wehr",
+			"edition": "4th edition",
+			"publicationYear": 1979,
+			"url": "https://ejtaal.net/aa/",
+			"copyrightStatus": "copyrighted",
+			"usage": "quotation"
+		},
+		{
+			"id": "nahwu-wafi",
+			"title": "An-Naḥw al-Wāfī",
+			"author": "ʿAbbās Ḥasan",
+			"url": "https://ketabonline.com/ar/books/493",
+			"copyrightStatus": "copyrighted",
+			"usage": "reference-only"
+		},
+		{
+			"id": "almougem",
+			"title": "almougem.com dictionary search",
+			"url": "https://almougem.com/",
+			"copyrightStatus": "unknown",
+			"usage": "reference-only"
+		},
+		{
+			"id": "arabicterminology",
+			"title": "arabicterminology.com",
+			"url": "https://www.arabicterminology.com/",
+			"copyrightStatus": "unknown",
+			"usage": "reference-only"
+		},
+		{
+			"id": "aljazeera-learning",
+			"title": "Al Jazeera Learning Arabic",
+			"url": "https://learning.aljazeera.net/",
+			"copyrightStatus": "copyrighted",
+			"usage": "reference-only"
+		},
+		{
+			"id": "ejtaal",
+			"title": "Arabic Almanac (ejtaal.net), scanned dictionary viewer",
+			"url": "https://ejtaal.net/aa/",
+			"copyrightStatus": "unknown",
+			"license": "GPL-3.0 (viewer code only)",
+			"usage": "reference-only",
+			"caveat": "The GPL covers the viewer code, not the scanned books. Use as a link for checking, never copy scans."
+		},
+		{
+			"id": "openiti",
+			"title": "Open Islamicate Texts Initiative",
+			"url": "https://github.com/OpenITI",
+			"copyrightStatus": "open-license",
+			"license": "CC BY-NC-SA 4.0",
+			"usage": "reference-only",
+			"caveat": "Candidate source for full classical dictionary text (Lisān, Maqāyīs, Ṣiḥāḥ, Tāj al-ʿArūs). NonCommercial term must be reconciled with the project's CC BY-SA content licence before import."
+		},
+		{
+			"id": "qabas",
+			"title": "Qabas lexicographic database (Birzeit University)",
+			"url": "https://sina.birzeit.edu/qabas/about",
+			"copyrightStatus": "open-license",
+			"license": "CC BY-ND 4.0",
+			"usage": "reference-only",
+			"caveat": "NoDerivatives: may be used to validate entries; do not ship adapted copies."
+		},
+		{
+			"id": "local-lexicon-db",
+			"title": "Local dictionary database (lex.zip / db.sqlite, seven dictionaries)",
+			"url": "",
+			"copyrightStatus": "unknown",
+			"usage": "reference-only",
+			"caveat": "Origin and licence unknown. Never commit or distribute this file."
+		}
+	]
+}
