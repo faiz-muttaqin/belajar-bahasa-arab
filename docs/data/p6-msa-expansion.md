@@ -8,6 +8,8 @@ pekerjaan editorial selesai dan tidak ada entri yang dipromosikan ke research_ve
 - Batch 3 menambah 17 kata bisnis/pekerjaan; batch 4 menambah 14 kata kesehatan/transportasi;
   batch 5 menambah sembilan kata berita/politik/lingkungan/sains. Total 223 entri, 177 nomina,
   34 sifat, 11 ungkapan, satu partikel; 19 tema; 71 entri mempunyai audit parsial.
+  Untuk مَرِيض, jamak nomina tidak disalin karena headword jamak pada bagian nomina berbeda
+  dari bagian adjektiva; bentuk perlu diperiksa. Kata مطار sudah ada, sehingga tidak duplikat.
 - Batch 6 membuat antrean untuk 152 entri awal tanpa audit. URL lookup bukan bukti. Jika
   tersedia, input hasil P4 menambahkan ID sense/lemma dan locator; tidak mengubah status.
 - Batch 7 menghitung frekuensi lema + UPOS pada UD Arabic-PUD r2.17. Sumber CC BY-SA 3.0,

@@ -9,9 +9,9 @@ marad|مَرَضٌ|penyakit|مرض|health|أَمْرَاضٌ|broken|Etymology 1.
 dawa|دَوَاءٌ|obat|دواء|health|أَدْوِيَةٌ|broken|Noun, sense 1|concrete
 saydaliyyah|صَيْدَلِيَّةٌ|apotek|صيدلية|health|صَيْدَلِيَّاتٌ|sound|Noun, sense 1|concrete
 iyadah|عِيَادَةٌ|klinik|عيادة|health|عِيَادَاتٌ|sound|Noun, sense 3|concrete
-marid-patient|مَرِيضٌ|pasien|مريض|health|مَرْضَى|broken|Noun, sense 1|concrete
+marid-patient|مَرِيضٌ|pasien|مريض|health|||Noun, sense 1|concrete
 ilaj|عِلَاجٌ|pengobatan, terapi|علاج|health|||Noun, senses 3–4|abstract
-liqah|لِقَاحٌ|vaksin|لقاح|health|لِقَاحَاتٌ|sound|Noun, sense 2|concrete
+liqah|لِقَاحٌ|vaksin|لقاح|health|لِقَاحَاتٌ|sound|Etymology 1 > Noun, sense 2|concrete
 tadhkirah|تَذْكِرَةٌ|tiket|تذكرة|transport|تَذَاكِرُ|broken|Noun, sense 4|concrete
 rihlah|رِحْلَةٌ|perjalanan|رحلة|transport|رِحْلَاتٌ|sound|Etymology 1 > Noun, senses 1–2|abstract
 markabah|مَرْكَبَةٌ|kendaraan|مركبة|transport|مَرْكَبَاتٌ|sound|Noun, sense 1|concrete

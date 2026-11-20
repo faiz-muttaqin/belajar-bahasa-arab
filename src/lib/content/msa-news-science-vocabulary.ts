@@ -10,10 +10,10 @@ hukumah|حُكُومَةٌ|pemerintah|حكومة|news|حُكُومَاتٌ|sound
 intikhab|اِنْتِخَابٌ|pemilihan|انتخاب|news|اِنْتِخَابَاتٌ|sound|Noun, sense 1|abstract
 biah|بِيئَةٌ|lingkungan|بيئة|environment|بِيئَاتٌ|sound|Noun, sense 1|abstract
 talawwuth|تَلَوُّثٌ|pencemaran|تلوث|environment|||Etymology 1.2 > Noun, subsense 1.1|abstract
-munakh|مُنَاخٌ|iklim|مناخ|environment|مُنَاخَاتٌ|sound|Noun, sense 1|abstract
+munakh|مُنَاخٌ|iklim|مناخ|environment|مُنَاخَاتٌ|sound|Etymology 1 > Noun, sense 1|abstract
 tajribah|تَجْرِبَةٌ|percobaan, eksperimen|تجربة|science|تَجَارِبُ|broken|Noun, sense 2|abstract
 mukhtabar|مُخْتَبَرٌ|laboratorium|مختبر|science|مُخْتَبَرَاتٌ|sound|Noun, sense 1|concrete
-fayrus|فَيْرُوسٌ|virus biologis|فيروس|science|||Noun, sense 1|concrete
+fayrus|فَيْرُوسٌ|virus biologis|فيروس|science|فَيْرُوسَاتٌ|sound|Noun, sense 1|concrete
 `;
 
 export const msaNewsScienceVocabulary: readonly VocabularyItem[] = rows

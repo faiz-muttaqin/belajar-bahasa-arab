@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { msaBusinessVocabulary } from '#lib/content/msa-business-vocabulary.js';
 import { msaFormalVocabulary } from '#lib/content/msa-formal-vocabulary.js';
+import { msaHealthVocabulary } from '#lib/content/msa-health-vocabulary.js';
 import { msaModernVocabulary } from '#lib/content/msa-modern-vocabulary.js';
+import { msaNewsScienceVocabulary } from '#lib/content/msa-news-science-vocabulary.js';
 import { msaVocabulary } from '#lib/content/msa-vocabulary.js';
 import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import { MSA_CLASSES, MSA_TOPICS, validateVocab } from './types.js';
@@ -94,6 +96,20 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 		expect(get('iqtisad')?.msa?.plural).toBeUndefined();
 		expect(get('irad')?.msa?.plural).toBeUndefined();
 		expect(get('ratib')?.msa?.plural?.value).toBe('رَوَاتِبُ');
+	});
+
+	it('keeps health and news/science additions as source-scoped drafts', () => {
+		expect(msaHealthVocabulary).toHaveLength(14);
+		expect(msaNewsScienceVocabulary).toHaveLength(9);
+		expect(msaHealthVocabulary.filter((item) => item.msa?.plural)).toHaveLength(11);
+		expect(msaNewsScienceVocabulary.filter((item) => item.msa?.plural)).toHaveLength(7);
+		expect(
+			[...msaHealthVocabulary, ...msaNewsScienceVocabulary].every(
+				(item) => item.research?.status === 'partial' && item.sources.length > 0
+			)
+		).toBe(true);
+		const patient = msaVocabulary.find((item) => item.id === 'msa-marid-patient');
+		expect(patient?.msa?.plural).toBeUndefined();
 	});
 
 	it('does not permit a foreign-register classification or unsupported MSA subgroup', () => {
