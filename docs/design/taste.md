@@ -37,6 +37,7 @@ Sources: research digest of the local UI/UX skills (`frontend-design-direction`,
 ### Arabic typography
 
 - Face: Noto Naskh Arabic Variable (most compact for stacked harakat: collision-free line-height about 1.7, versus about 2.05 to 2.1 for Scheherazade New and Amiri). Amiri remains a candidate for lessons where kasra-below-shadda placement matters.
+- Optional compact faces in `/editor/theme/`: Noto Sans Arabic (variable 100–900) and IBM Plex Sans Arabic (400/700), from Fontsource 5.3.0, OFL-1.1. Keep Naskh as the default; compare 14, 18 and 30 px specimens before choosing. These are candidates, not proven superior at small sizes. See [font research](../research/2026-11-20-compact-arabic-fonts.md).
 - Only the Arabic subset is loaded, through a hand-written `@font-face` in `layout.css` that adds U+0020 and U+00A0. The package `index.css` is not imported, because it would also download the Naskh Latin file for every space.
 - Size roles (`@utility` in `layout.css`): `arabic-inline` 1.25em; `arabic-block` `clamp(1.625rem, 1.3rem + 1.5vw, 2rem)` / 1.9; `arabic-display` `clamp(2.5rem, 1.8rem + 3vw, 4.5rem)` / 1.7.
 - Style by `:lang(ar)`. Every Arabic run carries `lang="ar" dir="rtl"` (`ArabicText`). Keep Indonesian punctuation outside the Arabic element and Arabic punctuation inside it.

@@ -60,7 +60,15 @@ export const ARABIC_FONTS = {
 		stack: "'Noto Naskh Arabic Variable', 'Noto Naskh Arabic', serif"
 	},
 	amiri: { label: 'Amiri', stack: "'Amiri', serif" },
-	'scheherazade-new': { label: 'Scheherazade New', stack: "'Scheherazade New', serif" }
+	'scheherazade-new': { label: 'Scheherazade New', stack: "'Scheherazade New', serif" },
+	'noto-sans-arabic': {
+		label: 'Noto Sans Arabic',
+		stack: "'Noto Sans Arabic Variable', 'Noto Naskh Arabic Variable', sans-serif"
+	},
+	'ibm-plex-sans-arabic': {
+		label: 'IBM Plex Sans Arabic',
+		stack: "'IBM Plex Sans Arabic', 'Noto Naskh Arabic Variable', sans-serif"
+	}
 } as const;
 
 export type UiFontId = keyof typeof UI_FONTS;
