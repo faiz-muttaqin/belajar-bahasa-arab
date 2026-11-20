@@ -1,6 +1,6 @@
 # P4 — Ekstraksi nonverba Wiktionary
 
-Status: ekstraktor draft; ekstraksi penuh dan audit hasil belum dilakukan. Independen dari P1, P2, P3 dan P6. P5 dapat menggunakan kontrak ini setelah data nyata diperiksa.
+Status: ekstraksi snapshot postprocessed berhasil dalam P7.1; audit hasil dan lisensi belum selesai. Independen dari P1, P2, P3 dan P6. P5 dapat menggunakan kontrak ini setelah data nyata diperiksa.
 
 ## Sumber
 
@@ -41,3 +41,7 @@ Ganti tanggal dengan tanggal dump aktual. Output adalah kandidat internal yang b
 5. Jangan menandai P4 selesai sebelum data nyata dan laporan tersedia. Tidak ada klaim jumlah lema atau akurasi linguistik dari fixture sintetis.
 
 Tidak menggunakan Qabas sebagai sumber redistribusi, Lane, atau basis data lokal lex.zip/db.sqlite.
+
+## Hasil aktual P7.1
+
+[CI 44718897669](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/44718897669), 20 November 2026: 17.347 kandidat kunci lema dan 29.319 kunci sense unik dari snapshot 233.417 baris. Dua ekstraksi identik. Sebanyak 1.425 baris kandidat memiliki canonical ambigu dan 28.190 register unspecified. P6 menggunakan snapshot yang sama dan memperoleh lead untuk 136/152 entri. Tidak ada data baru yang diterbitkan. SHA-256, rincian dan pekerjaan tersisa dicatat dalam [checkpoint P7](../plans/p7-dictionary-expansion.md).
