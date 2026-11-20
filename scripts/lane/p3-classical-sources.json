@@ -1,0 +1,46 @@
+[
+	{
+		"id": "sihah",
+		"repository": "OpenITI/0400AH",
+		"revision": "5bb6966d8df2ed22b1bff5cdbe29bb9c24f3ca29",
+		"path": "data/0393IbnHammadJawhari/0393IbnHammadJawhari.SihahTajLugha/0393IbnHammadJawhari.SihahTajLugha.Shamela0023235-ara1",
+		"gitBlob": "3dd28dab000dbc24e1d0e7e0d9c7402fe37e8eb8",
+		"bytes": 5501164,
+		"sourceId": "openiti",
+		"license": "CC-BY-NC-SA-4.0",
+		"usage": "reference-only"
+	},
+	{
+		"id": "maqayis",
+		"repository": "OpenITI/0400AH",
+		"revision": "5bb6966d8df2ed22b1bff5cdbe29bb9c24f3ca29",
+		"path": "data/0395IbnFarisQazwini/0395IbnFarisQazwini.MucjamMaqayis/0395IbnFarisQazwini.MucjamMaqayis.Shamela0021710-ara1",
+		"gitBlob": "6a8c57fd78f71f11a5dba22d479fb9dc35ea03ff",
+		"bytes": 3768378,
+		"sourceId": "openiti",
+		"license": "CC-BY-NC-SA-4.0",
+		"usage": "reference-only"
+	},
+	{
+		"id": "lisan",
+		"repository": "OpenITI/0725AH",
+		"revision": "056df249d6619b428a78f1d69a8ab2851b97b0a6",
+		"path": "data/0711IbnManzurIfriqi/0711IbnManzurIfriqi.LisanCarab/0711IbnManzurIfriqi.LisanCarab.Shamela0001687-ara1.mARkdown",
+		"gitBlob": "9f6bfb332bdf8ed25ff6c7b50400ea258bbe0b7b",
+		"bytes": 30670791,
+		"sourceId": "openiti",
+		"license": "CC-BY-NC-SA-4.0",
+		"usage": "reference-only"
+	},
+	{
+		"id": "qamus",
+		"repository": "OpenITI/0825AH",
+		"revision": "2630748a4754b509908048087e569ccc8dd251ce",
+		"path": "data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1",
+		"gitBlob": "2a5321446065b58f970018192a5e0223ad66e098",
+		"bytes": 6320750,
+		"sourceId": "openiti",
+		"license": "CC-BY-NC-SA-4.0",
+		"usage": "reference-only"
+	}
+]

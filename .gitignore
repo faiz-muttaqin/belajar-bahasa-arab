@@ -39,3 +39,6 @@ __screenshots__
 # Restricted local dictionary database (ADR-004 D-10)
 lex.zip
 db.sqlite
+
+# Generated dictionary search shards (recreated before dev/build)
+/static/data/dictionary-generated/
