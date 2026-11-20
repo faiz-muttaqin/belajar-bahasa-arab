@@ -22,7 +22,7 @@
 		"format": "prettier --write .",
 		"test:unit": "vitest",
 		"test:e2e": "bun run build && playwright test",
-		"test": "vitest --run && bun run test:e2e",
+		"test": "node --test scripts/build-wiktionary-nonverbs.test.mjs && vitest --run && bun run test:e2e",
 		"browsers:install": "playwright install --only-shell chromium",
 		"verify": "bun run check && bun run lint && bun run test"
 	},
