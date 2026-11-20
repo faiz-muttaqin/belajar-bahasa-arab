@@ -67,3 +67,7 @@ CI sebelumnya menghasilkan 373 rekaman tanpa kandidat Lane (turun dari 424), 95 
 ## Penerapan draf Lane
 
 Tiga draf (صَمَرَ bab 2, مَطَأَ bab 3, وَتَأَ bab 3) diterapkan pada recall dan bundle statis; confidence medium, status draf, belum ditinjau independen. Baseline audit 537 tetap mencakup rekaman yang telah diterapkan agar histori tidak hilang; jumlah unknown aktif menjadi 534. Tiga keputusan hold_bab tidak mengubah arti atau bab. CI memverifikasi keterkaitan keputusan dan data recall.
+
+## Pencarian empat kamus klasik
+
+Seluruh baseline 537 ditelusuri dalam Ṣiḥāḥ al-Jawharī, Maqāyīs al-Lugha, Lisān al-ʿArab, dan al-Qāmūs al-Muḥīṭ melalui edisi digital OpenITI yang dipatok dengan commit, Git blob hash, dan ukuran asli. Sumber ini CC BY-NC-SA 4.0, dipakai hanya untuk penelusuran referensi nonkomersial; teks/ekstrak tidak disimpan dalam repo atau artefak. Hasil hanya jumlah kecocokan dan locator baris untuk membaca sumber asli. Ejaan telanjang, token berharakat, dan label akar dalam tanda kurung adalah kandidat, bukan bukti POS atau bab. Edisi digital tidak selalu memuat semua harakat. CI membangun daftar locator dua kali dan menguji integritas sumber; hasil aktual belum diketahui saat commit ini dibuat. Qabas masih belum tersedia. CI juga meregenerasi bundle kamus untuk memeriksa kesamaan byte terhadap sumber recall dan menjalankan kebijakan provenance.

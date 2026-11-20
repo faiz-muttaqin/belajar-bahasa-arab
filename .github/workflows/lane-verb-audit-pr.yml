@@ -28,6 +28,12 @@ jobs:
           ref: 7dd04e1182c13a4b0883978867d2a3b04616542a
           path: lane-source
           persist-credentials: false
+      - name: Verify static enrichment matches source
+        working-directory: project
+        run: |
+          node scripts/build-verb-enrichment.mjs
+          git diff --exit-code -- static/data/verbs-enrich-v1.json
+          node scripts/check-sources.mjs
       - name: Test
         run: python3 -m unittest discover -s project/scripts/lane -p 'test_*.py'
       - name: Extract and audit
@@ -53,5 +59,17 @@ jobs:
         with:
           name: p3-crosscheck-all
           path: crosscheck-output/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Search four classical dictionaries (reference only)
+        run: |
+          python3 project/scripts/lane/search_classical_p3.py audit-output classical-cache classical-output
+          python3 project/scripts/lane/search_classical_p3.py audit-output classical-cache classical-repeat > /dev/null
+          diff -r classical-output classical-repeat
+          cat classical-output/summary.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p3-classical-locators
+          path: classical-output/
           if-no-files-found: error
           retention-days: 30
