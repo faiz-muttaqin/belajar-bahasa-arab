@@ -9,6 +9,7 @@ import { msaBusinessVocabulary } from './msa-business-vocabulary.js';
 import { msaFormalVocabulary } from './msa-formal-vocabulary.js';
 import { msaModernVocabulary } from './msa-modern-vocabulary.js';
 import { msaHealthVocabulary } from './msa-health-vocabulary.js';
+import { msaNewsScienceVocabulary } from './msa-news-science-vocabulary.js';
 import { msaResearchAudits } from './msa-research.js';
 
 /**
@@ -308,7 +309,8 @@ export const msaVocabulary: readonly VocabularyItem[] = [
 	...msaModernVocabulary,
 	...msaFormalVocabulary,
 	...msaBusinessVocabulary,
-	...msaHealthVocabulary
+	...msaHealthVocabulary,
+	...msaNewsScienceVocabulary
 ];
 
 const uniqueIds = new Set<string>();
