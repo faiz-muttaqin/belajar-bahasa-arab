@@ -350,8 +350,7 @@
 					<fieldset class="space-y-2">
 						<legend class="text-sm font-medium">Huruf Arab</legend>
 						<p class="text-sm text-muted-foreground">
-							Bandingkan bentuk harakat (tanda baca vokal) pada setiap huruf, termasuk ukuran kecil
-						untuk tabel dan kamus.
+							Bandingkan harakat pada huruf Arab di tabel dan kamus, termasuk ukuran kecil.
 						</p>
 						<div class="grid gap-2 sm:grid-cols-2">
 							{#each Object.entries(ARABIC_FONTS) as [id, font] (id)}
