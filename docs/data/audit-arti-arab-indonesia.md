@@ -11,3 +11,5 @@ Ke-109 entri Wiktionary yang kosong kini memiliki usulan padanan. Tautan pada ko
 Seratus entri pertama dalam daftar kecocokan Al-Wasīṭ sudah mendapat draf padanan Indonesia. Pemeriksaan memakai bentuk lampau, vokal mudhari dan pelaku atau objek yang disebut sumber. Misalnya, أَرَضَ menggerogoti kayu dengan rayap sebagai pelaku, sedangkan بَكَشَ dipakai untuk membuka simpul.
 
 Ditambahkan 417 padanan dan deskripsi pada baris Arabic Stopwords untuk partikel, pronomina, nomina dan ungkapan seperti صَهْ. Tabel `data/arabic-stopwords-id.tsv` menyimpan nomor baris sumber, lema persis, glos, rujukan dan catatan pemakaian. Beberapa nomor memuat kata yang sama dalam fungsi berbeda, misalnya لَا sebagai larangan dan sebagai penyangkal. Nomor baris menghitung rekaman sumber, bukan jumlah ejaan unik. Contoh Indonesia dan Arab yang dibuat untuk audit ini bersifat ilustratif.
+
+Pemeriksaan berikutnya membedakan pelaku dan objek pada verba langka. شَصَرَ dipakai ketika sapi jantan menanduk, sedangkan نَثَطَ menggambarkan tunas yang menembus permukaan tanah. Arti yang kamusnya hanya merujuk ke kata lain ditahan sampai makna rujukannya jelas.

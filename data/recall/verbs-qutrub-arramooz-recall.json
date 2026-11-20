@@ -9705,11 +9705,14 @@
 			"root": "غوج",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan berlenggak-lenggok"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غوج"
+			}
 		},
 		{
 			"id": "غاز-غوز-1",
@@ -9717,11 +9720,14 @@
 			"root": "غوز",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bermaksud mendatangi seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غوز"
+			}
 		},
 		{
 			"id": "غاط-غوط-1",
@@ -9825,11 +9831,14 @@
 			"root": "غثر",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["ditumbuhi banyak tumbuhan (tentang suatu tempat)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غثر"
+			}
 		},
 		{
 			"id": "غثم-غثم-1",
@@ -9849,11 +9858,14 @@
 			"root": "غدف",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memberi dengan berlimpah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غدف"
+			}
 		},
 		{
 			"id": "غد-غدد-1",
@@ -9897,11 +9909,14 @@
 			"root": "غزز",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengistimewakan seseorang di antara kawan-kawannya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غزز"
+			}
 		},
 		{
 			"id": "غسا-غسو-1",
@@ -9921,11 +9936,14 @@
 			"root": "غسر",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendesak orang yang berutang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غسر"
+			}
 		},
 		{
 			"id": "غسم-غسم-1",
@@ -9945,11 +9963,14 @@
 			"root": "غسن",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengunyah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غسن"
+			}
 		},
 		{
 			"id": "غس-غسس-1",
@@ -10029,11 +10050,14 @@
 			"root": "غلت",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membatalkan jual beli"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غلت"
+			}
 		},
 		{
 			"id": "غلف-غلف-1",
@@ -10053,11 +10077,14 @@
 			"root": "غلم",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyelimuti seseorang agar berkeringat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غلم"
+			}
 		},
 		{
 			"id": "غلن-غلن-1",
@@ -10077,11 +10104,14 @@
 			"root": "غمو",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memasang atap rumah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غمو"
+			}
 		},
 		{
 			"id": "غمض-غمض-1",
@@ -10125,11 +10155,14 @@
 			"root": "غمن",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengubur kulit hewan di pasir agar bulunya terlepas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غمن"
+			}
 		},
 		{
 			"id": "فآ-فءو-1",
@@ -10185,11 +10218,14 @@
 			"root": "فوع",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyebar harumnya (tentang wewangian)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فوع"
+			}
 		},
 		{
 			"id": "فاغ-فوغ-1",
@@ -10209,11 +10245,14 @@
 			"root": "فوف",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mempertemukan kuku ibu jari dan telunjuk sebagai isyarat menolak memberi sedikit pun"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فوف"
+			}
 		},
 		{
 			"id": "فاه-فوه-1",
@@ -10269,11 +10308,14 @@
 			"root": "فثج",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengurangi sesuatu", "menguras sumur"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فثج"
+			}
 		},
 		{
 			"id": "فث-فثث-1",
@@ -10341,11 +10383,14 @@
 			"root": "فحو",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengisyaratkan suatu maksud lewat perkataan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فحو"
+			}
 		},
 		{
 			"id": "فحم-فحم-1",
@@ -10389,11 +10434,14 @@
 			"root": "فرت",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berbuat durhaka"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فرت"
+			}
 		},
 		{
 			"id": "فره-فره-1",
@@ -10449,11 +10497,14 @@
 			"root": "فشق",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mematahkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فشق"
+			}
 		},
 		{
 			"id": "فشل-فشل-1",
@@ -10545,11 +10596,14 @@
 			"root": "فقم",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memegang kedua rahang seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فقم"
+			}
 		},
 		{
 			"id": "فقه-فقه-1",
@@ -10581,11 +10635,14 @@
 			"root": "فكن",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bersikeras dalam suatu urusan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فكن"
+			}
 		},
 		{
 			"id": "فلج-فلج-1",
@@ -10629,11 +10686,14 @@
 			"root": "فهو",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi fasih setelah sebelumnya kesulitan berbicara"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فهو"
+			}
 		},
 		{
 			"id": "قات-قوت-1",
@@ -10689,11 +10749,14 @@
 			"root": "قوع",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mundur atau menarik diri"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قوع"
+			}
 		},
 		{
 			"id": "قاق-قوق-1",
@@ -10785,11 +10848,14 @@
 			"root": "قثو",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengunyah makanan yang berbunyi renyah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قثو"
+			}
 		},
 		{
 			"id": "قثم-قثم-1",
@@ -10821,11 +10887,14 @@
 			"root": "قحو",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengambil seluruh harta"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قحو"
+			}
 		},
 		{
 			"id": "قحب-قحب-1",
@@ -10881,11 +10950,14 @@
 			"root": "قدف",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menciduk air"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قدف"
+			}
 		},
 		{
 			"id": "قذل-قذل-1",
@@ -11013,11 +11085,14 @@
 			"root": "قعع",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berani melontarkan perkataan lancang kepada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قعع"
+			}
 		},
 		{
 			"id": "قلز-قلز-1",
@@ -11061,11 +11136,14 @@
 			"root": "قمد",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menolak dan enggan menurut"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قمد"
+			}
 		},
 		{
 			"id": "قمس-قمس-1",
@@ -11121,11 +11199,14 @@
 			"root": "قند",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membubuhkan gula pada olahan tepung sangrai"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قند"
+			}
 		},
 		{
 			"id": "قنط-قنط-1",
@@ -11145,11 +11226,14 @@
 			"root": "قنن",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memeriksa sesuatu dengan saksama menggunakan mata"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قنن"
+			}
 		},
 		{
 			"id": "كاء-كوء-1",
@@ -11181,11 +11265,14 @@
 			"root": "كوح",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalahkan seseorang dalam perkelahian"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كوح"
+			}
 		},
 		{
 			"id": "كار-كور-1",
@@ -11265,11 +11352,14 @@
 			"root": "كوه",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencium bau mulut seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كوه"
+			}
 		},
 		{
 			"id": "كبا-كبو-1",
@@ -11289,11 +11379,14 @@
 			"root": "كبث",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyebabkan daging membusuk (tentang panas)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كبث"
+			}
 		},
 		{
 			"id": "كبد-كبد-1",
@@ -11373,11 +11466,14 @@
 			"root": "كجج",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memainkan permainan anak yang disebut الكُجَّة"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كجج"
+			}
 		},
 		{
 			"id": "كدا-كدو-1",
@@ -11409,11 +11505,14 @@
 			"root": "كدن",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengikatkan kain di pinggang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كدن"
+			}
 		},
 		{
 			"id": "كذ-كذذ-1",
@@ -11421,11 +11520,14 @@
 			"root": "كذذ",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi kasar dan keras"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كذذ"
+			}
 		},
 		{
 			"id": "كرث-كرث-1",
@@ -11517,11 +11619,14 @@
 			"root": "كسس",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menumbuk sesuatu kuat-kuat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كسس"
+			}
 		},
 		{
 			"id": "كشا-كشو-1",
@@ -11529,11 +11634,14 @@
 			"root": "كشو",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggigit sesuatu lalu menariknya lepas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كشو"
+			}
 		},
 		{
 			"id": "كشم-كشم-1",
@@ -11565,11 +11673,14 @@
 			"root": "كظب",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi sangat gemuk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كظب"
+			}
 		},
 		{
 			"id": "كظر-كظر-1",
@@ -11613,11 +11724,14 @@
 			"root": "كلب",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencolek atau memacu kuda dengan pengait"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كلب"
+			}
 		},
 		{
 			"id": "كمد-كمد-1",
@@ -11637,11 +11751,14 @@
 			"root": "كمس",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bermuka masam"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كمس"
+			}
 		},
 		{
 			"id": "كمن-كمن-1",
@@ -11673,11 +11790,14 @@
 			"root": "كنب",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi berkecukupan setelah hidup miskin"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كنب"
+			}
 		},
 		{
 			"id": "كنت-كنت-1",
@@ -11685,11 +11805,14 @@
 			"root": "كنت",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi kuat tubuhnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كنت"
+			}
 		},
 		{
 			"id": "كند-كند-1",
@@ -11937,11 +12060,14 @@
 			"root": "لتب",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melekat pada sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لتب"
+			}
 		},
 		{
 			"id": "لتز-لتز-1",
@@ -12081,11 +12207,14 @@
 			"root": "لذج",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terus mendesak orang dengan pertanyaan atau permintaan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لذج"
+			}
 		},
 		{
 			"id": "لزب-لزب-1",
@@ -12225,11 +12354,14 @@
 			"root": "لطث",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi rusak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لطث"
+			}
 		},
 		{
 			"id": "لط-لطط-1",
@@ -12285,11 +12417,14 @@
 			"root": "لفو",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengurangi hak yang seharusnya diterima seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لفو"
+			}
 		},
 		{
 			"id": "لقا-لقو-1",
@@ -12381,11 +12516,14 @@
 			"root": "لكش",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memukul dengan kepalan tangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لكش"
+			}
 		},
 		{
 			"id": "لك-لكك-1",
@@ -12465,11 +12603,14 @@
 			"root": "لمق",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memandang ke arah seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لمق"
+			}
 		},
 		{
 			"id": "لمك-لمك-1",
@@ -12621,11 +12762,14 @@
 			"root": "متك",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memotong sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/متك"
+			}
 		},
 		{
 			"id": "متل-متل-1",
@@ -12633,11 +12777,14 @@
 			"root": "متل",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggoyang atau mengguncangkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/متل"
+			}
 		},
 		{
 			"id": "مثج-مثج-1",
@@ -12765,11 +12912,14 @@
 			"root": "مخن",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menangis"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مخن"
+			}
 		},
 		{
 			"id": "مدر-مدر-1",
@@ -12801,11 +12951,14 @@
 			"root": "مدش",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengurangi pemberian kepada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مدش"
+			}
 		},
 		{
 			"id": "مدق-مدق-1",
@@ -12945,11 +13098,14 @@
 			"root": "مزن",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bergegas untuk memenuhi keperluan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مزن"
+			}
 		},
 		{
 			"id": "مسا-مسو-1",
@@ -12981,11 +13137,14 @@
 			"root": "مسط",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeluarkan sisa susu kental dari kantong kulit dengan jari"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مسط"
+			}
 		},
 		{
 			"id": "مسل-مسل-1",
@@ -13065,11 +13224,14 @@
 			"root": "مشن",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memukul dengan cambuk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مشن"
+			}
 		},
 		{
 			"id": "مصت-مصت-1",
@@ -13197,11 +13359,14 @@
 			"root": "مظظ",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencela seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مظظ"
+			}
 		},
 		{
 			"id": "معا-معو-1",
@@ -13221,11 +13386,14 @@
 			"root": "معع",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meleleh (tentang lemak)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/معع"
+			}
 		},
 		{
 			"id": "مغا-مغو-1",
@@ -13413,11 +13581,14 @@
 			"root": "ملد",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merentangkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ملد"
+			}
 		},
 		{
 			"id": "ملذ-ملذ-1",
@@ -13461,11 +13632,14 @@
 			"root": "ملش",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meraba-raba sesuatu untuk mencari isinya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ملش"
+			}
 		},
 		{
 			"id": "ملص-ملص-1",
@@ -13485,11 +13659,14 @@
 			"root": "ملط",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melapisi tembok dengan adukan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ملط"
+			}
 		},
 		{
 			"id": "ملق-ملق-1",
@@ -13605,11 +13782,14 @@
 			"root": "نوض",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bergerak dan bergoyang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نوض"
+			}
 		},
 		{
 			"id": "ناع-نوع-1",
@@ -13617,11 +13797,14 @@
 			"root": "نوع",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berayun atau condong ke samping"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نوع"
+			}
 		},
 		{
 			"id": "ناق-نوق-1",
@@ -13629,11 +13812,14 @@
 			"root": "نوق",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memisahkan lemak dari daging"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نوق"
+			}
 		},
 		{
 			"id": "ناه-نوه-1",
@@ -13833,11 +14019,14 @@
 			"root": "نثط",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menembus permukaan tanah (tentang tunas)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نثط"
+			}
 		},
 		{
 			"id": "نثل-نثل-1",
@@ -14133,11 +14322,14 @@
 			"root": "نسو",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meninggalkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نسو"
+			}
 		},
 		{
 			"id": "نسك-نسك-1",
@@ -14253,11 +14445,14 @@
 			"root": "نضف",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlari kecil (tentang hewan tunggangan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نضف"
+			}
 		},
 		{
 			"id": "نضل-نضل-1",
@@ -14277,11 +14472,14 @@
 			"root": "نطو",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berada jauh (tentang tempat tinggal)", "merentangkan tali"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نطو"
+			}
 		},
 		{
 			"id": "نطب-نطب-1",
@@ -14313,11 +14511,14 @@
 			"root": "نعو",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeong"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نعو"
+			}
 		},
 		{
 			"id": "نعج-نعج-1",
@@ -14505,11 +14706,14 @@
 			"root": "نمر",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendaki gunung atau memanjat pohon"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نمر"
+			}
 		},
 		{
 			"id": "نمش-نمش-1",
@@ -14589,11 +14793,14 @@
 			"root": "هتو",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mematahkan sesuatu dengan injakan kaki"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هتو"
+			}
 		},
 		{
 			"id": "هت-هتت-1",
@@ -14613,11 +14820,14 @@
 			"root": "هثث",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berdusta", "mencampuradukkan beberapa benda"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هثث"
+			}
 		},
 		{
 			"id": "هجش-هجش-1",
@@ -14625,11 +14835,14 @@
 			"root": "هجش",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merindukan seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هجش"
+			}
 		},
 		{
 			"id": "هجف-هجف-1",
@@ -14637,11 +14850,14 @@
 			"root": "هجف",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi cekung bagian pinggangnya karena letih"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هجف"
+			}
 		},
 		{
 			"id": "هجل-هجل-1",
@@ -14649,11 +14865,14 @@
 			"root": "هجل",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melontarkan benda"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هجل"
+			}
 		},
 		{
 			"id": "هجن-هجن-1",
@@ -14661,11 +14880,14 @@
 			"root": "هجن",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bunting sebelum waktunya (tentang unta muda)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هجن"
+			}
 		},
 		{
 			"id": "هج-هجج-1",
@@ -14733,11 +14955,14 @@
 			"root": "هرض",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merobek kain"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هرض"
+			}
 		},
 		{
 			"id": "هزا-هزو-1",
@@ -14745,11 +14970,14 @@
 			"root": "هزو",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan atau bepergian"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هزو"
+			}
 		},
 		{
 			"id": "هشر-هشر-1",
@@ -14757,11 +14985,14 @@
 			"root": "هشر",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memerah seluruh susu unta sampai habis"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هشر"
+			}
 		},
 		{
 			"id": "هصا-هصو-1",
@@ -14769,11 +15000,14 @@
 			"root": "هصو",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi tua"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هصو"
+			}
 		},
 		{
 			"id": "هص-هصص-1",
@@ -14805,11 +15039,14 @@
 			"root": "هطو",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melemparkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هطو"
+			}
 		},
 		{
 			"id": "هفك-هفك-1",
@@ -14841,11 +15078,14 @@
 			"root": "هكب",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memperolok seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هكب"
+			}
 		},
 		{
 			"id": "هك-هكك-1",
@@ -14853,11 +15093,14 @@
 			"root": "هكك",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["runtuh (tentang dinding sumur)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هكك"
+			}
 		},
 		{
 			"id": "هلد-هلد-1",
@@ -14865,11 +15108,14 @@
 			"root": "هلد",
 			"bab": 1,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjangkiti orang banyak (tentang penyakit)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هلد"
+			}
 		},
 		{
 			"id": "هل-هلل-1",
@@ -14889,11 +15135,14 @@
 			"root": "همت",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terendam lemak (tentang hidangan roti berkuah)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/همت"
+			}
 		},
 		{
 			"id": "همج-همج-1",
@@ -14901,11 +15150,14 @@
 			"root": "همج",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["minum sekali sampai puas (tentang unta)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/همج"
+			}
 		},
 		{
 			"id": "همذ-همذ-1",
@@ -14913,11 +15165,14 @@
 			"root": "همذ",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan dengan langkah yang baik"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/همذ"
+			}
 		},
 		{
 			"id": "همر-همر-1",
@@ -14973,11 +15228,14 @@
 			"root": "هند",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berseru menirukan suara burung hantu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هند"
+			}
 		},
 		{
 			"id": "وجل-وجل-1",
@@ -15009,11 +15267,14 @@
 			"root": "وصص",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengerjakan sesuatu dengan cermat dan tuntas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وصص"
+			}
 		},
 		{
 			"id": "وط-وطط-1",
@@ -15021,11 +15282,14 @@
 			"root": "وطط",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berderit (tentang tandu)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وطط"
+			}
 		},
 		{
 			"id": "يمن-يمن-1",
@@ -15045,11 +15309,14 @@
 			"root": "ءيس",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merendahkan diri dan tunduk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أيس"
+			}
 		},
 		{
 			"id": "أبت-ءبت-2",
@@ -15153,11 +15420,14 @@
 			"root": "ءتل",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan dengan langkah pendek karena marah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أتل"
+			}
 		},
 		{
 			"id": "أتم-ءتم-2",
@@ -15357,11 +15627,14 @@
 			"root": "ءرج",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berbohong", "mencampuradukkan yang benar dan yang salah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أرج"
+			}
 		},
 		{
 			"id": "أرز-ءرز-2",
@@ -15453,11 +15726,14 @@
 			"root": "ءزج",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melangkah cepat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أزج"
+			}
 		},
 		{
 			"id": "أزح-ءزح-2",
@@ -15465,11 +15741,14 @@
 			"root": "ءزح",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengerut atau merapat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أزح"
+			}
 		},
 		{
 			"id": "أزف-ءزف-2",
@@ -16113,11 +16392,14 @@
 			"root": "بشق",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menatap dengan tajam"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بشق"
+			}
 		},
 		{
 			"id": "بشك-بشك-2",
@@ -16125,11 +16407,14 @@
 			"root": "بشك",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggerakkan kaki dengan cepat saat berlari (tentang hewan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بشك"
+			}
 		},
 		{
 			"id": "بص-بصص-2",
@@ -16197,11 +16482,14 @@
 			"root": "بعع",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["turun dengan deras (tentang hujan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بعع"
+			}
 		},
 		{
 			"id": "بغم-بغم-2",
@@ -16377,11 +16665,14 @@
 			"root": "تري",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlambat-lambat dalam bekerja"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/تري"
+			}
 		},
 		{
 			"id": "تسع-تسع-2",
@@ -16437,11 +16728,14 @@
 			"root": "تفن",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengusir seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/تفن"
+			}
 		},
 		{
 			"id": "تلد-تلد-2",
@@ -16581,11 +16875,14 @@
 			"root": "ثبب",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["duduk dengan mantap"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ثبب"
+			}
 		},
 		{
 			"id": "ثج-ثجج-2",
@@ -16773,11 +17070,14 @@
 			"root": "ثمج",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencampuradukkan beberapa benda"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ثمج"
+			}
 		},
 		{
 			"id": "ثمد-ثمد-2",
@@ -17061,11 +17361,14 @@
 			"root": "جفش",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghimpun sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جفش"
+			}
 		},
 		{
 			"id": "جفل-جفل-2",
@@ -17145,11 +17448,14 @@
 			"root": "جلق",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyingkap penutup sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جلق"
+			}
 		},
 		{
 			"id": "جلم-جلم-2",
@@ -17289,11 +17595,14 @@
 			"root": "حيش",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa terkejut dan takut"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حيش"
+			}
 		},
 		{
 			"id": "حبج-حبج-2",
@@ -17493,11 +17802,14 @@
 			"root": "حدم",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memanaskan sesuatu kuat-kuat dengan api atau sinar matahari"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حدم"
+			}
 		},
 		{
 			"id": "حدى-حدي-2",
@@ -17637,11 +17949,14 @@
 			"root": "حسف",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengupas kulit atau lapisan luar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حسف"
+			}
 		},
 		{
 			"id": "حسى-حسي-2",
@@ -17673,11 +17988,14 @@
 			"root": "حصم",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menumbuk sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حصم"
+			}
 		},
 		{
 			"id": "حصى-حصي-2",
@@ -17817,11 +18135,14 @@
 			"root": "حمت",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengerahkan seseorang untuk menghadapi orang lain"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حمت"
+			}
 		},
 		{
 			"id": "حمز-حمز-2",
@@ -17877,11 +18198,14 @@
 			"root": "حمك",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menunjukkan jalan dengan baik (tentang pemandu)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حمك"
+			}
 		},
 		{
 			"id": "حنج-حنج-2",
@@ -17889,11 +18213,14 @@
 			"root": "حنج",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["muncul (tentang keperluan yang perlu diurus)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حنج"
+			}
 		},
 		{
 			"id": "حنذ-حنذ-2",
@@ -17925,11 +18252,14 @@
 			"root": "خيت",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeluarkan suara"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خيت"
+			}
 		},
 		{
 			"id": "خاز-خيز-2",
@@ -17961,11 +18291,14 @@
 			"root": "خيش",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi tipis atau halus"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خيش"
+			}
 		},
 		{
 			"id": "خاص-خيص-2",
@@ -18381,11 +18714,14 @@
 			"root": "خفس",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengucapkan perkataan buruk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خفس"
+			}
 		},
 		{
 			"id": "خق-خقق-2",
@@ -18549,11 +18885,14 @@
 			"root": "دبي",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merayap perlahan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دبي"
+			}
 		},
 		{
 			"id": "دث-دثث-2",
@@ -18717,11 +19056,14 @@
 			"root": "ذيط",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan sambil menggoyangkan bahu (tentang orang bertubuh besar)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ذيط"
+			}
 		},
 		{
 			"id": "ذام-ذيم-2",
@@ -18897,11 +19239,14 @@
 			"root": "ريخ",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi hina atau tunduk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ريخ"
+			}
 		},
 		{
 			"id": "راس-ريس-2",
@@ -19089,11 +19434,14 @@
 			"root": "ردج",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeluarkan kotoran pertama setelah lahir"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ردج"
+			}
 		},
 		{
 			"id": "ردس-ردس-2",
@@ -19197,11 +19545,14 @@
 			"root": "رضم",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlari dengan langkah berat dan pendek"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رضم"
+			}
 		},
 		{
 			"id": "رضن-رضن-2",
@@ -19209,11 +19560,14 @@
 			"root": "رضن",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyusun bagian-bagian hingga rapat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رضن"
+			}
 		},
 		{
 			"id": "رطس-رطس-2",
@@ -19581,11 +19935,14 @@
 			"root": "زنن",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengering atau menjadi kaku (tentang urat)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/زنن"
+			}
 		},
 		{
 			"id": "ساع-سيع-2",
@@ -19665,11 +20022,14 @@
 			"root": "سخخ",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menancapkan ujung perutnya ke tanah (tentang belalang betina)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سخخ"
+			}
 		},
 		{
 			"id": "سدر-سدر-2",
@@ -19761,11 +20121,14 @@
 			"root": "سقد",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melatih kuda agar ramping dan tangkas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سقد"
+			}
 		},
 		{
 			"id": "سلت-سلت-2",
@@ -20205,11 +20568,14 @@
 			"root": "صلت",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi rendah kadar lemaknya (tentang susu)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/صلت"
+			}
 		},
 		{
 			"id": "صلد-صلد-2",
@@ -20553,11 +20919,14 @@
 			"root": "ضمس",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengunyah diam-diam"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ضمس"
+			}
 		},
 		{
 			"id": "ضمى-ضمي-2",
@@ -21117,11 +21486,14 @@
 			"root": "عجر",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjulurkan ekor ke arah pinggul saat berlari (tentang kuda)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عجر"
+			}
 		},
 		{
 			"id": "عجس-عجس-2",
@@ -21153,11 +21525,14 @@
 			"root": "عدس",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bepergian melintasi wilayah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عدس"
+			}
 		},
 		{
 			"id": "عدف-عدف-2",
@@ -21297,11 +21672,14 @@
 			"root": "عرص",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terus berkilat (tentang langit)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عرص"
+			}
 		},
 		{
 			"id": "عرم-عرم-2",
@@ -21525,11 +21903,14 @@
 			"root": "عظر",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memenuhi kantong air"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عظر"
+			}
 		},
 		{
 			"id": "عظى-عظي-2",
@@ -21549,11 +21930,14 @@
 			"root": "عفد",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melompat dari posisi berdiri dengan kedua kaki rapat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عفد"
+			}
 		},
 		{
 			"id": "عفس-عفس-2",
@@ -21597,11 +21981,14 @@
 			"root": "عفق",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mondar-mandir tanpa keperluan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عفق"
+			}
 		},
 		{
 			"id": "عفك-عفك-2",
@@ -21681,11 +22068,14 @@
 			"root": "عكد",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlindung kepada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عكد"
+			}
 		},
 		{
 			"id": "عكش-عكش-2",
@@ -21765,11 +22155,14 @@
 			"root": "عكي",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meninggal (pemakaian klasik)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عكي"
+			}
 		},
 		{
 			"id": "عك-عكك-2",
@@ -21825,11 +22218,14 @@
 			"root": "علض",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggoyang-goyangkan benda agar dapat dicabut, misalnya pasak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/علض"
+			}
 		},
 		{
 			"id": "علط-علط-2",
@@ -21897,11 +22293,14 @@
 			"root": "عمش",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tanpa sengaja memukul seseorang dengan tongkat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عمش"
+			}
 		},
 		{
 			"id": "عمن-عمن-2",
@@ -22017,11 +22416,14 @@
 			"root": "غبث",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencampur sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غبث"
+			}
 		},
 		{
 			"id": "غبش-غبش-2",
@@ -22029,11 +22431,14 @@
 			"root": "غبش",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menipu seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غبش"
+			}
 		},
 		{
 			"id": "غبق-غبق-2",
@@ -22149,11 +22554,14 @@
 			"root": "غضر",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berpaling dari sesuatu (dengan عَنْ)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غضر"
+			}
 		},
 		{
 			"id": "غضف-غضف-2",
@@ -22209,11 +22617,14 @@
 			"root": "غفق",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyerbu sesuatu secara tiba-tiba"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غفق"
+			}
 		},
 		{
 			"id": "غفى-غفي-2",
@@ -22221,11 +22632,14 @@
 			"root": "غفي",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membersihkan biji gandum dari campuran atau kotorannya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غفي"
+			}
 		},
 		{
 			"id": "غق-غقق-2",
@@ -22257,11 +22671,14 @@
 			"root": "غلج",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlari dengan langkah yang berganti-ganti (tentang kuda)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/غلج"
+			}
 		},
 		{
 			"id": "غلظ-غلظ-2",
@@ -22389,11 +22806,14 @@
 			"root": "فيج",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyepak ke belakang dengan kaki belakang (tentang hewan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فيج"
+			}
 		},
 		{
 			"id": "فاد-فيد-2",
@@ -22449,11 +22869,14 @@
 			"root": "فين",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["datang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فين"
+			}
 		},
 		{
 			"id": "فتر-فتر-2",
@@ -22581,11 +23004,14 @@
 			"root": "فصص",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeluarkan sebagian cairannya (tentang luka)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فصص"
+			}
 		},
 		{
 			"id": "فقش-فقش-2",
@@ -22665,11 +23091,14 @@
 			"root": "فنس",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengadu domba dengan menyebarkan omongan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فنس"
+			}
 		},
 		{
 			"id": "فنق-فنق-2",
@@ -22677,11 +23106,14 @@
 			"root": "فنق",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["hidup serba nyaman"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فنق"
+			}
 		},
 		{
 			"id": "قاح-قيح-2",
@@ -22773,11 +23205,14 @@
 			"root": "قبط",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengumpulkan dengan tangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قبط"
+			}
 		},
 		{
 			"id": "قبل-قبل-2",
@@ -22857,11 +23292,14 @@
 			"root": "قذم",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memberi dengan berlimpah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قذم"
+			}
 		},
 		{
 			"id": "قذى-قذي-2",
@@ -22893,11 +23331,14 @@
 			"root": "قرق",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengigau"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قرق"
+			}
 		},
 		{
 			"id": "قزل-قزل-2",
@@ -22941,11 +23382,14 @@
 			"root": "قشم",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["makan dengan lahap"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قشم"
+			}
 		},
 		{
 			"id": "قصم-قصم-2",
@@ -23097,11 +23541,14 @@
 			"root": "قمز",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengambil sesuatu dengan ujung jari"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قمز"
+			}
 		},
 		{
 			"id": "قمس-قمس-2",
@@ -23217,11 +23664,14 @@
 			"root": "كير",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlari sambil mengangkat ekor (tentang kuda)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كير"
+			}
 		},
 		{
 			"id": "كاص-كيص-2",
@@ -23361,11 +23811,14 @@
 			"root": "كثم",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghimpun sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كثم"
+			}
 		},
 		{
 			"id": "كث-كثث-2",
@@ -23469,11 +23922,14 @@
 			"root": "كزم",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengatupkan mulut dan diam"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كزم"
+			}
 		},
 		{
 			"id": "كزى-كزي-2",
@@ -23481,11 +23937,14 @@
 			"root": "كزي",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bermurah hati kepada orang yang datang meminta"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كزي"
+			}
 		},
 		{
 			"id": "كسف-كسف-2",
@@ -23505,11 +23964,14 @@
 			"root": "كسم",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bekerja keras mencari nafkah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كسم"
+			}
 		},
 		{
 			"id": "كشب-كشب-2",
@@ -23589,11 +24051,14 @@
 			"root": "كصص",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengerut atau menciut karena takut"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كصص"
+			}
 		},
 		{
 			"id": "كظم-كظم-2",
@@ -23625,11 +24090,14 @@
 			"root": "كلت",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengumpulkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كلت"
+			}
 		},
 		{
 			"id": "كلد-كلد-2",
@@ -23637,11 +24105,14 @@
 			"root": "كلد",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menumpuk benda satu di atas yang lain"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كلد"
+			}
 		},
 		{
 			"id": "كلز-كلز-2",
@@ -23661,11 +24132,14 @@
 			"root": "كلس",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melapisi bangunan dengan kapur"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كلس"
+			}
 		},
 		{
 			"id": "كلم-كلم-2",
@@ -23709,11 +24183,14 @@
 			"root": "كمز",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membentuk bahan basah menjadi bulat dengan kedua tangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كمز"
+			}
 		},
 		{
 			"id": "كمى-كمي-2",
@@ -23877,11 +24354,14 @@
 			"root": "لبز",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["makan dengan lahap"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لبز"
+			}
 		},
 		{
 			"id": "لبط-لبط-2",
@@ -23949,11 +24429,14 @@
 			"root": "لثث",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menetap di suatu tempat", "berlangsung berhari-hari (tentang hujan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لثث"
+			}
 		},
 		{
 			"id": "لجف-لجف-2",
@@ -23973,11 +24456,14 @@
 			"root": "لحح",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berkerabat dekat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لحح"
+			}
 		},
 		{
 			"id": "لخى-لخي-2",
@@ -24249,11 +24735,14 @@
 			"root": "متش",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengumpulkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/متش"
+			}
 		},
 		{
 			"id": "متى-متي-2",
@@ -24309,11 +24798,14 @@
 			"root": "مرت",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghaluskan permukaan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مرت"
+			}
 		},
 		{
 			"id": "مرث-مرث-2",
@@ -24465,11 +24957,14 @@
 			"root": "نيض",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berdenyut (tentang pembuluh darah)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نيض"
+			}
 		},
 		{
 			"id": "ناع-نيع-2",
@@ -24477,11 +24972,14 @@
 			"root": "نيع",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["condong ke samping (tentang dahan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نيع"
+			}
 		},
 		{
 			"id": "نبج-نبج-2",
@@ -24657,11 +25155,14 @@
 			"root": "نثج",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengendur"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نثج"
+			}
 		},
 		{
 			"id": "نثل-نثل-2",
@@ -25017,11 +25518,14 @@
 			"root": "نعع",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melemah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نعع"
+			}
 		},
 		{
 			"id": "نغب-نغب-2",
@@ -25221,11 +25725,14 @@
 			"root": "هيص",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeluarkan kotoran (tentang burung)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هيص"
+			}
 		},
 		{
 			"id": "هاط-هيط-2",
@@ -25257,11 +25764,14 @@
 			"root": "هيف",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berguguran (tentang daun)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هيف"
+			}
 		},
 		{
 			"id": "هبت-هبت-2",
@@ -25329,11 +25839,14 @@
 			"root": "هبص",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bergerak lincah dan bersemangat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هبص"
+			}
 		},
 		{
 			"id": "هبع-هبع-2",
@@ -25365,11 +25878,14 @@
 			"root": "هتش",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghasut anjing atau binatang buas untuk mengejar buruan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هتش"
+			}
 		},
 		{
 			"id": "هتل-هتل-2",
@@ -25521,11 +26037,14 @@
 			"root": "هدك",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merobohkan bangunan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هدك"
+			}
 		},
 		{
 			"id": "هدل-هدل-2",
@@ -25629,11 +26148,14 @@
 			"root": "هرم",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memakan semak gurun yang disebut الْهَرْم (tentang unta)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هرم"
+			}
 		},
 		{
 			"id": "هرى-هري-2",
@@ -25677,11 +26199,14 @@
 			"root": "هصص",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berkilau atau berpijar (tentang api)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هصص"
+			}
 		},
 		{
 			"id": "هضل-هضل-2",
@@ -25689,11 +26214,14 @@
 			"root": "هضل",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berbicara dengan lancar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هضل"
+			}
 		},
 		{
 			"id": "هطر-هطر-2",
@@ -25701,11 +26229,14 @@
 			"root": "هطر",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merendahkan diri saat meminta kepada orang kaya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هطر"
+			}
 		},
 		{
 			"id": "هطف-هطف-2",
@@ -25713,11 +26244,14 @@
 			"root": "هطف",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memerah susu ternak (tentang penggembala)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هطف"
+			}
 		},
 		{
 			"id": "هفت-هفت-2",
@@ -25737,11 +26271,14 @@
 			"root": "هفك",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melemparkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هفك"
+			}
 		},
 		{
 			"id": "هف-هفف-2",
@@ -25809,11 +26346,14 @@
 			"root": "هلج",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyampaikan kabar yang belum diyakini kebenarannya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هلج"
+			}
 		},
 		{
 			"id": "هلس-هلس-2",
@@ -25989,11 +26529,14 @@
 			"root": "وبغ",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencela seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وبغ"
+			}
 		},
 		{
 			"id": "وبق-وبق-2",
@@ -26049,11 +26592,14 @@
 			"root": "وتن",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menetap di suatu tempat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وتن"
+			}
 		},
 		{
 			"id": "وثغ-وثغ-2",
@@ -26061,11 +26607,14 @@
 			"root": "وثغ",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meremukkan kepala"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وثغ"
+			}
 		},
 		{
 			"id": "وثف-وثف-2",
@@ -26073,11 +26622,14 @@
 			"root": "وثف",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memasang batu penyangga periuk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وثف"
+			}
 		},
 		{
 			"id": "وثل-وثل-2",
@@ -26085,11 +26637,14 @@
 			"root": "وثل",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyambungkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وثل"
+			}
 		},
 		{
 			"id": "وثم-وثم-2",
@@ -26121,11 +26676,14 @@
 			"root": "وجح",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi tampak jelas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وجح"
+			}
 		},
 		{
 			"id": "وجه-وجه-2",
@@ -26193,11 +26751,14 @@
 			"root": "وحن",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyimpan dendam dan marah kepada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وحن"
+			}
 		},
 		{
 			"id": "وخد-وخد-2",
@@ -26265,11 +26826,14 @@
 			"root": "وخم",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["lebih menderita kekenyangan daripada orang lain"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وخم"
+			}
 		},
 		{
 			"id": "وخى-وخي-2",
@@ -26337,11 +26901,14 @@
 			"root": "ودل",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengocok kantong kulit berisi susu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ودل"
+			}
 		},
 		{
 			"id": "ودن-ودن-2",
@@ -26385,11 +26952,14 @@
 			"root": "وذف",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan berayun-ayun dengan lagak angkuh"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وذف"
+			}
 		},
 		{
 			"id": "وذى-وذي-2",
@@ -26397,11 +26967,14 @@
 			"root": "وذي",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggores wajah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وذي"
+			}
 		},
 		{
 			"id": "ورذ-ورذ-2",
@@ -26421,11 +26994,14 @@
 			"root": "ورس",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghijau (tentang tanaman)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ورس"
+			}
 		},
 		{
 			"id": "ورش-ورش-2",
@@ -26445,11 +27021,14 @@
 			"root": "ورص",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertelur sekaligus (tentang ayam betina)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ورص"
+			}
 		},
 		{
 			"id": "ورض-ورض-2",
@@ -26553,11 +27132,14 @@
 			"root": "وزم",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["makan sekali sebagai bekal sampai hari berikutnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وزم"
+			}
 		},
 		{
 			"id": "وزى-وزي-2",
@@ -26649,11 +27231,14 @@
 			"root": "وشظ",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyusul lalu bergabung dengan kelompok lain dalam jumlah kecil"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وشظ"
+			}
 		},
 		{
 			"id": "وشغ-وشغ-2",
@@ -26661,11 +27246,14 @@
 			"root": "وشغ",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeluarkan air kencing sedikit-sedikit dalam beberapa semburan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وشغ"
+			}
 		},
 		{
 			"id": "وشل-وشل-2",
@@ -26745,11 +27333,14 @@
 			"root": "وطح",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendorong dengan tangan secara kasar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وطح"
+			}
 		},
 		{
 			"id": "وطد-وطد-2",
@@ -26793,11 +27384,14 @@
 			"root": "وطف",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memburu hewan dengan tekun mengikuti jejaknya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وطف"
+			}
 		},
 		{
 			"id": "وطم-وطم-2",
@@ -26805,11 +27399,14 @@
 			"root": "وطم",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menginjak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وطم"
+			}
 		},
 		{
 			"id": "وظب-وظب-2",
@@ -26877,11 +27474,14 @@
 			"root": "وعس",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menginjak kuat-kuat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وعس"
+			}
 		},
 		{
 			"id": "وعف-وعف-2",
@@ -26889,11 +27489,14 @@
 			"root": "وعف",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melemah daya penglihatannya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وعف"
+			}
 		},
 		{
 			"id": "وعق-وعق-2",
@@ -26901,11 +27504,14 @@
 			"root": "وعق",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berbunyi perutnya ketika berjalan (tentang kuda)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وعق"
+			}
 		},
 		{
 			"id": "وعك-وعك-2",
@@ -26937,11 +27543,14 @@
 			"root": "وغد",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melayani sekelompok orang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وغد"
+			}
 		},
 		{
 			"id": "وغف-وغف-2",
@@ -26973,11 +27582,14 @@
 			"root": "وفز",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tergesa-gesa"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وفز"
+			}
 		},
 		{
 			"id": "وفض-وفض-2",
@@ -27057,11 +27669,14 @@
 			"root": "وقش",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghilang (tentang bekas atau jejak)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وقش"
+			}
 		},
 		{
 			"id": "وقط-وقط-2",
@@ -27297,11 +27912,14 @@
 			"root": "ولخ",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memukul dengan telapak tangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ولخ"
+			}
 		},
 		{
 			"id": "ولذ-ولذ-2",
@@ -27393,11 +28011,14 @@
 			"root": "ومز",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggerakkan hidung karena marah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ومز"
+			}
 		},
 		{
 			"id": "ومس-ومس-2",
@@ -27405,11 +28026,14 @@
 			"root": "ومس",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bergesekan hingga permukaannya terkelupas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ومس"
+			}
 		},
 		{
 			"id": "ومق-ومق-2",
@@ -27453,11 +28077,14 @@
 			"root": "وهت",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menekan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وهت"
+			}
 		},
 		{
 			"id": "وهث-وهث-2",
@@ -27465,11 +28092,14 @@
 			"root": "وهث",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menekuni sesuatu dengan sungguh-sungguh"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وهث"
+			}
 		},
 		{
 			"id": "وهر-وهر-2",
@@ -27477,11 +28107,14 @@
 			"root": "وهر",
 			"bab": 2,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjerumuskan orang ke dalam masalah yang sulit diatasi"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وهر"
+			}
 		},
 		{
 			"id": "وهز-وهز-2",
@@ -27537,11 +28170,14 @@
 			"root": "وهف",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengabdi di gereja"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وهف"
+			}
 		},
 		{
 			"id": "وهق-وهق-2",
@@ -27585,11 +28221,14 @@
 			"root": "يتن",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melahirkan dengan kaki bayi keluar lebih dahulu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/يتن"
+			}
 		},
 		{
 			"id": "يسر-يسر-2",
@@ -27681,11 +28320,14 @@
 			"root": "ءرخ",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merindukan tempat asalnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أرخ"
+			}
 		},
 		{
 			"id": "أزأ-ءزء-3",
@@ -27801,11 +28443,14 @@
 			"root": "بتع",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["pergi jauh"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بتع"
+			}
 		},
 		{
 			"id": "بجح-بجح-3",
@@ -28089,11 +28734,14 @@
 			"root": "بعص",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berguncang atau bergerak tidak stabil"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بعص"
+			}
 		},
 		{
 			"id": "بعض-بعض-3",
@@ -28185,11 +28833,14 @@
 			"root": "بغز",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghentakkan kaki ke tanah lalu melangkah giat (tentang hewan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بغز"
+			}
 		},
 		{
 			"id": "بغم-بغم-3",
@@ -28317,11 +28968,14 @@
 			"root": "بهث",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyambut seseorang dengan wajah ceria"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بهث"
+			}
 		},
 		{
 			"id": "بهج-بهج-3",
@@ -28353,11 +29007,14 @@
 			"root": "بهس",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi berani"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بهس"
+			}
 		},
 		{
 			"id": "بهش-بهش-3",
@@ -28389,11 +29046,14 @@
 			"root": "تءر",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["kembali tekun bekerja setelah sempat mengendur"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/تأر"
+			}
 		},
 		{
 			"id": "تأز-تءز-3",
@@ -28401,11 +29061,14 @@
 			"root": "تءز",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menutup atau sembuh (tentang luka)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/تأز"
+			}
 		},
 		{
 			"id": "تأى-تءي-3",
@@ -28437,11 +29100,14 @@
 			"root": "ترع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalihkan seseorang dari tujuannya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ترع"
+			}
 		},
 		{
 			"id": "تسع-تسع-3",
@@ -28725,11 +29391,14 @@
 			"root": "جءث",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melintas sambil membawa beban berat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جأث"
+			}
 		},
 		{
 			"id": "جأج-جءج-3",
@@ -28821,11 +29490,14 @@
 			"root": "جءي",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggigit"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جأى"
+			}
 		},
 		{
 			"id": "جبأ-جبء-3",
@@ -28917,11 +29589,14 @@
 			"root": "جحن",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membatasi belanja keluarga karena miskin atau kikir"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جحن"
+			}
 		},
 		{
 			"id": "جخر-جخر-3",
@@ -29049,11 +29724,14 @@
 			"root": "جعظ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menentang seseorang dan mengubah tatanan urusannya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جعظ"
+			}
 		},
 		{
 			"id": "جعف-جعف-3",
@@ -29217,11 +29895,14 @@
 			"root": "جهث",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi gelisah atau meluap karena takut, marah, atau gembira"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جهث"
+			}
 		},
 		{
 			"id": "جهز-جهز-3",
@@ -29289,11 +29970,14 @@
 			"root": "حجء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berpegang pada sesuatu dengan gembira"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حجأ"
+			}
 		},
 		{
 			"id": "حدأ-حدء-3",
@@ -29577,11 +30261,14 @@
 			"root": "خفع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi lemas karena lapar atau sakit"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خفع"
+			}
 		},
 		{
 			"id": "خلأ-خلء-3",
@@ -29661,11 +30348,14 @@
 			"root": "دءم",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyangga tembok"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دأم"
+			}
 		},
 		{
 			"id": "دأى-دءي-3",
@@ -29685,11 +30375,14 @@
 			"root": "دبء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi tenang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دبأ"
+			}
 		},
 		{
 			"id": "دثع-دثع-3",
@@ -29721,11 +30414,14 @@
 			"root": "دحج",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggosok atau mengucek"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دحج"
+			}
 		},
 		{
 			"id": "دحز-دحز-3",
@@ -29769,11 +30465,14 @@
 			"root": "دحل",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["masuk ke dalam liang bawah tanah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دحل"
+			}
 		},
 		{
 			"id": "دحم-دحم-3",
@@ -29937,11 +30636,14 @@
 			"root": "دعث",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghaluskan tanah dengan kaki atau tangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دعث"
+			}
 		},
 		{
 			"id": "دعر-دعر-3",
@@ -30189,11 +30891,14 @@
 			"root": "دنح",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menundukkan kepala"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دنح"
+			}
 		},
 		{
 			"id": "دنخ-دنخ-3",
@@ -30645,11 +31350,14 @@
 			"root": "ربغ",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["hidup dalam kelapangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ربغ"
+			}
 		},
 		{
 			"id": "رتأ-رتء-3",
@@ -30789,11 +31497,14 @@
 			"root": "رسع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalami gangguan hingga kelopak mata saling melekat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رسع"
+			}
 		},
 		{
 			"id": "رسغ-رسغ-3",
@@ -30801,11 +31512,14 @@
 			"root": "رسغ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggenangi tanah setinggi pergelangan kaki (tentang air hujan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رسغ"
+			}
 		},
 		{
 			"id": "رشأ-رشء-3",
@@ -30825,11 +31539,14 @@
 			"root": "رصع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menetap di suatu tempat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رصع"
+			}
 		},
 		{
 			"id": "رضح-رضح-3",
@@ -30861,11 +31578,14 @@
 			"root": "رعث",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memutih ujung gelambir kecilnya (tentang kambing atau domba)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رعث"
+			}
 		},
 		{
 			"id": "رعج-رعج-3",
@@ -30873,11 +31593,14 @@
 			"root": "رعج",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berkilat berulang-ulang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رعج"
+			}
 		},
 		{
 			"id": "رعز-رعز-3",
@@ -30933,11 +31656,14 @@
 			"root": "رعض",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tersentak dan gemetar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رعض"
+			}
 		},
 		{
 			"id": "رعظ-رعظ-3",
@@ -30993,11 +31719,14 @@
 			"root": "رعم",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalir ingusnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رعم"
+			}
 		},
 		{
 			"id": "رغث-رغث-3",
@@ -31113,11 +31842,14 @@
 			"root": "رقح",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memperoleh penghasilan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رقح"
+			}
 		},
 		{
 			"id": "ركح-ركح-3",
@@ -31149,11 +31881,14 @@
 			"root": "رمع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berguncang dan bergerak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رمع"
+			}
 		},
 		{
 			"id": "رمغ-رمغ-3",
@@ -31161,11 +31896,14 @@
 			"root": "رمغ",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggosok sesuatu dengan tangan, misalnya kulit samakan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رمغ"
+			}
 		},
 		{
 			"id": "رنأ-رنء-3",
@@ -31185,11 +31923,14 @@
 			"root": "رنع",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi layu karena kekurangan air (tentang tanaman)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رنع"
+			}
 		},
 		{
 			"id": "رهد-رهد-3",
@@ -31269,11 +32010,14 @@
 			"root": "زءب",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["minum dengan lahap"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/زأب"
+			}
 		},
 		{
 			"id": "زأت-زءت-3",
@@ -31329,11 +32073,14 @@
 			"root": "زءف",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendesak seseorang agar bergegas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/زأف"
+			}
 		},
 		{
 			"id": "زأك-زءك-3",
@@ -31353,11 +32100,14 @@
 			"root": "زءي",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyombongkan diri"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/زأى"
+			}
 		},
 		{
 			"id": "زحب-زحب-3",
@@ -31413,11 +32163,14 @@
 			"root": "زخف",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membanggakan diri dengan angkuh"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/زخف"
+			}
 		},
 		{
 			"id": "زخم-زخم-3",
@@ -31533,11 +32286,14 @@
 			"root": "زغف",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melimpah airnya (tentang sumur)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/زغف"
+			}
 		},
 		{
 			"id": "زغل-زغل-3",
@@ -31629,11 +32385,14 @@
 			"root": "زمع",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mempercepat langkah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/زمع"
+			}
 		},
 		{
 			"id": "زنأ-زنء-3",
@@ -31785,11 +32544,14 @@
 			"root": "سبخ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi tenang dan mereda"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سبخ"
+			}
 		},
 		{
 			"id": "سبع-سبع-3",
@@ -31821,11 +32583,14 @@
 			"root": "سجح",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyampaikan suatu maksud secara tidak langsung"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سجح"
+			}
 		},
 		{
 			"id": "سحا-سحو-3",
@@ -31965,11 +32730,14 @@
 			"root": "سدع",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membenturkan satu benda pada benda lain"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سدع"
+			}
 		},
 		{
 			"id": "سرأ-سرء-3",
@@ -32049,11 +32817,14 @@
 			"root": "سغم",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["sangat menyakiti hati seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سغم"
+			}
 		},
 		{
 			"id": "سفه-سفه-3",
@@ -32181,11 +32952,14 @@
 			"root": "سهب",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengambil sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سهب"
+			}
 		},
 		{
 			"id": "سهج-سهج-3",
@@ -32205,11 +32979,14 @@
 			"root": "سهف",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggeram atau berseru (tentang beruang)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/سهف"
+			}
 		},
 		{
 			"id": "سهك-سهك-3",
@@ -32517,11 +33294,14 @@
 			"root": "شقح",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjauhkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/شقح"
+			}
 		},
 		{
 			"id": "شقع-شقع-3",
@@ -32757,11 +33537,14 @@
 			"root": "ضءي",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi kecil dan kurus tubuhnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ضأى"
+			}
 		},
 		{
 			"id": "ضبأ-ضبء-3",
@@ -32973,11 +33756,14 @@
 			"root": "ضهب",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terlambat menunjukkan tanda kedewasaan fisik"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ضهب"
+			}
 		},
 		{
 			"id": "ضهت-ضهت-3",
@@ -33273,11 +34059,14 @@
 			"root": "طنء",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa malu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/طنأ"
+			}
 		},
 		{
 			"id": "طهر-طهر-3",
@@ -33309,11 +34098,14 @@
 			"root": "طهش",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bekerja dengan serampangan hingga merusak hasilnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/طهش"
+			}
 		},
 		{
 			"id": "طهق-طهق-3",
@@ -33345,11 +34137,14 @@
 			"root": "ظءب",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berseru dengan suara keras"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ظأب"
+			}
 		},
 		{
 			"id": "ظأت-ظءت-3",
@@ -33393,11 +34188,14 @@
 			"root": "عوص",
 			"bab": 3,
 			"code": "",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi rumit dan sulit dipahami (tentang urusan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/عوص"
+			}
 		},
 		{
 			"id": "عضه-عضه-3",
@@ -33501,11 +34299,14 @@
 			"root": "فءم",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["hilang dahaganya karena minum"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فأم"
+			}
 		},
 		{
 			"id": "فأى-فءي-3",
@@ -33585,11 +34386,14 @@
 			"root": "فحث",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencari tahu tentang sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فحث"
+			}
 		},
 		{
 			"id": "فحج-فحج-3",
@@ -33789,11 +34593,14 @@
 			"root": "فشخ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menampar seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فشخ"
+			}
 		},
 		{
 			"id": "فشع-فشع-3",
@@ -33885,11 +34692,14 @@
 			"root": "فطء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalihkan seseorang dari pendapatnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فطأ"
+			}
 		},
 		{
 			"id": "فطح-فطح-3",
@@ -34053,11 +34863,14 @@
 			"root": "فهد",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berbuat baik kepada seseorang sewaktu orang itu tidak hadir"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/فهد"
+			}
 		},
 		{
 			"id": "فهر-فهر-3",
@@ -34161,11 +34974,14 @@
 			"root": "قحر",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menua dengan sebagian tenaga muda masih tersisa"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قحر"
+			}
 		},
 		{
 			"id": "قحز-قحز-3",
@@ -34269,11 +35085,14 @@
 			"root": "قضع",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menundukkan seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قضع"
+			}
 		},
 		{
 			"id": "قعث-قعث-3",
@@ -34317,11 +35136,14 @@
 			"root": "قعس",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mundur ke belakang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قعس"
+			}
 		},
 		{
 			"id": "قعش-قعش-3",
@@ -34329,11 +35151,14 @@
 			"root": "قعش",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merobohkan bangunan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قعش"
+			}
 		},
 		{
 			"id": "قعص-قعص-3",
@@ -34353,11 +35178,14 @@
 			"root": "قعط",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengering"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قعط"
+			}
 		},
 		{
 			"id": "قعف-قعف-3",
@@ -34365,11 +35193,14 @@
 			"root": "قعف",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencabut sampai ke akarnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قعف"
+			}
 		},
 		{
 			"id": "قعم-قعم-3",
@@ -34377,11 +35208,14 @@
 			"root": "قعم",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeong (tentang kucing)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قعم"
+			}
 		},
 		{
 			"id": "قفح-قفح-3",
@@ -34389,11 +35223,14 @@
 			"root": "قفح",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjauhi sesuatu karena enggan atau takut"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قفح"
+			}
 		},
 		{
 			"id": "قفخ-قفخ-3",
@@ -34461,11 +35298,14 @@
 			"root": "قمه",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengangkat kepala dan enggan minum (tentang unta)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قمه"
+			}
 		},
 		{
 			"id": "قنح-قنح-3",
@@ -34485,11 +35325,14 @@
 			"root": "قهد",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan dengan langkah pendek"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/قهد"
+			}
 		},
 		{
 			"id": "قهز-قهز-3",
@@ -34533,11 +35376,14 @@
 			"root": "كءد",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi berat dan sulit (tentang urusan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كأد"
+			}
 		},
 		{
 			"id": "كأش-كءش-3",
@@ -34605,11 +35451,14 @@
 			"root": "كتح",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melempari tubuh seseorang dengan benda yang meninggalkan bekas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كتح"
+			}
 		},
 		{
 			"id": "كتع-كتع-3",
@@ -34617,11 +35466,14 @@
 			"root": "كتع",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengerutkan badan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كتع"
+			}
 		},
 		{
 			"id": "كته-كته-3",
@@ -34665,11 +35517,14 @@
 			"root": "كثع",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terpisah sehingga lemaknya mengapung dan cairan beningnya berada di bawah (tentang susu)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كثع"
+			}
 		},
 		{
 			"id": "كحب-كحب-3",
@@ -34809,11 +35664,14 @@
 			"root": "كشء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memanggang daging sampai kering"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كشأ"
+			}
 		},
 		{
 			"id": "كشح-كشح-3",
@@ -34941,11 +35799,14 @@
 			"root": "كمع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["minum langsung dari wadah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كمع"
+			}
 		},
 		{
 			"id": "كنع-كنع-3",
@@ -34953,11 +35814,14 @@
 			"root": "كنع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengerut karena kering"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/كنع"
+			}
 		},
 		{
 			"id": "كهد-كهد-3",
@@ -35085,11 +35949,14 @@
 			"root": "لتء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendorong dada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لتأ"
+			}
 		},
 		{
 			"id": "لتح-لتح-3",
@@ -35097,11 +35964,14 @@
 			"root": "لتح",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memukul hingga meninggalkan bekas pada wajah atau tubuh"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لتح"
+			}
 		},
 		{
 			"id": "لثأ-لثء-3",
@@ -35145,11 +36015,14 @@
 			"root": "لحج",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlindung kepada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لحج"
+			}
 		},
 		{
 			"id": "لحد-لحد-3",
@@ -35169,11 +36042,14 @@
 			"root": "لحز",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendesak seseorang terus-menerus"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لحز"
+			}
 		},
 		{
 			"id": "لحس-لحس-3",
@@ -35193,11 +36069,14 @@
 			"root": "لحص",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terjerat dalam suatu urusan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لحص"
+			}
 		},
 		{
 			"id": "لحط-لحط-3",
@@ -35205,11 +36084,14 @@
 			"root": "لحط",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyapu, memerciki air, dan membersihkan tempat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لحط"
+			}
 		},
 		{
 			"id": "لحك-لحك-3",
@@ -35217,11 +36099,14 @@
 			"root": "لحك",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merekatkan satu benda pada benda lain"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لحك"
+			}
 		},
 		{
 			"id": "لخب-لخب-3",
@@ -35373,11 +36258,14 @@
 			"root": "لطي",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melekat di tanah hingga hampir tidak bergerak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لطي"
+			}
 		},
 		{
 			"id": "لعج-لعج-3",
@@ -35433,11 +36321,14 @@
 			"root": "لعط",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menandai sisi leher ternak dengan besi panas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لعط"
+			}
 		},
 		{
 			"id": "لغب-لغب-3",
@@ -35457,11 +36348,14 @@
 			"root": "لغد",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengenai bagian daging di bawah rahang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لغد"
+			}
 		},
 		{
 			"id": "لغف-لغف-3",
@@ -35469,11 +36363,14 @@
 			"root": "لغف",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertindak tidak adil"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لغف"
+			}
 		},
 		{
 			"id": "لفأ-لفء-3",
@@ -35529,11 +36426,14 @@
 			"root": "لكء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencambuk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/لكأ"
+			}
 		},
 		{
 			"id": "لكح-لكح-3",
@@ -35757,11 +36657,14 @@
 			"root": "متخ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencabut sesuatu dari tempatnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/متخ"
+			}
 		},
 		{
 			"id": "متع-متع-3",
@@ -35841,11 +36744,14 @@
 			"root": "محج",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengusap sesuatu sampai kulit di bawahnya terlihat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/محج"
+			}
 		},
 		{
 			"id": "محز-محز-3",
@@ -35937,11 +36843,14 @@
 			"root": "مدخ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi besar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مدخ"
+			}
 		},
 		{
 			"id": "مده-مده-3",
@@ -35997,11 +36906,14 @@
 			"root": "مرغ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memakan rumput (tentang ternak yang digembalakan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مرغ"
+			}
 		},
 		{
 			"id": "مزع-مزع-3",
@@ -36021,11 +36933,14 @@
 			"root": "مسء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memperdaya seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مسأ"
+			}
 		},
 		{
 			"id": "مشع-مشع-3",
@@ -36045,11 +36960,14 @@
 			"root": "مشغ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["makan dengan ringan dan cepat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مشغ"
+			}
 		},
 		{
 			"id": "مصح-مصح-3",
@@ -36117,11 +37035,14 @@
 			"root": "مطح",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memukul dengan tangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مطح"
+			}
 		},
 		{
 			"id": "مطخ-مطخ-3",
@@ -36129,11 +37050,14 @@
 			"root": "مطخ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["makan banyak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مطخ"
+			}
 		},
 		{
 			"id": "مطع-مطع-3",
@@ -36141,11 +37065,14 @@
 			"root": "مطع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bepergian lalu tersesat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مطع"
+			}
 		},
 		{
 			"id": "مطه-مطه-3",
@@ -36213,11 +37140,14 @@
 			"root": "معز",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memisahkan kambing dari kawanan domba"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/معز"
+			}
 		},
 		{
 			"id": "معس-معس-3",
@@ -36249,11 +37179,14 @@
 			"root": "معق",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi buruk perangainya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/معق"
+			}
 		},
 		{
 			"id": "معك-معك-3",
@@ -36273,11 +37206,14 @@
 			"root": "معل",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mempercepat langkah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/معل"
+			}
 		},
 		{
 			"id": "معن-معن-3",
@@ -36405,11 +37341,14 @@
 			"root": "مهج",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["pulih dari sakit dan tampak segar kembali"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مهج"
+			}
 		},
 		{
 			"id": "مهز-مهز-3",
@@ -36417,11 +37356,14 @@
 			"root": "مهز",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendorong seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/مهز"
+			}
 		},
 		{
 			"id": "مهك-مهك-3",
@@ -36573,11 +37515,14 @@
 			"root": "نجخ",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bergejolak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نجخ"
+			}
 		},
 		{
 			"id": "نجه-نجه-3",
@@ -36621,11 +37566,14 @@
 			"root": "نحص",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi terlalu gemuk untuk bunting (tentang keledai betina)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نحص"
+			}
 		},
 		{
 			"id": "نحض-نحض-3",
@@ -36705,11 +37653,14 @@
 			"root": "ندء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memasak daging langsung di bara"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ندأ"
+			}
 		},
 		{
 			"id": "ندح-ندح-3",
@@ -36765,11 +37716,14 @@
 			"root": "نذع",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["keluar setetes demi setetes (tentang air atau keringat)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نذع"
+			}
 		},
 		{
 			"id": "نزأ-نزء-3",
@@ -36813,11 +37767,14 @@
 			"root": "نسح",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghamburkan atau mengangkat debu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نسح"
+			}
 		},
 		{
 			"id": "نسع-نسع-3",
@@ -36885,11 +37842,14 @@
 			"root": "نطع",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggigit sebagian makanan lalu meletakkan sisanya kembali di meja"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نطع"
+			}
 		},
 		{
 			"id": "نعب-نعب-3",
@@ -36909,11 +37869,14 @@
 			"root": "نعث",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meraih dan mengambil sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نعث"
+			}
 		},
 		{
 			"id": "نعص-نعص-3",
@@ -36993,11 +37956,14 @@
 			"root": "نغص",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengusik ketenangan seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/نغص"
+			}
 		},
 		{
 			"id": "نغق-نغق-3",
@@ -37221,11 +38187,14 @@
 			"root": "هدغ",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meremukkan dengan pukulan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هدغ"
+			}
 		},
 		{
 			"id": "هذأ-هذء-3",
@@ -37293,11 +38262,14 @@
 			"root": "هقع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memberi tanda bakar pada kuda"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هقع"
+			}
 		},
 		{
 			"id": "هكع-هكع-3",
@@ -37341,11 +38313,14 @@
 			"root": "همغ",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meremukkan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/همغ"
+			}
 		},
 		{
 			"id": "هنع-هنع-3",
@@ -37353,11 +38328,14 @@
 			"root": "هنع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tunduk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هنع"
+			}
 		},
 		{
 			"id": "هنغ-هنغ-3",
@@ -37365,11 +38343,14 @@
 			"root": "هنغ",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merendahkan suara sewaktu merayu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/هنغ"
+			}
 		},
 		{
 			"id": "وبأ-وبء-3",
@@ -37449,11 +38430,14 @@
 			"root": "ودء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melontarkan makian kepada sekelompok orang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ودأ"
+			}
 		},
 		{
 			"id": "وذأ-وذء-3",
@@ -37545,11 +38529,14 @@
 			"root": "وصع",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membenamkan kerikil ke tanah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/وصع"
+			}
 		},
 		{
 			"id": "وطأ-وطء-3",
@@ -37689,11 +38676,14 @@
 			"root": "ءبر",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tumbuh dengan baik (tentang tanaman)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أبر"
+			}
 		},
 		{
 			"id": "أبص-ءبص-4",
@@ -37785,11 +38775,14 @@
 			"root": "ءتم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melambat dalam perjalanan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أتم"
+			}
 		},
 		{
 			"id": "أث-ءثث-4",
@@ -37965,11 +38958,14 @@
 			"root": "ءرم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["habis atau musnah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أرم"
+			}
 		},
 		{
 			"id": "أرن-ءرن-4",
@@ -37989,11 +38985,14 @@
 			"root": "ءزب",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tidak mengunyah kembali makanannya (tentang ternak pemamah biak)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أزب"
+			}
 		},
 		{
 			"id": "أزج-ءزج-4",
@@ -38049,11 +39048,14 @@
 			"root": "ءزم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggigit erat-erat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أزم"
+			}
 		},
 		{
 			"id": "أزي-ءزي-4",
@@ -38061,11 +39063,14 @@
 			"root": "ءزي",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengerut"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أزي"
+			}
 		},
 		{
 			"id": "أسد-ءسد-4",
@@ -38085,11 +39090,14 @@
 			"root": "ءسر",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tertahan (tentang air kencing)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أسر"
+			}
 		},
 		{
 			"id": "أسن-ءسن-4",
@@ -38409,11 +39417,14 @@
 			"root": "ءول",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendahului"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/أول"
+			}
 		},
 		{
 			"id": "أيك-ءيك-4",
@@ -38445,11 +39456,14 @@
 			"root": "بتل",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memiliki bahu lebar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بتل"
+			}
 		},
 		{
 			"id": "بثر-بثر-4",
@@ -38529,11 +39543,14 @@
 			"root": "بخص",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalami pembengkakan di atas atau di bawah mata"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بخص"
+			}
 		},
 		{
 			"id": "بخع-بخع-4",
@@ -38613,11 +39630,14 @@
 			"root": "بذح",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["lecet pada paha karena berkuda atau sejenisnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بذح"
+			}
 		},
 		{
 			"id": "بذخ-بذخ-4",
@@ -38721,11 +39741,14 @@
 			"root": "برغ",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menikmati kehidupan yang nyaman"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/برغ"
+			}
 		},
 		{
 			"id": "برق-برق-4",
@@ -38961,11 +39984,14 @@
 			"root": "بقر",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terbelah (tentang perut)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بقر"
+			}
 		},
 		{
 			"id": "بقع-بقع-4",
@@ -39105,11 +40131,14 @@
 			"root": "بلم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membengkak bibirnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/بلم"
+			}
 		},
 		{
 			"id": "بله-بله-4",
@@ -39261,11 +40290,14 @@
 			"root": "ترج",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa bingung menghadapi suatu urusan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ترج"
+			}
 		},
 		{
 			"id": "ترح-ترح-4",
@@ -39333,11 +40365,14 @@
 			"root": "تره",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terlibat dalam perkara yang sia-sia atau omong kosong"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/تره"
+			}
 		},
 		{
 			"id": "تعس-تعس-4",
@@ -39465,11 +40500,14 @@
 			"root": "تلد",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tumbuh menetap di suatu tempat atau lingkungan suku"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/تلد"
+			}
 		},
 		{
 			"id": "تله-تله-4",
@@ -39501,11 +40539,14 @@
 			"root": "تمر",
 			"bab": 4,
 			"code": "",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa senang atau tenteram dengan sesuatu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/تمر"
+			}
 		},
 		{
 			"id": "تمه-تمه-4",
@@ -39609,11 +40650,14 @@
 			"root": "ثبج",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menonjol bagian tengah punggungnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ثبج"
+			}
 		},
 		{
 			"id": "ثبر-ثبر-4",
@@ -39705,11 +40749,14 @@
 			"root": "ثرد",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["pecah-pecah (tentang bibir)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ثرد"
+			}
 		},
 		{
 			"id": "ثرع-ثرع-4",
@@ -39837,11 +40884,14 @@
 			"root": "ثغم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memutih warnanya seperti bunga tumbuhan ثَغَام"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ثغم"
+			}
 		},
 		{
 			"id": "ثفن-ثفن-4",
@@ -39909,11 +40959,14 @@
 			"root": "ثلخ",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berlumur kotoran"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ثلخ"
+			}
 		},
 		{
 			"id": "ثمد-ثمد-4",
@@ -39969,11 +41022,14 @@
 			"root": "جءث",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["kesulitan berdiri atau mengangkat beban berat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جأث"
+			}
 		},
 		{
 			"id": "جئر-جءر-4",
@@ -40041,11 +41097,14 @@
 			"root": "جبل",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi besar dan tebal"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جبل"
+			}
 		},
 		{
 			"id": "جبه-جبه-4",
@@ -40209,11 +41268,14 @@
 			"root": "جرح",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terluka"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جرح"
+			}
 		},
 		{
 			"id": "جرذ-جرذ-4",
@@ -40221,11 +41283,14 @@
 			"root": "جرذ",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membentuk benjolan (tentang luka)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جرذ"
+			}
 		},
 		{
 			"id": "جرز-جرز-4",
@@ -40293,11 +41358,14 @@
 			"root": "جرم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi jernih warnanya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جرم"
+			}
 		},
 		{
 			"id": "جزئ-جزء-4",
@@ -40401,11 +41469,14 @@
 			"root": "جشن",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi gemuk dan tegap"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جشن"
+			}
 		},
 		{
 			"id": "جعظ-جعظ-4",
@@ -40413,11 +41484,14 @@
 			"root": "جعظ",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi berperangai buruk dan mudah menggerutu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جعظ"
+			}
 		},
 		{
 			"id": "جعل-جعل-4",
@@ -40425,11 +41499,14 @@
 			"root": "جعل",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["dipenuhi kumbang atau bangkai kumbang (tentang air)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جعل"
+			}
 		},
 		{
 			"id": "جعم-جعم-4",
@@ -40449,11 +41526,14 @@
 			"root": "جفس",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menderita kekenyangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جفس"
+			}
 		},
 		{
 			"id": "جلب-جلب-4",
@@ -40641,11 +41721,14 @@
 			"root": "جوث",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membesar bagian atas perutnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جوث"
+			}
 		},
 		{
 			"id": "جوق-جوق-4",
@@ -40653,11 +41736,14 @@
 			"root": "جوق",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi tebal lehernya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جوق"
+			}
 		},
 		{
 			"id": "جون-جون-4",
@@ -40701,11 +41787,14 @@
 			"root": "جير",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertubuh pendek dan kecil"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/جير"
+			}
 		},
 		{
 			"id": "حبج-حبج-4",
@@ -40737,11 +41826,14 @@
 			"root": "حتد",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memiliki garis keturunan yang dianggap murni (pemakaian klasik)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حتد"
+			}
 		},
 		{
 			"id": "حتل-حتل-4",
@@ -40761,11 +41853,14 @@
 			"root": "حتن",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengenai sasaran secara beruntun dengan ketepatan yang sama (tentang anak panah)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حتن"
+			}
 		},
 		{
 			"id": "حثر-حثر-4",
@@ -40785,11 +41880,14 @@
 			"root": "حثل",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memburuk keadaannya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حثل"
+			}
 		},
 		{
 			"id": "حجئ-حجء-4",
@@ -40809,11 +41907,14 @@
 			"root": "حجز",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["sulit makan atau minum banyak karena perut terasa mengerut"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حجز"
+			}
 		},
 		{
 			"id": "حجل-حجل-4",
@@ -40881,11 +41982,14 @@
 			"root": "حدر",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi juling (tentang mata)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حدر"
+			}
 		},
 		{
 			"id": "حدل-حدل-4",
@@ -40905,11 +42009,14 @@
 			"root": "حدم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyala dan berkobar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حدم"
+			}
 		},
 		{
 			"id": "حدي-حدي-4",
@@ -41013,11 +42120,14 @@
 			"root": "حرز",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["semakin menjaga diri dari hal yang meragukan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حرز"
+			}
 		},
 		{
 			"id": "حرش-حرش-4",
@@ -41085,11 +42195,14 @@
 			"root": "حزم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membesar perutnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حزم"
+			}
 		},
 		{
 			"id": "حسر-حسر-4",
@@ -41109,11 +42222,14 @@
 			"root": "حسف",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendendam kepada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حسف"
+			}
 		},
 		{
 			"id": "حسك-حسك-4",
@@ -41253,11 +42369,14 @@
 			"root": "حصي",
 			"bab": 4,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["banyak kerikilnya (tentang tanah)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حصي"
+			}
 		},
 		{
 			"id": "حضب-حضب-4",
@@ -41349,11 +42468,14 @@
 			"root": "حفن",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membalikkan kaki saat berjalan seolah sedang mengais tanah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حفن"
+			}
 		},
 		{
 			"id": "حقد-حقد-4",
@@ -41385,11 +42507,14 @@
 			"root": "حقط",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertubuh ringan dan banyak bergerak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حقط"
+			}
 		},
 		{
 			"id": "حقي-حقو-4",
@@ -41421,11 +42546,14 @@
 			"root": "حلء",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["muncul bintil pada bibir sesudah sakit"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حلأ"
+			}
 		},
 		{
 			"id": "حلط-حلط-4",
@@ -41589,11 +42717,14 @@
 			"root": "حنس",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertahan dengan berani di tengah pertempuran"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حنس"
+			}
 		},
 		{
 			"id": "حنط-حنط-4",
@@ -41649,11 +42780,14 @@
 			"root": "حيف",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tidak mendapat hujan (tentang sebidang tanah)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/حيف"
+			}
 		},
 		{
 			"id": "خبئ-خبء-4",
@@ -41721,11 +42855,14 @@
 			"root": "ختر",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi lemas karena minuman, penyakit, atau obat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ختر"
+			}
 		},
 		{
 			"id": "خثر-خثر-4",
@@ -41817,11 +42954,14 @@
 			"root": "خذم",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bergerak cepat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خذم"
+			}
 		},
 		{
 			"id": "خذي-خذي-4",
@@ -41853,11 +42993,14 @@
 			"root": "خرث",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi besar dan kendur bagian pinggangnya (tentang perempuan)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خرث"
+			}
 		},
 		{
 			"id": "خرج-خرج-4",
@@ -41913,11 +43056,14 @@
 			"root": "خرط",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengeluarkan susu bergumpal atau kekuningan ketika sakit (tentang hewan perah)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خرط"
+			}
 		},
 		{
 			"id": "خرع-خرع-4",
@@ -41997,11 +43143,14 @@
 			"root": "خزج",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi besar tubuhnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خزج"
+			}
 		},
 		{
 			"id": "خزر-خزر-4",
@@ -42069,11 +43218,14 @@
 			"root": "خشل",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi usang (tentang kain)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خشل"
+			}
 		},
 		{
 			"id": "خشم-خشم-4",
@@ -42129,11 +43281,14 @@
 			"root": "خضد",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi lunak"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خضد"
+			}
 		},
 		{
 			"id": "خضر-خضر-4",
@@ -42201,11 +43356,14 @@
 			"root": "خفج",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi bengkok atau gemetar saat berjalan (tentang kaki)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خفج"
+			}
 		},
 		{
 			"id": "خفد-خفد-4",
@@ -42273,11 +43431,14 @@
 			"root": "خلص",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["pecah menjadi serpihan di dalam daging (tentang tulang)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خلص"
+			}
 		},
 		{
 			"id": "خلف-خلف-4",
@@ -42285,11 +43446,14 @@
 			"root": "خلف",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["condong ke salah satu sisi tubuh"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خلف"
+			}
 		},
 		{
 			"id": "خلق-خلق-4",
@@ -42357,11 +43521,14 @@
 			"root": "خمط",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi harum (tentang tanah)", "menyombongkan diri (tentang orang)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خمط"
+			}
 		},
 		{
 			"id": "خنث-خنث-4",
@@ -42405,11 +43572,14 @@
 			"root": "خنف",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melesak ke dalam pada salah satu sisi dada atau punggung"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خنف"
+			}
 		},
 		{
 			"id": "خني-خني-4",
@@ -42453,11 +43623,14 @@
 			"root": "خوق",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi luas (tentang tempat)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خوق"
+			}
 		},
 		{
 			"id": "خول-خول-4",
@@ -42489,11 +43662,14 @@
 			"root": "خيط",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memiliki tungkai dan leher panjang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/خيط"
+			}
 		},
 		{
 			"id": "خيف-خيف-4",
@@ -42549,11 +43725,14 @@
 			"root": "دبل",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi gemuk dan berisi"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دبل"
+			}
 		},
 		{
 			"id": "دجم-دجم-4",
@@ -42609,11 +43788,14 @@
 			"root": "دخخ",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merendahkan seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دخخ"
+			}
 		},
 		{
 			"id": "دخر-دخر-4",
@@ -42945,11 +44127,14 @@
 			"root": "دكس",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertumpuk satu di atas yang lain"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دكس"
+			}
 		},
 		{
 			"id": "دكن-دكن-4",
@@ -43053,11 +44238,14 @@
 			"root": "دمش",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi gelisah akibat panas atau obat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دمش"
+			}
 		},
 		{
 			"id": "دمص-دمص-4",
@@ -43065,11 +44253,14 @@
 			"root": "دمص",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalami kebotakan setempat di kepala"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/دمص"
+			}
 		},
 		{
 			"id": "دمع-دمع-4",
@@ -43329,11 +44520,14 @@
 			"root": "ذرع",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menempuh perjalanan siang dan malam"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ذرع"
+			}
 		},
 		{
 			"id": "ذرف-ذرف-4",
@@ -43341,11 +44535,14 @@
 			"root": "ذرف",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengalir (tentang air mata)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ذرف"
+			}
 		},
 		{
 			"id": "ذرق-ذرق-4",
@@ -43581,11 +44778,14 @@
 			"root": "ربت",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mendadak tidak dapat berkata-kata"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ربت"
+			}
 		},
 		{
 			"id": "ربخ-ربخ-4",
@@ -43593,11 +44793,14 @@
 			"root": "ربخ",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["kesulitan berjalan di pasir"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/ربخ"
+			}
 		},
 		{
 			"id": "ربد-ربد-4",
@@ -43677,11 +44880,14 @@
 			"root": "رتق",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menutup dan menyatu kembali"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://www.arabicacademy.gov.eg/ar/search_engine/roots/رتق"
+			}
 		},
 		{
 			"id": "رثد-رثد-4",
