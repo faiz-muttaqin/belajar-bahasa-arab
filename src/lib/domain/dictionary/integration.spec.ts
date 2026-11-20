@@ -48,8 +48,8 @@ const decision: P4Decision = {
 describe('P5 reviewed integration (synthetic P4 snapshot)', () => {
 	it('does not publish unselected rows and preserves snapshot identity', () => {
 		expect(adaptP4Snapshot(snapshot, [])).toEqual([]);
-		const [entry] = adaptP4Snapshot(snapshot, [decision]);
-		expect(entry.senses[0].upstream?.[0]).toMatchObject({
+		const entry = adaptP4Snapshot(snapshot, [decision])[0]!;
+		expect(entry.senses[0]!.upstream?.[0]).toMatchObject({
 			sha256: snapshot.source.sha256,
 			lemmaId: row.lemmaId,
 			senseId: row.senseId,
@@ -71,8 +71,8 @@ describe('P5 reviewed integration (synthetic P4 snapshot)', () => {
 		const result = reconcileDictionary(dictionaryPilot, incoming);
 		expect(result).toHaveLength(dictionaryPilot.length);
 		const book = result.find((entry) => entry.id === 'kitab')!;
-		expect(book.senses[0].supportingEvidence).toHaveLength(1);
-		expect(book.senses[0].upstream).toHaveLength(1);
+		expect(book.senses[0]!.supportingEvidence).toHaveLength(1);
+		expect(book.senses[0]!.upstream).toHaveLength(1);
 		expect(book.forms).toHaveLength(1);
 		expect(validateDictionary(result)).toEqual([]);
 	});

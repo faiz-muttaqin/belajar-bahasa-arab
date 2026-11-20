@@ -75,7 +75,7 @@ export function adaptP4Snapshot(snapshot: P4Snapshot, decisions: readonly P4Deci
 		if (seen.has(key) || matches.length !== 1) throw new Error('Ambiguous or repeated P4 sense: ' + key);
 		seen.add(key);
 		const row = matches[0]!;
-		const pos = POS[row.pos];
+		const pos = Object.hasOwn(POS, row.pos) ? POS[row.pos] : undefined;
 		if (row.bucket !== 'candidate' || !pos || row.canonical.length > 1 || !row.glosses.length ||
 			!row.provenance.length) throw new Error('Ineligible P4 candidate: ' + key);
 		// A missing source tag is not proof of MSA. Require an independent audit to promote it.
