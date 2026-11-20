@@ -4,7 +4,9 @@ test('sharaf links to participles with six pairs and 24 exercises', async ({ pag
 	await page.goto('/kaidah/sharaf/');
 	await page.getByRole('link', { name: 'Pelajari isim fā‘il dan isim maf‘ūl' }).click();
 	await expect(page).toHaveURL(/\/kaidah\/participle\/$/);
-	await expect(page.getByRole('heading', { name: 'Isim fā‘il dan isim maf‘ūl', exact: true })).toBeVisible();
+	await expect(
+		page.getByRole('heading', { name: 'Isim fā‘il dan isim maf‘ūl', exact: true })
+	).toBeVisible();
 	await expect(page.locator('li[id^="pair-"]')).toHaveCount(6);
 	await expect(page.locator('li[id^="part-"]')).toHaveCount(24);
 	await page.locator('#part-22 summary').click();

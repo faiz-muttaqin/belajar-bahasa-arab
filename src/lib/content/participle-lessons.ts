@@ -133,7 +133,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'role',
 		arabic: 'الْكَاتِبُ فِي الْمَكْتَبَةِ.',
 		question: 'Apakah الْكَاتِبُ di sini fi‘il atau isim?',
-		answer: 'Isim fā‘il (penulis), berfungsi sebagai mubtada. فِي الْمَكْتَبَةِ adalah khabar berupa frasa jar–majrūr.',
+		answer:
+			'Isim fā‘il (penulis), berfungsi sebagai mubtada. فِي الْمَكْتَبَةِ adalah khabar berupa frasa jar–majrūr.',
 		status: 'draft'
 	},
 	{
@@ -142,7 +143,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'role',
 		arabic: 'حَضَرَتِ الْكَاتِبَةُ إِلَى الْمَدْرَسَةِ.',
 		question: 'Tentukan fi‘il dan fā‘il dalam kalimat ini.',
-		answer: 'حَضَرَتْ adalah fi‘il māḍī dengan tā’ feminin (kasrah sambung pada teks). الْكَاتِبَةُ adalah isim fā‘il yang memang bertugas sebagai fā‘il.',
+		answer:
+			'حَضَرَتْ adalah fi‘il māḍī dengan tā’ feminin (kasrah sambung pada teks). الْكَاتِبَةُ adalah isim fā‘il yang memang bertugas sebagai fā‘il.',
 		status: 'draft'
 	},
 	{
@@ -151,7 +153,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'meaning',
 		arabic: 'الْعُنْوَانُ مَكْتُوبٌ بِالْعَرَبِيَّةِ.',
 		question: 'Apakah kalimat ini menyebut siapa yang menulis judul?',
-		answer: 'Tidak. مَكْتُوبٌ adalah isim maf‘ūl sebagai khabar: judul itu tertulis dalam bahasa Arab. Pelakunya tidak disebut.',
+		answer:
+			'Tidak. مَكْتُوبٌ adalah isim maf‘ūl sebagai khabar: judul itu tertulis dalam bahasa Arab. Pelakunya tidak disebut.',
 		status: 'draft'
 	},
 	{
@@ -160,7 +163,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'agreement',
 		arabic: 'قَرَأْتُ رِسَالَةً مَكْتُوبَةً بِالْعَرَبِيَّةِ.',
 		question: 'Mengapa مَكْتُوبَةً berakhir fatḥatain?',
-		answer: 'Na‘at untuk رِسَالَةً, mengikuti feminin, tunggal, nakirah dan naṣb; surat yang dibaca tertulis dalam bahasa Arab.',
+		answer:
+			'Na‘at untuk رِسَالَةً, mengikuti feminin, tunggal, nakirah dan naṣb; surat yang dibaca tertulis dalam bahasa Arab.',
 		status: 'draft'
 	},
 	{
@@ -187,7 +191,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'meaning',
 		arabic: 'الْمَتَاجِرُ مَفْتُوحَةٌ صَبَاحًا.',
 		question: 'Apa yang diketahui dari pemberitahuan ini?',
-		answer: 'Toko-toko buka pada pagi hari. Jamak benda tak berakal lazim memakai bentuk feminin tunggal: مَفْتُوحَةٌ.',
+		answer:
+			'Toko-toko buka pada pagi hari. Jamak benda tak berakal lazim memakai bentuk feminin tunggal: مَفْتُوحَةٌ.',
 		status: 'draft'
 	},
 	{
@@ -196,7 +201,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'formation',
 		arabic: 'فَتَحَ الْحَارِسُ الْبَابَ. الْبَابُ مَفْتُوحٌ الْآنَ.',
 		question: 'Bandingkan فَتَحَ dan مَفْتُوحٌ.',
-		answer: 'Yang pertama fi‘il lampau, yang kedua isim maf‘ūl pola مَفْعُولٌ. Kalimat kedua menyatakan keadaan sekarang.',
+		answer:
+			'Yang pertama fi‘il lampau, yang kedua isim maf‘ūl pola مَفْعُولٌ. Kalimat kedua menyatakan keadaan sekarang.',
 		status: 'draft'
 	},
 	{
@@ -205,7 +211,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'formation',
 		arabic: 'مُنَظِّمٌ / مُنَظَّمٌ',
 		question: 'Harakat mana yang membedakan pelaku dan yang ditata?',
-		answer: 'Kasrah pada ظّ menghasilkan مُنَظِّمٌ (aktif), fatḥah menghasilkan مُنَظَّمٌ (pasif); keduanya Form II.',
+		answer:
+			'Kasrah pada ظّ menghasilkan مُنَظِّمٌ (aktif), fatḥah menghasilkan مُنَظَّمٌ (pasif); keduanya Form II.',
 		status: 'draft'
 	},
 	{
@@ -214,7 +221,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'role',
 		arabic: 'الْمُنَظِّمُ يُرَاجِعُ قَائِمَةَ الْأَسْمَاءِ.',
 		question: 'Apakah الْمُنَظِّمُ otomatis fā‘il hanya karena bentuknya?',
-		answer: 'Ia mubtada; يُرَاجِعُ dan pelaku tersiratnya membentuk khabar berupa jumlah fi‘liyyah. Isim fā‘il adalah kategori bentuk, bukan otomatis fungsi fā‘il.',
+		answer:
+			'Ia mubtada; يُرَاجِعُ dan pelaku tersiratnya membentuk khabar berupa jumlah fi‘liyyah. Isim fā‘il adalah kategori bentuk, bukan otomatis fungsi fā‘il.',
 		status: 'draft'
 	},
 	{
@@ -223,7 +231,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'agreement',
 		arabic: 'فِي الْمَكْتَبِ مَلَفَّاتٌ مُنَظَّمَةٌ.',
 		question: 'Mengapa مُنَظَّمَةٌ bukan مُنَظِّمَةٌ atau bentuk jamak?',
-		answer: 'Berkas-berkasnya ditata, bukan menata. Na‘at feminin tunggal sesuai jamak benda tak berakal.',
+		answer:
+			'Berkas-berkasnya ditata, bukan menata. Na‘at feminin tunggal sesuai jamak benda tak berakal.',
 		status: 'draft'
 	},
 	{
@@ -250,7 +259,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'meaning',
 		arabic: 'هَذِهِ نُسْخَةٌ مُرْسَلَةٌ بِالْبَرِيدِ.',
 		question: 'Apakah نُسْخَةٌ itu mengirim atau dikirim?',
-		answer: 'Salinan itu dikirim lewat pos. مُرْسَلَةٌ adalah isim maf‘ūl feminin yang menerangkan نُسْخَةٌ.',
+		answer:
+			'Salinan itu dikirim lewat pos. مُرْسَلَةٌ adalah isim maf‘ūl feminin yang menerangkan نُسْخَةٌ.',
 		status: 'draft'
 	},
 	{
@@ -259,7 +269,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'formation',
 		arabic: 'يُرْسِلُ / مُرْسِلٌ / مُرْسَلٌ',
 		question: 'Tentukan satu bentuk fi‘il dan dua bentuk isim.',
-		answer: 'يُرْسِلُ (fi‘il muḍāri‘); مُرْسِلٌ (pengirim, kasrah pada س); مُرْسَلٌ (yang dikirim, fatḥah pada س).',
+		answer:
+			'يُرْسِلُ (fi‘il muḍāri‘); مُرْسِلٌ (pengirim, kasrah pada س); مُرْسَلٌ (yang dikirim, fatḥah pada س).',
 		status: 'draft'
 	},
 	{
@@ -286,7 +297,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'formation',
 		arabic: 'الْجِهَازُ الْمُسْتَخْدَمُ فِي الْفَصْلِ جَدِيدٌ.',
 		question: 'Mengapa huruf د pada الْمُسْتَخْدَمُ berfatḥah?',
-		answer: 'Perangkat itu digunakan, bukan pengguna; bentuk pasif Form X. Kata tersebut adalah na‘at ma‘rifah, dan جَدِيدٌ khabar.',
+		answer:
+			'Perangkat itu digunakan, bukan pengguna; bentuk pasif Form X. Kata tersebut adalah na‘at ma‘rifah, dan جَدِيدٌ khabar.',
 		status: 'draft'
 	},
 	{
@@ -304,7 +316,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'meaning',
 		arabic: 'الْبَرْنَامَجُ مُسْتَخْدَمٌ فِي الْمَدْرَسَةِ.',
 		question: 'Apakah kata terakhir dari pola ini memberi informasi waktu lampau tertentu?',
-		answer: 'Tidak. مُسْتَخْدَمٌ menggambarkan perangkat lunak yang digunakan di sekolah; isim maf‘ūl tidak memiliki konjugasi waktu seperti fi‘il.',
+		answer:
+			'Tidak. مُسْتَخْدَمٌ menggambarkan perangkat lunak yang digunakan di sekolah; isim maf‘ūl tidak memiliki konjugasi waktu seperti fi‘il.',
 		status: 'draft'
 	},
 	{
@@ -313,7 +326,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'formation',
 		arabic: 'بَاعَ / بَائِعٌ / مَبِيعٌ',
 		question: 'Mengapa jangan menerapkan pola ṣaḥīḥ secara mekanis?',
-		answer: 'Akar ب ي ع adalah ajwaf. Bentuk yang tercatat ialah بَائِعٌ dan مَبِيعٌ; perhatikan hamzah dan vokal panjang pada perubahan akar lemah.',
+		answer:
+			'Akar ب ي ع adalah ajwaf. Bentuk yang tercatat ialah بَائِعٌ dan مَبِيعٌ; perhatikan hamzah dan vokal panjang pada perubahan akar lemah.',
 		status: 'draft'
 	},
 	{
@@ -322,7 +336,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'role',
 		arabic: 'سَأَلْتُ الْبَائِعَ عَنِ السِّعْرِ.',
 		question: 'Apakah الْبَائِعَ di sini berfungsi sebagai fā‘il?',
-		answer: 'Tidak. Ia isim fā‘il secara bentuk, tetapi maf‘ūl bih manṣūb dari سَأَلْتُ. Pelakunya adalah tā’ pada fi‘il.',
+		answer:
+			'Tidak. Ia isim fā‘il secara bentuk, tetapi maf‘ūl bih manṣūb dari سَأَلْتُ. Pelakunya adalah tā’ pada fi‘il.',
 		status: 'draft'
 	},
 	{
@@ -331,7 +346,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'meaning',
 		arabic: 'هَذَا الْكِتَابُ مَبِيعٌ.',
 		question: 'Apa yang diinformasikan tentang buku ini?',
-		answer: 'Buku ini telah terjual. مَبِيعٌ adalah isim maf‘ūl ajwaf yang tercatat; bukan nama penjual.',
+		answer:
+			'Buku ini telah terjual. مَبِيعٌ adalah isim maf‘ūl ajwaf yang tercatat; bukan nama penjual.',
 		status: 'draft'
 	},
 	{
@@ -340,7 +356,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'agreement',
 		arabic: 'سَلَّمْتُ عَلَى الْبَائِعَةِ فِي السُّوقِ.',
 		question: 'Apa yang berubah dibandingkan بَائِعٌ?',
-		answer: 'الْبَائِعَةِ adalah bentuk feminin ma‘rifah, majrūr setelah عَلَى. Bentuk dasar tetap isim fā‘il.',
+		answer:
+			'الْبَائِعَةِ adalah bentuk feminin ma‘rifah, majrūr setelah عَلَى. Bentuk dasar tetap isim fā‘il.',
 		status: 'draft'
 	}
 ];

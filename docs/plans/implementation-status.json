@@ -55,9 +55,7 @@
 		{
 			"file": "local-content-import.md",
 			"status": "deferred",
-			"evidence": [
-				"src/lib/domain/local-content/types.ts"
-			],
+			"evidence": ["src/lib/domain/local-content/types.ts"],
 			"remaining": "RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun; jangan sebut shipped",
 			"next": "deferred"
 		},
