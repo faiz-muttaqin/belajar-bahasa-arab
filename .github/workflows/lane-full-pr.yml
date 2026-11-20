@@ -1,0 +1,41 @@
+name: Extract complete Lane lexicon
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/lane/**'
+      - 'docs/data/lane-full-extraction.md'
+      - '.github/workflows/lane-full-pr.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: project
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: alpheios-project/lan
+          ref: 7dd04e1182c13a4b0883978867d2a3b04616542a
+          path: lane-source
+          persist-credentials: false
+      - name: Test extraction
+        run: python3 -m unittest discover -s project/scripts/lane -p 'test_*.py'
+      - name: Build and verify deterministic output
+        run: |
+          python3 project/scripts/lane/extract_lane_full.py lane-source lane-output
+          python3 project/scripts/lane/extract_lane_full.py lane-source lane-repeat
+          diff -r lane-output lane-repeat
+          cat lane-output/manifest.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lane-full-v1
+          path: lane-output/
+          if-no-files-found: error
+          retention-days: 30

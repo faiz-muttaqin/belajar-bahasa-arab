@@ -1,0 +1,195 @@
+{
+	"revision": "7dd04e1182c13a4b0883978867d2a3b04616542a",
+	"files": [
+		{
+			"path": "db/lexica/ara/lan/u$0.xml",
+			"gitBlob": "65b0e8a44c60bdbb96ae25314a60c9bb2dd2314a",
+			"bytes": 2776735
+		},
+		{
+			"path": "db/lexica/ara/lan/u_0.xml",
+			"gitBlob": "2114e1be9aa7e8b1421e2393d133f5c6e78c736b",
+			"bytes": 843289
+		},
+		{
+			"path": "db/lexica/ara/lan/u_A0.xml",
+			"gitBlob": "8bf83923fdda04cfb36d7a0f8824a6f2117b350d",
+			"bytes": 2545532
+		},
+		{
+			"path": "db/lexica/ara/lan/u_D0.xml",
+			"gitBlob": "53dc14df27de6527e36b1a74cd9b3b54a3b5392a",
+			"bytes": 1087619
+		},
+		{
+			"path": "db/lexica/ara/lan/u_E0.xml",
+			"gitBlob": "58efc504f50016069cbe7661fc937d7dba5022f8",
+			"bytes": 5346083
+		},
+		{
+			"path": "db/lexica/ara/lan/u_H0.xml",
+			"gitBlob": "1ac6dcaa9f5ccd55ded148a6f246b70ca48ca8d5",
+			"bytes": 3773723
+		},
+		{
+			"path": "db/lexica/ara/lan/u_S0.xml",
+			"gitBlob": "bbb1a4d237520305ecb7c3c3c6df491699da3500",
+			"bytes": 2269193
+		},
+		{
+			"path": "db/lexica/ara/lan/u_T0.xml",
+			"gitBlob": "99584b7474d40cd8c99ec18a376b8d315eea5ca3",
+			"bytes": 1620522
+		},
+		{
+			"path": "db/lexica/ara/lan/u_Y0.xml",
+			"gitBlob": "e9505a5944254ad2d76a8ac066c18c0e41632c63",
+			"bytes": 121489
+		},
+		{
+			"path": "db/lexica/ara/lan/u_Y1.xml",
+			"gitBlob": "a8f4a4e10220b91b25003c179149853d82dac610",
+			"bytes": 39512
+		},
+		{
+			"path": "db/lexica/ara/lan/u_Z0.xml",
+			"gitBlob": "21415877a6352880a291fbb275b0d850523d5e20",
+			"bytes": 416165
+		},
+		{
+			"path": "db/lexica/ara/lan/ua0.xml",
+			"gitBlob": "9289299a4d2a697a880e29ab5dc2df984c074e49",
+			"bytes": 843288
+		},
+		{
+			"path": "db/lexica/ara/lan/ub0.xml",
+			"gitBlob": "5da18a5c4f57454b4d0391ea3f20bcfde3bf5890",
+			"bytes": 2820255
+		},
+		{
+			"path": "db/lexica/ara/lan/ud0.xml",
+			"gitBlob": "8d40910c4b8bdd7d6b1a11917a494ce74d66ff6b",
+			"bytes": 2026062
+		},
+		{
+			"path": "db/lexica/ara/lan/uf0.xml",
+			"gitBlob": "ee64c77b2d6fec4fe70f4a8c148485c0c4627bb6",
+			"bytes": 2850276
+		},
+		{
+			"path": "db/lexica/ara/lan/ug0.xml",
+			"gitBlob": "24b53b0f22dd0fe52e801184d811cf5c7e87b383",
+			"bytes": 1883624
+		},
+		{
+			"path": "db/lexica/ara/lan/uh0.xml",
+			"gitBlob": "37bc7a5125a6e001c52270ba3888a8a99cbb456b",
+			"bytes": 725829
+		},
+		{
+			"path": "db/lexica/ara/lan/uh1.xml",
+			"gitBlob": "191a7fe756d730673bb1b7d94b47bbfdc4f7ae27",
+			"bytes": 146250
+		},
+		{
+			"path": "db/lexica/ara/lan/uj0.xml",
+			"gitBlob": "703f54040e4ee43741ba64bbc4d1ad077fbf7c6c",
+			"bytes": 2423870
+		},
+		{
+			"path": "db/lexica/ara/lan/uk0.xml",
+			"gitBlob": "3a5f3116b5e63614d24b92baecc204f85d3ece4d",
+			"bytes": 1048368
+		},
+		{
+			"path": "db/lexica/ara/lan/uk1.xml",
+			"gitBlob": "185ee8ac3a877375c6871b3f4f97109646e51c20",
+			"bytes": 175908
+		},
+		{
+			"path": "db/lexica/ara/lan/ul0.xml",
+			"gitBlob": "1df436c035775ac5d2b095b57aebc6b88e102e11",
+			"bytes": 801421
+		},
+		{
+			"path": "db/lexica/ara/lan/ul1.xml",
+			"gitBlob": "1ace9b75d97f7091a64230d7a19aedf16d632d55",
+			"bytes": 188889
+		},
+		{
+			"path": "db/lexica/ara/lan/um0.xml",
+			"gitBlob": "f507e9aeed01c006083170943b6bcf2dfae4ddef",
+			"bytes": 1092324
+		},
+		{
+			"path": "db/lexica/ara/lan/um1.xml",
+			"gitBlob": "a94f41f526aff1bd3a808691aa51168fa3b49941",
+			"bytes": 257409
+		},
+		{
+			"path": "db/lexica/ara/lan/un0.xml",
+			"gitBlob": "2638b8fa1d64e62ab393a8a622fd6b73b45ba7ae",
+			"bytes": 2138826
+		},
+		{
+			"path": "db/lexica/ara/lan/un1.xml",
+			"gitBlob": "ff814fdc39efe2a65d9a818d3c8e9353beca42d1",
+			"bytes": 333444
+		},
+		{
+			"path": "db/lexica/ara/lan/uq0.xml",
+			"gitBlob": "866a81dc1383517f985aef7286ab820be3e9419f",
+			"bytes": 1886654
+		},
+		{
+			"path": "db/lexica/ara/lan/uq1.xml",
+			"gitBlob": "4b3682d944c06fc37ba825503cdca69c5eea823d",
+			"bytes": 367897
+		},
+		{
+			"path": "db/lexica/ara/lan/uq2.xml",
+			"gitBlob": "8476f4a982aefe6250b251626a35c118b750e3f9",
+			"bytes": 459444
+		},
+		{
+			"path": "db/lexica/ara/lan/ur0.xml",
+			"gitBlob": "95afbb33d56bea30f1d0adb647b03c887bf4cf0d",
+			"bytes": 4031906
+		},
+		{
+			"path": "db/lexica/ara/lan/us0.xml",
+			"gitBlob": "3f3bbfb3707db02f43e000641ccc83a8df9308c4",
+			"bytes": 3882510
+		},
+		{
+			"path": "db/lexica/ara/lan/ut0.xml",
+			"gitBlob": "5e8fb5aa11c8d553fae753a65bd74612d43bb2bc",
+			"bytes": 669836
+		},
+		{
+			"path": "db/lexica/ara/lan/uv0.xml",
+			"gitBlob": "e4383e7d76cb052074edc3a064a76e5a2f1c46fd",
+			"bytes": 770803
+		},
+		{
+			"path": "db/lexica/ara/lan/uw0.xml",
+			"gitBlob": "f1688001df11cd43ac08b3949470cddd87c34e1b",
+			"bytes": 1037452
+		},
+		{
+			"path": "db/lexica/ara/lan/uw1.xml",
+			"gitBlob": "e81fdf172ba6d68599f7b725d1a6287221349701",
+			"bytes": 329717
+		},
+		{
+			"path": "db/lexica/ara/lan/ux0.xml",
+			"gitBlob": "74e49b452a44af6bef0c5c95b25dd235ddb0cd3e",
+			"bytes": 2805549
+		},
+		{
+			"path": "db/lexica/ara/lan/uz0.xml",
+			"gitBlob": "f7467502c88cbf2d959b15a65c2ed458d1429951",
+			"bytes": 1427809
+		}
+	]
+}
