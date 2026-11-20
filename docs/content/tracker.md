@@ -145,6 +145,11 @@ See the [post-Iqra learning roadmap](../curriculum/ROADMAP.md) for the delivery 
 | RS-13 | Daftar kata kerja 22 wazan dari Wiktionary (2.788 Form I + 4.479 mazid dan ruba'i, transliterasi, mudhari, mashdar, arti Inggris, terjemahan Indonesia oleh Claude, pembanding Google) | 🟡 draft, belum ditinjau     | [wiktionary-verbs](../data/wiktionary-verbs.md). Tidak bergantung pada PR #6.                                                                                                                                                                                                                                                                                                                                    |
 | RS-14 | Arti 5.005 kata kerja Qutrub/Arramooz tanpa data Wiktionary dari pengetahuan model (Sonnet 5.5, Fable 5.2), dengan verba kontrol                                                       | 🟡 draft, tidak diverifikasi | [model-recall](../data/model-recall.md). Ketepatan 86% pada kontrol; lebih rendah pada kata langka.                                                                                                                                                                                                                                                                                                              |
 
+## Sumber terbuka · OER-02b Isim fā‘il dan maf‘ūl (20 November 2026)
+
+- **OER-02b — 🟡 Pilot:** `/kaidah/participle/`, enam keluarga verba pada Form I, II, IV dan X, termasuk satu ajwaf; 24 latihan orisinal. Dua bab LibreTexts Hana Kassas CC BY 4.0, MSU CC BY-NC hanya pembanding konsep, entri Wiktionary memberi bukti bentuk.
+- **Belum selesai:** pola lain, akar lemah lain, pengamalan isim turunan, audit per kalimat dan uji pelajar. [Audit sumber](../research/2026-11-20-participle-source-audit.md); pelacakan [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55) dan [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15).
+
 ## Sumber terbuka · OER-02 Maṣdar (17 November 2026)
 
 - **OER-02a — 🟡 Pilot:** `/kaidah/masdar/` memuat lima pasangan verb–maṣdar dari entri Wiktionary dan 20 latihan orisinal dengan pembahasan Indonesia. Bab referensi `Elementary Arabic` 5.2 LibreTexts CC BY 4.0, tanpa menyalin contoh atau H5P.
