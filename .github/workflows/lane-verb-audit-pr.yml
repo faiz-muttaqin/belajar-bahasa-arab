@@ -1,0 +1,43 @@
+name: Audit unresolved Lane verbs
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/lane/**'
+      - 'docs/data/lane-verb-audit-p3.md'
+      - 'data/recall/verbs-qutrub-arramooz-recall.json'
+      - '.github/workflows/lane-verb-audit-pr.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: project
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: alpheios-project/lan
+          ref: 7dd04e1182c13a4b0883978867d2a3b04616542a
+          path: lane-source
+          persist-credentials: false
+      - name: Test
+        run: python3 -m unittest discover -s project/scripts/lane -p 'test_*.py'
+      - name: Extract and audit
+        run: |
+          python3 project/scripts/lane/extract_lane_full.py lane-source lane-output
+          python3 project/scripts/lane/audit_unresolved_verbs.py project/data/recall/verbs-qutrub-arramooz-recall.json lane-output audit-output
+          python3 project/scripts/lane/audit_unresolved_verbs.py project/data/recall/verbs-qutrub-arramooz-recall.json lane-output audit-repeat
+          diff -r audit-output audit-repeat
+          cat audit-output/summary.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lane-verb-review-p3
+          path: audit-output/
+          if-no-files-found: error
+          retention-days: 30
