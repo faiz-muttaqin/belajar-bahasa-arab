@@ -25,7 +25,8 @@ const POS = new Set([
 	'name',
 	'abbrev'
 ]);
-const DIALECT = /dialect|egyptian|levantine|moroccan|tunisian|algerian|iraqi|gulf|sudanese|yemeni|hejazi|najdi|libyan|omani|palestinian|syrian|lebanese|jordanian|colloquial/i;
+const DIALECT =
+	/dialect|egyptian|levantine|moroccan|tunisian|algerian|iraqi|gulf|sudanese|yemeni|hejazi|najdi|libyan|omani|palestinian|syrian|lebanese|jordanian|colloquial/i;
 const strings = (values = []) => [...new Set(values.filter((v) => typeof v === 'string'))];
 const normalized = (value) => value.normalize('NFC').trim();
 const hash = (value) => createHash('sha256').update(value).digest('hex');
@@ -39,8 +40,9 @@ const registerOf = (tags) => {
 };
 
 export function extractEntry(entry, line) {
-	if (entry.lang_code !== 'ar' || !POS.has(entry.pos) || typeof entry.word !== 'string')
+	if (entry.lang_code !== 'ar' || !POS.has(entry.pos) || typeof entry.word !== 'string') {
 		return [];
+	}
 	const page = normalized(entry.word);
 	if (!page) return [];
 	const canonical = strings(
@@ -173,7 +175,9 @@ async function main() {
 	const output = value('--out');
 	const snapshot = value('--snapshot');
 	if (!source || !output || !/^\d{4}-\d{2}-\d{2}$/.test(snapshot ?? ''))
-		throw new Error('Usage: node scripts/build-wiktionary-nonverbs.mjs --source <jsonl> --snapshot <dump YYYY-MM-DD> --out <json>');
+		throw new Error(
+			'Usage: node scripts/build-wiktionary-nonverbs.mjs --source <jsonl> --snapshot <dump YYYY-MM-DD> --out <json>'
+		);
 	if (resolve(source) === resolve(output)) throw new Error('Input and output must differ');
 	const result = await extractFile(source, snapshot);
 	if (!result.totals.candidateSenses) throw new Error('No lexical candidates; check the source');
