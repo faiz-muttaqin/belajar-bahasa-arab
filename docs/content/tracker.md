@@ -148,7 +148,7 @@ See the [post-Iqra learning roadmap](../curriculum/ROADMAP.md) for the delivery 
 ## Sumber terbuka · OER-02b Isim fā‘il dan maf‘ūl (20 November 2026)
 
 - **OER-02b — 🟡 Pilot:** `/kaidah/participle/`, enam keluarga verba pada Form I, II, IV dan X, termasuk satu ajwaf; 24 latihan orisinal. Dua bab LibreTexts Hana Kassas CC BY 4.0, MSU CC BY-NC hanya pembanding konsep, entri Wiktionary memberi bukti bentuk.
-- **Belum selesai:** pola lain, akar lemah lain, pengamalan isim turunan, audit per kalimat dan uji pelajar. [Audit sumber](../research/2026-11-20-participle-source-audit.md); pelacakan [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55) dan [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15).
+- Pemeriksaan editorial mencakup 24 latihan dan menghasilkan 7 revisi. Pola dan akar lemah lain, pengamalan isim turunan, tinjauan pengajar, dan uji pelajar masih terbuka. [Audit per butir](../research/2026-11-20-participle-source-audit.md#audit-24-latihan--20-november-2026), [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55), [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15).
 
 ## Sumber terbuka · OER-02 Maṣdar (17 November 2026)
 

@@ -71,5 +71,5 @@ Pemetaan kontrak dan lanjutan D-02–D-06 ada dalam [rencana Dynamic Examples](.
 ### G-02 · Pembaruan OER-02a/b (20 November 2026)
 
 - OER-02a (#57): maṣdar, lima pasangan dan 20 latihan. Belum mencakup variasi maṣdar seluruh wazan.
-- OER-02b: enam keluarga verba pada Form I, II, IV dan X (termasuk satu ajwaf), 24 tugas kontekstual dan perbedaan bentuk vs fungsi sintaksis. [Audit sumber dan batas](../research/2026-11-20-participle-source-audit.md).
-- **Belum selesai:** Form III, V–IX dan pola lain, akar lemah lain, pengamalan isim turunan, audit per kalimat dan uji pembelajar. G-02/OER-02 tetap partial; lanjutkan [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15) dan [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55).
+- OER-02b mencakup enam keluarga verba pada Form I, II, IV dan X, termasuk satu ajwaf. Sebanyak 24 tugas kontekstual sudah diaudit per butir dan masih berstatus draf. [Audit sumber dan latihan](../research/2026-11-20-participle-source-audit.md).
+- G-02/OER-02 masih **partial**. Form III, V–IX dan pola lain, akar lemah lain, pengamalan isim turunan, audit contoh maṣdar, tinjauan pengajar, dan uji pembelajar masih terbuka. [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15), [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55).
