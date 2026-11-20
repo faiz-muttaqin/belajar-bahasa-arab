@@ -1,6 +1,6 @@
 /*
- * Arabic font faces the theme editor offers. @font-face rules only: a file downloads
- * only when text uses that family. Imported once in the root layout so a saved Arabic
+ * Arabic font faces the theme editor offers. @font-face rules only: the browser selects a face when needed
+ * (the service worker also precaches immutable assets for offline use). Imported once in the root layout so a saved Arabic
  * font choice works on every page, not just in the editor.
  *
  * Noto Naskh Arabic (the default) is declared in src/routes/layout.css with the Arabic
@@ -12,3 +12,34 @@
 @import '@fontsource/amiri/arabic-700.css';
 @import '@fontsource/scheherazade-new/arabic-400.css';
 @import '@fontsource/scheherazade-new/arabic-700.css';
+
+/* Compact alternatives: Arabic WOFF2 only; no external CDN or Latin subset. */
+@font-face {
+	font-family: 'Noto Sans Arabic Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src: url('@fontsource-variable/noto-sans-arabic/files/noto-sans-arabic-arabic-wght-normal.woff2')
+		format('woff2-variations');
+	unicode-range:
+		U+0020, U+00A0, U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+		U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+@font-face {
+	font-family: 'IBM Plex Sans Arabic';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400;
+	src: url('@fontsource/ibm-plex-sans-arabic/files/ibm-plex-sans-arabic-arabic-400-normal.woff2')
+		format('woff2');
+}
+
+@font-face {
+	font-family: 'IBM Plex Sans Arabic';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 700;
+	src: url('@fontsource/ibm-plex-sans-arabic/files/ibm-plex-sans-arabic-arabic-700-normal.woff2')
+		format('woff2');
+}
