@@ -53,3 +53,9 @@ Output harus belum ada. Workflow memeriksa checksum dan jumlah entri P2,
 mengunci baseline 537 (perbarui dengan sengaja bila baseline berubah),
 membangun audit dua kali, dan membandingkan hasil. Artefak bukan kamus
 final. Hitungan kategori baru diketahui setelah workflow berhasil.
+
+## Review lanjutan — batch 1
+
+Baseline CI pertama: 424 tanpa kandidat, 72 Form I pada akar kandidat, 30 akar saja, 7 headword persis, 2 headword dan marker cocok, 1 sufiks, 1 akar bermasalah. Normalisasi tambahan menyetarakan hamzah berdiri sendiri dengan varian dudukannya untuk pencarian dan mengompres akar mudha'af tiga huruf ke label dua huruf. Ejaan tanpa harakat juga hanya lead. Hitungan baru harus dikonfirmasi lewat CI.
+
+Enam keputusan awal tersimpan di `scripts/lane/p3-reviewed-decisions.json`: tiga draf didukung (صَمَرَ, مَطَأَ, وَتَأَ), tiga ditahan karena bukti bab tidak cocok (كَشَبَ, هَجَبَ, ثَلَّ). Locator dan ID asli diverifikasi oleh CI. Draf diekspor ke `draft-glosses.json` untuk batch penerapan berikutnya; data recall dan bundle learner belum diubah. Makna ditulis mandiri, tanpa menyalin definisi. Qabas dan sumber independen belum digunakan untuk validasi batch ini.

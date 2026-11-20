@@ -12,7 +12,9 @@ from extract_lane_full import root_search_key
 
 VOWELS = {1: ("َ", "Bu"), 2: ("َ", "Bi"), 3: ("َ", "Ba"),
           4: ("ِ", "Ba"), 5: ("ِ", "Bi"), 6: ("ُ", "Bu")}
-HAMZA = str.maketrans("أإآٱؤئى", "ااااااي")
+HAMZA = str.maketrans("أإآٱؤئءى", "اااااااي")
+REVISION = "7dd04e1182c13a4b0883978867d2a3b04616542a"
+DECISIONS = Path(__file__).with_name("p3-reviewed-decisions.json")
 
 
 def exact(value):
@@ -20,7 +22,11 @@ def exact(value):
 
 
 def loose_root(value):
-    return root_search_key(value or "").translate(HAMZA)
+    key = root_search_key(value or "").translate(HAMZA)
+    # Lane often labels geminate roots with only two consonants.
+    if len(key) == 3 and key[-1] == key[-2]:
+        return key[:-1]
+    return key
 
 
 def write_json(path, data):
@@ -90,6 +96,7 @@ def rank(item):
 
 def audit(recall, entries):
     root_index, root_loose_index, head_index = defaultdict(list), defaultdict(list), defaultdict(list)
+    bare_head_index = defaultdict(list)
     for entry in entries:
         root = root_search_key(entry.get("root") or "")
         if root:
@@ -99,6 +106,7 @@ def audit(recall, entries):
         for head in {entry.get("key"), *entry.get("orths", [])}:
             if head:
                 head_index[exact(head)].append(entry)
+                bare_head_index[root_search_key(head)].append(entry)
     seen = set()
     result = []
     for row in recall:
@@ -112,7 +120,9 @@ def audit(recall, entries):
         exact_roots = root_index.get(root_search_key(root), [])
         aliases = root_loose_index.get(loose_root(root), [])
         cross_heads = head_index.get(exact(lemma), [])
-        candidates = {item["locator"]: item for item in [*exact_roots, *aliases, *cross_heads]}
+        bare = root_search_key(lemma)
+        spelling_leads = [*bare_head_index.get(bare, []), *bare_head_index.get(bare + "ه", [])]
+        candidates = {item["locator"]: item for item in [*exact_roots, *aliases, *cross_heads, *spelling_leads]}
         leads = [evidence(item, lemma, bab) for item in candidates.values()]
         leads.sort(key=lambda item: (rank(item), item["locator"]))
         best = rank(leads[0]) if leads else None
@@ -136,9 +146,36 @@ def audit(recall, entries):
             "lemma": lemma, "root": root, "bab": bab, "code": row.get("code"),
             "status": status, "decision": "unresolved", "gloss": None,
             "exact_root_records": len(exact_roots), "normalized_root_records": len(aliases),
-            "exact_head_records": len(cross_heads), "candidates": leads,
+            "exact_head_records": len(cross_heads),
+            "bare_head_records": len({item["locator"] for item in spelling_leads}), "candidates": leads,
         })
     return result
+
+
+def attach_reviews(rows, decisions):
+    by_key = {(row["lemma"], row["root"], row["bab"]): row for row in rows}
+    seen = set()
+    for decision in decisions:
+        key = (decision["lemma"], decision["root"], decision["bab"])
+        if key in seen or key not in by_key:
+            raise ValueError(f"Duplicate or stale review: {key}")
+        seen.add(key)
+        row = by_key[key]
+        matches = [item for item in row["candidates"] if item["locator"] == decision["locator"]
+                   and item["id"] == decision["source_entry_id"]]
+        if len(matches) != 1:
+            raise ValueError(f"Review source locator missing: {key}")
+        if not matches[0]["explicit_form_i"] or not matches[0]["head_exact"]:
+            raise ValueError(f"Review requires exact Form I head: {key}")
+        if decision["decision"] not in {"draft_supported", "hold_bab"}:
+            raise ValueError(f"Unknown review decision: {key}")
+        supported = decision["decision"] == "draft_supported"
+        if supported != bool(decision.get("gloss")):
+            raise ValueError(f"Inconsistent review gloss: {key}")
+        row["decision"] = decision["decision"]
+        row["gloss"] = decision.get("gloss")
+        row["manual_review"] = decision
+    return rows
 
 
 def main():
@@ -158,18 +195,26 @@ def main():
     if len(entries) != manifest["counts"]["entries"]:
         raise ValueError("Lane entry count mismatch")
     rows = audit(source["verbs"], entries)
+    if manifest["revision"] != REVISION:
+        raise ValueError("Unexpected Lane revision")
+    attach_reviews(rows, json.loads(DECISIONS.read_text(encoding="utf-8"))["decisions"])
     if len(rows) != args.expect:
         raise ValueError(f"Unresolved baseline changed: {len(rows)} != {args.expect}")
     args.output.mkdir(parents=True, exist_ok=False)
     counts = dict(sorted(Counter(row["status"] for row in rows).items()))
+    review_counts = Counter(row["decision"] for row in rows)
     summary = {
         "schema": 1, "recall_sha256": hashlib.sha256(args.recall.read_bytes()).hexdigest(),
         "lane_revision": manifest["revision"], "lane_entries_sha256": manifest["outputs"]["entries.jsonl"],
         "lane_license": manifest["license"], "unresolved": len(rows),
-        "reviewed_semantically": 0, "glosses_added": 0, "candidate_counts": counts,
+        "reviewed_semantically": len(rows) - review_counts["unresolved"],
+        "draft_supported": review_counts["draft_supported"], "held_bab": review_counts["hold_bab"],
+        "glosses_added_to_learner_data": 0, "candidate_counts": counts,
     }
     write_json(args.output / "review-queue.json", rows)
     write_json(args.output / "summary.json", summary)
+    write_json(args.output / "draft-glosses.json", [row["manual_review"] for row in rows
+               if row["decision"] == "draft_supported"])
     (args.output / "ATTRIBUTION.txt").write_bytes((args.lane / "ATTRIBUTION.txt").read_bytes())
     print(json.dumps(summary, ensure_ascii=False))
     # Expose the most useful candidate locators in CI log without bulk dictionary text.
