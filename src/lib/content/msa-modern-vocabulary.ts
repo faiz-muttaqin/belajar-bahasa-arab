@@ -57,7 +57,8 @@ const rows: readonly ModernRow[] = [
 		lemma: 'روبوت',
 		topic: 'technology',
 		formation: 'loanword',
-		formationEvidence: 'Sumber mencatat peminjaman melalui bahasa Inggris, asal lebih jauh bahasa Ceko.'
+		formationEvidence:
+			'Sumber mencatat peminjaman melalui bahasa Inggris, asal lebih jauh bahasa Ceko.'
 	},
 	{
 		id: 'istimarah',
