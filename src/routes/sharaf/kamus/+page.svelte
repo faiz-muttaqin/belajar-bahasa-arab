@@ -90,6 +90,7 @@
 					<li>
 						{sense.glossId}
 						<span class="text-sm text-muted-foreground">({registerLabels[sense.register]})</span>
+						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external source -->
 						<a
 							href={sense.evidence.url}
 							class="ml-2 text-sm text-primary underline"
@@ -104,9 +105,10 @@
 			{#if entry.forms.some((form) => form.origin === 'attested')}
 				<h4 class="mt-4 font-medium">Bentuk tercatat</h4>
 				<ul class="mt-2 space-y-1">
-					{#each entry.forms.filter((form) => form.origin === 'attested') as form}
+					{#each entry.forms.filter((form) => form.origin === 'attested') as form (form)}
 						<li>
 							<ArabicText text={form.ar} /> · {form.kind}
+							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external source -->
 							<a href={form.evidence.url} class="text-sm text-primary underline">Sumber</a>
 						</li>
 					{/each}
