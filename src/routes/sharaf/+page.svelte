@@ -90,10 +90,7 @@
 	Pahami perubahan kata: akar, wazan dan tashrif
 </a>
 
-<a
-	href={resolve('sharaf/kamus/')}
-	class="mt-4 block min-h-11 font-semibold text-primary underline"
->
+<a href={resolve('sharaf/kamus/')} class="mt-4 block min-h-11 font-semibold text-primary underline">
 	Kamus per makna dan keluarga akar (pilot)
 </a>
 
