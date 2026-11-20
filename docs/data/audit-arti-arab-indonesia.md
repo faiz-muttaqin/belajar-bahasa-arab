@@ -27,3 +27,13 @@ Sebanyak 550 entri tetap `tidak_diketahui`: 362 karena Fable tidak menemukan art
 ## Sumber, lisensi, dan teks Lane (20 November 2026)
 
 Kebijakan [hak cipta dan sumber kamus](./copyright-policy.md) (ADR-004 D-10) kini berlaku untuk audit ini. Setiap `audit` menyimpan `sourceId` dari [`data/sources/registry.json`](../../data/sources/registry.json) dan `sourceRole`. Tautan untuk Al-Muḥīṭ, Al-Ghanī, dan Al-Muʿāṣira ditandai `pembanding`, dan modal menampilkannya sebagai "Tautan pembanding". Teks Form I dari Lane's Lexicon (Perseus/Alpheios, CC BY-SA 3.0 US) untuk 2.434 akar disalin ke [`data/third-party/lane/`](../../data/third-party/lane/README.md). Entri audit yang akarnya ada di Lane menyimpan `audit.lane` (ID entri), jadi peninjau punya teks terbuka sebagai pembanding. Basis data lokal tujuh kamus tidak di-commit karena asalnya belum diketahui.
+
+## Tindak lanjut audit lisensi dan bukti
+
+- [ ] Catat total kutipan per sumber dari CI; periksa kebutuhan tiap kutipan, kemiripan redaksi, sumber edisi, dan dampak kumulatif. Ganti kutipan yang tidak diperlukan dengan ringkasan fakta dan locator. Batas 120 karakter bukan izin hukum.
+- [ ] Verifikasi 103 entri Lisān dengan keyakinan rendah terhadap bentuk māḍī, muḍāriʿ, dan makna yang sama di sumber yang dapat diperiksa. Jangan menaikkan keyakinan hanya karena akar ditemukan di Lane.
+- [ ] Pisahkan tautan sumber utama dan pembanding juga pada jalur pengayaan `mergeEnrichment`, bukan hanya modal tabel; jangan tampilkan sumber pembanding sebagai bukti utama.
+- [ ] Tinjau 550 verba belum diketahui dengan sumber terbuka; bedakan lema tidak ditemukan dari kombinasi bab generator yang tidak terbukti. Pertahankan status tidak diketahui bila bukti belum cukup.
+- [ ] Verifikasi asal `lex.zip` dan lisensi tiap salinan digital; jangan distribusikan arsip atau basis data tersebut. OpenITI hanya kandidat dengan ketentuan NC-SA tersendiri.
+
+Status: belum selesai. Lulus CI teknis tidak menaikkan status peninjauan linguistik atau menjamin izin hak cipta.

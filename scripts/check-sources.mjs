@@ -8,12 +8,14 @@
  * - Every audit.sourceId in the verb data exists in the registry.
  * - Quotations from sources that are not public domain or open stay short.
  */
+import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 
 const STATUS = ['public-domain', 'open-license', 'copyrighted', 'unknown'];
 const USAGE = ['verbatim', 'quotation', 'original-synthesis', 'reference-only'];
 const OPEN = ['public-domain', 'open-license'];
-const MAX_QUOTE = 120;
+const MAX_QUOTE = 120; // Internal lint threshold, not a legal safe harbor.
+const ROLES = ['utama', 'pembanding'];
 
 const read = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const errors = [];
@@ -21,6 +23,8 @@ const fail = (message) => errors.push(message);
 
 const registry = read('data/sources/registry.json');
 const byId = new Map();
+const quoteTotals = new Map();
+let comparisonCount = 0;
 for (const source of registry.sources) {
 	if (!source.id || byId.has(source.id)) fail(`registry: missing or duplicate id ${source.id}`);
 	byId.set(source.id, source);
@@ -45,14 +49,26 @@ for (const dir of existsSync('data/third-party') ? readdirSync('data/third-party
 		fail(`data/third-party/${dir}: README.md with attribution and licence is required`);
 }
 
+// Ignore rules alone cannot prevent an accidental force-add.
+for (const path of execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' }).split('\0')) {
+	if (/(^|\/)(lex\.zip|db\.sqlite)$/i.test(path))
+		fail(`tracked restricted local dictionary: ${path}`);
+}
+
 function checkAudit(where, audit) {
 	if (!audit) return;
 	const source = byId.get(audit.sourceId);
 	if (!source) return fail(`${where}: unknown audit.sourceId ${audit.sourceId}`);
 	if (!/^https:\/\//.test(audit.source ?? '')) fail(`${where}: audit.source must be an https URL`);
-	if (OPEN.includes(source.copyrightStatus)) return;
+	if (!ROLES.includes(audit.sourceRole))
+		fail(`${where}: invalid audit.sourceRole ${audit.sourceRole}`);
+	if (audit.sourceRole === 'pembanding') comparisonCount++;
 	for (const [, quote] of (audit.note ?? '').matchAll(/«([^»]*)»/g)) {
-		if (quote.length > MAX_QUOTE)
+		const total = quoteTotals.get(source.id) ?? { count: 0, characters: 0 };
+		total.count++;
+		total.characters += quote.length;
+		quoteTotals.set(source.id, total);
+		if (!OPEN.includes(source.copyrightStatus) && quote.length > MAX_QUOTE)
 			fail(`${where}: quotation from ${source.id} longer than ${MAX_QUOTE} characters`);
 	}
 }
@@ -73,3 +89,8 @@ if (errors.length) {
 	process.exit(1);
 }
 console.log(`check-sources: ${registry.sources.length} sources, provenance rules hold`);
+console.log(`check-sources: ${comparisonCount} comparison links`);
+for (const [id, total] of [...quoteTotals].sort(([a], [b]) => a.localeCompare(b))) {
+	console.log(`quotes ${id}: ${total.count} excerpts, ${total.characters} characters`);
+}
+console.log('Quote totals are review signals only; a passing lint is not copyright clearance.');

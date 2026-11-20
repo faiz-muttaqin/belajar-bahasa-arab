@@ -35,3 +35,7 @@ __screenshots__
 
 # Personal-use copies of third-party curriculum (never committed; see content-local.md)
 /content-local/
+
+# Restricted local dictionary database (ADR-004 D-10)
+lex.zip
+db.sqlite

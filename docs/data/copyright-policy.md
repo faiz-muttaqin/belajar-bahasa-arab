@@ -20,7 +20,7 @@ Dasar yang dirujuk riset: UU No. 28 Tahun 2014 tentang Hak Cipta, terutama Pasal
 
 1. **Domain publik:** boleh disalin lengkap, dengan pengarang, kitab, edisi, dan sumber digital yang jelas.
 2. **Berlisensi terbuka:** boleh disalin atau diubah sesuai lisensinya. Simpan di `data/third-party/<sumber>/` bersama `README.md` berisi atribusi dan lisensi. Folder itu mengikuti lisensinya sendiri, bukan lisensi kode situs.
-3. **Kamus modern:** dipakai sebagai rujukan untuk menyusun definisi sendiri dan mengambil fakta kebahasaan. Kutipan langsung boleh, pendek dan proporsional (pemeriksa membatasi 120 karakter per kutipan di `audit.note`).
+3. **Kamus modern:** dipakai sebagai rujukan untuk menyusun definisi sendiri dan mengambil fakta kebahasaan. Kutipan langsung hanya jika diizinkan oleh lisensi atau pengecualian hukum yang berlaku, pendek, diperlukan dan proporsional. Batas internal 120 karakter per kutipan di `audit.note` bukan batas aman menurut hukum.
 4. **Deskripsi sendiri:** tidak dibatasi panjangnya selama ditulis sendiri, bukan salinan atau terjemahan utuh redaksi kamus yang dilindungi.
 5. **Sumber tanpa kejelasan lisensi:** jangan impor teks lengkapnya ke repository publik.
 6. **Verifikasi:** setiap makna punya rujukan yang benar-benar mendukung kata, bentuk, bab, dan maknanya (ADR-004 D-9).
@@ -52,7 +52,11 @@ Setiap `audit` menyimpan `source` (URL), `sourceId` (ID di daftar sumber), dan `
 - pemakaian verbatim dari sumber yang tidak domain publik atau terbuka;
 - folder `data/third-party/` tanpa entri daftar atau tanpa `README.md`;
 - `sourceId` yang tidak dikenal;
-- kutipan lebih dari 120 karakter dari sumber yang tidak terbuka.
+- kutipan lebih dari 120 karakter dari sumber yang tidak terbuka;
+- nilai `sourceRole` selain `utama` atau `pembanding`;
+- file `lex.zip` atau `db.sqlite` yang terlacak Git, termasuk jika ditambahkan dengan paksa.
+
+Pemeriksa juga melaporkan jumlah kutipan bertanda `«…»` dan total karakternya per sumber. Ini indikator audit, bukan bukti izin: kutipan tanpa penanda, parafrasa yang terlalu mirip, hak atas edisi digital, dan dampak kumulatif tetap membutuhkan pemeriksaan substantif. Jangan tambah batch kutipan dari sumber tertutup atau salinan digital tak jelas sebelum pemeriksaan kumulatif. Utamakan fakta kebahasaan, redaksi sendiri, dan locator (lema, akar, bab, jilid/halaman bila tersedia). Tautan pembanding tidak membuktikan sumber utama atau kesesuaian bab. Referensi Lane pada akar yang sama juga bukan verifikasi otomatis atas makna atau vokal mudhari tertentu.
 
 ## Belum terverifikasi
 
