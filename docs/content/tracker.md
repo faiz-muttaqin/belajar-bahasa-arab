@@ -238,4 +238,4 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 
 - 20 November 2026: V-06 / P6 LM-03 batch 1 menambahkan delapan entri MSA draf dengan sumber lema spesifik dan audit parsial. Total 165 entri, 13 audit parsial. Stage 3 tetap; register, audit sisa 152 lema awal, dedup silang dan uji pengguna belum tuntas.
 
-- 20 November 2026: P5 — [pilot kamus per sense](../data/p5-sense-dictionary.md) draf: lima lema dan sepuluh sense dengan bukti, pencarian dan keluarga akar. Impor P4 nyata, integrasi bulk dan audit register masih pending; belum menandai P5 selesai.
+- 20 November 2026: P5 — [pilot kamus per sense](../data/p5-sense-dictionary.md) draf: lima lema dan sebelas sense dengan bukti (termasuk satu sense historis setelah audit komparasi), pencarian dan keluarga akar. Impor P4 nyata, integrasi bulk dan audit register masih pending; belum menandai P5 selesai.
