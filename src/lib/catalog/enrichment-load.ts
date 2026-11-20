@@ -12,6 +12,7 @@ export async function fetchEnrichment(): Promise<VerbEnrichment> {
 		ENRICHMENT_PATH.slice('data/'.length),
 		new URL(resolve(CATALOG_PATH), location.href)
 	);
+	url.searchParams.set('rev', '2026-11-20');
 	const response = await fetch(url, { cache: 'force-cache', signal: AbortSignal.timeout(30_000) });
 	if (!response.ok) throw new Error(`HTTP ${response.status}`);
 	const parsed: unknown = await response.json();

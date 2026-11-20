@@ -28,8 +28,8 @@
 	{#snippet lead()}
 		<p>
 			{total.toLocaleString('id')} kata kerja bersumber Wiktionary, dikelompokkan menurut 22 wazan tashrif,
-			ditambah {recallTotal.toLocaleString('id')} dari daftar Qutrub dan Arramooz yang artinya dari pengetahuan
-			model. Ketuk sebuah kata untuk melihat bentuk dan artinya.
+			ditambah {recallTotal.toLocaleString('id')} dari daftar Qutrub dan Arramooz dengan draf arti dari
+			model dan kamus. Ketuk sebuah kata untuk melihat bentuk dan artinya.
 		</p>
 	{/snippet}
 </PageIntro>

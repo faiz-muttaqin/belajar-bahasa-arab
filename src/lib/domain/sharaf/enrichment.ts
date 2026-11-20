@@ -6,6 +6,7 @@
  */
 import { BULK_SHARAF_GLOSS_MISSING } from './bulk.js';
 import type { SharafEntry, SharafForm } from './lexicon.js';
+import type { GlossAudit } from './wiktionary-verbs.js';
 import { patternCatalog } from './patterns.js';
 
 export const ENRICHMENT_PATH = 'data/verbs-enrich-v1.json';
@@ -21,10 +22,11 @@ type WiktionaryTuple = [
 	string,
 	string,
 	string,
-	string
+	string,
+	GlossAudit?
 ];
 /** [lemma, root, bab, kind 0 padanan | 1 deskripsi | 2 unknown, text, confidence 0-3, model 0-1, code] */
-type RecallTuple = [string, string, number, number, string, number, number, string];
+type RecallTuple = [string, string, number, number, string, number, number, string, GlossAudit?];
 
 export type VerbEnrichment = {
 	schema: 1;
@@ -47,7 +49,7 @@ export function isVerbEnrichment(value: unknown): value is VerbEnrichment {
 }
 
 const confidence = ['-', 'rendah', 'sedang', 'tinggi'] as const;
-const models = ['Claude Sonnet 5.5', 'Claude Fable 5.2'] as const;
+const models = ['Claude Sonnet 5.5', 'Claude Fable 5.2', 'Codex'] as const;
 const nfc = (s: string) => s.normalize('NFC');
 const wiktionaryUrl = (title: string) =>
 	`https://en.wiktionary.org/wiki/${encodeURIComponent(title)}`;
@@ -59,6 +61,12 @@ function formsFrom([, , , nonPast, masdar, fail, maful]: WiktionaryTuple): Shara
 	if (fail) forms.push({ label: 'fail', value: fail });
 	if (maful) forms.push({ label: 'maful', value: maful });
 	return forms;
+}
+
+function auditExplanation(audit: GlossAudit): string {
+	return ['Padanan Indonesia disusun dengan rujukan kamus dan menunggu peninjauan.', audit.note]
+		.filter(Boolean)
+		.join(' ');
 }
 
 const mergedCache = new WeakMap<
@@ -79,8 +87,12 @@ export function mergeEnrichment(
 	const cached = mergedCache.get(entries)?.get(data);
 	if (cached) return cached;
 
-	const wkByKey = new Map<string, WiktionaryTuple>();
-	for (const tuple of data.wk) wkByKey.set(`${nfc(tuple[0])}|${tuple[1]}`, tuple);
+	const wkByKey = new Map<string, WiktionaryTuple | null>();
+	for (const tuple of data.wk) {
+		const key = `${nfc(tuple[0])}|${tuple[1]}`;
+		// Multiple senses with the same vocalization and bab need separate reference entries.
+		wkByKey.set(key, wkByKey.has(key) ? null : tuple);
+	}
 	const rcByKey = new Map<string, RecallTuple>();
 	for (const tuple of data.rc) rcByKey.set(`${nfc(tuple[0])}|${tuple[1]}|${tuple[2]}`, tuple);
 
@@ -88,13 +100,22 @@ export function mergeEnrichment(
 	const rows: SharafEntry[] = [];
 	const curated = new Set<string>();
 	for (const entry of entries) {
-		if (entry.partOfSpeech === 'verb' && entry.bab && !entry.id.startsWith('bulk-')) {
+		if (
+			entry.partOfSpeech === 'verb' &&
+			entry.bab &&
+			!entry.id.startsWith('bulk-') &&
+			entry.meaning !== BULK_SHARAF_GLOSS_MISSING
+		) {
 			curated.add(`${nfc(entry.lemma)}|${entry.bab.number}`);
 		}
 	}
 
 	for (const entry of entries) {
-		if (entry.partOfSpeech !== 'verb' || !entry.bab || !entry.id.startsWith('bulk-')) {
+		if (
+			entry.partOfSpeech !== 'verb' ||
+			!entry.bab ||
+			(!entry.id.startsWith('bulk-') && entry.meaning !== BULK_SHARAF_GLOSS_MISSING)
+		) {
 			rows.push(entry);
 			continue;
 		}
@@ -106,15 +127,22 @@ export function mergeEnrichment(
 			rows.push({
 				...entry,
 				meaning: meaning || entry.meaning,
-				meaningSource: wk[7] ? 'terjemahan' : wk[8] ? 'wiktionary' : undefined,
+				meaningSource: wk[10]
+					? 'draf-kamus'
+					: wk[7]
+						? 'terjemahan'
+						: wk[8]
+							? 'wiktionary'
+							: undefined,
 				forms: formsFrom(wk),
 				formBehavior: 'unverified',
-				explanation:
-					`${entry.explanation} Mudhari, mashdar, isim fa‘il dan maf‘ul serta arti Inggris dari Wiktionary` +
-					(wk[7]
-						? '; arti Indonesia adalah terjemahan Claude dari arti Inggris itu, belum ditinjau.'
-						: '.'),
-				sources: [...entry.sources, wiktionaryUrl(wk[9])]
+				explanation: wk[10]
+					? `${entry.explanation} ${auditExplanation(wk[10])}`
+					: `${entry.explanation} Mudhari, mashdar, isim fa‘il dan maf‘ul serta arti Inggris dari Wiktionary` +
+						(wk[7]
+							? '; arti Indonesia adalah terjemahan Claude dari arti Inggris itu, belum ditinjau.'
+							: '.'),
+				sources: [...entry.sources, wiktionaryUrl(wk[9]), ...(wk[10] ? [wk[10].source] : [])]
 			});
 			continue;
 		}
@@ -123,11 +151,13 @@ export function mergeEnrichment(
 			rows.push({
 				...entry,
 				meaning: rc[4],
-				meaningSource: rc[3] === 1 ? 'deskripsi-model' : 'model',
-				explanation:
-					`${entry.explanation} Arti ini berasal dari pengetahuan model ${models[rc[6]] ?? 'Claude'}` +
-					` (keyakinan ${confidence[rc[5]] ?? '-'}), bukan dari kamus, dan belum diverifikasi.` +
-					(rc[3] === 1 ? ' Ini deskripsi, bukan padanan satu kata.' : '')
+				sources: rc[8] ? [...entry.sources, rc[8].source] : entry.sources,
+				meaningSource: rc[8] ? 'draf-kamus' : rc[3] === 1 ? 'deskripsi-model' : 'model',
+				explanation: rc[8]
+					? `${entry.explanation} ${auditExplanation(rc[8])}`
+					: `${entry.explanation} Arti ini berasal dari pengetahuan model ${models[rc[6]] ?? 'Claude'}` +
+						` (keyakinan ${confidence[rc[5]] ?? '-'}), bukan dari kamus, dan belum diverifikasi.` +
+						(rc[3] === 1 ? ' Ini deskripsi, bukan padanan satu kata.' : '')
 			});
 			continue;
 		}
@@ -138,17 +168,24 @@ export function mergeEnrichment(
 	const counters = new Map<string, number>();
 	for (const tuple of data.wk) {
 		const key = `${nfc(tuple[0])}|${tuple[1]}`;
-		if (used.has(key) || curated.has(key)) continue;
+		const pageKey = `${tuple[1]}|${tuple[9]}`;
+		const n = (counters.get(pageKey) ?? 0) + 1;
+		counters.set(pageKey, n);
+		if (used.has(key) || (curated.has(key) && wkByKey.get(key))) continue;
 		const pattern = patternCatalog.find((candidate) => candidate.number === tuple[1]);
 		if (!pattern) continue;
-		const n = (counters.get(key) ?? 0) + 1;
-		counters.set(key, n);
 		const meaning = tuple[7] || tuple[8];
 		rows.push({
 			id: `wk-${tuple[1]}-${tuple[9]}-${n}`,
 			lemma: tuple[0],
 			meaning: meaning || BULK_SHARAF_GLOSS_MISSING,
-			meaningSource: tuple[7] ? 'terjemahan' : tuple[8] ? 'wiktionary' : undefined,
+			meaningSource: tuple[10]
+				? 'draf-kamus'
+				: tuple[7]
+					? 'terjemahan'
+					: tuple[8]
+						? 'wiktionary'
+						: undefined,
 			partOfSpeech: 'verb',
 			bab: {
 				number: tuple[1],
@@ -158,11 +195,12 @@ export function mergeEnrichment(
 			forms: formsFrom(tuple),
 			babSelection: 'lexical',
 			formBehavior: 'unverified',
-			explanation:
-				`Dari Wiktionary (transliterasi ${tuple[2] || 'tidak tercatat'}); bab dari nomor bentuknya. ` +
-				'Arti Indonesia adalah terjemahan Claude dari arti Inggris Wiktionary dan belum ditinjau. ' +
-				'Akar tidak dicatat oleh sumber ini.',
-			sources: [wiktionaryUrl(tuple[9])],
+			explanation: tuple[10]
+				? auditExplanation(tuple[10])
+				: `Dari Wiktionary (transliterasi ${tuple[2] || 'tidak tercatat'}); bab dari nomor bentuknya. ` +
+					'Arti Indonesia adalah terjemahan Claude dari arti Inggris Wiktionary dan belum ditinjau. ' +
+					'Akar tidak dicatat oleh sumber ini.',
+			sources: [wiktionaryUrl(tuple[9]), ...(tuple[10] ? [tuple[10].source] : [])],
 			reviewStatus: 'draft'
 		});
 	}

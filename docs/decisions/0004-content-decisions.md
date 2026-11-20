@@ -1,4 +1,4 @@
-# ADR-004: Content decisions D-1 to D-9
+# ADR-004: Content decisions D-1 to D-10
 
 **Status:** accepted by the product owner, 14 November 2026
 **Context:** [curriculum re-research](../research/2026-11-14-riset-ulang-kurikulum.md) §7 and [content tracker](../content/tracker.md). Licensing and regulatory points are background, not legal advice; confirm with an IP or legal adviser before launch.
@@ -76,6 +76,10 @@ D-9 melonggarkan D-5 (varian bacaan) dan gerbang `G-REVIEW` di [graf kompetensi]
 ## D-7 amendment (17 November 2026)
 
 For ordinary MSA vocabulary, the owner selected a research-based alternative to mandatory teacher approval. [ADR-005](./0005-research-verification.md) provides the stricter claim-level gate and is authoritative **only for this ordinary MSA scope**. All specialist gates for Qur'anic material, prayer, audio, reuse permission and regulatory tashih remain in force. Earlier D-9 drafts are not silently promoted.
+
+## D-10 Teks kamus dan sumber pihak ketiga
+
+Disetujui pemilik produk pada 20 November 2026, berdasarkan riset hak cipta per kamus. Teks domain publik dan berlisensi terbuka boleh disalin ke repository dengan atribusi dan lisensinya sendiri di `data/third-party/`. Kamus modern dipakai sebagai rujukan, dengan kutipan pendek dan arti yang ditulis sendiri. Sumber tanpa lisensi jelas, termasuk basis data kamus lokal yang asalnya tidak diketahui, tidak diimpor. Setiap sumber terdaftar di `data/sources/registry.json` dan diperiksa `scripts/check-sources.mjs`. Rincian: [kebijakan hak cipta dan sumber kamus](../data/copyright-policy.md). Ini latar belakang kerja, bukan pendapat hukum.
 
 ## Consequences
 

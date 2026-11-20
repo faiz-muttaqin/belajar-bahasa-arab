@@ -68,6 +68,7 @@
 	const sourceLabels = {
 		wiktionary: 'Wiktionary (Inggris)',
 		terjemahan: 'terjemahan Claude',
+		'draf-kamus': 'draf kamus',
 		model: 'dari model',
 		'deskripsi-model': 'deskripsi model',
 		'belum-diketahui': 'belum diketahui'

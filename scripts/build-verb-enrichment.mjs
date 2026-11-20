@@ -30,12 +30,13 @@ const wk = [...formI.verbs, ...mazid.verbs].map((v) => [
 	v.passiveParticiple ?? '',
 	(translations[v.id]?.idGlosses ?? []).join('; '),
 	v.en.join('; '),
-	v.id.replace(/-(?:[IVX]+q?-)?\d+$/, '')
+	v.id.replace(/-(?:[IVX]+q?-)?\d+$/, ''),
+	...(translations[v.id]?.audit ? [translations[v.id].audit] : [])
 ]);
 
 const KIND = { padanan: 0, deskripsi: 1, tidak_diketahui: 2 };
 const CONF = { none: 0, low: 1, medium: 2, high: 3 };
-const MODEL = { 'sonnet-5.5': 0, 'fable-5.2': 1 };
+const MODEL = { 'sonnet-5.5': 0, 'fable-5.2': 1, codex: 2 };
 const rc = recall.verbs.map((v) => [
 	v.ar,
 	v.root,
@@ -43,8 +44,9 @@ const rc = recall.verbs.map((v) => [
 	KIND[v.kind],
 	v.kind === 'padanan' ? v.meanings.join('; ') : v.kind === 'deskripsi' ? v.description : '',
 	CONF[v.confidence],
-	MODEL[v.model] ?? 0,
-	v.code
+	MODEL[v.model],
+	v.code,
+	...(v.audit ? [v.audit] : [])
 ]);
 
 const out = new URL('../static/data/verbs-enrich-v1.json', import.meta.url).pathname;
