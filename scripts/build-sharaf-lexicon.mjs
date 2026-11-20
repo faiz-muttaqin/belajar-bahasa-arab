@@ -152,3 +152,14 @@ if (process.argv.includes('--check')) {
 	writeFileSync(output, serialized);
 	console.log('Wrote normalized static lexicon:', data.totals);
 }
+
+// TEMP P5.2–P5.4 formatting diagnostic; remove before merging.
+if (process.env.CI && process.argv.includes('--check')) {
+	const prettier = await import('prettier');
+	for (const file of ["docs/content/tracker.md","docs/data/p5-sense-dictionary.md","package.json","scripts/build-dictionary-index.ts","scripts/prepare-dictionary-import.ts","src/lib/content/dictionary-pilot.ts","src/lib/domain/dictionary/integration.spec.ts","src/lib/domain/dictionary/p4-adapter.ts","src/lib/domain/dictionary/reconcile.ts","src/lib/domain/dictionary/senses.ts","src/lib/domain/dictionary/shards.spec.ts","src/lib/domain/dictionary/shards.ts","src/routes/sharaf/kamus/+page.svelte","tests/e2e/dictionary-senses.e2e.ts"]) {
+		const options = await prettier.resolveConfig(file);
+		const original = readFileSync(file, 'utf8');
+		const formatted = await prettier.format(original, { ...options, filepath: file });
+		if (original !== formatted) console.log('P5_FORMAT ' + file + ' ' + JSON.stringify(formatted));
+	}
+}
