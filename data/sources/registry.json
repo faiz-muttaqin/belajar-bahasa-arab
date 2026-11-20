@@ -151,6 +151,15 @@
 			"copyrightStatus": "unknown",
 			"usage": "reference-only",
 			"caveat": "Origin and licence unknown. Never commit or distribute this file."
+		},
+		{
+			"id": "ud-arabic-pud",
+			"title": "Universal Dependencies Arabic PUD",
+			"url": "https://universaldependencies.org/treebanks/ar_pud/index.html",
+			"copyrightStatus": "open-license",
+			"license": "CC BY-SA 3.0",
+			"usage": "reference-only",
+			"caveat": "r2.17 corpus pilot; candidate counts and token locators in separately attributed CI artifact only, no source sentences or corpus distributed in the site."
 		}
 	]
 }
