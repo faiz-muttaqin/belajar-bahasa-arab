@@ -127,6 +127,12 @@
 	<aside class="max-w-3xl space-y-2 border-t pt-4">
 		<h2 class="text-lg font-semibold">Status penelitian</h2>
 		<p>
+			Sesudah mengenali nama kegiatan, bandingkan dengan
+			<a href={resolve('kaidah/participle/')} class="text-primary underline"
+				>isim fā‘il dan isim maf‘ūl</a
+			>.
+		</p>
+		<p>
 			Halaman ini mengajarkan satu bagian G-02. Masih dibutuhkan audit per kalimat dan perluasan ke
 			masdar pola mazīd, bentuk mu‘tal, sinonim makna, serta bacaan dokumen yang lebih panjang.
 			Lihat roadmap OER-01–06 pada issue #55.
