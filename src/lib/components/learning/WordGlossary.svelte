@@ -185,12 +185,14 @@
 					<div>
 						<h3 class="text-sm font-semibold text-muted-foreground">{detail.label}</h3>
 						{#if detail.lang === 'link'}
+							<!-- eslint-disable svelte/no-navigation-without-resolve -- external dictionary reference -->
 							<a
 								class="text-primary underline"
 								href={selected.cells[detail.key]}
 								target="_blank"
 								rel="noreferrer">Buka rujukan arti</a
 							>
+							<!-- eslint-enable svelte/no-navigation-without-resolve -->
 						{:else if detail.lang === 'ar'}
 							<ArabicText text={selected.cells[detail.key] ?? ''} />
 						{:else}
