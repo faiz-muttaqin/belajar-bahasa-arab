@@ -52,3 +52,7 @@ Perbandingan eksternal: [Kaikki Arabic dictionary](https://kaikki.org/dictionary
 5. Baru setelah fondasi lema benar, contoh frasa diajarkan berurutan: **na‘at–man‘ut**, **mubtada–khabar**, **idafah**, **huruf jar + majrur**, seruan **ya + munada**, kesesuaian gender/jumlah, pola jamak, dan ungkapan tetap. Kembangkan pelajaran dengan teks original serta review kebahasaan.
 
 Tindak lanjut di tracker: **RS-01** (riset sumber), **V-06** (koleksi MSA), dan _peninjauan pengajar_ (D-7). Status maksimum PR ini tetap **Stage 3 Draft**.
+
+## Ekspansi P6 — 20 November 2026
+
+Batch 1 menambah delapan entri draf (lima teknologi/media, tiga dokumen/administrasi), sehingga total 165 entri: 119 nomina/unit nominal, 34 sifat, 11 ungkapan, satu partikel; sepuluh tema. Angka 157 di atas adalah baseline historis. Rujukan spesifik dan klaim disimpan pada `src/lib/content/msa-modern-vocabulary.ts`. Sumber Wiktionary CC BY-SA 4.0/GFDL dipakai sebagai bukti fakta; glos Indonesia ditulis sendiri. Tidak ada salinan definisi atau contoh. Register formal dan bukti independen masih perlu diperiksa; 13 audit parsial, bukan persetujuan lengkap. Tidak ada klaim frekuensi.

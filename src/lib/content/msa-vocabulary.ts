@@ -5,6 +5,7 @@ import {
 	type MsaTopic,
 	type VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
+import { msaModernVocabulary } from './msa-modern-vocabulary.js';
 import { msaResearchAudits } from './msa-research.js';
 
 /**
@@ -13,7 +14,7 @@ import { msaResearchAudits } from './msa-research.js';
  * attested from an entire third-party dictionary. See docs/data/msa-common.md.
  * One line = stable slug | Arabic lemma/phrase | original Indonesian gloss | word class.
  */
-const seeds: Record<MsaTopic, string> = {
+const seeds: Record<Exclude<MsaTopic, 'documents'>, string> = {
 	people: `
 shakhs|شَخْصٌ|orang, individu|noun
 rajul|رَجُلٌ|laki-laki dewasa|noun
@@ -252,7 +253,7 @@ const specificSource: Readonly<Record<string, string>> = {
 	shukran: 'https://en.wiktionary.org/wiki/شكرا'
 };
 
-export const msaVocabulary: readonly VocabularyItem[] = Object.entries(seeds).flatMap(
+const starterVocabulary: readonly VocabularyItem[] = Object.entries(seeds).flatMap(
 	([topic, data]) =>
 		data
 			.trim()
@@ -295,6 +296,11 @@ export const msaVocabulary: readonly VocabularyItem[] = Object.entries(seeds).fl
 				};
 			})
 );
+
+export const msaVocabulary: readonly VocabularyItem[] = [
+	...starterVocabulary,
+	...msaModernVocabulary
+];
 
 const uniqueIds = new Set<string>();
 for (const item of msaVocabulary) {

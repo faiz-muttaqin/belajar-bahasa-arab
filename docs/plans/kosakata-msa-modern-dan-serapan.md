@@ -63,3 +63,7 @@ Rujukan awal (untuk diaudit, bukan lisensi impor otomatis):
 **Belum terpenuhi:** LM-02–05: sisa 152 lema belum punya audit klaim, kategori etimologi lain, bacaan dokumen kontekstual, uji pengguna; metadata leksikal penuh belum selesai.
 
 **Tindak lanjut:** [issue #13](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/13). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
+
+## P6 / LM-03 — batch 1 (20 November 2026)
+
+Menambahkan delapan entri draf dengan 31 klaim parsial (bentuk, makna, POS; tujuh juga jenis pembentukan) dari bagian Arabic pada halaman lema Wiktionary. Lima istilah media/teknologi dan tiga dokumen/administrasi; jumlah katalog 165, dengan 13 audit parsial. Register, koroborasi independen, audit 152 lema awal yang belum diperiksa, dedup silang katalog, LM-04 dan LM-05 tetap terbuka. Tidak ada promosi research_verified, impor definisi, atau klaim frekuensi.

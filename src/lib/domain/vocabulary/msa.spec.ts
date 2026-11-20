@@ -4,11 +4,11 @@ import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import { MSA_CLASSES, MSA_TOPICS, validateVocab } from './types.js';
 
 describe('curated MSA nouns, adjectives and expressions', () => {
-	it('contains 157 stable draft items from nine themes', () => {
-		expect(msaVocabulary).toHaveLength(157);
-		expect(Object.keys(MSA_TOPICS)).toHaveLength(9);
-		expect(new Set(msaVocabulary.map((item) => item.id)).size).toBe(157);
-		expect(publishedVocabulary('msa').length).toBe(157);
+	it('contains 165 stable draft items from ten themes', () => {
+		expect(msaVocabulary).toHaveLength(165);
+		expect(Object.keys(MSA_TOPICS)).toHaveLength(10);
+		expect(new Set(msaVocabulary.map((item) => item.id)).size).toBe(165);
+		expect(publishedVocabulary('msa').length).toBe(165);
 		expect(msaVocabulary.every((item) => item.reviewStatus === 'draft')).toBe(true);
 		expect(msaVocabulary.every((item) => item.register === 'msa')).toBe(true);
 		expect(msaVocabulary.flatMap(validateVocab)).toEqual([]);
@@ -17,7 +17,7 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 	it('does not confuse adjectives or forms of address with fiil', () => {
 		const count = (kind: keyof typeof MSA_CLASSES) =>
 			msaVocabulary.filter((item) => item.msa?.wordClass === kind).length;
-		expect(count('noun')).toBe(111);
+		expect(count('noun')).toBe(119);
 		expect(count('adjective')).toBe(34);
 		expect(count('expression')).toBe(11);
 		expect(count('particle')).toBe(1);
@@ -41,6 +41,23 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 		expect(get('hasub')?.formation).toBe('derived');
 		expect(get('hasub')?.root).toBe('حسب');
 		expect(get('hatif-dhaki')?.formation).toBe('compound');
+	});
+
+	it('includes the individually sourced P6 batch without promoting partial audits', () => {
+		const batch = msaVocabulary.filter((item) =>
+			item.research?.claims.some((claim) => claim.checkedOn === '2026-11-20')
+		);
+		expect(batch).toHaveLength(8);
+		expect(batch.filter((item) => item.msa?.formation === 'loanword')).toHaveLength(5);
+		expect(batch.every((item) => item.research?.status === 'partial')).toBe(true);
+		expect(
+			batch.every((item) =>
+				item.research?.claims.every((claim) => item.sources.includes(claim.sourceUrl))
+			)
+		).toBe(true);
+		const key = (item: (typeof msaVocabulary)[number]) =>
+			item.arabic.normalize('NFC').replace(/\p{M}/gu, '') + '|' + item.msa?.wordClass;
+		expect(new Set(msaVocabulary.map(key)).size).toBe(msaVocabulary.length);
 	});
 
 	it('does not permit a foreign-register classification or unsupported MSA subgroup', () => {

@@ -73,6 +73,7 @@ export const MSA_TOPICS = {
 	time: 'Waktu',
 	qualities: 'Sifat dan keadaan',
 	technology: 'Teknologi modern',
+	documents: 'Dokumen dan administrasi',
 	social: 'Sapaan dan ungkapan'
 } as const;
 export type MsaTopic = keyof typeof MSA_TOPICS;
