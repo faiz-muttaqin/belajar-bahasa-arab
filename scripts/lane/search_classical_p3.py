@@ -105,6 +105,16 @@ def main():
         matches = scan(retrieve(pin, args.cache), rows)
         for i, value in matches.items():
             result[i]["sources"][pin["id"]] = value
+    decisions = json.loads(Path(__file__).with_name("p3-qamus-decisions.json").read_text(encoding="utf-8"))["decisions"]
+    qamus = next(pin for pin in pins if pin["id"] == "qamus")
+    lines = retrieve(qamus, args.cache).splitlines()
+    for d in decisions:
+        if not 1 <= d["line"] <= len(lines):
+            raise ValueError(f"Missing Qamus line: {d}")
+        pattern = r"(?:^|[• ،:؛])(?:و)?" + re.escape(search_key(d["lemma"])) + r"\s*،?\s*ك" + re.escape(d["marker"]) + r"(?=[،:؛\s.]|$)"
+        line = "".join(ch for ch in unicodedata.normalize("NFC", lines[d["line"] - 1]) if not unicodedata.category(ch).startswith("M"))
+        if not re.search(pattern, line):
+            raise ValueError(f"Qamus bab marker no longer matches: {d}")
     counts = {
         "records": len(rows),
         "any_classical_lead": sum(bool(r["sources"]) for r in result),
@@ -112,6 +122,7 @@ def main():
         "parenthesized_root_lead": sum(any(v["counts"]["parenthesized_root"] for v in r["sources"].values()) for r in result),
         "by_source": {pin["id"]: sum(pin["id"] in r["sources"] for r in result) for pin in pins},
         "glosses_approved_automatically": 0,
+        "qamus_review_locators_verified": len(decisions),
     }
     # Only input lemma/root/bab, hit counts and pinned-source line locators
     # are written. No OpenITI text, reconstructed excerpts or adapted dataset.

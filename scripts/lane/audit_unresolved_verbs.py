@@ -195,17 +195,25 @@ def main():
     if len(entries) != manifest["counts"]["entries"]:
         raise ValueError("Lane entry count mismatch")
     decisions = json.loads(DECISIONS.read_text(encoding="utf-8"))["decisions"]
-    applied = {(d["lemma"], d["root"], d["bab"]): d for d in decisions if d.get("applied")}
+    external = json.loads(Path(__file__).with_name("p3-qamus-decisions.json").read_text(encoding="utf-8"))["decisions"]
+    applied = {(d["lemma"], d["root"], d["bab"]): d for d in [*decisions, *external] if d.get("applied")}
     for row in source["verbs"]:
         key = (row["ar"], row["root"], row["bab"])
         if key in applied:
             decision = applied[key]
-            if row["kind"] != "padanan" or row["meanings"] != [decision["gloss"]] or row.get("audit", {}).get("sourceId") != "lane":
+            if row["kind"] != "padanan" or row["meanings"] != [decision["gloss"]] or row.get("audit", {}).get("sourceId") != decision["sourceId"]:
                 raise ValueError(f"Applied review differs from recall: {key}")
     rows = audit(source["verbs"], entries, applied)
     if manifest["revision"] != REVISION:
         raise ValueError("Unexpected Lane revision")
     attach_reviews(rows, decisions)
+    by_key = {(r["lemma"], r["root"], r["bab"]): r for r in rows}
+    for d in external:
+        key = (d["lemma"], d["root"], d["bab"])
+        row = by_key[key]
+        if row["decision"] != "unresolved":
+            raise ValueError(f"Duplicate review: {key}")
+        row.update(decision="draft_supported", gloss=d["gloss"], manual_review=d)
     if len(rows) != args.expect:
         raise ValueError(f"Unresolved baseline changed: {len(rows)} != {args.expect}")
     args.output.mkdir(parents=True, exist_ok=False)

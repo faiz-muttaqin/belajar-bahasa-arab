@@ -7949,11 +7949,17 @@
 			"root": "شسف",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengering"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L55321",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 55321; penanda bab كنصر pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "شصا-شصو-1",
@@ -16435,11 +16441,17 @@
 			"root": "ءبل",
 			"bab": 2,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memiliki semakin banyak unta"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L64747",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 64747; penanda bab كضرب pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "أبن-ءبن-2",
@@ -31366,11 +31378,17 @@
 			"root": "جءج",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["terhenti karena takut"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L10770",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 10770; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "جأذ-جءذ-3",
@@ -34299,11 +34317,17 @@
 			"root": "زءط",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membuat keributan dengan suara keras"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L44501",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 44501; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "زأف-زءف-3",
@@ -34369,11 +34393,17 @@
 			"root": "زحك",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi letih"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L63547",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 63547; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "زحن-زحن-3",
@@ -34685,11 +34715,17 @@
 			"root": "زنح",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memuji; mendorong; menyulitkan orang dalam transaksi"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L13469",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 13469; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "زهف-زهف-3",
@@ -35487,11 +35523,17 @@
 			"root": "شدح",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi gemuk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L13743",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 13743; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "شدخ-شدخ-3",
@@ -36339,11 +36381,17 @@
 			"root": "طسع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bersetubuh; pergi menjelajahi suatu negeri"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L49735",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 49735; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "طعج-طعج-3",
@@ -36952,11 +37000,17 @@
 			"root": "فخج",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bersikap sombong"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L12014",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 12014; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "فخذ-فخذ-3",
@@ -37547,11 +37601,17 @@
 			"root": "قحص",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melintas dengan cepat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L41574",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 41574; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "قحم-قحم-3",
@@ -37919,11 +37979,17 @@
 			"root": "قهز",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meloncat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L34646",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 34646; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "قهل-قهل-3",
@@ -37943,11 +38009,17 @@
 			"root": "كءج",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertambah dungu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L12136",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 12136; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "كأد-كءد-3",
@@ -38021,11 +38093,17 @@
 			"root": "كبع",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memotong; menghalangi; memeriksa uang logam"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L50725",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 50725; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "كتح-كتح-3",
@@ -38321,11 +38399,17 @@
 			"root": "كعز",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mengumpulkan sesuatu dengan jari"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L34695",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 34695; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "كعم-كعم-3",
@@ -40420,11 +40504,17 @@
 			"root": "نخص",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi kurus dan berkeriput"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L41976",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 41976; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "نخف-نخف-3",
@@ -41102,11 +41192,17 @@
 			"root": "هسع",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bergegas"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L52020",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 52020; penanda bab كمنع pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "هقع-هقع-3",
@@ -41529,11 +41625,17 @@
 			"root": "ءبث",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["minum susu unta sampai perut kembung dan merasa seperti mabuk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L9517",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 9517; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "أبد-ءبد-4",
@@ -42032,11 +42134,17 @@
 			"root": "ءشح",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi marah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L12760",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 12760; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "أشر-ءشر-4",
@@ -42200,11 +42308,17 @@
 			"root": "ءلز",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa gelisah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L33250",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 33250; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "ألق-ءلق-4",
@@ -42613,11 +42727,17 @@
 			"root": "برث",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["hidup dengan berlimpah kemewahan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L9573",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 9573; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "برز-برز-4",
@@ -43828,11 +43948,17 @@
 			"root": "ثرن",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyakiti teman atau tetangga"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L81445",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 81445; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "ثري-ثرو-4",
@@ -44061,11 +44187,17 @@
 			"root": "ثهت",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memanggil; bersuara"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L8564",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 8564; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "ثول-ثول-4",
@@ -47014,11 +47146,17 @@
 			"root": "دءص",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bersikap angkuh karena kesenangan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L41006",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 41006; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "دئض-دءض-4",
@@ -47157,11 +47295,17 @@
 			"root": "دخش",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertambah berisi daging (tubuh)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L39393",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 39393; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "دخل-دخل-4",
@@ -49282,11 +49426,17 @@
 			"root": "زرك",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["bertabiat buruk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L63556",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 63556; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "زرم-زرم-4",
@@ -50360,11 +50510,17 @@
 			"root": "سقت",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["tidak memperoleh keberkahan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L8849",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 8849; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "سقف-سقف-4",
@@ -50819,11 +50975,17 @@
 			"root": "شتع",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa sangat resah karena sakit atau lapar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L48904",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 48904; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "شثر-شثر-4",
@@ -51147,11 +51309,17 @@
 			"root": "شطع",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa resah karena sakit atau keadaan serupa"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L48996",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 48996; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "شطي-شطي-4",
@@ -51279,11 +51447,17 @@
 			"root": "شفر",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berkurang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L27153",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 27153; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "شفق-شفق-4",
@@ -52115,11 +52289,17 @@
 			"root": "ضدء",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi marah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L1253",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 1253; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "ضدي-ضدي-4",
@@ -54939,11 +55119,17 @@
 			"root": "غنص",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa sesak dada"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L41472",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 41472; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "غهب-غهب-4",
@@ -60373,11 +60559,17 @@
 			"root": "نمه",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["merasa kebingungan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L86722",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 86722; penanda bab كفرح pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "نهئ-نهء-4",
@@ -65559,11 +65751,17 @@
 			"root": "قثم",
 			"bab": 6,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi berdebu atau kelabu"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1#L78708",
+				"sourceId": "openiti",
+				"sourceRole": "utama",
+				"note": "Al-Qāmūs al-Muḥīṭ, edisi digital OpenITI, baris 78708; penanda bab ككرم pada lema terkait. Padanan fakta leksikal ditulis mandiri oleh GPT-6, draf belum ditinjau independen."
+			}
 		},
 		{
 			"id": "قدو-قدو-6",
