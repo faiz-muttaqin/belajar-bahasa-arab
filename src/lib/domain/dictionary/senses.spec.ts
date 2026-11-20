@@ -3,10 +3,10 @@ import { dictionaryPilot } from '#lib/content/dictionary-pilot.js';
 import { rootFamily, searchDictionary, validateDictionary } from './senses.js';
 
 describe('P5 dictionary pilot', () => {
-	it('preserves ten independently sourced senses for five lemmas', () => {
+	it('preserves eleven separately documented senses for five lemmas', () => {
 		expect(validateDictionary(dictionaryPilot)).toEqual([]);
 		expect(dictionaryPilot).toHaveLength(5);
-		expect(dictionaryPilot.flatMap((entry) => entry.senses)).toHaveLength(10);
+		expect(dictionaryPilot.flatMap((entry) => entry.senses)).toHaveLength(11);
 	});
 
 	it('matches Indonesian glosses and explicit Arabic forms', () => {
@@ -21,6 +21,9 @@ describe('P5 dictionary pilot', () => {
 		expect(searchDictionary(dictionaryPilot, '', 'noun')).toHaveLength(4);
 		expect(searchDictionary(dictionaryPilot, '', 'all', 'msa')).toEqual([]);
 		expect(searchDictionary(dictionaryPilot, '', 'all', 'unspecified')).toHaveLength(5);
+		const historical = searchDictionary(dictionaryPilot, '', 'all', 'historical');
+		expect(historical.map((entry) => entry.id)).toEqual(['maktab']);
+		expect(historical[0]?.senses.map((sense) => sense.id)).toEqual(['school']);
 	});
 
 	it('only groups explicitly recorded roots and rejects dangling relations', () => {
