@@ -40,7 +40,11 @@ browser. Jalankan kembali untuk reproduksi setelah artefak kedaluwarsa.
 - `ATTRIBUTION.txt`: atribusi, lisensi dan catatan transformasi.
 
 Locator entri adalah path XML relatif sumber ditambah ID asli; locator akar
-menggunakan ordinal artikel dalam berkas pada revisi yang dipatok. Key
+menggunakan ordinal artikel dalam berkas pada revisi yang dipatok.
+ID sumber dapat berulang lintas berkas: misalnya u_0.xml dan ua0.xml sama-sama
+memuat n13600. Semua rekaman dipertahankan; manifest menghitung ID berbeda dan
+pengulangan ID. P3 harus memakai locator, bukan ID global, dan meninjau duplikat
+sebelum menghitung lema. Key
 pencarian akar hanya menghapus harakat, tatwil, dan spasi; tidak menyatukan
 hamzah, alif atau ya. XML diserialisasi ulang (bukan byte asli); teks pencarian
 dinormalisasi whitespace. Penanda sense asli dipertahankan dalam XML, bukan
@@ -48,7 +52,7 @@ dievaluasi sebagai sense yang tervalidasi.
 
 ## Gerbang sebelum P3
 
-CI harus berhasil pada seluruh input, tanpa kehilangan atau duplikasi ID,
+CI harus berhasil pada seluruh input, tanpa kehilangan atau duplikasi locator,
 dan menghasilkan manifest aktual. Reviewer harus memeriksa entri lintas
 bentuk, halaman suplemen/rujukan silang, dan kecocokan vokalisasi. Entri tanpa
 itype dan referensi silang dapat relevan tetapi membutuhkan pemeriksaan

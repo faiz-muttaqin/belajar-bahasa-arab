@@ -70,15 +70,19 @@ def extract_document(data, path, roots_out, entries_out, ids, counters):
         entry_id = entry.get("id") or entry.get("{http://www.w3.org/XML/1998/namespace}id")
         if not entry_id:
             raise ValueError(f"Missing entry ID: {path} entry {ordinal}")
+        locator = f"{path}#{entry_id}"
+        if locator in ids:
+            raise ValueError(f"Duplicate entry locator: {locator}")
         if entry_id in ids:
-            raise ValueError(f"Duplicate entry ID: {entry_id}")
+            counters["repeated_source_ids"] += 1
         ids.add(entry_id)
+        ids.add(locator)
         root_locator, label = root_by_entry.get(entry, (None, None))
         itypes = [normalized_text(item) for item in entry.findall("./form/itype")]
         orths = [normalized_text(item) for item in entry.findall("./form/orth")]
         json_line(entries_out, {
             "id": entry_id,
-            "locator": f"{path}#{entry_id}",
+            "locator": locator,
             "source_file": path,
             "root_locator": root_locator,
             "root": label,
@@ -130,6 +134,7 @@ def build(source_dir, output_dir):
                 raise ValueError(f"No entries parsed: {path}")
     if not counters["root_articles"] or not counters["explicit_form_i_entries"]:
         raise ValueError("No roots or explicitly marked Form I entries")
+    counters["distinct_source_ids"] = counters["entries"] - counters["repeated_source_ids"]
     if counters["entries"] != counters["entries_in_roots"] + counters["entries_outside_roots"]:
         raise ValueError("Entry coverage mismatch")
     attribution = (

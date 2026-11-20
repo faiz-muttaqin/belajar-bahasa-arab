@@ -35,9 +35,14 @@ class ExtractionTests(unittest.TestCase):
         self.assertIsNone(rows["letter"]["root"])
         self.assertEqual(root_search_key("كَـتَبَ"), "كتب")
 
-    def test_duplicate_identity_is_not_silently_merged(self):
-        with self.assertRaisesRegex(ValueError, "Duplicate entry ID"):
-            extract_document(FIXTURE, "fixture.xml", StringIO(), StringIO(), {"n1"}, Counter())
+    def test_cross_file_ids_are_retained_and_counted(self):
+        roots, entries, counts, ids = StringIO(), StringIO(), Counter(), set()
+        extract_document(FIXTURE, "a.xml", roots, entries, ids, counts)
+        extract_document(FIXTURE, "b.xml", roots, entries, ids, counts)
+        self.assertEqual(counts["entries"], 10)
+        self.assertEqual(counts["repeated_source_ids"], 5)
+        with self.assertRaisesRegex(ValueError, "Duplicate entry locator"):
+            extract_document(FIXTURE, "a.xml", roots, entries, ids, counts)
 
     def test_refuse_dtd(self):
         with self.assertRaisesRegex(ValueError, "DTD"):
