@@ -13,6 +13,12 @@
 	let pos = $state<DictionaryPos | 'all'>('all');
 	let register = $state<DictionaryRegister | 'all'>('all');
 	let results = $derived(searchDictionary(dictionaryPilot, query, pos, register));
+	const registerLabels = {
+		msa: 'MSA',
+		classical: 'Klasik',
+		historical: 'Historis',
+		unspecified: 'Register belum ditentukan'
+	};
 	const labels = {
 		noun: 'Nomina',
 		adjective: 'Sifat',
@@ -32,7 +38,7 @@
 />
 
 <p class="mt-4 text-sm text-muted-foreground">
-	Indeks awal keluarga ك ت ب; belum kamus lengkap. Semua entri masih draf. Register belum
+	Indeks awal keluarga ك ت ب; belum kamus lengkap. Semua entri masih draf. Sebagian register belum
 	ditentukan, dan hubungan akar tidak berarti maknanya sama. Rujukan: kontributor English
 	Wiktionary (CC BY-SA 4.0 / GFDL); glos Indonesia ditulis untuk proyek ini.
 </p>
@@ -83,16 +89,19 @@
 				{#each entry.senses as sense (sense.id)}
 					<li>
 						{sense.glossId}
+						<span class="text-sm text-muted-foreground">({registerLabels[sense.register]})</span>
 						<a
 							href={sense.evidence.url}
 							class="ml-2 text-sm text-primary underline"
 							target="_blank"
 							rel="noreferrer"
-						>Sumber: {sense.evidence.locator}</a>
+						>
+							Sumber: {sense.evidence.locator}</a
+						>
 					</li>
 				{/each}
 			</ol>
-			{#if entry.forms.length}
+			{#if entry.forms.some((form) => form.origin === 'attested')}
 				<h4 class="mt-4 font-medium">Bentuk tercatat</h4>
 				<ul class="mt-2 space-y-1">
 					{#each entry.forms.filter((form) => form.origin === 'attested') as form}
