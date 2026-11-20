@@ -67,3 +67,9 @@ Pemetaan kontrak dan lanjutan D-02–D-06 ada dalam [rencana Dynamic Examples](.
 **Belum terpenuhi:** G-01–05 punya halaman pilot tetapi belum menjamin seluruh cakupan kitab/edge cases; G-06 komposisi/adaptasi, bukti per kaidah dan uji pengguna belum lengkap.
 
 **Tindak lanjut:** [issue #15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15), [issue #16](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/16), [issue #17](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/17), [issue #18](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/18), [issue #19](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/19). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
+
+### G-02 · Pembaruan OER-02a/b (20 November 2026)
+
+- OER-02a (#57): maṣdar, lima pasangan dan 20 latihan. Belum mencakup variasi maṣdar seluruh wazan.
+- OER-02b: enam keluarga verba pada Form I, II, IV dan X (termasuk satu ajwaf), 24 tugas kontekstual dan perbedaan bentuk vs fungsi sintaksis. [Audit sumber dan batas](../research/2026-11-20-participle-source-audit.md).
+- **Belum selesai:** Form III, V–IX dan pola lain, akar lemah lain, pengamalan isim turunan, audit per kalimat dan uji pembelajar. G-02/OER-02 tetap partial; lanjutkan [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15) dan [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55).
