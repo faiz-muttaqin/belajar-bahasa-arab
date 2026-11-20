@@ -37,3 +37,9 @@ Kebijakan [hak cipta dan sumber kamus](./copyright-policy.md) (ADR-004 D-10) kin
 - [ ] Verifikasi asal `lex.zip` dan lisensi tiap salinan digital; jangan distribusikan arsip atau basis data tersebut. OpenITI hanya kandidat dengan ketentuan NC-SA tersendiri.
 
 Status: belum selesai. Lulus CI teknis tidak menaikkan status peninjauan linguistik atau menjamin izin hak cipta.
+
+## Batch Lane berikutnya (20 November 2026)
+
+Dari 550 entri kosong, 526 akar unik dan 89 entri cocok dengan akar ekstrak Form I Lane setelah normalisasi hamzah/alif maqṣūra. Ini kandidat pencarian, bukan verifikasi bab. Batch ini menambahkan 13 padanan dengan bukti bentuk dan vokal mudhari serta locator file dan ID XML. Keyakinan medium; belum ada tinjauan independen. Field model memakai nilai historis `codex` yang didukung skema; penyusun aktual GPT-6 tercatat di audit. Tersisa 537 entri kosong. Temuan kualitas: `سَأَمَ` tercatat dengan akar `جذر`; perlu koreksi upstream/ID sebelum mengisi arti. Akar yang tidak ada di ekstrak belum tentu tidak ada di Lane lengkap.
+
+Lihat [rencana perluasan kamus](./dictionary-expansion.md) untuk nomina, sifat, istilah MSA dan keluarga kata.

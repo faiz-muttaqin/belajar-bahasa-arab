@@ -2349,11 +2349,18 @@
 			"root": "ثمد",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menggali tanah di tempat air dangkal agar air keluar"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/uv0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, uv0.xml, entri n4676. ثَمَدَ – يَثْمُدُ; masdar ثَمْدٌ. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n4676"
+			}
 		},
 		{
 			"id": "ثمر-ثمر-1",
@@ -4362,11 +4369,18 @@
 			"root": "خشو",
 			"bab": 1,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghasilkan kurma bermutu rendah (pohon kurma)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/ux0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, ux0.xml, entri n10721. خَشَا – يَخْشُو; sumber mencatat bentuk خَشَتِ النَّخْلَةُ. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n10721"
+			}
 		},
 		{
 			"id": "خشف-خشف-1",
@@ -7671,11 +7685,18 @@
 			"root": "شوس",
 			"bab": 1,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["melirik dari sudut mata karena angkuh atau marah"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/u%240.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, u$0.xml, entri n23306. شَاسَ – يَشُوسُ; varian يَشَاسُ juga dicatat. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n23306"
+			}
 		},
 		{
 			"id": "شاك-شوك-1",
@@ -21850,11 +21871,18 @@
 			"root": "صيص",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menghasilkan buah kurma yang buruk (pohon kurma)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/u_S0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, u_S0.xml, entri n25347. صَاصَ – يَصِيصُ; mudhari dicatat sebagai تَصِيصُ (rekonstruksi editor). Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n25347"
+			}
 		},
 		{
 			"id": "صاع-صيع-2",
@@ -37033,11 +37061,18 @@
 			"root": "فشء",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["membanggakan diri atau bersikap angkuh"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/uf0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, uf0.xml, entri n33917. فَشَأَ – يَفْشَأُ; masdar فَشْءٌ dicatat dalam kurung. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n33917"
+			}
 		},
 		{
 			"id": "فشح-فشح-3",
@@ -37607,11 +37642,18 @@
 			"root": "قعث",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["mencabut sesuatu sampai ke akarnya"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/uq0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, uq0.xml, entri n35930. قَعَثَ – يَقْعَثُ; masdar قَعْثٌ, bagian A2. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n35930"
+			}
 		},
 		{
 			"id": "قعر-قعر-3",
@@ -38072,11 +38114,18 @@
 			"root": "كحب",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memukul bagian bokong seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/uk0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, uk0.xml, entri n36713. كَحَبَ – يَكْحَبُ; bentuk dengan objek كَحَبَهُ. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n36713"
+			}
 		},
 		{
 			"id": "كحث-كحث-3",
@@ -38802,11 +38851,18 @@
 			"root": "لزء",
 			"bab": 3,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["memberi sesuatu kepada seseorang"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/ul0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, ul0.xml, entri n37704. لَزَأَ – يَلْزَأُ; bagian A2 dengan bentuk لَزَأَهُ. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n37704"
+			}
 		},
 		{
 			"id": "لصغ-لصغ-3",
@@ -39195,11 +39251,18 @@
 			"root": "مءج",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi asin (air)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/um0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, um0.xml, entri n38180. مَأَجَ – يَمْأَجُ; varian selain مَؤُجَ. Air dapat pula terasa pahit. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n38180"
+			}
 		},
 		{
 			"id": "مأد-مءد-3",
@@ -42436,11 +42499,18 @@
 			"root": "بدع",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi gemuk"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/ub0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, ub0.xml, entri n1989. بَدِعَ – يَبْدَعُ; bagian A3, berbeda dari بَدَعَ atau بَدُعَ. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n1989"
+			}
 		},
 		{
 			"id": "بدغ-بدغ-4",
@@ -44068,11 +44138,18 @@
 			"root": "جبء",
 			"bab": 4,
 			"code": "ك",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menahan diri, mengurungkan tindakan atau mundur"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/uj0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, uj0.xml, entri n4923. جَبِئَ – يَجْبَأُ; juga جَبَأَ. Dengan عَنْ berarti menahan diri dari sesuatu. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n4923"
+			}
 		},
 		{
 			"id": "جبل-جبل-4",
@@ -47879,11 +47956,18 @@
 			"root": "ذعف",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["meninggal atau meninggal dengan cepat"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/u_0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, u_0.xml, entri n13873. ذَعِفَ – يَذْعَفُ; masdar ذَعَفَانٌ, bagian A2. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n13873"
+			}
 		},
 		{
 			"id": "ذفر-ذفر-4",
@@ -54617,11 +54701,18 @@
 			"root": "غطل",
 			"bab": 4,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi bercampur atau tidak jelas (kegelapan malam)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/ug0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane, Form I, ug0.xml, entri n32061. غَطِلَ – يَغْطَلُ; masdar غَطَلٌ, bagian A2. Draf sintesis GPT-6; belum ditinjau independen.",
+				"lane": "n32061"
+			}
 		},
 		{
 			"id": "غفر-غفر-4",
