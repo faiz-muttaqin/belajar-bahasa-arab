@@ -38,7 +38,7 @@ jobs:
           grep -q '2026-10-01' /tmp/p7/work/after.html
           grep -q '2026-10-30' /tmp/p7/work/after.html
           test "$(wc -c < /tmp/p7/work/arabic.jsonl)" -gt 500000000
-          sha256sum /tmp/p7/work/arabic.jsonl
+          echo '19eee17681c23b3da039878ee7c970d93b75a339989a17a842f14aa7f44ea236  /tmp/p7/work/arabic.jsonl' | sha256sum --check
       - name: Extract and verify deterministic output
         run: |
           node --max-old-space-size=4096 scripts/build-wiktionary-nonverbs.mjs --source /tmp/p7/work/arabic.jsonl --snapshot 2026-10-01 --out /tmp/p7/work/nonverbs.json
