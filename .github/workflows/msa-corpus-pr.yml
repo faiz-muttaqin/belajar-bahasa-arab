@@ -23,6 +23,12 @@ jobs:
         with:
           bun-version: '1.4.4'
       - run: bun install --frozen-lockfile
+      - name: Check P6 script formatting
+        run: |
+          for file in scripts/p6-msa-*.mjs; do
+            bun run --silent prettier "$file" > /tmp/p6-formatted.mjs
+            diff -u "$file" /tmp/p6-formatted.mjs
+          done
       - run: node --test scripts/p6-msa-*.test.mjs
       - run: |
           mkdir -p /tmp/p6
