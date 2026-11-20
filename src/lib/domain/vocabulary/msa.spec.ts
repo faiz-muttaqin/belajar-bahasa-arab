@@ -7,11 +7,11 @@ import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import { MSA_CLASSES, MSA_TOPICS, validateVocab } from './types.js';
 
 describe('curated MSA nouns, adjectives and expressions', () => {
-	it('contains 200 stable draft items from fourteen themes', () => {
-		expect(msaVocabulary).toHaveLength(200);
-		expect(Object.keys(MSA_TOPICS)).toHaveLength(14);
-		expect(new Set(msaVocabulary.map((item) => item.id)).size).toBe(200);
-		expect(publishedVocabulary('msa').length).toBe(200);
+	it('contains 214 stable draft items from sixteen themes', () => {
+		expect(msaVocabulary).toHaveLength(214);
+		expect(Object.keys(MSA_TOPICS)).toHaveLength(16);
+		expect(new Set(msaVocabulary.map((item) => item.id)).size).toBe(214);
+		expect(publishedVocabulary('msa').length).toBe(214);
 		expect(msaVocabulary.every((item) => item.reviewStatus === 'draft')).toBe(true);
 		expect(msaVocabulary.every((item) => item.register === 'msa')).toBe(true);
 		expect(msaVocabulary.flatMap(validateVocab)).toEqual([]);
@@ -20,7 +20,7 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 	it('does not confuse adjectives or forms of address with fiil', () => {
 		const count = (kind: keyof typeof MSA_CLASSES) =>
 			msaVocabulary.filter((item) => item.msa?.wordClass === kind).length;
-		expect(count('noun')).toBe(154);
+		expect(count('noun')).toBe(168);
 		expect(count('adjective')).toBe(34);
 		expect(count('expression')).toBe(11);
 		expect(count('particle')).toBe(1);

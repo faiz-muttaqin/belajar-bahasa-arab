@@ -8,6 +8,7 @@ import {
 import { msaBusinessVocabulary } from './msa-business-vocabulary.js';
 import { msaFormalVocabulary } from './msa-formal-vocabulary.js';
 import { msaModernVocabulary } from './msa-modern-vocabulary.js';
+import { msaHealthVocabulary } from './msa-health-vocabulary.js';
 import { msaResearchAudits } from './msa-research.js';
 
 /**
@@ -17,7 +18,7 @@ import { msaResearchAudits } from './msa-research.js';
  * One line = stable slug | Arabic lemma/phrase | original Indonesian gloss | word class.
  */
 const seeds: Record<
-	Exclude<MsaTopic, 'documents' | 'education' | 'public-services' | 'business' | 'work'>,
+	'people' | 'places' | 'objects' | 'food' | 'nature' | 'time' | 'qualities' | 'technology' | 'social',
 	string
 > = {
 	people: `
@@ -306,7 +307,8 @@ export const msaVocabulary: readonly VocabularyItem[] = [
 	...starterVocabulary,
 	...msaModernVocabulary,
 	...msaFormalVocabulary,
-	...msaBusinessVocabulary
+	...msaBusinessVocabulary,
+	...msaHealthVocabulary
 ];
 
 const uniqueIds = new Set<string>();
