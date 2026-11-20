@@ -6,6 +6,8 @@ on:
       - 'scripts/lane/**'
       - 'docs/data/lane-verb-audit-p3.md'
       - 'data/recall/verbs-qutrub-arramooz-recall.json'
+      - 'data/wiktionary/verbs-form-i*.json'
+      - 'data/sharaf-upstream/**'
       - '.github/workflows/lane-verb-audit-pr.yml'
   workflow_dispatch:
 
@@ -35,9 +37,21 @@ jobs:
           python3 project/scripts/lane/audit_unresolved_verbs.py project/data/recall/verbs-qutrub-arramooz-recall.json lane-output audit-repeat
           diff -r audit-output audit-repeat
           cat audit-output/summary.json >> "$GITHUB_STEP_SUMMARY"
+      - name: Cross-check all 537 records against Wiktionary and morphology sources
+        run: |
+          python3 project/scripts/lane/crosscheck_p3.py project audit-output crosscheck-output
+          python3 project/scripts/lane/crosscheck_p3.py project audit-output crosscheck-repeat > /dev/null
+          diff -r crosscheck-output crosscheck-repeat
+          cat crosscheck-output/summary.json >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: lane-verb-review-p3
           path: audit-output/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p3-crosscheck-all
+          path: crosscheck-output/
           if-no-files-found: error
           retention-days: 30
