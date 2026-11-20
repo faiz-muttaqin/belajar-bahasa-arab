@@ -237,3 +237,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 20 November 2026: P4 — [ekstraktor nonverba Wiktionary](../data/p4-nonverbs.md) draft; fixture sintetis dan kontrak tersedia. Ekstraksi dump nyata, jumlah lema/sense dan audit register masih pending; tidak mengubah status V-06 atau mengklaim konten baru siap terbit.
 
 - 20 November 2026: V-06 / P6 LM-03 batch 1 menambahkan delapan entri MSA draf dengan sumber lema spesifik dan audit parsial. Total 165 entri, 13 audit parsial. Stage 3 tetap; register, audit sisa 152 lema awal, dedup silang dan uji pengguna belum tuntas.
+
+- 20 November 2026: P6 LM-03 batch 2 menambah 18 nomina draf dengan 72 klaim parsial pada tema dokumen, pendidikan dan layanan publik. Total 183 entri, 31 audit parsial. V-06 tetap Stage 3; LM-02/04/05 dan integrasi lintas katalog masih terbuka.
