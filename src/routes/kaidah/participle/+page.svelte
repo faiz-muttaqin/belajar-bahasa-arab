@@ -37,9 +37,9 @@
 			fungsi dalam kalimat, kemudian coba membaca pengumuman dan dokumen sederhana.
 		</p>
 		<p class="text-sm text-muted-foreground">
-			Pasangan bentuk di bawah diperiksa pada tabel konjugasi Arab dalam kamus. Kalimat latihan
-			ditulis mandiri dan masih draf; belum ada klaim bahwa seluruh contoh telah diaudit. Latihan
-			adalah cek mandiri tanpa skor.
+			Pasangan bentuk diperiksa pada tabel konjugasi Arab dalam kamus. Soal dan pembahasannya telah
+			diperiksa per butir dengan rujukan tata bahasa dan masih berstatus draf. Latihan ini adalah
+			cek mandiri tanpa skor.
 		</p>
 	</header>
 	<section class="space-y-4">
@@ -148,7 +148,7 @@
 		<h2 class="text-lg font-semibold">Batas pendalaman ini</h2>
 		<p>
 			Belum mencakup seluruh 22 wazan, semua bentuk mu‘tal, atau pengamalan isim fā‘il dan isim
-			maf‘ūl sebagai ‘āmil. Audit kalimat dan uji pelajar tetap terbuka.
+			maf‘ūl sebagai ‘āmil. Tinjauan pengajar dan uji pelajar masih terbuka.
 		</p>
 		<a
 			href={resolve('kaidah/masdar/')}

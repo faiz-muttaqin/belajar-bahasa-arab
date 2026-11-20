@@ -144,7 +144,7 @@ export const participleTasks: readonly ParticipleTask[] = [
 		arabic: 'حَضَرَتِ الْكَاتِبَةُ إِلَى الْمَدْرَسَةِ.',
 		question: 'Tentukan fi‘il dan fā‘il dalam kalimat ini.',
 		answer:
-			'حَضَرَتْ adalah fi‘il māḍī dengan tā’ feminin (kasrah sambung pada teks). الْكَاتِبَةُ adalah isim fā‘il yang memang bertugas sebagai fā‘il.',
+			'حَضَرَتِ adalah fi‘il māḍī. Tā’ feminin yang asalnya sukun dibaca dengan kasrah saat disambung ke الْكَاتِبَةُ. Kata الْكَاتِبَةُ berbentuk isim fā‘il dan berfungsi sebagai fā‘il marfū‘.',
 		status: 'draft'
 	},
 	{
@@ -182,7 +182,8 @@ export const participleTasks: readonly ParticipleTask[] = [
 		kind: 'agreement',
 		arabic: 'النَّافِذَةُ الْمَفْتُوحَةُ قَرِيبَةٌ مِنِّي.',
 		question: 'Kata manakah yang merupakan na‘at, dan mana khabar?',
-		answer: 'الْمَفْتُوحَةُ menerangkan النَّافِذَةُ sebagai na‘at; قَرِيبَةٌ adalah khabar. Keduanya feminin.',
+		answer:
+			'الْمَفْتُوحَةُ adalah na‘at yang mengikuti النَّافِذَةُ dalam jenis feminin, jumlah tunggal, bentuk ma‘rifah, dan raf‘. قَرِيبَةٌ adalah khabar yang diikuti keterangan مِنِّي.',
 		status: 'draft'
 	},
 	{
@@ -222,7 +223,7 @@ export const participleTasks: readonly ParticipleTask[] = [
 		arabic: 'الْمُنَظِّمُ يُرَاجِعُ قَائِمَةَ الْأَسْمَاءِ.',
 		question: 'Apakah الْمُنَظِّمُ otomatis fā‘il hanya karena bentuknya?',
 		answer:
-			'Ia mubtada; يُرَاجِعُ dan pelaku tersiratnya membentuk khabar berupa jumlah fi‘liyyah. Isim fā‘il adalah kategori bentuk, bukan otomatis fungsi fā‘il.',
+			'الْمُنَظِّمُ adalah isim fā‘il yang berfungsi sebagai mubtada. Khabarnya mencakup seluruh klausa يُرَاجِعُ قَائِمَةَ الْأَسْمَاءِ, dengan fā‘il tersirat هُوَ dan objek قَائِمَةَ الْأَسْمَاءِ.',
 		status: 'draft'
 	},
 	{
@@ -298,7 +299,7 @@ export const participleTasks: readonly ParticipleTask[] = [
 		arabic: 'الْجِهَازُ الْمُسْتَخْدَمُ فِي الْفَصْلِ جَدِيدٌ.',
 		question: 'Mengapa huruf د pada الْمُسْتَخْدَمُ berfatḥah?',
 		answer:
-			'Perangkat itu digunakan, bukan pengguna; bentuk pasif Form X. Kata tersebut adalah na‘at ma‘rifah, dan جَدِيدٌ khabar.',
+			'Fatḥah pada د menandai isim maf‘ūl Form X dalam contoh ini. الْمُسْتَخْدَمُ berarti “yang digunakan” dan mengikuti الْجِهَازُ sebagai na‘at ma‘rifah dan marfū‘. Kata جَدِيدٌ adalah khabar.',
 		status: 'draft'
 	},
 	{
@@ -306,8 +307,9 @@ export const participleTasks: readonly ParticipleTask[] = [
 		pairId: 'istakhdama',
 		kind: 'agreement',
 		arabic: 'تَحْتَاجُ الْمُسْتَخْدِمَةُ إِلَى كَلِمَةِ مُرُورٍ.',
-		question: 'Siapa yang membutuhkan kata sandi?',
-		answer: 'Pengguna perempuan (الْمُسْتَخْدِمَةُ), bentuk aktif feminin dan fā‘il marfū‘ dari تَحْتَاجُ.',
+		question: 'Apa fā‘il dari تَحْتَاجُ dan apa tanda raf‘-nya?',
+		answer:
+			'الْمُسْتَخْدِمَةُ (pengguna perempuan) adalah fā‘il marfū‘ dengan ḍammah pada tā’ marbūṭah. Kata ini berbentuk isim fā‘il feminin.',
 		status: 'draft'
 	},
 	{
@@ -315,9 +317,9 @@ export const participleTasks: readonly ParticipleTask[] = [
 		pairId: 'istakhdama',
 		kind: 'meaning',
 		arabic: 'الْبَرْنَامَجُ مُسْتَخْدَمٌ فِي الْمَدْرَسَةِ.',
-		question: 'Apakah kata terakhir dari pola ini memberi informasi waktu lampau tertentu?',
+		question: 'Apakah مُسْتَخْدَمٌ sendiri memberi tahu kapan program itu dipakai?',
 		answer:
-			'Tidak. مُسْتَخْدَمٌ menggambarkan perangkat lunak yang digunakan di sekolah; isim maf‘ūl tidak memiliki konjugasi waktu seperti fi‘il.',
+			'Kalimat ini menyatakan bahwa program itu dipakai di sekolah. Waktu pemakaiannya perlu dipahami dari konteks atau keterangan waktu.',
 		status: 'draft'
 	},
 	{
@@ -345,9 +347,9 @@ export const participleTasks: readonly ParticipleTask[] = [
 		pairId: 'baa',
 		kind: 'meaning',
 		arabic: 'هَذَا الْكِتَابُ مَبِيعٌ.',
-		question: 'Apa yang diinformasikan tentang buku ini?',
+		question: 'Dalam daftar penjualan, apa status buku ini?',
 		answer:
-			'Buku ini telah terjual. مَبِيعٌ adalah isim maf‘ūl ajwaf yang tercatat; bukan nama penjual.',
+			'Dalam konteks ini, buku sudah terjual. مَبِيعٌ adalah khabar dan isim maf‘ūl dari بَاعَ. Kalimat ini menyatakan status buku tanpa menyebut waktu transaksi.',
 		status: 'draft'
 	},
 	{

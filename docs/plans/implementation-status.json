@@ -70,7 +70,7 @@
 				"src/routes/kaidah/participle/+page.svelte",
 				"tests/e2e/participle-lessons.e2e.ts"
 			],
-			"remaining": "G-02: OER-02a maṣdar (#57) dan OER-02b participle punya pilot; Form III, V–IX/pola lain, akar lemah lain, pengamalan isim turunan, audit per contoh, G-03–05 edge cases, G-06 adaptasi/bukti/progres dan uji pengguna belum lengkap",
+			"remaining": "G-02: 24 latihan OER-02b diaudit per butir. Pola Form III, V–IX dan akar lemah lain, pengamalan isim turunan, audit contoh maṣdar, tinjauan pengajar, G-03–05 edge cases, G-06 adaptasi/bukti/progres dan uji pengguna belum tuntas",
 			"next": "#15 #16 #17 #18 #19 #55"
 		},
 		{
