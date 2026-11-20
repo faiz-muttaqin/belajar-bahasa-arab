@@ -589,6 +589,22 @@
 					</li>
 				{/each}
 			</ul>
+			{#if inspected.comparisonSources?.length}
+				<h4 class="font-semibold">Tautan pembanding</h4>
+				<p class="text-sm text-muted-foreground">Bukan bukti utama arti kata ini.</p>
+				<ul class="space-y-2 text-sm">
+					{#each inspected.comparisonSources as source (source)}
+						<li>
+							<a
+								href={source}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="break-all text-primary underline">{source}</a
+							>
+						</li>
+					{/each}
+				</ul>
+			{/if}
 		</div>
 	{:else if modalMode === 'cell' && cell}
 		<div class="min-h-0 flex-1 space-y-4 overflow-y-auto p-5">

@@ -63,6 +63,21 @@ function formsFrom([, , , nonPast, masdar, fail, maful]: WiktionaryTuple): Shara
 	return forms;
 }
 
+function auditSources(
+	sources: readonly string[],
+	comparisonSources: readonly string[] | undefined,
+	audit: GlossAudit | undefined
+): Pick<SharafEntry, 'sources' | 'comparisonSources'> {
+	if (!audit) return { sources, comparisonSources };
+	if (audit.sourceRole === 'pembanding') {
+		return {
+			sources: sources.filter((source) => source !== audit.source),
+			comparisonSources: [...new Set([...(comparisonSources ?? []), audit.source])]
+		};
+	}
+	return { sources: [...new Set([...sources, audit.source])], comparisonSources };
+}
+
 function auditExplanation(audit: GlossAudit): string {
 	return ['Padanan Indonesia disusun dengan rujukan kamus dan menunggu peninjauan.', audit.note]
 		.filter(Boolean)
@@ -142,7 +157,7 @@ export function mergeEnrichment(
 						(wk[7]
 							? '; arti Indonesia adalah terjemahan Claude dari arti Inggris itu, belum ditinjau.'
 							: '.'),
-				sources: [...entry.sources, wiktionaryUrl(wk[9]), ...(wk[10] ? [wk[10].source] : [])]
+				...auditSources([...entry.sources, wiktionaryUrl(wk[9])], entry.comparisonSources, wk[10])
 			});
 			continue;
 		}
@@ -151,7 +166,7 @@ export function mergeEnrichment(
 			rows.push({
 				...entry,
 				meaning: rc[4],
-				sources: rc[8] ? [...entry.sources, rc[8].source] : entry.sources,
+				...auditSources(entry.sources, entry.comparisonSources, rc[8]),
 				meaningSource: rc[8] ? 'draf-kamus' : rc[3] === 1 ? 'deskripsi-model' : 'model',
 				explanation: rc[8]
 					? `${entry.explanation} ${auditExplanation(rc[8])}`
@@ -200,7 +215,7 @@ export function mergeEnrichment(
 				: `Dari Wiktionary (transliterasi ${tuple[2] || 'tidak tercatat'}); bab dari nomor bentuknya. ` +
 					'Arti Indonesia adalah terjemahan Claude dari arti Inggris Wiktionary dan belum ditinjau. ' +
 					'Akar tidak dicatat oleh sumber ini.',
-			sources: [wiktionaryUrl(tuple[9]), ...(tuple[10] ? [tuple[10].source] : [])],
+			...auditSources([wiktionaryUrl(tuple[9])], undefined, tuple[10]),
 			reviewStatus: 'draft'
 		});
 	}

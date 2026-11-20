@@ -32,7 +32,7 @@ Kebijakan [hak cipta dan sumber kamus](./copyright-policy.md) (ADR-004 D-10) kin
 
 - [ ] Catat total kutipan per sumber dari CI; periksa kebutuhan tiap kutipan, kemiripan redaksi, sumber edisi, dan dampak kumulatif. Ganti kutipan yang tidak diperlukan dengan ringkasan fakta dan locator. Batas 120 karakter bukan izin hukum.
 - [ ] Verifikasi 103 entri Lisān dengan keyakinan rendah terhadap bentuk māḍī, muḍāriʿ, dan makna yang sama di sumber yang dapat diperiksa. Jangan menaikkan keyakinan hanya karena akar ditemukan di Lane.
-- [ ] Pisahkan tautan sumber utama dan pembanding juga pada jalur pengayaan `mergeEnrichment`, bukan hanya modal tabel; jangan tampilkan sumber pembanding sebagai bukti utama.
+- [x] Pisahkan tautan sumber utama dan pembanding pada `mergeEnrichment`, modal tashrif, dan daftar `/sharaf/`. Uji regresi mencakup overlay Wiktionary, recall, dan lema Wiktionary baru. CI dan QA manual PR lanjutan masih diperlukan.
 - [ ] Tinjau 550 verba belum diketahui dengan sumber terbuka; bedakan lema tidak ditemukan dari kombinasi bab generator yang tidak terbukti. Pertahankan status tidak diketahui bila bukti belum cukup.
 - [ ] Verifikasi asal `lex.zip` dan lisensi tiap salinan digital; jangan distribusikan arsip atau basis data tersebut. OpenITI hanya kandidat dengan ketentuan NC-SA tersendiri.
 
