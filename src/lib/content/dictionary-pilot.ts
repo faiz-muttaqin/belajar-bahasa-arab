@@ -18,7 +18,12 @@ function evidence(page: string, locator: string): Evidence {
 function sense(page: string, id: string, glossId: string, locator: string): DictionarySense {
 	return { id, glossId, register: 'unspecified', evidence: evidence(page, locator) };
 }
-function form(page: string, ar: string, kind: DictionaryForm['kind'], locator: string): DictionaryForm {
+function form(
+	page: string,
+	ar: string,
+	kind: DictionaryForm['kind'],
+	locator: string
+): DictionaryForm {
 	return { ar, kind, origin: 'attested', evidence: evidence(page, locator) };
 }
 function root(page: string, ar: string) {
