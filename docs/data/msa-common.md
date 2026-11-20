@@ -60,3 +60,11 @@ Batch 1 menambah delapan entri draf (lima teknologi/media, tiga dokumen/administ
 ## P6 — batch 2, 20 November 2026
 
 Jumlah terkini: 183 entri (137 nomina/unit nominal, 34 sifat, 11 ungkapan, satu partikel) dalam 12 tema. Delapan entri tambahan dokumen, lima pendidikan, lima layanan publik. Data dan bukti per klaim di `src/lib/content/msa-formal-vocabulary.ts`. Sumber setiap entri adalah bagian Arabic > Noun Wiktionary (CC BY-SA 4.0/GFDL); hanya fakta leksikal dipakai, dengan glos Indonesia orisinal dan pilihan satu jamak yang tercatat. Etimologi فاتورة diperiksa pada bagian Etymology. Kata lain tidak diberi label asal hanya karena digunakan dalam MSA. Register, penanggalan makna, variasi regional dan bukti independen tetap belum lengkap. Sebanyak 31 entri memiliki audit parsial; tidak ada promosi research_verified.
+
+## P6 — batch 3, 20 November 2026
+
+Total 200 entri: 154 nomina/unit nominal, 34 sifat, 11 ungkapan, satu partikel. Tambah 13 istilah bisnis/ekonomi dan empat pekerjaan/profesi dengan 15 jamak terpilih dan 66 klaim parsial di `src/lib/content/msa-business-vocabulary.ts`. Locator Wiktionary Arabic mencatat nomor sense dan bagian etimologi yang sesuai pada homograf; bukan klaim etimologi atau kronologi. Glos ditulis sendiri; tidak ada salinan definisi atau contoh. Sebanyak 48 entri mempunyai audit parsial. Tidak ada promosi research_verified; register formal, koroborasi independen dan rekonsiliasi lintas katalog belum lengkap.
+
+## P6 — batch 3–8
+
+Total katalog 223 entri draf dalam 19 tema, 71 audit parsial. Lihat [P6 expansion](./p6-msa-expansion.md) untuk daftar pekerjaan, sumber, metode korpus dan reproduksi. Kandidat hasil korpus tidak dianggap entri terbit.

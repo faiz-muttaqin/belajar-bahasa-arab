@@ -20,8 +20,8 @@ const sources = fields.map((field) => ({
 }));
 
 describe('research evidence gate for general MSA', () => {
-	it('displays only audited fields and does not claim all 183 MSA lemmas have been checked', () => {
-		expect(msaVocabulary.filter((item) => item.research)).toHaveLength(31);
+	it('displays only audited fields and does not claim all 223 MSA lemmas have been checked', () => {
+		expect(msaVocabulary.filter((item) => item.research)).toHaveLength(71);
 		expect(msaVocabulary.every((item) => item.reviewStatus === 'draft')).toBe(true);
 		expect(audit.status).toBe('partial');
 		expect(supportedResearchFields(audit)).toContain('root');

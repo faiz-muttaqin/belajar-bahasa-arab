@@ -1,0 +1,45 @@
+name: P6 MSA audit and corpus candidates
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/p6-msa-*.mjs'
+      - 'src/lib/content/msa-*.ts'
+      - '.github/workflows/msa-corpus-pr.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  candidates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Check P6 script formatting
+        run: |
+          for file in scripts/p6-msa-*.mjs; do
+            bun run --silent prettier "$file" > /tmp/p6-formatted.mjs
+            diff -u "$file" /tmp/p6-formatted.mjs
+          done
+      - run: node --test scripts/p6-msa-*.test.mjs
+      - run: |
+          mkdir -p /tmp/p6
+          bun scripts/p6-msa-audit.mjs /tmp/p6/queue.json
+      - run: |
+          curl --fail --location --retry 3 \
+            https://raw.githubusercontent.com/UniversalDependencies/UD_Arabic-PUD/r2.17/ar_pud-ud-test.conllu \
+            -o /tmp/pud.conllu
+          node scripts/p6-msa-corpus.mjs /tmp/pud.conllu /tmp/p6/corpus.json
+      - run: bun scripts/p6-msa-reconcile.mjs /tmp/p6/corpus.json /tmp/p6/reconcile.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p6-review-candidates
+          path: /tmp/p6/*.json

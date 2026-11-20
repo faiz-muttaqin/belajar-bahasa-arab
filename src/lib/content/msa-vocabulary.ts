@@ -5,8 +5,11 @@ import {
 	type MsaTopic,
 	type VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
+import { msaBusinessVocabulary } from './msa-business-vocabulary.js';
 import { msaFormalVocabulary } from './msa-formal-vocabulary.js';
 import { msaModernVocabulary } from './msa-modern-vocabulary.js';
+import { msaHealthVocabulary } from './msa-health-vocabulary.js';
+import { msaNewsScienceVocabulary } from './msa-news-science-vocabulary.js';
 import { msaResearchAudits } from './msa-research.js';
 
 /**
@@ -15,7 +18,18 @@ import { msaResearchAudits } from './msa-research.js';
  * attested from an entire third-party dictionary. See docs/data/msa-common.md.
  * One line = stable slug | Arabic lemma/phrase | original Indonesian gloss | word class.
  */
-const seeds: Record<Exclude<MsaTopic, 'documents' | 'education' | 'public-services'>, string> = {
+type StarterTopic =
+	| 'people'
+	| 'places'
+	| 'objects'
+	| 'food'
+	| 'nature'
+	| 'time'
+	| 'qualities'
+	| 'technology'
+	| 'social';
+
+const seeds: Record<StarterTopic, string> = {
 	people: `
 shakhs|شَخْصٌ|orang, individu|noun
 rajul|رَجُلٌ|laki-laki dewasa|noun
@@ -301,7 +315,10 @@ const starterVocabulary: readonly VocabularyItem[] = Object.entries(seeds).flatM
 export const msaVocabulary: readonly VocabularyItem[] = [
 	...starterVocabulary,
 	...msaModernVocabulary,
-	...msaFormalVocabulary
+	...msaFormalVocabulary,
+	...msaBusinessVocabulary,
+	...msaHealthVocabulary,
+	...msaNewsScienceVocabulary
 ];
 
 const uniqueIds = new Set<string>();

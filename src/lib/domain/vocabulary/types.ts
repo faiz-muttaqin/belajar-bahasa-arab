@@ -75,6 +75,13 @@ export const MSA_TOPICS = {
 	technology: 'Teknologi modern',
 	documents: 'Dokumen dan administrasi',
 	education: 'Pendidikan',
+	business: 'Bisnis dan ekonomi',
+	work: 'Pekerjaan dan profesi',
+	news: 'Berita dan politik',
+	environment: 'Lingkungan',
+	science: 'Sains',
+	health: 'Kesehatan',
+	transport: 'Transportasi',
 	'public-services': 'Layanan publik dan pemerintahan',
 	social: 'Sapaan dan ungkapan'
 } as const;
