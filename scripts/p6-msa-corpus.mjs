@@ -32,13 +32,8 @@ export function rankCorpus(text) {
 		const [id, , rawLemma, pos] = line.split('\t');
 		if (!/^\d+$/.test(id)) continue;
 		tokens++;
-		if (
-			!included.has(pos) ||
-			!rawLemma ||
-			rawLemma === '_' ||
-			!/\p{Script=Arabic}/u.test(rawLemma)
-		)
-			continue;
+		const validLemma = rawLemma && rawLemma !== '_' && /\p{Script=Arabic}/u.test(rawLemma);
+		if (!included.has(pos) || !validLemma) continue;
 		const lemma = rawLemma.normalize('NFC');
 		const key = JSON.stringify([lemma, pos]);
 		const row = index.get(key) ?? {

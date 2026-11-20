@@ -18,10 +18,18 @@ import { msaResearchAudits } from './msa-research.js';
  * attested from an entire third-party dictionary. See docs/data/msa-common.md.
  * One line = stable slug | Arabic lemma/phrase | original Indonesian gloss | word class.
  */
-const seeds: Record<
-	'people' | 'places' | 'objects' | 'food' | 'nature' | 'time' | 'qualities' | 'technology' | 'social',
-	string
-> = {
+type StarterTopic =
+	| 'people'
+	| 'places'
+	| 'objects'
+	| 'food'
+	| 'nature'
+	| 'time'
+	| 'qualities'
+	| 'technology'
+	| 'social';
+
+const seeds: Record<StarterTopic, string> = {
 	people: `
 shakhs|شَخْصٌ|orang, individu|noun
 rajul|رَجُلٌ|laki-laki dewasa|noun

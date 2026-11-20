@@ -3,10 +3,13 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-export const normalizeLemma = (word) =>
-	word.normalize('NFC').replace(/[\u064b-\u0652\u0670]/gu, '').trim();
+export function normalizeLemma(word) {
+	return word.normalize('NFC').replace(/[\u064b-\u0652\u0670]/gu, '').trim();
+}
 
 /** Orthographic matches are retrieval leads only, not sense or register equivalence. */
+const lexicalPos = { noun: 'noun', adjective: 'adj', expression: 'phrase', particle: 'particle' };
+
 export function buildAuditQueue(vocabulary, extract = null) {
 	if (extract && (extract.schema !== 1 || extract.source?.id !== 'wiktionary')) {
 		throw new Error('Expected P4 Wiktionary extract schema 1');
@@ -23,9 +26,7 @@ export function buildAuditQueue(vocabulary, extract = null) {
 		.filter((item) => !item.research)
 		.map((item) => {
 			const key = normalizeLemma(item.arabic);
-			const pos = { noun: 'noun', adjective: 'adj', expression: 'phrase', particle: 'particle' }[
-				item.msa?.wordClass
-			];
+			const pos = lexicalPos[item.msa?.wordClass];
 			const matches = (index.get(key) ?? []).filter((row) => row.pos === pos);
 			return {
 				id: item.id,
