@@ -62,6 +62,32 @@ describe('mergeEnrichment', () => {
 		expect(added?.meaningSource).toBe('wiktionary');
 	});
 
+	it('keeps comparison links separate from sources on all enrichment paths', () => {
+		const comparison = 'https://ejtaal.net/aa/#q=ktb';
+		const audit = {
+			source: comparison,
+			sourceRole: 'pembanding' as const,
+			note: 'Rujukan utama disebut dalam catatan.'
+		};
+		const withAudit: VerbEnrichment = {
+			...data,
+			wk: [
+				[...data.wk[0]!.slice(0, 10), audit] as VerbEnrichment['wk'][number],
+				[...data.wk[1]!.slice(0, 10), audit] as VerbEnrichment['wk'][number]
+			],
+			rc: [
+				[...data.rc[0]!.slice(0, 8), audit] as VerbEnrichment['rc'][number],
+				data.rc[1]!
+			]
+		};
+		const rows = mergeEnrichment(entries, withAudit);
+		for (const lemma of ['كَتَبَ', 'أَبَتَ', 'اِسْتَخْرَجَ']) {
+			const row = rows.find((entry) => entry.lemma === lemma)!;
+			expect(row.sources).not.toContain(comparison);
+			expect(row.comparisonSources).toEqual([comparison]);
+		}
+	});
+
 	it('does not touch hand-written entries and is a no-op without data', () => {
 		const curated = {
 			...bulk('كَتَبَ', 'كتب', 1),
