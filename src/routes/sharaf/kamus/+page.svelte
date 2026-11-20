@@ -1,10 +1,13 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+	import { createDictionaryLoader } from '#lib/domain/dictionary/shards.js';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { dictionaryPilot } from '#lib/content/dictionary-pilot.js';
 	import {
 		rootFamily,
 		searchDictionary,
+		type DictionaryEntry,
 		type DictionaryPos,
 		type DictionaryRegister
 	} from '#lib/domain/dictionary/senses.js';
@@ -12,7 +15,36 @@
 	let query = $state('');
 	let pos = $state<DictionaryPos | 'all'>('all');
 	let register = $state<DictionaryRegister | 'all'>('all');
-	let results = $derived(searchDictionary(dictionaryPilot, query, pos, register));
+	let loaded = $state.raw<DictionaryEntry[]>([]);
+	let loadFailed = $state(false);
+	let loading = $state(false);
+	const loader = createDictionaryLoader(async (path) => {
+		const response = await fetch(base + '/data/dictionary-generated/' + path);
+		if (!response.ok) throw new Error('Dictionary asset unavailable');
+		return response.json();
+	});
+	let catalog = $derived(loaded.length ? loaded : dictionaryPilot);
+	let results = $derived(searchDictionary(catalog, query, pos, register));
+
+	$effect(() => {
+		const requested = query;
+		let current = true;
+		loaded = [];
+		loadFailed = false;
+		loading = !!requested.trim();
+		if (requested.trim()) {
+			void loader.search(requested).then((entries) => {
+				if (current) loaded = entries;
+			}).catch(() => {
+				if (current) loadFailed = true;
+			}).finally(() => {
+				if (current) loading = false;
+			});
+		}
+		return () => {
+			current = false;
+		};
+	});
 	const registerLabels = {
 		msa: 'MSA',
 		classical: 'Klasik',
@@ -76,6 +108,11 @@
 
 <section class="mt-8 space-y-4" aria-label="Hasil kamus">
 	<h2 class="text-xl font-semibold">{results.length} lema</h2>
+	{#if loading}
+		<p class="text-sm text-muted-foreground" role="status">Memuat indeks kamus…</p>
+	{:else if loadFailed}
+		<p class="text-sm text-muted-foreground" role="status">Indeks belum tersedia; menampilkan pilot lokal.</p>
+	{/if}
 	{#if results.length === 0}
 		<p>Tidak ada dalam pilot ini. Coba kata lain atau hapus filter.</p>
 	{/if}
@@ -113,7 +150,7 @@
 					Keluarga akar <ArabicText text={entry.root.ar} />
 				</h4>
 				<div class="mt-2 flex flex-wrap gap-2">
-					{#each rootFamily(dictionaryPilot, entry) as related (related.id)}
+					{#each rootFamily(catalog, entry) as related (related.id)}
 						<button
 							type="button"
 							class="min-h-11 rounded-lg border px-3"

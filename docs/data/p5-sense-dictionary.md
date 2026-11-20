@@ -40,3 +40,20 @@ Audit mempertahankan sepuluh sense pilot dan menambah sense historis maktab (Wik
 Audit arsitektur: D-02 adalah kontrak permukaan untuk grammar; P5 adalah identitas leksikal dan sense, bukan generator infleksi. P4 masih membutuhkan adapter, ID snapshot/locator yang dapat ditelusuri, pemetaan POS tanpa kehilangan tag, dukungan banyak sumber dan status konflik, serta audit lisensi sebelum impor. Kontrak pilot belum mampu memuat semua metadata tersebut. Normalisasi pencarian tidak boleh menjadi identity key, dan hubungan akar bukan sinonimi. Belum ada klaim pemeriksaan exhaustif atau review linguist.
 
 Audit CI: path resolve dikoreksi mengikuti route type SvelteKit. File E2E diganti dari .spec.ts menjadi .e2e.ts agar sesuai testMatch Playwright. Typecheck lulus pada commit koreksi path; hasil seluruh suite untuk perubahan audit masih menunggu CI.
+
+## P5.2–P5.4 — integrasi bertahap
+
+- P5.2: `p4-adapter.ts` memerlukan keputusan eksplisit per sense, mempertahankan checksum, snapshot, ID upstream, tag/POS dan semua locator. Bucket selain candidate, canonical ambigu, duplikasi ambigu dan promosi register tanpa bukti ditolak. Glos Inggris tidak disalin, akar/bentuk/gender tidak dibuat tanpa penilaian tambahan. Evidence utama mendukung Wiktionary dan Lane; pembanding (termasuk Wasit) dipisahkan dan mempunyai outcome. Sumber komparatif tidak otomatis menjadi evidence utama.
+- P5.3: `reconcile.ts` mempertahankan ID lokal dan asal sense; hanya mapping ID eksplisit yang boleh digabung. Ejaan normalisasi menghasilkan kandidat duplikat, bukan penggabungan. Konflik makna/register, akar, bab, gender dan alias sumber memblokir integrasi.
+- P5.4: `shards.ts` menghasilkan indeks prefix dan substring 1–3 karakter ke nomor shard; shard maksimal 128 lema secara default dan nama berisi hash revisi. Loader mengunduh manifest setelah query, hanya memuat shard kandidat dan melengkapi keluarga akar yang terbukti; cache dalam sesi dan retry jika gagal. Query kosong, tanpa JS, atau kegagalan jaringan tetap menggunakan pilot statis. Ini masih prototipe indeks; ukuran manifest, fan-out dan latency pada puluhan ribu lema belum diukur.
+- Build/dev membangkitkan aset indeks dari lima lema pilot; tidak menambahkan dependency. Aset hasil generate diabaikan Git. CI tetap memeriksa seluruh suite.
+
+### Staging impor nyata (tidak otomatis dipublikasikan)
+
+```sh
+bun scripts/prepare-dictionary-import.ts /tmp/nonverbs.json /tmp/review.json /tmp/p5-staging.json
+```
+
+File review berisi `snapshot`, `sha256`, `licenseReview` (catatan audit izin redistribusi) dan `decisions` sesuai tipe P4Decision: lemmaId, senseId, entryId, localSenseId, glossId, register, checkedOn, locator. Hash/tanggal harus cocok dengan snapshot. Keputusan tersebut adalah hasil pemeriksaan sumber, bukan terjemahan otomatis. Output harus baru dan di luar repo; tidak dipakai build secara otomatis. Audit staging, resolusi kandidat duplikat, atribusi dan pemilihan dataset publik masih diperlukan sebelum memasukkan data ke build.
+
+Data nyata P4 belum tersedia; saat ini pengujian integrasi memakai fixture sintetis dan lima lema pilot. Tidak boleh mengklaim impor massal selesai. P2/P3/P6 belum diimpor, linguis dan benchmark dataset besar masih pending.

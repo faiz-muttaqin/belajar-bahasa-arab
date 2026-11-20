@@ -20,3 +20,20 @@ test('sense dictionary is readable without JavaScript', async ({ browser }) => {
 		await context.close();
 	}
 });
+
+test('dictionary requests the generated manifest only after search', async ({ page }) => {
+	let requested = false;
+	page.on('request', (request) => {
+		if (request.url().includes('/dictionary-generated/')) requested = true;
+	});
+	await page.goto('/sharaf/kamus/');
+	await expect(page.getByRole('heading', { name: '5 lema' })).toBeVisible();
+	expect(requested).toBe(false);
+	const manifest = page.waitForResponse((response) =>
+		response.url().includes('/dictionary-generated/manifest-v1.json') && response.ok()
+	);
+	await page.getByRole('searchbox').fill('kantor');
+	await manifest;
+	await expect(page.getByRole('heading', { name: '1 lema' })).toBeVisible();
+	await expect(page.locator('#maktab')).toContainText('kantor');
+});
