@@ -148,7 +148,7 @@
 		<h2 class="text-lg font-semibold">Batas pendalaman ini</h2>
 		<p>
 			Belum mencakup seluruh 22 wazan, semua bentuk mu‘tal, atau pengamalan isim fā‘il dan isim
-			maf‘ūl sebagai ‘āmil. Audit kalimat dan uji pelajar tetap terbuka.
+			maf‘ūl sebagai ‘āmil. Tinjauan pengajar dan uji pelajar masih terbuka.
 		</p>
 		<a
 			href={resolve('kaidah/masdar/')}
