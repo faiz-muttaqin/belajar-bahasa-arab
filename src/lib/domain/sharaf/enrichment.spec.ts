@@ -71,14 +71,16 @@ describe('mergeEnrichment', () => {
 		};
 		const withAudit: VerbEnrichment = {
 			...data,
-			wk: [
-				[...data.wk[0]!.slice(0, 10), audit] as VerbEnrichment['wk'][number],
-				[...data.wk[1]!.slice(0, 10), audit] as VerbEnrichment['wk'][number]
-			],
-			rc: [
-				[...data.rc[0]!.slice(0, 8), audit] as VerbEnrichment['rc'][number],
-				data.rc[1]!
-			]
+			wk: data.wk.map((tuple) => {
+				const copy: VerbEnrichment['wk'][number] = [...tuple];
+				copy[10] = audit;
+				return copy;
+			}),
+			rc: data.rc.map((tuple, index) => {
+				const copy: VerbEnrichment['rc'][number] = [...tuple];
+				if (index === 0) copy[8] = audit;
+				return copy;
+			})
 		};
 		const rows = mergeEnrichment(entries, withAudit);
 		for (const lemma of ['كَتَبَ', 'أَبَتَ', 'اِسْتَخْرَجَ']) {
