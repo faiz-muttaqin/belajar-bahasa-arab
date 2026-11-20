@@ -91,14 +91,9 @@
 						{sense.glossId}
 						<span class="text-sm text-muted-foreground">({registerLabels[sense.register]})</span>
 						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external source -->
-						<a
-							href={sense.evidence.url}
-							class="ml-2 text-sm text-primary underline"
-							target="_blank"
-							rel="noreferrer"
-						>
-							Sumber: {sense.evidence.locator}</a
-						>
+						<a href={sense.evidence.url} class="text-primary underline">
+							Sumber: {sense.evidence.locator}
+						</a>
 					</li>
 				{/each}
 			</ol>
