@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { msaBusinessVocabulary } from '#lib/content/msa-business-vocabulary.js';
 import { msaFormalVocabulary } from '#lib/content/msa-formal-vocabulary.js';
 import { msaModernVocabulary } from '#lib/content/msa-modern-vocabulary.js';
 import { msaVocabulary } from '#lib/content/msa-vocabulary.js';
@@ -6,11 +7,11 @@ import { publishedVocabulary } from '#lib/content/vocabulary.js';
 import { MSA_CLASSES, MSA_TOPICS, validateVocab } from './types.js';
 
 describe('curated MSA nouns, adjectives and expressions', () => {
-	it('contains 183 stable draft items from twelve themes', () => {
-		expect(msaVocabulary).toHaveLength(183);
-		expect(Object.keys(MSA_TOPICS)).toHaveLength(12);
-		expect(new Set(msaVocabulary.map((item) => item.id)).size).toBe(183);
-		expect(publishedVocabulary('msa').length).toBe(183);
+	it('contains 200 stable draft items from fourteen themes', () => {
+		expect(msaVocabulary).toHaveLength(200);
+		expect(Object.keys(MSA_TOPICS)).toHaveLength(14);
+		expect(new Set(msaVocabulary.map((item) => item.id)).size).toBe(200);
+		expect(publishedVocabulary('msa').length).toBe(200);
 		expect(msaVocabulary.every((item) => item.reviewStatus === 'draft')).toBe(true);
 		expect(msaVocabulary.every((item) => item.register === 'msa')).toBe(true);
 		expect(msaVocabulary.flatMap(validateVocab)).toEqual([]);
@@ -19,7 +20,7 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 	it('does not confuse adjectives or forms of address with fiil', () => {
 		const count = (kind: keyof typeof MSA_CLASSES) =>
 			msaVocabulary.filter((item) => item.msa?.wordClass === kind).length;
-		expect(count('noun')).toBe(137);
+		expect(count('noun')).toBe(154);
 		expect(count('adjective')).toBe(34);
 		expect(count('expression')).toBe(11);
 		expect(count('particle')).toBe(1);
@@ -75,6 +76,24 @@ describe('curated MSA nouns, adjectives and expressions', () => {
 		expect(get('wathiqah')?.msa?.plural?.value).toBe('وَثَائِقُ');
 		expect(get('mawid')?.msa?.plural).toBeUndefined();
 		expect(get('manhaj')?.msa?.formation).toBeUndefined();
+	});
+
+	it('keeps business and employment senses distinct and does not infer missing forms', () => {
+		expect(msaBusinessVocabulary).toHaveLength(17);
+		expect(msaBusinessVocabulary.filter((item) => item.msa?.plural)).toHaveLength(15);
+		expect(msaBusinessVocabulary.flatMap((item) => item.research?.claims ?? [])).toHaveLength(66);
+		expect(
+			msaBusinessVocabulary.every(
+				(item) => item.research?.status === 'partial' && !item.msa?.formation
+			)
+		).toBe(true);
+		const get = (id: string) => msaBusinessVocabulary.find((item) => item.id === `msa-${id}`);
+		expect(get('aqd')?.research?.claims.find((claim) => claim.field === 'meaning')?.section).toBe(
+			'Arabic > Etymology 1.4 > Noun, sense 3'
+		);
+		expect(get('iqtisad')?.msa?.plural).toBeUndefined();
+		expect(get('irad')?.msa?.plural).toBeUndefined();
+		expect(get('ratib')?.msa?.plural?.value).toBe('رَوَاتِبُ');
 	});
 
 	it('does not permit a foreign-register classification or unsupported MSA subgroup', () => {
