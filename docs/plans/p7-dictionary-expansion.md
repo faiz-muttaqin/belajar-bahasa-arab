@@ -14,9 +14,9 @@ Status: dimulai 20 November 2026. Baseline main: merge PR #69, `4437a76`. Dokume
 
 ## Urutan dan checkpoint
 
-- **P7.1 — Pipeline dibuat; hasil CI belum ada.** Eksekusi P4 pada dump nyata; rekam URL, varian raw/postprocessed, tanggal, checksum, statistik POS/register/bucket/ambigu/duplikat; audit lisensi dan contoh nyata. Dependensi: P4.
+- **P7.1 — Ekstraksi nyata berhasil; audit masih terbuka.** Eksekusi P4 pada dump nyata; rekam URL, varian raw/postprocessed, tanggal, checksum, statistik POS/register/bucket/ambigu/duplikat; audit lisensi dan contoh nyata. Dependensi: P4.
 - **P7.2 — Terbuka.** Audit 501 verba tersisa per batch; makna/bab/locator didukung; hold jika bukti tidak cukup; Qabas reference-only. Dependensi: P2/P3.
-- **P7.3 — Terbuka.** Audit 152 starter dan perluas korpus MSA formal berlisensi; rekonsiliasi kandidat tanpa auto-merge. Dependensi: P6; P7.1 untuk lead tambahan.
+- **P7.3 — Retrieval 136/152; audit editorial terbuka.** Audit 152 starter dan perluas korpus MSA formal berlisensi; rekonsiliasi kandidat tanpa auto-merge. Dependensi: P6; P7.1 untuk lead tambahan.
 - **P7.4 — Terbuka.** Integrasi nyata Lane/P4/MSA/katalog lama via P5; mapping ID eksplisit, konflik dan lisensi diperiksa. Dependensi: P7.1–3 per batch.
 - **P7.5 — Terbuka.** Glos Indonesia per sense, definisi/contoh orisinal, sumber per klaim; batch yang dapat direview. Dependensi: P7.4 per batch.
 - **P7.6 — Terbuka.** Audit kualitas, register, duplikasi, provenance, kompatibilitas lisensi dan keputusan hold. Dependensi: P7.5 per batch.
@@ -40,3 +40,6 @@ Status: dimulai 20 November 2026. Baseline main: merge PR #69, `4437a76`. Dokume
 - 20 November 2026: #69 merged setelah konflik tracker diatasi dan tiga workflow lulus. P7 dimulai dari main. Prioritas pertama P7.1: jalankan extractor pada sumber nyata dan gunakan hasil internal untuk antrean P6; keluarkan hanya laporan agregat sampai audit izin redistribusi selesai. Snapshot dan hasil aktual belum diklaim.
 
 - Batch 1: workflow `p7-nonverb-pr.yml` mengambil snapshot postprocessed Kaikki sebagai riset internal, mengulang ekstraksi dan memakai output yang sama untuk P6. Laporan publik hanya agregat, checksum dan metadata; bukan glos atau baris kandidat. Sumber upstream mutable: cek deklarasi dump/ekstraksi sebelum dan sesudah unduh, rekam hash aktual; raw dump dan audit hak data tambahan tetap pending. Sumber: [Kaikki Arabic](https://kaikki.org/dictionary/Arabic/index.html), [raw downloads](https://kaikki.org/dictionary/rawdata.html).
+
+- Batch 1, CI run [44718897669](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/44718897669), head `6ed0ef6`: 868082330 bytes, 233417 lines, 17347 candidate lemma keys, 29319 distinct sense keys (29320 candidate rows), 14 duplicate rows collapsed, 12714 form/variant rows, 2843 names, 104 dialect and 108 missing gloss. 1130 candidate rows historical/classical, 28190 unspecified; 1425 ambiguous canonical, 122 no canonical. Nomina 12642 lemma keys, adjektiva 3785. P6: 136 of 152 with retrieval leads, 16 without. Two extracts identical. Published new entries: zero.
+- SHA-256 input: `19eee17681c23b3da039878ee7c970d93b75a339989a17a842f14aa7f44ea236`; output: `14cc72d910b78ddc8a2c3396b419ad351ac42ab1fde31bd79e99bfde3e5f3b3d`. Main verification run 44718897488 failed only on missing plan inventory; fix inventory, rerun before merge.
