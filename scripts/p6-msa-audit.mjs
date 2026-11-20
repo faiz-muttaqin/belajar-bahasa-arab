@@ -4,7 +4,10 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 export function normalizeLemma(word) {
-	return word.normalize('NFC').replace(/[\u064b-\u0652\u0670]/gu, '').trim();
+	return word
+		.normalize('NFC')
+		.replace(/[\u064b-\u0652\u0670]/gu, '')
+		.trim();
 }
 
 const lexicalPos = {
