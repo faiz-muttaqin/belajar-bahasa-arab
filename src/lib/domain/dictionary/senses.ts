@@ -2,14 +2,7 @@
 import { normalizeArabicSearch } from '#lib/domain/sharaf/lexicon.js';
 
 export type DictionaryPos =
-	| 'noun'
-	| 'adjective'
-	| 'verb'
-	| 'adverb'
-	| 'pronoun'
-	| 'particle'
-	| 'expression'
-	| 'other';
+	'noun' | 'adjective' | 'verb' | 'adverb' | 'pronoun' | 'particle' | 'expression' | 'other';
 export type DictionaryRegister = 'msa' | 'classical' | 'historical' | 'unspecified';
 export type Evidence = {
 	sourceId: 'wiktionary';
@@ -41,7 +34,11 @@ export type DictionaryEntry = {
 	bab?: { number: number; evidence: Evidence };
 	senses: readonly DictionarySense[];
 	forms: readonly DictionaryForm[];
-	relations?: readonly { targetId: string; kind: 'masdar-of' | 'derived-from'; evidence: Evidence }[];
+	relations?: readonly {
+		targetId: string;
+		kind: 'masdar-of' | 'derived-from';
+		evidence: Evidence;
+	}[];
 	reviewStatus: 'draft';
 };
 
@@ -104,8 +101,7 @@ export function rootFamily(
 	if (!entry.root) return [];
 	const root = entry.root.ar.normalize('NFC').replace(/\s/g, '');
 	return entries.filter(
-		(other) =>
-			other.id !== entry.id && other.root?.ar.normalize('NFC').replace(/\s/g, '') === root
+		(other) => other.id !== entry.id && other.root?.ar.normalize('NFC').replace(/\s/g, '') === root
 	);
 }
 
