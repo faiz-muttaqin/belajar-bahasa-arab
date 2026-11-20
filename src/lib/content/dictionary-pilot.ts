@@ -46,6 +46,7 @@ export const dictionaryPilot: readonly DictionaryEntry[] = [
 		pos: 'noun',
 		evidence: evidence('كتاب', 'Etymology 1 > Noun'),
 		root: root('كتاب', 'كتب'),
+		gender: { value: 'masculine', evidence: evidence('كتاب', 'Etymology 1 > Noun, gender') },
 		senses: [sense('كتاب', 'book', 'buku', 'Etymology 1 > Noun, book')],
 		forms: [form('كتاب', 'كُتُب', 'plural', 'Etymology 1 > Noun, plural')],
 		reviewStatus: 'draft'
@@ -56,11 +57,16 @@ export const dictionaryPilot: readonly DictionaryEntry[] = [
 		pos: 'noun',
 		evidence: evidence('مكتب', 'Noun'),
 		root: root('مكتب', 'كتب'),
+		gender: { value: 'masculine', evidence: evidence('مكتب', 'Noun, headword gender') },
 		senses: [
 			sense('مكتب', 'desk', 'meja kerja', 'Noun, desk'),
-			sense('مكتب', 'office', 'kantor', 'Noun, office')
+			sense('مكتب', 'office', 'kantor', 'Noun, office'),
+			{
+				...sense('مكتب', 'school', 'sekolah dasar tradisional', 'Noun, historical school'),
+				register: 'historical'
+			}
 		],
-		forms: [],
+		forms: [form('مكتب', 'مَكَاتِب', 'plural', 'Noun, headword plural')],
 		reviewStatus: 'draft'
 	},
 	{
