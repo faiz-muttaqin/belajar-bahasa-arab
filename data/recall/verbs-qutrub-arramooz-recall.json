@@ -22040,11 +22040,17 @@
 			"root": "صمر",
 			"bab": 2,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menjadi asam (tentang susu)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/u_S0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane db/lexica/ara/lan/u_S0.xml#entry-1381 (n24906); mudhari يَصْمِرُ. Lane Form I, dissociation C: susu sebagai subjek; bukan makna bab 1 tentang air atau kekikiran. Masdar untuk sense ini tidak dinyatakan secara eksplisit. Draf GPT-6, belum ditinjau independen."
+			}
 		},
 		{
 			"id": "صمى-صمي-2",
@@ -39739,11 +39745,17 @@
 			"root": "مطء",
 			"bab": 3,
 			"code": "م",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["menyetubuhi perempuan"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/um0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane db/lexica/ara/lan/um0.xml#entry-580 (n38694); mudhari يَمْطَأُ. Lane Form I menyebut vokal fathah pada mudhari; penggunaan transitif klasik, masdar tidak disebut. Draf GPT-6, belum ditinjau independen."
+			}
 		},
 		{
 			"id": "مطح-مطح-3",
@@ -41230,11 +41242,17 @@
 			"root": "وتء",
 			"bab": 3,
 			"code": "ل",
-			"kind": "tidak_diketahui",
-			"meanings": [],
+			"kind": "padanan",
+			"meanings": ["berjalan lamban dan berat (karena usia atau tabiat)"],
 			"description": "",
-			"confidence": "none",
-			"model": "fable-5.2"
+			"confidence": "medium",
+			"model": "codex",
+			"audit": {
+				"source": "https://github.com/alpheios-project/lan/blob/7dd04e1182c13a4b0883978867d2a3b04616542a/db/lexica/ara/lan/uw0.xml",
+				"sourceId": "lane",
+				"sourceRole": "utama",
+				"note": "Lane db/lexica/ara/lan/uw0.xml#entry-62 (n41577); mudhari يَتَأُ. Lane mencatat masdar وَتْءٌ dan konteks cara berjalan; sumber memperlihatkan bentuk mudhari langsung. Draf GPT-6, belum ditinjau independen."
+			}
 		},
 		{
 			"id": "وجأ-وجء-3",

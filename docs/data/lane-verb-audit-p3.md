@@ -63,3 +63,7 @@ Enam keputusan awal tersimpan di `scripts/lane/p3-reviewed-decisions.json`: tiga
 ## Bulk lintas sumber
 
 CI sebelumnya menghasilkan 373 rekaman tanpa kandidat Lane (turun dari 424), 95 Form I pada akar kandidat, 57 akar/alias, 7 headword persis, 2 headword dan marker vokal, 2 sufiks, 1 akar bermasalah. Seluruh 537 diperiksa kembali sekaligus terhadap snapshot Wiktionary Form I serta Qutrub dan Arramooz. Kandidat dibedakan antara bab utama yang cocok, bab alternatif, lemma dengan bab berbeda, variasi ejaan, dan anomali akar/bab sumber morfologi. Artefak terpisah p3-crosscheck-all memuat semua rekaman dan atribusi (Wiktionary CC BY-SA 4.0/GFDL, data morfologi GPL-2.0); tidak ada penerapan otomatis pada kamus. CI memeriksa reproduktibilitas dan melaporkan seluruh kunci rekaman dalam log. Qabas masih belum dapat dipakai dalam CI: halaman unduh resmi https://sina.birzeit.edu/qabas/about tidak memberikan file yang dapat diverifikasi dalam sesi ini, dan web service kamus memerlukan autentikasi. Jangan menganggap sumber ini sudah diperiksa. Hasil lintas sumber harus dikonfirmasi melalui CI; peninjauan sense masih terpisah dari pencarian otomatis.
+
+## Penerapan draf Lane
+
+Tiga draf (صَمَرَ bab 2, مَطَأَ bab 3, وَتَأَ bab 3) diterapkan pada recall dan bundle statis; confidence medium, status draf, belum ditinjau independen. Baseline audit 537 tetap mencakup rekaman yang telah diterapkan agar histori tidak hilang; jumlah unknown aktif menjadi 534. Tiga keputusan hold_bab tidak mengubah arti atau bab. CI memverifikasi keterkaitan keputusan dan data recall.

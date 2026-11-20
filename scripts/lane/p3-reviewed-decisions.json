@@ -17,7 +17,8 @@
 			"mudhari": "يَصْمِرُ",
 			"note": "Lane Form I, dissociation C: susu sebagai subjek; bukan makna bab 1 tentang air atau kekikiran. Masdar untuk sense ini tidak dinyatakan secara eksplisit.",
 			"reviewStatus": "draft",
-			"readableEdition": "https://www.arabic-english-dictionary.com/content/14_s/097_smr"
+			"readableEdition": "https://www.arabic-english-dictionary.com/content/14_s/097_smr",
+			"applied": true
 		},
 		{
 			"lemma": "مَطَأَ",
@@ -33,7 +34,8 @@
 			"mudhari": "يَمْطَأُ",
 			"note": "Lane Form I menyebut vokal fathah pada mudhari; penggunaan transitif klasik, masdar tidak disebut.",
 			"reviewStatus": "draft",
-			"readableEdition": "https://www.arabic-english-dictionary.com/content/24_m/112_mto"
+			"readableEdition": "https://www.laneslexicon.com/word/%D9%85%D8%B7%D8%A3",
+			"applied": true
 		},
 		{
 			"lemma": "وَتَأَ",
@@ -48,7 +50,8 @@
 			"gloss": "berjalan lamban dan berat (karena usia atau tabiat)",
 			"mudhari": "يَتَأُ",
 			"note": "Lane mencatat masdar وَتْءٌ dan konteks cara berjalan; sumber memperlihatkan bentuk mudhari langsung.",
-			"reviewStatus": "draft"
+			"reviewStatus": "draft",
+			"applied": true
 		},
 		{
 			"lemma": "كَشَبَ",

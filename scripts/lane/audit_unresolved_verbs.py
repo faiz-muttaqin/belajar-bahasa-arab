@@ -94,7 +94,7 @@ def rank(item):
     return 5
 
 
-def audit(recall, entries):
+def audit(recall, entries, applied_keys=()):
     root_index, root_loose_index, head_index = defaultdict(list), defaultdict(list), defaultdict(list)
     bare_head_index = defaultdict(list)
     for entry in entries:
@@ -110,9 +110,9 @@ def audit(recall, entries):
     seen = set()
     result = []
     for row in recall:
-        if row["kind"] != "tidak_diketahui":
-            continue
         key = (row["ar"], row["root"], row["bab"])
+        if row["kind"] != "tidak_diketahui" and key not in applied_keys:
+            continue
         if key in seen:
             raise ValueError(f"Duplicate unresolved recall key: {key}")
         seen.add(key)
@@ -194,10 +194,18 @@ def main():
         entries = [json.loads(line) for line in stream]
     if len(entries) != manifest["counts"]["entries"]:
         raise ValueError("Lane entry count mismatch")
-    rows = audit(source["verbs"], entries)
+    decisions = json.loads(DECISIONS.read_text(encoding="utf-8"))["decisions"]
+    applied = {(d["lemma"], d["root"], d["bab"]): d for d in decisions if d.get("applied")}
+    for row in source["verbs"]:
+        key = (row["ar"], row["root"], row["bab"])
+        if key in applied:
+            decision = applied[key]
+            if row["kind"] != "padanan" or row["meanings"] != [decision["gloss"]] or row.get("audit", {}).get("sourceId") != "lane":
+                raise ValueError(f"Applied review differs from recall: {key}")
+    rows = audit(source["verbs"], entries, applied)
     if manifest["revision"] != REVISION:
         raise ValueError("Unexpected Lane revision")
-    attach_reviews(rows, json.loads(DECISIONS.read_text(encoding="utf-8"))["decisions"])
+    attach_reviews(rows, decisions)
     if len(rows) != args.expect:
         raise ValueError(f"Unresolved baseline changed: {len(rows)} != {args.expect}")
     args.output.mkdir(parents=True, exist_ok=False)
@@ -209,7 +217,9 @@ def main():
         "lane_license": manifest["license"], "unresolved": len(rows),
         "reviewed_semantically": len(rows) - review_counts["unresolved"],
         "draft_supported": review_counts["draft_supported"], "held_bab": review_counts["hold_bab"],
-        "glosses_added_to_learner_data": 0, "candidate_counts": counts,
+        "glosses_added_to_learner_data": len(applied),
+        "remaining_unknown": sum(row["kind"] == "tidak_diketahui" for row in source["verbs"]),
+        "candidate_counts": counts,
     }
     write_json(args.output / "review-queue.json", rows)
     write_json(args.output / "summary.json", summary)
