@@ -60,9 +60,7 @@ export const msaBusinessVocabulary: readonly VocabularyItem[] = rows
 				claim('arabic', `Lema ${arabic} tercatat; akhiran i‘rab editorial.`, nounSection),
 				claim('meaning', `Makna terpilih: ${meaning}.`, section),
 				claim('wordClass', 'Makna terpilih tercatat pada bagian nomina.', section),
-				...(plural
-					? [claim('plural', `Salah satu bentuk jamak: ${plural}.`, nounSection)]
-					: [])
+				...(plural ? [claim('plural', `Salah satu bentuk jamak: ${plural}.`, nounSection)] : [])
 			]
 		};
 
