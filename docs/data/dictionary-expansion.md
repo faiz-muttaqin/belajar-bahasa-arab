@@ -1,6 +1,6 @@
 # Perluasan kamus Arab–Indonesia
 
-Status: riset dan rencana, 20 November 2026. Target bukan klaim jumlah yang sudah tercapai.
+Status: P7 dimulai 20 November 2026. Target bukan klaim jumlah yang sudah tercapai. Roadmap, acceptance gate dan checkpoint lintas sesi: [P7 — ekspansi skala besar](../plans/p7-dictionary-expansion.md).
 
 ## Urutan pekerjaan
 
@@ -23,5 +23,5 @@ Jangan membuat arti berdasarkan pola atau akar saja. Setiap sense memiliki sumbe
 
 ## Progres implementasi lanjutan
 
-- Pemisahan sumber pembanding pada hasil pengayaan dan tampilan kamus sharaf: implementasi serta uji regresi di PR lanjutan; CI belum terverifikasi. Langkah ini menghindari klaim bukti yang keliru saat perluasan kamus dilakukan.
-- Audit 537 verba kosong, ekstraksi Lane lengkap, penambahan nomina serta penghitungan lema/sense unik tetap terbuka. Tidak ada klaim ekspansi selesai.
+- P1–P6: PR #60–69 sudah merged; provenance, Lane lengkap, ekstraktor P4, pilot P5 dan pipeline MSA tersedia. P3 masih menyisakan 501 dari 537 verba dan P4 belum memiliki hasil dump nyata yang diaudit. P5 dan P6 masih parsial.
+- P7.1: jalankan pipeline snapshot nyata P4 dan gunakan kembali untuk antrean audit P6; keluarkan laporan agregat saja. Lihat checkpoint P7 untuk status CI, kualitas data dan sisa pekerjaan. Jangan menandai ekspansi selesai hanya karena CI hijau.
