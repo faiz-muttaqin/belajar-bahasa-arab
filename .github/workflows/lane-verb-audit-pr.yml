@@ -73,3 +73,14 @@ jobs:
           path: classical-output/
           if-no-files-found: error
           retention-days: 30
+      - name: P7 explicit bab marker leads (reference only)
+        run: |
+          python3 project/scripts/lane/p7_qamus_markers.py project/data/recall/verbs-qutrub-arramooz-recall.json audit-output classical-cache p7-marker-output
+          python3 project/scripts/lane/p7_qamus_markers.py project/data/recall/verbs-qutrub-arramooz-recall.json audit-output classical-cache p7-marker-repeat > /dev/null
+          diff -r p7-marker-output p7-marker-repeat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p7-qamus-marker-leads
+          path: p7-marker-output/
+          if-no-files-found: error
+          retention-days: 30
