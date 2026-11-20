@@ -105,8 +105,7 @@ export function rootFamily(
 	const root = entry.root.ar.normalize('NFC').replace(/\s/g, '');
 	return entries.filter(
 		(other) =>
-			other.id !== entry.id &&
-			other.root?.ar.normalize('NFC').replace(/\s/g, '') === root
+			other.id !== entry.id && other.root?.ar.normalize('NFC').replace(/\s/g, '') === root
 	);
 }
 
@@ -125,7 +124,10 @@ export function searchDictionary(
 				(sense) => register === 'all' || sense.register === register
 			);
 			if (!senses.length) return { entry, score: Infinity };
-			const words = [entry.lemma, ...entry.forms.filter((f) => f.origin === 'attested').map((f) => f.ar)];
+			const words = [
+				entry.lemma,
+				...entry.forms.filter((f) => f.origin === 'attested').map((f) => f.ar)
+			];
 			const normalized = words.map(normalizeArabicSearch);
 			const root = normalizeArabicSearch(entry.root?.ar ?? '');
 			const gloss = senses.map((sense) => normalizeArabicSearch(sense.glossId));
