@@ -28,3 +28,10 @@ Catat hasil run dan keputusan di plan induk P7 saat CI selesai.
 |        50.000 |   391 |         839.700 |              29.341.293 |               513 |         226.914.304 |
 
 Pada 50k sintetis, pencarian `ك` dan prefiks glos `con` memilih 391/391 shard. Ini skenario adversarial yang memang dirancang untuk mengekspos risiko indeks, bukan estimasi persentase query pengguna. Lanjutkan melalui [issue #74](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/74): tentukan strategi query pendek/paginasi, evaluasi ukuran transfer gzip/brotli, search completeness, dan pengujian perangkat nyata. Tidak ada perubahan algoritma produksi atau dataset yang dipublikasikan dalam PR benchmark.
+
+## Mitigasi awal fan-out (branch `feat/p7-search-fanout-guard`)
+
+- Loader mengizinkan maksimal **32 shard** yang terpilih atau yang diperlukan setelah ekspansi keluarga akar, saat manifest lebih besar dari 32 shard. Jika melampaui batas, ia memberikan error eksplisit `DictionaryQueryTooBroadError` **sebelum** mengunduh shard pada tahap seleksi awal; tidak pernah memilih 32 shard pertama dan diam-diam kehilangan hasil.
+- Halaman kamus memberi instruksi mempersempit query, tanpa menyamarkan penolakan sebagai tidak ditemukannya lema; query lain dapat dicoba lagi tanpa me-reset manifest.
+- Benchmark sintetis tetap menghitung fan-out penuh dan menandai `requiresQueryRefinement`, bukan melaporkan fan-out yang telah dipotong.
+- Ini **mitigasi sementara**, bukan penyelesaian issue #74. Kata Arab pendek yang tepat tetapi umum masih mungkin ditolak pada korpus besar. Desain indeks exact-match/ranked pagination yang lengkap, audit data nyata, gzip/brotli, Android, offline dan a11y masih harus dikerjakan. Tetap jangan publikasikan 10k–50k lema sebelum gerbang tersebut lulus.

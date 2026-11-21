@@ -7,6 +7,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import {
 	buildDictionaryShards,
+	MAX_DICTIONARY_AUTO_FETCH_SHARDS,
 	selectDictionaryShards
 } from '../src/lib/domain/dictionary/shards.js';
 import type { DictionaryEntry } from '../src/lib/domain/dictionary/senses.js';
@@ -74,6 +75,9 @@ export function runBenchmark(sizes: readonly number[] = [10000, 25000, 50000]) {
 					query,
 					{
 						shards: ids.length,
+						requiresQueryRefinement:
+							manifest.shardCount > MAX_DICTIONARY_AUTO_FETCH_SHARDS &&
+							ids.length > MAX_DICTIONARY_AUTO_FETCH_SHARDS,
 						percent: Math.round((ids.length / manifest.shardCount) * 10000) / 100,
 						approxTransferBytes: ids.reduce((sum, id) => sum + shardBytes[id], 0)
 					}
@@ -99,6 +103,7 @@ export function runBenchmark(sizes: readonly number[] = [10000, 25000, 50000]) {
 		notes: [
 			'Build timings are indicative, not stable CI assertions.',
 			'Single-character and shared gloss-prefix queries are adversarial fanout checks.',
+			'Queries exceeding 32 shards are explicitly rejected by the loader; selection metrics remain untruncated.',
 			'No synthetic entries or source text are persisted or published.'
 		],
 		results
