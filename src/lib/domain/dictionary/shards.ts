@@ -18,7 +18,7 @@ export type DictionaryManifest = {
 export const MAX_DICTIONARY_AUTO_FETCH_SHARDS = 32;
 
 export class DictionaryQueryTooBroadError extends Error {
-	readonly name = 'DictionaryQueryTooBroadError';
+	override readonly name = 'DictionaryQueryTooBroadError';
 	constructor(
 		readonly requestedShards: number,
 		readonly totalShards: number
