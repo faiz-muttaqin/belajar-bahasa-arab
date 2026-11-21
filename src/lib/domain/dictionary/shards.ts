@@ -19,16 +19,16 @@ export const MAX_DICTIONARY_AUTO_FETCH_SHARDS = 32;
 
 export class DictionaryQueryTooBroadError extends Error {
 	override readonly name = 'DictionaryQueryTooBroadError';
-	constructor(
-		readonly requestedShards: number,
-		readonly totalShards: number
-	) {
+	constructor(readonly requestedShards: number, readonly totalShards: number) {
 		super('Dictionary query matches too many shards; refine the query');
 	}
 }
 
 function requireManageableFanout(shardCount: number, requestedShards: number) {
-	if (shardCount > MAX_DICTIONARY_AUTO_FETCH_SHARDS && requestedShards > MAX_DICTIONARY_AUTO_FETCH_SHARDS)
+	if (
+		shardCount > MAX_DICTIONARY_AUTO_FETCH_SHARDS &&
+		requestedShards > MAX_DICTIONARY_AUTO_FETCH_SHARDS
+	)
 		throw new DictionaryQueryTooBroadError(requestedShards, shardCount);
 }
 
