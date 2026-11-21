@@ -10,6 +10,28 @@ export type DictionaryManifest = {
 	roots: Record<string, number[]>;
 };
 
+/**
+ * Provisional mobile safety gate. Never fetch only the first N shards:
+ * an incomplete result is worse than asking for a narrower query.
+ * Replace with ranked/paginated search when the reviewed corpus is available.
+ */
+export const MAX_DICTIONARY_AUTO_FETCH_SHARDS = 32;
+
+export class DictionaryQueryTooBroadError extends Error {
+	readonly name = 'DictionaryQueryTooBroadError';
+	constructor(
+		readonly requestedShards: number,
+		readonly totalShards: number
+	) {
+		super('Dictionary query matches too many shards; refine the query');
+	}
+}
+
+function requireManageableFanout(shardCount: number, requestedShards: number) {
+	if (shardCount > MAX_DICTIONARY_AUTO_FETCH_SHARDS && requestedShards > MAX_DICTIONARY_AUTO_FETCH_SHARDS)
+		throw new DictionaryQueryTooBroadError(requestedShards, shardCount);
+}
+
 const normalizedRoot = (entry: DictionaryEntry) =>
 	entry.root?.ar.normalize('NFC').replace(/\s/g, '') ?? '';
 
@@ -141,7 +163,9 @@ export function createDictionaryLoader(read: (path: string) => Promise<unknown>)
 		async search(query: string): Promise<DictionaryEntry[]> {
 			if (!normalizeArabicSearch(query)) return [];
 			const manifest = await getManifest();
-			const ids = new Set(selectDictionaryShards(manifest, query));
+			const selected = selectDictionaryShards(manifest, query);
+			requireManageableFanout(manifest.shardCount, selected.length);
+			const ids = new Set(selected);
 			const candidates = (await Promise.all([...ids].map((id) => getShard(manifest, id)))).flat();
 			// Only expand families of actual matches, never infer a root from spelling.
 			const matches = searchDictionary(candidates, query);
@@ -151,6 +175,7 @@ export function createDictionaryLoader(read: (path: string) => Promise<unknown>)
 					for (const id of manifest.roots[root] ?? []) ids.add(id);
 				}
 			}
+			requireManageableFanout(manifest.shardCount, ids.size);
 			return (await Promise.all([...ids].map((id) => getShard(manifest, id)))).flat();
 		}
 	};
