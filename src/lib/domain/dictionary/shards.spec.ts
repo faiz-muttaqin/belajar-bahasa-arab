@@ -10,6 +10,8 @@ import {
 import { searchDictionary } from './senses.js';
 
 const revision = 'a'.repeat(16);
+const seed = seed!;
+const seedSense = seed.senses[0]!;
 describe('P5 sharded search', () => {
 	it('selects shards without dropping Arabic forms, roots or Indonesian substrings', () => {
 		const { manifest, shards } = buildDictionaryShards(dictionaryPilot, revision, 1);
@@ -59,13 +61,13 @@ describe('P5 sharded search', () => {
 	});
 	it('explicitly refuses a broad query before fetching shards and allows a narrow retry', async () => {
 		const entries = Array.from({ length: MAX_DICTIONARY_AUTO_FETCH_SHARDS + 1 }, (_, i) => ({
-			...dictionaryPilot[0],
+			...seed,
 			id: 'synthetic-' + i,
 			root: undefined,
 			lemma: 'كَتَبَ',
 			senses: [
 				{
-					...dictionaryPilot[0].senses[0],
+					...seedSense,
 					glossId: i === 0 ? 'unik' : 'umum'
 				}
 			],
@@ -88,10 +90,10 @@ describe('P5 sharded search', () => {
 
 	it('never returns a truncated root family when expansion crosses the shard limit', async () => {
 		const entries = Array.from({ length: MAX_DICTIONARY_AUTO_FETCH_SHARDS + 1 }, (_, i) => ({
-			...dictionaryPilot[0],
+			...seed,
 			id: 'family-' + i,
 			lemma: 'كَتَبَ',
-			senses: [{ ...dictionaryPilot[0].senses[0], glossId: i === 0 ? 'unik' : 'umum' }],
+			senses: [{ ...seedSense, glossId: i === 0 ? 'unik' : 'umum' }],
 			forms: []
 		}));
 		const { manifest, shards } = buildDictionaryShards(entries, revision, 1);
