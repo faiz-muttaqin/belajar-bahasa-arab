@@ -5,6 +5,8 @@ on:
     paths:
       - 'scripts/build-wiktionary-nonverbs*'
       - 'scripts/p7-snapshot-report.py'
+      - 'scripts/p7_*'
+      - 'scripts/test_p7_preflight.py'
       - 'scripts/p6-msa-audit.mjs'
       - '.github/workflows/p7-nonverb-pr.yml'
   workflow_dispatch:
@@ -46,6 +48,12 @@ jobs:
           cmp /tmp/p7/work/nonverbs.json /tmp/p7/work/repeated.json
       - name: Reuse snapshot for P6 audit leads
         run: bun scripts/p6-msa-audit.mjs /tmp/p7/work/msa-queue.json /tmp/p7/work/nonverbs.json
+      - name: Test P7 review-only preflight
+        run: python3 -m unittest discover -s scripts -p 'test_p7_preflight.py'
+      - name: Audit real P4/P5 structural gates and P6 retrieval quality
+        run: |
+          python3 scripts/p7_preflight.py /tmp/p7/work/nonverbs.json /tmp/p7/work/msa-queue.json /tmp/p7/report/preflight.json
+          test -s /tmp/p7/report/preflight.json
       - name: Report aggregate counts only
         run: |
           python3 scripts/p7-snapshot-report.py /tmp/p7/work /tmp/p7/report/summary.json
@@ -53,5 +61,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: p7-snapshot-summary
-          path: /tmp/p7/report/summary.json
+          path: /tmp/p7/report/*.json
           if-no-files-found: error
