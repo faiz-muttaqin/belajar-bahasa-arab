@@ -63,3 +63,16 @@ Data nyata P4 belum tersedia; saat ini pengujian integrasi memakai fixture sinte
 PR P7.3/P7.4 menambahkan `scripts/p7_preflight.py` yang menganalisis **hasil ekstraksi P4 sesungguhnya** bersama antrean 152 lema P6 dalam job CI yang sama. Ia mengukur eligibility struktural yang mirip dengan kontrak adapter: POS, canonical tunggal konsisten, kelengkapan glos sumber/provenance, register, dan identitas sense. Juga menghitung potensi tabrakan ejaan dan gap kandidat MSA, tetapi **tidak** membuat `P4Decision` atau mengimpor entri.
 
 Hasil preflight bukan audit lisensi dan tidak membuktikan makna/glos Indonesia. Bahkan kandidat yang lolos struktural tetap perlu keputusan per sense, bukti sumber, atribusi, dan uji `reconcileDictionary` sebelum masuk kumpulan kamus. Keluaran CI hanya statistik agregat, tanpa teks dump dan tanpa kandidat glos.
+
+
+## P7.5 — Batch review privat dari snapshot P4/P6 yang sama
+
+Lakukan seleksi bertahap setelah `p7_preflight.py` lulus. Input dan keluaran hasil ekstraksi mengandung teks pihak ketiga: **jangan commit**, jangan unggah sebagai artefak CI, dan jangan jadikan sumber glos bahasa Indonesia secara otomatis.
+
+```sh
+python3 scripts/p7_review_batch.py /tmp/p7/work/nonverbs.json /tmp/p7/work/msa-queue.json /tmp/p7-review-25.json --limit 25 --offset 0
+```
+
+Output di luar repositori memiliki metadata sumber, ID lema/sense, POS, register sumber, locator, glos Inggris sebagai *petunjuk riset*, serta ID antrean MSA terkait. Kolom keputusan Indonesia dibiarkan `null` dan `publicationApproved=false`. Kata MSA yang belum punya lead P4 ditampilkan dalam `msaWithoutP4Lead` untuk pencarian sumber lain. Urutan deterministic, sehingga `--offset 25` melanjutkan batch berikutnya; namun **snapshot tidak boleh diganti** di tengah review.
+
+Langkah editorial: cek sumber halaman Arab dan perbedaan sense, pilih glos Indonesia orisinal, tentukan register dari bukti eksplisit, audit izin/atribusi, lalu buat berkas `P4Decision` sesuai kontrak `prepare-dictionary-import.ts`. Review batch ini **tidak langsung kompatibel** sebagai berkas keputusan karena belum berisi persetujuan. Jalankan rekonsiliasi hanya untuk keputusan yang telah ditelaah; hasilnya tetap `draft` dan tidak otomatis terbit.
