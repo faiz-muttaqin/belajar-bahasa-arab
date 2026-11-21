@@ -24,7 +24,9 @@ jobs:
           bun-version: '1.4.4'
       - run: bun install --frozen-lockfile
       - name: Check formatter
-        run: bun run --silent prettier --check scripts/p7-dictionary-benchmark.ts
+        run: |
+          bun run --silent prettier scripts/p7-dictionary-benchmark.ts > /tmp/p7-benchmark-formatted.ts
+          diff -u scripts/p7-dictionary-benchmark.ts /tmp/p7-benchmark-formatted.ts
       - name: Profile 10k, 25k and 50k synthetic lemmas
         run: |
           mkdir -p /tmp/p7-benchmark
