@@ -57,3 +57,9 @@ bun scripts/prepare-dictionary-import.ts /tmp/nonverbs.json /tmp/review.json /tm
 File review berisi `snapshot`, `sha256`, `licenseReview` (catatan audit izin redistribusi) dan `decisions` sesuai tipe P4Decision: lemmaId, senseId, entryId, localSenseId, glossId, register, checkedOn, locator. Hash/tanggal harus cocok dengan snapshot. Keputusan tersebut adalah hasil pemeriksaan sumber, bukan terjemahan otomatis. Output harus baru dan di luar repo; tidak dipakai build secara otomatis. Audit staging, resolusi kandidat duplikat, atribusi dan pemilihan dataset publik masih diperlukan sebelum memasukkan data ke build.
 
 Data nyata P4 belum tersedia; saat ini pengujian integrasi memakai fixture sintetis dan lima lema pilot. Tidak boleh mengklaim impor massal selesai. P2/P3/P6 belum diimpor, linguis dan benchmark dataset besar masih pending.
+
+## P7 — Preflight snapshot nyata sebelum impor
+
+PR P7.3/P7.4 menambahkan `scripts/p7_preflight.py` yang menganalisis **hasil ekstraksi P4 sesungguhnya** bersama antrean 152 lema P6 dalam job CI yang sama. Ia mengukur eligibility struktural yang mirip dengan kontrak adapter: POS, canonical tunggal konsisten, kelengkapan glos sumber/provenance, register, dan identitas sense. Juga menghitung potensi tabrakan ejaan dan gap kandidat MSA, tetapi **tidak** membuat `P4Decision` atau mengimpor entri.
+
+Hasil preflight bukan audit lisensi dan tidak membuktikan makna/glos Indonesia. Bahkan kandidat yang lolos struktural tetap perlu keputusan per sense, bukti sumber, atribusi, dan uji `reconcileDictionary` sebelum masuk kumpulan kamus. Keluaran CI hanya statistik agregat, tanpa teks dump dan tanpa kandidat glos.
