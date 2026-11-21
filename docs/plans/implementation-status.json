@@ -85,6 +85,17 @@
 			"next": "#55"
 		},
 		{
+			"file": "p7-dictionary-expansion.md",
+			"status": "partial",
+			"evidence": [
+				".github/workflows/p7-nonverb-pr.yml",
+				"scripts/p7-snapshot-report.py",
+				"docs/data/p4-nonverbs.md"
+			],
+			"remaining": "P7.1 snapshot nyata berhasil; audit POS/register/lisensi masih terbuka. P7.2–8: 501 verba, audit MSA, integrasi, glos, benchmark dan publikasi belum tuntas.",
+			"next": "P7.2 dan P7.3; lihat checkpoint P7"
+		},
+		{
 			"file": "peta-belajar.md",
 			"status": "partial",
 			"evidence": [

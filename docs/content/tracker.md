@@ -247,3 +247,5 @@ Plan bertahap: [peta kaidah nahwu–sharaf](../plans/nahwu-sharaf-knowledge-map.
 - 20 November 2026: P6 LM-03 batch 3 menambahkan 17 nomina bisnis/ekonomi dan pekerjaan dengan 66 klaim parsial. Total 200 entri, 48 audit parsial, 14 tema. V-06 tetap Stage 3; LM-02/04/05 serta dedup lintas katalog belum tuntas.
 
 - 20 November 2026: P6 batch 4–8 menambah 23 nomina draf (total 223 entri, 71 audit parsial, 19 tema), antrean audit LM-02, pilot korpus PUD dan rekonsiliasi kandidat P5. Stage 3 tetap; [gate tersisa](../data/p6-msa-expansion.md) mencakup audit 152 starter, sense-level integration dan LM-04/05.
+
+- 20 November 2026: P7 — [roadmap dan checkpoint ekspansi kamus](../plans/p7-dictionary-expansion.md). Batch pertama menjalankan snapshot P4 nyata dan menggunakan ulang output untuk P6; laporan agregat saja, CI dan audit lisensi masih pending. Tidak ada glos baru atau kenaikan stage sampai data diperiksa.

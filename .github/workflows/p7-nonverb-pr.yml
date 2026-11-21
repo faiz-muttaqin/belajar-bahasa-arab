@@ -1,0 +1,57 @@
+name: P7 nonverb snapshot and MSA leads
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-wiktionary-nonverbs*'
+      - 'scripts/p7-*'
+      - 'scripts/p6-msa-audit.mjs'
+      - '.github/workflows/p7-nonverb-pr.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: node --test scripts/build-wiktionary-nonverbs.test.mjs
+      - name: Acquire research-only Arabic snapshot
+        run: |
+          mkdir -p /tmp/p7/work /tmp/p7/report
+          page=https://kaikki.org/dictionary/Arabic/index.html
+          source=https://kaikki.org/dictionary/Arabic/kaikki.org-dictionary-Arabic.jsonl
+          curl --fail --location --retry 2 --max-time 60 "$page" -o /tmp/p7/work/before.html
+          grep -q '2026-10-01' /tmp/p7/work/before.html
+          grep -q '2026-10-30' /tmp/p7/work/before.html
+          curl --fail --location --retry 2 --max-time 900 "$source" -o /tmp/p7/work/arabic.jsonl
+          curl --fail --location --retry 2 --max-time 60 "$page" -o /tmp/p7/work/after.html
+          grep -q '2026-10-01' /tmp/p7/work/after.html
+          grep -q '2026-10-30' /tmp/p7/work/after.html
+          test "$(wc -c < /tmp/p7/work/arabic.jsonl)" -gt 500000000
+          echo '19eee17681c23b3da039878ee7c970d93b75a339989a17a842f14aa7f44ea236  /tmp/p7/work/arabic.jsonl' | sha256sum --check
+      - name: Extract and verify deterministic output
+        run: |
+          node --max-old-space-size=4096 scripts/build-wiktionary-nonverbs.mjs --source /tmp/p7/work/arabic.jsonl --snapshot 2026-10-01 --out /tmp/p7/work/nonverbs.json
+          node --max-old-space-size=4096 scripts/build-wiktionary-nonverbs.mjs --source /tmp/p7/work/arabic.jsonl --snapshot 2026-10-01 --out /tmp/p7/work/repeated.json
+          cmp /tmp/p7/work/nonverbs.json /tmp/p7/work/repeated.json
+      - name: Reuse snapshot for P6 audit leads
+        run: bun scripts/p6-msa-audit.mjs /tmp/p7/work/msa-queue.json /tmp/p7/work/nonverbs.json
+      - name: Report aggregate counts only
+        run: |
+          python3 scripts/p7-snapshot-report.py /tmp/p7/work /tmp/p7/report/summary.json
+          cat /tmp/p7/report/summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p7-snapshot-summary
+          path: /tmp/p7/report/summary.json
+          if-no-files-found: error
