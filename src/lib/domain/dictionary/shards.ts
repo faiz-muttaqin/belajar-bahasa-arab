@@ -30,6 +30,12 @@ function requireManageableFanout(shardCount: number, requestedShards: number) {
 	if (largeIndex && excessiveFetch) throw new DictionaryQueryTooBroadError();
 }
 
+/** Reject corrupt locators atomically, before initiating any shard requests. */
+function requireValidShardIds(manifest: DictionaryManifest, ids: readonly number[]) {
+	if (ids.some((id) => !Number.isSafeInteger(id) || id < 0 || id >= manifest.shardCount))
+		throw new Error('Invalid dictionary shard ID');
+}
+
 const normalizedRoot = (entry: DictionaryEntry) =>
 	entry.root?.ar.normalize('NFC').replace(/\s/g, '') ?? '';
 
@@ -162,6 +168,7 @@ export function createDictionaryLoader(read: (path: string) => Promise<unknown>)
 			if (!normalizeArabicSearch(query)) return [];
 			const manifest = await getManifest();
 			const selected = selectDictionaryShards(manifest, query);
+			requireValidShardIds(manifest, selected);
 			requireManageableFanout(manifest.shardCount, selected.length);
 			const ids = new Set(selected);
 			const candidates = (await Promise.all([...ids].map((id) => getShard(manifest, id)))).flat();
@@ -173,6 +180,7 @@ export function createDictionaryLoader(read: (path: string) => Promise<unknown>)
 					for (const id of manifest.roots[root] ?? []) ids.add(id);
 				}
 			}
+			requireValidShardIds(manifest, [...ids]);
 			requireManageableFanout(manifest.shardCount, ids.size);
 			return (await Promise.all([...ids].map((id) => getShard(manifest, id)))).flat();
 		}
