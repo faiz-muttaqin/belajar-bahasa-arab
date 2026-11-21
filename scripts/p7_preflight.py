@@ -35,6 +35,8 @@ def analyze(snapshot, queue):
         raise ValueError("Missing input digest")
     if queue.get("schema") != 1 or queue.get("source", {}).get("sha256") != source["sha256"]:
         raise ValueError("P6/P4 snapshot checksum mismatch")
+    upstream_keys = Counter((row.get("lemmaId"), row.get("senseId"))
+                            for row in snapshot.get("entries", []))
     counts = Counter()
     per_pos = Counter()
     per_register = Counter()
@@ -46,6 +48,9 @@ def analyze(snapshot, queue):
             continue
         counts["candidates"] += 1
         canonical = row.get("canonical", [])
+        if upstream_keys[(row.get("lemmaId"), row.get("senseId"))] != 1:
+            counts["ambiguous_upstream_identity"] += 1
+            continue
         if row.get("pos") not in SUPPORTED_P5_POS:
             counts["unsupported_pos"] += 1
             continue
@@ -95,7 +100,7 @@ def analyze(snapshot, queue):
             "structurallyReviewableSenseKeys": len(sense_ids),
             "blockedByFirstReason": {
                 key: counts[key] for key in (
-                    "unsupported_pos", "missing_canonical",
+                    "ambiguous_upstream_identity", "unsupported_pos", "missing_canonical",
                     "ambiguous_or_mismatched_canonical", "missing_source_gloss",
                     "missing_provenance", "unsupported_register"
                 )
