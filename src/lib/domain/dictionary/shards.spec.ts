@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { dictionaryPilot } from '#lib/content/dictionary-pilot.js';
-import { buildDictionaryShards, createDictionaryLoader, selectDictionaryShards } from './shards.js';
+import {
+	buildDictionaryShards,
+	createDictionaryLoader,
+	DictionaryQueryTooBroadError,
+	MAX_DICTIONARY_AUTO_FETCH_SHARDS,
+	selectDictionaryShards
+} from './shards.js';
 import { searchDictionary } from './senses.js';
 
 const revision = 'a'.repeat(16);
@@ -51,4 +57,53 @@ describe('P5 sharded search', () => {
 		await expect(loader.search('unmatched')).rejects.toThrow('offline');
 		expect(await loader.search('unmatched')).toEqual([]);
 	});
+	it('explicitly refuses a broad query before fetching shards and allows a narrow retry', async () => {
+		const entries = Array.from({ length: MAX_DICTIONARY_AUTO_FETCH_SHARDS + 1 }, (_, i) => ({
+			...dictionaryPilot[0],
+			id: 'synthetic-' + i,
+			root: undefined,
+			lemma: 'كَتَبَ',
+			senses: [
+				{
+					...dictionaryPilot[0].senses[0],
+					glossId: i === 0 ? 'unik' : 'umum'
+				}
+			],
+			forms: []
+		}));
+		const { manifest, shards } = buildDictionaryShards(entries, revision, 1);
+		const requested: string[] = [];
+		const loader = createDictionaryLoader(async (path) => {
+			requested.push(path);
+			if (path === 'manifest-v1.json') return manifest;
+			return shards[Number(path.slice(revision.length + 1, -5))];
+		});
+		expect(selectDictionaryShards(manifest, 'ك')).toHaveLength(entries.length);
+		await expect(loader.search('ك')).rejects.toBeInstanceOf(DictionaryQueryTooBroadError);
+		expect(requested).toEqual(['manifest-v1.json']);
+		const results = await loader.search('unik');
+		expect(results.map((entry) => entry.id)).toEqual(['synthetic-0']);
+		expect(requested).toHaveLength(2);
+	});
+
+	it('never returns a truncated root family when expansion crosses the shard limit', async () => {
+		const entries = Array.from({ length: MAX_DICTIONARY_AUTO_FETCH_SHARDS + 1 }, (_, i) => ({
+			...dictionaryPilot[0],
+			id: 'family-' + i,
+			lemma: 'كَتَبَ',
+			senses: [{ ...dictionaryPilot[0].senses[0], glossId: i === 0 ? 'unik' : 'umum' }],
+			forms: []
+		}));
+		const { manifest, shards } = buildDictionaryShards(entries, revision, 1);
+		const requests: string[] = [];
+		const loader = createDictionaryLoader(async (path) => {
+			requests.push(path);
+			return path === 'manifest-v1.json'
+				? manifest
+				: shards[Number(path.slice(revision.length + 1, -5))];
+		});
+		await expect(loader.search('unik')).rejects.toBeInstanceOf(DictionaryQueryTooBroadError);
+		expect(requests).toHaveLength(2);
+	});
+
 });
