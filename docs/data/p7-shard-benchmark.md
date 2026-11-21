@@ -35,4 +35,3 @@ Pada 50k sintetis, pencarian `ك` dan prefiks glos `con` memilih 391/391 shard. 
 - Halaman kamus memberi instruksi mempersempit query, tanpa menyamarkan penolakan sebagai tidak ditemukannya lema; query lain dapat dicoba lagi tanpa me-reset manifest.
 - Benchmark sintetis tetap menghitung fan-out penuh dan menandai `requiresQueryRefinement`, bukan melaporkan fan-out yang telah dipotong.
 - Ini **mitigasi sementara**, bukan penyelesaian issue #74. Kata Arab pendek yang tepat tetapi umum masih mungkin ditolak pada korpus besar. Desain indeks exact-match/ranked pagination yang lengkap, audit data nyata, gzip/brotli, Android, offline dan a11y masih harus dikerjakan. Tetap jangan publikasikan 10k–50k lema sebelum gerbang tersebut lulus.
-
