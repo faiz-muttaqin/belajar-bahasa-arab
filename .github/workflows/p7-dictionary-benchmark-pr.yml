@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'scripts/p7-dictionary-benchmark.ts'
+      - 'scripts/p7-dictionary-benchmark.spec.ts'
       - '.github/workflows/p7-dictionary-benchmark-pr.yml'
   workflow_dispatch:
 
@@ -25,8 +26,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - name: Check formatter
         run: |
-          bun run --silent prettier scripts/p7-dictionary-benchmark.ts > /tmp/p7-benchmark-formatted.ts
-          diff -u scripts/p7-dictionary-benchmark.ts /tmp/p7-benchmark-formatted.ts
+          bun run --silent prettier --check scripts/p7-dictionary-benchmark.ts scripts/p7-dictionary-benchmark.spec.ts
       - name: Profile 10k, 25k and 50k synthetic lemmas
         run: |
           mkdir -p /tmp/p7-benchmark

@@ -83,6 +83,36 @@ describe('P5 sharded search', () => {
 		expect(requested).toHaveLength(2);
 	});
 
+	it('rejects invalid prefix locators before fetching any shard', async () => {
+		const { manifest, shards } = buildDictionaryShards(dictionaryPilot, revision, 1);
+		const malformed = { ...manifest, prefix: { ...manifest.prefix, inv: [0, 999] } };
+		const requests: string[] = [];
+		const loader = createDictionaryLoader(async (path) => {
+			requests.push(path);
+			return path === 'manifest-v1.json'
+				? malformed
+				: shards[Number(path.slice(revision.length + 1, -5))];
+		});
+		await expect(loader.search('invalid')).rejects.toThrow('Invalid dictionary shard ID');
+		expect(requests).toEqual(['manifest-v1.json']);
+	});
+
+	it('rejects invalid root-family locators without starting partial expansion', async () => {
+		const { manifest, shards } = buildDictionaryShards(dictionaryPilot, revision, 1);
+		const roots = Object.fromEntries(Object.keys(manifest.roots).map((root) => [root, [999]]));
+		const malformed = { ...manifest, roots };
+		const requests: string[] = [];
+		const loader = createDictionaryLoader(async (path) => {
+			requests.push(path);
+			return path === 'manifest-v1.json'
+				? malformed
+				: shards[Number(path.slice(revision.length + 1, -5))];
+		});
+		await expect(loader.search('kantor')).rejects.toThrow('Invalid dictionary shard ID');
+		expect(requests).toContain('manifest-v1.json');
+		expect(requests).not.toContain(revision + '-999.json');
+	});
+
 	it('never returns a truncated root family when expansion crosses the shard limit', async () => {
 		const entries = Array.from({ length: MAX_DICTIONARY_AUTO_FETCH_SHARDS + 1 }, (_, i) => ({
 			...seed,

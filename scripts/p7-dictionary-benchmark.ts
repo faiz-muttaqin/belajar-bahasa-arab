@@ -3,6 +3,7 @@
  * or published entries are produced by this script.
  */
 import { performance } from 'node:perf_hooks';
+import { brotliCompressSync, gzipSync } from 'node:zlib';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import {
@@ -63,8 +64,15 @@ export function runBenchmark(sizes: readonly number[] = [10000, 25000, 50000]) {
 		if (shards.some((shard) => shard.length === 0 || shard.length > 128))
 			throw new Error('Invalid shard size');
 
-		const shardBytes = shards.map((shard) => Buffer.byteLength(JSON.stringify(shard), 'utf8'));
-		const manifestBytes = Buffer.byteLength(JSON.stringify(manifest), 'utf8');
+		// Compress each independent static asset, not one concatenated archive.
+		const shardPayloads = shards.map((shard) => Buffer.from(JSON.stringify(shard), 'utf8'));
+		const manifestPayload = Buffer.from(JSON.stringify(manifest), 'utf8');
+		const shardBytes = shardPayloads.map((payload) => payload.byteLength);
+		const shardGzipBytes = shardPayloads.map((payload) => gzipSync(payload).byteLength);
+		const shardBrotliBytes = shardPayloads.map((payload) => brotliCompressSync(payload).byteLength);
+		const manifestBytes = manifestPayload.byteLength;
+		const manifestGzipBytes = gzipSync(manifestPayload).byteLength;
+		const manifestBrotliBytes = brotliCompressSync(manifestPayload).byteLength;
 		const queries = ['ك', 'كا', 'كتب', 'con', 'contoh', 's1'];
 		const fanout = Object.fromEntries(
 			queries.map((query) => {
@@ -79,7 +87,9 @@ export function runBenchmark(sizes: readonly number[] = [10000, 25000, 50000]) {
 							manifest.shardCount > MAX_DICTIONARY_AUTO_FETCH_SHARDS &&
 							ids.length > MAX_DICTIONARY_AUTO_FETCH_SHARDS,
 						percent: Math.round((ids.length / manifest.shardCount) * 10000) / 100,
-						approxTransferBytes: ids.reduce((sum, id) => sum + shardBytes[id], 0)
+						approxTransferBytes: ids.reduce((sum, id) => sum + shardBytes[id], 0),
+						approxTransferGzipBytes: ids.reduce((sum, id) => sum + shardGzipBytes[id], 0),
+						approxTransferBrotliBytes: ids.reduce((sum, id) => sum + shardBrotliBytes[id], 0)
 					}
 				];
 			})
@@ -88,8 +98,14 @@ export function runBenchmark(sizes: readonly number[] = [10000, 25000, 50000]) {
 			syntheticLemmas: total,
 			shardCount: shards.length,
 			manifestBytes,
+			manifestGzipBytes,
+			manifestBrotliBytes,
 			totalShardBytes: shardBytes.reduce((sum, bytes) => sum + bytes, 0),
+			totalShardGzipBytes: shardGzipBytes.reduce((sum, bytes) => sum + bytes, 0),
+			totalShardBrotliBytes: shardBrotliBytes.reduce((sum, bytes) => sum + bytes, 0),
 			maxShardBytes: Math.max(...shardBytes),
+			maxShardGzipBytes: Math.max(...shardGzipBytes),
+			maxShardBrotliBytes: Math.max(...shardBrotliBytes),
 			buildMs,
 			fanout,
 			peakRssBytesObserved: process.memoryUsage().rss
@@ -104,6 +120,7 @@ export function runBenchmark(sizes: readonly number[] = [10000, 25000, 50000]) {
 			'Build timings are indicative, not stable CI assertions.',
 			'Single-character and shared gloss-prefix queries are adversarial fanout checks.',
 			'Queries exceeding 32 shards are explicitly rejected by the loader; selection metrics remain untruncated.',
+			'Gzip/Brotli estimates compress each manifest and shard separately with Node defaults; CDN headers, transport overhead, cache and mobile performance are not measured.',
 			'No synthetic entries or source text are persisted or published.'
 		],
 		results
