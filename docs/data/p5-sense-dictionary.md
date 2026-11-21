@@ -64,7 +64,6 @@ PR P7.3/P7.4 menambahkan `scripts/p7_preflight.py` yang menganalisis **hasil eks
 
 Hasil preflight bukan audit lisensi dan tidak membuktikan makna/glos Indonesia. Bahkan kandidat yang lolos struktural tetap perlu keputusan per sense, bukti sumber, atribusi, dan uji `reconcileDictionary` sebelum masuk kumpulan kamus. Keluaran CI hanya statistik agregat, tanpa teks dump dan tanpa kandidat glos.
 
-
 ## P7.5 — Batch review privat dari snapshot P4/P6 yang sama
 
 Lakukan seleksi bertahap setelah `p7_preflight.py` lulus. Input dan keluaran hasil ekstraksi mengandung teks pihak ketiga: **jangan commit**, jangan unggah sebagai artefak CI, dan jangan jadikan sumber glos bahasa Indonesia secara otomatis.
