@@ -65,12 +65,7 @@ describe('P5 sharded search', () => {
 			id: 'synthetic-' + i,
 			root: undefined,
 			lemma: 'كَتَبَ',
-			senses: [
-				{
-					...seedSense,
-					glossId: i === 0 ? 'unik' : 'umum'
-				}
-			],
+			senses: [{ ...seedSense, glossId: i === 0 ? 'unik' : 'umum' }],
 			forms: []
 		}));
 		const { manifest, shards } = buildDictionaryShards(entries, revision, 1);
@@ -107,5 +102,4 @@ describe('P5 sharded search', () => {
 		await expect(loader.search('unik')).rejects.toBeInstanceOf(DictionaryQueryTooBroadError);
 		expect(requests).toHaveLength(2);
 	});
-
 });
