@@ -10,7 +10,7 @@ import {
 import { searchDictionary } from './senses.js';
 
 const revision = 'a'.repeat(16);
-const seed = seed!;
+const seed = dictionaryPilot[0]!;
 const seedSense = seed.senses[0]!;
 describe('P5 sharded search', () => {
 	it('selects shards without dropping Arabic forms, roots or Indonesian substrings', () => {
