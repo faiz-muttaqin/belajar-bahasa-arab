@@ -35,3 +35,13 @@ Pada 50k sintetis, pencarian `ك` dan prefiks glos `con` memilih 391/391 shard. 
 - Halaman kamus memberi instruksi mempersempit query, tanpa menyamarkan penolakan sebagai tidak ditemukannya lema; query lain dapat dicoba lagi tanpa me-reset manifest.
 - Benchmark sintetis tetap menghitung fan-out penuh dan menandai `requiresQueryRefinement`, bukan melaporkan fan-out yang telah dipotong.
 - Ini **mitigasi sementara**, bukan penyelesaian issue #74. Kata Arab pendek yang tepat tetapi umum masih mungkin ditolak pada korpus besar. Desain indeks exact-match/ranked pagination yang lengkap, audit data nyata, gzip/brotli, Android, offline dan a11y masih harus dikerjakan. Tetap jangan publikasikan 10k–50k lema sebelum gerbang tersebut lulus.
+
+## P7.7 lanjutan — pengukuran kompresi per aset
+
+Benchmark menghasilkan ukuran **gzip dan Brotli** secara terpisah untuk manifest dan setiap shard, termasuk akumulasi transfer shard pada tiap query. Perhitungan memampatkan setiap berkas JSON secara independen dengan default Node `zlib`, bukan satu arsip gabungan; ini lebih dekat dengan struktur aset static hosting daripada kompresi semua data sekaligus. Nilainya merupakan **estimasi payload**, belum termasuk overhead HTTP/TLS, header `Content-Encoding` sesungguhnya, cache, latency, dan waktu dekompresi Android.
+
+Kolom baru dalam JSON: `manifestGzipBytes`, `manifestBrotliBytes`, `totalShardGzipBytes`, `totalShardBrotliBytes`, `maxShardGzipBytes`, `maxShardBrotliBytes`, serta `approxTransferGzipBytes` dan `approxTransferBrotliBytes` per query. Fan-out tetap dihitung tanpa pemotongan hasil; query yang ditolak guard 32 shard tetap terdeteksi.
+
+Tes regresi menolak ID shard manifest di luar rentang **sebelum pengunduhan awal** serta sebelum pengambilan shard tambahan keluarga akar. Ini menutup sebagian kewajiban integritas pada issue #74, tetapi tidak menyelesaikan indeks untuk query luas.
+
+**Status:** PR lanjutan dibuka untuk verifikasi CI. Masukkan hasil kompresi aktual dari workflow dan run ID setelah CI berhasil; jangan menyalin angka sintetis awal sebagai angka kompresi baru. Gate distribusi data nyata, p50/p95 fan-out, uji Android, offline, no-JS dan aksesibilitas tetap terbuka.
