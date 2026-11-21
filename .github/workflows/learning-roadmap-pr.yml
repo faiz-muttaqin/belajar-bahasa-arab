@@ -22,3 +22,9 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run browsers:install
       - run: bun run verify
+      # Temporary diagnostic: print the exact Prettier diff if verification fails.
+      - name: Show formatting diff on failure
+        if: failure()
+        run: |
+          bunx prettier --write src/lib/domain/dictionary/shards.ts
+          git --no-pager diff -- src/lib/domain/dictionary/shards.ts
