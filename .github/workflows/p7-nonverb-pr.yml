@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'scripts/build-wiktionary-nonverbs*'
-      - 'scripts/p7-*'
+      - 'scripts/p7-snapshot-report.py'
       - 'scripts/p6-msa-audit.mjs'
       - '.github/workflows/p7-nonverb-pr.yml'
   workflow_dispatch:
