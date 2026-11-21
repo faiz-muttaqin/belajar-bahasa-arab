@@ -25,10 +25,9 @@ export class DictionaryQueryTooBroadError extends Error {
 }
 
 function requireManageableFanout(shardCount: number, requestedShards: number) {
-	if (
-		shardCount > MAX_DICTIONARY_AUTO_FETCH_SHARDS &&
-		requestedShards > MAX_DICTIONARY_AUTO_FETCH_SHARDS
-	)
+	const largeIndex = shardCount > MAX_DICTIONARY_AUTO_FETCH_SHARDS;
+	const excessiveFetch = requestedShards > MAX_DICTIONARY_AUTO_FETCH_SHARDS;
+	if (largeIndex && excessiveFetch)
 		throw new DictionaryQueryTooBroadError(requestedShards, shardCount);
 }
 
