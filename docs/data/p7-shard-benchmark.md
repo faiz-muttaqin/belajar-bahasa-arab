@@ -16,3 +16,15 @@ Ukur waktu membangun indeks, RSS teramati, ukuran manifest, total JSON shard, uk
 - Sebelum memuat 10k+ entri sesungguhnya, selesaikan keputusan per sense, hak penggunaan, data shard hasil tinjauan, serta uji performa pada dataset nyata dan perangkat mobile.
 
 Catat hasil run dan keputusan di plan induk P7 saat CI selesai.
+
+## Hasil CI awal — 21 November 2026
+
+[Workflow 44905689817](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/44905689817) telah lulus pada PR #73 (merged). Angka berupa JSON tanpa kompresi dan benchmark sintetis, sehingga tidak mewakili distribusi lema nyata atau performa browser.
+
+| Simulasi lema | Shard | Manifest (byte) | Shard JSON total (byte) | Build runner (ms) | RSS teramati (byte) |
+| ------------: | ----: | --------------: | ----------------------: | ----------------: | ------------------: |
+|        10.000 |    79 |         160.059 |               5.857.637 |               125 |          77.500.416 |
+|        25.000 |   196 |         410.599 |              14.662.754 |               316 |         143.953.920 |
+|        50.000 |   391 |         839.700 |              29.341.293 |               513 |         226.914.304 |
+
+Pada 50k sintetis, pencarian `ك` dan prefiks glos `con` memilih 391/391 shard. Ini skenario adversarial yang memang dirancang untuk mengekspos risiko indeks, bukan estimasi persentase query pengguna. Lanjutkan melalui [issue #74](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/74): tentukan strategi query pendek/paginasi, evaluasi ukuran transfer gzip/brotli, search completeness, dan pengujian perangkat nyata. Tidak ada perubahan algoritma produksi atau dataset yang dipublikasikan dalam PR benchmark.
