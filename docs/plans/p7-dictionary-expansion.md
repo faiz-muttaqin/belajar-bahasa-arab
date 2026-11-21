@@ -16,11 +16,11 @@ Status: dimulai 20 November 2026. Baseline main: merge PR #69, `4437a76`. Dokume
 
 - **P7.1 — Ekstraksi nyata berhasil; audit masih terbuka.** Eksekusi P4 pada dump nyata; rekam URL, varian raw/postprocessed, tanggal, checksum, statistik POS/register/bucket/ambigu/duplikat; audit lisensi dan contoh nyata. Dependensi: P4.
 - **P7.2 — Terbuka.** Audit 501 verba tersisa per batch; makna/bab/locator didukung; hold jika bukti tidak cukup; Qabas reference-only. Dependensi: P2/P3.
-- **P7.3 — Retrieval 136/152; audit editorial terbuka.** Audit 152 starter dan perluas korpus MSA formal berlisensi; rekonsiliasi kandidat tanpa auto-merge. Dependensi: P6; P7.1 untuk lead tambahan.
+- **P7.3 — Retrieval 136/152 dan audit gap POS selesai; audit editorial terbuka.** Audit 152 starter dan perluas korpus MSA formal berlisensi; rekonsiliasi kandidat tanpa auto-merge. Dependensi: P6; P7.1 untuk lead tambahan.
 - **P7.4 — Terbuka.** Integrasi nyata Lane/P4/MSA/katalog lama via P5; mapping ID eksplisit, konflik dan lisensi diperiksa. Dependensi: P7.1–3 per batch.
 - **P7.5 — Terbuka.** Glos Indonesia per sense, definisi/contoh orisinal, sumber per klaim; batch yang dapat direview. Dependensi: P7.4 per batch.
 - **P7.6 — Terbuka.** Audit kualitas, register, duplikasi, provenance, kompatibilitas lisensi dan keputusan hold. Dependensi: P7.5 per batch.
-- **P7.7 — Terbuka.** Benchmark build, ukuran manifest/shard, fan-out, latency, no-JS/SEO untuk dataset nyata; fixture sintetis hanya benchmark awal. Dependensi: P5/P7.4.
+- **P7.7 — Benchmark sintetis berskala dibuka; hasil CI dan pengujian perangkat pending.** Benchmark build, ukuran manifest/shard, fan-out, latency, no-JS/SEO untuk dataset nyata; fixture sintetis hanya benchmark awal. Dependensi: P5/P7.4.
 - **P7.8 — Terbuka.** Publikasi bertahap serta integrasi konteks pembelajaran LM-04/05 dan 20–50 variasi latihan per bank. Dependensi: P7.6–7 per batch.
 
 ## Cara lanjut jika sesi terputus
@@ -43,3 +43,6 @@ Status: dimulai 20 November 2026. Baseline main: merge PR #69, `4437a76`. Dokume
 
 - Batch 1, CI run [44718897669](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/44718897669), head `6ed0ef6`: 868082330 bytes, 233417 lines, 17347 candidate lemma keys, 29319 distinct sense keys (29320 candidate rows), 14 duplicate rows collapsed, 12714 form/variant rows, 2843 names, 104 dialect and 108 missing gloss. 1130 candidate rows historical/classical, 28190 unspecified; 1425 ambiguous canonical, 122 no canonical. Nomina 12642 lemma keys, adjektiva 3785. P6: 136 of 152 with retrieval leads, 16 without. Two extracts identical. Published new entries: zero.
 - SHA-256 input: `19eee17681c23b3da039878ee7c970d93b75a339989a17a842f14aa7f44ea236`; output: `14cc72d910b78ddc8a2c3396b419ad351ac42ab1fde31bd79e99bfde3e5f3b3d`. Main verification run 44718897488 failed only on missing plan inventory; fix inventory, rerun before merge.
+
+- 21 November 2026: PR #72 merged `127b6f8` setelah dua workflow lulus. [P7 preflight run 44905111271](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/44905111271): 29.320 candidate rows, **27.771 lolos gate struktural awal**, 16.407 kunci lema, 1.000 kelompok tabrakan ejaan perkiraan. Kategori penahanan disjungtif: 1.425 canonical ambigu/tidak cocok, 122 tanpa canonical dan 2 identitas upstream ganda. Dari 152 starter MSA: 136 punya candidate lead; 16 belum (11 ungkapan, 3 nomina, 2 adjektiva). Angka ini bukan keputusan publikasi. **0 glos disetujui/diimpor**.
+- P7.7 batch benchmark: `scripts/p7-dictionary-benchmark.ts` dan workflow P7 tersendiri mengukur ukuran manifest/shard, RSS, waktu build, serta fan-out query pada 10k/25k/50k **entri sintetis**, bukan dataset Arab nyata. Status validasi dan metrik dicatat setelah CI. Sumber dokumentasi: [benchmark](../data/p7-shard-benchmark.md). Longgar untuk report runtimes, ketat untuk integritas shard. Sebelum publikasi perlu dataset nyata, lisensi, QA data dan tes perangkat Android.
