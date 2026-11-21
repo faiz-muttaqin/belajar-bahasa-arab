@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { CATALOG_PATH } from '#lib/catalog/types.js';
-	import { createDictionaryLoader } from '#lib/domain/dictionary/shards.js';
+	import {
+	createDictionaryLoader,
+	DictionaryQueryTooBroadError
+} from '#lib/domain/dictionary/shards.js';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { dictionaryPilot } from '#lib/content/dictionary-pilot.js';
@@ -18,6 +21,7 @@
 	let register = $state<DictionaryRegister | 'all'>('all');
 	let loaded = $state.raw<DictionaryEntry[]>([]);
 	let loadFailed = $state(false);
+	let tooBroad = $state(false);
 	let loading = $state(false);
 	const loader = createDictionaryLoader(async (path) => {
 		const url = new URL(
@@ -31,7 +35,7 @@
 		if (!response.ok) throw new Error('Dictionary asset unavailable');
 		return response.json();
 	});
-	let catalog = $derived(loaded.length ? loaded : dictionaryPilot);
+	let catalog = $derived(tooBroad ? [] : loaded.length ? loaded : dictionaryPilot);
 	let results = $derived(searchDictionary(catalog, query, pos, register));
 
 	$effect(() => {
@@ -39,6 +43,7 @@
 		let current = true;
 		loaded = [];
 		loadFailed = false;
+		tooBroad = false;
 		loading = !!requested.trim();
 		if (requested.trim()) {
 			void loader
@@ -46,8 +51,10 @@
 				.then((entries) => {
 					if (current) loaded = entries;
 				})
-				.catch(() => {
-					if (current) loadFailed = true;
+				.catch((error: unknown) => {
+					if (!current) return;
+					if (error instanceof DictionaryQueryTooBroadError) tooBroad = true;
+					else loadFailed = true;
 				})
 				.finally(() => {
 					if (current) loading = false;
@@ -122,12 +129,18 @@
 	<h2 class="text-xl font-semibold">{results.length} lema</h2>
 	{#if loading}
 		<p class="text-sm text-muted-foreground" role="status">Memuat indeks kamus…</p>
+	{:else if tooBroad}
+		<p class="text-sm text-muted-foreground" role="status">
+			Pencarian terlalu luas untuk dimuat sekaligus. Tambahkan huruf atau kata yang lebih spesifik;
+			hasil tidak dipotong diam-diam. Pencarian tepat untuk kata pendek masih memerlukan indeks
+			lanjutan.
+		</p>
 	{:else if loadFailed}
 		<p class="text-sm text-muted-foreground" role="status">
 			Indeks belum tersedia; menampilkan pilot lokal.
 		</p>
 	{/if}
-	{#if results.length === 0}
+	{#if results.length === 0 && !tooBroad}
 		<p>Tidak ada dalam pilot ini. Coba kata lain atau hapus filter.</p>
 	{/if}
 	{#each results as entry (entry.id)}
