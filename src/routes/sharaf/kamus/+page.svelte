@@ -2,9 +2,9 @@
 	import { resolve } from '$app/paths';
 	import { CATALOG_PATH } from '#lib/catalog/types.js';
 	import {
-	createDictionaryLoader,
-	DictionaryQueryTooBroadError
-} from '#lib/domain/dictionary/shards.js';
+		createDictionaryLoader,
+		DictionaryQueryTooBroadError
+	} from '#lib/domain/dictionary/shards.js';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import { dictionaryPilot } from '#lib/content/dictionary-pilot.js';
