@@ -5,7 +5,7 @@ Tanggal telaah awal: 22 November 2026. Ini **antrean audit sumber**, bukan dafta
 ## Jejak data
 
 - Reproduksi: skrip `scripts/lane/p7_qamus_markers.py` pada [CI 44734683395](https://github.com/faiz-muttaqin/belajar-bahasa-arab/actions/runs/44734683395). Dari 501 unknown aktif, 15 termasuk kategori `inspect_matching_marker`.
-- Teks primer yang dipin: *Al-Qāmūs al-Muḥīṭ*, [OpenITI 0825AH, revisi `2630748`](https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1), sumber berlisensi CC BY-NC-SA 4.0 di katalog OpenITI; **reference-only**, bukan sumber teks untuk dikirim ulang.
+- Teks primer yang dipin: _Al-Qāmūs al-Muḥīṭ_, [OpenITI 0825AH, revisi `2630748`](https://github.com/OpenITI/0825AH/blob/2630748a4754b509908048087e569ccc8dd251ce/data/0817MajdDinFiruzabadi/0817MajdDinFiruzabadi.QamusMuhit/0817MajdDinFiruzabadi.QamusMuhit.Shamela0007283-ara1), sumber berlisensi CC BY-NC-SA 4.0 di katalog OpenITI; **reference-only**, bukan sumber teks untuk dikirim ulang.
 - Baris berikut adalah locator digital dan fakta pembanding bab, bukan kutipan definisi. `HOLD` berarti membutuhkan pemeriksaan lanjutan, `PENDING` berarti belum ditelaah semantik. Tidak ada entri berstatus `draft_supported` dalam batch ini.
 
 ## Lima belas lead yang diverifikasi dari log
