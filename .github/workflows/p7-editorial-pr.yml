@@ -1,0 +1,33 @@
+name: P7 private editorial decision gates
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/p7_compile_decisions.py'
+      - 'scripts/test_p7_compile_decisions.py'
+      - 'scripts/prepare-dictionary-import.ts'
+      - 'scripts/prepare-dictionary-import.spec.ts'
+      - '.github/workflows/p7-editorial-pr.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - name: Validate review packet compiler
+        run: python3 -m unittest discover -s scripts -p 'test_p7_compile_decisions.py'
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+      - name: Test private import gate
+        run: bunx vitest run scripts/prepare-dictionary-import.spec.ts
