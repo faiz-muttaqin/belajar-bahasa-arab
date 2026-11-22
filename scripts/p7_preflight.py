@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """P7.3/P7.4 research-only preflight for an actual P4 + P6 snapshot.
 
-Only aggregate metrics leave CI; neither lexical rows nor inferred meanings
-are published. Structural eligibility does not grant linguistic or legal approval.
+Only aggregate metrics and first-party MSA IDs leave CI; no upstream lexical
+rows, source glosses or inferred meanings are published. Structural eligibility
+does not grant linguistic or legal approval.
 """
 import argparse
 from collections import Counter, defaultdict
