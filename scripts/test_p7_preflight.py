@@ -1,6 +1,6 @@
 import unittest
 
-from p7_preflight import analyze
+from p7_preflight import analyze, diagnose_msa_gaps
 
 
 class P7PreflightTest(unittest.TestCase):
@@ -53,6 +53,40 @@ class P7PreflightTest(unittest.TestCase):
         self.assertEqual(result["automaticallyImportedEntries"], 0)
         self.assertNotIn("synthetic", str(result))
         self.assertNotIn("كِتَاب", str(result))
+
+    def test_gap_diagnostics_are_metadata_only_and_not_semantic_claims(self):
+        historical = {
+            **self.base, "ar": "قَلَم", "canonical": ["قَلَم"],
+            "lemmaId": "d" * 64, "senseId": "e" * 64,
+            "register": "classical-or-historical"
+        }
+        ignored = {
+            **self.base, "ar": "مَاء", "canonical": ["مَاء"],
+            "lemmaId": "f" * 64, "senseId": "1" * 64,
+            "bucket": "dialect"
+        }
+        queue = [
+            {"id": "msa-pos", "wordClass": "expression",
+             "arabic": "كِتَاب", "candidates": []},
+            {"id": "msa-none", "wordClass": "noun",
+             "arabic": "غِيَاب", "candidates": []},
+            {"id": "msa-historical", "wordClass": "noun",
+             "arabic": "قَلَم", "candidates": []},
+            {"id": "msa-noncandidate", "wordClass": "noun",
+             "arabic": "مَاء", "candidates": []}
+        ]
+        rows = [self.base, historical, ignored]
+        report = diagnose_msa_gaps(rows, queue)
+        reasons = {item["msaId"]: item["reason"] for item in report}
+        self.assertEqual(reasons, {
+            "msa-historical": "excluded-classical-register",
+            "msa-noncandidate": "only-noncandidate-buckets",
+            "msa-none": "no-exact-full-form",
+            "msa-pos": "different-pos"
+        })
+        self.assertEqual(report[-1]["sourceCandidatePos"], ["noun"])
+        self.assertNotIn("synthetic", str(report))
+        self.assertNotIn("كِتَاب", str(report))
 
     def test_missing_ids_are_deterministic_and_duplicate_ids_rejected(self):
         entries = [
