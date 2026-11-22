@@ -5,7 +5,8 @@ on:
     paths:
       - 'scripts/build-wiktionary-nonverbs*'
       - 'scripts/p7-snapshot-report.py'
-      - 'scripts/p7_*'
+      - 'scripts/p7_preflight.py'
+      - 'scripts/p7_review_batch.py'
       - 'scripts/test_p7_preflight.py'
       - 'scripts/test_p7_review_batch.py'
       - 'scripts/p6-msa-audit.mjs'
