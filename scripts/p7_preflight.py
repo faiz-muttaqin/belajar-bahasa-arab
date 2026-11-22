@@ -79,6 +79,13 @@ def analyze(snapshot, queue):
     listed = queue.get("entries", [])
     if len(listed) != queue.get("totals", {}).get("pending"):
         raise ValueError("P6 queue length mismatch")
+    msa_ids = [item.get("id") for item in listed]
+    if (any(not isinstance(item_id, str) or not item_id.strip()
+            for item_id in msa_ids)
+            or len(set(msa_ids)) != len(msa_ids)):
+        raise ValueError("P6 queue needs stable unique MSA IDs")
+    missing_ids = sorted(item["id"] for item in listed
+                         if not item.get("candidates"))
     with_candidate = sum(bool(item.get("candidates")) for item in listed)
     if with_candidate != queue.get("totals", {}).get("withCandidate"):
         raise ValueError("P6 candidate totals mismatch")
@@ -115,6 +122,7 @@ def analyze(snapshot, queue):
             "pending": len(listed),
             "withCandidate": with_candidate,
             "withoutCandidate": len(listed) - with_candidate,
+            "withoutCandidateIds": missing_ids,
             "pendingByClass": dict(sorted(pending_by_class.items())),
             "withCandidateByClass": dict(sorted(candidates_by_class.items())),
             "withoutCandidateByClass": dict(sorted(missing_by_class.items())),
