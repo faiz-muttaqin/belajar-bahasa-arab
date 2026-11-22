@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { preparePrivateStaging, type PrivateImportReview } from '../../../../scripts/prepare-dictionary-import.js';
+import {
+	preparePrivateStaging,
+	type PrivateImportReview
+} from '../../../../scripts/prepare-dictionary-import.js';
 import type { P4Snapshot } from './p4-adapter.js';
 
 const snapshot: P4Snapshot = {
@@ -99,7 +102,10 @@ describe('P7 private decision importer', () => {
 			} as unknown as PrivateImportReview)
 		).toThrow('matching snapshot');
 		expect(() =>
-			preparePrivateStaging(snapshot, { ...review, reviewSummary: { ready: 2, hold: 0, pending: 0 } })
+			preparePrivateStaging(snapshot, {
+				...review,
+				reviewSummary: { ready: 2, hold: 0, pending: 0 }
+			})
 		).toThrow('review summary');
 	});
 });

@@ -69,14 +69,13 @@ export function validatePrivateImportReview(snapshot: P4Snapshot, review: Privat
 		license.status !== 'reviewed-for-private-staging' ||
 		license.rightsDisposition !== 'research-only-no-redistribution' ||
 		!dateValid(license.reviewedOn) ||
-		![
-			license.reviewedBy,
-			license.sourceTerms,
-			license.attributionPlan,
-			license.rightsNotes
-		].every(nonempty)
+		![license.reviewedBy, license.sourceTerms, license.attributionPlan, license.rightsNotes].every(
+			nonempty
+		)
 	)
-		throw new Error('Private staging requires structured rights review with a non-redistribution hold');
+		throw new Error(
+			'Private staging requires structured rights review with a non-redistribution hold'
+		);
 	const summary = review.reviewSummary;
 	if (
 		!summary ||
@@ -124,5 +123,9 @@ if (import.meta.main) {
 	const review = JSON.parse(readFileSync(reviewPath, 'utf8')) as PrivateImportReview;
 	const result = preparePrivateStaging(snapshot, review);
 	writeFileSync(output, JSON.stringify(result) + '\n', { flag: 'wx', mode: 0o600 });
-	console.log('Staged', result.entries.length, 'lemmas as private drafts; publication not approved.');
+	console.log(
+		'Staged',
+		result.entries.length,
+		'lemmas as private drafts; publication not approved.'
+	);
 }

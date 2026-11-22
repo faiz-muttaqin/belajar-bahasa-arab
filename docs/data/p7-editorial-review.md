@@ -14,22 +14,22 @@ Contoh audit pada **satu tugas** (semua nilai ini hanya struktur, bukan klaim au
 
 ```json
 {
-  "reviewStatus": "ready",
-  "decisionDraft": {
-    "entryId": "local-lemma-id",
-    "localSenseId": "local-sense-id",
-    "glossId": "glos Indonesia orisinal yang sudah diperiksa",
-    "register": "unspecified",
-    "checkedOn": "2026-11-22",
-    "locator": "Arabic > bagian kelas kata > sense yang diperiksa"
-  },
-  "audit": {
-    "sourceSenseChecked": true,
-    "originalIndonesianGlossChecked": true,
-    "registerEvidenceChecked": true,
-    "reviewedBy": "identitas reviewer",
-    "notes": "alasan dan batas interpretasi sense yang diperiksa"
-  }
+	"reviewStatus": "ready",
+	"decisionDraft": {
+		"entryId": "local-lemma-id",
+		"localSenseId": "local-sense-id",
+		"glossId": "glos Indonesia orisinal yang sudah diperiksa",
+		"register": "unspecified",
+		"checkedOn": "2026-11-22",
+		"locator": "Arabic > bagian kelas kata > sense yang diperiksa"
+	},
+	"audit": {
+		"sourceSenseChecked": true,
+		"originalIndonesianGlossChecked": true,
+		"registerEvidenceChecked": true,
+		"reviewedBy": "identitas reviewer",
+		"notes": "alasan dan batas interpretasi sense yang diperiksa"
+	}
 }
 ```
 
@@ -39,13 +39,13 @@ Contoh struktur metadata hak sumber yang **hanya** mengizinkan staging privat:
 
 ```json
 {
-  "status": "reviewed-for-private-staging",
-  "rightsDisposition": "research-only-no-redistribution",
-  "reviewedBy": "identitas reviewer",
-  "reviewedOn": "2026-11-22",
-  "sourceTerms": "hasil pemeriksaan syarat dan sumber lisensi",
-  "attributionPlan": "rencana atribusi kontributor dan ekstraktor",
-  "rightsNotes": "hak atas snapshot postprocessed masih ditahan untuk publikasi"
+	"status": "reviewed-for-private-staging",
+	"rightsDisposition": "research-only-no-redistribution",
+	"reviewedBy": "identitas reviewer",
+	"reviewedOn": "2026-11-22",
+	"sourceTerms": "hasil pemeriksaan syarat dan sumber lisensi",
+	"attributionPlan": "rencana atribusi kontributor dan ekstraktor",
+	"rightsNotes": "hak atas snapshot postprocessed masih ditahan untuk publikasi"
 }
 ```
 
