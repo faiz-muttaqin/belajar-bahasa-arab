@@ -21,9 +21,11 @@ class P7PreflightTest(unittest.TestCase):
         return {"schema": 1, "source": self.source, "entries": entries}
 
     def queue(self, entries):
-        return {"schema": 1, "source": self.source, "entries": entries,
-                "totals": {"pending": len(entries),
-                           "withCandidate": sum(bool(e["candidates"]) for e in entries)}}
+        items = [{"id": item.get("id", f"fixture-{i}"), **item}
+                 for i, item in enumerate(entries)]
+        return {"schema": 1, "source": self.source, "entries": items,
+                "totals": {"pending": len(items),
+                           "withCandidate": sum(bool(e["candidates"]) for e in items)}}
 
     def test_structural_gates_do_not_create_approved_words(self):
         entries = [
@@ -46,10 +48,26 @@ class P7PreflightTest(unittest.TestCase):
         self.assertEqual(p4["blockedByFirstReason"]["ambiguous_or_mismatched_canonical"], 1)
         self.assertEqual(p4["blockedByFirstReason"]["unsupported_pos"], 1)
         self.assertEqual(result["p6"]["withoutCandidate"], 1)
+        self.assertEqual(result["p6"]["withoutCandidateIds"], ["fixture-1"])
         self.assertEqual(result["approvedGlosses"], 0)
         self.assertEqual(result["automaticallyImportedEntries"], 0)
         self.assertNotIn("synthetic", str(result))
         self.assertNotIn("كِتَاب", str(result))
+
+    def test_missing_ids_are_deterministic_and_duplicate_ids_rejected(self):
+        entries = [
+            {"id": "msa-z", "wordClass": "expression", "candidates": []},
+            {"id": "msa-a", "wordClass": "noun", "candidates": []}
+        ]
+        first = analyze(self.snapshot([self.base]), self.queue(entries))["p6"]
+        second = analyze(self.snapshot([self.base]), self.queue(list(reversed(entries))))["p6"]
+        self.assertEqual(first["withoutCandidateIds"], ["msa-a", "msa-z"])
+        self.assertEqual(first["withoutCandidateIds"], second["withoutCandidateIds"])
+        with self.assertRaisesRegex(ValueError, "unique MSA IDs"):
+            analyze(self.snapshot([self.base]), self.queue([
+                {"id": "dup", "candidates": []},
+                {"id": "dup", "candidates": []}
+            ]))
 
     def test_repeated_upstream_sense_is_blocked(self):
         entries = [self.base, {**self.base, "ar": "كِتَاب", "canonical": ["كِتَاب"]}]
