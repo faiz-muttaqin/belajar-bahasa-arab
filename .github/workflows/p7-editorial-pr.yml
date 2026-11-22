@@ -6,7 +6,7 @@ on:
       - 'scripts/p7_compile_decisions.py'
       - 'scripts/test_p7_compile_decisions.py'
       - 'scripts/prepare-dictionary-import.ts'
-      - 'scripts/prepare-dictionary-import.spec.ts'
+      - 'src/lib/domain/dictionary/prepare-private-import.spec.ts'
       - '.github/workflows/p7-editorial-pr.yml'
   workflow_dispatch:
 
@@ -29,5 +29,18 @@ jobs:
         run: python3 -m unittest discover -s scripts -p 'test_p7_compile_decisions.py'
       - name: Install locked dependencies
         run: bun install --frozen-lockfile
+      - name: Inspect formatter candidates
+        run: |
+          bunx prettier --write docs/data/p7-editorial-review.md scripts/prepare-dictionary-import.ts src/lib/domain/dictionary/prepare-private-import.spec.ts
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for filename in (
+              "docs/data/p7-editorial-review.md",
+              "scripts/prepare-dictionary-import.ts",
+              "src/lib/domain/dictionary/prepare-private-import.spec.ts"
+          ):
+              print("P7_FORMATTED " + json.dumps({"path": filename, "content": Path(filename).read_text(encoding="utf-8")}, ensure_ascii=False))
+          PY
       - name: Test private import gate
-        run: bunx vitest run scripts/prepare-dictionary-import.spec.ts
+        run: bunx vitest run src/lib/domain/dictionary/prepare-private-import.spec.ts
