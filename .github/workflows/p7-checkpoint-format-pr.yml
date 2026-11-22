@@ -1,0 +1,30 @@
+name: P7 checkpoint formatting diagnostic
+on:
+  pull_request:
+    paths:
+      - 'docs/plans/p7-dictionary-expansion.md'
+      - '.github/workflows/p7-checkpoint-format-pr.yml'
+permissions:
+  contents: read
+jobs:
+  checkpoint-format:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Emit formatted checkpoint for the PR
+        run: |
+          bunx prettier --write docs/plans/p7-dictionary-expansion.md
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          name = "docs/plans/p7-dictionary-expansion.md"
+          print("P7_CHECKPOINT_FORMATTED " + json.dumps({"path": name, "content": Path(name).read_text(encoding="utf-8")}, ensure_ascii=False))
+          PY
