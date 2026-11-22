@@ -26,6 +26,50 @@ def approximate_spelling(value):
                    if c not in DIACRITICS).strip()
 
 
+
+# Match metadata is only a lead; P4 senses, glosses and lexical rows stay private.
+P6_EXPECTED_POS = {
+    "noun": "noun", "adjective": "adj",
+    "expression": "phrase", "particle": "particle"
+}
+
+
+def diagnose_msa_gaps(snapshot_rows, queue_items):
+    index = defaultdict(list)
+    for row in snapshot_rows:
+        spelling = approximate_spelling(row.get("ar") or "")
+        if spelling:
+            index[spelling].append((
+                row.get("bucket"), row.get("pos"), row.get("register")
+            ))
+    results = []
+    for item in queue_items:
+        if item.get("candidates"):
+            continue
+        expected = P6_EXPECTED_POS.get(item.get("wordClass"))
+        records = index.get(approximate_spelling(item.get("arabic") or ""), [])
+        candidate_rows = [row for row in records if row[0] == "candidate"]
+        matching_pos = [row for row in candidate_rows if row[1] == expected]
+        if not records:
+            reason = "no-exact-full-form"
+        elif not candidate_rows:
+            reason = "only-noncandidate-buckets"
+        elif not matching_pos:
+            reason = "different-pos"
+        elif all(row[2] == "classical-or-historical" for row in matching_pos):
+            reason = "excluded-classical-register"
+        else:
+            reason = "investigate-remaining-mismatch"
+        results.append({
+            "msaId": item["id"], "reason": reason,
+            "sourceCandidatePos": sorted({row[1] for row in candidate_rows
+                                         if isinstance(row[1], str)}),
+            "sourceBuckets": sorted({row[0] for row in records
+                                     if isinstance(row[0], str)}),
+        })
+    return sorted(results, key=lambda item: item["msaId"])
+
+
 def analyze(snapshot, queue):
     source = snapshot.get("source", {})
     if snapshot.get("schema") != 1 or source.get("id") != "wiktionary":
@@ -87,6 +131,9 @@ def analyze(snapshot, queue):
         raise ValueError("P6 queue needs stable unique MSA IDs")
     missing_ids = sorted(item["id"] for item in listed
                          if not item.get("candidates"))
+    gap_diagnostics = diagnose_msa_gaps(snapshot.get("entries", []), listed)
+    if [item["msaId"] for item in gap_diagnostics] != missing_ids:
+        raise ValueError("P6 gap diagnosis ID mismatch")
     with_candidate = sum(bool(item.get("candidates")) for item in listed)
     if with_candidate != queue.get("totals", {}).get("withCandidate"):
         raise ValueError("P6 candidate totals mismatch")
@@ -124,6 +171,9 @@ def analyze(snapshot, queue):
             "withCandidate": with_candidate,
             "withoutCandidate": len(listed) - with_candidate,
             "withoutCandidateIds": missing_ids,
+            "gapDiagnosisByReason": dict(sorted(Counter(
+                item["reason"] for item in gap_diagnostics).items())),
+            "gapDiagnostics": gap_diagnostics,
             "pendingByClass": dict(sorted(pending_by_class.items())),
             "withCandidateByClass": dict(sorted(candidates_by_class.items())),
             "withoutCandidateByClass": dict(sorted(missing_by_class.items())),
@@ -141,6 +191,7 @@ def analyze(snapshot, queue):
             "Structural counts mirror preliminary P5 adapter gates, not a successful review decision.",
             "Orthographic collisions are approximate retrieval leads; never merge by normalized spelling.",
             "Unspecified register is not proof of MSA; English glosses are not Indonesian translations.",
+            "Exact P4 spelling and POS metadata are retrieval leads, not sense equivalence.",
         ],
     }
 

@@ -17,3 +17,15 @@ P7.3 menambahkan `p6.withoutCandidateIds` yang diurutkan secara deterministik pa
 5. Jangan mengubah `p7_preflight.py` menjadi auto-translator. Penggabungan P5 harus menggunakan mapping ID dan keputusan reviewer, bukan kesamaan ejaan saja.
 
 **Batasan:** angka 136/16 tetap baseline dari snapshot terpin 2026-10-01. Jika checksum sumber berubah, hitung ulang baseline dan rekam metriknya; jangan gabung dua snapshot secara diam-diam. Audit lisensi dan izin penerbitan tetap terpisah.
+
+## Diagnosis otomatis tambahan (metadata saja)
+
+Preflight membangun `p6.gapDiagnostics` dari pencocokan **ejaan penuh tanpa harakat** untuk 16 ID yang tidak mendapat kandidat. Tiap record berisi hanya ID kosakata proyek, `reason`, kelompok `sourceCandidatePos`, dan `sourceBuckets`. Tak satu pun memuat glos atau baris Wiktionary.
+
+- `no-exact-full-form`: bentuk penuh belum ditemukan lewat normalisasi yang dipakai; tidak berarti ungkapan salah atau tidak lazim.
+- `only-noncandidate-buckets`: bentuk ditemukan hanya pada bucket di luar kandidat, misalnya varian/dialek; perlu tinjau penyebab eksklusi.
+- `different-pos`: bentuk ada dalam bucket kandidat, tetapi POS sumber tidak cocok dengan pemetaan P6. Ini adalah **lead** untuk review POS, bukan pembenaran mengubah kelas kata.
+- `excluded-classical-register`: POS cocok, tetapi entri sumber diberi register historis/klasik; jangan otomatis promosi ke MSA.
+- `investigate-remaining-mismatch`: kandidat tampak sejalan secara bentuk/POS; periksa logika matcher dan metadata asli tanpa mengasumsikan arti sama.
+
+`p6.gapDiagnosisByReason` menghitung distribusi status. Laporan tetap tidak melakukan penggabungan, perubahan terjemahan, atau persetujuan sense; pertahankan nomor snapshot dan hasil CI ketika melakukan pemeriksaan berikutnya.
