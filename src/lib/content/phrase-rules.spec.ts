@@ -7,15 +7,24 @@ import {
 } from './phrase-rules.js';
 
 describe('G-03: sourced phrase and i‘rab lessons', () => {
-	it('has five topics, stable anchors and original vocalized examples', () => {
+	it('has twelve topics, stable anchors and original vocalized examples', () => {
 		expect(phraseRules.map((rule) => rule.id)).toEqual([
 			'marifah-nakirah',
 			'naat-agreement',
 			'idafah-jar',
 			'perubahan-irab',
-			'jumlah-dan-gender'
+			'jumlah-dan-gender',
+			'zharf-makan-zaman',
+			'muannath-salim',
+			'asma-khamsa',
+			'jamak-taksir-mamnu',
+			'maqshur-manqush',
+			'kata-mabni',
+			'idafah-nasb-marifah'
 		]);
-		expect(phraseRules.map((rule) => rule.examples.length)).toEqual([2, 4, 3, 3, 4]);
+		expect(phraseRules.map((rule) => rule.examples.length)).toEqual([
+			2, 4, 3, 3, 4, 5, 6, 4, 5, 5, 5, 5
+		]);
 		expect(phraseRules.every((rule) => rule.reviewStatus === 'draft')).toBe(true);
 		expect(validatePhraseRules(phraseRules)).toEqual([]);
 	});
@@ -85,5 +94,45 @@ describe('G-03: sourced phrase and i‘rab lessons', () => {
 		expect(validatePhraseRules([missingMarker])).toContain(
 			'Missing i‘rab sign: marifah-nakirah/indefinite-book'
 		);
+	});
+
+	it('cites specific chapters, lessons and sections rather than a bare site', () => {
+		for (const rule of phraseRules) {
+			for (const source of rule.sources) {
+				expect(source.locator, rule.id).toBeTruthy();
+				expect(source.url).toMatch(/^https:\/\//);
+			}
+			const keys = rule.sources.map((source) => source.url + '|' + source.locator);
+			expect(new Set(keys).size, rule.id).toBe(keys.length);
+		}
+		const hosts = new Set(
+			phraseRules.flatMap((rule) => rule.sources.map((s) => new URL(s.url).host))
+		);
+		expect(hosts).toEqual(new Set(['ar.wikisource.org', 'madinaharabic.com']));
+	});
+
+	it('shows the kasrah-in-naṣb, wāw/alif/yā’ and fatḥa-in-jarr edge cases on stated forms', () => {
+		const marker = (ruleId: string, exampleId: string, index: number) =>
+			phraseRules
+				.find((rule) => rule.id === ruleId)!
+				.examples.find((example) => example.id === exampleId)!.tokens[index]!;
+		expect(marker('muannath-salim', 'fem-plural-object', 1).arabic).toBe('الْمُعَلِّمَاتِ');
+		expect(marker('muannath-salim', 'fem-plural-object', 1).irab).toBe('nasb');
+		expect(marker('muannath-salim', 'fem-plural-object', 1).marker).toContain('kasra');
+		expect(
+			['father-raf', 'father-nasb', 'father-jarr'].map(
+				(id, i) => marker('asma-khamsa', id, i === 2 ? 2 : 1).marker
+			)
+		).toEqual(['wāw', 'alif', 'yā’']);
+		expect(marker('jamak-taksir-mamnu', 'mamnu-jarr', 1).marker).toContain('fatḥa');
+		expect(marker('jamak-taksir-mamnu', 'mamnu-definite', 1).marker).toBe('kasra');
+	});
+
+	it('never marks a mabnī word with a case sign', () => {
+		const rule = phraseRules.find((item) => item.id === 'kata-mabni')!;
+		for (const example of rule.examples)
+			for (const token of example.tokens)
+				if (token.role.includes('mabnī') && !token.role.includes('muḍāf +'))
+					expect(token.irab, token.arabic).toBeUndefined();
 	});
 });

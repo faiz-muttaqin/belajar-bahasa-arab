@@ -9,211 +9,34 @@
  * evidence: docs/data/vp01-annotation-pilot.md.
  */
 import { grammarRules } from './grammar-rules.js';
-import type {
-	AnnotatedSentence,
-	AnnotatedToken,
-	AnnotationAnalysis,
-	AnnotationOrigin,
-	AnnotationRelation,
-	AnnotationSource,
-	RelationType,
-	RuleLink,
-	TokenSegment
-} from '#lib/domain/grammar/annotation.js';
+import type { AnnotatedSentence, AnnotationOrigin } from '#lib/domain/grammar/annotation.js';
+import {
+	aj,
+	analysis,
+	g1IdafahLink,
+	g1MubtadaLink,
+	g1NaatLink,
+	grammarOrigin,
+	idafahLink,
+	irabLink,
+	jarrIsim,
+	lessonLink,
+	lessonOrigin,
+	limitNotes,
+	madinah,
+	naatLink,
+	phraseOrigin,
+	sentence,
+	tandaFiil,
+	tandaIsimAl,
+	tandaIsimTanwin,
+	withArticle,
+	withSubjectPronoun
+} from './annotation-builders.js';
+import { phraseEdgeAnnotations } from './phrase-edge-annotations.js';
+import { phraseRules, type PhraseRuleId } from './phrase-rules.js';
 
-const ajurrumiyyahUrl =
-	'https://ar.wikisource.org/wiki/%D8%A7%D9%84%D8%A2%D8%AC%D8%B1%D9%88%D9%85%D9%8A%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D9%86%D8%AD%D9%88';
-const ajurrumiyyah = (locator: string): AnnotationSource => ({
-	label: 'Al-Ājurrūmiyyah (Wikisource Arab)',
-	url: ajurrumiyyahUrl,
-	locator
-});
-
-export const aj = {
-	kalam: ajurrumiyyah('Pembuka: pembagian kalām menjadi isim, fi‘il, harf dan tanda-tandanya'),
-	irab: ajurrumiyyah('Bāb ma‘rifat ‘alāmāt al-i‘rāb'),
-	marfuat: ajurrumiyyah('Bāb marfū‘āt al-asmā’'),
-	manshubat: ajurrumiyyah('Bāb manṣūbāt al-asmā’'),
-	fail: ajurrumiyyah('Bāb al-fā‘il'),
-	naibFail: ajurrumiyyah('Bāb al-maf‘ūl alladhī lam yusamma fā‘iluh'),
-	mubtada: ajurrumiyyah('Bāb al-mubtada’ wa-l-khabar'),
-	naat: ajurrumiyyah('Bāb an-na‘t'),
-	mafulBih: ajurrumiyyah('Bāb al-maf‘ūl bih'),
-	makhfudat: ajurrumiyyah('Bāb makhfūḍāt al-asmā’')
-};
-
-export const madinah = {
-	nominal: {
-		label: 'Madinah Arabic · Kalimat nominal',
-		url: 'https://madinaharabic.com/free-content/grammar/lesson-58/part-1',
-		locator: 'Grammar Lesson 58, bagian 1: The nominal sentence'
-	},
-	doer: {
-		label: 'Madinah Arabic · Pelaku (fa‘il)',
-		url: 'https://madinaharabic.com/free-content/grammar/lesson-64/part-2',
-		locator: 'Grammar Lesson 64, bagian 2: The doer'
-	},
-	passive: {
-		label: 'Madinah Arabic · Kalimat aktif dan pasif',
-		url: 'https://madinaharabic.com/free-content/grammar/lesson-34/part-1',
-		locator: 'Grammar Lesson 34, bagian 1: Active and Passive Voice'
-	},
-	idafah: {
-		label: 'Madinah Arabic · Iḍāfah',
-		url: 'https://madinaharabic.com/free-content/grammar/lesson-5/part-2',
-		locator: 'Grammar Lesson 5, bagian 2: ungkapan kepemilikan (muḍāf dan muḍāf ilaih)'
-	}
-} satisfies Record<string, AnnotationSource>;
-
-const ownedExampleLimits =
-	'Kalimat ini contoh tertulis proyek, bukan kutipan dari sumber. Sumber hanya dipakai untuk memeriksa istilah dan kaidahnya. Analisis masih draf dan belum ditinjau ustadz.';
-
-const limitNotes = {
-	phrase: ' Ini frasa, bukan kalimat lengkap.',
-	prepositionPhrase: ' Ini frasa kata depan, bukan kalimat lengkap.',
-	khafd: ' Al-Ājurrūmiyyah memakai istilah khafḍ untuk apa yang di sini disebut jarr.',
-	sharaf:
-		' Akar dan pola kata berasal dari pelajaran proyek; sumber yang dikutip tidak membahas akar, isim fā‘il, isim maf‘ūl atau isim alat. Perubahan vokal fi‘il pasif disebut Al-Ājurrūmiyyah dalam bab al-maf‘ūl alladhī lam yusamma fā‘iluh.',
-	naatAgreement:
-		' Kesesuaian jenis dan jumlah na‘at tidak dinyatakan dalam bab yang dikutip; perlu sumber tambahan.',
-	khabarAgreement:
-		' Kesesuaian jenis antara khabar dan mubtada’ tidak dinyatakan sebagai kaidah dalam sumber yang dikutip; perlu sumber tambahan.',
-	nonhumanPlural:
-		' Aturan sifat feminin tunggal untuk jamak benda tidak berakal tidak ada dalam sumber yang dikutip; perlu sumber tambahan.',
-	naib: ' Istilah nā’ib al-fā‘il tidak ada dalam sumber yang dikutip; Al-Ājurrūmiyyah memakai al-maf‘ūl alladhī lam yusamma fā‘iluh.'
-} as const;
-
-function analysis(
-	sources: readonly [AnnotationSource, ...AnnotationSource[]],
-	...notes: readonly string[]
-): AnnotationAnalysis {
-	return {
-		sources,
-		usageType: 'independent-original',
-		status: 'draft',
-		limits: ownedExampleLimits + notes.join('')
-	};
-}
-
-/** الْـ at the start of a word: shown as a part of that word, never as a separate word. */
-function withArticle(text: string, stemNote: string): readonly TokenSegment[] {
-	const article = /^الْ?/u.exec(text)?.[0];
-	if (!article || article === text) throw new Error(`No definite article in ${text}`);
-	return [
-		{
-			text: article,
-			kind: 'definite-article',
-			note:
-				article === 'ال'
-					? 'Awalan ال membuat kata ini tertentu (ma‘rifah). Lam-nya tidak dibaca; bunyinya melebur ke huruf bertasydid sesudahnya.'
-					: 'Awalan الْـ membuat kata ini tertentu (ma‘rifah).'
-		},
-		{ text: text.slice(article.length), kind: 'stem', note: stemNote }
-	];
-}
-
-/** A subject pronoun written onto the verb, as in رَأَيْتُ. */
-function withSubjectPronoun(
-	text: string,
-	suffix: string,
-	stemNote: string
-): readonly TokenSegment[] {
-	if (!text.endsWith(suffix)) throw new Error(`${text} does not end in ${suffix}`);
-	return [
-		{ text: text.slice(0, -suffix.length), kind: 'stem', note: stemNote },
-		{
-			text: suffix,
-			kind: 'attached-pronoun',
-			note: 'Kata ganti pelaku “saya” (ḍamīr muttaṣil, berkedudukan sebagai fā‘il) yang melekat pada fi‘il. Ia tetap bagian dari satu kata ini.'
-		}
-	];
-}
-
-type TokenInput = Omit<AnnotatedToken, 'id'>;
-type RelationInput = {
-	type: RelationType;
-	/** 1-based token numbers in reading order. */
-	from: readonly [number, ...number[]];
-	to: readonly [number, ...number[]];
-	reason: string;
-};
-
-function sentence(input: {
-	id: string;
-	unit: AnnotatedSentence['unit'];
-	origins: AnnotatedSentence['origins'];
-	translation: string;
-	analysis: AnnotationAnalysis;
-	ruleLinks: readonly RuleLink[];
-	tokens: readonly TokenInput[];
-	relations: readonly RelationInput[];
-}): AnnotatedSentence {
-	const tokenId = (n: number) => `${input.id}.t${n}`;
-	const ids = (list: readonly [number, ...number[]]) =>
-		list.map(tokenId) as unknown as readonly [string, ...string[]];
-	return {
-		id: input.id,
-		unit: input.unit,
-		origins: input.origins,
-		translation: input.translation,
-		analysis: input.analysis,
-		ruleLinks: input.ruleLinks,
-		tokens: input.tokens.map((token, index) => ({ id: tokenId(index + 1), ...token })),
-		relations: input.relations.map((relation, index): AnnotationRelation => ({
-			id: `${input.id}.r${index + 1}`,
-			type: relation.type,
-			from: ids(relation.from),
-			to: ids(relation.to),
-			reason: relation.reason
-		}))
-	};
-}
-
-const lessonLink: RuleLink = {
-	label: 'Pelajaran: isim, fi‘il, dan harf dalam kalimat',
-	path: 'belajar/isim-fiil-harf/#bedah-kalimat'
-};
-const naatLink: RuleLink = {
-	label: 'Kaidah na‘at dan man‘ūt',
-	path: 'kaidah/frasa/#naat-agreement'
-};
-const idafahLink: RuleLink = {
-	label: 'Kaidah iḍāfah dan jarr–majrūr',
-	path: 'kaidah/frasa/#idafah-jar'
-};
-const g1MubtadaLink: RuleLink = {
-	label: 'Kaidah mubtada’ dan khabar (G-01)',
-	path: 'kaidah/#mubtada-khabar'
-};
-const g1IdafahLink: RuleLink = { label: 'Kaidah iḍāfah (G-01)', path: 'kaidah/#idafah' };
-const g1NaatLink: RuleLink = { label: 'Kaidah na‘at dan man‘ūt (G-01)', path: 'kaidah/#nat-manut' };
-const irabLink: RuleLink = {
-	label: 'Kaidah tiga kasus i‘rab',
-	path: 'kaidah/frasa/#perubahan-irab'
-};
-
-const tandaFiil =
-	'Fi‘il māḍī: dapat didahului قَدْ dan menerima تْ penanda feminin; keduanya tanda fi‘il menurut Al-Ājurrūmiyyah.';
-const tandaIsimAl = 'Menyebut benda dan diawali الْـ, salah satu tanda isim.';
-const tandaIsimTanwin = 'Bertanwin; tanwin adalah salah satu tanda isim.';
-const jarrIsim = (letter: string) => `Isim yang dijarrkan oleh ${letter}.`;
-
-const lessonOrigin = (group: number, index: number): AnnotationOrigin => ({
-	kind: 'lesson',
-	lessonSlug: 'isim-fiil-harf',
-	group,
-	sentence: index
-});
-const phraseOrigin = (ruleId: string, exampleId: string): AnnotationOrigin => ({
-	kind: 'phrase-rule',
-	ruleId,
-	exampleId
-});
-const grammarOrigin = (ruleId: string, exampleId: string): AnnotationOrigin => ({
-	kind: 'grammar-rule',
-	ruleId,
-	exampleId
-});
+export { aj, madinah };
 
 /** The five sentences of the word-class lesson, in the order of "Bedah per kata". */
 export const wordClassAnnotations: readonly AnnotatedSentence[] = [
@@ -1131,7 +954,10 @@ const grammarOnlyAnnotations: readonly AnnotatedSentence[] = [
 	sentence({
 		id: 'g1-kitab-talib',
 		unit: 'phrase',
-		origins: [grammarOrigin('idafah', 'idafah-buku')],
+		origins: [
+			grammarOrigin('idafah', 'idafah-buku'),
+			phraseOrigin('idafah-nasb-marifah', 'definite-idafah')
+		],
 		translation: 'Buku milik murid itu.',
 		analysis: analysis([aj.makhfudat, madinah.idafah], limitNotes.phrase, limitNotes.khafd),
 		ruleLinks: [g1IdafahLink],
@@ -1180,10 +1006,24 @@ const grammarOnlyAnnotations: readonly AnnotatedSentence[] = [
 export const grammarAnnotations: readonly AnnotatedSentence[] = [
 	...wordClassAnnotations,
 	...phraseAnnotations,
+	...phraseEdgeAnnotations,
 	...grammarOnlyAnnotations
 ];
 
-export type AnnotatedPhraseRuleId = 'naat-agreement' | 'idafah-jar' | 'perubahan-irab';
+/** G-03 rules whose examples have word-role annotations (the basic three plus the edge cases). */
+export type AnnotatedPhraseRuleId = Extract<
+	PhraseRuleId,
+	| 'naat-agreement'
+	| 'idafah-jar'
+	| 'perubahan-irab'
+	| 'zharf-makan-zaman'
+	| 'muannath-salim'
+	| 'asma-khamsa'
+	| 'jamak-taksir-mamnu'
+	| 'maqshur-manqush'
+	| 'kata-mabni'
+	| 'idafah-nasb-marifah'
+>;
 export type AnnotatedGrammarRuleId = 'nat-manut' | 'mubtada-khabar' | 'idafah';
 
 /** Annotated G-03 examples for one rule, in the order of the rule's examples. */
@@ -1192,9 +1032,16 @@ const hasOrigin = (item: AnnotatedSentence, test: (origin: AnnotationOrigin) => 
 
 /** Annotated G-03 examples for one rule, in the order of the rule's examples. */
 export function annotationsForPhraseRule(ruleId: AnnotatedPhraseRuleId): AnnotatedSentence[] {
-	return phraseAnnotations.filter((item) =>
-		hasOrigin(item, (o) => o.kind === 'phrase-rule' && o.ruleId === ruleId)
-	);
+	const rule = phraseRules.find((item) => item.id === ruleId);
+	return (rule?.examples ?? []).flatMap((example) => {
+		const found = grammarAnnotations.find((item) =>
+			hasOrigin(
+				item,
+				(o) => o.kind === 'phrase-rule' && o.ruleId === ruleId && o.exampleId === example.id
+			)
+		);
+		return found ? [found] : [];
+	});
 }
 
 /** Annotated G-01 examples (/kaidah/) for one rule, in the order of the rule's examples. */

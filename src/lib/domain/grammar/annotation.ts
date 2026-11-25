@@ -62,7 +62,8 @@ export type RoleId =
 	| 'mudhaf'
 	| 'mudhaf-ilaih'
 	| 'harf-jar'
-	| 'majrur';
+	| 'majrur'
+	| 'zharf';
 
 export const ROLE_LABELS: Record<RoleId, string> = {
 	mubtada: 'Mubtada’',
@@ -76,7 +77,8 @@ export const ROLE_LABELS: Record<RoleId, string> = {
 	mudhaf: 'Muḍāf',
 	'mudhaf-ilaih': 'Muḍāf ilaih',
 	'harf-jar': 'Harf jarr',
-	majrur: 'Majrūr'
+	majrur: 'Majrūr',
+	zharf: 'Ẓarf'
 };
 
 /** Short Indonesian gloss of the role itself, shown with the legend. */
@@ -92,7 +94,8 @@ export const ROLE_MEANINGS: Record<RoleId, string> = {
 	mudhaf: 'kata pertama iḍāfah',
 	'mudhaf-ilaih': 'kata kedua iḍāfah',
 	'harf-jar': 'huruf yang menjarrkan isim sesudahnya',
-	majrur: 'isim yang dijarrkan'
+	majrur: 'isim yang dijarrkan',
+	zharf: 'keterangan tempat atau waktu (maf‘ūl fīh)'
 };
 
 export type RelationType =
@@ -222,6 +225,13 @@ export type RuleLinkPath =
 	| 'kaidah/frasa/#naat-agreement'
 	| 'kaidah/frasa/#idafah-jar'
 	| 'kaidah/frasa/#perubahan-irab'
+	| 'kaidah/frasa/#zharf-makan-zaman'
+	| 'kaidah/frasa/#muannath-salim'
+	| 'kaidah/frasa/#asma-khamsa'
+	| 'kaidah/frasa/#jamak-taksir-mamnu'
+	| 'kaidah/frasa/#maqshur-manqush'
+	| 'kaidah/frasa/#kata-mabni'
+	| 'kaidah/frasa/#idafah-nasb-marifah'
 	| 'belajar/isim-fiil-harf/#bedah-kalimat'
 	| 'kaidah/kalimat/';
 
