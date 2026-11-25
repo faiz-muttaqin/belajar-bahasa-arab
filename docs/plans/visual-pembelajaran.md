@@ -90,3 +90,16 @@ Semua materi baru boleh dipakai sebagai draf bersumber menurut D-9. Tinjauan ust
 **Belum terpenuhi:** VP-01–05 belum selesai sebagai paket: ID relasi/bukti, word-role explorer interaktif, mode tanpa warna, animasi bertahap, grafik capaian dan uji pengguna.
 
 **Tindak lanjut:** [issue #52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
+
+## Catatan implementasi VP-01 dan VP-02 — 25 November 2026
+
+**Sub-deliverable yang dikerjakan:** VP-01 (kontrak anotasi dan audit contoh pilot) dan VP-02 (penjelajah peran kata). VP-03 sampai VP-05 belum.
+
+**Selesai:**
+
+- Kontrak: `src/lib/domain/grammar/annotation.ts` (ID kalimat, kata dan hubungan; sumber, jenis penggunaan dan status `draft` per analisis; enam jenis hubungan ditambah fi‘il–nā’ib al-fā‘il dan fi‘il–maf‘ūl bih) dengan uji unit. Lapisan dan warna: `annotation-layers.ts`, kontras token teks diuji untuk tema terang dan gelap bawaan.
+- Data pilot: 18 anotasi dari contoh yang sudah ada (pelajaran `isim-fiil-harf`, G-01 di `/kaidah/`, G-03 di `/kaidah/frasa/`). Inventaris, sumber, batas bukti dan hasil tinjauan Fable: [vp01-annotation-pilot.md](../data/vp01-annotation-pilot.md).
+- Komponen `WordRoleExplorer.svelte` (dengan `WordRolePanel` dan `WordRoleDetails`): satu lapisan sekali tampil (jenis kata, peran, bentuk sharaf), panel ketuk/fokus, sorotan pasangan, legenda, “Tanpa warna peran”, fokus kembali ke kata saat panel ditutup (tombol Tutup atau Escape). Tanpa JavaScript, kalimat, glos, label, alasan dan sumber tetap ada dalam `details` dan daftar berurutan.
+- Uji Playwright: keyboard, ganti lapisan, tanpa warna, sorotan tanpa mengubah ukuran/spasi/arah, RTL, kontras terang/gelap di halaman nyata, tanpa JS, dan tidak ada luapan horizontal pada 320, 390, 768 dan 1440 px.
+
+**Belum terpenuhi:** uji pengguna dan perbandingan dengan/tanpa bantuan visual (VP-05); uji Safari iOS dan Android nyata; sumber tambahan untuk kesesuaian na‘at; tinjauan ustadz atas seluruh jalur; penyimpanan pilihan “Tanpa warna peran” di perangkat; contoh kata ganti–rujukan. Status keseluruhan tetap diperbarui oleh sesi utama setelah merge.

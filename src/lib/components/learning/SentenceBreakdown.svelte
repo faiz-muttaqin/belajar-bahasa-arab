@@ -1,14 +1,19 @@
 <script lang="ts">
 	import { analyzedText, type AnalysisGroup } from '#lib/content/lessons/analysis.js';
 	import type { GlossaryText } from '#lib/content/grammar-glossary.js';
+	import { annotationsForLessonGroup } from '#lib/content/grammar-annotations.js';
 	import ArabicText from './ArabicText.svelte';
 	import AudioPlayButton from './AudioPlayButton.svelte';
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
 	import MixedText from './MixedText.svelte';
 	import InlineGrammarGlossary from './InlineGrammarGlossary.svelte';
+	import WordRoleExplorer from './WordRoleExplorer.svelte';
 
-	let { groups, glossary }: { groups: readonly AnalysisGroup[]; glossary?: GlossaryText } =
-		$props();
+	let {
+		groups,
+		glossary,
+		lessonSlug
+	}: { groups: readonly AnalysisGroup[]; glossary?: GlossaryText; lessonSlug?: string } = $props();
 </script>
 
 <section id="bedah-kalimat" aria-labelledby="bedah-heading" class="scroll-mt-24 space-y-4">
@@ -41,6 +46,14 @@
 			<div class="space-y-6 border-t pb-5">
 				{#if group.glossary}
 					<div class="pt-4"><InlineGrammarGlossary text={group.glossary} /></div>
+				{/if}
+				{#if lessonSlug}
+					{@const annotated = annotationsForLessonGroup(lessonSlug, g)}
+					{#if annotated.length}
+						<div class="pt-4">
+							<WordRoleExplorer sentences={annotated} initialLayer="wordClass" />
+						</div>
+					{/if}
 				{/if}
 				{#each group.sentences as sentence, i (i)}
 					<div class="space-y-3 pt-4">

@@ -3,8 +3,18 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import PhraseGloss from '#lib/components/learning/PhraseGloss.svelte';
+	import WordRoleExplorer from '#lib/components/learning/WordRoleExplorer.svelte';
+	import {
+		annotationsForPhraseRule,
+		type AnnotatedPhraseRuleId
+	} from '#lib/content/grammar-annotations.js';
 	import { IRAB_CASE_LABELS, phraseRules, type IrabCase } from '#lib/content/phrase-rules.js';
 
+	const explorerRules: readonly AnnotatedPhraseRuleId[] = [
+		'naat-agreement',
+		'idafah-jar',
+		'perubahan-irab'
+	];
 	const caseLegend: readonly IrabCase[] = ['raf', 'nasb', 'jarr'];
 	const caseColor: Record<IrabCase, string> = {
 		raf: 'bg-chart-2',
@@ -98,6 +108,16 @@
 					{/each}
 				</ul>
 			</details>
+
+			{#if explorerRules.includes(rule.id as AnnotatedPhraseRuleId)}
+				<div class="max-w-3xl">
+					<WordRoleExplorer
+						sentences={annotationsForPhraseRule(rule.id as AnnotatedPhraseRuleId)}
+						initialLayer="role"
+						heading="Jelajahi peran tiap kata pada contoh {rule.title}"
+					/>
+				</div>
+			{/if}
 		</section>
 	{/each}
 </div>
