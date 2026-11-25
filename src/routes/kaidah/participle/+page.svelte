@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import MixedText from '#lib/components/learning/MixedText.svelte';
+	import RuleMeta from '#lib/components/learning/RuleMeta.svelte';
+	import WazanLink from '#lib/components/learning/WazanLink.svelte';
 	import {
 		participleSources,
 		participlePairs,
@@ -7,7 +10,7 @@
 		participleTasks
 	} from '#lib/content/participle-lessons.js';
 
-	const formOrder = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+	const formOrder = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'Iq', 'IIq'];
 	const orderedPairs = [...participlePairs].sort(
 		(a, b) => formOrder.indexOf(a.form) - formOrder.indexOf(b.form)
 	);
@@ -25,7 +28,7 @@
 	<title>Isim fā‘il dan isim maf‘ūl · Belajar Bahasa Arab</title>
 	<meta
 		name="description"
-		content="{participlePairs.length} keluarga verba dari Form I sampai X dengan fi‘il, maṣdar, isim fā‘il dan isim maf‘ūl dari kamus, termasuk akar mithāl dan ajwaf, serta {participleTasks.length} latihan membaca bahasa Arab berharakat."
+		content="{participlePairs.length} keluarga verba dari Form I sampai X dan rubā‘ī dengan fi‘il, maṣdar, isim fā‘il dan isim maf‘ūl dari kamus, termasuk akar mithāl, ajwaf, nāqiṣ, lafīf, mahmūz dan muḍā‘af, serta {participleTasks.length} latihan membaca bahasa Arab berharakat."
 	/>
 </svelte:head>
 
@@ -53,9 +56,10 @@
 		<div class="grid gap-4 md:grid-cols-2">
 			{#each participleRules as rule (rule.title)}
 				{@const source = participleSources.find((item) => item.id === rule.sourceId)}
-				<article class="space-y-2 rounded-xl border bg-card p-4">
+				<article id={rule.id} class="scroll-mt-24 space-y-2 rounded-xl border bg-card p-4">
 					<h3 class="font-semibold">{rule.title}</h3>
-					<p class="text-sm">{rule.text}</p>
+					<p class="text-sm"><MixedText text={rule.text} /></p>
+					<RuleMeta ruleId={rule.id} prerequisites={rule.prerequisites} />
 					{#if source}
 						<!-- eslint-disable svelte/no-navigation-without-resolve -- external grammar reference -->
 						<a href={source.url} class="text-sm text-primary underline">{source.title}</a>
@@ -92,7 +96,11 @@
 		</p>
 		<ul class="grid gap-4 sm:grid-cols-2">
 			{#each orderedPairs as pair (pair.id)}
-				<li id={'pair-' + pair.id} class="min-w-0 space-y-3 rounded-xl border bg-card p-4">
+				<li
+					id={'pair-' + pair.id}
+					data-rule={pair.ruleId}
+					class="min-w-0 space-y-3 rounded-xl border bg-card p-4"
+				>
 					<p class="text-sm text-muted-foreground">
 						Form {pair.form} · <span lang="ar" dir="rtl">{pair.rootKind}</span>
 					</p>
@@ -127,7 +135,11 @@
 						>Periksa tabel konjugasi</a
 					>
 					<!-- eslint-enable svelte/no-navigation-without-resolve -->
-					<p class="text-xs text-muted-foreground">Diperiksa {pair.checked} · {pair.section}</p>
+					<WazanLink bab={pair.wazanBab} dataId={pair.dataId} />
+					<p class="text-xs text-muted-foreground">
+						Kaidah <a href={'#' + pair.ruleId} class="text-primary underline">{pair.ruleId}</a>
+						· Diperiksa {pair.checked} · {pair.section}
+					</p>
 				</li>
 			{/each}
 		</ul>
@@ -157,6 +169,7 @@
 								>Periksa bentuk di kamus</a
 							>
 							<!-- eslint-enable svelte/no-navigation-without-resolve -->
+							<WazanLink bab={pair.wazanBab} dataId={pair.dataId} class="ms-4" />
 						{/if}
 					</details>
 				</li>
@@ -166,9 +179,14 @@
 	<aside class="max-w-3xl space-y-2 border-t pt-4">
 		<h2 class="text-lg font-semibold">Batas pendalaman ini</h2>
 		<p>
-			Belum mencakup seluruh 22 wazan, semua jenis akar mu‘tal (misalnya nāqiṣ dan lafīf) dan
-			mahmūz, atau pengamalan isim fā‘il dan isim maf‘ūl sebagai ‘āmil. Tinjauan pengajar dan uji
-			pelajar masih terbuka.
+			Belum mencakup seluruh 22 wazan dan setiap kombinasi jenis akar (misalnya mazīd dengan akar
+			nāqiṣ, lafīf atau mahmūz, dan rubā‘ī mazīd selain تَفَعْلَلَ). Tinjauan pengajar dan uji pelajar
+			masih terbuka.
+		</p>
+		<p>
+			Lanjut: <a href={resolve('kaidah/participle/amal/')} class="text-primary underline"
+				>pengamalan isim fā‘il dan isim maf‘ūl (‘amal)</a
+			>.
 		</p>
 		<a
 			href={resolve('kaidah/masdar/')}

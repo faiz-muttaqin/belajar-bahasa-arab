@@ -1,4 +1,6 @@
 /** OER-02b: sourced forms; original teaching text and exercises remain draft. */
+import { rulePrerequisites } from './g02-types.js';
+
 export const participleSources = [
 	{
 		id: 'active',
@@ -23,6 +25,15 @@ export const participleSources = [
 		section: 'Grammar 1–2, Rules',
 		author: 'Ayman Mohamed dan Sadam Issa',
 		license: 'CC BY-NC 4.0 · rujukan konsep saja'
+	},
+	{
+		id: 'wiktionary',
+		title: 'English Wiktionary · tabel konjugasi verba Arab',
+		url: 'https://kaikki.org/dictionary/Arabic/',
+		section:
+			'Baris verba menurut ID pada kolom dataId; data/wiktionary/verbs-form-i.json dan verbs-mazid.json',
+		author: 'Kontributor Wiktionary (ekstrak kaikki.org)',
+		license: 'CC BY-SA 4.0 dan GFDL · tabel verba'
 	}
 ] as const;
 
@@ -44,6 +55,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/كتب#Arabic',
 		section: 'Arabic — Conjugation of كَتَبَ (Form I), active/passive participle',
 		dataId: 'كتب-1',
+		wazanBab: 1,
+		ruleId: 'g02.participle-pola',
 		checked: '20 Nov 2026'
 	},
 	{
@@ -63,6 +76,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/فتح#Arabic',
 		section: 'Arabic — Conjugation of فَتَحَ (Form I), active/passive participle',
 		dataId: 'فتح-1',
+		wazanBab: 3,
+		ruleId: 'g02.participle-pola',
 		checked: '20 Nov 2026'
 	},
 	{
@@ -82,6 +97,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/نظم#Arabic',
 		section: 'Arabic — Conjugation of نَظَّمَ (Form II), active/passive participle',
 		dataId: 'نظم-II-1',
+		wazanBab: 7,
+		ruleId: 'g02.participle-pola',
 		checked: '20 Nov 2026'
 	},
 	{
@@ -101,6 +118,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/أرسل#Arabic',
 		section: 'Arabic — Conjugation of أَرْسَلَ (Form IV), active/passive participle',
 		dataId: 'أرسل-IV-1',
+		wazanBab: 9,
+		ruleId: 'g02.participle-pola',
 		checked: '20 Nov 2026'
 	},
 	{
@@ -120,6 +139,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/استخدم#Arabic',
 		section: 'Arabic — Conjugation of اِسْتَخْدَمَ (Form X), active/passive participle',
 		dataId: 'استخدم-X-1',
+		wazanBab: 15,
+		ruleId: 'g02.participle-pola',
 		checked: '20 Nov 2026'
 	},
 	{
@@ -139,6 +160,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/باع#Arabic',
 		section: 'Arabic — Conjugation of بَاعَ (Form I), active/passive participle',
 		dataId: 'باع-1',
+		wazanBab: 2,
+		ruleId: 'g02.participle-batas-pola',
 		checked: '20 Nov 2026'
 	},
 	{
@@ -158,6 +181,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/ساعد#Arabic',
 		section: 'Arabic — Conjugation of سَاعَدَ (Form III), active/passive participle, verbal noun',
 		dataId: 'ساعد-III-1',
+		wazanBab: 8,
+		ruleId: 'g02.participle-pola',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -177,6 +202,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/تعلم#Arabic',
 		section: 'Arabic — Conjugation of تَعَلَّمَ (Form V), active/passive participle, verbal noun',
 		dataId: 'تعلم-V-1',
+		wazanBab: 11,
+		ruleId: 'g02.participle-pola',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -196,6 +223,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/تبادل#Arabic',
 		section: 'Arabic — Conjugation of تَبَادَلَ (Form VI), active/passive participle, verbal noun',
 		dataId: 'تبادل-VI-1',
+		wazanBab: 10,
+		ruleId: 'g02.participle-pola',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -216,6 +245,8 @@ export const participlePairs = [
 		section:
 			'Arabic — Conjugation of اِنْقَطَعَ (Form VII), active participle, verbal noun; tabel menandai “no passive (?)”',
 		dataId: 'انقطع-VII-1',
+		wazanBab: 13,
+		ruleId: 'g02.participle-tidak-lazim',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -235,6 +266,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/انتظر#Arabic',
 		section: 'Arabic — Conjugation of اِنْتَظَرَ (Form VIII), active/passive participle, verbal noun',
 		dataId: 'انتظر-VIII-1',
+		wazanBab: 12,
+		ruleId: 'g02.participle-pola',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -254,6 +287,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/اختار#Arabic',
 		section: 'Arabic — Conjugation of اِخْتَارَ (Form VIII), active/passive participle, verbal noun',
 		dataId: 'اختار-VIII-1',
+		wazanBab: 12,
+		ruleId: 'g02.participle-batas-pola',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -274,6 +309,8 @@ export const participlePairs = [
 		section:
 			'Arabic — Conjugation of اِتَّصَلَ (Form VIII), active participle, verbal noun; tabel memuat pasif impersonal مُتَّصَلٌ yang tidak dipakai sebagai contoh',
 		dataId: 'اتصل-VIII-1',
+		wazanBab: 12,
+		ruleId: 'g02.participle-batas-pola',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -293,6 +330,8 @@ export const participlePairs = [
 		source: 'https://en.wiktionary.org/wiki/استقبل#Arabic',
 		section: 'Arabic — Conjugation of اِسْتَقْبَلَ (Form X), active/passive participle, verbal noun',
 		dataId: 'استقبل-X-1',
+		wazanBab: 15,
+		ruleId: 'g02.participle-pola',
 		checked: '25 Nov 2026'
 	},
 	{
@@ -313,6 +352,241 @@ export const participlePairs = [
 		section:
 			'Arabic — Conjugation of اِحْمَرَّ (Form IX), active participle, verbal noun; tabel menandai “no passive (?)”',
 		dataId: 'احمر-IX-1',
+		wazanBab: 14,
+		ruleId: 'g02.participle-tidak-lazim',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'daa',
+		form: 'I',
+		rootKind: 'نَاقِصٌ',
+		verb: 'دَعَا',
+		present: 'يَدْعُو',
+		masdar: 'دُعَاءٌ',
+		active: 'دَاعٍ',
+		passive: 'مَدْعُوٌّ',
+		meaning: 'memanggil; mengundang',
+		masdarMeaning: 'seruan; doa (juga دَعْوَةٌ: undangan)',
+		activeMeaning: 'yang memanggil; pengundang',
+		passiveMeaning: 'yang diundang',
+		note: 'Nāqiṣ wāwī (د ع و): wāw akhir menjadi alif pada دَعَا dan tetap tampak pada يَدْعُو. Isim fā‘il دَاعٍ: wāw akar menjadi yā’ karena kasrah sebelumnya, lalu yā’ itu tidak tertulis pada nakirah marfū‘ dan majrūr. Pada مَدْعُوٌّ, wāw pola مَفْعُولٌ dan wāw akar bertemu menjadi satu wāw bershadda. Maṣdar tidak dapat ditebak dari pola: دُعَاءٌ dan دَعْوَةٌ sama-sama tercatat.',
+		source: 'https://en.wiktionary.org/wiki/دعا#Arabic',
+		section: 'Arabic — Conjugation of دَعَا (Form I), active/passive participle, verbal nouns',
+		dataId: 'دعا-1',
+		wazanBab: 1,
+		ruleId: 'g02.akar-naqis',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'banaa',
+		form: 'I',
+		rootKind: 'نَاقِصٌ',
+		verb: 'بَنَى',
+		present: 'يَبْنِي',
+		masdar: 'بِنَاءٌ',
+		active: 'بَانٍ',
+		passive: 'مَبْنِيٌّ',
+		meaning: 'membangun; mendirikan',
+		masdarMeaning: 'pembangunan; bangunan',
+		activeMeaning: 'pembangun',
+		passiveMeaning: 'yang dibangun',
+		note: 'Nāqiṣ yā’ī (ب ن ي): yā’ akhir menjadi alif pada بَنَى dan tetap tampak pada يَبْنِي. Pada maṣdar بِنَاءٌ, yā’ yang sesudah alif menjadi hamzah. Isim fā‘il بَانٍ kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr. Pada مَبْنِيٌّ, wāw pola مَفْعُولٌ berubah menjadi yā’ lalu melebur dengan yā’ akar.',
+		source: 'https://en.wiktionary.org/wiki/بنى#Arabic',
+		section: 'Arabic — Conjugation of بَنَى (Form I), active/passive participle, verbal nouns',
+		dataId: 'بنى-1',
+		wazanBab: 2,
+		ruleId: 'g02.akar-naqis',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'waqaa',
+		form: 'I',
+		rootKind: 'لَفِيفٌ مَفْرُوقٌ',
+		verb: 'وَقَى',
+		present: 'يَقِي',
+		masdar: 'وِقَايَةٌ',
+		active: 'وَاقٍ',
+		passive: 'مَوْقِيٌّ',
+		meaning: 'melindungi; menjaga dari',
+		masdarMeaning: 'perlindungan; pencegahan',
+		activeMeaning: 'yang melindungi; pelindung',
+		passiveMeaning: 'yang dilindungi',
+		note: 'Lafīf mafrūq (و ق ي): wāw dan yā’ dipisahkan oleh huruf sehat ق. Wāw awal gugur pada muḍāri‘ (يَقِي), yā’ akhir menjadi alif pada وَقَى, dan isim fā‘il وَاقٍ kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr. Verba ini berpola فَعَلَ يَفْعِلُ (seperti بَنَى يَبْنِي); wāw awalnya gugur pada muḍāri‘. Data kelompok wazan situs ini belum mengklasifikasikannya, sehingga tautan menuju “Bab belum diketahui”.',
+		source: 'https://en.wiktionary.org/wiki/وقى#Arabic',
+		section: 'Arabic — Conjugation of وَقَى (Form I), active/passive participle, verbal nouns',
+		dataId: 'وقى-1',
+		wazanBab: 0,
+		ruleId: 'g02.akar-lafif',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'rawaa',
+		form: 'I',
+		rootKind: 'لَفِيفٌ مَقْرُونٌ',
+		verb: 'رَوَى',
+		present: 'يَرْوِي',
+		masdar: 'رِوَايَةٌ',
+		active: 'رَاوٍ',
+		passive: 'مَرْوِيٌّ',
+		meaning: 'menceritakan; meriwayatkan',
+		masdarMeaning: 'penuturan; riwayat',
+		activeMeaning: 'penutur; periwayat',
+		passiveMeaning: 'yang diriwayatkan',
+		note: 'Lafīf maqrūn (ر و ي): dua huruf lemah berurutan, wāw lalu yā’. Yā’ akhir menjadi alif pada رَوَى, sedangkan wāw tengah tetap tampak di semua bentuk. Pada maṣdar رِوَايَةٌ yā’ tertulis karena disusul tā’ marbūṭah (bandingkan بِنَاءٌ). Isim fā‘il رَاوٍ kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr.',
+		source: 'https://en.wiktionary.org/wiki/روى#Arabic',
+		section: 'Arabic — Conjugation of رَوَى (Form I), active/passive participle, verbal noun',
+		dataId: 'روى-1',
+		wazanBab: 2,
+		ruleId: 'g02.akar-lafif',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'akhadha',
+		form: 'I',
+		rootKind: 'مَهْمُوزٌ',
+		verb: 'أَخَذَ',
+		present: 'يَأْخُذُ',
+		masdar: 'أَخْذٌ',
+		active: 'آخِذٌ',
+		passive: 'مَأْخُوذٌ',
+		meaning: 'mengambil',
+		masdarMeaning: 'pengambilan',
+		activeMeaning: 'yang mengambil',
+		passiveMeaning: 'yang diambil',
+		note: 'Mahmūz fā’ (أ خ ذ): hamzah akar adalah huruf pertama. Pada isim fā‘il, hamzah akar dan alif pola فَاعِلٌ bertemu dan ditulis sebagai alif madd (آخِذٌ, bukan أَاخِذٌ). Wiktionary juga mencatat مَأْخَذٌ sebagai maṣdar kedua, dan perintah خُذْ yang kehilangan hamzahnya.',
+		source: 'https://en.wiktionary.org/wiki/أخذ#Arabic',
+		section: 'Arabic — Conjugation of أَخَذَ (Form I), active/passive participle, verbal noun',
+		dataId: 'أخذ-1',
+		wazanBab: 1,
+		ruleId: 'g02.akar-mahmuz',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'saala',
+		form: 'I',
+		rootKind: 'مَهْمُوزٌ',
+		verb: 'سَأَلَ',
+		present: 'يَسْأَلُ',
+		masdar: 'سُؤَالٌ',
+		active: 'سَائِلٌ',
+		passive: 'مَسْؤُولٌ',
+		meaning: 'bertanya; meminta',
+		masdarMeaning: 'pertanyaan; permintaan',
+		activeMeaning: 'penanya; peminta',
+		passiveMeaning: 'yang ditanya; yang dimintai',
+		note: 'Mahmūz ‘ain (س أ ل): hamzah di tengah akar. Kursi hamzah mengikuti harakat: pada سَائِلٌ hamzah berkasrah sesudah alif sehingga ditulis di atas yā’; pada مَسْؤُولٌ hamzah berḍammah sesudah sukun sehingga ditulis di atas wāw. Bentuk مَسْؤُولٌ juga lazim sebagai kata benda “penanggung jawab” (periksa entri مسؤول; ini bukan baris tabel verba).',
+		source: 'https://en.wiktionary.org/wiki/سأل#Arabic',
+		section: 'Arabic — Conjugation of سَأَلَ (Form I), active/passive participle, verbal nouns',
+		dataId: 'سأل-1',
+		wazanBab: 3,
+		ruleId: 'g02.akar-mahmuz',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'qaraa',
+		form: 'I',
+		rootKind: 'مَهْمُوزٌ',
+		verb: 'قَرَأَ',
+		present: 'يَقْرَأُ',
+		masdar: 'قِرَاءَةٌ',
+		active: 'قَارِئٌ',
+		passive: 'مَقْرُوءٌ',
+		meaning: 'membaca',
+		masdarMeaning: 'pembacaan; kegiatan membaca',
+		activeMeaning: 'pembaca',
+		passiveMeaning: 'yang dibaca',
+		note: 'Mahmūz lām (ق ر أ): hamzah di akhir akar. Kursi hamzah berganti menurut huruf sebelumnya: di atas yā’ pada قَارِئٌ (huruf sebelumnya, ر, berkasrah), di atas garis pada مَقْرُوءٌ dan قِرَاءَةٌ (sesudah huruf mad). Wiktionary juga mencatat قُرْآنٌ sebagai maṣdar lain.',
+		source: 'https://en.wiktionary.org/wiki/قرأ#Arabic',
+		section: 'Arabic — Conjugation of قَرَأَ (Form I), active/passive participle, verbal nouns',
+		dataId: 'قرأ-1',
+		wazanBab: 3,
+		ruleId: 'g02.akar-mahmuz',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'madda',
+		form: 'I',
+		rootKind: 'مُضَاعَفٌ',
+		verb: 'مَدَّ',
+		present: 'يَمُدُّ',
+		masdar: 'مَدٌّ',
+		active: 'مَادٌّ',
+		passive: 'مَمْدُودٌ',
+		meaning: 'membentangkan; memperpanjang',
+		masdarMeaning: 'pembentangan; perpanjangan',
+		activeMeaning: 'yang membentangkan',
+		passiveMeaning: 'yang dibentangkan',
+		note: 'Muḍā‘af (م د د): radikal kedua dan ketiga sama. Keduanya melebur menjadi satu د bershadda pada مَدَّ, يَمُدُّ dan مَادٌّ. Pada مَمْدُودٌ ada wāw di antara dua د, sehingga keduanya tertulis terpisah.',
+		source: 'https://en.wiktionary.org/wiki/مد#Arabic',
+		section: 'Arabic — Conjugation of مَدَّ (Form I), active/passive participle, verbal noun',
+		dataId: 'مد-1',
+		wazanBab: 1,
+		ruleId: 'g02.akar-mudaaf',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'istamarra',
+		form: 'X',
+		rootKind: 'مُضَاعَفٌ',
+		verb: 'اِسْتَمَرَّ',
+		present: 'يَسْتَمِرُّ',
+		masdar: 'اِسْتِمْرَارٌ',
+		active: 'مُسْتَمِرٌّ',
+		passive: null,
+		meaning: 'berlanjut; terus berlangsung',
+		masdarMeaning: 'kelanjutan; kesinambungan',
+		activeMeaning: 'yang berlanjut; berkelanjutan',
+		passiveMeaning: 'tidak lazim',
+		note: 'Muḍā‘af Form X اِسْتَفْعَلَ (م ر ر): dua ر melebur menjadi satu ر bershadda pada māḍī, muḍāri‘ dan isim fā‘il; pada maṣdar اِسْتِمْرَارٌ keduanya terpisah oleh alif. Dalam contoh di sini verba ini dipakai tanpa objek, jadi isim maf‘ūl mandiri tidak dicontohkan.',
+		source: 'https://en.wiktionary.org/wiki/استمر#Arabic',
+		section:
+			'Arabic — Conjugation of اِسْتَمَرَّ (Form X), active participle, verbal noun; tabel memuat مُسْتَمَرٌّ yang tidak dipakai sebagai contoh',
+		dataId: 'استمر-X-1',
+		wazanBab: 15,
+		ruleId: 'g02.akar-mudaaf',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'tarjama',
+		form: 'Iq',
+		rootKind: 'رُبَاعِيٌّ صَحِيحٌ',
+		verb: 'تَرْجَمَ',
+		present: 'يُتَرْجِمُ',
+		masdar: 'تَرْجَمَةٌ',
+		active: 'مُتَرْجِمٌ',
+		passive: 'مُتَرْجَمٌ',
+		meaning: 'menerjemahkan',
+		masdarMeaning: 'penerjemahan; terjemahan',
+		activeMeaning: 'penerjemah',
+		passiveMeaning: 'yang diterjemahkan',
+		note: 'Rubā‘ī mujarrad فَعْلَلَ: empat huruf akar (ت ر ج م), sehingga tā’ pertama adalah huruf akar, bukan awalan seperti pada Form V. Muḍāri‘ memakai يُـ, isim fā‘il dan isim maf‘ūl memakai مُـ dengan kasrah atau fatḥah pada radikal ketiga (ج). Maṣdar berpola فَعْلَلَةٌ.',
+		source: 'https://en.wiktionary.org/wiki/ترجم#Arabic',
+		section: 'Arabic — Conjugation of تَرْجَمَ (Form Iq), active/passive participle, verbal noun',
+		dataId: 'ترجم-Iq-1',
+		wazanBab: 19,
+		ruleId: 'g02.ruba-i-mujarrad',
+		checked: '25 Nov 2026'
+	},
+	{
+		id: 'tadahraja',
+		form: 'IIq',
+		rootKind: 'رُبَاعِيٌّ صَحِيحٌ',
+		verb: 'تَدَحْرَجَ',
+		present: 'يَتَدَحْرَجُ',
+		masdar: 'تَدَحْرُجٌ',
+		active: 'مُتَدَحْرِجٌ',
+		passive: null,
+		meaning: 'menggelinding',
+		masdarMeaning: 'gerak menggelinding',
+		activeMeaning: 'yang menggelinding',
+		passiveMeaning: 'tidak lazim',
+		note: 'Rubā‘ī mazīd تَفَعْلَلَ (د ح ر ج): tā’ awal adalah awalan pola, bukan huruf akar (bandingkan تَرْجَمَ). Verba ini intransitif, sehingga isim maf‘ūl mandiri tidak lazim. Maṣdar berpola تَفَعْلُلٌ.',
+		source: 'https://en.wiktionary.org/wiki/تدحرج#Arabic',
+		section:
+			'Arabic — Conjugation of تَدَحْرَجَ (Form IIq), active participle, verbal noun; tabel memuat مُتَدَحْرَجٌ yang tidak dipakai sebagai contoh',
+		dataId: 'تدحرج-IIq-1',
+		wazanBab: 20,
+		ruleId: 'g02.ruba-i-mazid',
 		checked: '25 Nov 2026'
 	}
 ] as const;
@@ -925,33 +1199,525 @@ export const participleTasks: readonly ParticipleTask[] = [
 		answer:
 			'الْعُيُونُ adalah jamak benda tak berakal, sehingga khabarnya lazim feminin tunggal. بَعْدَ السَّهَرِ menyatakan waktu: mata itu memerah sesudah begadang.',
 		status: 'draft'
+	},
+	{
+		id: 'part-61',
+		pairId: 'daa',
+		kind: 'formation',
+		arabic: 'دَعَا / يَدْعُو / دَاعٍ / مَدْعُوٌّ',
+		question: 'Apa yang terjadi pada wāw akhir akar د ع و, dan bagaimana ujung dua isimnya?',
+		answer:
+			'Wāw akhir menjadi alif pada دَعَا dan tetap tampak pada يَدْعُو. Isim fā‘il دَاعٍ: wāw akar menjadi yā’ karena kasrah sebelumnya (seperti pada الدَّاعِي), lalu yā’ itu tidak tertulis pada nakirah marfū‘ dan majrūr, hanya tanwin kasrah yang tersisa. Pada مَدْعُوٌّ, wāw pola مَفْعُولٌ dan wāw akar bertemu menjadi satu wāw bershadda.',
+		status: 'draft'
+	},
+	{
+		id: 'part-62',
+		pairId: 'daa',
+		kind: 'role',
+		arabic: 'دَعَا الْمُدِيرُ الْمُوَظَّفِينَ إِلَى الِاجْتِمَاعِ.',
+		question: 'Tentukan fā‘il, maf‘ūl bih dan jar–majrūr.',
+		answer:
+			'دَعَا adalah fi‘il māḍī (ia mengundang). الْمُدِيرُ adalah fā‘il marfū‘, الْمُوَظَّفِينَ adalah maf‘ūl bih manṣūb (jamak mudhakkar sālim, yā’ sebelum nūn), dan إِلَى الِاجْتِمَاعِ adalah jar–majrūr: direktur mengundang para karyawan ke pertemuan.',
+		status: 'draft'
+	},
+	{
+		id: 'part-63',
+		pairId: 'daa',
+		kind: 'agreement',
+		arabic: 'شَكَرْتُ الدَّاعِيَ وَقَبِلْتُ الدَّعْوَةَ.',
+		question: 'Mengapa yā’ pada الدَّاعِيَ tertulis dan berfatḥah?',
+		answer:
+			'الدَّاعِيَ adalah maf‘ūl bih manṣūb dari شَكَرْتُ. Isim manqūṣ yang bersambung dengan ال menampakkan yā’-nya, dan tanda naṣb fatḥah tampak di atasnya. Bandingkan دَاعِيًا pada nakirah manṣūb. Artinya: saya berterima kasih kepada pengundang dan menerima undangan; الدَّعْوَةَ adalah maṣdar (undangan).',
+		status: 'draft'
+	},
+	{
+		id: 'part-64',
+		pairId: 'daa',
+		kind: 'meaning',
+		arabic: 'الشَّخْصُ الْمَدْعُوُّ جَاءَ مُبَكِّرًا.',
+		question: 'Apa arti الْمَدْعُوُّ, dan mengapa wāw-nya bershadda?',
+		answer:
+			'Yang diundang (isim maf‘ūl). Wāw pola مَفْعُولٌ dan wāw akar melebur menjadi satu wāw bershadda; ḍammah di atasnya menandai raf‘ karena ia na‘at untuk الشَّخْصُ. مُبَكِّرًا adalah ḥāl manṣūb: orang yang diundang itu datang lebih awal.',
+		status: 'draft'
+	},
+	{
+		id: 'part-65',
+		pairId: 'banaa',
+		kind: 'formation',
+		arabic: 'بَنَى / يَبْنِي / بِنَاءٌ / بَانٍ / مَبْنِيٌّ',
+		question: 'Apa yang terjadi pada yā’ akhir akar ب ن ي di tiap bentuk?',
+		answer:
+			'Yā’ akhir menjadi alif pada بَنَى dan tetap tampak pada يَبْنِي. Pada maṣdar بِنَاءٌ, yā’ yang sesudah alif menjadi hamzah. Isim fā‘il بَانٍ kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr. Pada مَبْنِيٌّ, wāw pola مَفْعُولٌ berubah menjadi yā’ lalu melebur dengan yā’ akar.',
+		status: 'draft'
+	},
+	{
+		id: 'part-66',
+		pairId: 'banaa',
+		kind: 'role',
+		arabic: 'بَنَتِ الشَّرِكَةُ مَدْرَسَةً جَدِيدَةً.',
+		question: 'Mengapa fi‘ilnya بَنَتِ, dan apa fā‘il serta maf‘ūl bih-nya?',
+		answer:
+			'الشَّرِكَةُ feminin, jadi fi‘il māḍī diberi tā’ ta’nīth; alif maqṣūrah akhir بَنَى gugur sebelum tā’ sukun (بَنَتْ), dan tā’ dibaca kasrah sebelum ال. الشَّرِكَةُ adalah fā‘il marfū‘ dan مَدْرَسَةً adalah maf‘ūl bih manṣūb: perusahaan itu membangun sebuah sekolah baru.',
+		status: 'draft'
+	},
+	{
+		id: 'part-67',
+		pairId: 'banaa',
+		kind: 'agreement',
+		arabic: 'الْبُيُوتُ الْمَبْنِيَّةُ حَدِيثًا قَرِيبَةٌ مِنَ النَّهْرِ.',
+		question: 'Mengapa الْمَبْنِيَّةُ feminin tunggal dan bershadda?',
+		answer:
+			'الْبُيُوتُ adalah jamak benda tak berakal, sehingga na‘at dan khabarnya lazim feminin tunggal. Shadda berasal dari peleburan dua yā’ pada مَبْنِيٌّ. الْمَبْنِيَّةُ adalah na‘at marfū‘, حَدِيثًا adalah keterangan manṣūb (baru saja), dan قَرِيبَةٌ adalah khabar: rumah-rumah yang baru dibangun itu dekat dengan sungai.',
+		status: 'draft'
+	},
+	{
+		id: 'part-68',
+		pairId: 'banaa',
+		kind: 'meaning',
+		arabic: 'بِنَاءُ الْجِسْرِ يَحْتَاجُ إِلَى وَقْتٍ.',
+		question: 'Apakah بِنَاءُ isim fā‘il? Apa artinya?',
+		answer:
+			'Bukan. بِنَاءُ adalah maṣdar (pembangunan) yang menjadi mubtada, dan الْجِسْرِ adalah muḍāf ilaih. Klausa يَحْتَاجُ إِلَى وَقْتٍ adalah khabar: pembangunan jembatan memerlukan waktu. Isim fā‘il dari verba ini ialah بَانٍ.',
+		status: 'draft'
+	},
+	{
+		id: 'part-69',
+		pairId: 'waqaa',
+		kind: 'formation',
+		arabic: 'وَقَى / يَقِي / وَاقٍ',
+		question: 'Huruf akar mana yang gugur atau berubah pada akar و ق ي?',
+		answer:
+			'Akar و ق ي adalah lafīf mafrūq: wāw dan yā’ dipisahkan oleh huruf sehat ق. Wāw awal gugur pada muḍāri‘ (يَقِي), yā’ akhir menjadi alif pada وَقَى, dan isim fā‘il وَاقٍ mempertahankan wāw awal tetapi kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr.',
+		status: 'draft'
+	},
+	{
+		id: 'part-70',
+		pairId: 'waqaa',
+		kind: 'role',
+		arabic: 'تَقِي الْمِظَلَّةُ النَّاسَ مِنَ الْمَطَرِ.',
+		question: 'Tentukan fā‘il dan maf‘ūl bih. Mengapa tanda raf‘ pada fi‘il tidak tampak?',
+		answer:
+			'الْمِظَلَّةُ adalah fā‘il marfū‘ (feminin, sehingga fi‘il memakai تـ) dan النَّاسَ adalah maf‘ūl bih manṣūb. Pada تَقِي tanda raf‘ berupa ḍammah muqaddarah pada yā’ akhir sehingga tidak tampak: payung itu melindungi orang dari hujan.',
+		status: 'draft'
+	},
+	{
+		id: 'part-71',
+		pairId: 'waqaa',
+		kind: 'agreement',
+		arabic: 'اِشْتَرَى الْعَامِلُ خُوذَةً وَاقِيَةً.',
+		question: 'Mengapa yā’ tampak pada وَاقِيَةً padahal isim fā‘il maskulinnya وَاقٍ?',
+		answer:
+			'وَاقِيَةً adalah na‘at untuk خُوذَةً; keduanya feminin, nakirah dan manṣūb (maf‘ūl bih). Dengan tā’ marbūṭah, yā’ yang hilang pada وَاقٍ tampak kembali: pekerja itu membeli helm pelindung.',
+		status: 'draft'
+	},
+	{
+		id: 'part-72',
+		pairId: 'waqaa',
+		kind: 'meaning',
+		arabic: 'الْوِقَايَةُ مُهِمَّةٌ لِلصِّحَّةِ.',
+		question: 'Apakah الْوِقَايَةُ isim fā‘il? Apa artinya?',
+		answer:
+			'Bukan. الْوِقَايَةُ adalah maṣdar berpola فِعَالَةٌ (perlindungan, pencegahan) dan menjadi mubtada; مُهِمَّةٌ adalah khabar: perlindungan itu penting bagi kesehatan. Isim fā‘il dari verba ini ialah وَاقٍ.',
+		status: 'draft'
+	},
+	{
+		id: 'part-73',
+		pairId: 'rawaa',
+		kind: 'formation',
+		arabic: 'رَوَى / يَرْوِي / رِوَايَةٌ / رَاوٍ / مَرْوِيٌّ',
+		question: 'Apa kekhasan akar ر و ي, dan huruf mana yang tetap tampak?',
+		answer:
+			'Akar ini lafīf maqrūn: dua huruf lemah berurutan (wāw lalu yā’). Yā’ akhir menjadi alif pada رَوَى, sedangkan wāw tengah tetap tampak di semua bentuk. Pada maṣdar رِوَايَةٌ yā’ tertulis karena disusul tā’ marbūṭah; bandingkan بِنَاءٌ yang berhamzah. Isim fā‘il رَاوٍ kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr.',
+		status: 'draft'
+	},
+	{
+		id: 'part-74',
+		pairId: 'rawaa',
+		kind: 'role',
+		arabic: 'رَوَى الْجَدُّ حِكَايَةً قَدِيمَةً.',
+		question: 'Tentukan fā‘il dan maf‘ūl bih.',
+		answer:
+			'رَوَى adalah fi‘il māḍī (ia menceritakan). الْجَدُّ adalah fā‘il marfū‘, dan حِكَايَةً adalah maf‘ūl bih manṣūb dengan قَدِيمَةً sebagai na‘at: kakek menceritakan sebuah kisah lama.',
+		status: 'draft'
+	},
+	{
+		id: 'part-75',
+		pairId: 'rawaa',
+		kind: 'agreement',
+		arabic: 'الْقِصَّةُ مَرْوِيَّةٌ عَنِ الْجَدِّ.',
+		question: 'Mengapa مَرْوِيَّةٌ memakai tā’ marbūṭah dan shadda?',
+		answer:
+			'مَرْوِيَّةٌ adalah isim maf‘ūl feminin yang menjadi khabar marfū‘ dan nakirah, mengikuti الْقِصَّةُ yang feminin tunggal. Shadda berasal dari wāw pola yang berubah menjadi yā’ dan melebur dengan yā’ akar. عَنِ الْجَدِّ adalah jar–majrūr: kisah itu diriwayatkan dari kakek.',
+		status: 'draft'
+	},
+	{
+		id: 'part-76',
+		pairId: 'rawaa',
+		kind: 'meaning',
+		arabic: 'سَمِعْتُ رِوَايَةَ الْجَدِّ.',
+		question: 'Apakah رِوَايَةَ isim fā‘il? Apa fungsinya?',
+		answer:
+			'Bukan. رِوَايَةَ adalah maṣdar (penuturan), maf‘ūl bih manṣūb sekaligus muḍāf, dan الْجَدِّ adalah muḍāf ilaih majrūr: saya mendengar penuturan kakek.',
+		status: 'draft'
+	},
+	{
+		id: 'part-77',
+		pairId: 'akhadha',
+		kind: 'formation',
+		arabic: 'أَخَذَ / يَأْخُذُ / آخِذٌ / مَأْخُوذٌ',
+		question: 'Mengapa isim fā‘il-nya آخِذٌ dan bukan أَاخِذٌ?',
+		answer:
+			'Akar أ خ ذ adalah mahmūz fā’: hamzah akar menjadi huruf pertama. Pada isim fā‘il, hamzah akar dan alif pola فَاعِلٌ bertemu dan ditulis sebagai alif madd (آ). Pada مَأْخُوذٌ hamzah tetap tampak sesudah مَـ.',
+		status: 'draft'
+	},
+	{
+		id: 'part-78',
+		pairId: 'akhadha',
+		kind: 'role',
+		arabic: 'أَخَذَ الطَّالِبُ الْكِتَابَ مِنَ الْمَكْتَبَةِ.',
+		question: 'Tentukan fā‘il, maf‘ūl bih dan jar–majrūr.',
+		answer:
+			'أَخَذَ adalah fi‘il māḍī (ia mengambil). الطَّالِبُ adalah fā‘il marfū‘, الْكِتَابَ adalah maf‘ūl bih manṣūb, dan مِنَ الْمَكْتَبَةِ adalah jar–majrūr: siswa itu mengambil buku dari perpustakaan.',
+		status: 'draft'
+	},
+	{
+		id: 'part-79',
+		pairId: 'akhadha',
+		kind: 'agreement',
+		arabic: 'الْأَوْرَاقُ الْمَأْخُوذَةُ مِنَ الْمَكْتَبِ كَثِيرَةٌ.',
+		question: 'Mengapa الْمَأْخُوذَةُ dan كَثِيرَةٌ feminin tunggal?',
+		answer:
+			'الْأَوْرَاقُ adalah jamak benda tak berakal, sehingga na‘at dan khabarnya lazim feminin tunggal. الْمَأْخُوذَةُ adalah isim maf‘ūl (yang diambil) sebagai na‘at, dan كَثِيرَةٌ adalah khabar: kertas-kertas yang diambil dari meja kerja itu banyak.',
+		status: 'draft'
+	},
+	{
+		id: 'part-80',
+		pairId: 'akhadha',
+		kind: 'meaning',
+		arabic: 'الْمَبْلَغُ الْمَأْخُوذُ صَغِيرٌ.',
+		question: 'Apa arti الْمَأْخُوذُ di sini?',
+		answer:
+			'Yang diambil (isim maf‘ūl), na‘at untuk الْمَبْلَغُ. صَغِيرٌ adalah khabar: jumlah yang diambil itu kecil.',
+		status: 'draft'
+	},
+	{
+		id: 'part-81',
+		pairId: 'saala',
+		kind: 'formation',
+		arabic: 'سَأَلَ / يَسْأَلُ / سَائِلٌ / مَسْؤُولٌ',
+		question: 'Mengapa hamzah ditulis di atas yā’ pada سَائِلٌ dan di atas wāw pada مَسْؤُولٌ?',
+		answer:
+			'Akar س أ ل adalah mahmūz ‘ain. Kursi hamzah mengikuti harakat: pada سَائِلٌ hamzah berkasrah sesudah alif sehingga ditulis di atas yā’; pada مَسْؤُولٌ hamzah berḍammah sesudah sukun sehingga ditulis di atas wāw.',
+		status: 'draft'
+	},
+	{
+		id: 'part-82',
+		pairId: 'saala',
+		kind: 'role',
+		arabic: 'سَأَلَ الطَّالِبُ الْمُعَلِّمَ عَنِ الدَّرْسِ.',
+		question: 'Tentukan fā‘il, maf‘ūl bih dan jar–majrūr.',
+		answer:
+			'سَأَلَ adalah fi‘il māḍī (ia bertanya). الطَّالِبُ adalah fā‘il marfū‘, الْمُعَلِّمَ adalah maf‘ūl bih manṣūb (orang yang ditanya), dan عَنِ الدَّرْسِ adalah jar–majrūr yang menyebut hal yang ditanyakan: siswa itu bertanya kepada guru tentang pelajaran.',
+		status: 'draft'
+	},
+	{
+		id: 'part-83',
+		pairId: 'saala',
+		kind: 'agreement',
+		arabic: 'السَّائِلُ يَنْتَظِرُ الْجَوَابَ.',
+		question: 'Apa kedudukan السَّائِلُ dan apa khabarnya?',
+		answer:
+			'السَّائِلُ adalah isim fā‘il (penanya) yang menjadi mubtada marfū‘. Klausa يَنْتَظِرُ الْجَوَابَ adalah khabar, dan الْجَوَابَ adalah maf‘ūl bih manṣūb: si penanya menunggu jawaban.',
+		status: 'draft'
+	},
+	{
+		id: 'part-84',
+		pairId: 'saala',
+		kind: 'meaning',
+		arabic: 'الْمَسْؤُولُ عَنِ الْقِسْمِ غَائِبٌ الْيَوْمَ.',
+		question: 'Apa arti الْمَسْؤُولُ di sini?',
+		answer:
+			'Penanggung jawab: isim maf‘ūl (yang dimintai pertanggungjawaban) dipakai sebagai kata benda dan menjadi mubtada. عَنِ الْقِسْمِ melengkapinya, dan غَائِبٌ adalah khabar: penanggung jawab bagian itu tidak hadir hari ini. Arti ini muncul dari pemakaian, bukan dari baris tabel verba.',
+		status: 'draft'
+	},
+	{
+		id: 'part-85',
+		pairId: 'qaraa',
+		kind: 'formation',
+		arabic: 'قَرَأَ / يَقْرَأُ / قَارِئٌ / مَقْرُوءٌ',
+		question: 'Bagaimana hamzah akhir akar ق ر أ ditulis pada dua isim ini?',
+		answer:
+			'Akar ini mahmūz lām. Pada قَارِئٌ hamzah berada di akhir kata sesudah huruf berkasrah (رِ), sehingga ditulis di atas yā’. Pada مَقْرُوءٌ hamzah akhir sesudah wāw mad ditulis di atas garis. Keduanya tetap berpola فَاعِلٌ dan مَفْعُولٌ.',
+		status: 'draft'
+	},
+	{
+		id: 'part-86',
+		pairId: 'qaraa',
+		kind: 'role',
+		arabic: 'يَقْرَأُ الْأَطْفَالُ الْقِصَّةَ فِي الْمَكْتَبَةِ.',
+		question: 'Tentukan fi‘il, fā‘il dan maf‘ūl bih.',
+		answer:
+			'يَقْرَأُ adalah fi‘il muḍāri‘ marfū‘. الْأَطْفَالُ adalah fā‘il marfū‘ dan الْقِصَّةَ adalah maf‘ūl bih manṣūb. Fi‘il yang mendahului fā‘il tampak tunggal meski fā‘ilnya jamak: anak-anak membaca cerita itu di perpustakaan.',
+		status: 'draft'
+	},
+	{
+		id: 'part-87',
+		pairId: 'qaraa',
+		kind: 'agreement',
+		arabic: 'الْكُتُبُ الْمَقْرُوءَةُ مُفِيدَةٌ.',
+		question: 'Mengapa الْمَقْرُوءَةُ dan مُفِيدَةٌ feminin tunggal?',
+		answer:
+			'الْكُتُبُ adalah jamak benda tak berakal, sehingga na‘at dan khabarnya lazim feminin tunggal. الْمَقْرُوءَةُ adalah isim maf‘ūl (yang dibaca) dan hamzahnya tetap ditulis di atas garis sesudah wāw: buku-buku yang dibaca itu bermanfaat.',
+		status: 'draft'
+	},
+	{
+		id: 'part-88',
+		pairId: 'qaraa',
+		kind: 'meaning',
+		arabic: 'أَخِي قَارِئٌ جَيِّدٌ.',
+		question: 'Apa arti قَارِئٌ dan apa fungsinya?',
+		answer:
+			'Pembaca. قَارِئٌ adalah isim fā‘il yang menjadi khabar marfū‘, dan جَيِّدٌ adalah na‘at-nya. أَخِي adalah mubtada marfū‘ dengan ḍammah muqaddarah: saudara laki-laki saya pembaca yang baik.',
+		status: 'draft'
+	},
+	{
+		id: 'part-89',
+		pairId: 'madda',
+		kind: 'formation',
+		arabic: 'مَدَّ / يَمُدُّ / مَادٌّ / مَمْدُودٌ',
+		question: 'Kapan dua د pada akar م د د melebur, dan kapan tidak?',
+		answer:
+			'Akar ini muḍā‘af: radikal kedua dan ketiga sama. Keduanya melebur menjadi satu د bershadda pada مَدَّ, يَمُدُّ dan مَادٌّ. Pada مَمْدُودٌ ada wāw di antara dua د, sehingga keduanya tertulis terpisah.',
+		status: 'draft'
+	},
+	{
+		id: 'part-90',
+		pairId: 'madda',
+		kind: 'role',
+		arabic: 'مَدَّ الْمُزَارِعُ حَبْلًا بَيْنَ الشَّجَرَتَيْنِ.',
+		question: 'Tentukan fā‘il, maf‘ūl bih dan keterangan tempat.',
+		answer:
+			'مَدَّ adalah fi‘il māḍī (ia membentangkan). الْمُزَارِعُ adalah fā‘il marfū‘, حَبْلًا adalah maf‘ūl bih manṣūb, dan بَيْنَ adalah ẓarf manṣūb yang menjadi muḍāf bagi الشَّجَرَتَيْنِ. Mutsannā yang majrūr memakai yā’ sebelum nūn: petani itu membentangkan tali di antara dua pohon.',
+		status: 'draft'
+	},
+	{
+		id: 'part-91',
+		pairId: 'madda',
+		kind: 'agreement',
+		arabic: 'الْحِبَالُ الْمَمْدُودَةُ بَيْنَ الْأَشْجَارِ جَدِيدَةٌ.',
+		question: 'Mengapa الْمَمْدُودَةُ dan جَدِيدَةٌ feminin tunggal?',
+		answer:
+			'الْحِبَالُ adalah jamak benda tak berakal, sehingga na‘at dan khabarnya lazim feminin tunggal. الْمَمْدُودَةُ adalah isim maf‘ūl (yang dibentangkan), بَيْنَ الْأَشْجَارِ adalah keterangan tempat, dan جَدِيدَةٌ adalah khabar: tali-tali yang dibentangkan di antara pepohonan itu baru.',
+		status: 'draft'
+	},
+	{
+		id: 'part-92',
+		pairId: 'madda',
+		kind: 'meaning',
+		arabic: 'الْحَبْلُ الْمَمْدُودُ طَوِيلٌ.',
+		question: 'Apa arti الْمَمْدُودُ di sini?',
+		answer:
+			'Yang dibentangkan (isim maf‘ūl), na‘at untuk الْحَبْلُ. طَوِيلٌ adalah khabar: tali yang dibentangkan itu panjang.',
+		status: 'draft'
+	},
+	{
+		id: 'part-93',
+		pairId: 'istamarra',
+		kind: 'formation',
+		arabic: 'اِسْتَمَرَّ / يَسْتَمِرُّ / اِسْتِمْرَارٌ / مُسْتَمِرٌّ',
+		question: 'Mengapa māḍī-nya bukan اِسْتَمْرَرَ, dan mengapa isim maf‘ūl tidak dicontohkan?',
+		answer:
+			'Akar م ر ر adalah muḍā‘af: pada Form X, dua ر yang berurutan melebur menjadi satu ر bershadda pada māḍī, muḍāri‘ dan isim fā‘il. Pada maṣdar اِسْتِمْرَارٌ alif memisahkan keduanya. Dalam arti “berlanjut” verba ini intransitif; tabel Wiktionary memuat مُسْتَمَرٌّ, tetapi bentuk itu tidak dipakai untuk arti ini, sehingga isim maf‘ūl tidak dicontohkan.',
+		status: 'draft'
+	},
+	{
+		id: 'part-94',
+		pairId: 'istamarra',
+		kind: 'role',
+		arabic: 'اِسْتَمَرَّ الْمَطَرُ طَوَالَ اللَّيْلِ.',
+		question: 'Tentukan fā‘il dan keterangan waktu.',
+		answer:
+			'اِسْتَمَرَّ adalah fi‘il māḍī (ia berlanjut). الْمَطَرُ adalah fā‘il marfū‘, طَوَالَ adalah ẓarf manṣūb dan muḍāf, dan اللَّيْلِ adalah muḍāf ilaih majrūr: hujan berlanjut sepanjang malam.',
+		status: 'draft'
+	},
+	{
+		id: 'part-95',
+		pairId: 'istamarra',
+		kind: 'agreement',
+		arabic: 'الْمُحَاضَرَةُ مُسْتَمِرَّةٌ حَتَّى الظُّهْرِ.',
+		question: 'Mengapa مُسْتَمِرَّةٌ feminin?',
+		answer:
+			'مُسْتَمِرَّةٌ adalah isim fā‘il feminin yang menjadi khabar marfū‘, mengikuti الْمُحَاضَرَةُ yang feminin tunggal. حَتَّى الظُّهْرِ menyebut batas waktu dan الظُّهْرِ majrūr setelah حَتَّى: kuliah itu berlangsung sampai siang.',
+		status: 'draft'
+	},
+	{
+		id: 'part-96',
+		pairId: 'istamarra',
+		kind: 'meaning',
+		arabic: 'اِسْتِمْرَارُ التَّدْرِيبِ ضَرُورِيٌّ.',
+		question: 'Apakah اِسْتِمْرَارُ isim fā‘il? Apa artinya?',
+		answer:
+			'Bukan. اِسْتِمْرَارُ adalah maṣdar Form X (keberlanjutan) dan menjadi mubtada, التَّدْرِيبِ adalah muḍāf ilaih, dan ضَرُورِيٌّ adalah khabar: berlanjutnya latihan itu perlu. Isim fā‘il verba ini ialah مُسْتَمِرٌّ.',
+		status: 'draft'
+	},
+	{
+		id: 'part-97',
+		pairId: 'tarjama',
+		kind: 'formation',
+		arabic: 'تَرْجَمَ / يُتَرْجِمُ / تَرْجَمَةٌ / مُتَرْجِمٌ / مُتَرْجَمٌ',
+		question: 'Apa bedanya dengan Form V, dan bagaimana dua isimnya dibentuk?',
+		answer:
+			'Akar tertulis empat huruf (ت ر ج م), sehingga ini rubā‘ī mujarrad berpola فَعْلَلَ: tā’ pertama adalah huruf akar, bukan awalan seperti pada Form V. Muḍāri‘ memakai يُـ, dan isimnya memakai مُـ. Kasrah pada radikal ketiga (ج) menghasilkan مُتَرْجِمٌ (penerjemah), fatḥah menghasilkan مُتَرْجَمٌ (yang diterjemahkan). Maṣdar تَرْجَمَةٌ berpola فَعْلَلَةٌ.',
+		status: 'draft'
+	},
+	{
+		id: 'part-98',
+		pairId: 'tarjama',
+		kind: 'role',
+		arabic: 'تَرْجَمَ الْمُتَرْجِمُ النَّصَّ إِلَى الْعَرَبِيَّةِ.',
+		question: 'Tentukan fi‘il, fā‘il dan maf‘ūl bih.',
+		answer:
+			'تَرْجَمَ adalah fi‘il māḍī rubā‘ī (ia menerjemahkan). الْمُتَرْجِمُ adalah fā‘il marfū‘ (isim fā‘il), النَّصَّ adalah maf‘ūl bih manṣūb, dan إِلَى الْعَرَبِيَّةِ adalah jar–majrūr: penerjemah itu menerjemahkan teks ke bahasa Arab.',
+		status: 'draft'
+	},
+	{
+		id: 'part-99',
+		pairId: 'tarjama',
+		kind: 'agreement',
+		arabic: 'تَرْجَمَةُ الْكِتَابِ تَحْتَاجُ إِلَى صَبْرٍ.',
+		question: 'Apakah تَرْجَمَةُ isim maf‘ūl feminin? Mengapa fi‘ilnya تَحْتَاجُ?',
+		answer:
+			'Bukan. تَرْجَمَةُ adalah maṣdar feminin (penerjemahan) yang menjadi mubtada dan muḍāf, dan الْكِتَابِ adalah muḍāf ilaih. Klausa تَحْتَاجُ إِلَى صَبْرٍ adalah khabar; verbanya memakai تـ karena fā‘il tersembunyinya merujuk pada maṣdar yang feminin: menerjemahkan buku memerlukan kesabaran.',
+		status: 'draft'
+	},
+	{
+		id: 'part-100',
+		pairId: 'tarjama',
+		kind: 'meaning',
+		arabic: 'النَّصُّ الْمُتَرْجَمُ سَهْلٌ.',
+		question: 'Apa arti الْمُتَرْجَمُ di sini?',
+		answer:
+			'Yang diterjemahkan (isim maf‘ūl), na‘at untuk النَّصُّ. Fatḥah pada ج menandai isim maf‘ūl; kasrah (مُتَرْجِمٌ) berarti penerjemah. سَهْلٌ adalah khabar: teks terjemahan itu mudah.',
+		status: 'draft'
+	},
+	{
+		id: 'part-101',
+		pairId: 'tadahraja',
+		kind: 'formation',
+		arabic: 'تَدَحْرَجَ / يَتَدَحْرَجُ / تَدَحْرُجٌ / مُتَدَحْرِجٌ',
+		question: 'Apa fungsi tā’ pertama di sini, dan mengapa tidak ada isim maf‘ūl?',
+		answer:
+			'Akar د ح ر ج berhuruf empat, dan ini rubā‘ī mazīd berpola تَفَعْلَلَ: tā’ pertama adalah awalan pola (berbeda dengan تَرْجَمَ). Maṣdar تَفَعْلُلٌ menjadi تَدَحْرُجٌ dan isim fā‘il-nya مُتَدَحْرِجٌ. Verba ini intransitif, sehingga isim maf‘ūl mandiri tidak lazim.',
+		status: 'draft'
+	},
+	{
+		id: 'part-102',
+		pairId: 'tadahraja',
+		kind: 'role',
+		arabic: 'تَدَحْرَجَتِ الْكُرَةُ نَحْوَ الْبَابِ.',
+		question: 'Mengapa fi‘ilnya berakhir tā’, dan apa fā‘ilnya?',
+		answer:
+			'الْكُرَةُ feminin, jadi fi‘il māḍī memakai tā’ ta’nīth yang dibaca kasrah sebelum ال. الْكُرَةُ adalah fā‘il marfū‘, dan نَحْوَ adalah ẓarf manṣūb yang menjadi muḍāf bagi الْبَابِ: bola itu menggelinding ke arah pintu.',
+		status: 'draft'
+	},
+	{
+		id: 'part-103',
+		pairId: 'tadahraja',
+		kind: 'agreement',
+		arabic: 'الْأَحْجَارُ مُتَدَحْرِجَةٌ عَلَى السَّفْحِ.',
+		question: 'Mengapa مُتَدَحْرِجَةٌ feminin tunggal?',
+		answer:
+			'الْأَحْجَارُ adalah jamak benda tak berakal, sehingga khabarnya lazim feminin tunggal. مُتَدَحْرِجَةٌ adalah isim fā‘il (yang menggelinding) dan عَلَى السَّفْحِ adalah jar–majrūr: batu-batu itu menggelinding di lereng.',
+		status: 'draft'
+	},
+	{
+		id: 'part-104',
+		pairId: 'tadahraja',
+		kind: 'meaning',
+		arabic: 'الصَّخْرَةُ الْمُتَدَحْرِجَةُ خَطِيرَةٌ.',
+		question: 'Apa arti الْمُتَدَحْرِجَةُ di sini?',
+		answer:
+			'Yang menggelinding (isim fā‘il feminin), na‘at untuk الصَّخْرَةُ. خَطِيرَةٌ adalah khabar: batu besar yang menggelinding itu berbahaya.',
+		status: 'draft'
 	}
 ];
 
 export const participleRules = [
 	{
+		id: 'g02.participle-dua-bentuk',
 		title: 'Dua bentuk isim, bukan dua bentuk fi‘il',
+		prerequisites: rulePrerequisites(['g02.tashrif-istilahi'], ['CB-14', 'CB-16']),
 		text: 'Isim fā‘il mengacu kepada pelaku atau pemilik keadaan; isim maf‘ūl biasanya mengacu kepada yang dikenai perbuatan. Keduanya termasuk isim. Fungsi sintaksisnya bisa menjadi mubtada, khabar, na‘at, fā‘il atau maf‘ūl bih.',
 		sourceId: 'active'
 	},
 	{
+		id: 'g02.participle-pola',
 		title: 'Pola dasar dan pola mazīd',
+		prerequisites: rulePrerequisites(['g02.participle-dua-bentuk'], ['CR-01']),
 		text: 'Untuk verba Form I ṣaḥīḥ yang cocok, pola umum adalah فَاعِلٌ dan مَفْعُولٌ. Pada Form II sampai X, isim fā‘il dan isim maf‘ūl berawalan مُـ (dengan tambahan tā’ pada Form V dan VI, nūn pada VII, tā’ sisipan pada VIII dan sīn–tā’ pada X). Pada contoh ṣaḥīḥ Form II sampai X di bawah, bentuk aktif memakai kasrah sebelum radikal terakhir dan bentuk pasif memakai fatḥah; مُخْتَارٌ (ajwaf) dan مُحْمَرٌّ (Form IX) tidak menampakkan kasrah itu. Jangan mengganti vokal tanpa memperhatikan pola dan jenis akar.',
 		sourceId: 'passive'
 	},
 	{
+		id: 'g02.participle-batas-pola',
 		title: 'Batas pola: akar lemah dan transitivitas',
+		prerequisites: rulePrerequisites(['g02.participle-pola'], ['CB-18']),
 		text: 'Akar ajwaf seperti ب ي ع mempunyai perubahan bentuk: بَائِعٌ dan مَبِيعٌ. Pada Form VIII, wāw akar mithāl و ص ل melebur dengan tā’ sisipan sehingga menjadi اِتَّصَلَ, dan akar ajwaf خ ي ر menghasilkan مُخْتَارٌ untuk aktif maupun pasif. Bentuk pasif yang biasa dipakai bergantung pada transitivitas dan konteks; jangan menganggap setiap verba memiliki bentuk pasif mandiri yang lazim. Gunakan entri kamus.',
 		sourceId: 'passive'
 	},
 	{
+		id: 'g02.participle-tidak-lazim',
 		title: 'Bentuk yang tidak lazim',
-		text: 'Verba intransitif seperti اِنْقَطَعَ (Form VII) dan اِحْمَرَّ (Form IX) umumnya tidak memiliki isim maf‘ūl mandiri. Halaman ini menandainya “tidak lazim” dan tidak memberi contoh. Verba yang objeknya memakai huruf jar, seperti اِتَّصَلَ بِـ, hanya mempunyai bentuk pasif impersonal (الْمُتَّصَلُ بِهِ) yang tidak dicontohkan di sini. Kamus tidak selalu mencatat setiap bentuk pasif, dan sebuah tabel yang memuat bentuk belum membuktikan bahwa bentuk itu dipakai.',
+		prerequisites: rulePrerequisites(['g02.participle-pola'], ['CB-14']),
+		text: 'Verba intransitif seperti اِنْقَطَعَ (Form VII), اِحْمَرَّ (Form IX), تَدَحْرَجَ (rubā‘ī mazīd) dan, dalam pemakaian di halaman ini, اِسْتَمَرَّ (Form X) umumnya tidak memiliki isim maf‘ūl mandiri. Halaman ini menandainya “tidak lazim” dan tidak memberi contoh. Verba yang objeknya memakai huruf jar, seperti اِتَّصَلَ بِـ, hanya mempunyai bentuk pasif impersonal (الْمُتَّصَلُ بِهِ) yang tidak dicontohkan di sini. Kamus tidak selalu mencatat setiap bentuk pasif, dan sebuah tabel yang memuat bentuk belum membuktikan bahwa bentuk itu dipakai.',
 		sourceId: 'passive'
 	},
 	{
+		id: 'g02.participle-irab',
 		title: 'I‘rab, gender dan makna dalam konteks',
+		prerequisites: rulePrerequisites(['g02.participle-dua-bentuk'], ['CR-03']),
 		text: 'Bentuk turunan yang menerangkan isim mengikuti kaidah na‘at; ketika menjadi khabar atau muḍāf ilaih, akhir katanya mengikuti kedudukan itu. Jamak benda tak berakal lazim memakai sifat feminin tunggal. Bentuk yang sama bisa menjadi nama profesi atau menyatakan keadaan, tanpa menandai kala tertentu.',
 		sourceId: 'contrast'
+	},
+	{
+		id: 'g02.akar-naqis',
+		title: 'Akar nāqiṣ: huruf lemah di akhir',
+		text: 'Pada akar nāqiṣ seperti د ع و dan ب ن ي, huruf lemah terakhir berubah: menjadi alif pada māḍī (دَعَا, بَنَى), tetap tampak pada muḍāri‘ (يَدْعُو, يَبْنِي) dan hilang dari tulisan pada isim fā‘il nakirah yang marfū‘ atau majrūr (دَاعٍ, بَانٍ). Yā’ itu muncul kembali bila ada ال (الدَّاعِي), pada naṣb (دَاعِيًا) atau pada bentuk feminin (دَاعِيَةٌ). Isim maf‘ūl dari akar wāw dan yā’ berakhir ـُوٌّ dan ـِيٌّ (مَدْعُوٌّ, مَبْنِيٌّ).',
+		prerequisites: rulePrerequisites(['g02.participle-batas-pola'], ['CB-18']),
+		sourceId: 'wiktionary'
+	},
+	{
+		id: 'g02.akar-lafif',
+		title: 'Akar lafīf: dua huruf lemah',
+		text: 'Lafīf berarti akar dengan dua huruf lemah. Pada lafīf mafrūq (و ق ي) dua huruf lemah dipisahkan satu huruf sehat dan wāw awal gugur pada muḍāri‘ (وَقَى menjadi يَقِي). Pada lafīf maqrūn (ر و ي) dua huruf lemah berurutan dan akhir kata mengikuti perubahan nāqiṣ (رَوَى, رَاوٍ, مَرْوِيٌّ). Jangan menurunkan bentuk hanya dari tiga huruf akar: periksa tabel kamus.',
+		prerequisites: rulePrerequisites(['g02.akar-naqis'], ['CB-18']),
+		sourceId: 'wiktionary'
+	},
+	{
+		id: 'g02.akar-mahmuz',
+		title: 'Akar mahmūz: hamzah sebagai huruf akar',
+		text: 'Hamzah dapat menjadi huruf pertama, kedua atau ketiga akar. Hamzah umumnya tetap diucapkan, tetapi tulisannya berubah: hamzah dan alif bertemu menjadi آ pada آخِذٌ, dan kursi hamzah mengikuti harakat sekitarnya (سَائِلٌ, مَسْؤُولٌ, قَارِئٌ, مَقْرُوءٌ). Perintah dari أَخَذَ, yaitu خُذْ, menghilangkan hamzah awal.',
+		prerequisites: rulePrerequisites(['g02.participle-batas-pola'], ['CB-18']),
+		sourceId: 'wiktionary'
+	},
+	{
+		id: 'g02.akar-mudaaf',
+		title: 'Akar muḍā‘af: dua huruf sama',
+		text: 'Pada akar muḍā‘af (م د د, م ر ر), radikal kedua dan ketiga yang sama melebur menjadi satu huruf bershadda bila berurutan (مَدَّ, يَمُدُّ, مَادٌّ, مُسْتَمِرٌّ). Peleburan terjadi bila huruf kedua berharakat. Bila ada huruf lain di antaranya, atau huruf kedua bersukun karena akhiran, keduanya tertulis terpisah (مَمْدُودٌ, اِسْتِمْرَارٌ, مَدَدْتُ).',
+		prerequisites: rulePrerequisites(['g02.participle-batas-pola'], ['CB-18']),
+		sourceId: 'wiktionary'
+	},
+	{
+		id: 'g02.ruba-i-mujarrad',
+		title: 'Rubā‘ī mujarrad: فَعْلَلَ',
+		text: 'Verba rubā‘ī mempunyai empat huruf akar. Pada pola dasar فَعْلَلَ (تَرْجَمَ) semua huruf pada māḍī adalah huruf akar. Muḍāri‘ memakai يُـ; isim fā‘il memakai مُـ dengan kasrah pada radikal ketiga (مُتَرْجِمٌ) dan isim maf‘ūl memakai fatḥah (مُتَرْجَمٌ). Maṣdar berpola فَعْلَلَةٌ (تَرْجَمَةٌ).',
+		prerequisites: rulePrerequisites(['g02.participle-pola', 'g02.tashrif-istilahi'], ['CR-01']),
+		sourceId: 'wiktionary'
+	},
+	{
+		id: 'g02.ruba-i-mazid',
+		title: 'Rubā‘ī mazīd: تَفَعْلَلَ',
+		text: 'Pola mazīd تَفَعْلَلَ menambahkan awalan تَـ pada empat huruf akar (تَدَحْرَجَ). Muḍāri‘ memakai يَتَـ, maṣdar berpola تَفَعْلُلٌ (تَدَحْرُجٌ) dan isim fā‘il memakai مُتَـ dengan kasrah pada radikal ketiga (مُتَدَحْرِجٌ). Verba intransitif tidak mempunyai isim maf‘ūl mandiri yang lazim. Jangan menyamakan tā’ awal تَرْجَمَ (huruf akar) dengan tā’ awal تَدَحْرَجَ (awalan).',
+		prerequisites: rulePrerequisites(['g02.ruba-i-mujarrad'], []),
+		sourceId: 'wiktionary'
 	}
 ] as const;

@@ -1,9 +1,11 @@
 /**
- * OER-02: original MSA maṣdar learning with eleven attested verb/maṣdar pairs
- * (Form I, III, V, VI, VII, VIII, IX and X; Forms II and IV are not yet covered).
+ * OER-02: original MSA maṣdar learning with thirteen attested verb/maṣdar pairs
+ * (Form I, II, III, IV, V, VI, VII, VIII, IX and X).
  * The lexical sources corroborate pairs, NOT all newly written Arabic sentences.
  * No external source lesson text or exercise is reproduced; material remains draft.
  */
+import { rulePrerequisites } from './g02-types.js';
+
 export const masdarGrammarSource = {
 	name: 'Elementary Arabic · 5.2 Grammar (Mohamed and Issa)',
 	href: 'https://human.libretexts.org/Bookshelves/Languages/Arabic/Elementary_Arabic_(Mohamed_and_Issa)/05:_Hobbies_and_Sports/5.02:_Grammar',
@@ -21,6 +23,8 @@ export const masdarLexemes = [
 		meaning: 'menulis',
 		pattern: 'فِعَالَةٌ',
 		dataId: 'كتب-1',
+		wazanBab: 1,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/كتب',
 		status: 'draft' as const
 	},
@@ -33,6 +37,8 @@ export const masdarLexemes = [
 		meaning: 'membaca',
 		pattern: 'فِعَالَةٌ',
 		dataId: 'قرأ-1',
+		wazanBab: 3,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/قرأ',
 		status: 'draft' as const
 	},
@@ -45,6 +51,8 @@ export const masdarLexemes = [
 		meaning: 'belajar atau mempelajari',
 		pattern: 'فِعَالَةٌ',
 		dataId: 'درس-1',
+		wazanBab: 1,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/درس',
 		status: 'draft' as const
 	},
@@ -57,6 +65,8 @@ export const masdarLexemes = [
 		meaning: 'menggunakan',
 		pattern: 'اِسْتِفْعَالٌ',
 		dataId: 'استعمل-X-1',
+		wazanBab: 15,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/استعمل',
 		status: 'draft' as const
 	},
@@ -69,6 +79,8 @@ export const masdarLexemes = [
 		meaning: 'berkumpul atau mengadakan pertemuan',
 		pattern: 'اِفْتِعَالٌ',
 		dataId: 'اجتمع-VIII-1',
+		wazanBab: 12,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/اجتمع',
 		status: 'draft' as const
 	},
@@ -81,6 +93,8 @@ export const masdarLexemes = [
 		pattern: 'مُفَاعَلَةٌ',
 		meaning: 'membantu',
 		dataId: 'ساعد-III-1',
+		wazanBab: 8,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/ساعد',
 		status: 'draft' as const
 	},
@@ -93,6 +107,8 @@ export const masdarLexemes = [
 		pattern: 'فِعَالٌ',
 		meaning: 'bertempur; memerangi',
 		dataId: 'قاتل-III-1',
+		wazanBab: 8,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/قاتل',
 		status: 'draft' as const
 	},
@@ -105,6 +121,8 @@ export const masdarLexemes = [
 		pattern: 'تَفَعُّلٌ',
 		meaning: 'belajar (sesuatu)',
 		dataId: 'تعلم-V-1',
+		wazanBab: 11,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/تعلم',
 		status: 'draft' as const
 	},
@@ -117,6 +135,8 @@ export const masdarLexemes = [
 		pattern: 'تَفَاعُلٌ',
 		meaning: 'bekerja sama',
 		dataId: 'تعاون-VI-1',
+		wazanBab: 10,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/تعاون',
 		status: 'draft' as const
 	},
@@ -129,6 +149,8 @@ export const masdarLexemes = [
 		pattern: 'اِنْفِعَالٌ',
 		meaning: 'terputus',
 		dataId: 'انقطع-VII-1',
+		wazanBab: 13,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/انقطع',
 		status: 'draft' as const
 	},
@@ -141,7 +163,37 @@ export const masdarLexemes = [
 		pattern: 'اِفْعِلَالٌ',
 		meaning: 'menjadi merah; tersipu',
 		dataId: 'احمر-IX-1',
+		wazanBab: 14,
+		ruleId: 'g02.masdar-vs-fiil',
 		source: 'https://en.wiktionary.org/wiki/احمر',
+		status: 'draft' as const
+	},
+	{
+		id: 'nazama',
+		form: 'II',
+		verb: 'نَظَّمَ',
+		present: 'يُنَظِّمُ',
+		masdar: 'تَنْظِيمٌ',
+		pattern: 'تَفْعِيلٌ',
+		meaning: 'menata; menyelenggarakan',
+		dataId: 'نظم-II-1',
+		wazanBab: 7,
+		ruleId: 'g02.masdar-form-ii-iv',
+		source: 'https://en.wiktionary.org/wiki/نظم',
+		status: 'draft' as const
+	},
+	{
+		id: 'arsala',
+		form: 'IV',
+		verb: 'أَرْسَلَ',
+		present: 'يُرْسِلُ',
+		masdar: 'إِرْسَالٌ',
+		pattern: 'إِفْعَالٌ',
+		meaning: 'mengirim',
+		dataId: 'أرسل-IV-1',
+		wazanBab: 9,
+		ruleId: 'g02.masdar-form-ii-iv',
+		source: 'https://en.wiktionary.org/wiki/أرسل',
 		status: 'draft' as const
 	}
 ] as const;
@@ -150,6 +202,9 @@ export type MasdarId = (typeof masdarLexemes)[number]['id'];
 export const masdarRules = [
 	{
 		id: 'masdar-vs-verb',
+		ruleId: 'g02.masdar-vs-fiil',
+		prerequisites: rulePrerequisites(['g02.tashrif-istilahi'], ['CB-15', 'CB-16']),
+		evidence: 'Konsep: Mohamed dan Issa, 5.2 Grammar (CC BY 4.0).',
 		title: 'Fi‘il menyatakan perbuatan; maṣdar menamai perbuatannya',
 		note: 'Maṣdar adalah isim yang menyatakan kegiatan atau keadaan yang berkaitan dengan fi‘il. Ia tidak membawa kala atau dhamir sebagaimana bentuk fi‘il yang dikonjugasikan.',
 		caution:
@@ -157,16 +212,33 @@ export const masdarRules = [
 	},
 	{
 		id: 'masdar-as-noun',
+		ruleId: 'g02.masdar-sebagai-isim',
+		prerequisites: rulePrerequisites(['g02.masdar-vs-fiil'], ['CR-03']),
+		evidence: 'Konsep: Mohamed dan Issa, 5.2 Grammar (CC BY 4.0).',
 		title: 'Maṣdar tetap mengikuti kaidah isim',
 		note: 'Maṣdar dapat menjadi mubtada, maf‘ūl bih, dan berada dalam susunan iḍāfah atau sesudah kata depan. Akhir katanya dapat berubah karena kedudukannya dalam kalimat.',
 		caution: 'Maṣdar tidak selalu memakai ال; bentuk nakirah dan konstruksi iḍāfah juga wajar.'
 	},
 	{
 		id: 'masdar-document',
+		ruleId: 'g02.masdar-dalam-dokumen',
+		prerequisites: rulePrerequisites(['g02.masdar-sebagai-isim'], ['CB-21']),
+		evidence: 'Konsep: Mohamed dan Issa, 5.2 Grammar (CC BY 4.0).',
 		title: 'Maṣdar banyak muncul dalam judul dan informasi formal',
 		note: 'Bacaan jadwal atau dokumen formal dapat menamai kegiatan sebagai nomina, misalnya penggunaan, pembacaan atau pertemuan, tanpa selalu menuliskan kalimat kerja lengkap.',
 		caution:
 			'Makna masing-masing maṣdar bisa bergeser menurut konteks. Menemukan akar yang sama belum memverifikasi semua padanan.'
+	},
+	{
+		id: 'masdar-form-ii-iv',
+		ruleId: 'g02.masdar-form-ii-iv',
+		prerequisites: rulePrerequisites(['g02.masdar-vs-fiil'], ['CR-01']),
+		evidence:
+			'Pasangan نَظَّمَ dan أَرْسَلَ diperiksa pada baris نظم-II-1 dan أرسل-IV-1 di data/wiktionary/verbs-mazid.json. Halaman konsep Mohamed dan Issa tidak memuat pola maṣdar bentuk turunan.',
+		title: 'Form II dan Form IV: pola yang lebih teratur',
+		note: 'Verba Form II berpola فَعَّلَ mempunyai maṣdar تَفْعِيلٌ (نَظَّمَ menjadi تَنْظِيمٌ). Verba Form IV berpola أَفْعَلَ mempunyai maṣdar إِفْعَالٌ (أَرْسَلَ menjadi إِرْسَالٌ). Pola ini membantu menebak bentuk untuk akar ṣaḥīḥ, tidak untuk semua akar.',
+		caution:
+			'Akar mu‘tal atau mahmūz dapat mengubah bentuk maṣdar Form II dan IV. Periksa entri kamus sebelum memakai pola ini pada akar lain.'
 	}
 ] as const;
 
@@ -614,6 +686,86 @@ export const masdarTasks: readonly MasdarTask[] = [
 		answer:
 			'خَفِيفٌ adalah na‘at yang menerangkan maṣdar اِحْمِرَارٌ. Keduanya nakirah dan tidak ada fi‘il: kemerahan yang ringan.',
 		lexemeId: 'ihmarra',
+		status: 'draft'
+	},
+	{
+		id: 'm45',
+		kind: 'verb',
+		arabic: 'نَظَّمَتِ الْمَدْرَسَةُ رِحْلَةً.',
+		question: 'Di mana fi‘il yang menyatakan perbuatan, dan siapa pelakunya?',
+		answer:
+			'نَظَّمَتْ adalah fi‘il māḍī Form II (ia menyelenggarakan) dengan tā’ ta’nīth, dibaca kasrah sebelum ال. الْمَدْرَسَةُ adalah fā‘il marfū‘ dan رِحْلَةً adalah maf‘ūl bih manṣūb: sekolah itu menyelenggarakan sebuah perjalanan.',
+		lexemeId: 'nazama',
+		status: 'draft'
+	},
+	{
+		id: 'm46',
+		kind: 'nominal',
+		arabic: 'تَنْظِيمُ الْمَكْتَبَةِ ضَرُورِيٌّ.',
+		question: 'Kata mana yang menamai kegiatan, dan apa polanya?',
+		answer:
+			'تَنْظِيمُ adalah maṣdar Form II berpola تَفْعِيلٌ dan menjadi mubtada. الْمَكْتَبَةِ adalah muḍāf ilaih, dan ضَرُورِيٌّ adalah khabar: penataan perpustakaan itu perlu.',
+		lexemeId: 'nazama',
+		status: 'draft'
+	},
+	{
+		id: 'm47',
+		kind: 'preposition',
+		arabic: 'مِنْ أَجْلِ تَنْظِيمِ الْمُؤْتَمَرِ',
+		question: 'Berapa susunan iḍāfah dalam frasa ini?',
+		answer:
+			'Dua. أَجْلِ (majrūr karena مِنْ) adalah muḍāf dan تَنْظِيمِ muḍāf ilaih-nya; lalu تَنْظِيمِ menjadi muḍāf bagi الْمُؤْتَمَرِ. Ketiganya majrūr: demi penyelenggaraan konferensi.',
+		lexemeId: 'nazama',
+		status: 'draft'
+	},
+	{
+		id: 'm48',
+		kind: 'meaning',
+		arabic: 'تَنْظِيمٌ دَقِيقٌ',
+		question: 'Adakah fi‘il dalam frasa ini, dan bagaimana kedua katanya berhubungan?',
+		answer:
+			'Tidak ada fi‘il. دَقِيقٌ adalah na‘at yang menerangkan maṣdar تَنْظِيمٌ; keduanya nakirah dan marfū‘ sebagai bentuk berdiri sendiri: penataan yang teliti.',
+		lexemeId: 'nazama',
+		status: 'draft'
+	},
+	{
+		id: 'm49',
+		kind: 'verb',
+		arabic: 'أَرْسَلَ الْمُوَظَّفُ الْمِلَفَّ إِلَى الْمُدِيرِ.',
+		question: 'Tentukan fi‘il, fā‘il, maf‘ūl bih dan jar–majrūr.',
+		answer:
+			'أَرْسَلَ adalah fi‘il māḍī Form IV (ia mengirim). الْمُوَظَّفُ adalah fā‘il marfū‘, الْمِلَفَّ adalah maf‘ūl bih manṣūb, dan إِلَى الْمُدِيرِ adalah jar–majrūr: karyawan itu mengirim berkas kepada direktur.',
+		lexemeId: 'arsala',
+		status: 'draft'
+	},
+	{
+		id: 'm50',
+		kind: 'nominal',
+		arabic: 'إِرْسَالُ الْمِلَفِّ سَرِيعٌ.',
+		question: 'Kata mana yang menamai kegiatan, dan bagaimana ia berfungsi?',
+		answer:
+			'إِرْسَالُ adalah maṣdar Form IV berpola إِفْعَالٌ dan menjadi mubtada. الْمِلَفِّ adalah muḍāf ilaih, dan سَرِيعٌ adalah khabar: pengiriman berkas itu cepat.',
+		lexemeId: 'arsala',
+		status: 'draft'
+	},
+	{
+		id: 'm51',
+		kind: 'preposition',
+		arabic: 'بَعْدَ إِرْسَالِ الرِّسَالَةِ',
+		question: 'Apakah frasa ini kalimat lengkap?',
+		answer:
+			'Bukan. بَعْدَ adalah ẓarf manṣūb dan muḍāf, إِرْسَالِ adalah muḍāf ilaih sekaligus muḍāf, dan الرِّسَالَةِ adalah muḍāf ilaih: sesudah pengiriman surat.',
+		lexemeId: 'arsala',
+		status: 'draft'
+	},
+	{
+		id: 'm52',
+		kind: 'meaning',
+		arabic: 'إِرْسَالٌ مَجَّانِيٌّ',
+		question: 'Bagaimana memahami frasa ini?',
+		answer:
+			'مَجَّانِيٌّ adalah na‘at yang menerangkan maṣdar إِرْسَالٌ. Tidak ada fi‘il dan tidak disebut pelaku: pengiriman gratis.',
+		lexemeId: 'arsala',
 		status: 'draft'
 	}
 ];
