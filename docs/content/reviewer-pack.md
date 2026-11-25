@@ -57,7 +57,7 @@ Di data situs, catatan ini disimpan sebagai `reviews: [{ reviewer, role, date, d
 
 ## 6. Contoh butir untuk tinjauan pertama
 
-Akan diisi setelah inventaris kata bacaan shalat selesai disusun dari sumber (tugas RS-04 di [tracker](./tracker.md)). Formatnya:
+Draf inventaris RS-04 tersedia di [bacaan shalat](/rujukan/bacaan-shalat/). Catat koreksi berdasarkan judul bacaan, perawi, dan nomor hadis. [Catatan audit dan prioritas peninjauan](./bacaan-shalat.md). Gunakan format berikut untuk mengusulkan revisi per kata.
 
 | ID           | Arab (berharakat) | Arti (draf) | Ragam            | Konteks                 | Sumber                |
 | ------------ | ----------------- | ----------- | ---------------- | ----------------------- | --------------------- |
