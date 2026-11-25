@@ -1,5 +1,5 @@
 {
-	"checkedOn": "2026-11-17",
+	"checkedOn": "2026-11-25",
 	"mainAssessment": "Routes/tests and merged work found; this is repository evidence, not proof of pedagogical or linguistic correctness.",
 	"states": {
 		"implemented": "All explicit acceptance criteria verified by code, tests, and any required manual evidence",
@@ -54,10 +54,16 @@
 		},
 		{
 			"file": "local-content-import.md",
-			"status": "deferred",
-			"evidence": ["src/lib/domain/local-content/types.ts"],
-			"remaining": "RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun; jangan sebut shipped",
-			"next": "deferred"
+			"status": "partial",
+			"evidence": [
+				"src/lib/domain/local-content/types.ts",
+				"scripts/import-local/index.ts",
+				"src/lib/content/local/index.ts",
+				"src/routes/pustaka/+page.svelte",
+				"tests/e2e/pustaka-empty.e2e.ts"
+			],
+			"remaining": "RS-12 reader, importers (4 sources), loader and /pustaka/ routes merged in #86; owner review with real local content, per-source spot checks after each import and any later Indonesian translation remain open. Third-party text stays local only.",
+			"next": "Owner runs bun run content:import and reviews /pustaka/"
 		},
 		{
 			"file": "nahwu-sharaf-knowledge-map.md",
@@ -68,9 +74,12 @@
 				"src/routes/kaidah/praktik/+page.svelte",
 				"src/routes/kaidah/masdar/+page.svelte",
 				"src/routes/kaidah/participle/+page.svelte",
-				"tests/e2e/participle-lessons.e2e.ts"
+				"tests/e2e/participle-lessons.e2e.ts",
+				"src/lib/content/participle-lessons.ts",
+				"src/lib/content/masdar-lessons.ts",
+				"tests/e2e/masdar-lessons.e2e.ts"
 			],
-			"remaining": "G-02: 24 latihan OER-02b diaudit per butir. Pola Form III, V–IX dan akar lemah lain, pengamalan isim turunan, audit contoh maṣdar, tinjauan pengajar, G-03–05 edge cases, G-06 adaptasi/bukti/progres dan uji pengguna belum tuntas",
+			"remaining": "G-02: Forms I–X participle families and 11 masdar pairs are drafts with two Fable language passes (#85). Open: more weak-root families, pengamalan isim turunan, teacher review, G-03–05 edge cases, G-06 adaptation/evidence/progress and user testing.",
 			"next": "#15 #16 #17 #18 #19 #55"
 		},
 		{
@@ -131,13 +140,17 @@
 		},
 		{
 			"file": "visual-pembelajaran.md",
-			"status": "planned",
+			"status": "partial",
 			"evidence": [
-				"src/lib/components/learning/SentenceBreakdown.svelte",
-				"src/lib/domain/roadmap/presentation.ts"
+				"src/lib/domain/grammar/annotation.ts",
+				"src/lib/components/learning/WordRoleExplorer.svelte",
+				"tests/e2e/word-role-explorer.e2e.ts",
+				"src/lib/domain/roadmap/coverage.ts",
+				"src/lib/components/learning/RoadmapCoverage.svelte",
+				"tests/e2e/vp04-coverage.e2e.ts"
 			],
-			"remaining": "VP-01–05 belum selesai sebagai paket: ID relasi/bukti, word-role explorer interaktif, mode tanpa warna, animasi bertahap, grafik capaian dan uji pengguna",
-			"next": "#52"
+			"remaining": "VP-01 contract with 18 pilot annotations, VP-02 word-role explorer (#87) and VP-04 coverage chart on /progres/ (#84) merged. Open: VP-03 step-by-step change view, VP-05 enrichment and with/without-visual comparison, real Safari iOS/Android checks, pronoun-referent examples, saving the no-colour preference, user testing.",
+			"next": "VP-03, then VP-05 with RM-07; #52"
 		}
 	]
 }

@@ -29,6 +29,18 @@
 
 - [p7-dictionary-expansion.md](./p7-dictionary-expansion.md) — **partial** — `.github/workflows/p7-nonverb-pr.yml`, `scripts/p7-snapshot-report.py`, `docs/data/p4-nonverbs.md` — P7.1 snapshot berhasil; audit lisensi/register dan P7.2–8 belum selesai — [#70](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/70)
 
+### Pembaruan — 25 November 2026
+
+Empat PR implementasi digabung ke `main`. Statusnya tetap **partial** karena uji pengguna, uji perangkat nyata dan tinjauan pengajar belum dilakukan.
+
+| Plan                                                             | Status                 | Yang masuk                                                                                                                                                                                                                                                                                   | Masih terbuka                                                                                                                                              |
+| ---------------------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [visual-pembelajaran.md](./visual-pembelajaran.md)               | planned → **partial**  | VP-04 grafik cakupan per tahap dan ringkasan bukti di `/progres/` ([#84](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/84)); VP-01 kontrak anotasi dengan 18 anotasi pilot dan VP-02 penjelajah peran kata ([#87](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/87)) | VP-03 tampilan perubahan bertahap, VP-05 pengayaan dan perbandingan dengan/tanpa visual, Safari iOS/Android nyata, contoh kata ganti–rujukan, uji pengguna |
+| [nahwu-sharaf-knowledge-map.md](./nahwu-sharaf-knowledge-map.md) | **partial**            | G-02: keluarga isim fā‘il/maf‘ūl Form I–X dan 11 pasangan maṣdar, dua putaran pemeriksaan bahasa oleh Fable ([#85](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/85), [audit](../research/2026-11-25-g02-forms-iii-ix-audit.md))                                                 | Akar lemah lain, pengamalan isim turunan, tinjauan pengajar, G-03–05, G-06, uji pembelajar                                                                 |
+| [local-content-import.md](./local-content-import.md)             | deferred → **partial** | RS-12: empat importer, loader, rute `/pustaka/` dan komponen pembaca ([#86](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/86)); kosong di build publik                                                                                                                           | Pemilik menjalankan `bun run content:import` dan meninjau isi nyata; pemeriksaan sampel per sumber setiap kali impor                                       |
+
+Tugas implementasi berikutnya yang tidak bergantung pada uji pengguna: VP-03, lalu D-05b/c contoh dinamis untuk G-04/G-05 ([#24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24)).
+
 ## Aturan merge dan pengisian status
 
 1. Setiap PR dengan scope plan wajib menyebut **sub-deliverable** (mis. LM-01, bukan LM-01–05), bukti implementasi yang benar-benar ada, serta acceptance criteria yang masih tertunda. `Merged` tidak boleh disamakan dengan `done`.
