@@ -12,8 +12,9 @@
 	let {
 		item,
 		hafalan = false,
+		speech = true,
 		details
-	}: { item: VocabularyItem; hafalan?: boolean; details?: Snippet } = $props();
+	}: { item: VocabularyItem; hafalan?: boolean; speech?: boolean; details?: Snippet } = $props();
 
 	let shown = $state(false);
 	let meaningVisible = $derived(!hafalan || shown);
@@ -49,7 +50,9 @@
 
 	<div class="mt-4 flex items-start justify-between gap-2">
 		<p lang="ar" dir="rtl" class="min-w-0 arabic-word">{item.arabic}</p>
-		<AudioPlayButton text={item.arabic} label="Dengarkan kata Arab" compact />
+		{#if speech}
+			<AudioPlayButton text={item.arabic} label="Dengarkan kata Arab" compact />
+		{/if}
 	</div>
 
 	<div class="mt-auto min-h-11 pt-3" aria-live="polite">

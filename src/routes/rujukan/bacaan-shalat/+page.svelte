@@ -3,6 +3,8 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import MixedText from '#lib/components/learning/MixedText.svelte';
+	import { fatihahWords } from '#lib/content/shalat-fatihah.js';
+	import { TANZIL_NOTICE, TANZIL_TEXT_VERSION } from '#lib/content/quran-vocabulary.js';
 	import { prayerReadings, readingSource } from '#lib/content/shalat-readings.js';
 </script>
 
@@ -47,13 +49,48 @@
 					Riwayat Ubadah bin ash-Shamit menyebut pembacaan Al-Fatihah dalam shalat.
 					<a class="text-primary underline" href="https://sunnah.com/bukhari:756"
 						>Sahih al-Bukhari 756</a
-					>.
-					<a
-						class="text-primary underline"
-						href="https://quran.kemenag.go.id/assets/files/Juz-Amma-Metode-Tilawah.pdf#page=1"
-						>Buka Al-Fatihah di bahan tilawah LPMQ</a
+					>. Riwayat Abu Qatadah menyebut bacaan surah lain sesudah Al-Fatihah pada dua rakaat awal
+					Zuhur.
+					<a class="text-primary underline" href="https://sunnah.com/bukhari:759"
+						>Sahih al-Bukhari 759</a
 					>.
 				</p>
+				<a
+					class="inline-flex min-h-11 items-center text-primary underline"
+					href="https://quran.kemenag.go.id/assets/files/Juz-Amma-Metode-Tilawah.pdf#page=1"
+					>Buka Al-Fatihah di bahan tilawah LPMQ</a
+				>
+				<details
+					id="kosakata-al-fatihah"
+					class="scroll-mt-24 rounded-xl border bg-card px-4 py-1 sm:px-5"
+				>
+					<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary"
+						>Kosakata pilihan Al-Fatihah</summary
+					>
+					<dl class="grid gap-x-8 sm:grid-cols-2">
+						{#each fatihahWords as [arabic, meaning, verse, note] (arabic)}
+							<div class="border-t py-3">
+								<dt><ArabicText text={arabic} class="text-xl" /></dt>
+								<dd>
+									{meaning}
+									{#if note}<p class="mt-1 text-sm text-muted-foreground">
+											<MixedText text={note} />
+										</p>{/if}
+									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external verse locator -->
+									<a
+										class="inline-flex min-h-11 items-center text-sm text-primary underline"
+										href={`https://tanzil.net/#1:${verse}`}>Al-Fatihah ayat {verse}</a
+									>
+								</dd>
+							</div>
+						{/each}
+					</dl>
+					<p class="border-t py-3 text-sm text-muted-foreground">
+						{TANZIL_NOTICE} ·
+						<a href="https://tanzil.net/" class="text-primary underline">{TANZIL_TEXT_VERSION}</a>.
+						Glos Indonesia disusun untuk pembelajaran.
+					</p>
+				</details>
 			{/if}
 
 			{#if group.id === 'sujud'}
@@ -90,7 +127,12 @@
 							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external hadith source -->
 							<a class="text-primary underline" href={source.href}>{source.label}</a>
 							{#if reading.grade}
-								· {reading.grade}{/if}
+								· {reading.grade}
+							{/if}
+							{#if reading.gradeSource}
+								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external hadith grading -->
+								<a class="text-primary underline" href={reading.gradeSource}>Penilaian al-Albani</a>
+							{/if}
 						</p>
 						{#if reading.note}
 							<p class="text-sm text-muted-foreground"><MixedText text={reading.note} /></p>

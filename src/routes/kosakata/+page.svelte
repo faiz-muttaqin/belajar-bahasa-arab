@@ -11,6 +11,7 @@
 	import SpeechSettings from '#lib/components/learning/SpeechSettings.svelte';
 	import { quranVocabulary } from '#lib/content/quran-vocabulary.js';
 	import { msaVocabulary } from '#lib/content/msa-vocabulary.js';
+	import { shalatVocabularyReadings } from '#lib/content/shalat-vocabulary.js';
 	import { publishedVocabulary } from '#lib/content/vocabulary.js';
 	import { type VocabularyCollectionId } from '#lib/domain/vocabulary/types.js';
 
@@ -155,8 +156,22 @@
 
 			<ul class="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4">
 				{#each items as item (item.id)}
+					{@const reading = shalatVocabularyReadings.get(item.id)}
 					<li id={`kata-${item.id}`} class="scroll-mt-24">
-						{#key hafalan}<VocabCard {item} {hafalan} />{/key}
+						{#key hafalan}
+							{#if reading}
+								<VocabCard {item} {hafalan} speech={false}>
+									{#snippet details()}
+										<a
+											class="inline-flex min-h-11 items-center text-sm font-medium text-primary underline"
+											href={resolve(`rujukan/bacaan-shalat/#${reading}`)}>Lihat dalam bacaan</a
+										>
+									{/snippet}
+								</VocabCard>
+							{:else}
+								<VocabCard {item} {hafalan} />
+							{/if}
+						{/key}
 					</li>
 				{/each}
 			</ul>

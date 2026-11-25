@@ -3,6 +3,14 @@
 	"note": "Every source used for dictionary content. copyrightStatus and usage decide what may enter the public repository; see docs/data/copyright-policy.md. scripts/check-sources.mjs enforces the rules.",
 	"sources": [
 		{
+			"id": "tanzil-uthmani",
+			"title": "Tanzil Quran Text, Uthmani 1.1",
+			"url": "https://tanzil.net/docs/text_license",
+			"copyrightStatus": "open-license",
+			"license": "CC BY 3.0 with Tanzil verbatim text and attribution conditions",
+			"usage": "quotation"
+		},
+		{
 			"id": "hadith-api-arabic",
 			"title": "Classical Arabic hadith texts in hadith-api",
 			"edition": "df57907be35291c91ad6a6691180e22ca9920784",
