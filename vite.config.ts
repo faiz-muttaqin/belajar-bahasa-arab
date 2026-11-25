@@ -15,7 +15,15 @@ export default defineConfig({
 			},
 			// 404.html: error shell for static hosts (GitHub Pages, Vercel). Not an SPA fallback
 			// for real pages: every public route is still prerendered and strict mode stays on.
-			adapter: adapter({ fallback: '404.html' })
+			adapter: adapter({ fallback: '404.html' }),
+			prerender: {
+				// /pustaka/ detail routes have no entries on CI and public builds (no content-local/).
+				// Only those may go unseen; any other unseen route still fails the build.
+				handleUnseenRoutes: ({ routes, message }) => {
+					const others = routes.filter((route) => !route.startsWith('/pustaka/'));
+					if (others.length > 0) throw new Error(`${message}\nUnseen: ${others.join(', ')}`);
+				}
+			}
 		})
 	],
 	test: {
@@ -40,7 +48,7 @@ export default defineConfig({
 				test: {
 					name: 'server',
 					environment: 'node',
-					include: ['src/**/*.{test,spec}.{js,ts}'],
+					include: ['src/**/*.{test,spec}.{js,ts}', 'scripts/import-local/**/*.test.ts'],
 					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
 				}
 			}

@@ -20,6 +20,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint . && node scripts/check-sources.mjs",
 		"format": "prettier --write .",
+		"content:import": "bun scripts/import-local/index.ts",
 		"test:unit": "vitest",
 		"test:e2e": "bun run build && playwright test",
 		"test": "node --test scripts/build-wiktionary-nonverbs.test.mjs && vitest --run && bun run test:e2e",

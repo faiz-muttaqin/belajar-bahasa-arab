@@ -1,6 +1,21 @@
 # Plan: local copies of existing curriculum (personal-use mode)
 
-**Status:** personal-use design, deferred. The current build ships [original public lessons](../content/public-lessons.md).
+**Status:** in progress (updated 25 November 2026). The reader, importers and loader are
+implemented in the RS-12 pull request; the owner still has to run the import on their own
+machine and review the content. The current public build still ships
+[original public lessons](../content/public-lessons.md) only.
+
+Delivered by the RS-12 pull request:
+
+- Importers for all four sources (`scripts/import-local/`) and `bun run content:import`.
+- Loader `src/lib/content/local/`, routes under `/pustaka/`, components in
+  `src/lib/components/local/`, and a "Pustaka" entry in the site menu (not in the mobile tab bar).
+- Unit tests for the converter, the static evaluator and every importer on synthetic input, a
+  loader test, and an e2e test of the empty build.
+
+Still open: review of the imported content by the owner on real mobile browsers (pending
+manual review), and anything the owner decides after studying from it. See the decision note
+at the end of this document.
 **Owner decision (2026-11-14):** the owner wants to study from material that already exists in
 the cloned source repos, without waiting for teacher review, and to review the UI with real
 content. Copies stay **local only**: the owner chose "simpan lokal saja" over making the repo
@@ -97,19 +112,38 @@ Lesson bodies are a small block model (`heading`, `paragraph`, `list`, `table`, 
    sample of each source against its original for lost text, broken macros or wrong direction.
 8. **Gate:** `bun run verify`, `git status` (rule 1), commit and push code and docs only.
 
-## Open questions for the owner
+## Keputusan pemilik: 25 November 2026
 
-- Should `/pustaka/` also appear on a public build (showing only the empty state), or only in
-  dev? Current plan: always present, empty when there is no local content.
-- Tajweed lessons are fully Arabic and the grammar and vocab sources are English. Keep as is
-  (current plan) or add Indonesian later via reviewed translation?
+Pemilik menerima kedua pilihan bawaan rencana ini.
+
+1. `/pustaka/` selalu ada di setiap build, termasuk build publik. Tanpa `content-local/`,
+   halamannya hanya menampilkan keadaan kosong, dan tidak ada halaman `/pustaka/*/` yang dibuat.
+2. Bahasa tiap sumber dipertahankan apa adanya: pelajaran tajwid berbahasa Arab, sumber nahwu,
+   sharaf dan kosakata berbahasa Inggris, Cahaya Tauhid berbahasa Indonesia. Tidak ada
+   terjemahan mesin. Terjemahan Indonesia baru dipertimbangkan nanti, lewat peninjauan.
+
+## Hasil impor dan batasan yang diketahui
+
+Cara menjalankan di checkout sendiri: `bun run content:import`, lalu `bun run dev`. Folder
+`content-local/` diabaikan Git dan Prettier, sehingga CI dan build publik tidak memilikinya.
+
+- Tajwid: kolom `word` di kuis ikut disalin. Tag (`tags`) di front matter tidak disalin.
+  Kutipan ayat memakai teks `show` dari sumber (tanpa korpus Tanzil), jadi harakatnya bisa
+  kurang lengkap.
+- Cahaya Tauhid: daftar bersarang diratakan (item turunan diberi tanda hubung), karena model
+  blok hanya mengenal daftar datar. Blok kode ditampilkan sebagai paragraf kode.
+- Unified Arabic Grammar: tabel interaktif di aplikasi sumber tidak disalin; pelajaran hanya merujuk ke
+  tabel rujukan yang setara. Tabel yang ditulis kanan-ke-kiri dibalik urutan kolomnya agar tampilannya
+  sama.
+- Kosakata: transliterasi dibuang (hasil OCR rusak). Teks Arab apa adanya, dengan catatan
+  kualitas data di atas daftar.
 
 ## Catatan implementasi terverifikasi — 17 November 2026
 
-**Status plan keseluruhan: DEFERRED**, bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
+**Status plan keseluruhan pada 17 November 2026: DEFERRED.** Per 25 November 2026 statusnya _in progress_ (lihat bagian Status di atas); catatan di bawah ini dibiarkan sebagai riwayat. Sebelumnya: bukan otomatis selesai karena PR pilot sudah merged. Audit lintas sebelas dokumen: [matriks status implementasi](./IMPLEMENTATION_STATUS.md).
 
 **Sudah terlihat di kode:** `src/lib/domain/local-content/types.ts`. Ini bukti keberadaan implementasi, **bukan** audit benar-salah kaidah atau hasil uji pengguna.
 
-**Belum terpenuhi:** RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun; jangan sebut shipped.
+**Belum terpenuhi (17 November):** RS-12: hanya kontrak; importer, loader, /pustaka/ dan uji isolasi lisensi belum dibangun. Dibangun di PR RS-12 (25 November); jangan sebut shipped sebelum pemilik meninjau isinya.
 
-**Tindak lanjut:** Ditunda; perlu keputusan pemilik sebelum mulai. Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
+**Tindak lanjut:** Keputusan pemilik sudah ada (25 November). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
