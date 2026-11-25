@@ -7,18 +7,27 @@ import {
 } from './masdar-lessons.js';
 
 describe('OER-02 masdar reader', () => {
-	it('publishes 5 lexically sourced verb–masdar pairs and 20 different drafts', () => {
-		expect(masdarLexemes).toHaveLength(5);
-		expect(masdarTasks).toHaveLength(20);
+	it('publishes 11 lexically sourced verb–masdar pairs and 44 different drafts', () => {
+		expect(masdarLexemes).toHaveLength(11);
+		expect(masdarTasks).toHaveLength(44);
 		expect(validateMasdarTasks(masdarTasks)).toEqual([]);
-		expect(new Set(masdarTasks.map((item) => item.id)).size).toBe(20);
-		expect(new Set(masdarTasks.map((item) => item.arabic)).size).toBe(20);
+		expect(new Set(masdarTasks.map((item) => item.id)).size).toBe(44);
+		expect(new Set(masdarTasks.map((item) => item.arabic)).size).toBe(44);
 		expect(new Set(masdarTasks.map((item) => item.kind)).size).toBe(4);
 		expect(masdarTasks.every((item) => item.status === 'draft')).toBe(true);
 		expect(masdarGrammarSource.license).toContain('CC BY 4.0');
 		for (const lexeme of masdarLexemes) {
 			expect(lexeme.source).toMatch(/^https:\/\/en\.wiktionary\.org\/wiki\/[^/]+/);
 			expect(lexeme.masdar.trim().length).toBeGreaterThan(2);
+			expect(lexeme.pattern.trim().length).toBeGreaterThan(2);
+			expect(masdarTasks.filter((item) => item.lexemeId === lexeme.id)).toHaveLength(4);
+		}
+	});
+
+	it('gives one sourced masdar pair for Forms III and V to X', () => {
+		const forms = new Set(masdarLexemes.map((lexeme) => lexeme.form));
+		for (const form of ['I', 'III', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']) {
+			expect(forms.has(form as never)).toBe(true);
 		}
 	});
 
@@ -32,5 +41,8 @@ describe('OER-02 masdar reader', () => {
 		expect(validateMasdarTasks(duplicateText)).toContain('Duplicate Arabic stimulus: m02');
 		const empty = [{ ...masdarTasks[0]!, answer: '' }, ...masdarTasks.slice(1)];
 		expect(validateMasdarTasks(empty)).toContain('Empty task: m01');
+		expect(validateMasdarTasks(masdarTasks.slice(1))).toContain(
+			'Four tasks are required per lexeme: kataba has 3'
+		);
 	});
 });

@@ -153,6 +153,7 @@ See the [post-Iqra learning roadmap](../curriculum/ROADMAP.md) for the delivery 
 
 - **OER-02b — 🟡 Pilot:** `/kaidah/participle/`, enam keluarga verba pada Form I, II, IV dan X, termasuk satu ajwaf; 24 latihan orisinal. Dua bab LibreTexts Hana Kassas CC BY 4.0, MSU CC BY-NC hanya pembanding konsep, entri Wiktionary memberi bukti bentuk.
 - Pemeriksaan editorial mencakup 24 latihan dan menghasilkan 7 revisi. Pola dan akar lemah lain, pengamalan isim turunan, tinjauan pengajar, dan uji pelajar masih terbuka. [Audit per butir](../research/2026-11-20-participle-source-audit.md#audit-24-latihan--20-november-2026), [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55), [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15).
+- **Pembaruan 25 November 2026 (G-02, Form III–X):** halaman participle memuat 15 keluarga verba (Form I sampai X, termasuk mithāl, ajwaf VIII dan bentuk “tidak lazim”) dengan maṣdar dan 60 latihan; halaman maṣdar memuat 11 pasangan dan 44 latihan. Dua putaran pemeriksaan Fable, semua tetap draf. [Audit](../research/2026-11-25-g02-forms-iii-ix-audit.md). Terbuka: tinjauan pengajar, uji pelajar, akar nāqiṣ/lafīf/mahmūz, Form II dan IV pada maṣdar.
 
 ## Sumber terbuka · OER-02 Maṣdar (17 November 2026)
 
