@@ -160,6 +160,34 @@
 			"license": "CC BY-SA 3.0",
 			"usage": "reference-only",
 			"caveat": "r2.17 corpus pilot; candidate counts and token locators in separately attributed CI artifact only, no source sentences or corpus distributed in the site."
+		},
+		{
+			"id": "ajurrumiyyah-wikisource",
+			"title": "Al-Ājurrūmiyyah (Arabic Wikisource)",
+			"author": "Ibn Ājurrūm (d. 723 H)",
+			"url": "https://ar.wikisource.org/wiki/%D8%A7%D9%84%D8%A2%D8%AC%D8%B1%D9%88%D9%85%D9%8A%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D9%86%D8%AD%D9%88",
+			"copyrightStatus": "open-license",
+			"license": "CC BY-SA 4.0",
+			"usage": "reference-only",
+			"caveat": "The original medieval text is in the public domain; the digital copy on Wikisource is published under CC BY-SA 4.0. Cited by chapter (bāb) for G-03 rules and VP-01 annotations; no passage is copied into the site."
+		},
+		{
+			"id": "qatr-an-nada-wikisource",
+			"title": "Qaṭr an-Nadā wa Ball aṣ-Ṣadā (Arabic Wikisource)",
+			"author": "Ibn Hishām al-Anṣārī (d. 761 H)",
+			"url": "https://ar.wikisource.org/wiki/%D8%A7%D8%A8%D9%86_%D9%87%D8%B4%D8%A7%D9%85_%D8%A7%D9%84%D9%86%D8%B5%D8%A7%D8%B1%D9%8A_-_%D9%82%D8%B7%D8%B1_%D8%A7%D9%84%D9%86%D8%AF%D9%89_%D9%88%D8%A8%D9%84_%D8%A7%D9%84%D8%B5%D8%AF%D9%89",
+			"copyrightStatus": "open-license",
+			"license": "CC BY-SA 4.0",
+			"usage": "reference-only",
+			"caveat": "The original medieval text is in the public domain; the Wikisource copy is published under CC BY-SA 4.0. One long page without chapter pages, so the site cites a section by its opening words. No passage is copied into the site."
+		},
+		{
+			"id": "madinah-arabic-grammar",
+			"title": "Madinah Arabic grammar lessons",
+			"url": "https://madinaharabic.com/free-content/grammar",
+			"copyrightStatus": "unknown",
+			"usage": "reference-only",
+			"caveat": "No general content-reuse licence established (see docs/ARABIC_CURRICULUM_SOURCES_AND_LICENSES.md). Cited by lesson and part for sequence and terms only; no lesson text or examples are copied. Part-level topics for lessons 25, 54, 57 and 69 were read through a page summary and must be re-checked on the page."
 		}
 	]
 }

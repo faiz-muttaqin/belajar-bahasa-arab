@@ -6,6 +6,7 @@
  * original teaching text. Sources are the ones the underlying annotations cite. Everything stays
  * `draft` (ADR-004 D-9). Inventory, sources and review notes: docs/data/vp01-annotation-pilot.md.
  */
+import { qatr } from './annotation-builders.js';
 import { aj, grammarAnnotations, madinah } from './grammar-annotations.js';
 import {
 	resolveChangeSequence,
@@ -140,6 +141,208 @@ const idafahAfterPreposition: ChangeSequence = {
 	]
 };
 
+/** Pair 4 (G-03): the muḍāf becomes manṣūb as an object; the muḍāf ilaih stays majrūr. */
+const idafahAsObject: ChangeSequence = {
+	id: 'cs-idafah-nasb',
+	title: 'Iḍāfah menjadi objek',
+	intro:
+		'Bandingkan iḍāfah “buku milik murid itu” dengan “saya melihat buku milik murid itu”. Hanya kata pertama yang berubah akhirnya; kata kedua tetap berkasrah.',
+	placement: { kind: 'phrase-rule', ruleId: 'idafah-nasb-marifah' },
+	before: 'g1-kitab-talib',
+	after: 'ph-raaytu-kitab-talib',
+	usageType: 'independent-original',
+	status: 'draft',
+	limits:
+		ownedLimits +
+		' Al-Ājurrūmiyyah memakai istilah khafḍ untuk apa yang di sini disebut jarr. Pada frasa pertama كِتَابُ ditulis berḍammah hanya sebagai bentuk rujukan; frasa itu belum menempati kedudukan apa pun dalam kalimat.',
+	steps: [
+		{
+			id: 'cs-idafah-nasb.s1',
+			title: 'Fi‘il ditambahkan di depan',
+			changes: [
+				{
+					after: 'ph-raaytu-kitab-talib.t1',
+					aspect: 'added',
+					summary:
+						'رَأَيْتُ (“saya melihat”) muncul di awal. Frasa iḍāfah yang lama tetap utuh di belakangnya.'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'Fi‘il ini membutuhkan objek. Frasa iḍāfah yang tadinya berdiri sendiri kini menjadi objek langsung (maf‘ūl bih) dari fi‘il itu.',
+			sources: [aj.mafulBih]
+		},
+		{
+			id: 'cs-idafah-nasb.s2',
+			title: 'Muḍāf menjadi manṣūb',
+			changes: [
+				{
+					before: 'g1-kitab-talib.t1',
+					after: 'ph-raaytu-kitab-talib.t2',
+					aspect: 'ending',
+					summary: 'كِتَابُ menjadi كِتَابَ. Ḍammah (bentuk rujukan) diganti fatḥah.'
+				},
+				{
+					before: 'g1-kitab-talib.t1',
+					after: 'ph-raaytu-kitab-talib.t2',
+					aspect: 'role',
+					summary: 'Dari muḍāf saja menjadi muḍāf yang sekaligus objek langsung (maf‘ūl bih).'
+				}
+			],
+			dependents: [],
+			stays: [
+				{
+					before: 'g1-kitab-talib.t2',
+					after: 'ph-raaytu-kitab-talib.t3',
+					note: 'الطَّالِبِ tetap berkasrah. Ia majrūr karena iḍāfah, apa pun kedudukan frasa itu dalam kalimat.'
+				}
+			],
+			reason:
+				'Maf‘ūl bih berstatus naṣb. Yang menerima tanda naṣb adalah muḍāf, yaitu kata pertama frasa, sedangkan muḍāf ilaih tetap majrūr. Muḍāf tetap tanpa tanwin.',
+			sources: [aj.manshubat, aj.mafulBih, aj.irab, aj.makhfudat, madinah.idafah]
+		}
+	]
+};
+
+/** Pair 5 (G-03): al-asmā’ al-khamsa takes alif in naṣb instead of wāw. */
+const fatherFromSubjectToObject: ChangeSequence = {
+	id: 'cs-abu-aba',
+	title: 'Dari أَبُو ke أَبَا',
+	intro:
+		'Bandingkan “ayah murid itu datang” dengan “saya melihat ayah murid itu”. Tanda i‘rab kata أَبٌ berpindah dari huruf wāw ke huruf alif.',
+	placement: { kind: 'phrase-rule', ruleId: 'asma-khamsa' },
+	before: 'ph-jaa-abu-talib',
+	after: 'ph-raaytu-aba-talib',
+	usageType: 'independent-original',
+	status: 'draft',
+	limits:
+		ownedLimits +
+		' Dua kalimat ini memakai fi‘il yang berbeda, jadi pergantian fi‘il bukan perubahan bentuk satu kata. Syarat lengkap penggunaan wāw, alif dan yā’ tidak dirinci dalam sumber yang dikutip.',
+	steps: [
+		{
+			id: 'cs-abu-aba.s1',
+			title: 'Fi‘il diganti',
+			changes: [
+				{
+					before: 'ph-jaa-abu-talib.t1',
+					aspect: 'dropped',
+					summary:
+						'جَاءَ (“telah datang”) tidak dipakai lagi. Ini bukan perubahan bentuk, tetapi fi‘il lain.'
+				},
+				{
+					after: 'ph-raaytu-aba-talib.t1',
+					aspect: 'added',
+					summary: 'رَأَيْتُ (“saya melihat”) dipakai sebagai gantinya.'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'Fi‘il yang baru membutuhkan objek, sehingga kata yang tadi menjadi pelaku kini menjadi objek langsung. Pergantian fi‘il inilah yang mengubah kedudukannya, bukan perubahan pada kata أَبُو sendiri.',
+			sources: [aj.fail, aj.mafulBih]
+		},
+		{
+			id: 'cs-abu-aba.s2',
+			title: 'Wāw berganti alif',
+			changes: [
+				{
+					before: 'ph-jaa-abu-talib.t2',
+					after: 'ph-raaytu-aba-talib.t2',
+					aspect: 'form',
+					summary: 'أَبُو menjadi أَبَا. Huruf akhir wāw diganti alif.'
+				},
+				{
+					before: 'ph-jaa-abu-talib.t2',
+					after: 'ph-raaytu-aba-talib.t2',
+					aspect: 'ending',
+					summary: 'Tanda i‘rab berpindah dari wāw (rafa‘) ke alif (naṣb).'
+				},
+				{
+					before: 'ph-jaa-abu-talib.t2',
+					after: 'ph-raaytu-aba-talib.t2',
+					aspect: 'role',
+					summary: 'Dari pelaku (fā‘il) menjadi objek langsung (maf‘ūl bih).'
+				}
+			],
+			dependents: [],
+			stays: [
+				{
+					before: 'ph-jaa-abu-talib.t3',
+					after: 'ph-raaytu-aba-talib.t3',
+					note: 'الطَّالِبِ tetap berkasrah karena iḍāfah.'
+				}
+			],
+			reason:
+				'Al-asmā’ al-khamsa memakai wāw untuk rafa‘, alif untuk naṣb dan yā’ untuk jarr ketika muḍāf. Jadi tanda perubahan kasusnya adalah pergantian huruf (wāw menjadi alif); harakat pada bā’ ikut menyesuaikan, tetapi bukan itu tanda i‘rabnya.',
+			sources: [aj.irab, qatr.types, madinah.sixNouns]
+		}
+	]
+};
+
+/** Pair 6 (G-03): jamak muannath sālim takes kasrah in naṣb, not fatḥah. */
+const feminineSoundPluralToObject: ChangeSequence = {
+	id: 'cs-muallimat-nasb',
+	title: 'Jamak muannath sālim menjadi objek',
+	intro:
+		'Bandingkan “para guru perempuan itu datang” dengan “saya melihat para guru perempuan itu”. Akhir kata berubah dari ḍammah ke kasrah, bukan ke fatḥah.',
+	placement: { kind: 'phrase-rule', ruleId: 'muannath-salim' },
+	before: 'ph-jaat-muallimat',
+	after: 'ph-raaytu-muallimat',
+	usageType: 'independent-original',
+	status: 'draft',
+	limits:
+		ownedLimits +
+		' Dua kalimat ini memakai fi‘il yang berbeda, jadi pergantian fi‘il bukan perubahan bentuk satu kata. Contoh nakirah (مُعَلِّمَاتٍ) tidak ada dalam urutan ini.',
+	steps: [
+		{
+			id: 'cs-muallimat-nasb.s1',
+			title: 'Fi‘il diganti',
+			changes: [
+				{
+					before: 'ph-jaat-muallimat.t1',
+					aspect: 'dropped',
+					summary:
+						'جَاءَتِ (“telah datang”, feminin) tidak dipakai lagi. Ini fi‘il lain, bukan perubahan bentuk.'
+				},
+				{
+					after: 'ph-raaytu-muallimat.t1',
+					aspect: 'added',
+					summary: 'رَأَيْتُ (“saya melihat”) dipakai sebagai gantinya.'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'Fi‘il yang baru membutuhkan objek, sehingga الْمُعَلِّمَاتُ yang tadi menjadi pelaku kini menjadi objek langsung.',
+			sources: [aj.fail, aj.mafulBih]
+		},
+		{
+			id: 'cs-muallimat-nasb.s2',
+			title: 'Ḍammah menjadi kasrah',
+			changes: [
+				{
+					before: 'ph-jaat-muallimat.t2',
+					after: 'ph-raaytu-muallimat.t2',
+					aspect: 'ending',
+					summary: 'الْمُعَلِّمَاتُ menjadi الْمُعَلِّمَاتِ. Ḍammah (rafa‘) diganti kasrah (naṣb).'
+				},
+				{
+					before: 'ph-jaat-muallimat.t2',
+					after: 'ph-raaytu-muallimat.t2',
+					aspect: 'role',
+					summary: 'Dari pelaku (fā‘il) menjadi objek langsung (maf‘ūl bih).'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'Maf‘ūl bih berstatus naṣb. Untuk isim tunggal tandanya fatḥah, tetapi jamak muannath sālim memakai kasrah sebagai tanda naṣb (Al-Ājurrūmiyyah).',
+			sources: [aj.irab, aj.manshubat, qatr.types, madinah.feminineSound]
+		}
+	]
+};
+
 /** Pair 3 (lesson "Baca kalimat ketika pelakunya tidak disebut"): active to passive. */
 const activeToPassive: ChangeSequence = {
 	id: 'cs-aktif-ke-pasif',
@@ -218,7 +421,10 @@ const activeToPassive: ChangeSequence = {
 export const changeSequences: readonly ChangeSequence[] = [
 	adjectivePhraseToNominal,
 	idafahAfterPreposition,
-	activeToPassive
+	activeToPassive,
+	idafahAsObject,
+	fatherFromSubjectToObject,
+	feminineSoundPluralToObject
 ];
 
 function placed(test: (sequence: ChangeSequence) => boolean): ResolvedSequence[] {

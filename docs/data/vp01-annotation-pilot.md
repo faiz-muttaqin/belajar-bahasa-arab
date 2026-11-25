@@ -139,6 +139,10 @@ Subagen Fable menerima semua langkah (Arab berharakat penuh sebelum dan sesudah,
 
 **Disarankan tetapi tidak diubah:** terjemahan “Di dalam buku murid itu.” memakai “di dalam” sedangkan glos فِي “di” dan pengantar urutan tanpa “milik” (keduanya dari konten yang ada); الْبَابَ dan الْبَابُ di alasan langkah 3 dapat disebut berurutan agar kedua bentuk terlihat. Halaman Madinah dibaca melalui peringkas, bukan teks mentah.
 
+## Perluasan G-03 kasus khusus (25 November 2026)
+
+Issue #16 menambah 34 anotasi untuk contoh baru di `/kaidah/frasa/` (ẓarf, jamak muannath sālim, al-asmā’ al-khamsa, jamak taksir dan mamnū‘ min aṣ-ṣarf, maqṣūr dan manqūṣ, kata mabnī, iḍāfah pada naṣb dan ma‘rifah), sehingga jumlahnya 52 anotasi. Data di `src/lib/content/phrase-edge-annotations.ts`; teks, glos dan terjemahan dibaca langsung dari contoh sumbernya agar tidak bergeser. Pembangun bersama dipindahkan ke `annotation-builders.ts`. Peran baru **Ẓarf** (`zharf`) ditambahkan ke kontrak, dan tiga urutan perubahan VP-03 (iḍāfah menjadi objek, أَبُو ke أَبَا, jamak muannath sālim menjadi objek). Dua contoh G-03 (`definite-idafah`) memakai anotasi `g1-kitab-talib` yang sudah ada. Kata mabnī tidak diberi alasan harakat akhir. Catatan bukti dan pemeriksaan Fable: [audit G-03](./nahwu-phrase-irab-audit.md).
+
 ## Pekerjaan terbuka
 
 - Tinjauan ustadz atas seluruh jalur (D-9) dan sumber tambahan untuk kesesuaian na‘at.

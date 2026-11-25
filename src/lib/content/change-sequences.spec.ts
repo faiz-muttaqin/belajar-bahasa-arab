@@ -23,7 +23,10 @@ describe('VP-03 pilot change sequences', () => {
 		).toEqual([
 			['ph-kitab-jadid-def', 'g1-kitab-jadid-khabar', 2],
 			['g1-kitab-talib', 'ph-fi-kitab-talib', 2],
-			['wc-penjaga-membuka', 'wc-pintu-dibuka', 3]
+			['wc-penjaga-membuka', 'wc-pintu-dibuka', 3],
+			['g1-kitab-talib', 'ph-raaytu-kitab-talib', 2],
+			['ph-jaa-abu-talib', 'ph-raaytu-aba-talib', 2],
+			['ph-jaat-muallimat', 'ph-raaytu-muallimat', 2]
 		]);
 	});
 
@@ -82,6 +85,15 @@ describe('VP-03 pilot change sequences', () => {
 		expect(changeSequencesForPhraseRule('idafah-jar').map((item) => item.id)).toEqual([
 			'cs-fi-mudhaf'
 		]);
+		expect(changeSequencesForPhraseRule('idafah-nasb-marifah').map((item) => item.id)).toEqual([
+			'cs-idafah-nasb'
+		]);
+		expect(changeSequencesForPhraseRule('asma-khamsa').map((item) => item.id)).toEqual([
+			'cs-abu-aba'
+		]);
+		expect(changeSequencesForPhraseRule('muannath-salim').map((item) => item.id)).toEqual([
+			'cs-muallimat-nasb'
+		]);
 		expect(changeSequencesForLesson('kalimat-aktif-dan-pasif').map((item) => item.id)).toEqual([
 			'cs-aktif-ke-pasif'
 		]);
@@ -99,5 +111,14 @@ describe('VP-03 pilot change sequences', () => {
 			'الْبَابَ',
 			'الْبَابُ'
 		]);
+	});
+
+	it('shows kasrah in naṣb for the feminine sound plural and the alif of أَبَا', () => {
+		const [muannath] = changeSequencesForPhraseRule('muannath-salim');
+		const noun = muannath!.steps[1]!.changes.find((change) => change.aspect === 'ending')!;
+		expect([noun.before?.text, noun.after?.text]).toEqual(['الْمُعَلِّمَاتُ', 'الْمُعَلِّمَاتِ']);
+		const [father] = changeSequencesForPhraseRule('asma-khamsa');
+		const form = father!.steps[1]!.changes.find((change) => change.aspect === 'form')!;
+		expect([form.before?.text, form.after?.text]).toEqual(['أَبُو', 'أَبَا']);
 	});
 });

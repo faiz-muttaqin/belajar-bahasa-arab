@@ -80,3 +80,9 @@ Pemetaan kontrak dan lanjutan D-02–D-06 ada dalam [rencana Dynamic Examples](.
 - `/kaidah/masdar/` kini memuat 11 pasangan (enam baru: مُسَاعَدَةٌ dan قِتَالٌ untuk Form III, تَعَلُّمٌ V, تَعَاوُنٌ VI, اِنْقِطَاعٌ VII, اِحْمِرَارٌ IX) dan 44 latihan; setiap Form I, III, V–X mempunyai pasangan bersumber.
 - Pemeriksaan kebahasaan dua putaran oleh Fable. [Audit Form III–IX](../research/2026-11-25-g02-forms-iii-ix-audit.md). Semua tetap `draft`.
 - Masih terbuka: Form II dan IV pada halaman maṣdar, akar nāqiṣ, lafīf, mahmūz, pola lain di luar 22 wazan yang dibahas, pengamalan isim turunan, tinjauan pengajar dan uji pembelajar.
+
+### G-03 · Pembaruan kasus khusus (25 November 2026)
+
+- `/kaidah/frasa/` kini memuat 12 kaidah dan 51 contoh. Tujuh kaidah baru: ẓarf makān dan zamān, muannath dan jamak muannath sālim (kasrah pada naṣb), al-asmā’ al-khamsa, jamak taksir dan mamnū‘ min aṣ-ṣarf, isim maqṣūr dan manqūṣ, kata mabnī (ḍamīr dan isim isyārah), serta iḍāfah pada naṣb dan ma‘rifah.
+- Semua contoh baru beranotasi (peran baru: ẓarf) dan tiga urutan perubahan bertahap ditambahkan. Rujukan sampai tingkat bab (Al-Ājurrūmiyyah dan Qaṭr an-Nadā di Wikisource) atau pelajaran dan bagian (Madinah Arabic). Dua putaran pemeriksaan kebahasaan Fable: [audit](../data/nahwu-phrase-irab-audit.md).
+- Masih terbuka: tinjauan pengajar atau ustadz, uji peramban ponsel nyata, sembilan sebab mamnū‘ min aṣ-ṣarf selain pola مَفَاعِلُ, ḍamīr dan isim isyārah lain, syarat lengkap al-asmā’ al-khamsa, serta kasus nakirah isim manqūṣ. [#16](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/16) tetap terbuka.

@@ -15,7 +15,14 @@
 	const explorerRules: readonly AnnotatedPhraseRuleId[] = [
 		'naat-agreement',
 		'idafah-jar',
-		'perubahan-irab'
+		'perubahan-irab',
+		'zharf-makan-zaman',
+		'muannath-salim',
+		'asma-khamsa',
+		'jamak-taksir-mamnu',
+		'maqshur-manqush',
+		'kata-mabni',
+		'idafah-nasb-marifah'
 	];
 	const caseLegend: readonly IrabCase[] = ['raf', 'nasb', 'jarr'];
 	const caseColor: Record<IrabCase, string> = {
@@ -28,7 +35,7 @@
 <PageIntro
 	title="Frasa dan i‘rab"
 	section="kaidah"
-	description="Nahwu frasa dan perubahan harakat akhir: ma‘rifah, nakirah, na‘at, idafah, jar–majrur, rafa, nasb, jarr, bentuk ganda dan jamak."
+	description="Nahwu frasa dan perubahan harakat akhir: ma‘rifah, nakirah, na‘at, idafah, jar–majrur, rafa, nasb, jarr, bentuk ganda dan jamak, ẓarf, al-asmā’ al-khamsa, mamnū‘ min aṣ-ṣarf, maqṣūr, manqūṣ dan kata mabnī."
 >
 	{#snippet lead()}
 		<p>
@@ -52,6 +59,14 @@
 			</span>
 		{/each}
 	</div>
+	<p class="text-sm text-muted-foreground" data-scope-note>
+		<strong>Cakupan.</strong> Bagian 1–5 memperkenalkan tiga kasus dan tanda dasarnya. Bagian 6–12 memuat
+		kasus khusus: ẓarf, jamak muannath sālim (kasrah pada naṣb), al-asmā’ al-khamsa, jamak taksir dan
+		mamnū‘ min aṣ-ṣarf, maqṣūr dan manqūṣ, kata mabnī (ḍamīr dan isim isyārah), serta iḍāfah pada naṣb
+		dan iḍāfah ma‘rifah. Setiap bagian menyebut batasnya sendiri: tidak semua sebab mamnū‘ min aṣ-ṣarf,
+		tidak semua ḍamīr dan isim isyārah, dan tidak semua syarat al-asmā’ al-khamsa dicakup. Semua masih
+		draf dan belum ditinjau pengajar.
+	</p>
 	<nav aria-label="Pilih kaidah frasa" class="flex flex-wrap gap-2">
 		{#each phraseRules as rule (rule.id)}
 			<a
@@ -102,10 +117,13 @@
 					Rujukan kaidah
 				</summary>
 				<ul class="list-disc space-y-2 ps-5 text-sm">
-					{#each rule.sources as source (source.url)}
+					{#each rule.sources as source (source.url + '|' + source.locator)}
 						<li>
 							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external source -->
 							<a href={source.url} class="break-words underline">{source.name}</a>
+							{#if source.locator}<span class="text-muted-foreground">
+									· {source.locator}</span
+								>{/if}
 						</li>
 					{/each}
 				</ul>
