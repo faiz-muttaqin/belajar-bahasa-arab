@@ -70,7 +70,7 @@
 					<dl class="grid gap-x-8 sm:grid-cols-2">
 						{#each fatihahWords as [arabic, meaning, verse, note] (arabic)}
 							<div class="border-t py-3">
-								<dt><ArabicText text={arabic} class="text-xl" /></dt>
+								<dt><ArabicText text={arabic} class="text-xl font-bold text-primary" /></dt>
 								<dd>
 									{meaning}
 									{#if note}<p class="mt-1 text-sm text-muted-foreground">
@@ -119,7 +119,7 @@
 						<ArabicText
 							text={reading.words.map(([arabic]) => arabic).join(' ')}
 							size="block"
-							class="text-3xl leading-loose"
+							class="rounded-lg bg-accent px-3 py-2 text-3xl leading-loose font-bold text-accent-foreground"
 						/>
 						<p class="text-pretty">{reading.meaning}</p>
 						<p class="text-sm text-muted-foreground">
@@ -144,7 +144,9 @@
 							<dl class="divide-y">
 								{#each reading.words as [arabic, meaning, note], index (index)}
 									<div class="grid grid-cols-[minmax(5rem,1fr)_2fr] gap-x-3 py-2">
-										<dt class="text-end"><ArabicText text={arabic} class="text-xl" /></dt>
+										<dt class="text-end">
+											<ArabicText text={arabic} class="text-xl font-bold text-primary" />
+										</dt>
 										<dd>
 											{meaning}
 											{#if note}

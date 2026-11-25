@@ -234,7 +234,7 @@ export const prayerReadings: readonly ReadingGroup[] = [
 					['حَنِيفًا', 'dengan lurus menuju tauhid'],
 					['وَمَا', 'dan tidak'],
 					['أَنَا', 'aku'],
-					['مِنَ', 'termasuk'],
+					['مِنَ', 'dari kalangan'],
 					['الْمُشْرِكِينَ.', 'orang yang menyekutukan Allah'],
 					['إِنَّ', 'sungguh'],
 					['صَلَاتِي', 'shalatku'],
@@ -250,7 +250,7 @@ export const prayerReadings: readonly ReadingGroup[] = [
 					['وَبِذَلِكَ', 'dan dengan itulah'],
 					['أُمِرْتُ', 'aku diperintah'],
 					['وَأَنَا', 'dan aku'],
-					['مِنَ', 'termasuk'],
+					['مِنَ', 'dari kalangan'],
 					['الْمُسْلِمِينَ.', 'orang yang berserah diri'],
 					['اللَّهُمَّ', 'Ya Allah'],
 					['أَنْتَ', 'Engkaulah'],
@@ -295,10 +295,10 @@ export const prayerReadings: readonly ReadingGroup[] = [
 					['إِلَّا', 'selain'],
 					['أَنْتَ.', 'Engkau'],
 					['لَبَّيْكَ', 'aku memenuhi panggilan-Mu'],
-					['وَسَعْدَيْكَ،', 'dan aku taat kepada-Mu'],
+					['وَسَعْدَيْكَ،', 'dan aku terus taat kepada-Mu'],
 					['وَالْخَيْرُ', 'dan kebaikan'],
 					['كُلُّهُ', 'semuanya'],
-					['فِي', 'berada dalam'],
+					['فِي', 'di dalam'],
 					['يَدَيْكَ', 'kedua tangan-Mu'],
 					['وَالشَّرُّ', 'dan keburukan'],
 					['لَيْسَ', 'tidak'],
@@ -339,7 +339,11 @@ export const prayerReadings: readonly ReadingGroup[] = [
 					['بَيْنَ', 'di antara'],
 					['عِبَادِكَ', 'hamba-hamba-Mu'],
 					['فِيمَا', 'dalam apa yang'],
-					['كَانُوا', 'mereka'],
+					[
+						'كَانُوا',
+						'mereka dahulu',
+						'Membantu menempatkan kata kerja berikutnya dalam konteks lampau.'
+					],
 					['فِيهِ', 'di dalamnya'],
 					['يَخْتَلِفُونَ.', 'berselisih'],
 					['اهْدِنِي', 'bimbinglah aku'],
@@ -612,15 +616,15 @@ export const prayerReadings: readonly ReadingGroup[] = [
 				id: 'rabbana-walakal-hamd',
 				title: 'Tahmid singkat dengan wāw',
 				book: 'bukhari',
-				number: '789',
-				riwayat: 'Abu Hurairah',
+				number: '738',
+				riwayat: 'Abdullah bin Umar',
 				words: [
 					['رَبَّنَا', 'Tuhan kami'],
 					['وَلَكَ', 'dan bagi-Mu'],
 					['الْحَمْدُ.', 'segala puji']
 				],
 				meaning: 'Tuhan kami, bagi-Mu segala puji.',
-				note: 'Lafaz وَلَكَ dicatat pada riwayat melalui Abdullah bin Shalih dari al-Laits.'
+				note: 'Ibnu Umar menyebut tahmid ini ketika bangkit dari rukuk.'
 			}
 		]
 	},
@@ -722,7 +726,7 @@ export const prayerReadings: readonly ReadingGroup[] = [
 					['بِرِضَاكَ', 'dengan rida-Mu'],
 					['مِنْ', 'dari'],
 					['سَخَطِكَ', 'murka-Mu'],
-					['وَبِمُعَافَاتِكَ', 'dan dengan perlindungan-Mu'],
+					['وَبِمُعَافَاتِكَ', 'dan dengan keselamatan dari-Mu'],
 					['مِنْ', 'dari'],
 					['عُقُوبَتِكَ،', 'hukuman-Mu'],
 					['وَأَعُوذُ', 'dan aku berlindung'],
@@ -739,7 +743,7 @@ export const prayerReadings: readonly ReadingGroup[] = [
 					['نَفْسِكَ', 'diri-Mu sendiri']
 				],
 				meaning:
-					'Ya Allah, aku berlindung dengan rida-Mu dari murka-Mu dan dengan perlindungan-Mu dari hukuman-Mu. Aku berlindung kepada-Mu dari-Mu. Aku tidak mampu menghitung pujian bagi-Mu. Engkau sebagaimana Engkau memuji diri-Mu sendiri.',
+					'Ya Allah, aku berlindung dengan rida-Mu dari murka-Mu dan dengan keselamatan yang Engkau karuniakan dari hukuman-Mu. Aku berlindung kepada-Mu dari-Mu. Aku tidak mampu menghitung pujian bagi-Mu. Engkau sebagaimana Engkau memuji diri-Mu sendiri.',
 				note: 'Aisyah mendengarnya ketika Nabi sedang sujud pada malam hari.'
 			}
 		]
@@ -1173,7 +1177,11 @@ export const prayerReadings: readonly ReadingGroup[] = [
 					['إِنَّكَ', 'sungguh Engkau'],
 					['تَقْضِي', 'menetapkan'],
 					['وَلَا', 'dan tiada'],
-					['يُقْضَى', 'yang menetapkan'],
+					[
+						'يُقْضَى',
+						'ditetapkan',
+						'Kata kerja pasif dari قَضَى. Makna utuhnya menyatakan bahwa keputusan tidak ditetapkan atas Allah.'
+					],
 					['عَلَيْكَ،', 'atas-Mu'],
 					['وَإِنَّهُ', 'dan sungguh'],
 					['لَا', 'tidak'],

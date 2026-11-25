@@ -22,3 +22,7 @@ Semua entri hadis pada halaman dibandingkan dengan matan dalam snapshot. Dua red
 - Periksa Ibn Majah 898 berdasarkan dua penilaian yang berbeda. [Al-Albani](https://dorar.net/h/4YsPO2gj?osoul=1) menilainya sahih dan [edisi Darussalam](https://sunnah.com/ibnmajah:898) mencatat daif.
 - Tinjau perbedaan konteks shalat malam, witir, dan shalat harian. Belum ada klaim mengenai praktik mazhab tertentu. Qunut nazilah, shalat jenazah dan shalat Id belum dicakup.
 - Tinjau penjelasan pola pronomina, bentuk amr, idafah dan bentuk pasif. Materi baru disajikan sebagai teks. Pemeriksaan harakat pada perangkat seluler fisik masih terbuka.
+
+## Pemeriksaan ulang PR #96
+
+Lafaz lama dicocokkan lagi per kata dan harakat dengan snapshot yang sama. Untuk tahmid رَبَّنَا وَلَكَ الْحَمْدُ, kartu kini mengarah ke al-Bukhari 738, yang memuat lafaz tersebut tanpa sisipan perawi. Glos yang tersurat dan makna Indonesia dalam konteks diperiksa terpisah. Misalnya, يُقْضَى adalah bentuk pasif dan كَانُوا membawa konteks lampau meskipun terjemahan utuh dalam bahasa Indonesia dapat lebih ringkas.
