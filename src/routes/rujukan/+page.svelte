@@ -55,6 +55,12 @@
 	{/each}
 </ul>
 
+<a
+	href={resolve('rujukan/bacaan-shalat/')}
+	class="mt-8 inline-flex min-h-11 items-center font-semibold text-primary underline"
+	>Bacaan shalat dari hadis dan arti per kata</a
+>
+
 <section
 	id="istilah-dasar"
 	aria-labelledby="istilah-heading"

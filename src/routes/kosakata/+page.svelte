@@ -145,6 +145,13 @@
 				</h2>
 			</div>
 			<p class="mt-3 max-w-[60ch] text-pretty text-muted-foreground">{collection.blurb}</p>
+			{#if collection.id === 'shalat'}
+				<a
+					href={resolve('rujukan/bacaan-shalat/')}
+					class="mt-2 inline-flex min-h-11 items-center font-medium text-primary underline"
+					>Bacaan shalat dari hadis dan arti per kata</a
+				>
+			{/if}
 
 			<ul class="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-4">
 				{#each items as item (item.id)}
