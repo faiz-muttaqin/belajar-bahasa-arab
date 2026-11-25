@@ -57,7 +57,7 @@
 				</p>
 				<a
 					class="inline-flex min-h-11 items-center text-primary underline"
-					href="https://quran.kemenag.go.id/assets/files/Juz-Amma-Metode-Tilawah.pdf#page=1"
+					href="https://quran.kemenag.go.id/assets/files/Juz-Amma-Metode-Tilawah.pdf#page=19"
 					>Buka Al-Fatihah di bahan tilawah LPMQ</a
 				>
 				<details
