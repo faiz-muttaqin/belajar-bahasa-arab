@@ -18,6 +18,19 @@ describe('G-02: source-backed sharaf forms', () => {
 		expect(validateSharafSections(sharafSections)).toEqual([]);
 	});
 
+	it('gives each section a stable rule ID, prerequisites and its wazan group', () => {
+		expect(sharafSections.map((section) => section.ruleId)).toEqual([
+			'g02.akar-dan-wazan',
+			'g02.tashrif-istilahi',
+			'g02.tashrif-lughawi'
+		]);
+		for (const section of sharafSections) {
+			expect(section.wazanBab).toBe(1);
+			expect(section.dataId).toBe('كتب-1');
+			expect(section.prerequisites.competencies.length).toBeGreaterThan(0);
+		}
+	});
+
 	it('shows an explicit Indonesian gloss and category for every attested form', () => {
 		for (const section of sharafSections) {
 			for (const form of section.forms) {

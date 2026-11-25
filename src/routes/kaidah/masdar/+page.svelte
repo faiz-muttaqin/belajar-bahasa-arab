@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import RuleMeta from '#lib/components/learning/RuleMeta.svelte';
+	import WazanLink from '#lib/components/learning/WazanLink.svelte';
 	import {
 		masdarGrammarSource,
 		masdarLexemes,
@@ -19,7 +21,7 @@
 	<title>Memahami maṣdar dalam dokumen Arab · Belajar Bahasa Arab</title>
 	<meta
 		name="description"
-		content="Rujukan maṣdar untuk pelajar Arab pasca-Iqra: {masdarLexemes.length} pasangan verba–maṣdar berbukti kamus pada Form I, III, V sampai X, {masdarTasks.length} latihan bacaan MSA berharakat dan pembahasan Indonesia."
+		content="Rujukan maṣdar untuk pelajar Arab pasca-Iqra: {masdarLexemes.length} pasangan verba–maṣdar berbukti kamus pada Form I sampai X, {masdarTasks.length} latihan bacaan MSA berharakat dan pembahasan Indonesia."
 	/>
 </svelte:head>
 
@@ -44,12 +46,16 @@
 
 	<section class="space-y-4">
 		<h2 class="text-2xl font-semibold">Apa itu maṣdar?</h2>
-		<div class="grid gap-4 md:grid-cols-3">
+		<div class="grid gap-4 md:grid-cols-2">
 			{#each masdarRules as rule (rule.id)}
-				<article class="rounded-xl border bg-card p-4">
+				<article id={rule.ruleId} class="scroll-mt-24 rounded-xl border bg-card p-4">
 					<h3 class="font-semibold">{rule.title}</h3>
 					<p class="mt-2 text-sm">{rule.note}</p>
 					<p class="mt-2 text-sm text-muted-foreground">{rule.caution}</p>
+					<div class="mt-3 border-t pt-3">
+						<RuleMeta ruleId={rule.ruleId} prerequisites={rule.prerequisites} />
+						<p class="mt-1 text-xs text-muted-foreground">{rule.evidence}</p>
+					</div>
 				</article>
 			{/each}
 		</div>
@@ -67,16 +73,18 @@
 	<section class="space-y-4">
 		<h2 class="text-2xl font-semibold">{masdarLexemes.length} pasangan yang diperiksa per lema</h2>
 		<p class="max-w-3xl text-muted-foreground">
-			Bentuk maṣdar Form I tidak selalu bisa ditebak dengan satu rumus. Pada Form III, V sampai X,
-			pola maṣdar lebih teratur, tetapi masih ada varian, misalnya <span lang="ar" dir="rtl"
-				>قِتَالٌ</span
-			>
+			Bentuk maṣdar Form I tidak selalu bisa ditebak dengan satu rumus. Pada Form II sampai X, pola
+			maṣdar lebih teratur, tetapi masih ada varian, misalnya <span lang="ar" dir="rtl">قِتَالٌ</span>
 			dan <span lang="ar" dir="rtl">مُقَاتَلَةٌ</span> untuk Form III. Setiap pasangan di bawah mempunyai entri
 			kamus spesifik; jangan menggeneralisasi bentuk kata ke seluruh akar.
 		</p>
 		<ul class="grid gap-3 sm:grid-cols-2">
 			{#each masdarLexemes as lexeme (lexeme.id)}
-				<li class="min-w-0 space-y-2 rounded-xl border bg-card p-4">
+				<li
+					id={'lexeme-' + lexeme.id}
+					data-rule={lexeme.ruleId}
+					class="min-w-0 space-y-2 rounded-xl border bg-card p-4"
+				>
 					<p class="text-sm text-muted-foreground">
 						Form {lexeme.form} · pola <span lang="ar" dir="rtl">{lexeme.pattern}</span> · Fi‘il māḍī /
 						muḍāri‘ / maṣdar · draf
@@ -91,6 +99,7 @@
 						href={lexeme.source}>Periksa pasangan pada entri kamus</a
 					>
 					<!-- eslint-enable svelte/no-navigation-without-resolve -->
+					<WazanLink bab={lexeme.wazanBab} dataId={lexeme.dataId} class="block" />
 				</li>
 			{/each}
 		</ul>
@@ -126,6 +135,7 @@
 								>Periksa lema sumber</a
 							>
 							<!-- eslint-enable svelte/no-navigation-without-resolve -->
+							<WazanLink bab={source.wazanBab} dataId={source.dataId} class="ms-4" />
 						{/if}
 					</details>
 				</li>
@@ -142,9 +152,9 @@
 			>.
 		</p>
 		<p>
-			Halaman ini mengajarkan satu bagian G-02. Masih dibutuhkan audit per kalimat dan perluasan ke
-			maṣdar Form II dan IV, bentuk mu‘tal dan mahmūz, varian maṣdar lain, sinonim makna, serta
-			bacaan dokumen yang lebih panjang. Lihat roadmap OER-01–06 pada issue #55.
+			Halaman ini mengajarkan satu bagian G-02. Pasangan Form II dan IV kini ada. Masih dibutuhkan
+			maṣdar dari akar mu‘tal dan mahmūz, varian maṣdar lain, sinonim makna, tinjauan pengajar,
+			serta bacaan dokumen yang lebih panjang. Lihat roadmap OER-01–06 pada issue #55.
 		</p>
 		<a
 			href={resolve('kaidah/sharaf/')}

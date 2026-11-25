@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
+	import RuleMeta from '#lib/components/learning/RuleMeta.svelte';
+	import WazanLink from '#lib/components/learning/WazanLink.svelte';
 	import SharafForms from '#lib/components/learning/SharafForms.svelte';
 	import { sharafSections } from '#lib/content/sharaf-lessons.js';
 </script>
@@ -28,7 +30,12 @@
 
 <div class="mt-10 max-w-5xl space-y-16">
 	{#each sharafSections as section, i (section.id)}
-		<section id={section.id} class="scroll-mt-24 space-y-5" aria-labelledby="{section.id}-title">
+		<section
+			id={section.id}
+			data-rule={section.ruleId}
+			class="scroll-mt-24 space-y-5"
+			aria-labelledby="{section.id}-title"
+		>
 			<div class="flex items-center gap-3">
 				<span class="rounded-full bg-secondary px-3 py-1 text-xs font-semibold">
 					{i + 1} · Sharaf · draft
@@ -44,6 +51,11 @@
 				<strong>Perhatikan:</strong>
 				{section.note}
 			</p>
+
+			<WazanLink bab={section.wazanBab} dataId={section.dataId} />
+			<div id={section.ruleId} class="max-w-3xl scroll-mt-24">
+				<RuleMeta ruleId={section.ruleId} prerequisites={section.prerequisites} />
+			</div>
 
 			<details class="max-w-3xl rounded-xl border bg-card p-4">
 				<summary class="min-h-11 cursor-pointer font-semibold">
@@ -75,8 +87,8 @@
 <aside class="mt-14 max-w-4xl space-y-4 rounded-2xl border bg-card p-5">
 	<h2 class="text-xl font-semibold">Lanjut: maṣdar dalam bacaan formal</h2>
 	<p class="text-muted-foreground">
-		Latihan mengenali 11 pasangan fi‘il–maṣdar berbukti kamus pada Form I, III, V sampai X dan 44
-		stimulus konteks MSA. Semua contoh tetap draf sampai pemeriksaan kalimat lengkap.
+		Latihan mengenali 13 pasangan fi‘il–maṣdar berbukti kamus pada Form I sampai X, termasuk Form II
+		dan IV, dan 52 stimulus konteks MSA. Semua contoh tetap draf sampai pemeriksaan kalimat lengkap.
 	</p>
 	<a
 		href={resolve('kaidah/masdar/')}
@@ -86,21 +98,31 @@
 	<div class="space-y-2 border-t pt-4">
 		<h2 class="text-xl font-semibold">Lanjut: isim fā‘il dan isim maf‘ūl</h2>
 		<p class="text-muted-foreground">
-			Bandingkan 15 keluarga verba dari Form I sampai X, termasuk akar mithāl dan ajwaf serta bentuk
-			yang tidak lazim, dengan 60 latihan.
+			Bandingkan 26 keluarga verba dari Form I sampai X dan rubā‘ī, termasuk akar mithāl, ajwaf,
+			nāqiṣ, lafīf, mahmūz dan muḍā‘af serta bentuk yang tidak lazim, dengan 104 latihan.
 		</p>
 		<a
 			href={resolve('kaidah/participle/')}
 			class="inline-flex min-h-11 items-center font-semibold text-primary underline"
 			>Pelajari isim fā‘il dan isim maf‘ūl</a
 		>
+		<p class="mt-3 text-muted-foreground">
+			Pelajaran pendek tentang pengamalan isim fā‘il dan isim maf‘ūl: objek manṣūb, iḍāfah dan nā’ib
+			al-fā‘il.
+		</p>
+		<a
+			href={resolve('kaidah/participle/amal/')}
+			class="inline-flex min-h-11 items-center font-semibold text-primary underline"
+			>Pelajari ‘amal isim fā‘il dan isim maf‘ūl</a
+		>
 	</div>
 	<div class="border-t pt-4"></div>
 	<h2 class="text-xl font-semibold">Lanjutkan ke 22 kelompok wazan</h2>
 	<p class="text-muted-foreground">
 		Contoh di atas memakai fi‘il tsulātsī mujarrad ṣaḥīḥ (كَتَبَ) agar prinsipnya mudah dibandingkan.
-		Verba mu‘tal, mahmūz, muḍā‘af, serta pola mazīd mempunyai perubahan tambahan. Jangan
-		menghasilkan semua bentuk hanya dari tiga huruf akar tanpa kamus dan pemeriksaan.
+		Verba mu‘tal, mahmūz, muḍā‘af, serta pola mazīd mempunyai perubahan tambahan; contohnya ada di
+		halaman isim fā‘il dan isim maf‘ūl. Jangan menghasilkan semua bentuk hanya dari tiga huruf akar
+		tanpa kamus dan pemeriksaan.
 	</p>
 	<nav aria-label="Rujukan lanjutan" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
 		<a href={resolve('rujukan/fiil/')} class="text-primary underline">

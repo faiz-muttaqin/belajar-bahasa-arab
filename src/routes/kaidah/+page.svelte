@@ -100,7 +100,7 @@
 	>
 		<span class="text-xs font-semibold text-muted-foreground">G-02 · OER-02 · sharaf</span>
 		<strong class="group-hover:text-primary">Maṣdar untuk memahami dokumen</strong>
-		<span class="text-sm text-muted-foreground">11 pasangan fi‘il–maṣdar, 44 bacaan draf.</span>
+		<span class="text-sm text-muted-foreground">13 pasangan fi‘il–maṣdar, 52 bacaan draf.</span>
 	</a>
 	<a
 		href={resolve('kaidah/nisbah/')}

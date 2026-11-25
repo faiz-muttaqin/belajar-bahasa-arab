@@ -51,3 +51,26 @@ test.describe('static sharaf page without JavaScript', () => {
 		expect(sizes.page).toBeLessThanOrEqual(sizes.viewport);
 	});
 });
+
+test('sharaf sections show stable rule IDs, prerequisites and a link to their wazan group', async ({
+	page
+}) => {
+	await page.goto('/kaidah/sharaf/');
+	await expect(page.locator('[data-rule-id]')).toHaveText([
+		'g02.akar-dan-wazan',
+		'g02.tashrif-istilahi',
+		'g02.tashrif-lughawi'
+	]);
+	const link = page.locator('#akar-dan-wazan a[data-wazan-bab]');
+	await expect(link).toHaveAttribute('data-wazan-row', 'kata-kerja-bab-1-كتب-1');
+	await expect(page.locator('[data-prerequisite-rule="g02.akar-dan-wazan"]').first()).toBeVisible();
+	await link.click();
+	await expect(page).toHaveURL(/\/rujukan\/fiil\/kata-kerja\/1\/#/);
+	await expect(page.locator('[id="kata-kerja-bab-1-كتب-1"]')).toHaveCount(1);
+});
+
+test('sharaf links to the ‘amal lesson', async ({ page }) => {
+	await page.goto('/kaidah/sharaf/');
+	await page.getByRole('link', { name: 'Pelajari ‘amal isim fā‘il dan isim maf‘ūl' }).click();
+	await expect(page).toHaveURL(/\/kaidah\/participle\/amal\/$/);
+});

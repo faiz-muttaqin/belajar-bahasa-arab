@@ -3,6 +3,8 @@
  * Arabic forms checked against source references; all Indonesian glosses and teaching
  * explanations are original. Nonpredictable Forms I stem vowels/masdars are lexical.
  */
+import { rulePrerequisites, type RulePrerequisites } from './g02-types.js';
+
 export type SharafFormCategory =
 	'root' | 'past' | 'present' | 'imperative' | 'masdar' | 'agent' | 'patient';
 
@@ -38,6 +40,12 @@ export type SharafSection = {
 	exercise: { question: string; answer: string; reason: string };
 	sources: readonly { name: string; url: string }[];
 	reviewStatus: 'draft';
+	/** Stable G-02 rule ID and what should be understood first (rules and learning-map competencies). */
+	ruleId: string;
+	prerequisites: RulePrerequisites;
+	/** Wazan group (1 to 22) of the example verb; the data row is `dataId` in data/wiktionary. */
+	wazanBab: number;
+	dataId: string;
 };
 
 const dictionary = 'https://en.wiktionary.org/wiki/كتب';
@@ -48,6 +56,10 @@ const corpus = 'https://corpus.quran.com/qurandictionary.jsp?root=ktb';
 export const sharafSections: readonly SharafSection[] = [
 	{
 		id: 'akar-dan-wazan',
+		ruleId: 'g02.akar-dan-wazan',
+		prerequisites: rulePrerequisites([], ['CB-13', 'CB-16']),
+		wazanBab: 1,
+		dataId: 'كتب-1',
 		title: 'Akar dan wazan bukan kata yang sama',
 		summary:
 			'Akar ك ت ب menghubungkan keluarga makna tulis, sedangkan wazan menjelaskan susunan dan vokal bentuk kata.',
@@ -94,6 +106,10 @@ export const sharafSections: readonly SharafSection[] = [
 	},
 	{
 		id: 'tashrif-istilahi',
+		ruleId: 'g02.tashrif-istilahi',
+		prerequisites: rulePrerequisites(['g02.akar-dan-wazan'], ['CB-15']),
+		wazanBab: 1,
+		dataId: 'كتب-1',
 		title: 'Tashrif istilahi: satu akar, beberapa fungsi',
 		summary:
 			'Dari kata kerja lampau ke bentuk nonlampau, perintah, kegiatan, pelaku, dan objek perbuatan.',
@@ -164,6 +180,10 @@ export const sharafSections: readonly SharafSection[] = [
 	},
 	{
 		id: 'tashrif-lughawi',
+		ruleId: 'g02.tashrif-lughawi',
+		prerequisites: rulePrerequisites(['g02.akar-dan-wazan'], ['CB-14', 'CB-15']),
+		wazanBab: 1,
+		dataId: 'كتب-1',
 		title: 'Tashrif lughawi: berubah mengikuti dhamir',
 		summary:
 			'Bandingkan bagaimana satu fi‘il mengikuti orang yang berbicara, diajak bicara, atau dibicarakan.',
