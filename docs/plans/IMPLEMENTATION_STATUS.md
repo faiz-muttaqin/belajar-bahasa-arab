@@ -63,22 +63,24 @@ Tanda **[manusia]** berarti pekerjaan itu butuh orang (pemilik, pelajar, ustadz 
 | [#79](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/79) P7 audit editorial       | sebagian      | Alat tinjauan, triase 15 verba (9 HOLD, 6 PENDING), diagnosis 16 celah MSA     | Saksi kamus independen untuk 9 verba HOLD dan tinjauan 6 PENDING; cari atestasi 12 celah MSA; rekonsiliasi POS 4 celah; perbarui log P7                                                                                                                                                                        | Tinjauan 25 makna P4; keputusan lisensi per sumber; tinjauan ahli sebelum P7.8           |
 | [#52](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/52) RM-07 uji pakai          | belum dimulai | Fitur yang akan diuji sudah ada                                                | Naskah uji termoderasi (posisi, langkah berikutnya, kemampuan kuat, ulangan, baca Iqra, kategori kosakata, nama tingkat); templat jurnal anonim; templat laporan agregat                                                                                                                                       | Pemilik memakai situs dua minggu; 5–8 pelajar; VoiceOver/TalkBack; iOS dan Android nyata |
 
+**Pembaruan 25 November 2026 (sore).** VP-03 (#91) dan D-05b/c (#92) sudah digabung. Semua 18 kartu G-04 dan 8 kartu G-05 kini punya penggantian kata dengan validator yang memberi alasan. Delapan kartu G-05 tetap statis karena belum ada bingkai alternatif bersumber ([audit D-05b/c](../data/dynamic-clauses-d05bc-audit.md)). Issue #17, #18 dan #24 tetap terbuka.
+
 ### Urutan pengerjaan agen
 
 Urutan ini hanya untuk pekerjaan yang bisa dikerjakan agen. Satu sesi per baris, dengan file yang tidak saling bersinggungan. Pemeriksaan bahasa Arab dan Indonesia memakai model yang lebih kuat (Fable) sebelum PR dibuka.
 
-| Urutan | Tugas                                                                                | Issue         | Bergantung pada                      |
-| ------ | ------------------------------------------------------------------------------------ | ------------- | ------------------------------------ |
-| 1      | VP-03 perubahan bertahap; D-05b/c contoh dinamis G-04/G-05                           | #24, #17, #18 | Sedang berjalan                      |
-| 2      | G-03 kasus tepi dan rujukan, uji tema gelap                                          | #16           | — (bisa paralel dengan 1)            |
-| 3      | G-02 lanjutan: ID kaidah, tautan wazan, akar lemah, maṣdar Form II/IV, rubā‘ī, ‘amal | #15, #55      | — (bisa paralel dengan 1)            |
-| 4      | G-04 kasus tepi, anotasi dan penjelajah peran, audit 18 contoh                       | #17           | D-05b/c digabung (halaman yang sama) |
-| 5      | G-05 progresi paragraf, kasus tepi, latihan                                          | #18           | D-05b/c digabung                     |
-| 6      | G-06 tautan kaidah via RM-02, `/cari/` kaidah, hafalan, komposisi                    | #19           | 4 dan 5                              |
-| 7      | D-06 simpan pilihan dan hasil latihan, pencarian bertahap, offline                   | #24, #19      | D-05b/c                              |
-| 8      | LM-02 validator sumber independen; OER-04 catatan lisensi per halaman                | #13, #55      | —                                    |
-| 9      | P7.7 indeks lengkap kamus                                                            | #74           | Keputusan desain di jalur P7         |
-| 10     | Naskah dan templat RM-07                                                             | #52           | VP-03                                |
+| Urutan | Tugas                                                                                                                                                                  | Issue         | Bergantung pada              |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ---------------------------- |
+| 1      | Selesai: VP-03 ([#91](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/91)) dan D-05b/c ([#92](https://github.com/faiz-muttaqin/belajar-bahasa-arab/pull/92)) | #24, #17, #18 | —                            |
+| 2      | G-03 kasus tepi dan rujukan, uji tema gelap (sedang dikerjakan)                                                                                                        | #16           | —                            |
+| 3      | G-02 lanjutan: ID kaidah, tautan wazan, akar lemah, maṣdar Form II/IV, rubā‘ī, ‘amal (sedang dikerjakan)                                                               | #15, #55      | —                            |
+| 4      | G-04 kasus tepi, anotasi dan penjelajah peran, VP-03 untuk G-04, audit 18 contoh                                                                                       | #17           | Siap dimulai                 |
+| 5      | G-05 progresi paragraf, kasus tepi, latihan; bingkai alternatif bersumber untuk 8 kartu yang masih statis                                                              | #18           | Siap dimulai                 |
+| 6      | G-06 tautan kaidah via RM-02, `/cari/` kaidah, hafalan, komposisi                                                                                                      | #19           | 4 dan 5                      |
+| 7      | D-06 simpan pilihan dan hasil latihan, pencarian bertahap, offline                                                                                                     | #24, #19      | Siap dimulai                 |
+| 8      | LM-02 validator sumber independen; OER-04 catatan lisensi per halaman                                                                                                  | #13, #55      | —                            |
+| 9      | P7.7 indeks lengkap kamus                                                                                                                                              | #74           | Keputusan desain di jalur P7 |
+| 10     | Naskah dan templat RM-07                                                                                                                                               | #52           | Siap dimulai                 |
 
 Riset yang tetap di sesi utama: audit klaim 152 lema (#13), crosswalk OER-01 dan Al Jazeera (#55, #13), saksi kamus untuk verba P7 (#79).
 
