@@ -10,7 +10,7 @@ RS-04 / V-04 / CB-02. Rujukan belajar dimulai dari takbir sampai salam, dengan p
 - Pakai matan Arab klasik dari [hadith-api, snapshot df57907](https://github.com/fawazahmed0/hadith-api/tree/df57907be35291c91ad6a6691180e22ca9920784), dengan [Unlicense](https://github.com/fawazahmed0/hadith-api/blob/df57907be35291c91ad6a6691180e22ca9920784/LICENSE). Kutip bagian bacaan dan rapikan ejaan Naskh. Glos dan terjemahan disusun untuk proyek. Tautan Sunnah.com memudahkan membandingkan bacaan dengan narasi lengkap.
 - Al-Fatihah dirujuk melalui hadis dan tautan ke mushaf. Teks surah utuh menunggu tashih sesuai [ADR-004](../decisions/0004-content-decisions.md). Seluruh halaman ditandai draf bersumber untuk peninjauan ustadz.
 
-Halaman `/rujukan/bacaan-shalat/` memuat 42 entri dalam 13 bagian dari takbir hingga salam, zikir setelah salam, dan satu qunut khusus witir. Arti disusun untuk setiap kata yang tercetak. Delapan puluh tiga glos dari hadis juga masuk ke koleksi Shalat dan pencarian umum. Kamus Al-Fatihah memberi glos untuk 26 bentuk kata unik dengan tautan per ayat dari Tanzil Uthmani 1.1. Bacaan setelah Al-Fatihah dapat berbeda menurut surah yang dibaca.
+Versi awal `/rujukan/bacaan-shalat/` memuat 42 entri dalam 13 bagian dari takbir hingga salam, zikir setelah salam, dan satu qunut khusus witir. Arti disusun untuk setiap kata yang tercetak. Delapan puluh tiga glos dari hadis juga masuk ke koleksi Shalat dan pencarian umum. Kamus Al-Fatihah memberi glos untuk 26 bentuk kata unik dengan tautan per ayat dari Tanzil Uthmani 1.1. Bacaan setelah Al-Fatihah dapat berbeda menurut surah yang dibaca.
 
 ## Pemeriksaan sumber
 
@@ -20,9 +20,13 @@ Semua entri hadis pada halaman dibandingkan dengan matan dalam snapshot. Dua red
 
 - Tinjau harakat, pemenggalan dan makna utuh berdasarkan perawi serta nomor pada kartu. Periksa khusus لَبَّيْكَ وَسَعْدَيْكَ dan وَالشَّرُّ لَيْسَ إِلَيْكَ pada Muslim 771a, جَدّ pada dua konteks, serta konotasi dari kata kerja صَلَّى.
 - Periksa Ibn Majah 898 berdasarkan dua penilaian yang berbeda. [Al-Albani](https://dorar.net/h/4YsPO2gj?osoul=1) menilainya sahih dan [edisi Darussalam](https://sunnah.com/ibnmajah:898) mencatat daif.
-- Tinjau perbedaan konteks shalat malam, witir, dan shalat harian. Belum ada klaim mengenai praktik mazhab tertentu. Qunut nazilah, shalat jenazah dan shalat Id belum dicakup.
+- Tinjau perbedaan konteks shalat malam, witir, dan shalat harian. Belum ada klaim mengenai praktik mazhab tertentu. Untuk jenazah dan istikharah, tinjau penempatan doa dan makna pronomina. Rujukan qunut nazilah dan takbir Idulfitri juga tersedia.
 - Tinjau penjelasan pola pronomina, bentuk amr, idafah dan bentuk pasif. Materi baru disajikan sebagai teks. Pemeriksaan harakat pada perangkat seluler fisik masih terbuka.
 
 ## Pemeriksaan ulang PR #96
 
 Lafaz lama dicocokkan lagi per kata dan harakat dengan snapshot yang sama. Untuk tahmid رَبَّنَا وَلَكَ الْحَمْدُ, kartu kini mengarah ke al-Bukhari 738, yang memuat lafaz tersebut tanpa sisipan perawi. Glos yang tersurat dan makna Indonesia dalam konteks diperiksa terpisah. Misalnya, يُقْضَى adalah bentuk pasif dan كَانُوا membawa konteks lampau meskipun terjemahan utuh dalam bahasa Indonesia dapat lebih ringkas.
+
+Katalog kini memuat 58 entri dalam 16 bagian. Enam belas tambahan meliputi tahajud, iktidal, rukuk atau sujud, doa dalam shalat, doa di penghujung shalat, zikir selepas salam, witir, jenazah, dan istikharah. Tiga puluh glos tambahan dari bagian tersebut terhubung ke pencarian dan kosakata. Tautan pembanding tersedia untuk tasyahud Ibnu Umar, takbir Idulfitri, dan qunut nazilah.
+
+Pada al-Bukhari 1120 dan 1166, lafaz bacaan ditampilkan dengan pilihan redaksinya disebut di catatan. Frasa editorial di tengah matan dan pilihan kedua yang diantar dengan “atau perawi berkata” tidak digabung ke dalam lafaz yang dipilih. Tinjau makna penghujung shalat dalam Abi Dawud 1522 serta perbedaan konteks sujud dan witir pada doa perlindungan. Cek kembali harakat dan arti pada shalat jenazah dan istikharah saat tinjauan ustadz.

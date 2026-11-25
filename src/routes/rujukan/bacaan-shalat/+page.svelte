@@ -11,7 +11,7 @@
 <PageIntro
 	title="Bacaan shalat dari hadis"
 	section="rujukan"
-	description="Pelajari arti bacaan shalat dari takbir hingga salam, dengan glos Arab–Indonesia per kata dan pilihan lafaz beserta rujukan hadisnya."
+	description="Pelajari bacaan shalat dari takbir hingga salam, zikir, serta doa witir, jenazah, dan istikharah dengan glos per kata dan rujukan hadis."
 >
 	{#snippet lead()}
 		<p>
@@ -44,7 +44,15 @@
 		<section id={group.id} aria-labelledby={`${group.id}-heading`} class="scroll-mt-24 space-y-4">
 			<h2 id={`${group.id}-heading`} class="text-2xl font-semibold">{group.title}</h2>
 
-			{#if group.id === 'qiraah'}
+			{#if group.id === 'takbir'}
+				<p class="max-w-[65ch] text-sm text-muted-foreground">
+					Riwayat takbir tambahan dalam shalat Idulfitri tersedia di
+					<a class="text-primary underline" href="https://sunnah.com/abudawud:1152"
+						>Sunan Abi Dawud 1152</a
+					>
+					(hasan sahih menurut al-Albani).
+				</p>
+			{:else if group.id === 'qiraah'}
 				<p class="max-w-[65ch] text-pretty">
 					Riwayat Ubadah bin ash-Shamit menyebut pembacaan Al-Fatihah dalam shalat.
 					<a class="text-primary underline" href="https://sunnah.com/bukhari:756"
@@ -93,12 +101,28 @@
 				</details>
 			{/if}
 
-			{#if group.id === 'sujud'}
+			{#if group.id === 'iktidal'}
+				<p class="max-w-[65ch] text-sm text-muted-foreground">
+					Untuk konteks qunut nazilah sesudah bangkit dari rukuk, lihat doa Nabi memohon keselamatan
+					orang-orang yang tertindas di
+					<a class="text-primary underline" href="https://sunnah.com/bukhari:1006"
+						>Sahih al-Bukhari 1006</a
+					>.
+				</p>
+			{:else if group.id === 'sujud'}
 				<p class="text-sm text-muted-foreground">
 					Tasbih <a class="text-primary underline" href="#subbuhun-quddus">Subbūḥun Quddūs</a>
 					dan
 					<a class="text-primary underline" href="#dhil-jabarut">tasbih pemilik segala keagungan</a>
 					juga diriwayatkan ketika sujud.
+				</p>
+			{:else if group.id === 'tasyahud'}
+				<p class="max-w-[65ch] text-sm text-muted-foreground">
+					<a class="text-primary underline" href="https://sunnah.com/abudawud:971"
+						>Sunan Abi Dawud 971</a
+					>
+					(sahih menurut al-Albani) juga mencatat lafaz tasyahud Ibnu Umar dan tambahan yang beliau sebutkan
+					pada lafaz tersebut.
 				</p>
 			{:else if group.id === 'rukuk'}
 				<p class="text-sm text-muted-foreground">
