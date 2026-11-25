@@ -99,10 +99,14 @@
 			"evidence": [
 				".github/workflows/p7-nonverb-pr.yml",
 				"scripts/p7-snapshot-report.py",
-				"docs/data/p4-nonverbs.md"
+				"docs/data/p4-nonverbs.md",
+				"scripts/p7-dictionary-benchmark.ts",
+				"docs/data/p7-shard-benchmark.md",
+				"docs/data/p7-verb-priority-context-audit.md",
+				"docs/data/p7-msa-gap-review.md"
 			],
-			"remaining": "P7.1 snapshot nyata berhasil; audit POS/register/lisensi masih terbuka. P7.2–8: 501 verba, audit MSA, integrasi, glos, benchmark dan publikasi belum tuntas.",
-			"next": "P7.2 dan P7.3; lihat checkpoint P7"
+			"remaining": "P7.1 snapshot, P7.2 triage of 15 verb leads (9 HOLD, 6 PENDING), P7.3 IDs and diagnosis for 16 MSA gaps, P7.5 private review gate and P7.7 temporary 32-shard guard plus synthetic compression benchmark are merged (#73, #76-#83). Open: 0 glosses approved, per-source licence audit, independent witnesses, 25-sense review batch, real-corpus fan-out and complete index, Android measurement, P7.8 publication.",
+			"next": "#79 editorial review, #74 index; see Antrean issue terbuka"
 		},
 		{
 			"file": "peta-belajar.md",
