@@ -928,6 +928,44 @@ export const prayerReadings: readonly ReadingGroup[] = [
 				],
 				meaning:
 					'Ya Allah, limpahkanlah shalawat kepada Muhammad, istri-istrinya, dan keturunannya sebagaimana Engkau melimpahkan shalawat kepada keluarga Ibrahim. Berkahilah Muhammad, istri-istrinya, dan keturunannya sebagaimana Engkau memberkahi keluarga Ibrahim. Sungguh Engkau Maha Terpuji, Mahamulia.'
+			},
+			{
+				id: 'shalawat-abu-masud',
+				title: 'Shalawat riwayat Abu Mas‘ud al-Anshari',
+				book: 'muslim',
+				number: '405',
+				riwayat: 'Abu Mas‘ud al-Anshari',
+				words: [
+					allahumma,
+					['صَلِّ', 'limpahkanlah shalawat'],
+					['عَلَى', 'kepada'],
+					['مُحَمَّدٍ', 'Muhammad'],
+					['وَعَلَى', 'dan kepada'],
+					['آلِ', 'keluarga'],
+					['مُحَمَّدٍ', 'Muhammad'],
+					['كَمَا', 'sebagaimana'],
+					['صَلَّيْتَ', 'Engkau melimpahkan shalawat'],
+					['عَلَى', 'kepada'],
+					['آلِ', 'keluarga'],
+					['إِبْرَاهِيمَ،', 'Ibrahim'],
+					['وَبَارِكْ', 'dan berkahilah'],
+					['عَلَى', 'kepada'],
+					['مُحَمَّدٍ', 'Muhammad'],
+					['وَعَلَى', 'dan kepada'],
+					['آلِ', 'keluarga'],
+					['مُحَمَّدٍ', 'Muhammad'],
+					['كَمَا', 'sebagaimana'],
+					['بَارَكْتَ', 'Engkau memberkahi'],
+					['عَلَى', 'kepada'],
+					['آلِ', 'keluarga'],
+					['إِبْرَاهِيمَ', 'Ibrahim'],
+					['فِي', 'di'],
+					['الْعَالَمِينَ،', 'seluruh alam'],
+					...hamidMajid
+				],
+				meaning:
+					'Ya Allah, limpahkanlah shalawat kepada Muhammad dan keluarga Muhammad sebagaimana Engkau melimpahkan shalawat kepada keluarga Ibrahim. Berkahilah Muhammad dan keluarga Muhammad sebagaimana Engkau memberkahi keluarga Ibrahim di seluruh alam. Sungguh Engkau Maha Terpuji, Mahamulia.',
+				note: 'Riwayat ini mencantumkan فِي الْعَالَمِينَ sesudah permohonan berkah.'
 			}
 		]
 	},
@@ -996,7 +1034,7 @@ export const prayerReadings: readonly ReadingGroup[] = [
 				],
 				meaning:
 					'Ya Allah, sungguh aku telah banyak menzalimi diriku. Tiada yang mengampuni dosa selain Engkau. Ampunilah aku dengan ampunan dari sisi-Mu dan rahmatilah aku. Sungguh Engkaulah Yang Maha Pengampun, Yang Maha Penyayang.',
-				note: 'Abu Bakar meminta doa untuk dibaca dalam shalat. Hadis ini tidak menyebut posisi doa secara eksplisit.'
+				note: 'Abu Bakar meminta doa untuk dibaca dalam shalat. Al-Bukhari menempatkan hadis ini dalam bab doa sebelum salam.'
 			},
 			{
 				id: 'ma-qaddamtu',

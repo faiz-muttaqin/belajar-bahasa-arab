@@ -65,7 +65,7 @@
 					class="scroll-mt-24 rounded-xl border bg-card px-4 py-1 sm:px-5"
 				>
 					<summary class="min-h-11 cursor-pointer py-3 font-semibold text-primary"
-						>Kosakata pilihan Al-Fatihah</summary
+						>Kosakata Al-Fatihah</summary
 					>
 					<dl class="grid gap-x-8 sm:grid-cols-2">
 						{#each fatihahWords as [arabic, meaning, verse, note] (arabic)}

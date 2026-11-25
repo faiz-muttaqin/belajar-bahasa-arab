@@ -10,7 +10,7 @@ RS-04 / V-04 / CB-02. Rujukan belajar dimulai dari takbir sampai salam, dengan p
 - Pakai matan Arab klasik dari [hadith-api, snapshot df57907](https://github.com/fawazahmed0/hadith-api/tree/df57907be35291c91ad6a6691180e22ca9920784), dengan [Unlicense](https://github.com/fawazahmed0/hadith-api/blob/df57907be35291c91ad6a6691180e22ca9920784/LICENSE). Kutip bagian bacaan dan rapikan ejaan Naskh. Glos dan terjemahan disusun untuk proyek. Tautan Sunnah.com memudahkan membandingkan bacaan dengan narasi lengkap.
 - Al-Fatihah dirujuk melalui hadis dan tautan ke mushaf. Teks surah utuh menunggu tashih sesuai [ADR-004](../decisions/0004-content-decisions.md). Seluruh halaman ditandai draf bersumber untuk peninjauan ustadz.
 
-Halaman `/rujukan/bacaan-shalat/` memuat 41 entri dalam 13 bagian dari takbir hingga salam, zikir setelah salam, dan satu qunut khusus witir. Arti disusun untuk setiap kata yang tercetak. Delapan puluh tiga glos dari hadis juga masuk ke koleksi Shalat dan pencarian umum. Enam belas token Al-Fatihah ditampilkan sebagai daftar kosakata tematik dengan locator ayat dari Tanzil Uthmani 1.1. Bacaan setelah Al-Fatihah dapat berbeda menurut surah yang dibaca.
+Halaman `/rujukan/bacaan-shalat/` memuat 42 entri dalam 13 bagian dari takbir hingga salam, zikir setelah salam, dan satu qunut khusus witir. Arti disusun untuk setiap kata yang tercetak. Delapan puluh tiga glos dari hadis juga masuk ke koleksi Shalat dan pencarian umum. Kamus Al-Fatihah memberi glos untuk 26 bentuk kata unik dengan tautan per ayat dari Tanzil Uthmani 1.1. Bacaan setelah Al-Fatihah dapat berbeda menurut surah yang dibaca.
 
 ## Pemeriksaan sumber
 
