@@ -143,7 +143,7 @@ test.describe('D-05a static-first examples with JavaScript disabled', () => {
 		const idafa = page.locator('figure[data-inline-example="idafah-door"]');
 		await expect(idafa).toContainText('الْبَيْتِ');
 		await expect(idafa.getByRole('button', { name: /Ganti/ })).toHaveCount(0);
-		await expect(page.locator('section#idafah-jar details')).toHaveCount(2);
+		await expect(page.locator('section#idafah-jar > details')).toHaveCount(2);
 		const size = await page.evaluate(() => ({
 			scroll: document.documentElement.scrollWidth,
 			client: document.documentElement.clientWidth

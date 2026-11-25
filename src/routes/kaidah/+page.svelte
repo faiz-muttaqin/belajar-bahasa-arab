@@ -4,6 +4,11 @@
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import GrammarExample from '#lib/components/learning/GrammarExample.svelte';
 	import InlineGrammarGlossary from '#lib/components/learning/InlineGrammarGlossary.svelte';
+	import WordRoleExplorer from '#lib/components/learning/WordRoleExplorer.svelte';
+	import {
+		annotationsForGrammarRule,
+		type AnnotatedGrammarRuleId
+	} from '#lib/content/grammar-annotations.js';
 	import { grammarRules } from '#lib/content/grammar-rules.js';
 </script>
 
@@ -163,6 +168,14 @@
 					{/each}
 				</ul>
 			</details>
+
+			<div class="max-w-3xl">
+				<WordRoleExplorer
+					sentences={annotationsForGrammarRule(rule.id as AnnotatedGrammarRuleId)}
+					initialLayer="role"
+					heading="Jelajahi peran tiap kata pada contoh {rule.title}"
+				/>
+			</div>
 		</section>
 	{/each}
 </div>
