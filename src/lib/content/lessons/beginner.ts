@@ -62,6 +62,9 @@ export const beginnerLessons: readonly Lesson[] = [
 			'Glos di sini berfokus pada arti kata dan frasa dalam bacaan.'
 		],
 		meaningPractice: u1MeaningQuestions,
+		related: [
+			{ label: 'Bacaan shalat dari hadis dan arti per kata', path: 'rujukan/bacaan-shalat/#takbir' }
+		],
 		exercises: [
 			{
 				arabic: 'الْأَعْلَى',

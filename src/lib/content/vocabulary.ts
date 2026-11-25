@@ -3,6 +3,7 @@ import {
 	type VocabularyCollectionId,
 	type VocabularyItem
 } from '#lib/domain/vocabulary/types.js';
+import { shalatVocabulary } from './shalat-vocabulary.js';
 import { quranVocabulary } from './quran-vocabulary.js';
 import { msaVocabulary } from './msa-vocabulary.js';
 
@@ -178,6 +179,7 @@ const vocabulary: readonly VocabularyItem[] = [
 		reviewStatus: 'draft',
 		sources: prayerSources
 	})),
+	...shalatVocabulary,
 	...msaVocabulary,
 	...quranVocabulary
 ];

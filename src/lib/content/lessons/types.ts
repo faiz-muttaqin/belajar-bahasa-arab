@@ -8,6 +8,7 @@ type RelatedPage =
 	| 'rujukan/harf/'
 	| 'rujukan/isim/'
 	| 'rujukan/kata-tanya/'
+	| 'rujukan/bacaan-shalat/'
 	| 'rujukan/'
 	| 'sharaf/'
 	| 'kosakata/'
