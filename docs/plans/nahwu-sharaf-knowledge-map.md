@@ -80,3 +80,13 @@ Pemetaan kontrak dan lanjutan D-02–D-06 ada dalam [rencana Dynamic Examples](.
 - `/kaidah/masdar/` kini memuat 11 pasangan (enam baru: مُسَاعَدَةٌ dan قِتَالٌ untuk Form III, تَعَلُّمٌ V, تَعَاوُنٌ VI, اِنْقِطَاعٌ VII, اِحْمِرَارٌ IX) dan 44 latihan; setiap Form I, III, V–X mempunyai pasangan bersumber.
 - Pemeriksaan kebahasaan dua putaran oleh Fable. [Audit Form III–IX](../research/2026-11-25-g02-forms-iii-ix-audit.md). Semua tetap `draft`.
 - Masih terbuka: Form II dan IV pada halaman maṣdar, akar nāqiṣ, lafīf, mahmūz, pola lain di luar 22 wazan yang dibahas, pengamalan isim turunan, tinjauan pengajar dan uji pembelajar.
+
+### G-02 · Lanjutan: ID kaidah, tautan wazan, akar lemah, rubā‘ī dan ‘amal (25 November 2026)
+
+- **ID kaidah dan prasyarat:** setiap kaidah G-02 (sharaf, participle, maṣdar, ‘amal) punya ID stabil `g02.<nama>` dan prasyarat per kaidah: kaidah G-02 lain serta kompetensi pada peta belajar (`competencies.ts`, mis. CB-14, CB-15, CR-03). Tidak ada graf kedua; `g02-rules.ts` mengumpulkan semuanya dan menguji ID unik, rujukan yang ada, serta tanpa siklus.
+- **Tautan wazan:** tiap contoh sharaf, participle dan maṣdar menaut ke baris verbanya pada halaman kelompok `/rujukan/fiil/kata-kerja/<bab>/`. Nomor bab diuji terhadap data Wiktionary.
+- **`/kaidah/participle/`:** 26 keluarga (sebelas baru) dan 104 latihan: nāqiṣ دَعَا dan بَنَى; lafīf mafrūq وَقَى dan maqrūn رَوَى; mahmūz أَخَذَ, سَأَلَ, قَرَأَ; muḍā‘af مَدَّ dan اِسْتَمَرَّ; rubā‘ī mujarrad تَرْجَمَ dan mazīd تَدَحْرَجَ.
+- **`/kaidah/masdar/`:** 13 pasangan dan 52 latihan; Form II (تَنْظِيمٌ) dan Form IV (إِرْسَالٌ) ditambahkan.
+- **`/kaidah/participle/amal/`:** pelajaran pendek ‘amal isim fā‘il (objek manṣūb, iḍāfah) dan isim maf‘ūl (nā’ib al-fā‘il): 4 kaidah, 7 contoh, 7 latihan. Sumber: dua artikel Wikipedia Arab (CC BY-SA 4.0); teksnya sebagian rusak dan kaidah nā’ib al-fā‘il dibaca sebagian dari ringkasan pemeriksa.
+- Pemeriksaan kebahasaan Fable dua putaran. [Audit](../research/2026-11-25-g02-continuation-audit.md). Semua tetap `draft`.
+- Masih terbuka: tinjauan pengajar atau ustadz, uji pembelajar dan cek harakat di ponsel nyata, perubahan bertahap māḍī/muḍāri‘/amr (VP-03), mazīd dengan akar lemah, serta kasus ‘amal lain (shifah musyabbahah, syarat klasik lain).

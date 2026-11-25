@@ -411,7 +411,7 @@ export const participlePairs = [
 		masdarMeaning: 'perlindungan; pencegahan',
 		activeMeaning: 'yang melindungi; pelindung',
 		passiveMeaning: 'yang dilindungi',
-		note: 'Lafīf mafrūq (و ق ي): wāw dan yā’ dipisahkan oleh huruf sehat ق. Wāw awal gugur pada muḍāri‘ (يَقِي), yā’ akhir menjadi alif pada وَقَى, dan isim fā‘il وَاقٍ kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr. Verba ini berpola فَعَلَ يَفْعِلُ (seperti بَنَى يَبْنِي); wāw awalnya gugur pada muḍāri‘. Data kelompok wazan situs ini belum mengklasifikasikannya, sehingga tautan menuju “Bab belum diketahui”.',
+		note: 'Lafīf mafrūq (و ق ي): wāw dan yā’ dipisahkan oleh huruf sehat ق. Wāw awal gugur pada muḍāri‘ (يَقِي), yā’ akhir menjadi alif pada وَقَى, dan isim fā‘il وَاقٍ kehilangan yā’ tertulis pada nakirah marfū‘ dan majrūr. Verba ini berpola فَعَلَ يَفْعِلُ (seperti بَنَى يَبْنِي). Data kelompok wazan situs ini belum mengklasifikasikannya, sehingga tautan menuju “Bab belum diketahui”.',
 		source: 'https://en.wiktionary.org/wiki/وقى#Arabic',
 		section: 'Arabic — Conjugation of وَقَى (Form I), active/passive participle, verbal nouns',
 		dataId: 'وقى-1',
@@ -1267,7 +1267,7 @@ export const participleTasks: readonly ParticipleTask[] = [
 		arabic: 'الْبُيُوتُ الْمَبْنِيَّةُ حَدِيثًا قَرِيبَةٌ مِنَ النَّهْرِ.',
 		question: 'Mengapa الْمَبْنِيَّةُ feminin tunggal dan bershadda?',
 		answer:
-			'الْبُيُوتُ adalah jamak benda tak berakal, sehingga na‘at dan khabarnya lazim feminin tunggal. Shadda berasal dari peleburan dua yā’ pada مَبْنِيٌّ. الْمَبْنِيَّةُ adalah na‘at marfū‘, حَدِيثًا adalah keterangan manṣūb (baru saja), dan قَرِيبَةٌ adalah khabar: rumah-rumah yang baru dibangun itu dekat dengan sungai.',
+			'الْبُيُوتُ adalah jamak benda tak berakal, sehingga na‘at dan khabarnya lazim feminin tunggal. Shadda berasal dari wāw pola مَفْعُولٌ yang berubah menjadi yā’ lalu melebur dengan yā’ akar (مَبْنِيٌّ). الْمَبْنِيَّةُ adalah na‘at marfū‘, حَدِيثًا adalah keterangan manṣūb (baru saja), dan قَرِيبَةٌ adalah khabar: rumah-rumah yang baru dibangun itu dekat dengan sungai.',
 		status: 'draft'
 	},
 	{
@@ -1702,7 +1702,7 @@ export const participleRules = [
 	{
 		id: 'g02.akar-mudaaf',
 		title: 'Akar muḍā‘af: dua huruf sama',
-		text: 'Pada akar muḍā‘af (م د د, م ر ر), radikal kedua dan ketiga yang sama melebur menjadi satu huruf bershadda bila berurutan (مَدَّ, يَمُدُّ, مَادٌّ, مُسْتَمِرٌّ). Peleburan terjadi bila huruf kedua berharakat. Bila ada huruf lain di antaranya, atau huruf kedua bersukun karena akhiran, keduanya tertulis terpisah (مَمْدُودٌ, اِسْتِمْرَارٌ, مَدَدْتُ).',
+		text: 'Pada akar muḍā‘af (م د د, م ر ر), radikal kedua dan ketiga yang sama melebur menjadi satu huruf bershadda bila berurutan (مَدَّ, يَمُدُّ, مَادٌّ, مُسْتَمِرٌّ). Peleburan terjadi bila huruf yang kedua dari dua huruf sama itu berharakat (مَدَّ, يَمُدُّ). Bila ada huruf lain di antaranya, atau huruf yang kedua itu bersukun karena akhiran, keduanya tertulis terpisah (مَمْدُودٌ, اِسْتِمْرَارٌ, مَدَدْتُ).',
 		prerequisites: rulePrerequisites(['g02.participle-batas-pola'], ['CB-18']),
 		sourceId: 'wiktionary'
 	},

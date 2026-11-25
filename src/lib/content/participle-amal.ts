@@ -12,16 +12,16 @@ export const amalSources = [
 		url: 'https://ar.wikipedia.org/wiki/اسم_الفاعل',
 		license: 'CC BY-SA 4.0',
 		checked: '25 Nov 2026',
-		note: 'Menyatakan bahwa isim fā‘il bekerja seperti fi‘ilnya; bekerja tanpa syarat bila disertai ال; tanpa ال memberi objek manṣūb dengan dua syarat, yaitu bermakna kini atau akan datang dan bersandar pada pertanyaan, penafian, mubtada (sebagai khabar), mausūf (sebagai na‘at) atau ṣāḥib al-ḥāl. Objek juga boleh dijadikan muḍāf ilaih. Contoh kalimat kita tidak berasal dari halaman ini. Teks artikel tampak rusak (paragraf tersambung di tengah kalimat) pada bagian «إضافته إلى مرفوعه» dan «عمله وأحكامه».'
+		note: 'Menyatakan bahwa isim fā‘il bekerja seperti fi‘ilnya; bekerja tanpa syarat bila disertai ال; tanpa ال memberi objek manṣūb dengan dua syarat, yaitu bermakna kini atau akan datang dan bersandar pada pertanyaan, penafian, mubtada (sebagai khabar), mauṣūf (sebagai na‘at) atau ṣāḥib al-ḥāl. Objek juga boleh dijadikan muḍāf ilaih. Contoh kalimat kita tidak berasal dari halaman ini. Teks artikel tampak rusak (paragraf tersambung di tengah kalimat) pada bagian «إضافته إلى مرفوعه» dan «عمله وأحكامه».'
 	},
 	{
 		id: 'naib',
-		title: 'Wikipedia Arab · نائب فاعل (bagian pembuka)',
+		title: 'Wikipedia Arab · نائب فاعل (bagian pembuka dan «ما يرفع نائب فاعل»)',
 		url: 'https://ar.wikipedia.org/wiki/نائب_الفاعل',
 		license:
 			'CC BY-SA 4.0 (tertera pada halaman Wikipedia; belum diperiksa pada salinan yang dibaca)',
 		checked: '25 Nov 2026',
-		note: 'Bagian pembuka menyebut bahwa nā’ib al-fā‘il tidak hanya muncul sesudah fi‘il pasif, tetapi juga sesudah bentuk serupa seperti isim maf‘ūl. Bagian «ما يرفع نائب فاعل» menyatakan syaratnya sama dengan isim fā‘il: tanpa syarat bila disertai ال, dan bersandar pada penafian, pertanyaan, khabar, ṣifah atau ḥāl bila tanpa ال; contohnya وَجَدتُ البُندُقِيَّةَ المَقتُول صَاحِبُهَا. Bagian ini dibaca dari teks artikel dan ringkasan pemeriksa; halaman اسم المفعول sendiri hanya membahas pembentukan.'
+		note: 'Bagian pembuka menyebut bahwa nā’ib al-fā‘il tidak hanya muncul sesudah fi‘il pasif, tetapi juga sesudah bentuk serupa seperti isim maf‘ūl. Bagian «ما يرفع نائب فاعل» menyatakan syaratnya sama dengan isim fā‘il: tanpa syarat bila disertai ال, dan bersandar pada penafian, pertanyaan, khabar, ṣifah atau ḥāl bila tanpa ال; Tanpa ال dan tanpa penyandaran, nā’ib al-fā‘il wajib berupa dhamir tersembunyi. Syarat tambahan: isim maf‘ūl tidak diberi sifat dan tidak di-iḍāfah-kan kepada selain ma‘mūl-nya; berbeda dari isim fā‘il, ia boleh di-iḍāfah-kan kepada ma‘mūl-nya. Syarat kini atau akan datang tidak diulang di bagian ini, hanya tercakup lewat rujukan ke isim fā‘il. Contohnya وَجَدتُ البُندُقِيَّةَ المَقتُول صَاحِبُهَا. Bagian ini dibaca dari teks artikel dan ringkasan pemeriksa; halaman اسم المفعول sendiri hanya membahas pembentukan.'
 	}
 ] as const;
 
@@ -40,9 +40,9 @@ export const amalRules: readonly AmalRule[] = [
 	{
 		id: 'g02.amal-isim-fail',
 		title: 'Isim fā‘il dapat memberi objek seperti fi‘ilnya',
-		text: 'Isim fā‘il dari verba transitif dapat disusul maf‘ūl bih yang manṣūb. Bila disertai ال, ia bekerja tanpa syarat tambahan. Tanpa ال, ia memberi objek manṣūb dengan dua syarat: (1) bermakna kini atau akan datang, dan (2) bersandar pada kata sebelumnya, yaitu menjadi khabar bagi mubtada, na‘at atau ḥāl, atau didahului pertanyaan atau penafian. Untuk makna lampau dipakai fi‘il māḍī atau iḍāfah. Fā‘il yang berupa dhamir tersembunyi tidak memerlukan syarat tambahan.',
+		text: 'Isim fā‘il dari verba transitif dapat disusul maf‘ūl bih yang manṣūb. Bila disertai ال, ia bekerja tanpa syarat tambahan. Tanpa ال, ia me-rafa‘-kan fā‘il yang berupa isim nyata dan me-naṣab-kan objek dengan dua syarat: (1) bermakna kini atau akan datang, dan (2) bersandar pada kata sebelumnya, yaitu menjadi khabar bagi mubtada, na‘at atau ḥāl, atau didahului pertanyaan atau penafian. Fā‘il yang berupa dhamir tersembunyi tidak memerlukan syarat tambahan.',
 		caution:
-			'Hanya contoh dasar yang dibahas di sini. Syarat lain dan pendapat yang berbeda antara ahli nahwu tidak diuraikan; periksa kitab nahwu bila perlu.',
+			'Hanya contoh dasar yang dibahas di sini. Untuk makna lampau dipakai fi‘il māḍī atau iḍāfah (كَاتِبُ الدَّرْسِ أَمْسِ); sumber artikel tidak menyatakan hal ini secara eksplisit. Syarat lain dan pendapat yang berbeda antara ahli nahwu tidak diuraikan; periksa kitab nahwu bila perlu.',
 		prerequisites: rulePrerequisites(
 			['g02.participle-dua-bentuk', 'g02.participle-irab'],
 			['CB-14', 'CR-03']
@@ -109,7 +109,7 @@ export const amalExamples: readonly AmalExample[] = [
 		arabic: 'أَمُسْتَقْبِلٌ الْمُدِيرُ الضُّيُوفَ غَدًا؟',
 		translation: 'Apakah direktur akan menyambut para tamu besok?',
 		explanation:
-			'مُسْتَقْبِلٌ adalah isim fā‘il Form X yang bersandar pada hamzah pertanyaan dan bermakna akan datang (غَدًا). الْمُدِيرُ adalah fā‘ilnya, isim nyata yang marfū‘, dan الضُّيُوفَ adalah maf‘ūl bih manṣūb. Susunan ini baku dan klasik; dalam bahasa Arab modern lazim dipakai fi‘il: هَلْ يَسْتَقْبِلُ الْمُدِيرُ الضُّيُوفَ غَدًا؟ Di sini مُسْتَقْبِلٌ adalah mubtada dan الْمُدِيرُ fā‘ilnya yang menggantikan khabar.'
+			'مُسْتَقْبِلٌ adalah isim fā‘il Form X yang bersandar pada hamzah pertanyaan dan bermakna akan datang (غَدًا). الْمُدِيرُ adalah fā‘ilnya, isim nyata yang marfū‘, dan الضُّيُوفَ adalah maf‘ūl bih manṣūb. Dalam i‘rāb, مُسْتَقْبِلٌ adalah mubtada dan الْمُدِيرُ adalah fā‘il yang menempati kedudukan khabar. Susunan ini baku dan klasik; dalam bahasa Arab modern lazim dipakai fi‘il: هَلْ يَسْتَقْبِلُ الْمُدِيرُ الضُّيُوفَ غَدًا؟'
 	},
 	{
 		id: 'amal-ex-04',
