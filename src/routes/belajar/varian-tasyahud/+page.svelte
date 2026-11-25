@@ -77,6 +77,6 @@
 </section>
 
 <section id="latihan" class="mt-10 scroll-mt-24 space-y-4" aria-labelledby="latihan-heading">
-	<h2 id="latihan-heading" class="text-2xl font-semibold">Cek pemahaman</h2>
+	<h2 id="latihan-heading" class="text-2xl font-semibold">Latihan pemahaman</h2>
 	<MeaningPractice questions={data.questions} />
 </section>
