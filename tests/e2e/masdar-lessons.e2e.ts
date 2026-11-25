@@ -18,7 +18,7 @@ test.describe('static masdar reader', () => {
 	}) => {
 		await page.goto('/kaidah/masdar/');
 		await expect(page.locator('#latihan-masdar li[id^="m"]')).toHaveCount(44);
-		await expect(page.locator('#m01')).toContainText('كَتَبَ الْمُوَظَّفُ رِسَالَةً.');
+		await expect(page.locator('#m01')).toContainText('كَتَبَ الْمُوَظَّفُ رِسَالَةً.');
 		await expect(page.locator('#m22')).toContainText('مُسَاعَدَةُ الْمَرِيضِ ضَرُورِيَّةٌ.');
 		for (const pattern of ['تَفَعُّلٌ', 'تَفَاعُلٌ', 'اِنْفِعَالٌ', 'اِفْعِلَالٌ', 'مُفَاعَلَةٌ', 'فِعَالٌ']) {
 			await expect(page.locator('main')).toContainText(pattern);
