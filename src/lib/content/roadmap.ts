@@ -91,7 +91,11 @@ const referenceLinks = [
 	{ path: 'rujukan/', label: 'Jenis kata' },
 	{ path: 'kosakata/', label: 'Kosakata' }
 ] as const satisfies readonly { path: Path; label: string }[];
-export const roadmapReferencePaths = referenceLinks.map((link) => link.path);
+const tasyahudLinks = [
+	{ path: 'belajar/varian-tasyahud/', label: 'Latihan varian tasyahud' },
+	{ path: 'rujukan/bacaan-shalat/', label: 'Rujukan bacaan shalat' }
+] as const satisfies readonly { path: Path; label: string }[];
+export const roadmapReferencePaths = [...referenceLinks, ...tasyahudLinks].map((link) => link.path);
 export type RoadmapReferencePath = (typeof roadmapReferencePaths)[number];
 
 export const roadmap: Roadmap = {
@@ -241,8 +245,8 @@ export const roadmap: Roadmap = {
 			title: 'Varian bacaan shalat',
 			canDo: byId.get('CB-02')!.canDo,
 			competencyIds: ['CB-02'],
-			status: 'planned',
-			links: [],
+			status: 'available',
+			links: tasyahudLinks,
 			sources,
 			reviewStatus: 'draft'
 		},

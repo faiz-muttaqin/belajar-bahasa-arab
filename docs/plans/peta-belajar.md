@@ -107,7 +107,7 @@ Peta memiliki empat lapis: **tahap** (bagian besar), **langkah** (kira-kira satu
 
 Catatan untuk peninjau:
 
-- CA-01 (bunyi) dan CB-02 (varian bacaan shalat) belum memiliki pelajaran publik. Keduanya mendapat cabang `planned` di Fondasi dan Tahap 1, tanpa tautan. Bersama Percakapan dan Pendalaman, ada empat cabang.
+- CA-01 (bunyi) tetap berupa cabang `planned` di Fondasi. CB-02 tersedia sebagai cabang opsional di Tahap 1 dengan [latihan varian tasyahud](/belajar/varian-tasyahud/) dan rujukan bacaan shalat. Latihan ini berstatus draf menunggu tinjauan ustadz. Bersama Percakapan dan Pendalaman, ada empat cabang.
 - Setiap langkah merujuk seluruh `competencyIds` yang dipakai pelajarannya. `primaryCompetencyIds` menempatkan setiap kompetensi tepat satu kali untuk hitungan tahap; rujukan silang tidak menambah penyebut. CB-24 berumah utama di Tahap 5 dan tetap dipakai di Tahap 6.
 
 - Pelajaran U9-03 mencantumkan CB-20, tetapi tugasnya membaca klausa. Peta memasukkan CB-20 ke cabang Percakapan dan membiarkan U9-03 di Tahap 4, sesuai temuan [audit UX](../research/2026-11-15-ux-pasca-iqra.md).
@@ -205,7 +205,7 @@ Belum diriset: metode Tamyiz, Al-Bayan, dan anotasi utawi-iku. Riset dari sumber
 
 - **33 kompetensi, 55 prasyarat:** 4 hard, 47 soft, 4 optional. ID dan edge diuji terhadap graf Markdown beserta perluasan bacaan.
 - **29 pelajaran dalam 27 langkah:** 23 pelajaran jalur utama (23 langkah) dan 6 Iqra (4 langkah; tiga pelajaran harakat berada dalam satu langkah). Setiap pelajaran tepat satu langkah.
-- **Tujuh tahap, empat cabang, tujuh titik cek direncanakan.** CA-01, CB-02 dan CB-20 berumah pada cabang direncanakan; CR-01–CR-03 pada Pendalaman. Setiap kompetensi tepat satu tempat utama; pelajaran boleh merujuk kompetensi dari langkah/cabang lain.
+- **Tujuh tahap, empat cabang, tujuh titik cek direncanakan.** CB-02 berumah pada cabang latihan tasyahud di Tahap 1. CA-01 dan CB-20 berumah pada cabang direncanakan. CR-01–CR-03 berada pada Pendalaman. Setiap kompetensi tepat satu tempat utama; pelajaran boleh merujuk kompetensi dari langkah/cabang lain.
 - **Sumber:** node, langkah, tahap, cabang dan titik cek mencatat sumber serta jenis penggunaan `independent-original`, berstatus `draft`. Tidak menulis materi Arab baru.
 - **Domain:** `stepStatus`, `currentPosition`, `summarizeRoadmap`. Posisi default mengikuti jalur utama; Iqra dipilih eksplisit. Semua pelajaran wajib harus selesai pada revisi kini. Tanda manual terbaru mengungguli status pelajaran; membuka ulang pelajaran selesai tidak menggeser posisi ke belakang tanpa tanda manual.
 - **Build menolak:** pelajaran hilang/ganda, ID tak dikenal/ganda, sumber kosong/tidak sah, tempat utama kompetensi hilang/ganda, siklus prasyarat, prasyarat hard terbalik/tanpa alasan, tautan cabang direncanakan dan route rujukan yang tidak dikenal. Tautan Pendalaman juga diperiksa terhadap tipe route Kit dan berkas halaman nyata.

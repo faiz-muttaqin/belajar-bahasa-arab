@@ -30,3 +30,11 @@ Lafaz lama dicocokkan lagi per kata dan harakat dengan snapshot yang sama. Untuk
 Katalog kini memuat 58 entri dalam 16 bagian. Enam belas tambahan meliputi tahajud, iktidal, rukuk atau sujud, doa dalam shalat, doa di penghujung shalat, zikir selepas salam, witir, jenazah, dan istikharah. Tiga puluh glos tambahan dari bagian tersebut terhubung ke pencarian dan kosakata. Tautan pembanding tersedia untuk tasyahud Ibnu Umar, takbir Idulfitri, dan qunut nazilah.
 
 Pada al-Bukhari 1120 dan 1166, lafaz bacaan ditampilkan dengan pilihan redaksinya disebut di catatan. Frasa editorial di tengah matan dan pilihan kedua yang diantar dengan “atau perawi berkata” tidak digabung ke dalam lafaz yang dipilih. Tinjau makna penghujung shalat dalam Abi Dawud 1522 serta perbedaan konteks sujud dan witir pada doa perlindungan. Cek kembali harakat dan arti pada shalat jenazah dan istikharah saat tinjauan ustadz.
+
+## CB-02 · Latihan varian tasyahud
+
+Dasar kerja CB-02 adalah katalog 58 bacaan dari commit `24f8133`. Latihan memakai dua riwayat yang sudah ditautkan pada katalog, yaitu [Ibnu Mas‘ud](https://sunnah.com/bukhari:831) dan [Ibnu Abbas](https://sunnah.com/muslim:403a). Fokus latihan adalah makna kata yang sama dan unsur pembeda pada pembuka serta syahadat kedua. Cabang ini opsional pada Tahap 1. Latihan dan lembar tinjauan disiapkan sebagai draf.
+
+Cabang Tahap 1 kini membuka latihan mandiri di `/belajar/varian-tasyahud/`. Lima soal memeriksa kata pembeda dan kata yang sama. Pembahasan memuat rujukan per soal, dan tiap cuplikan membuka lafaz utuh di katalog. Latihan bisa dibuka dengan atau tanpa JavaScript dan bersifat opsional.
+
+[Lembar tinjauan](./lembar-tinjauan-bacaan-shalat.md) mencakup semua 58 ID dari katalog. Setiap entri memuat lafaz, glos bernomor, makna utuh, sumber, dan daftar periksa. Catatan hasil disimpan menurut ID dan nomor kata. Semua butir menunggu pemeriksaan ustadz.
