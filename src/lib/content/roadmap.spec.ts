@@ -37,7 +37,18 @@ describe('RM-02 published lesson mapping', () => {
 
 	it('keeps foundations optional, future work unlinked and reference links real', () => {
 		expect(roadmap.stages[0]!).toMatchObject({ optional: true, track: 'iqra', number: 0 });
-		expect(roadmap.branches.filter((branch) => branch.status === 'planned')).toHaveLength(3);
+		expect(roadmap.branches.filter((branch) => branch.status === 'planned')).toHaveLength(2);
+		expect(roadmap.branches.find((branch) => branch.id === 'branch-shalat-variants')).toMatchObject(
+			{
+				stageId: 'stage-1',
+				status: 'available',
+				reviewStatus: 'draft',
+				competencyIds: ['CB-02'],
+				links: expect.arrayContaining([
+					{ path: 'belajar/varian-tasyahud/', label: 'Latihan varian tasyahud' }
+				])
+			}
+		);
 		expect(
 			roadmap.branches
 				.filter((branch) => branch.status === 'planned')

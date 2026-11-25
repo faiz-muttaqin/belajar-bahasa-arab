@@ -117,6 +117,11 @@
 					juga diriwayatkan ketika sujud.
 				</p>
 			{:else if group.id === 'tasyahud'}
+				<a
+					href={resolve('belajar/varian-tasyahud/')}
+					class="inline-flex min-h-11 items-center font-medium text-primary underline"
+					>Latihan membandingkan riwayat Ibnu Mas‘ud dan Ibnu Abbas</a
+				>
 				<p class="max-w-[65ch] text-sm text-muted-foreground">
 					<a class="text-primary underline" href="https://sunnah.com/abudawud:971"
 						>Sunan Abi Dawud 971</a

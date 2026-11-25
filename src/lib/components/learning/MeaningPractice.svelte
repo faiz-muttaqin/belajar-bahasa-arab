@@ -7,21 +7,17 @@
 	import ArabicText from './ArabicText.svelte';
 	import MixedText from './MixedText.svelte';
 
-	let {
-		questions,
-		lessonId,
-		contentRevision,
-		competencyIds,
-		skill = 'meaning',
-		evidenceItems
-	}: {
-		questions: MeaningPractice;
+	type EvidenceProps = {
 		lessonId: string;
 		contentRevision: number;
 		competencyIds: readonly string[];
 		skill?: EvidenceSkill;
 		evidenceItems: readonly EvidenceItem[];
-	} = $props();
+	};
+	let {
+		questions,
+		...progress
+	}: { questions: MeaningPractice } & (EvidenceProps | { lessonId?: undefined }) = $props();
 	const id = $props.id();
 	let interactive = $state(false);
 	let step = $state(0);
@@ -45,6 +41,8 @@
 		checked = true;
 		await tick();
 		feedback?.focus();
+		if (progress.lessonId === undefined) return;
+		const { lessonId, contentRevision, competencyIds, skill = 'meaning', evidenceItems } = progress;
 		savingAnswer = true;
 		evidenceMessage = '';
 		storageError = false;
