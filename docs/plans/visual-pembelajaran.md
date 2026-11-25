@@ -103,3 +103,18 @@ Semua materi baru boleh dipakai sebagai draf bersumber menurut D-9. Tinjauan ust
 - Uji Playwright: keyboard, ganti lapisan, tanpa warna, sorotan tanpa mengubah ukuran/spasi/arah, RTL, kontras terang/gelap di halaman nyata, tanpa JS, dan tidak ada luapan horizontal pada 320, 390, 768 dan 1440 px.
 
 **Belum terpenuhi:** uji pengguna dan perbandingan dengan/tanpa bantuan visual (VP-05); uji Safari iOS dan Android nyata; sumber tambahan untuk kesesuaian na‘at; tinjauan ustadz atas seluruh jalur; penyimpanan pilihan “Tanpa warna peran” di perangkat; contoh kata ganti–rujukan. Status keseluruhan tetap diperbarui oleh sesi utama setelah merge.
+
+## Catatan implementasi VP-03 — 25 November 2026
+
+**Sub-deliverable yang dikerjakan:** VP-03 (perubahan bentuk dan hubungan kata secara bertahap). VP-04 sudah merged lebih dulu; VP-05 belum.
+
+**Selesai:**
+
+- Kontrak: `src/lib/domain/grammar/change-steps.ts` (urutan langkah antara dua kalimat beranotasi: kata yang berubah, bentuk sebelum dan sesudah, alasan, kata lain yang ikut berubah, kata yang tetap, sumber per langkah). Uji unit memeriksa urutan, sumber dan alasan tiap langkah, bahwa token yang disebut ada, bahwa setiap perubahan yang diklaim memang berbeda pada anotasi, dan bahwa setiap kata kedua kalimat masuk ke satu langkah. Tidak ada kalimat antara dan tidak ada derivasi dari kamus.
+- Data pilot: `src/lib/content/change-sequences.ts` dengan tiga pasangan dari contoh yang sudah dianotasi: frasa sifat → kalimat nominal (G-01, `/kaidah/`), iḍāfah setelah harf jarr (G-03, `/kaidah/frasa/`) dan aktif → pasif (pelajaran `kalimat-aktif-dan-pasif`). Pasangan, sumber dan batas bukti: [vp01-annotation-pilot.md](../data/vp01-annotation-pilot.md#vp-03-urutan-perubahan-antara-dua-contoh).
+- Komponen `FormChangeSteps.svelte`: “Lihat perubahan”, “Sebelumnya”, “Berikutnya”, “Ulangi”; satu langkah sekali tampil dengan alasan, kata yang ikut berubah dan kata yang tetap. Kedua kalimat tetap tampil utuh di dua baris; langkah hanya menandai kata dengan latar warna disertai label teks (Berubah, Ikut berubah, Tetap), jadi harakat tidak tertutup dan huruf tidak bergerak. Tidak ada autoplay, loop, gerak karena scroll atau library animasi. Kontrol “Hentikan” tidak ada karena tidak ada yang diputar. Gerak hanya memudarkan kartu langkah (180 ms) dan latar kata (160 ms), dan tidak ada sama sekali pada `prefers-reduced-motion`. Pengumuman `aria-live="polite"`; fokus berpindah ke kontrol yang masih aktif.
+- Tanpa JavaScript, seluruh langkah, alasan, sumber, status dan batas bukti ada dalam `details` berisi daftar berurutan.
+- Uji Playwright: navigasi langkah, keyboard dan fokus, pengumuman, teks Arab tetap dapat dipilih dan tidak berubah ukuran, gerak berkurang, animasi singkat saat gerak diizinkan, tanpa JS, tema gelap dan tidak ada luapan horizontal pada 320, 390, 768 dan 1440 px untuk ketiga halaman.
+- Tinjauan Fable atas semua langkah dan perbaikannya dicatat di inventaris. Konten tetap `draft` (D-9).
+
+**Belum terpenuhi:** uji pengguna dan perbandingan dengan/tanpa bantuan visual (VP-05); uji Safari iOS dan Android nyata; tinjauan ustadz atas seluruh jalur; pasangan tambahan (kesesuaian jenis dan jumlah perlu sumber). Status keseluruhan tetap diperbarui oleh sesi utama setelah merge.

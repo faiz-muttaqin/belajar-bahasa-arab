@@ -97,9 +97,52 @@ Subagen Fable meninjau semua anotasi (analisis nahwu, harakat, glos, terjemahan,
 
 Satu usulan opsional tidak diambil: menambahkan contoh فَتَحَتْ pada alasan jenis kata fi‘il, agar tidak menambah bentuk yang tidak berasal dari konten yang ada. Ejaan “topik kalimat nominal” diseragamkan pada anotasi G-01. Halaman Madinah 34/1 dan 58/1 masih dibaca melalui peringkas, bukan teks mentah.
 
+## VP-03: urutan perubahan antara dua contoh
+
+**25 November 2026 · Status konten: `draft`.** Kontrak: `src/lib/domain/grammar/change-steps.ts`. Data: `src/lib/content/change-sequences.ts`. Komponen: `FormChangeSteps.svelte`. Tidak ada kalimat baru: setiap bentuk Arab yang tampil adalah token dari dua anotasi di atas, dan uji unit memeriksa bahwa setiap perubahan yang diklaim memang berbeda pada anotasinya serta bahwa setiap kata kedua kalimat masuk ke satu langkah. Tidak ada kalimat antara (misalnya `فُتِحَ الْحَارِسُ الْبَابَ`) yang ditampilkan, karena bentuk itu tidak bersumber dan tidak berterima.
+
+| Urutan                          | Sebelum → sesudah                                                        | Langkah                                                                                                                     | Halaman                                         | Sumber langkah                                                                                                    |
+| ------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `cs-sifat-ke-khabar` (G-01)     | `ph-kitab-jadid-def` الْكِتَابُ الْجَدِيدُ → `g1-kitab-jadid-khabar` الْكِتَابُ جَدِيدٌ | 1. sifat melepas الْـ (kata benda tetap). 2. na‘at menjadi khabar; kata benda menjadi mubtada’ (kata lain yang ikut berubah) | `/kaidah/`, bagian mubtada’ dan khabar          | Al-Ājurrūmiyyah: Bāb an-na‘t; Bāb al-mubtada’ wa-l-khabar. Madinah, pelajaran 58 bagian 1                         |
+| `cs-fi-mudhaf` (G-03)           | `g1-kitab-talib` كِتَابُ الطَّالِبِ → `ph-fi-kitab-talib` فِي كِتَابِ الطَّالِبِ        | 1. harf jarr فِي ditambahkan. 2. muḍāf berubah dari ḍammah ke kasrah; muḍāf ilaih tetap dengan alasan lain                   | `/kaidah/frasa/`, bagian iḍāfah dan jarr–majrūr | Al-Ājurrūmiyyah: Bāb makhfūḍāt al-asmā’. Madinah, pelajaran 5 bagian 2                                            |
+| `cs-aktif-ke-pasif` (pelajaran) | `wc-penjaga-membuka` فَتَحَ الْحَارِسُ الْبَابَ → `wc-pintu-dibuka` فُتِحَ الْبَابُ      | 1. vokal verba berubah (فَعَلَ → فُعِلَ). 2. pelaku tidak disebut. 3. objek naik menjadi nā’ib al-fā‘il (naṣb → rafa‘)            | `/belajar/kalimat-aktif-dan-pasif/`             | Al-Ājurrūmiyyah: Bāb al-maf‘ūl alladhī lam yusamma fā‘iluh; Bāb marfū‘āt al-asmā’. Madinah, pelajaran 34 bagian 1 |
+
+Catatan pemilihan pasangan:
+
+- Pasangan 1 memakai الْكِتَابُ الْجَدِيدُ, bukan كِتَابٌ جَدِيدٌ, sebagai "sebelum". Pasangan ini hanya berbeda pada الْـ di kata kedua, sehingga perubahan hubungan (na‘at–man‘ūt menjadi mubtada’–khabar) tidak tercampur dengan perubahan ketertentuan kata benda. Kedua kalimatnya sudah dianotasi dan contoh G-01 sudah menyebut pembandingan ini.
+- Pasangan 3 memakai dua anotasi pelajaran `isim-fiil-harf` karena kalimatnya identik dengan dua contoh pertama pelajaran `kalimat-aktif-dan-pasif`. Uji unit membandingkan teks Arab kedua anotasi dengan contoh pelajaran itu.
+- Tidak ada kontrol "Hentikan": tidak ada yang diputar. Pelajar menggerakkan setiap langkah sendiri.
+
+Batas bukti VP-03 (juga ditampilkan kepada pelajar):
+
+- Langkah adalah penjelasan proyek yang disusun dari anotasi bersumber. Sumber memeriksa istilah dan kaidah, bukan asal kalimat.
+- Kesesuaian jenis dan jumlah na‘at tidak diklaim; hanya i‘rab dan ketertentuan yang disebut di bab na‘t.
+- كِتَابُ pada frasa pertama pasangan 2 ditulis berḍammah sebagai bentuk rujukan, mengikuti anotasi `g1-kitab-talib`.
+- Istilah nā’ib al-fā‘il tidak ada di Al-Ājurrūmiyyah (di sana al-maf‘ūl alladhī lam yusamma fā‘iluh). Akar dan pola kata berasal dari pelajaran proyek. Pasif nonlampau dan pasif dari akar lain tidak dibahas.
+- Halaman Madinah 34/1 dan 58/1 dibaca melalui peringkas halaman, bukan teks mentah.
+- Tidak ada sumber baru dan tidak ada teks pihak ketiga yang disalin, jadi `data/sources/registry.json` tidak berubah (D-10).
+
+### Tinjauan subagen Fable atas VP-03 (25 November 2026)
+
+Subagen Fable menerima semua langkah (Arab berharakat penuh sebelum dan sesudah, alasan, kata yang ikut berubah, kata yang tetap, batas bukti dan sumber) dan memeriksanya terhadap anotasi serta dokumen ini. Ia **tidak** menemukan i‘rab, peran, pola fi‘il, kasus atau harakat yang salah.
+
+**Yang diperiksa:** harakat semua bentuk Arab di `change-sequences.ts` berdasarkan titik kode terhadap token anotasi; kasus dan tanda akhir tiap kata; kesesuaian na‘at–man‘ūt dalam ketertentuan (jenis dan jumlah sengaja tidak diklaim); khabar nakirah setelah mubtada’ ma‘rifah bukan na‘at; فِي sebagai harf jarr dan muḍāf sebagai isim yang langsung dijarrkan; muḍāf tanpa tanwin; muḍāf ilaih majrūr karena iḍāfah; morfologi pasif فَعَلَ → فُعِلَ dan vokal فُتِحَ; maf‘ūl bih naṣb menjadi nā’ib al-fā‘il rafa‘; istilah al-maf‘ūl alladhī lam yusamma fā‘iluh dan semua nama bab sebagai penunjuk sumber; ejaan dan terminologi Indonesia. Fable tidak mengambil ulang halaman Wikisource atau Madinah; klaim sumber dicek terhadap matan Al-Ājurrūmiyyah yang dikenalnya dan terhadap catatan batas bukti di dokumen ini.
+
+**Yang diubah setelah tinjauan:**
+
+- Langkah pasif 2: “Tidak ada kata yang menggantikannya” bertentangan dengan langkah 3 (pintu menjadi nā’ib al-fā‘il); kini “Tidak ada kata lain yang menyebut pelakunya”. “Tindakan dan hasilnya” menjadi “tindakan dan apa yang dikenainya”.
+- Langkah pasif 1 dan 3: aturan vokal dibatasi pada fi‘il māḍī tiga huruf; “tidak lagi punya objek langsung” dibatasi pada kalimat ini (fi‘il dua objek tetap menyisakan satu objek). Langkah 1 kini hanya mengutip Al-Ājurrūmiyyah karena halaman Madinah 34/1 memberi contoh, bukan aturan; batas bukti menyatakannya.
+- Iḍāfah langkah 2: “alasannya berbeda” bisa terbaca sebagai alasan yang berubah; kini dinyatakan sama seperti sebelumnya dan yang berbeda adalah sebab dua kasrah di frasa itu. Batas bukti dan ringkasan menyebut ḍammah كِتَابُ sebagai bentuk rujukan; “posisi tertentu” diganti karena “tertentu” dipakai situs ini untuk ma‘rifah.
+- Pasangan 1 langkah 2 kini menyebut bahwa ḍammah pada frasa hanya bentuk rujukan, berbeda dari rafa‘ pada kalimat; batas bukti ditambah.
+- Sumber ditambah untuk klaim yang dibuat: Bāb ma‘rifat ‘alāmāt al-i‘rāb (tanda ḍammah dan kasrah), Bāb al-maf‘ūl bih dan Bāb manṣūbāt al-asmā’ (maf‘ūl bih, naṣb, fatḥah).
+- Bahasa: “akhirnya” menjadi “huruf akhirnya” / “harakat akhirnya”; “pada kata ini tandanya kasrah” (kasrah bukan satu-satunya tanda jarr); “sama-sama tertentu” untuk satu kata diganti; “vokal verba” menjadi “vokal fi‘il”; “pasif dari akar lain” menjadi “pasif dari pola fi‘il lain”. Anotasi `ph-kitab-jadid.t2` kini memakai “ketertentuan”, bukan “ketentuan”.
+
+**Disarankan tetapi tidak diubah:** terjemahan “Di dalam buku murid itu.” memakai “di dalam” sedangkan glos فِي “di” dan pengantar urutan tanpa “milik” (keduanya dari konten yang ada); الْبَابَ dan الْبَابُ di alasan langkah 3 dapat disebut berurutan agar kedua bentuk terlihat. Halaman Madinah dibaca melalui peringkas, bukan teks mentah.
+
 ## Pekerjaan terbuka
 
 - Tinjauan ustadz atas seluruh jalur (D-9) dan sumber tambahan untuk kesesuaian na‘at.
 - Uji pengguna: apakah pelajar dapat menjelaskan peran dan alasannya tanpa bantuan warna (rencana §6, VP-05).
 - Uji perangkat nyata: Safari iOS dan Android untuk sambungan huruf dan harakat pada kata yang disorot. Pada Chromium desktop yang diuji, sorotan tidak mengubah lebar, tinggi, padding, border atau arah.
 - Pilihan “Tanpa warna peran” belum disimpan di perangkat; tersimpan hanya selama halaman terbuka.
+- VP-03: uji pengguna (apakah urutan langkah membantu pelajar menjelaskan perubahan tanpa bantuan visual, VP-05), uji Safari iOS dan Android nyata, tinjauan ustadz atas tiga urutan, dan pasangan tambahan (misalnya kesesuaian jenis dan jumlah setelah ada sumbernya).

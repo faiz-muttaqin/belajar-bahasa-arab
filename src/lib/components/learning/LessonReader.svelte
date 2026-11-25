@@ -19,6 +19,8 @@
 	import MeaningPractice from './MeaningPractice.svelte';
 	import SelfAssessment from './SelfAssessment.svelte';
 	import SentenceBreakdown from './SentenceBreakdown.svelte';
+	import FormChangeSteps from './FormChangeSteps.svelte';
+	import { changeSequencesForLesson } from '#lib/content/change-sequences.js';
 	import SentenceWordNotes from './SentenceWordNotes.svelte';
 
 	type LessonLink = Pick<Lesson, 'title' | 'slug'>;
@@ -150,6 +152,12 @@
 				</ul>
 			</section>
 		{/if}
+
+		{#each changeSequencesForLesson(lesson.slug) as sequence (sequence.id)}
+			<section aria-label="Perubahan antara dua contoh" class="max-w-3xl">
+				<FormChangeSteps {sequence} />
+			</section>
+		{/each}
 
 		{#if lesson.passage}
 			<section
