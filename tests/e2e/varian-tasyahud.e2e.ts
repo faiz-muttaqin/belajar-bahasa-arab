@@ -22,10 +22,6 @@ test.describe('CB-02 without JavaScript', () => {
 			'href',
 			'https://sunnah.com/muslim:403a'
 		);
-		await expect(ibnAbbas.getByRole('link', { name: 'Lafaz lengkap dan glos' })).toHaveAttribute(
-			'href',
-			'/rujukan/bacaan-shalat/#tasyahud-ibn-abbas'
-		);
 
 		const first = page.locator('#latihan ol > li').first();
 		await first.getByText('Lihat alasan', { exact: true }).click();

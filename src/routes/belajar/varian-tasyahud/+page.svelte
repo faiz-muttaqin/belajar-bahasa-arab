@@ -3,7 +3,9 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import MeaningPractice from '#lib/components/learning/MeaningPractice.svelte';
-	import { tasyahudComparison, tasyahudQuestions } from '#lib/content/tasyahud-practice.js';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
 </script>
 
 <PageIntro
@@ -37,7 +39,7 @@
 		yang ditonjolkan menunjukkan kata pembeda yang dibahas dalam latihan.
 	</p>
 	<div class="grid gap-4 md:grid-cols-2">
-		{#each tasyahudComparison as variant (variant.id)}
+		{#each data.comparisons as variant (variant.id)}
 			<article class="min-w-0 space-y-4 rounded-xl border bg-card p-4 sm:p-5">
 				<h3 class="text-lg font-semibold">{variant.title}</h3>
 				<div class="space-y-4">
@@ -46,7 +48,7 @@
 							<h4 class="text-sm font-semibold">{fragment.label}</h4>
 							<p lang="ar" dir="rtl" class="arabic-block text-2xl leading-loose">
 								{#each fragment.words as word, i (i)}
-									{#if i > 0}{' '}{/if}<span
+									{i > 0 ? ' ' : ''}<span
 										class:font-bold={word.emphasized}
 										class:text-primary={word.emphasized}>{word.arabic}</span
 									>
@@ -57,9 +59,9 @@
 					{/each}
 				</div>
 				<div class="flex flex-wrap gap-x-5">
-					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external hadith source -->
 					<a
 						href={variant.source.href}
+						rel="external"
 						class="inline-flex min-h-11 items-center text-primary underline"
 						>{variant.source.label}</a
 					>
@@ -76,5 +78,5 @@
 
 <section id="latihan" class="mt-10 scroll-mt-24 space-y-4" aria-labelledby="latihan-heading">
 	<h2 id="latihan-heading" class="text-2xl font-semibold">Cek pemahaman</h2>
-	<MeaningPractice questions={tasyahudQuestions} />
+	<MeaningPractice questions={data.questions} />
 </section>
