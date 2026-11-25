@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { summarizeRoadmap } from '#lib/domain/roadmap/progress.js';
+	import { summarizeCoverage } from '#lib/domain/roadmap/coverage.js';
 	import {
 		competencyUnderstanding,
 		levelLabels,
@@ -11,6 +12,8 @@
 	import EmptyState from '#lib/components/layout/EmptyState.svelte';
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import MixedText from '#lib/components/learning/MixedText.svelte';
+	import RoadmapCoverage from '#lib/components/learning/RoadmapCoverage.svelte';
+	import RoadmapEvidenceSummary from '#lib/components/learning/RoadmapEvidenceSummary.svelte';
 	import { notifyProgress, useProgress } from '#lib/progress/browser.svelte.js';
 	import {
 		parseProgressBackup,
@@ -27,6 +30,30 @@
 		progress.status === 'ready'
 			? summarizeRoadmap(data.roadmap, data.roadmapLessons, progress.records, progress.marks)
 			: undefined
+	);
+	const coverage = $derived(
+		progress.status === 'ready'
+			? summarizeCoverage(
+					data.roadmap,
+					data.roadmapLessons,
+					progress.records,
+					progress.marks,
+					progress.attempts,
+					data.evidenceItems
+				)
+			: undefined
+	);
+	const coverageState = $derived(
+		progress.status === 'ready'
+			? 'ready'
+			: progress.status === 'unavailable'
+				? 'unavailable'
+				: 'pending'
+	);
+	const mainStructure = $derived(
+		data.roadmap.stages
+			.filter((stage) => !stage.optional)
+			.map(({ id, number, title, steps }) => ({ id, number, title, totalSteps: steps.length }))
 	);
 	const understanding = $derived.by(() => {
 		if (progress.status !== 'ready') return undefined;
@@ -115,22 +142,13 @@
 				<p>Semua langkah jalur utama sudah selesai atau dilewati.</p>
 				<a href={resolve('belajar/')} class="font-medium text-primary underline">Lihat peta</a>
 			{/if}
-			<ul class="space-y-2 text-base" aria-label="Cakupan langkah per tahap">
-				{#each roadmapSummary.stages.filter((stage) => !stage.optional) as stage (stage.stageId)}
-					<li>
-						Tahap {data.roadmap.stages.find((item) => item.id === stage.stageId)?.number}:
-						{stage.counts.completed} dari {stage.totalSteps} langkah selesai
-						{#if stage.counts.skipped}
-							· {stage.counts.skipped} dilewati{/if}
-					</li>
-				{/each}
-			</ul>
 			<p class="text-base text-muted-foreground">
-				Hitungan ini adalah cakupan langkah, bukan nilai pemahaman. Iqra dan pendalaman opsional
-				tidak dihitung dalam jalur utama.
+				Rincian hitungan langkah dan bukti latihan per tahap ada di bagian berikutnya.
 			</p>
 		</section>
 	{/if}
+	<RoadmapCoverage structure={mainStructure} {coverage} state={coverageState} />
+	<RoadmapEvidenceSummary structure={mainStructure} {coverage} state={coverageState} />
 	{#if understanding}
 		<section class="space-y-3 rounded-2xl border p-4 sm:p-6" aria-labelledby="bukti-pemahaman">
 			<h2 id="bukti-pemahaman" class="text-xl font-semibold">Bukti pemahaman</h2>

@@ -27,12 +27,20 @@ test.describe('mobile lesson progress', () => {
 		await progressTab.goto('/progres/');
 		let resume = progressTab.getByRole('link', { name: 'Lanjut belajar' });
 		await expect(resume).toHaveAttribute('href', new RegExp(`${start}$`));
-		await expect(progressTab.getByText('Sedang dipelajari', { exact: true })).toBeVisible();
+		await expect(
+			progressTab
+				.getByRole('region', { name: 'Pelajaran yang dibuka' })
+				.getByText('Sedang dipelajari', { exact: true })
+		).toBeVisible();
 
 		await page.getByRole('button', { name: 'Tandai selesai' }).tap();
 		await expect(page.getByRole('button', { name: 'Pelajaran selesai' })).toBeDisabled();
 		await expect(resume).toHaveAttribute('href', new RegExp(`${next}$`));
-		await expect(progressTab.getByText('Selesai', { exact: true })).toBeVisible();
+		await expect(
+			progressTab
+				.getByRole('region', { name: 'Pelajaran yang dibuka' })
+				.getByText('Selesai', { exact: true })
+		).toBeVisible();
 		await page.close();
 		await progressTab.close();
 
@@ -49,8 +57,16 @@ test.describe('mobile lesson progress', () => {
 			.first()
 			.tap();
 		await expect(reopened.getByRole('link', { name: 'Lanjut belajar' })).toBeVisible();
-		await expect(reopened.getByText('Selesai', { exact: true })).toBeVisible();
-		await expect(reopened.getByText('Sedang dipelajari', { exact: true })).toBeVisible();
+		await expect(
+			reopened
+				.getByRole('region', { name: 'Pelajaran yang dibuka' })
+				.getByText('Selesai', { exact: true })
+		).toBeVisible();
+		await expect(
+			reopened
+				.getByRole('region', { name: 'Pelajaran yang dibuka' })
+				.getByText('Sedang dipelajari', { exact: true })
+		).toBeVisible();
 	});
 
 	test('round-trips a progress backup and preserves completion when reimporting an older record', async ({
@@ -98,7 +114,11 @@ test.describe('mobile lesson progress', () => {
 			await expect(newPage.getByRole('status')).toContainText('Cadangan digabungkan');
 			await newPage.reload();
 			await expect(resume).toHaveAttribute('href', new RegExp(`${next}$`));
-			await expect(newPage.getByText('Selesai', { exact: true })).toBeVisible();
+			await expect(
+				newPage
+					.getByRole('region', { name: 'Pelajaran yang dibuka' })
+					.getByText('Selesai', { exact: true })
+			).toBeVisible();
 		} finally {
 			await fresh.close();
 		}

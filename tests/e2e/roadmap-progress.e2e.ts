@@ -21,8 +21,10 @@ test('RM-04 optional Iqra marks and completion persist without changing the main
 	await expect(foundation.locator('[data-step-status]')).toContainText('Selesai');
 	await expect(mainPosition).toHaveAttribute('href', '#step-u1');
 	await page.goto('/progres/');
-	const mainCoverage = page.getByRole('list', { name: 'Cakupan langkah per tahap' });
-	await expect(mainCoverage).toContainText(/Tahap 1:\s*0 dari 1 langkah selesai/);
+	const mainCoverage = page.getByRole('list', { name: 'Daftar cakupan langkah tiap tahap' });
+	await expect(mainCoverage.locator('[data-coverage-stage="stage-1"]')).toContainText(
+		'0 dari 1 langkah selesai'
+	);
 	await expect(mainCoverage).not.toContainText('Tahap 0');
 });
 
@@ -53,7 +55,9 @@ test('RM-04 map marks persist, synchronize to other tabs and keep resume separat
 		await expect(page.getByRole('region', { name: 'Posisi di peta belajar' })).toContainText(
 			'Tahap 2'
 		);
-		await expect(page.getByText('1 dilewati')).toBeVisible();
+		await expect(
+			page.locator('[data-coverage-stage="stage-1"] [data-coverage-label]')
+		).toContainText('1 dilewati');
 		await expect(page.getByRole('link', { name: 'Lanjut belajar' })).toHaveCount(0);
 
 		await page.goto('/belajar/');
@@ -179,9 +183,10 @@ test('RM-04 schema 1 import and latest-mark schema 2 import work across devices'
 			mimeType: 'application/json',
 			buffer: Buffer.from(JSON.stringify(backup))
 		});
-		await expect(otherPage.getByText('1 dilewati')).toBeVisible();
+		const skipped = otherPage.locator('[data-coverage-stage="stage-1"] [data-coverage-label]');
+		await expect(skipped).toContainText('1 dilewati');
 		await otherPage.reload();
-		await expect(otherPage.getByText('1 dilewati')).toBeVisible();
+		await expect(skipped).toContainText('1 dilewati');
 	} finally {
 		await other.close();
 	}
