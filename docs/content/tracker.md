@@ -56,7 +56,7 @@ Draf padanan verba, varian, dan kata tugas menunggu peninjauan model independen 
 
 ## Visual pembelajaran
 
-- **F-17 — 🟡 VP-01 dan VP-02 diimplementasikan (draft, belum ditinjau ustadz); VP-03–VP-05 belum:** 18 anotasi pilot dan penjelajah peran kata pada pelajaran isim-fiil-harf serta G-01/G-03, lihat [inventaris VP-01](../data/vp01-annotation-pilot.md). [Visual pembelajaran](../plans/visual-pembelajaran.md) merinci VP-01–VP-05: audit anotasi, penjelajah peran kata dengan label/warna, animasi perubahan yang dikendalikan pelajar, grafik hitungan cakupan dan bukti, serta pengayaan contoh dari sumber. Pemilik: pengembangan. RM-03 selesai; berikutnya audit VP-01; grafik posisi bergantung RM-04 dan bukti RM-05. Tidak ada materi baru atau dependency yang ditambahkan oleh rencana.
+- **F-17 — 🟡 VP-01, VP-02 dan VP-03 diimplementasikan (draft, belum ditinjau ustadz); VP-05 belum:** 18 anotasi pilot dan penjelajah peran kata pada pelajaran isim-fiil-harf serta G-01/G-03, tiga urutan perubahan bertahap (VP-03), lihat [inventaris VP-01 dan VP-03](../data/vp01-annotation-pilot.md). [Visual pembelajaran](../plans/visual-pembelajaran.md) merinci VP-01–VP-05: audit anotasi, penjelajah peran kata dengan label/warna, animasi perubahan yang dikendalikan pelajar, grafik hitungan cakupan dan bukti, serta pengayaan contoh dari sumber. Pemilik: pengembangan. RM-03 selesai; berikutnya audit VP-01; grafik posisi bergantung RM-04 dan bukti RM-05. Tidak ada materi baru atau dependency yang ditambahkan oleh rencana.
 
 ## Audio
 

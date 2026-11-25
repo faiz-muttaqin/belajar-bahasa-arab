@@ -4,11 +4,13 @@
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import GrammarExample from '#lib/components/learning/GrammarExample.svelte';
 	import InlineGrammarGlossary from '#lib/components/learning/InlineGrammarGlossary.svelte';
+	import FormChangeSteps from '#lib/components/learning/FormChangeSteps.svelte';
 	import WordRoleExplorer from '#lib/components/learning/WordRoleExplorer.svelte';
 	import {
 		annotationsForGrammarRule,
 		type AnnotatedGrammarRuleId
 	} from '#lib/content/grammar-annotations.js';
+	import { changeSequencesForGrammarRule } from '#lib/content/change-sequences.js';
 	import { grammarRules } from '#lib/content/grammar-rules.js';
 </script>
 
@@ -176,6 +178,12 @@
 					heading="Jelajahi peran tiap kata pada contoh {rule.title}"
 				/>
 			</div>
+
+			{#each changeSequencesForGrammarRule(rule.id) as sequence (sequence.id)}
+				<div class="max-w-3xl">
+					<FormChangeSteps {sequence} />
+				</div>
+			{/each}
 		</section>
 	{/each}
 </div>

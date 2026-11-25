@@ -29,7 +29,7 @@ const ajurrumiyyah = (locator: string): AnnotationSource => ({
 	locator
 });
 
-const aj = {
+export const aj = {
 	kalam: ajurrumiyyah('Pembuka: pembagian kalām menjadi isim, fi‘il, harf dan tanda-tandanya'),
 	irab: ajurrumiyyah('Bāb ma‘rifat ‘alāmāt al-i‘rāb'),
 	marfuat: ajurrumiyyah('Bāb marfū‘āt al-asmā’'),
@@ -42,7 +42,7 @@ const aj = {
 	makhfudat: ajurrumiyyah('Bāb makhfūḍāt al-asmā’')
 };
 
-const madinah = {
+export const madinah = {
 	nominal: {
 		label: 'Madinah Arabic · Kalimat nominal',
 		url: 'https://madinaharabic.com/free-content/grammar/lesson-58/part-1',
@@ -306,7 +306,7 @@ export const wordClassAnnotations: readonly AnnotatedSentence[] = [
 				wordClassReason: 'Diawali الْـ; menyebut sifat.',
 				role: 'naat',
 				roleReason:
-					'Sifat yang mengikuti الْبَابُ dalam i‘rab dan ketentuan (sama-sama tertentu). Keduanya juga sama-sama maskulin tunggal; kesesuaian jenis dan jumlah ini tidak disebut dalam bab yang dikutip.',
+					'Sifat yang mengikuti الْبَابُ dalam i‘rab dan ketertentuan (sama-sama tertentu). Keduanya juga sama-sama maskulin tunggal; kesesuaian jenis dan jumlah ini tidak disebut dalam bab yang dikutip.',
 				finalVowel: {
 					sign: 'ḍammah',
 					case: 'raf',

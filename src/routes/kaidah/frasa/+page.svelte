@@ -3,11 +3,13 @@
 	import PageIntro from '#lib/components/layout/PageIntro.svelte';
 	import ArabicText from '#lib/components/learning/ArabicText.svelte';
 	import PhraseGloss from '#lib/components/learning/PhraseGloss.svelte';
+	import FormChangeSteps from '#lib/components/learning/FormChangeSteps.svelte';
 	import WordRoleExplorer from '#lib/components/learning/WordRoleExplorer.svelte';
 	import {
 		annotationsForPhraseRule,
 		type AnnotatedPhraseRuleId
 	} from '#lib/content/grammar-annotations.js';
+	import { changeSequencesForPhraseRule } from '#lib/content/change-sequences.js';
 	import { IRAB_CASE_LABELS, phraseRules, type IrabCase } from '#lib/content/phrase-rules.js';
 
 	const explorerRules: readonly AnnotatedPhraseRuleId[] = [
@@ -118,6 +120,12 @@
 					/>
 				</div>
 			{/if}
+
+			{#each changeSequencesForPhraseRule(rule.id) as sequence (sequence.id)}
+				<div class="max-w-3xl">
+					<FormChangeSteps {sequence} />
+				</div>
+			{/each}
 		</section>
 	{/each}
 </div>

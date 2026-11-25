@@ -1,0 +1,243 @@
+/**
+ * VP-03 pilot: three change sequences between sentences that VP-01 already annotated.
+ *
+ * Every Arabic form a step mentions is a token of an annotated, sourced sentence; no intermediate
+ * sentence is invented and nothing is derived from the dictionary. The Indonesian reasons are
+ * original teaching text. Sources are the ones the underlying annotations cite. Everything stays
+ * `draft` (ADR-004 D-9). Inventory, sources and review notes: docs/data/vp01-annotation-pilot.md.
+ */
+import { aj, grammarAnnotations, madinah } from './grammar-annotations.js';
+import {
+	resolveChangeSequence,
+	type ChangeSequence,
+	type ResolvedSequence
+} from '#lib/domain/grammar/change-steps.js';
+
+const ownedLimits =
+	'Pasangan kalimat ini contoh tertulis proyek. Langkah-langkahnya penjelasan proyek yang disusun dari anotasi bersumber; sumber hanya dipakai untuk memeriksa istilah dan kaidah. Masih draf dan belum ditinjau ustadz.';
+
+/** Pair 1 (G-01): a phrase with an adjective becomes a nominal sentence. */
+const adjectivePhraseToNominal: ChangeSequence = {
+	id: 'cs-sifat-ke-khabar',
+	title: 'Dari frasa sifat ke kalimat nominal',
+	intro:
+		'Bandingkan frasa “buku baru itu” dengan kalimat “buku itu baru”. Hanya satu kata yang berubah bentuk, tetapi hubungan kedua kata berubah.',
+	placement: { kind: 'grammar-rule', ruleId: 'mubtada-khabar' },
+	before: 'ph-kitab-jadid-def',
+	after: 'g1-kitab-jadid-khabar',
+	usageType: 'independent-original',
+	status: 'draft',
+	limits:
+		ownedLimits +
+		' Aturan bahwa sifat dan kata yang disifati sama-sama tertentu atau tidak tertentu berasal dari bab na‘at; kesesuaian jenis dan jumlah tidak dibahas di sini dan perlu sumber tambahan. Frasa pertama ditulis berḍammah sebagai bentuk rujukan.',
+	steps: [
+		{
+			id: 'cs-sifat-ke-khabar.s1',
+			title: 'Kata sifat melepas الْـ',
+			changes: [
+				{
+					before: 'ph-kitab-jadid-def.t2',
+					after: 'g1-kitab-jadid-khabar.t2',
+					aspect: 'form',
+					summary:
+						'الْجَدِيدُ menjadi جَدِيدٌ. Awalan الْـ lepas, sehingga kata itu tidak tertentu lagi dan huruf akhirnya kembali bertanwin.'
+				}
+			],
+			dependents: [],
+			stays: [
+				{
+					before: 'ph-kitab-jadid-def.t1',
+					after: 'g1-kitab-jadid-khabar.t1',
+					note: 'الْكِتَابُ tidak berubah bentuk: tetap tertentu dengan الْـ dan tetap marfū‘ dengan ḍammah.'
+				}
+			],
+			reason:
+				'Na‘at mengikuti man‘ūt-nya dalam i‘rab dan ketertentuan. Selama sifatnya tertentu seperti الْكِتَابُ, keduanya menyatu sebagai satu frasa. Setelah الْـ dilepas, جَدِيدٌ tidak lagi tertentu seperti الْكِتَابُ, sehingga tidak dibaca sebagai penerang kata benda itu.',
+			sources: [aj.naat, aj.irab]
+		},
+		{
+			id: 'cs-sifat-ke-khabar.s2',
+			title: 'Sifat menjadi khabar, kata benda menjadi mubtada’',
+			changes: [
+				{
+					before: 'ph-kitab-jadid-def.t2',
+					after: 'g1-kitab-jadid-khabar.t2',
+					aspect: 'role',
+					summary: 'جَدِيدٌ tidak lagi menerangkan kata benda, tetapi memberi kabar tentangnya.'
+				}
+			],
+			dependents: [
+				{
+					before: 'ph-kitab-jadid-def.t1',
+					after: 'g1-kitab-jadid-khabar.t1',
+					aspect: 'role',
+					summary:
+						'الْكِتَابُ ditulis sama, tetapi kini menjadi topik kalimat, bukan kata yang diterangkan.'
+				}
+			],
+			stays: [],
+			reason:
+				'Frasa “buku baru itu” menjadi kalimat nominal “buku itu baru”. الْكِتَابُ menjadi mubtada’ dan جَدِيدٌ menjadi khabar. Keduanya tetap berḍammah, jadi pada langkah ini tidak ada harakat yang berubah. Bedanya, pada frasa ḍammah itu hanya bentuk rujukan; pada kalimat, mubtada’ dan khabar memang marfū‘. Kalimat nominal Arab tidak memerlukan kata “adalah”.',
+			sources: [aj.mubtada, madinah.nominal]
+		}
+	]
+};
+
+/** Pair 2 (G-03): the muḍāf takes the case of a preceding harf jarr. */
+const idafahAfterPreposition: ChangeSequence = {
+	id: 'cs-fi-mudhaf',
+	title: 'Iḍāfah setelah harf jarr',
+	intro:
+		'Bandingkan iḍāfah “buku murid itu” dengan “di dalam buku murid itu”. Harf jarr mengubah akhir kata pertama, bukan kata kedua.',
+	placement: { kind: 'phrase-rule', ruleId: 'idafah-jar' },
+	before: 'g1-kitab-talib',
+	after: 'ph-fi-kitab-talib',
+	usageType: 'independent-original',
+	status: 'draft',
+	limits:
+		ownedLimits +
+		' Al-Ājurrūmiyyah memakai istilah khafḍ untuk apa yang di sini disebut jarr. Pada frasa pertama كِتَابُ ditulis berḍammah hanya sebagai bentuk rujukan; frasa itu belum menempati kedudukan apa pun dalam kalimat.',
+	steps: [
+		{
+			id: 'cs-fi-mudhaf.s1',
+			title: 'Harf jarr فِي ditambahkan di depan',
+			changes: [
+				{
+					after: 'ph-fi-kitab-talib.t1',
+					aspect: 'added',
+					summary: 'فِي (“di”) muncul di awal frasa. Frasa lama tetap utuh di belakangnya.'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'فِي adalah harf jarr: ia diletakkan sebelum isim dan membuat isim itu majrūr. Pada frasa yang berupa iḍāfah, isim pertama yang langsung mengikutinya adalah muḍāf.',
+			sources: [aj.makhfudat]
+		},
+		{
+			id: 'cs-fi-mudhaf.s2',
+			title: 'Muḍāf menjadi majrūr',
+			changes: [
+				{
+					before: 'g1-kitab-talib.t1',
+					after: 'ph-fi-kitab-talib.t2',
+					aspect: 'ending',
+					summary: 'كِتَابُ menjadi كِتَابِ. Ḍammah (bentuk rujukan) diganti kasrah.'
+				}
+			],
+			dependents: [],
+			stays: [
+				{
+					before: 'g1-kitab-talib.t2',
+					after: 'ph-fi-kitab-talib.t3',
+					note: 'الطَّالِبِ tetap berkasrah dengan alasan yang sama seperti sebelumnya: ia majrūr karena iḍāfah, bukan karena فِي. Jadi dua kasrah pada frasa ini punya sebab yang berbeda.'
+				}
+			],
+			reason:
+				'Isim yang didahului harf jarr berstatus jarr; pada kata ini tandanya kasrah. Muḍāf ilaih sudah majrūr karena iḍāfah, jadi harakat akhirnya tidak berubah. Muḍāf tetap tanpa tanwin.',
+			sources: [aj.makhfudat, aj.irab, madinah.idafah]
+		}
+	]
+};
+
+/** Pair 3 (lesson "Baca kalimat ketika pelakunya tidak disebut"): active to passive. */
+const activeToPassive: ChangeSequence = {
+	id: 'cs-aktif-ke-pasif',
+	title: 'Dari aktif ke pasif',
+	intro:
+		'Bandingkan “penjaga membuka pintu itu” dengan “pintu itu dibuka”. Tiga hal berubah: vokal fi‘il, penyebutan pelaku dan kedudukan pintu.',
+	placement: { kind: 'lesson', lessonSlug: 'kalimat-aktif-dan-pasif' },
+	before: 'wc-penjaga-membuka',
+	after: 'wc-pintu-dibuka',
+	usageType: 'independent-original',
+	status: 'draft',
+	limits:
+		ownedLimits +
+		' Istilah nā’ib al-fā‘il tidak ada di Al-Ājurrūmiyyah; di sana disebut al-maf‘ūl alladhī lam yusamma fā‘iluh. Akar dan pola kata berasal dari pelajaran proyek; perubahan vokal fi‘il pasif didukung bab al-maf‘ūl alladhī lam yusamma fā‘iluh. Halaman Madinah 34 bagian 1 hanya memberi contoh pasif; aturan vokalnya didukung Al-Ājurrūmiyyah. Halaman Madinah dibaca melalui peringkas halaman, bukan teks mentah. Bentuk pasif nonlampau dan pasif dari pola fi‘il lain tidak dibahas.',
+	steps: [
+		{
+			id: 'cs-aktif-ke-pasif.s1',
+			title: 'Vokal fi‘il berubah',
+			changes: [
+				{
+					before: 'wc-penjaga-membuka.t1',
+					after: 'wc-pintu-dibuka.t1',
+					aspect: 'pattern',
+					summary: 'فَتَحَ menjadi فُتِحَ. Pola فَعَلَ menjadi فُعِلَ (fataḥa menjadi futiḥa). Akar ف ت ح sama.'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'Pada fi‘il māḍī tiga huruf seperti ini, bentuk pasif dibuat dengan mengganti vokal, bukan dengan menambah kata: huruf pertama berḍammah, huruf sebelum akhir (di sini huruf kedua) berkasrah, dan huruf terakhir tetap berfatḥah. Maknanya bergeser dari “membuka” menjadi “dibuka”.',
+			sources: [aj.naibFail]
+		},
+		{
+			id: 'cs-aktif-ke-pasif.s2',
+			title: 'Pelaku tidak disebut',
+			changes: [
+				{
+					before: 'wc-penjaga-membuka.t2',
+					aspect: 'dropped',
+					summary:
+						'الْحَارِسُ tidak muncul dalam kalimat pasif. Tidak ada kata lain yang menyebut pelakunya.'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'Kalimat pasif ini hanya menyatakan tindakan dan apa yang dikenainya. Teks tidak memberi tahu siapa yang membuka, jadi terjemahannya tidak menambahkan “oleh penjaga”.',
+			sources: [aj.naibFail, madinah.passive]
+		},
+		{
+			id: 'cs-aktif-ke-pasif.s3',
+			title: 'Objek menempati tempat pelaku',
+			changes: [
+				{
+					before: 'wc-penjaga-membuka.t3',
+					after: 'wc-pintu-dibuka.t2',
+					aspect: 'role',
+					summary: 'Dari objek (maf‘ūl bih) menjadi pengganti pelaku (nā’ib al-fā‘il).'
+				},
+				{
+					before: 'wc-penjaga-membuka.t3',
+					after: 'wc-pintu-dibuka.t2',
+					aspect: 'ending',
+					summary: 'الْبَابَ menjadi الْبَابُ. Fatḥah (naṣb) diganti ḍammah (rafa‘).'
+				}
+			],
+			dependents: [],
+			stays: [],
+			reason:
+				'Pada kalimat ini fi‘il pasif tidak lagi punya objek langsung. الْبَابَ naik ke tempat fā‘il sebagai nā’ib al-fā‘il (Al-Ājurrūmiyyah: al-maf‘ūl alladhī lam yusamma fā‘iluh), sehingga ia marfū‘ dan berḍammah.',
+			sources: [aj.naibFail, aj.mafulBih, aj.manshubat, aj.marfuat, aj.irab, madinah.passive]
+		}
+	]
+};
+
+export const changeSequences: readonly ChangeSequence[] = [
+	adjectivePhraseToNominal,
+	idafahAfterPreposition,
+	activeToPassive
+];
+
+function placed(test: (sequence: ChangeSequence) => boolean): ResolvedSequence[] {
+	return changeSequences
+		.filter(test)
+		.map((sequence) => resolveChangeSequence(sequence, grammarAnnotations));
+}
+
+/** Sequences for one G-01 rule on /kaidah/. */
+export function changeSequencesForGrammarRule(ruleId: string): ResolvedSequence[] {
+	return placed((s) => s.placement.kind === 'grammar-rule' && s.placement.ruleId === ruleId);
+}
+
+/** Sequences for one G-03 rule on /kaidah/frasa/. */
+export function changeSequencesForPhraseRule(ruleId: string): ResolvedSequence[] {
+	return placed((s) => s.placement.kind === 'phrase-rule' && s.placement.ruleId === ruleId);
+}
+
+/** Sequences for one lesson page. */
+export function changeSequencesForLesson(lessonSlug: string): ResolvedSequence[] {
+	return placed((s) => s.placement.kind === 'lesson' && s.placement.lessonSlug === lessonSlug);
+}
