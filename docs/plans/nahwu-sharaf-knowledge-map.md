@@ -73,3 +73,10 @@ Pemetaan kontrak dan lanjutan D-02–D-06 ada dalam [rencana Dynamic Examples](.
 - OER-02a (#57): maṣdar, lima pasangan dan 20 latihan. Belum mencakup variasi maṣdar seluruh wazan.
 - OER-02b mencakup enam keluarga verba pada Form I, II, IV dan X, termasuk satu ajwaf. Sebanyak 24 tugas kontekstual sudah diaudit per butir dan masih berstatus draf. [Audit sumber dan latihan](../research/2026-11-20-participle-source-audit.md).
 - G-02/OER-02 masih **partial**. Form III, V–IX dan pola lain, akar lemah lain, pengamalan isim turunan, audit contoh maṣdar, tinjauan pengajar, dan uji pembelajar masih terbuka. [#15](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/15), [#55](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/55).
+
+### G-02 · Pembaruan Form III–X (25 November 2026)
+
+- `/kaidah/participle/` kini memuat 15 keluarga verba pada Form I sampai X (sembilan keluarga baru: سَاعَدَ III, تَعَلَّمَ V, تَبَادَلَ VI, اِنْقَطَعَ VII, اِنْتَظَرَ VIII, اِخْتَارَ VIII ajwaf, اِتَّصَلَ VIII mithāl, اِسْتَقْبَلَ X, اِحْمَرَّ IX), dengan maṣdar per keluarga dan 60 latihan. Bentuk yang tidak lazim (isim maf‘ūl Form VII, IX dan اِتَّصَلَ) ditandai, bukan dicontohkan.
+- `/kaidah/masdar/` kini memuat 11 pasangan (enam baru: مُسَاعَدَةٌ dan قِتَالٌ untuk Form III, تَعَلُّمٌ V, تَعَاوُنٌ VI, اِنْقِطَاعٌ VII, اِحْمِرَارٌ IX) dan 44 latihan; setiap Form I, III, V–X mempunyai pasangan bersumber.
+- Pemeriksaan kebahasaan dua putaran oleh Fable. [Audit Form III–IX](../research/2026-11-25-g02-forms-iii-ix-audit.md). Semua tetap `draft`.
+- Masih terbuka: Form II dan IV pada halaman maṣdar, akar nāqiṣ, lafīf, mahmūz, pola lain di luar 22 wazan yang dibahas, pengamalan isim turunan, tinjauan pengajar dan uji pembelajar.

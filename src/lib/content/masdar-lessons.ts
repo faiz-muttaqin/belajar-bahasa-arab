@@ -1,5 +1,6 @@
 /**
- * OER-02: original MSA maṣdar learning with five attested verb/maṣdar pairs.
+ * OER-02: original MSA maṣdar learning with eleven attested verb/maṣdar pairs
+ * (Form I, III, V, VI, VII, VIII, IX and X; Forms II and IV are not yet covered).
  * The lexical sources corroborate pairs, NOT all newly written Arabic sentences.
  * No external source lesson text or exercise is reproduced; material remains draft.
  */
@@ -13,47 +14,134 @@ export const masdarGrammarSource = {
 export const masdarLexemes = [
 	{
 		id: 'kataba',
+		form: 'I',
 		verb: 'كَتَبَ',
 		present: 'يَكْتُبُ',
 		masdar: 'كِتَابَةٌ',
 		meaning: 'menulis',
+		pattern: 'فِعَالَةٌ',
+		dataId: 'كتب-1',
 		source: 'https://en.wiktionary.org/wiki/كتب',
 		status: 'draft' as const
 	},
 	{
 		id: 'qaraa',
+		form: 'I',
 		verb: 'قَرَأَ',
 		present: 'يَقْرَأُ',
 		masdar: 'قِرَاءَةٌ',
 		meaning: 'membaca',
+		pattern: 'فِعَالَةٌ',
+		dataId: 'قرأ-1',
 		source: 'https://en.wiktionary.org/wiki/قرأ',
 		status: 'draft' as const
 	},
 	{
 		id: 'darasa',
+		form: 'I',
 		verb: 'دَرَسَ',
 		present: 'يَدْرُسُ',
 		masdar: 'دِرَاسَةٌ',
 		meaning: 'belajar atau mempelajari',
+		pattern: 'فِعَالَةٌ',
+		dataId: 'درس-1',
 		source: 'https://en.wiktionary.org/wiki/درس',
 		status: 'draft' as const
 	},
 	{
 		id: 'istaamala',
+		form: 'X',
 		verb: 'اِسْتَعْمَلَ',
 		present: 'يَسْتَعْمِلُ',
 		masdar: 'اِسْتِعْمَالٌ',
 		meaning: 'menggunakan',
+		pattern: 'اِسْتِفْعَالٌ',
+		dataId: 'استعمل-X-1',
 		source: 'https://en.wiktionary.org/wiki/استعمل',
 		status: 'draft' as const
 	},
 	{
 		id: 'ijtamaa',
+		form: 'VIII',
 		verb: 'اِجْتَمَعَ',
 		present: 'يَجْتَمِعُ',
 		masdar: 'اِجْتِمَاعٌ',
 		meaning: 'berkumpul atau mengadakan pertemuan',
+		pattern: 'اِفْتِعَالٌ',
+		dataId: 'اجتمع-VIII-1',
 		source: 'https://en.wiktionary.org/wiki/اجتمع',
+		status: 'draft' as const
+	},
+	{
+		id: 'saada',
+		form: 'III',
+		verb: 'سَاعَدَ',
+		present: 'يُسَاعِدُ',
+		masdar: 'مُسَاعَدَةٌ',
+		pattern: 'مُفَاعَلَةٌ',
+		meaning: 'membantu',
+		dataId: 'ساعد-III-1',
+		source: 'https://en.wiktionary.org/wiki/ساعد',
+		status: 'draft' as const
+	},
+	{
+		id: 'qatala',
+		form: 'III',
+		verb: 'قَاتَلَ',
+		present: 'يُقَاتِلُ',
+		masdar: 'قِتَالٌ',
+		pattern: 'فِعَالٌ',
+		meaning: 'bertempur; memerangi',
+		dataId: 'قاتل-III-1',
+		source: 'https://en.wiktionary.org/wiki/قاتل',
+		status: 'draft' as const
+	},
+	{
+		id: 'taallama',
+		form: 'V',
+		verb: 'تَعَلَّمَ',
+		present: 'يَتَعَلَّمُ',
+		masdar: 'تَعَلُّمٌ',
+		pattern: 'تَفَعُّلٌ',
+		meaning: 'belajar (sesuatu)',
+		dataId: 'تعلم-V-1',
+		source: 'https://en.wiktionary.org/wiki/تعلم',
+		status: 'draft' as const
+	},
+	{
+		id: 'taawana',
+		form: 'VI',
+		verb: 'تَعَاوَنَ',
+		present: 'يَتَعَاوَنُ',
+		masdar: 'تَعَاوُنٌ',
+		pattern: 'تَفَاعُلٌ',
+		meaning: 'bekerja sama',
+		dataId: 'تعاون-VI-1',
+		source: 'https://en.wiktionary.org/wiki/تعاون',
+		status: 'draft' as const
+	},
+	{
+		id: 'inqataa',
+		form: 'VII',
+		verb: 'اِنْقَطَعَ',
+		present: 'يَنْقَطِعُ',
+		masdar: 'اِنْقِطَاعٌ',
+		pattern: 'اِنْفِعَالٌ',
+		meaning: 'terputus',
+		dataId: 'انقطع-VII-1',
+		source: 'https://en.wiktionary.org/wiki/انقطع',
+		status: 'draft' as const
+	},
+	{
+		id: 'ihmarra',
+		form: 'IX',
+		verb: 'اِحْمَرَّ',
+		present: 'يَحْمَرُّ',
+		masdar: 'اِحْمِرَارٌ',
+		pattern: 'اِفْعِلَالٌ',
+		meaning: 'menjadi merah; tersipu',
+		dataId: 'احمر-IX-1',
+		source: 'https://en.wiktionary.org/wiki/احمر',
 		status: 'draft' as const
 	}
 ] as const;
@@ -288,6 +376,245 @@ export const masdarTasks: readonly MasdarTask[] = [
 			'قَصِيرٌ adalah na‘at yang menerangkan اِجْتِمَاعٌ. Keduanya nakirah: sebuah pertemuan singkat.',
 		lexemeId: 'ijtamaa',
 		status: 'draft'
+	},
+	{
+		id: 'm21',
+		kind: 'verb',
+		arabic: 'سَاعَدَ الطَّبِيبُ الْمَرِيضَ.',
+		question: 'Di mana fi‘il yang menyatakan perbuatan, bukan nama kegiatannya?',
+		answer:
+			'سَاعَدَ adalah fi‘il māḍī Form III (ia membantu). الطَّبِيبُ adalah fā‘il dan الْمَرِيضَ adalah objek.',
+		lexemeId: 'saada',
+		status: 'draft'
+	},
+	{
+		id: 'm22',
+		kind: 'nominal',
+		arabic: 'مُسَاعَدَةُ الْمَرِيضِ ضَرُورِيَّةٌ.',
+		question: 'Kata mana yang menamai kegiatan dan menjadi pokok kalimat?',
+		answer:
+			'مُسَاعَدَةُ adalah maṣdar Form III berpola مُفَاعَلَةٌ dan menjadi mubtada. الْمَرِيضِ adalah muḍāf ilaih, dan ضَرُورِيَّةٌ adalah khabar: membantu pasien itu perlu.',
+		lexemeId: 'saada',
+		status: 'draft'
+	},
+	{
+		id: 'm23',
+		kind: 'preposition',
+		arabic: 'بِمُسَاعَدَةِ الْمُدَرِّسِ',
+		question: 'Mengapa kedua isim dalam frasa ini berkasrah?',
+		answer:
+			'مُسَاعَدَةِ majrūr karena huruf jar بِـ, dan الْمُدَرِّسِ adalah muḍāf ilaih majrūr. Ini frasa, belum kalimat: dengan bantuan guru.',
+		lexemeId: 'saada',
+		status: 'draft'
+	},
+	{
+		id: 'm24',
+		kind: 'meaning',
+		arabic: 'نَحْتَاجُ إِلَى مُسَاعَدَةٍ.',
+		question: 'Apakah مُسَاعَدَةٍ menyebut pelaku atau nama kegiatan?',
+		answer: 'Nama kegiatan. Maṣdar nakirah ini majrūr setelah إِلَى: kita memerlukan bantuan.',
+		lexemeId: 'saada',
+		status: 'draft'
+	},
+	{
+		id: 'm25',
+		kind: 'verb',
+		arabic: 'قَاتَلَ الْجُنُودُ بِشَجَاعَةٍ.',
+		question: 'Bentuk apakah قَاتَلَ dan siapa pelakunya?',
+		answer:
+			'قَاتَلَ adalah fi‘il māḍī Form III. الْجُنُودُ adalah fā‘il marfū‘ yang diletakkan sesudah fi‘il, dan بِشَجَاعَةٍ menyatakan cara: para prajurit bertempur dengan berani.',
+		lexemeId: 'qatala',
+		status: 'draft'
+	},
+	{
+		id: 'm26',
+		kind: 'nominal',
+		arabic: 'الْقِتَالُ خَطِيرٌ.',
+		question: 'Maṣdar apakah الْقِتَالُ dan apa fungsinya?',
+		answer:
+			'الْقِتَالُ adalah maṣdar Form III berpola فِعَالٌ (entri kamus juga mencatat مُقَاتَلَةٌ). Ia menjadi mubtada, dan خَطِيرٌ adalah khabar: pertempuran itu berbahaya.',
+		lexemeId: 'qatala',
+		status: 'draft'
+	},
+	{
+		id: 'm27',
+		kind: 'preposition',
+		arabic: 'بَعْدَ الْقِتَالِ',
+		question: 'Apa hubungan بَعْدَ dan الْقِتَالِ?',
+		answer:
+			'بَعْدَ adalah muḍāf dan الْقِتَالِ adalah muḍāf ilaih majrūr. Frasa waktu ini berarti sesudah pertempuran, belum kalimat lengkap.',
+		lexemeId: 'qatala',
+		status: 'draft'
+	},
+	{
+		id: 'm28',
+		kind: 'meaning',
+		arabic: 'قِتَالٌ طَوِيلٌ',
+		question: 'Adakah fi‘il dalam frasa ini?',
+		answer:
+			'Tidak ada fi‘il. قِتَالٌ adalah maṣdar nakirah dan طَوِيلٌ adalah na‘at: pertempuran yang panjang.',
+		lexemeId: 'qatala',
+		status: 'draft'
+	},
+	{
+		id: 'm29',
+		kind: 'verb',
+		arabic: 'تَعَلَّمَ الطِّفْلُ الْحُرُوفَ.',
+		question: 'Apa bukti bahwa تَعَلَّمَ bukan maṣdar?',
+		answer:
+			'تَعَلَّمَ berfatḥah pada ل dan berakhir fatḥah, sedangkan maṣdar تَعَلُّمٌ berḍammah pada ل dan bertanwin. تَعَلَّمَ juga memiliki fā‘il الطِّفْلُ dan objek الْحُرُوفَ: anak itu mempelajari huruf.',
+		lexemeId: 'taallama',
+		status: 'draft'
+	},
+	{
+		id: 'm30',
+		kind: 'nominal',
+		arabic: 'تَعَلُّمُ الْعَرَبِيَّةِ يَحْتَاجُ إِلَى صَبْرٍ.',
+		question: 'Kata mana yang menamai kegiatan dan menjadi mubtada?',
+		answer:
+			'تَعَلُّمُ adalah maṣdar Form V berpola تَفَعُّلٌ dan menjadi mubtada. الْعَرَبِيَّةِ adalah muḍāf ilaih, dan klausa يَحْتَاجُ إِلَى صَبْرٍ adalah khabar.',
+		lexemeId: 'taallama',
+		status: 'draft'
+	},
+	{
+		id: 'm31',
+		kind: 'preposition',
+		arabic: 'قَبْلَ تَعَلُّمِ الْقِرَاءَةِ',
+		question: 'Apa hubungan tiga kata dalam frasa ini?',
+		answer:
+			'قَبْلَ adalah muḍāf, تَعَلُّمِ adalah muḍāf ilaih sekaligus muḍāf, dan الْقِرَاءَةِ adalah muḍāf ilaih. Artinya sebelum belajar membaca.',
+		lexemeId: 'taallama',
+		status: 'draft'
+	},
+	{
+		id: 'm32',
+		kind: 'meaning',
+		arabic: 'تَعَلُّمٌ سَرِيعٌ',
+		question: 'Apa arti frasa ini dan adakah fi‘il?',
+		answer:
+			'Tidak ada fi‘il. تَعَلُّمٌ adalah maṣdar dan سَرِيعٌ adalah na‘at: pembelajaran yang cepat. Maṣdar ini berbeda dari تَعْلِيمٌ (pengajaran, maṣdar Form II).',
+		lexemeId: 'taallama',
+		status: 'draft'
+	},
+	{
+		id: 'm33',
+		kind: 'verb',
+		arabic: 'تَعَاوَنَ الْجِيرَانُ فِي تَنْظِيفِ الشَّارِعِ.',
+		question: 'Tunjukkan fi‘il dan fā‘ilnya.',
+		answer:
+			'تَعَاوَنَ adalah fi‘il māḍī Form VI dan الْجِيرَانُ adalah fā‘il marfū‘. فِي تَنْظِيفِ الشَّارِعِ menyatakan kegiatan bersama: para tetangga bekerja sama membersihkan jalan.',
+		lexemeId: 'taawana',
+		status: 'draft'
+	},
+	{
+		id: 'm34',
+		kind: 'nominal',
+		arabic: 'التَّعَاوُنُ مُهِمٌّ فِي الْعَمَلِ.',
+		question: 'Maṣdar mana yang menjadi pokok kalimat?',
+		answer:
+			'التَّعَاوُنُ adalah maṣdar Form VI berpola تَفَاعُلٌ dan menjadi mubtada. مُهِمٌّ adalah khabar: kerja sama itu penting dalam pekerjaan.',
+		lexemeId: 'taawana',
+		status: 'draft'
+	},
+	{
+		id: 'm35',
+		kind: 'preposition',
+		arabic: 'بِالتَّعَاوُنِ مَعَ الْمَدَارِسِ',
+		question: 'Mengapa التَّعَاوُنِ berkasrah?',
+		answer:
+			'Karena huruf jar بِـ. مَعَ الْمَدَارِسِ menyebut mitra kerja samanya (مَعَ adalah muḍāf dan الْمَدَارِسِ muḍāf ilaih). Ini frasa: melalui kerja sama dengan sekolah-sekolah.',
+		lexemeId: 'taawana',
+		status: 'draft'
+	},
+	{
+		id: 'm36',
+		kind: 'meaning',
+		arabic: 'تَعَاوُنٌ دَائِمٌ',
+		question: 'Apa hubungan dua kata ini?',
+		answer:
+			'دَائِمٌ adalah na‘at yang menerangkan maṣdar تَعَاوُنٌ. Keduanya nakirah dan tidak ada fi‘il: kerja sama yang berkelanjutan.',
+		lexemeId: 'taawana',
+		status: 'draft'
+	},
+	{
+		id: 'm37',
+		kind: 'verb',
+		arabic: 'اِنْقَطَعَ الْمَاءُ صَبَاحًا.',
+		question: 'Bentuk fi‘il apakah اِنْقَطَعَ?',
+		answer:
+			'اِنْقَطَعَ adalah fi‘il māḍī Form VII. الْمَاءُ adalah fā‘il dan صَبَاحًا menyatakan waktu: air terputus pada pagi hari.',
+		lexemeId: 'inqataa',
+		status: 'draft'
+	},
+	{
+		id: 'm38',
+		kind: 'nominal',
+		arabic: 'اِنْقِطَاعُ الْمَاءِ مُزْعِجٌ.',
+		question: 'Kata mana yang menamai kejadian dan apa fungsinya?',
+		answer:
+			'اِنْقِطَاعُ adalah maṣdar Form VII berpola اِنْفِعَالٌ dan menjadi mubtada. الْمَاءِ adalah muḍāf ilaih, dan مُزْعِجٌ adalah khabar: terputusnya air itu mengganggu.',
+		lexemeId: 'inqataa',
+		status: 'draft'
+	},
+	{
+		id: 'm39',
+		kind: 'preposition',
+		arabic: 'بِسَبَبِ اِنْقِطَاعِ الْكَهْرَبَاءِ',
+		question: 'Berapa susunan iḍāfah dalam frasa ini?',
+		answer:
+			'Dua. سَبَبِ (majrūr karena بِـ) adalah muḍāf dan اِنْقِطَاعِ muḍāf ilaih-nya; lalu اِنْقِطَاعِ menjadi muḍāf bagi الْكَهْرَبَاءِ. Ketiganya majrūr: karena listrik terputus.',
+		lexemeId: 'inqataa',
+		status: 'draft'
+	},
+	{
+		id: 'm40',
+		kind: 'meaning',
+		arabic: 'اِنْقِطَاعٌ عَنِ الدِّرَاسَةِ',
+		question: 'Bagaimana memahami frasa ini?',
+		answer:
+			'Maṣdar اِنْقِطَاعٌ dilengkapi jar–majrūr عَنِ الدِّرَاسَةِ. Artinya berhenti dari kegiatan belajar. Frasa ini tidak menyebut pelaku.',
+		lexemeId: 'inqataa',
+		status: 'draft'
+	},
+	{
+		id: 'm41',
+		kind: 'verb',
+		arabic: 'اِحْمَرَّ وَجْهُهُ.',
+		question: 'Bentuk fi‘il apakah اِحْمَرَّ dan siapa fā‘ilnya?',
+		answer:
+			'اِحْمَرَّ adalah fi‘il māḍī Form IX. وَجْهُهُ adalah fā‘il marfū‘ sekaligus muḍāf dengan dhamir ـهُ: wajahnya memerah.',
+		lexemeId: 'ihmarra',
+		status: 'draft'
+	},
+	{
+		id: 'm42',
+		kind: 'nominal',
+		arabic: 'اِحْمِرَارُ الْعَيْنِ مُزْعِجٌ.',
+		question: 'Kata mana yang menamai keadaan dan apa fungsinya?',
+		answer:
+			'اِحْمِرَارُ adalah maṣdar Form IX berpola اِفْعِلَالٌ dan menjadi mubtada. الْعَيْنِ adalah muḍāf ilaih, dan مُزْعِجٌ adalah khabar: kemerahan pada mata itu mengganggu.',
+		lexemeId: 'ihmarra',
+		status: 'draft'
+	},
+	{
+		id: 'm43',
+		kind: 'preposition',
+		arabic: 'بَعْدَ اِحْمِرَارِ الْجِلْدِ',
+		question: 'Apakah frasa ini kalimat lengkap?',
+		answer:
+			'Bukan. بَعْدَ adalah muḍāf, اِحْمِرَارِ adalah muḍāf ilaih sekaligus muḍāf, dan الْجِلْدِ adalah muḍāf ilaih: sesudah kulit memerah.',
+		lexemeId: 'ihmarra',
+		status: 'draft'
+	},
+	{
+		id: 'm44',
+		kind: 'meaning',
+		arabic: 'اِحْمِرَارٌ خَفِيفٌ',
+		question: 'Apa hubungan dua kata ini?',
+		answer:
+			'خَفِيفٌ adalah na‘at yang menerangkan maṣdar اِحْمِرَارٌ. Keduanya nakirah dan tidak ada fi‘il: kemerahan yang ringan.',
+		lexemeId: 'ihmarra',
+		status: 'draft'
 	}
 ];
 
@@ -295,7 +622,6 @@ export function validateMasdarTasks(items: readonly MasdarTask[]): string[] {
 	const errors: string[] = [];
 	const ids = new Set<string>();
 	const stimuli = new Set<string>();
-	if (items.length !== 20) errors.push('20 different reading prompts are required for the pilot');
 	for (const item of items) {
 		if (ids.has(item.id)) errors.push(`Duplicate task ID: ${item.id}`);
 		if (stimuli.has(item.arabic.normalize('NFC')))
@@ -306,6 +632,10 @@ export function validateMasdarTasks(items: readonly MasdarTask[]): string[] {
 			errors.push(`Empty task: ${item.id}`);
 		if (!masdarLexemes.some((lemma) => lemma.id === item.lexemeId))
 			errors.push(`Missing lexical source: ${item.id}`);
+	}
+	for (const lemma of masdarLexemes) {
+		const count = items.filter((item) => item.lexemeId === lemma.id).length;
+		if (count !== 4) errors.push(`Four tasks are required per lexeme: ${lemma.id} has ${count}`);
 	}
 	return errors;
 }

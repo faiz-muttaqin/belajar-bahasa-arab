@@ -75,8 +75,8 @@
 <aside class="mt-14 max-w-4xl space-y-4 rounded-2xl border bg-card p-5">
 	<h2 class="text-xl font-semibold">Lanjut: maṣdar dalam bacaan formal</h2>
 	<p class="text-muted-foreground">
-		Latihan mengenali lima pasangan fi‘il–maṣdar berbukti kamus dan 20 stimulus konteks MSA. Semua
-		contoh tetap draf sampai pemeriksaan kalimat lengkap.
+		Latihan mengenali 11 pasangan fi‘il–maṣdar berbukti kamus pada Form I, III, V sampai X dan 44
+		stimulus konteks MSA. Semua contoh tetap draf sampai pemeriksaan kalimat lengkap.
 	</p>
 	<a
 		href={resolve('kaidah/masdar/')}
@@ -86,7 +86,8 @@
 	<div class="space-y-2 border-t pt-4">
 		<h2 class="text-xl font-semibold">Lanjut: isim fā‘il dan isim maf‘ūl</h2>
 		<p class="text-muted-foreground">
-			Bandingkan enam pasangan bentuk aktif dan pasif, termasuk akar ajwaf, dengan 24 latihan.
+			Bandingkan 15 keluarga verba dari Form I sampai X, termasuk akar mithāl dan ajwaf serta bentuk
+			yang tidak lazim, dengan 60 latihan.
 		</p>
 		<a
 			href={resolve('kaidah/participle/')}

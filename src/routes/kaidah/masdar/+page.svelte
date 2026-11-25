@@ -19,7 +19,7 @@
 	<title>Memahami maṣdar dalam dokumen Arab · Belajar Bahasa Arab</title>
 	<meta
 		name="description"
-		content="Rujukan maṣdar untuk pelajar Arab pasca-Iqra: 5 pasangan verba–maṣdar berbukti kamus, 20 latihan bacaan MSA berharakat dan pembahasan Indonesia."
+		content="Rujukan maṣdar untuk pelajar Arab pasca-Iqra: {masdarLexemes.length} pasangan verba–maṣdar berbukti kamus pada Form I, III, V sampai X, {masdarTasks.length} latihan bacaan MSA berharakat dan pembahasan Indonesia."
 	/>
 </svelte:head>
 
@@ -34,7 +34,7 @@
 		<h1 class="text-3xl font-bold">Maṣdar: dari perbuatan menjadi nama kegiatan</h1>
 		<p>
 			Bahasa Arab baku sering menggunakan nama kegiatan pada judul, jadwal, dan dokumen. Pelajari
-			bedanya dengan fi‘il, lalu baca 20 contoh berharakat yang ditulis mandiri.
+			bedanya dengan fi‘il, lalu baca {masdarTasks.length} contoh berharakat yang ditulis mandiri.
 		</p>
 		<p class="text-sm text-muted-foreground">
 			Semua contoh masih draf. Kamus mendukung pasangan kata, sedangkan kebenaran seluruh kalimat
@@ -65,15 +65,22 @@
 	</section>
 
 	<section class="space-y-4">
-		<h2 class="text-2xl font-semibold">Lima pasangan yang diperiksa per lema</h2>
+		<h2 class="text-2xl font-semibold">{masdarLexemes.length} pasangan yang diperiksa per lema</h2>
 		<p class="max-w-3xl text-muted-foreground">
-			Bentuk maṣdar Form I tidak selalu bisa ditebak dengan satu rumus. Setiap pasangan di bawah
-			mempunyai entri kamus spesifik; jangan menggeneralisasi bentuk kata ke seluruh akar.
+			Bentuk maṣdar Form I tidak selalu bisa ditebak dengan satu rumus. Pada Form III, V sampai X,
+			pola maṣdar lebih teratur, tetapi masih ada varian, misalnya <span lang="ar" dir="rtl"
+				>قِتَالٌ</span
+			>
+			dan <span lang="ar" dir="rtl">مُقَاتَلَةٌ</span> untuk Form III. Setiap pasangan di bawah mempunyai entri
+			kamus spesifik; jangan menggeneralisasi bentuk kata ke seluruh akar.
 		</p>
 		<ul class="grid gap-3 sm:grid-cols-2">
 			{#each masdarLexemes as lexeme (lexeme.id)}
 				<li class="min-w-0 space-y-2 rounded-xl border bg-card p-4">
-					<p class="text-sm text-muted-foreground">Fi‘il māḍī / muḍāri‘ / maṣdar · draf</p>
+					<p class="text-sm text-muted-foreground">
+						Form {lexeme.form} · pola <span lang="ar" dir="rtl">{lexeme.pattern}</span> · Fi‘il māḍī /
+						muḍāri‘ / maṣdar · draf
+					</p>
 					<p lang="ar" dir="rtl" class="arabic-word text-right">
 						{lexeme.verb} · {lexeme.present} · {lexeme.masdar}
 					</p>
@@ -90,7 +97,9 @@
 	</section>
 
 	<section id="latihan-masdar" class="scroll-mt-24 space-y-4">
-		<h2 class="text-2xl font-semibold">Latihan menerapkan makna dalam 20 bacaan</h2>
+		<h2 class="text-2xl font-semibold">
+			Latihan menerapkan makna dalam {masdarTasks.length} bacaan
+		</h2>
 		<p class="max-w-3xl text-muted-foreground">
 			Baca sebelum membuka jawaban. Tugasnya berubah dari mengenali kata kerja, memahami peran
 			maṣdar hingga membedakan frasa dan kalimat. Pengacakan opsi bukan variasi soal.
@@ -134,8 +143,8 @@
 		</p>
 		<p>
 			Halaman ini mengajarkan satu bagian G-02. Masih dibutuhkan audit per kalimat dan perluasan ke
-			masdar pola mazīd, bentuk mu‘tal, sinonim makna, serta bacaan dokumen yang lebih panjang.
-			Lihat roadmap OER-01–06 pada issue #55.
+			maṣdar Form II dan IV, bentuk mu‘tal dan mahmūz, varian maṣdar lain, sinonim makna, serta
+			bacaan dokumen yang lebih panjang. Lihat roadmap OER-01–06 pada issue #55.
 		</p>
 		<a
 			href={resolve('kaidah/sharaf/')}
