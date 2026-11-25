@@ -10,7 +10,7 @@ const masudSource = { ...readingSource(ibnMasud), usageType: 'independent-origin
 const abbasSource = { ...readingSource(ibnAbbas), usageType: 'independent-original' } as const;
 
 function comparison(
-	reading: typeof ibnMasud,
+	reading: NonNullable<typeof ibnMasud>,
 	meanings: readonly [opening: string, closing: string],
 	emphasis: readonly string[]
 ) {
@@ -119,7 +119,7 @@ export const tasyahudQuestions: MeaningPractice = [
 		choices: ['Dari Allah', 'Bersama Allah', 'Bagi Allah'],
 		correct: 2,
 		reason:
-			'لِـ membawa makna “bagi”. Letak لِلَّهِ berbeda pada kedua pembuka, tetapi keduanya menyatakan bahwa penghormatan, shalat, dan kebaikan itu bagi Allah.',
+			'لِـ membawa makna “bagi”. Letak لِلَّهِ berbeda pada kedua pembuka. Dalam keduanya, penghormatan, shalat, dan kebaikan itu bagi Allah.',
 		sources: [masudSource, abbasSource]
 	}
 ];

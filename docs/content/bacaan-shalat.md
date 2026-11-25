@@ -34,3 +34,7 @@ Pada al-Bukhari 1120 dan 1166, lafaz bacaan ditampilkan dengan pilihan redaksiny
 ## CB-02 · Latihan varian tasyahud
 
 Dasar kerja CB-02 adalah katalog 58 bacaan dari commit `24f8133`. Latihan memakai dua riwayat yang sudah ditautkan pada katalog, yaitu [Ibnu Mas‘ud](https://sunnah.com/bukhari:831) dan [Ibnu Abbas](https://sunnah.com/muslim:403a). Fokus latihan adalah makna kata yang sama dan unsur pembeda pada pembuka serta syahadat kedua. Cabang ini opsional pada Tahap 1. Latihan dan lembar tinjauan disiapkan sebagai draf.
+
+Cabang Tahap 1 kini membuka latihan mandiri di `/belajar/varian-tasyahud/`. Lima soal memeriksa kata pembeda dan kata yang sama. Pembahasan memuat rujukan per soal, dan tiap cuplikan membuka lafaz utuh di katalog. Latihan bisa dibuka dengan atau tanpa JavaScript dan bersifat opsional.
+
+[Lembar tinjauan](./lembar-tinjauan-bacaan-shalat.md) mencakup semua 58 ID dari katalog. Setiap entri memuat lafaz, glos bernomor, makna utuh, sumber, dan daftar periksa. Catatan hasil disimpan menurut ID dan nomor kata. Semua butir menunggu pemeriksaan ustadz.
