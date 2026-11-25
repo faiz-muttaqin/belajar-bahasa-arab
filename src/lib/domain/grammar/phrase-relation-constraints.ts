@@ -240,12 +240,27 @@ export function resolveAttachedPossessive(input: {
  * examples. This blocks a dangerous substitution of al-ladhī/al-latī without
  * updating the predicate, concealed subject, or returning object pronoun.
  */
+export type CuratedRelativeFrame = {
+	antecedent: string;
+	relative: string;
+	silaTokens: readonly string[];
+	returnLink: 'implicit-subject' | 'explicit-object-suffix';
+};
+
+const nfc = (text: string) => text.normalize('NFC');
+
+/**
+ * `allowedFrames` (D-05b/c) lets a caller supply further WHOLE curated
+ * antecedent + mawṣūl + ṣilah frames. Without it, only the three original G-05
+ * examples qualify, exactly as in D-04b. A frame outside the list is rejected.
+ */
 export function evaluateRelativeClause(input: {
 	exampleId: string;
 	antecedent: RelationWord;
 	relative: RelationWord;
 	silaTokens: readonly string[];
 	returnLink: 'implicit-subject' | 'explicit-object-suffix' | 'unknown';
+	allowedFrames?: readonly CuratedRelativeFrame[];
 }): RelationAssessment {
 	const reasons: RelationReason[] = [
 		...evaluateSlotCandidate(
@@ -283,18 +298,31 @@ export function evaluateRelativeClause(input: {
 	const sila = example?.spans
 		.find((span) => span.id === 'sila')
 		?.tokens.map((token) => token.arabic);
-	const expectedReturn =
-		input.exampleId === 'relative-object-return' ? 'explicit-object-suffix' : 'implicit-subject';
-	if (
-		!rule?.sources.length ||
-		!example ||
-		!['relative-male', 'relative-female', 'relative-object-return'].includes(input.exampleId) ||
-		main !== input.antecedent.text ||
-		connector !== input.relative.text ||
-		!sila ||
-		sila.length !== input.silaTokens.length ||
-		sila.some((token, index) => token !== input.silaTokens[index])
-	) {
+	const matchedFrame = input.allowedFrames?.find(
+		(frame) =>
+			nfc(frame.antecedent) === nfc(input.antecedent.text) &&
+			nfc(frame.relative) === nfc(input.relative.text) &&
+			frame.silaTokens.length === input.silaTokens.length &&
+			frame.silaTokens.every((token, index) => nfc(token) === nfc(input.silaTokens[index]!))
+	);
+	const expectedReturn = input.allowedFrames
+		? matchedFrame?.returnLink
+		: input.exampleId === 'relative-object-return'
+			? 'explicit-object-suffix'
+			: 'implicit-subject';
+	const originalMatch =
+		!input.allowedFrames &&
+		Boolean(
+			rule?.sources.length &&
+			example &&
+			['relative-male', 'relative-female', 'relative-object-return'].includes(input.exampleId) &&
+			main === input.antecedent.text &&
+			connector === input.relative.text &&
+			sila &&
+			sila.length === input.silaTokens.length &&
+			sila.every((token, index) => token === input.silaTokens[index])
+		);
+	if (!originalMatch && !matchedFrame) {
 		reasons.push({
 			code: 'uncurated-relation',
 			message: 'Rangkaian isim mawṣūl dan ṣilah ini belum tercantum sebagai contoh utuh G-05.'

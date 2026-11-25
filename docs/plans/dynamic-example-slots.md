@@ -90,3 +90,14 @@ Kontrak `LexemeRecord`, `WordSurface`, `MorphFeatures`, `SurfaceEvidence`, dan v
 **Belum terpenuhi:** D-05b/c: G-04/G-05, bentuk verba mu‘tal/pronomina lain, D-06 bukti progres; cakupan semua kartu belum tercapai.
 
 **Tindak lanjut:** [issue #24](https://github.com/faiz-muttaqin/belajar-bahasa-arab/issues/24). Setiap PR lanjutan wajib menyebut sub-deliverable yang diselesaikan dan kriteria yang masih terbuka.
+
+## Catatan D-05b dan D-05c: G-04 dan G-05 (25 November 2026)
+
+**D-05b (kalimat G-04, `/kaidah/kalimat/`)** dan **D-05c (klausa G-05, `/kaidah/klausa/`)** memperluas penggantian kata D-05a dengan model yang sama: memilih satu opsi mengganti **satu bingkai utuh** (token, glos, terjemahan alami, penjelasan). Tidak ada bentuk yang dirangkai dari lema.
+
+- **G-04:** ke-18 kartu contoh menjadi interaktif (mubtada-khabar, syibh-jumlah, fi‘il-fā‘il-maf‘ūl, amr, pasif dengan pasangan aktif, negasi `لَا لَمْ لَنْ`, kāna/inna, pertanyaan `هَلْ`). Bentuk fi‘il memakai tabel D-03 (māḍī, muḍāri‘, lam, lan, amr) dan hanya bentuk yang tercatat; fi‘il mu‘tal ajwaf `غَابَ` / `يَغِيبُ` tercatat dari data Form I Wiktionary.
+- **G-05:** kartu ‘aṭf (tiga), isim mawṣūl + ṣilah (tiga, memakai validator D-04b dengan daftar bingkai terkurasi) dan syarat `إِنْ` (dua) menjadi interaktif. Kartu sebab, kontras, ḥāl, istitsnā’, tamyīz dan syarat dengan jawab nominal tetap statis karena belum ada alternatif bersumber.
+- **Validator baru** (`sentence-clause-constraints.ts`): kecocokan penanda akhir dengan kasus/mood, fi‘il-fā‘il (gender, fi‘il tetap tunggal), valensi per bingkai, amr, pasif berpasangan, partikel negasi dan mood, kāna/inna, klitik satu token, kasus ma‘ṭūf, syarat jazm, relatif utuh dan kasra penghubung `ت`. Opsi yang gagal tetap terlihat, nonaktif dan memberi alasan; bentuk yang belum tercatat (mutsanna, pasif mu‘tal, lam/lan/amr verba tertentu, dhamir ‘ā’id feminin) tampil sebagai opsi nonaktif tanpa menampilkan Arab karangan.
+- Setiap bingkai mencatat sumber dan asal bentuk. Bentuk variasi penulis (gender, kasus, klitik) ditandai `authored-variant` dengan bentuk asalnya. Semua tetap `draft`. [Audit D-05b/c](../data/dynamic-clauses-d05bc-audit.md) memuat tiap bingkai, hasil verifikasi bahasa dua tahap oleh Fable dan batas buktinya.
+
+**Masih terbuka:** D-06 (progres latihan, cache, pencarian besar), tinjauan guru bahasa Arab atas seluruh bingkai, dan kartu G-05 yang belum punya alternatif bersumber.

@@ -142,8 +142,13 @@ export function evaluateAdjectiveAgreement(input: {
 	adjective: MorphFeatures;
 	relation: AdjectiveRelation;
 	pluralAnimacy?: PluralAnimacy;
+	/**
+	 * D-05b: case required of a nominal predicate. Defaults to raf; a khabar of
+	 * kāna is manṣūb. Ignored for na‘at, which copies the case of its man‘ūt.
+	 */
+	predicateCase?: 'raf' | 'nasb';
 }): ConstraintResult {
-	const { head, adjective, relation, pluralAnimacy = 'unknown' } = input;
+	const { head, adjective, relation, pluralAnimacy = 'unknown', predicateCase = 'raf' } = input;
 	const reasons: ConstraintReason[] = [];
 	const required: Partial<MorphFeatures> = {};
 
@@ -179,7 +184,7 @@ export function evaluateAdjectiveAgreement(input: {
 	} else {
 		// A standalone khabar is NOT a na‘at, so it need not copy the
 		// definite mubtada's definiteness.
-		required.case = 'raf';
+		required.case = predicateCase;
 		required.definiteness = 'indefinite';
 	}
 	reasons.push(...compareFeatures(required, adjective));

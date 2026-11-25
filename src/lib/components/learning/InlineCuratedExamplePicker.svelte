@@ -4,6 +4,7 @@
 		searchInlineExampleChoices,
 		type InlineExampleSource
 	} from '#lib/domain/grammar/inline-curated-examples.js';
+	import type { FrameChoice } from '#lib/domain/grammar/sentence-clause-frames.js';
 
 	let {
 		source,
@@ -11,21 +12,31 @@
 		selectedId,
 		tokenIndex,
 		roleLabel,
-		onSelect
+		onSelect,
+		search
 	}: {
-		source: InlineExampleSource;
-		originalId: string;
+		/** D-05a frame registry (G-01/G-03). Ignored when `search` is given. */
+		source?: InlineExampleSource;
+		originalId?: string;
 		selectedId: string;
 		tokenIndex: number;
 		roleLabel: string;
 		onSelect: (id: string) => void;
+		/** D-05b/c: choices for G-04 sentences and G-05 clauses, including disabled gaps. */
+		search?: (query: string) => readonly FrameChoice[];
 	} = $props();
 
 	let hydrated = $state(false);
 	let query = $state('');
 	let pickerDialog: HTMLDialogElement;
 	let trigger = $state<HTMLButtonElement | undefined>(undefined);
-	let results = $derived(searchInlineExampleChoices(source, originalId, tokenIndex, query));
+	let results = $derived<readonly FrameChoice[]>(
+		search
+			? search(query)
+			: source && originalId
+				? searchInlineExampleChoices(source, originalId, tokenIndex, query)
+				: []
+	);
 
 	onMount(() => {
 		hydrated = true;
@@ -106,9 +117,11 @@
 						aria-current={item.id === selectedId ? 'true' : undefined}
 						onclick={() => choose(item.id)}
 					>
-						<span class="text-xl leading-[1.9]" lang="ar" dir="rtl">
-							{item.surfaces.join(' ')}
-						</span>
+						{#if item.surfaces.length}
+							<span class="text-xl leading-[1.9]" lang="ar" dir="rtl">
+								{item.surfaces.join(' ')}
+							</span>
+						{/if}
 						<span class="text-sm font-medium">{item.translation}</span>
 						{#if item.id === selectedId}
 							<span class="text-xs text-muted-foreground">Contoh saat ini</span>
@@ -119,19 +132,26 @@
 							? item.explanation
 							: 'Belum bisa dipilih: ' + item.reasons.map((reason) => reason.message).join(' ')}
 					</p>
-					<p class="mt-2 px-2 text-xs text-muted-foreground">
-						Materi draft · belum ditashih guru.
-						{#if item.sourceUrls[0]}
-							<!-- eslint-disable svelte/no-navigation-without-resolve -- external grammar source -->
-							<a
-								href={item.sourceUrls[0]}
-								class="underline hover:text-foreground"
-								target="_blank"
-								rel="noopener noreferrer">Rujukan kaidah</a
-							>
-							<!-- eslint-enable svelte/no-navigation-without-resolve -->
-						{/if}
-					</p>
+					{#if item.provenance}
+						<p class="mt-2 px-2 text-xs text-muted-foreground" data-inline-provenance={item.id}>
+							{item.provenance}
+						</p>
+					{/if}
+					{#if !item.gap}
+						<p class="mt-2 px-2 text-xs text-muted-foreground">
+							Materi draft · belum ditashih guru.
+							{#if item.sourceUrls[0]}
+								<!-- eslint-disable svelte/no-navigation-without-resolve -- external grammar source -->
+								<a
+									href={item.sourceUrls[0]}
+									class="underline hover:text-foreground"
+									target="_blank"
+									rel="noopener noreferrer">Rujukan kaidah</a
+								>
+								<!-- eslint-enable svelte/no-navigation-without-resolve -->
+							{/if}
+						</p>
+					{/if}
 				</li>
 			{:else}
 				<li class="rounded-lg border border-dashed px-4 py-5 text-sm text-muted-foreground">
