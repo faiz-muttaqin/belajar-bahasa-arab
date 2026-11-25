@@ -17,6 +17,7 @@ import {
 	phraseAnnotations,
 	wordClassAnnotations
 } from './grammar-annotations.js';
+import { phraseEdgeAnnotations } from './phrase-edge-annotations.js';
 
 function originOf(origin: AnnotationOrigin) {
 	if (origin.kind === 'lesson') {
@@ -48,10 +49,11 @@ describe('VP-01 pilot annotations', () => {
 		expect(validateAnnotatedSentences(grammarAnnotations)).toEqual([]);
 	});
 
-	it('cover all five word-class lesson sentences, all six G-01 and ten G-03 examples', () => {
+	it('cover all five word-class lesson sentences, all six G-01 and every G-03 example', () => {
 		expect(wordClassAnnotations).toHaveLength(5);
 		expect(phraseAnnotations).toHaveLength(10);
-		expect(grammarAnnotations).toHaveLength(18);
+		expect(phraseEdgeAnnotations).toHaveLength(34);
+		expect(grammarAnnotations).toHaveLength(52);
 		expect(annotationsForGrammarRule('nat-manut').map((s) => s.id)).toEqual([
 			'ph-kitab-jadid',
 			'ph-madrasa-kabira'
@@ -70,6 +72,21 @@ describe('VP-01 pilot annotations', () => {
 		expect(annotationsForPhraseRule('naat-agreement')).toHaveLength(4);
 		expect(annotationsForPhraseRule('idafah-jar')).toHaveLength(3);
 		expect(annotationsForPhraseRule('perubahan-irab')).toHaveLength(3);
+		// Every edge-case example of /kaidah/frasa/ has an annotation; `definite-idafah` shares g1-kitab-talib.
+		const edgeRules = [
+			['zharf-makan-zaman', 5],
+			['muannath-salim', 6],
+			['asma-khamsa', 4],
+			['jamak-taksir-mamnu', 5],
+			['maqshur-manqush', 5],
+			['kata-mabni', 5],
+			['idafah-nasb-marifah', 5]
+		] as const;
+		for (const [ruleId, count] of edgeRules)
+			expect(annotationsForPhraseRule(ruleId), ruleId).toHaveLength(count);
+		expect(annotationsForPhraseRule('idafah-nasb-marifah').map((s) => s.id)[1]).toBe(
+			'g1-kitab-talib'
+		);
 		expect(annotationForLessonSentence('isim-fiil-harf', 2, 0)?.id).toBe('wc-kunci-di-tas');
 	});
 
@@ -142,5 +159,30 @@ describe('VP-01 pilot annotations', () => {
 			expect(types.has(type), type).toBe(true);
 		// No pilot sentence has a pronoun with a referent inside the same text.
 		expect(types.has('dhamir-marji')).toBe(false);
+	});
+
+	it('annotates the edge cases with the roles and case signs the rules teach', () => {
+		const sign = (id: string, index: number) =>
+			grammarAnnotations.find((item) => item.id === id)!.tokens[index]!.finalVowel?.sign;
+		expect(sign('ph-raaytu-muallimat', 1)).toBe('kasrah');
+		expect(sign('ph-jaa-abu-talib', 1)).toBe('wāw');
+		expect(sign('ph-raaytu-aba-talib', 1)).toBe('alif');
+		expect(sign('ph-sallamtu-abi-talib', 2)).toBe('yā’');
+		expect(sign('ph-fi-madaris-kathira', 1)).toBe('fatḥah');
+		expect(sign('ph-fi-al-madaris', 1)).toBe('kasrah');
+		expect(sign('ph-raaytu-fata', 1)).toBe('fatḥah muqaddarah');
+		expect(sign('ph-raaytu-qadiya', 1)).toBe('fatḥah ẓāhirah');
+		const zharf = grammarAnnotations.find((item) => item.id === 'ph-wasala-qabla-dars')!;
+		expect(zharf.tokens[2]!.role).toBe('zharf');
+		expect(zharf.tokens[2]!.alsoRoles).toContain('mudhaf');
+	});
+
+	it('gives no case sign to a mabnī word and explains why', () => {
+		const mabni = ['ph-huwa-talib', 'ph-hadha-kitab', 'ph-raaytu-hadha', 'ph-saaltu-an-hadha']
+			.map((id) => grammarAnnotations.find((item) => item.id === id)!)
+			.flatMap((item) => item.tokens)
+			.filter((token) => token.note?.startsWith('Mabnī'));
+		expect(mabni).toHaveLength(4);
+		for (const token of mabni) expect(token.finalVowel).toBeUndefined();
 	});
 });

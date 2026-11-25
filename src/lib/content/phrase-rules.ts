@@ -4,6 +4,10 @@
  * This is not a general-purpose Arabic grammar parser or an i‘rab inference engine.
  */
 
+import { aj, madinah, qatr } from './annotation-builders.js';
+import { edgePhraseRules } from './phrase-rules-edge.js';
+import type { AnnotationSource } from '#lib/domain/grammar/annotation.js';
+
 export type IrabCase = 'raf' | 'nasb' | 'jarr';
 
 export const IRAB_CASE_LABELS: Record<IrabCase, string> = {
@@ -29,8 +33,29 @@ export type PhraseExample = {
 	explanation: string;
 };
 
+export type PhraseSource = {
+	name: string;
+	url: string;
+	/** Chapter, lesson or section the rule rests on. */
+	locator?: string;
+};
+
+export type PhraseRuleId =
+	| 'marifah-nakirah'
+	| 'naat-agreement'
+	| 'idafah-jar'
+	| 'perubahan-irab'
+	| 'jumlah-dan-gender'
+	| 'zharf-makan-zaman'
+	| 'muannath-salim'
+	| 'asma-khamsa'
+	| 'jamak-taksir-mamnu'
+	| 'maqshur-manqush'
+	| 'kata-mabni'
+	| 'idafah-nasb-marifah';
+
 export type PhraseRule = {
-	id: 'marifah-nakirah' | 'naat-agreement' | 'idafah-jar' | 'perubahan-irab' | 'jumlah-dan-gender';
+	id: PhraseRuleId;
 	title: string;
 	arabicTerm: string;
 	summary: string;
@@ -38,20 +63,17 @@ export type PhraseRule = {
 	limitation: string;
 	examples: readonly PhraseExample[];
 	exercise: { question: string; answer: string; reason: string };
-	sources: readonly { name: string; url: string }[];
+	sources: readonly PhraseSource[];
 	reviewStatus: 'draft';
 };
 
-const ajurrumiyya = {
-	name: 'Al-Ājurrūmiyyah — teks bab i‘rāb, na‘at, ma‘rifah, dan makhfūḍāt',
-	url: 'https://www.mashraba.org/grammar/ajurrumiyya'
-};
-const madinah = {
-	name: 'Madinah Arabic — pembelajaran gramatika bertahap',
-	url: 'https://madinaharabic.com/free-content/grammar'
-};
+const cite = (source: AnnotationSource): PhraseSource => ({
+	name: source.label,
+	url: source.url,
+	locator: source.locator
+});
 
-export const phraseRules: readonly PhraseRule[] = [
+const basicPhraseRules: readonly PhraseRule[] = [
 	{
 		id: 'marifah-nakirah',
 		title: 'Ma‘rifah dan nakirah',
@@ -99,7 +121,7 @@ export const phraseRules: readonly PhraseRule[] = [
 			reason:
 				'Beberapa isim nakirah tidak menerima tanwin, misalnya pola yang termasuk mamnū‘ min aṣ-ṣarf.'
 		},
-		sources: [ajurrumiyya, madinah],
+		sources: [cite(aj.naat), cite(madinah.definite)],
 		reviewStatus: 'draft'
 	},
 	{
@@ -169,7 +191,7 @@ export const phraseRules: readonly PhraseRule[] = [
 			reason:
 				'Ini pola agreement khusus yang tidak boleh disimpulkan hanya dari bentuk jamak kata bendanya.'
 		},
-		sources: [ajurrumiyya, madinah],
+		sources: [cite(aj.naat), cite(aj.irab), cite(madinah.adjective)],
 		reviewStatus: 'draft'
 	},
 	{
@@ -237,7 +259,7 @@ export const phraseRules: readonly PhraseRule[] = [
 			answer: 'Tidak. كِتَابِ karena فِي, sedangkan الطَّالِبِ karena menjadi muḍāf ilaih.',
 			reason: 'Peran sintaksis dan penyebab i‘rab perlu dibaca, bukan sekadar melihat kasra.'
 		},
-		sources: [ajurrumiyya, madinah],
+		sources: [cite(aj.makhfudat), cite(aj.irab), cite(madinah.idafah)],
 		reviewStatus: 'draft'
 	},
 	{
@@ -297,7 +319,13 @@ export const phraseRules: readonly PhraseRule[] = [
 			answer: 'Tidak. Lema dasarnya sama; kasus i‘rab menandai fungsi dalam susunan.',
 			reason: 'Pahami hubungan amil dan fungsi sintaksis sebelum memilih harakat akhir.'
 		},
-		sources: [ajurrumiyya, madinah],
+		sources: [
+			cite(aj.irab),
+			cite(aj.marfuat),
+			cite(aj.manshubat),
+			cite(aj.makhfudat),
+			cite(madinah.declinable)
+		],
 		reviewStatus: 'draft'
 	},
 	{
@@ -378,10 +406,12 @@ export const phraseRules: readonly PhraseRule[] = [
 			reason:
 				'Tanda i‘rab bergantung pada jenis bentuk nomina, bukan sekadar aturan ḍamma/fatḥa/kasra.'
 		},
-		sources: [ajurrumiyya, madinah],
+		sources: [cite(aj.irab), cite(qatr.types), cite(madinah.declinable)],
 		reviewStatus: 'draft'
 	}
 ];
+
+export const phraseRules: readonly PhraseRule[] = [...basicPhraseRules, ...edgePhraseRules];
 
 export function validatePhraseRules(rules: readonly PhraseRule[]): string[] {
 	const errors: string[] = [];

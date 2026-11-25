@@ -74,6 +74,7 @@ const ROLE_SWATCH: Record<RoleId, Swatch> = {
 	manut: 'violet',
 	'harf-jar': 'coral',
 	majrur: 'coral',
+	zharf: 'amber',
 	mudhaf: 'grey',
 	'mudhaf-ilaih': 'grey'
 };
