@@ -12,6 +12,7 @@ export type SectionPath =
 	| 'kosakata/'
 	| 'rujukan/'
 	| 'kaidah/'
+	| 'pustaka/'
 	| 'cari/'
 	| 'progres/'
 	| 'bookmark/'
@@ -33,6 +34,7 @@ export type SectionId =
 	| 'kosakata'
 	| 'rujukan'
 	| 'kaidah'
+	| 'pustaka'
 	| 'cari'
 	| 'progres'
 	| 'bookmark'
@@ -97,6 +99,13 @@ export const sections: readonly Section[] = [
 		label: 'Kaidah',
 		path: 'kaidah/',
 		summary: 'Susunan frasa dan kalimat, fungsi kata, serta hubungan dengan sharaf.',
+		inTabBar: false
+	},
+	{
+		id: 'pustaka',
+		label: 'Pustaka',
+		path: 'pustaka/',
+		summary: 'Salinan lokal materi sumber untuk belajar pribadi. Kosong di situs publik.',
 		inTabBar: false
 	},
 	{

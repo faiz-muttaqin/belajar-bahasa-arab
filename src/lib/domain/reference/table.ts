@@ -11,8 +11,11 @@ export type ReviewStatus = 'fixture' | 'draft' | 'linguist_reviewed' | 'approved
 export type ReferenceColumn = {
 	key: string;
 	label: string;
-	/** 'ar' cells render RTL with the Arabic face; 'id' cells are Indonesian. */
-	lang: 'ar' | 'id';
+	/**
+	 * 'ar' cells render RTL with the Arabic face; 'id' (Indonesian) and 'en' (English) cells
+	 * are plain text in which Arabic runs are isolated.
+	 */
+	lang: 'ar' | 'id' | 'en';
 	/** Columns that make sense to hide in memorisation (hafalan) mode. */
 	hideable?: boolean;
 };

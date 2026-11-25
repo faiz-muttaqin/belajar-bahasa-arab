@@ -6,6 +6,7 @@ import ChartNoAxesColumn from '@lucide/svelte/icons/chart-no-axes-column';
 import House from '@lucide/svelte/icons/house';
 import Info from '@lucide/svelte/icons/info';
 import Languages from '@lucide/svelte/icons/languages';
+import Library from '@lucide/svelte/icons/library';
 import ListChecks from '@lucide/svelte/icons/list-checks';
 import Palette from '@lucide/svelte/icons/palette';
 import Search from '@lucide/svelte/icons/search';
@@ -22,6 +23,7 @@ export const sectionIcons: Record<SectionId, Component> = {
 	kosakata: BookA,
 	rujukan: Table2,
 	kaidah: Waypoints,
+	pustaka: Library,
 	cari: Search,
 	progres: ChartNoAxesColumn,
 	bookmark: Bookmark,

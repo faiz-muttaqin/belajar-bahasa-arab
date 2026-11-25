@@ -12,6 +12,7 @@
 		description,
 		heading = title,
 		section,
+		headingLang,
 		lead
 	}: {
 		/** Topic part of the <title>; the brand is appended. */
@@ -21,6 +22,8 @@
 		heading?: string;
 		/** Shows the section's icon as a marker above the heading. */
 		section?: SectionId;
+		/** Set to 'ar' when the heading is Arabic text (sets lang, direction and the Arabic face). */
+		headingLang?: 'ar';
 		lead?: Snippet;
 	} = $props();
 
@@ -43,7 +46,11 @@
 			<Icon class="size-6" aria-hidden="true" />
 		</span>
 	{/if}
-	<h1 class="text-[clamp(2rem,1.6rem+2vw,2.5rem)] leading-tight font-bold tracking-tight">
+	<h1
+		lang={headingLang}
+		dir={headingLang === 'ar' ? 'rtl' : undefined}
+		class="text-[clamp(2rem,1.6rem+2vw,2.5rem)] leading-tight font-bold tracking-tight"
+	>
 		{heading}
 	</h1>
 	{#if lead}

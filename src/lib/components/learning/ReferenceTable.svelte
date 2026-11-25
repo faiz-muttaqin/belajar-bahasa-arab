@@ -6,6 +6,7 @@
 	import { SvelteSet } from 'svelte/reactivity';
 	import type { ReferenceTableData } from '#lib/domain/reference/table.js';
 	import { cn } from '#lib/utils.js';
+	import MixedText from './MixedText.svelte';
 
 	/**
 	 * Reference table with two learning aids:
@@ -161,7 +162,7 @@
 									</span>
 								{:else}
 									<span id="{uid}-cell-{cellId}" tabindex="-1" class="text-base text-pretty"
-										>{value}</span
+										><MixedText text={value} /></span
 									>
 								{/if}
 							</td>

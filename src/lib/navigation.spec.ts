@@ -21,6 +21,8 @@ describe('activeSectionId', () => {
 		['/belajar/[slug]', 'belajar'],
 		['/rujukan', 'rujukan'],
 		['/kosakata', 'kosakata'],
+		['/pustaka', 'pustaka'],
+		['/pustaka/[track]/[lesson]', 'pustaka'],
 		['/editor/theme', 'tema']
 	])('maps route %s to %s', (routeId, expected) => {
 		expect(activeSectionId(routeId)).toBe(expected);
