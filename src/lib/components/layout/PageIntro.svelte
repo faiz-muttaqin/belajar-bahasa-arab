@@ -36,6 +36,10 @@
 <svelte:head>
 	<title>{documentTitle}</title>
 	<meta name="description" content={description} />
+	<meta property="og:title" content={documentTitle} />
+	<meta property="og:description" content={description} />
+	<meta name="twitter:title" content={documentTitle} />
+	<meta name="twitter:description" content={description} />
 </svelte:head>
 
 <div class="max-w-[60ch] space-y-5">

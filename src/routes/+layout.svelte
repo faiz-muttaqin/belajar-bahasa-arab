@@ -5,7 +5,9 @@
 	import { onMount } from 'svelte';
 	import { startBackgroundCatalog } from '#lib/catalog/sync.svelte.js';
 	import { startBrowserSpeech } from '#lib/audio/speech.svelte.js';
+	import { asset } from '$app/paths';
 	import favicon from '#lib/assets/favicon.svg';
+	import { OG_IMAGE, SITE_NAME, SITE_ORIGIN } from '#lib/site.js';
 	import SiteFooter from '#lib/components/layout/SiteFooter.svelte';
 	import DesktopSidebar from '#lib/components/layout/DesktopSidebar.svelte';
 	import SiteHeader from '#lib/components/layout/SiteHeader.svelte';
@@ -23,7 +25,21 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href={favicon} type="image/svg+xml" />
+	<link rel="icon" href={asset('favicon.ico')} sizes="48x48" />
+	<link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
+	<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+	<meta name="theme-color" content="#111715" media="(prefers-color-scheme: dark)" />
+	<meta property="og:site_name" content={SITE_NAME} />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="id_ID" />
+	<meta property="og:url" content={`${SITE_ORIGIN}${page.url.pathname}`} />
+	<meta property="og:image" content={OG_IMAGE.url} />
+	<meta property="og:image:width" content={String(OG_IMAGE.width)} />
+	<meta property="og:image:height" content={String(OG_IMAGE.height)} />
+	<meta property="og:image:alt" content={OG_IMAGE.alt} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content={OG_IMAGE.url} />
 	<!-- Saved mode and colours applied before first paint (no flash). Idempotent. -->
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- static script built from our own source, no user input -->
 	{@html themeInitScriptTag}
